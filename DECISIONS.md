@@ -898,3 +898,14 @@ Harness:
 178. **"See a GP" stays routine** (owner's choice, confirming item 17). The
      NHS website labels it non-urgent. Differences with test cases that
      expected "soon" stay in `review/disagreements.md` for clinical review.
+179. **Questions a 12 to 15-year-old may answer themselves no longer talk to
+     a parent.** Found by the owner testing a 15-year-old with a sprained
+     foot, who was asked "Is your child not using their arm?". Two causes:
+     the two pulled-elbow questions were asked up to 16, although pulled
+     elbow happens in young children (now up to 5 only), and several
+     questions asked up to 16 were written to a parent. Those now use the
+     neutral "the person who is unwell" wording already used elsewhere; the
+     "your child" wording is still used when someone says they are answering
+     for another person. The demo page now ticks "I am answering for someone
+     else" for under-12s (it can be unticked). Development results are
+     unchanged.

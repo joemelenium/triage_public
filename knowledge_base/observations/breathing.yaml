@@ -298,7 +298,7 @@
   label: "Child struggling to breathe (grunting, or tummy sucking in under the ribs)"
   question: "Is the person who is unwell struggling to breathe? You may hear grunting noises, or see their tummy sucking in under their ribs."
   question_carer: "Is your child struggling to breathe? You may hear grunting noises, or see their tummy sucking in under their ribs."
-  checklist_text: "A child struggling to breathe: grunting noises, or their tummy sucking in under their ribs"
+  checklist_text: "Struggling to breathe: grunting noises, or the tummy sucking in under the ribs"
   kind: symptom
   parent: difficulty_breathing
   relation: severity
@@ -658,7 +658,7 @@
   label: "Child limp, floppy, hard to wake or not responding as usual"
   question: "Is the person who is unwell limp, floppy, much sleepier than usual or hard to wake? Or not responding like they usually do?"
   question_carer: "Is your child limp, floppy, much sleepier than usual or hard to wake? Or not responding like they usually do? Their head may fall to the side, backwards or forwards."
-  checklist_text: "A child who is limp, floppy, hard to wake, or not responding like they usually do"
+  checklist_text: "Limp, floppy, hard to wake, or not responding like usual"
   kind: symptom
   seriousness: emergency
   asked_only_if: age_under_16   # signs described for children
@@ -811,9 +811,9 @@
 
 - id: child_wants_to_sit_up
   label: "Child wants to sit up rather than lie down"
-  question: "Does the child want to sit up rather than lie down, because it is easier to breathe?"
+  question: "Does the person who is unwell want to sit up rather than lie down, because it is easier to breathe?"
   question_carer: "Does your child want to sit up rather than lie down, because it is easier for them to breathe?"
-  checklist_text: "A child who wants to sit up rather than lie down"
+  checklist_text: "Wanting to sit up rather than lie down, to breathe more easily"
   kind: symptom
   asked_only_if: age_under_16   # a croup warning sign described for children
   phrases: ["won't lie down", "only comfortable sitting up", "leaning forward to breathe"]

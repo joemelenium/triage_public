@@ -375,7 +375,7 @@
   question: "Was your child's arm pulled or yanked, for example when lifted by the hand, and now they will not use it?"
   question_carer: "Was your child's arm pulled or yanked, for example when lifted by the hand, and now they will not use it?"
   kind: symptom
-  asked_only_if: age_under_16
+  asked_only_if: age_under_5   # pulled elbow happens in young children
   phrases: ["pulled his arm", "swung her by the arms", "won't use her arm"]
   source: ai_judgement
 
@@ -550,7 +550,7 @@
   question: "Is your child not using their arm, and holding it still by their side?"
   question_carer: "Is your child not using their arm, and holding it still by their side?"
   kind: symptom
-  asked_only_if: age_under_16
+  asked_only_if: age_under_5   # pulled elbow happens in young children
   phrases: ["won't use his arm", "holding her arm still"]
   source: ai_judgement
 
@@ -1140,7 +1140,7 @@
 
 - id: limp_obvious_minor_cause
   label: "Limp from an obvious minor cause, and otherwise well"
-  question: "Is the limp from something small you can see, like a blister, a cut or a bruise? And is your child well in every other way?"
+  question: "Is the limp from something small you can see, like a blister, a cut or a bruise? And is the person who is unwell well in every other way?"
   question_carer: "Is the limp from something small you can see, like a blister, a cut or a bruise? And is your child well in every other way?"
   kind: symptom
   asked_only_if: limp

@@ -926,9 +926,9 @@
 
 - id: child_soiling
   label: "A child regularly pooing their pants (soiling)"
-  question: "Is your child, who is already potty trained, regularly pooing their pants (soiling)?"
+  question: "Does the person who is unwell often poo their pants, even though they are potty trained?"
   question_carer: "Is your child, who is already potty trained, regularly pooing their pants (soiling)?"
-  checklist_text: "A child who keeps pooing their pants"
+  checklist_text: "Keeps pooing their pants after being potty trained"
   kind: presenting
   snomed: "302690004"
   asked_only_if: age_under_16   # only asked about children

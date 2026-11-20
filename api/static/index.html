@@ -182,6 +182,8 @@ function drawChosen() {
   $("begin").disabled = state.entry.length === 0 || !$("agree").checked;
 }
 $("agree").addEventListener("change", drawChosen);
+// Young children rarely answer for themselves, so tick "answering for someone else" for them (it can be unticked).
+$("age").addEventListener("change", () => { if (Number($("age").value) < 12) $("carer").checked = true; });
 
 $("begin").onclick = async () => {
   $("start-error").textContent = "";

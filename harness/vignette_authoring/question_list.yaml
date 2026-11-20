@@ -182,7 +182,7 @@
   label: Child's arm was pulled or yanked, and now not used
   question: Was your child's arm pulled or yanked, for example when lifted by the hand, and now they will not use it?
   kind: symptom
-  only_asked_if_yes_to: age_under_16
+  only_asked_if_yes_to: age_under_5
 - id: signs_of_shock
   label: Cold, pale, sweaty skin or fast breathing after an injury
   question: Is your skin cold, pale and sweaty, or are you breathing fast or feeling very faint?
@@ -267,7 +267,7 @@
   label: Child not using an arm, holding it still
   question: Is your child not using their arm, and holding it still by their side?
   kind: symptom
-  only_asked_if_yes_to: age_under_16
+  only_asked_if_yes_to: age_under_5
 - id: severe_pain
   label: Severe pain
   question: Is the pain severe? Severe pain is there all the time and so bad it is hard to think, talk or sleep.
@@ -580,7 +580,7 @@
   kind: history
 - id: limp_obvious_minor_cause
   label: Limp from an obvious minor cause, and otherwise well
-  question: Is the limp from something small you can see, like a blister, a cut or a bruise? And is your child well in every other way?
+  question: Is the limp from something small you can see, like a blister, a cut or a bruise? And is the person who is unwell well in every other way?
   kind: symptom
   only_asked_if_yes_to: limp
 - id: grating_when_moving
@@ -1506,7 +1506,7 @@
   kind: history
 - id: child_wants_to_sit_up
   label: Child wants to sit up rather than lie down
-  question: Does the child want to sit up rather than lie down, because it is easier to breathe?
+  question: Does the person who is unwell want to sit up rather than lie down, because it is easier to breathe?
   kind: symptom
   only_asked_if_yes_to: age_under_16
 - id: breathing_slow_or_irregular
@@ -3035,17 +3035,17 @@
   kind: symptom
 - id: child_crying_will_not_stop
   label: Child extremely agitated, crying and will not stop, or a weak or high-pitched cry
-  question: Is the child extremely agitated or crying and will not stop? Or do they have a weak, high-pitched cry that does not sound like their usual cry?
+  question: Is the person who is unwell extremely agitated, or crying and unable to stop? Or is there a weak, high-pitched cry that does not sound like their usual cry?
   kind: symptom
   only_asked_if_yes_to: age_under_16
 - id: child_not_feeding_or_playing
   label: Child not interested in feeding or anything around them
-  question: Has the child stopped feeding? Or have they lost all interest in what is going on around them?
+  question: Has the person who is unwell stopped eating or feeding? Or have they lost all interest in what is going on around them?
   kind: symptom
   only_asked_if_yes_to: age_under_16
 - id: child_not_usual_self
   label: Child not their usual self, or not wanting to eat, and the carer is worried
-  question: Is the child not their usual self, or not wanting to eat, and are you worried about them?
+  question: Is the person who is unwell not their usual self, or not wanting to eat? And is this worrying you?
   kind: symptom
   only_asked_if_yes_to: age_under_16
 - id: drowsy_hard_to_wake
@@ -3055,7 +3055,7 @@
   only_asked_if_yes_to: age_16_or_over
 - id: child_dehydration_signs
   label: Child with dry nappies, sunken eyes or no tears
-  question: Does the child have signs of not having enough water in their body? For example, dry nappies, sunken eyes, or no tears when crying.
+  question: Are there signs of not having enough water in the body? For example, peeing much less or dry nappies, sunken eyes, or no tears when crying.
   kind: symptom
   part_of: dehydration_signs
   only_asked_if_yes_to: age_under_16
@@ -4625,7 +4625,7 @@
   kind: presenting
 - id: child_soiling
   label: A child regularly pooing their pants (soiling)
-  question: Is your child, who is already potty trained, regularly pooing their pants (soiling)?
+  question: Does the person who is unwell often poo their pants, even though they are potty trained?
   kind: presenting
   only_asked_if_yes_to: age_under_16
 - id: baby_bringing_up_milk

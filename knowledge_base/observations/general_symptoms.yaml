@@ -93,7 +93,7 @@
 
 - id: child_crying_will_not_stop
   label: "Child extremely agitated, crying and will not stop, or a weak or high-pitched cry"
-  question: "Is the child extremely agitated or crying and will not stop? Or do they have a weak, high-pitched cry that does not sound like their usual cry?"
+  question: "Is the person who is unwell extremely agitated, or crying and unable to stop? Or is there a weak, high-pitched cry that does not sound like their usual cry?"
   question_carer: "Is your child extremely agitated or crying and will not stop? Or do they have a weak, high-pitched cry that does not sound like their usual cry?"
   checklist_text: "Extremely agitated or crying and will not stop, or a weak, high-pitched cry"
   kind: symptom
@@ -104,9 +104,9 @@
 
 - id: child_not_feeding_or_playing
   label: "Child not interested in feeding or anything around them"
-  question: "Has the child stopped feeding? Or have they lost all interest in what is going on around them?"
+  question: "Has the person who is unwell stopped eating or feeding? Or have they lost all interest in what is going on around them?"
   question_carer: "Has your child stopped feeding? Or have they lost all interest in what is going on around them?"
-  checklist_text: "Stopped feeding, or not interested in anything around them"
+  checklist_text: "Stopped eating, or not interested in what is going on"
   kind: symptom
   asked_only_if: age_under_16
   seriousness: emergency
@@ -115,9 +115,9 @@
 
 - id: child_not_usual_self
   label: "Child not their usual self, or not wanting to eat, and the carer is worried"
-  question: "Is the child not their usual self, or not wanting to eat, and are you worried about them?"
+  question: "Is the person who is unwell not their usual self, or not wanting to eat? And is this worrying you?"
   question_carer: "Is your child not their usual self, or not wanting to eat, and are you worried about them?"
-  checklist_text: "Not their usual self, or not wanting to eat, and you are worried"
+  checklist_text: "Not their usual self, or not wanting to eat, and this is worrying you"
   kind: symptom
   asked_only_if: age_under_16
   seriousness: serious
@@ -136,9 +136,9 @@
 
 - id: child_dehydration_signs
   label: "Child with dry nappies, sunken eyes or no tears"
-  question: "Does the child have signs of not having enough water in their body? For example, dry nappies, sunken eyes, or no tears when crying."
+  question: "Are there signs of not having enough water in the body? For example, peeing much less or dry nappies, sunken eyes, or no tears when crying."
   question_carer: "Does your child have signs of not having enough water in their body? For example, dry nappies, sunken eyes, or no tears when they cry."
-  checklist_text: "Nappies not very wet, sunken eyes, or no tears when crying"
+  checklist_text: "Peeing much less or dry nappies, sunken eyes, or no tears when crying"
   kind: symptom
   parent: dehydration_signs
   relation: character
