@@ -218,6 +218,21 @@ questions. Ids are this engine's own. The tests check that
 answering through the API gives exactly the same outcome, after the same
 questions, as answering the engine directly.
 
+### Hosting it online
+
+The `Dockerfile` builds the same app as one container, for example for Google
+Cloud Run:
+
+```bash
+gcloud run deploy triage-demo --source . --region europe-west2 --allow-unauthenticated --cpu 2 --memory 2Gi --min-instances 0 --max-instances 2
+```
+
+With no visitors it scales down to nothing, so it costs nothing while idle,
+and the first visit after a quiet spell takes about 10 seconds to start. A
+public address carries safeguards: the demo page asks people to confirm it is
+a demonstration and not medical advice before they start, and search engines
+are asked not to list it.
+
 There is no language layer (reading the person's own words): the owner
 decided to leave it out for now (DECISIONS 177).
 

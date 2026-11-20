@@ -5,15 +5,17 @@ NOT FOR CLINICAL USE. A demonstration and proof of concept only.
 Start it with:  python3 triage.py serve
 Then open http://127.0.0.1:8000 for the demo page, or /docs for the API.
 
-It listens on this computer only. The engine makes no network calls, and
-nothing anyone enters is stored: each request is worked out and forgotten.
+Started that way, it listens on this computer only. The Dockerfile runs the
+same app in a container for hosting (for example on Google Cloud Run). Either
+way the engine makes no network calls, and nothing anyone enters is stored:
+each request is worked out and forgotten.
 """
 
 from pathlib import Path
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, PlainTextResponse
 from pydantic import BaseModel
 
 from engine import ENGINE_VERSION
@@ -30,6 +32,19 @@ app = FastAPI(
     description="A mock of a condition-based triage engine, in the common shape of condition-based engine APIs, for testing "
                 "an evaluation design. " + api.DISCLAIMER,
 )
+
+
+@app.middleware("http")
+async def ask_search_engines_not_to_list(request, call_next):
+    """This is a demonstration, not a health service: ask search engines not to list it."""
+    response = await call_next(request)
+    response.headers["X-Robots-Tag"] = "noindex, nofollow"
+    return response
+
+
+@app.get("/robots.txt", include_in_schema=False)
+def robots():
+    return PlainTextResponse("User-agent: *\nDisallow: /\n")
 
 
 class Age(BaseModel):

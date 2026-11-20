@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <title>Triage engine demo</title>
 <style>
   :root {
@@ -80,6 +81,8 @@
         <input id="find" type="text" placeholder="For example: chest pain, headache, rash" autocomplete="off">
         <div id="suggestions" class="suggestions"></div>
         <div id="chosen"></div>
+        <label style="font-weight:400"><input id="agree" type="checkbox"> I understand this is a demonstration, not
+          medical advice, and I will not enter real patient details.</label>
         <p><button id="begin" class="primary" disabled>Start</button></p>
         <p id="start-error" class="error"></p>
       </section>
@@ -176,8 +179,9 @@ function drawChosen() {
     chip.append(remove);
     $("chosen").append(chip);
   }
-  $("begin").disabled = state.entry.length === 0;
+  $("begin").disabled = state.entry.length === 0 || !$("agree").checked;
 }
+$("agree").addEventListener("change", drawChosen);
 
 $("begin").onclick = async () => {
   $("start-error").textContent = "";
