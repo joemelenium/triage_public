@@ -1,0 +1,61 @@
+id: wh_h04
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- vaginal_discharge
+summary: A 35-year-old woman with a new partner has had a green-yellow, frothy discharge with soreness around her
+  vagina for a week. No pelvic pain, no bleeding, no fever and no pain peeing.
+opening_statement: My discharge has gone a greeny-yellow colour and it's sort of frothy, and I'm a bit sore. I started
+  seeing someone new a couple of months ago.
+findings:
+  present:
+  - vaginal_discharge
+  - discharge_green_yellow_frothy
+  - vagina_itchy_or_sore
+  - new_or_unprotected_sex
+  absent:
+  - discharge_fishy_smell
+  - discharge_thick_white
+  - pelvic_pain
+  - bleeding_between_periods_or_after_sex
+  - pain_when_peeing
+  - very_high_temperature
+  - may_be_pregnant
+  - pain_during_sex
+  - breastfeeding
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 35
+    sex: female
+  full:
+    age: 35
+    sex: female
+expected:
+  acuity: soon
+  level_of_care: general_practice
+  timeframe: few_days
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: Sexual health clinic, GP or NHS 111
+  any_of:
+  - sexual health clinic
+  - GP
+  - '111'
+- point: Get help sooner if pelvic pain or bleeding develop
+  any_of:
+  - pelvic pain
+  - bleeding
+source:
+  expected_outcome:
+    page: vaginal_discharge.txt
+    quote: your vaginal discharge changes colour, smell or texture
+  minimum_safe_acuity:
+    page: vaginal_discharge.txt
+    quote: Sexual health clinics can also help with abnormal discharge
+atypical: false
+notes: vaginal_discharge.txt links green, yellow or frothy discharge with trichomoniasis and gives non-urgent 111
+  advice, or a sexual health clinic. Soon chosen; routine is still safe. If pelvic pain appeared, pelvic_pain.txt
+  would make it urgent (unusual discharge with pelvic pain).

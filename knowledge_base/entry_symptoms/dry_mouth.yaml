@@ -1,0 +1,100 @@
+# Entry symptom: dry mouth.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Dry mouth page, with the Dehydration and Type 2 diabetes
+# pages, and clinical knowledge where marked ai_judgement.
+
+id: dry_mouth
+name: "Dry mouth"
+presenting_finding: dry_mouth
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: dry_mouth_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - dehydration_signs
+      - very_thirsty
+      - peeing_more_often
+      - fruity_breath
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_dm_high_blood_sugar
+    description: "Very thirsty or fruity breath, with feeling sick or being sick, feeling very unwell, or breathing very fast"
+    when: {all: [{any: [{all: [very_thirsty, peeing_more_often]}, fruity_breath]}, {any: [nausea_or_vomiting, feels_very_unwell, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_high_blood_sugar_ae
+    source: ai_judgement
+    note: "Clinical knowledge: these can be signs of diabetic ketoacidosis, a life-threatening problem caused by very high blood sugar."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_dm_dehydration
+    description: "Dry mouth with signs of dehydration, such as peeing less or dark pee"
+    when: dehydration_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+
+  - id: rf_dm_fruity_breath
+    description: "Dry mouth with breath that smells fruity, like pear drops"
+    when: fruity_breath
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today. If you have diabetes, check your blood sugar and ketones if you can."}
+    advice: advice_possible_high_blood_sugar_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical knowledge, not a source page
+    note: "Clinical knowledge: fruity breath can be an early sign of high blood sugar with ketones."
+
+outcome_rules:
+  - id: or_dm_hard_to_eat_or_talk
+    description: "Dry mouth that makes it hard to talk or eat"
+    when: dry_mouth_hard_to_eat_or_talk
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dry_mouth_gp
+    source: nhs_dry_mouth
+
+  - id: or_dm_few_weeks
+    description: "Dry mouth not better after a few weeks of home or pharmacy treatment"
+    when: dry_mouth_few_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dry_mouth_gp
+    source: nhs_dry_mouth
+
+  - id: or_dm_mouth_sore_or_patches
+    description: "Dry mouth with a painful, red, swollen or bleeding mouth, or sore white patches"
+    when: {any: [mouth_painful_red_or_bleeding, white_patches_in_mouth]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dry_mouth_gp
+    source: nhs_dry_mouth
+
+  - id: or_dm_taste
+    description: "Dry mouth with problems with taste that are not going away"
+    when: loss_of_smell_or_taste
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dry_mouth_gp
+    source: nhs_dry_mouth
+
+  - id: or_dm_medicine
+    description: "Dry mouth that may be caused by a prescribed medicine"
+    when: new_medicine_recently
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Do not stop the medicine without advice."}
+    advice: advice_dry_mouth_gp
+    source: nhs_dry_mouth
+
+  - id: or_dm_other_symptoms
+    description: "Dry mouth with other symptoms, such as peeing a lot or dry eyes"
+    when: {any: [{all: [very_thirsty, peeing_more_often]}, dry_eyes]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dry_mouth_gp
+    source: nhs_dry_mouth
+
+default:
+  description: "Dry mouth with nothing that needs more help: try things to ease it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A dry mouth is rarely a sign of anything serious. A pharmacist can help."}
+  advice: advice_dry_mouth_self_care
+  source: nhs_dry_mouth

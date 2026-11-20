@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pee_changed_by_food_or_medicine
+body_system: urinary_and_male
+entry_symptoms: [smelly_urine, blood_in_urine]
+name: "Pee changed for a harmless reason, such as food, a medicine or a period"
+medical_name: "Change in colour or smell of urine from food or medicine"
+# The Blood in urine page says beetroot or a new medicine can turn pee pink, red or
+# brown, and that the blood may be from a period or the vagina instead. It still says to get it checked if you are not sure, which the entry
+# symptom's floor keeps.
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: smelly_urine, prevalence: common}
+  - {finding: blood_in_urine, prevalence: uncommon}
+findings:
+  food_or_medicine_changes_pee: strongly_supports
+  new_medicine_recently: supports
+  on_period_or_vaginal_bleeding: supports
+key_findings: [food_or_medicine_changes_pee, new_medicine_recently]
+source: nhs_smelly_urine
+informed_by: [nhs_smelly_urine, nhs_blood_in_urine]

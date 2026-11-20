@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: impetigo
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Impetigo (a skin infection that causes crusty sores)"
+medical_name: "Impetigo"
+snomed: "48277006"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: common}
+findings:
+  # What tells it apart from cold sores, eczema or chickenpox: sores or blisters that burst and leave golden-brown crusts, often around the nose and mouth.
+  rash_crusty_golden: strongly_supports
+  rash_blisters: supports
+  rash_itchy: supports
+  rash_spreading: supports
+  has_eczema: supports
+key_findings: [rash_crusty_golden, rash_blisters, rash_spreading]
+source: nhs_impetigo
+informed_by: [nhs_impetigo, nhs_rashes_babies_and_children]

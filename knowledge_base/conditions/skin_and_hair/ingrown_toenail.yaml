@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ingrown_toenail
+body_system: skin_and_hair
+entry_symptoms: [nail_problem]
+name: "Ingrown toenail"
+medical_name: "Ingrowing nail"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a nail curving into the skin of the toe, which becomes red, sore and swollen.
+  nail_growing_into_skin: strongly_supports
+  skin_around_nail_red_swollen: supports
+  pus_or_fluid_leaking: supports
+key_findings: [nail_growing_into_skin]
+source: nhs_ingrown_toenail
+informed_by: [nhs_ingrown_toenail]

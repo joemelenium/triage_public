@@ -1,0 +1,60 @@
+id: sk_d12
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- itchy_skin
+summary: 68-year-old woman with itching all over her body for a month, worse at night, with no rash. Moisturisers have not helped. No yellow skin, no weight loss, nobody else at home itchy.
+opening_statement: I've been itching all over for about a month. There's no rash, and creams aren't helping. It's worse at night.
+findings:
+  present:
+  - itchy_skin
+  - itch_all_over_without_rash
+  - itch_worse_at_night
+  - not_better_with_self_care
+  - dry_skin
+  absent:
+  - yellow_skin_or_eyes
+  - rash
+  - spots_between_fingers_or_wrists
+  - others_at_home_itchy
+  - weight_loss
+  - night_sweats
+  - new_medicine_recently
+  - poo_pale_pee_dark
+  - lump_neck_armpit_or_groin
+  - itch_severe
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 68
+    sex: female
+  full:
+    age: 68
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP, who may arrange a blood test
+  any_of:
+  - GP
+  - blood test
+- point: 'Self-care meanwhile: emollients, cool showers, loose cotton clothes'
+  any_of:
+  - moisturiser
+  - emollient
+  - cool
+  - cotton
+source:
+  expected_outcome:
+    page: itchy_skin.txt
+    quote: is all over your body
+  minimum_safe_acuity:
+    page: itchy_skin.txt
+    quote: does not get better with self care or keeps coming back
+atypical: false
+notes: 'Generalised itch without rash. itchy_skin.txt: ''Less commonly, itchy skin can be a sign of a more serious condition, such as thyroid, liver or kidney problems.'''

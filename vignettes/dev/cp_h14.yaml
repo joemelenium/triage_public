@@ -1,0 +1,61 @@
+id: cp_h14
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 62-year-old woman with high blood pressure. An ache built up gradually in her chest during a
+  heated argument twenty minutes ago and is still there although she has sat quietly since. It is mild
+  and she puts it down to being upset. She had a heart scan two years ago and takes tablets but does not
+  recall being told she has angina; her record shows angina.
+opening_statement: I had a blazing row with my son about twenty minutes ago and an ache came on in my
+  chest while we were shouting. It built up gradually. I've been sitting quietly since and it's still
+  there. It's not severe. I expect it's just the upset.
+findings:
+  present: [chest_pain, cp_present_now, angina_pain_not_settling, cp_with_worry, heart_risk_factors]
+  absent: [stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+    heavy_bleeding, serious_self_harm, cp_sudden_not_going_away, cp_tight_or_squeezing, cp_heavy, cp_spreads,
+    sweating, nausea_or_vomiting, light_headed, short_of_breath, heart_beating_very_fast, fainted, palpitations,
+    angina_worse_than_usual, cp_comes_and_goes, coughing_up_blood, cp_worse_breathing_in, leg_pain_or_swelling,
+    difficulty_breathing, worried_about_symptoms, cp_on_exertion, cp_after_eating, cp_after_injury_or_exercise,
+    cough_mucus_or_temperature, family_heart_history, cough_or_runny_nose, sore_throat, very_high_temperature,
+    cp_lasted_15_minutes]
+  unknown: [has_angina]
+context:
+  none: {}
+  basic: {age: 62, sex: female}
+  full:
+    age: 62
+    sex: female
+    findings: {has_angina: 'yes'}
+expected: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now}
+minimum_safe_acuity: emergency
+red_flags:
+- description: Diagnosed angina (known from the record) with chest pain still there after resting
+  findings: [has_angina, angina_pain_not_settling]
+  minimum_acuity: emergency
+  source: {page: angina.txt, quote: you've been diagnosed with angina and have chest pain that does not
+      stop after resting for a few minutes or after taking your angina medicine}
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of: ['999']
+- point: Not to drive themselves to hospital
+  any_of: [do not drive, Do not drive, don't drive, not drive]
+source:
+  expected_outcome: {page: angina.txt, quote: you've been diagnosed with angina and have chest pain that
+      does not stop after resting for a few minutes or after taking your angina medicine}
+  minimum_safe_acuity: {page: angina.txt, quote: you've been diagnosed with angina and have chest pain
+      that does not stop after resting for a few minutes or after taking your angina medicine}
+context_test: {what_context_adds: The record shows a diagnosis of angina. The patient remembers a heart
+    scan and being started on tablets but does not recall being told she has angina., expected_direction: more_urgent}
+atypical: false
+notes: 'Context test, and a danger sign that is easy to miss because the pattern looks like a minor cause.
+  She cannot say whether a doctor has told her she has angina (she remembers a scan and tablets, not the
+  word), so has_angina is ''not sure''; the record says yes. With the record, angina.txt applies directly:
+  diagnosed angina with pain that does not stop after resting for a few minutes means call 999, and the
+  same page says attacks are often brought on by stress or emotion. Without the record, the pain was triggered
+  by a stressful situation (the anxiety row of the chest_pain.txt table), it is not sudden, does not spread
+  and has no associated symptoms, so no 999 sign on chest_pain.txt is met and the supported advice is
+  less urgent: see a GP, or NHS 111 because she cannot be sure whether 999 is needed (when_to_call_999.txt).
+  Hence more_urgent. Source difference: pulmonary_embolism.txt lists ''pain in your chest or upper back''
+  under ''Call 999 or go to A&E'', which read literally would make this an emergency even without the
+  record. cp_on_exertion is no: it came on with stress but has not eased with rest. worried_about_symptoms
+  is no.'

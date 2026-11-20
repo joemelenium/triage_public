@@ -1,0 +1,61 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sepsis
+body_system: breathing
+# Sepsis can follow any infection. It is a candidate here for breathlessness and a
+# cough, the commonest ways a chest infection that has turned into sepsis shows.
+# Not for palpitations, chest pain or a sore throat: even "rare" (the lowest band)
+# would be far above its true share there, and the universal red flags still
+# catch confusion and blue or grey skin in every session.
+# The general body system added it for a high temperature, feeling generally unwell,
+# a baby who is unsettled or not feeding, and blue or grey skin, with the signs the
+# Sepsis page lists for children (floppy, a weak or high-pitched cry, not feeding,
+# cold hands and feet) and for adults (very sleepy or hard to wake).
+# Added for sudden confusion (brain and nerves batch): infection is one of the
+# commonest causes of sudden confusion, especially in older people.
+# The urinary_and_male batch added the urine-infection entry symptoms: a urine or
+# kidney infection is a common source of sepsis. It starts very rare there.
+entry_symptoms: [short_of_breath, cough, very_high_temperature, generally_unwell, baby_unsettled_or_not_feeding, blue_or_grey_skin, sudden_confusion, stomach_ache, diarrhoea_or_vomiting, painful_or_frequent_peeing, smelly_urine]
+name: "Sepsis (a life-threatening reaction to an infection)"
+medical_name: "Sepsis"
+snomed: "91302008"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: having_chemotherapy, prevalence: common}
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: short_of_breath, prevalence: rare}
+  - {finding: cough, prevalence: rare}
+  - {finding: very_high_temperature, prevalence: rare}
+  - {finding: generally_unwell, prevalence: rare}
+  - {finding: baby_unsettled_or_not_feeding, prevalence: rare}
+  - {finding: blue_or_grey_skin, prevalence: rare}
+  - {finding: sudden_confusion, prevalence: rare}
+  - {finding: stomach_ache, prevalence: rare}
+  - {finding: diarrhoea_or_vomiting, prevalence: rare}
+  - {finding: painful_or_frequent_peeing, prevalence: very_rare}
+  - {finding: smelly_urine, prevalence: very_rare}
+findings:
+  # What tells it apart from flu or a chest infection: getting worse quickly,
+  # breathing very fast, shivering or cold skin, blotchy skin, confusion and
+  # peeing very little. A high temperature is less common in older adults.
+  seriously_unwell_getting_worse: strongly_supports
+  very_high_temperature: strongly_supports
+  feels_very_unwell: supports
+  breathing_very_fast: supports
+  cold_or_shivery: supports
+  skin_blotchy: supports
+  sudden_confusion: supports
+  not_peed_12_hours: supports
+  # Added by the general body system, from the Sepsis page.
+  drowsy_hard_to_wake: supports
+  child_floppy_or_hard_to_wake: supports
+  child_not_feeding_or_playing: supports
+  child_crying_will_not_stop: supports
+  cold_hands_and_feet: supports
+  rash_does_not_fade: supports
+  temperature_very_low: supports     # added with the urinary batch
+key_findings: [seriously_unwell_getting_worse, breathing_very_fast, cold_or_shivery, skin_blotchy, not_peed_12_hours]
+source: nhs_sepsis
+informed_by: [nhs_sepsis, nhs_pneumonia, nhs_covid_19, nhs_fever_in_children]

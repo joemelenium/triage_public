@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: nasal_polyps
+body_system: ear_nose_throat
+entry_symptoms: [blocked_or_runny_nose, catarrh, loss_of_smell_or_taste, snoring]
+name: "Nasal polyps (soft, harmless growths inside the nose)"
+snomed: "736500007"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_asthma, prevalence: common}
+findings:
+  # What tells it apart from a cold: a blocked nose and a poor sense of smell that last for weeks and
+  # do not clear up.
+  blocked_or_runny_nose: strongly_supports
+  loss_of_smell_or_taste: strongly_supports
+  nose_symptoms_3_weeks: strongly_supports
+  mucus_dripping_down_throat: supports
+  snoring: supports
+  smell_faded_slowly: supports
+key_findings: [nose_symptoms_3_weeks, loss_of_smell_or_taste, has_asthma]
+source: nhs_nasal_polyps
+informed_by: [nhs_nasal_polyps, nhs_catarrh, nhs_lost_or_changed_sense_smell]

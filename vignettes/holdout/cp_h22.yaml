@@ -1,0 +1,54 @@
+id: cp_h22
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [chest_pain]
+
+summary: "A 29-year-old man had a cold last week. Since yesterday he has had a sharp, stabbing pain in the centre of his chest that built up over the morning, is worse lying flat and on breathing in deeply, and eases when he sits forward. He thinks he may have been a bit feverish but has not measured it."
+
+opening_statement: "I've got this sharp pain in the middle of my chest. It's worse when I lie down or take a big breath, and it's better if I sit forward."
+
+findings:
+  present: [chest_pain, cp_sharp_or_stabbing, cp_better_leaning_forward, cp_worse_breathing_in, cp_present_now, recent_viral_illness]
+  absent: [cp_sudden_not_going_away, cp_spreads, cp_tight_or_squeezing, cp_heavy, sweating, nausea_or_vomiting, light_headed, short_of_breath, cp_tender_to_press, cp_after_injury_or_exercise, cp_after_eating, cp_on_exertion, cp_comes_and_goes, palpitations, heart_beating_very_fast, leg_pain_or_swelling, coughing_up_blood, cough, recent_long_journey, recent_surgery_or_immobile, heart_risk_factors, family_heart_history, fainted, upper_back_pain, rash_one_side_of_body, cp_tearing_to_back, cp_lasted_15_minutes]
+  unknown: [very_high_temperature, cough_mucus_or_temperature, cold_or_shivery]
+
+context:
+  none: {}
+  basic: {age: 29, sex: male}
+  full:
+    age: 29
+    sex: male
+    findings: {}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Ask for an urgent GP appointment or contact NHS 111"
+    any_of: ["111", "urgent GP"]
+  - point: "Call 999 if the pain becomes sudden or spreads to arms, back, neck or jaw, or comes with breathlessness, sweating or sickness"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: pericarditis.txt, quote: "gets worse when you take a deep breath in, swallow, cough or lie down"}
+  minimum_safe_acuity: {page: pericarditis.txt, quote: "Urgent advice: Ask for an urgent GP appointment or get help from NHS 111 if:"}
+
+variants:
+  - id: cp_h22_v1
+    style: "brief"
+    opening_statement: "Stabbing chest pain, better when I lean forward."
+    volunteered: [cp_sharp_or_stabbing, cp_better_leaning_forward]
+  - id: cp_h22_v2
+    style: "long and rambling, mentions lots up front"
+    opening_statement: "I had a stinking cold last week, all cleared up, then yesterday this sharp pain started in the middle of my chest. Every time I take a deep breath it catches, and lying on my back in bed was awful, I ended up sleeping sat forward on the sofa. I'm not out of breath or anything."
+    volunteered: [recent_viral_illness, cp_sharp_or_stabbing, cp_worse_breathing_in, cp_better_leaning_forward, short_of_breath]
+
+atypical: false
+notes: "Pericarditis-type story. pericarditis.txt gives urgent GP or 111 for sharp chest pain worse on breathing in or lying down, and 999 only for sudden chest pain with spread, tightness or heaviness, breathlessness/sweating/sickness, or lasting over 15 minutes. The pain built up over a morning rather than starting suddenly, so cp_sudden_not_going_away is absent; if an engine treats it as sudden, chest_pain.txt would move it to 999. Temperature is genuinely unknown; pericarditis.txt lists a high temperature as a possible symptom but does not change the advice for it."

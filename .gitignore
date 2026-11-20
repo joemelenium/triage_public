@@ -1,0 +1,13 @@
+# Session traces are logs, not source. They are written locally and never committed.
+traces/*.jsonl
+
+# Python working files
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets (for example an API key) are never committed.
+.env
+
+# Working copies used by parallel build agents (merged separately, never committed).
+.claude/

@@ -1,0 +1,45 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: medicine_side_effect
+body_system: general
+entry_symptoms: [dizziness, tremor, twitching, daytime_sleepiness, trouble_sleeping, memory_problems, sudden_confusion, feeling_sick, diarrhoea_or_vomiting, constipation, farting_a_lot, erection_problems, ejaculation_problems, low_sex_drive, erection_will_not_go_away, cannot_pee, smelly_urine, tinnitus, dry_mouth, metallic_taste, hiccups, teeth_grinding]
+name: "Side effect of a medicine"
+medical_name: "Adverse reaction caused by drug"
+snomed: "62014003"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: common}
+  - {finding: erection_will_not_go_away, prevalence: common}
+  - {finding: low_sex_drive, prevalence: common}
+findings:
+  # Many medicines can cause dizziness, shaking, twitching, sleepiness, poor sleep, memory problems or confusion, especially in older people. What tells it apart: it started after a new medicine or a change of dose.
+  new_medicine_recently: strongly_supports
+  dizziness_on_standing: supports
+  drowsy_hard_to_wake: supports
+  light_headed: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  takes_constipating_medicine: supports
+  recent_antibiotics: supports
+  feeling_sick: supports
+  diarrhoea: supports
+  # From the urinary_and_male card for this condition (merged):
+  takes_antidepressants_or_blood_pressure_medicine: supports
+  hormonal_contraception: supports
+  used_erection_medicine_or_cannabis_cocaine: supports
+  food_or_medicine_changes_pee: supports
+  # From the ear_nose_throat card for this condition (merged):
+  has_cancer: supports
+key_findings: [new_medicine_recently, takes_antidepressants_or_blood_pressure_medicine, hormonal_contraception, has_cancer]
+source: nhs_dizziness
+informed_by: [nhs_dizziness, nhs_confusion, nhs_tremor_or_shaking_hands, nhs_twitching_eyes_and_muscles, nhs_excessive_daytime_sleepiness_hypersomnia, nhs_insomnia, nhs_feeling_sick_nausea, nhs_diarrhoea_and_vomiting, nhs_constipation, nhs_flatulence, nhs_loss_of_libido, nhs_erection_problems_erectile_dysfunction, nhs_ejaculation_problems, nhs_priapism_painful_erections, nhs_tinnitus, nhs_dry_mouth, nhs_metallic_taste, nhs_hiccups, nhs_teeth_grinding]
+# Merged with the stomach_and_bowel card for this condition. Its notes:
+# A pharmacist or GP can check the medicine. Do not stop a prescribed medicine
+# without advice.
+# Merged with the urinary_and_male card for this condition. Its notes:
+# Many medicines affect erections, coming, sex drive and peeing.
+# Merged with the ear_nose_throat card for this condition. Its notes:
+# What tells it apart: it started after beginning a new medicine or changing a dose, or during
+# cancer treatment. Do not stop a prescribed medicine without advice. The other main symptoms are
+# not linked here, as one medicine rarely causes them all.

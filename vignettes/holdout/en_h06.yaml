@@ -1,0 +1,49 @@
+id: en_h06
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- hiccups
+summary: A 58-year-old man with hiccups that have gone on, on and off, for 3 days, making it hard to eat and sleep. He has no chest pain, breathlessness or swallowing problems.
+opening_statement: I've had hiccups for three days solid. They stop for a bit then start again. I can't sleep and it's driving me up the wall.
+findings:
+  present:
+  - hiccups
+  - hiccups_over_48_hours
+  absent:
+  - chest_pain
+  - short_of_breath
+  - difficulty_swallowing
+  - vomiting_blood
+  - stroke_signs
+  - stomach_ache
+  - hiccups_after_trigger
+  - weight_loss
+  unknown:
+  - new_medicine_recently
+context:
+  none: {}
+  basic:
+    age: 58
+    sex: male
+  full:
+    age: 58
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+source:
+  expected_outcome:
+    page: hiccups.txt
+    quote: hiccups last longer than 48 hours
+  minimum_safe_acuity:
+    page: hiccups.txt
+    quote: hiccups last longer than 48 hours
+atypical: false
+notes: hiccups.txt says hiccups lasting longer than 48 hours can rarely be due to a medical condition or a medicine. He is unsure whether a tablet started last month counts as a new medicine (unknown); either way the outcome is a GP visit.

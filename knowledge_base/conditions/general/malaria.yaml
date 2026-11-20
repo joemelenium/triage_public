@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: malaria
+body_system: general
+# Must not be missed after travel: the most dangerous kind can kill within days. The page says
+# an urgent GP appointment or 111 with symptoms after travel in the last 12 months. Danger
+# critical with an urgent level, so even a small chance is acted on.
+entry_symptoms: [very_high_temperature, generally_unwell]
+name: "Malaria (an infection spread by mosquito bites)"
+medical_name: "Malaria"
+snomed: "61462000"
+acuity_needed: urgent
+danger: critical
+prevalence: rare
+findings:
+  # Travel is linked as a finding: almost everyone with malaria in the UK has travelled, so a
+  # "no" all but rules it out.
+  travelled_to_malaria_area: strongly_supports
+  very_high_temperature: strongly_supports
+  cold_or_shivery: supports
+  aching_body: supports
+  nausea_or_vomiting: supports
+  very_painful_headache: supports
+  diarrhoea_or_vomiting: supports
+key_findings: [travelled_to_malaria_area, cold_or_shivery, aching_body]
+source: nhs_malaria
+informed_by: [nhs_malaria]

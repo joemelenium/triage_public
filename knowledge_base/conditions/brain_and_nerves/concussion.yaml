@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: concussion
+body_system: brain_and_nerves
+entry_symptoms: [head_injury]
+name: "Minor head injury or concussion (the brain is shaken by a knock to the head)"
+medical_name: "Concussion injury of brain"
+snomed: "110030002"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # Most head injuries. Symptoms such as headache, dizziness or feeling sick can last up to 2 weeks. The rules for head injury send dizziness and being sick for help on the same day.
+  head_bruise_swelling_or_cut: supports
+  headache: supports
+  dizziness: supports
+  nausea_or_vomiting: supports
+  bothered_by_light: supports
+  very_tired: supports
+key_findings: [head_bruise_swelling_or_cut, headache]
+source: nhs_head_injury
+informed_by: [nhs_head_injury]

@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bunion
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "A bunion (a bony lump at the side of the big toe)"
+medical_name: "Hallux valgus"
+snomed: "122480009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  bony_lump_big_toe: strongly_supports
+  toe_pain: supports
+key_findings: [bony_lump_big_toe]
+source: nhs_bunions
+informed_by: [nhs_bunions]

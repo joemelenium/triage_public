@@ -1,0 +1,20 @@
+id: semigran2015_43
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Viral upper respiratory illness
+original_triage_label: Self-care appropriate
+original_triage: self_care
+presenting_text: dry cough, blocked nose and green nasal discharge for 6 days
+presenting: []
+age: 56
+sex: male
+findings:
+  present:
+  - very_high_temperature
+  absent:
+  - weakened_immune_system
+  unknown: []
+conversion_notes: '''Intermittent fevers as high as 100.8'' (about 38.2 C) is mapped to very_high_temperature present: it is stated as fever and not described as low-grade, though it is only just above 38 C. ''Otherwise healthy, except for chronic osteoarthritis of the right knee'' is mapped to weakened_immune_system absent. In the PDF the diagnosis label overlaps the start of this row; the opening words were read as ''Mr. R. is a 56 year-old man''. Rule used for very_high_temperature in this set: present when the text states a fever (not described as low-grade), chills, rigors or feeling hot; left out when the fever is described as low-grade or measured below 38.0 C; absent when fever is explicitly ruled out. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 43 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Gidengil CA et al. Using clinical vignettes to predict
+  antibiotic prescribing for acute respiratory infections (listed as ''In review'').'

@@ -1,0 +1,64 @@
+id: en_d13
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- tinnitus
+summary: A 47-year-old woman who for 3 weeks has heard a whooshing noise in her right ear that beats in time with her pulse. Her hearing is otherwise normal and she has no dizziness or head injury.
+opening_statement: I keep hearing a whooshing in my right ear, and it's in time with my heartbeat. It's been about 3 weeks and it's driving me mad.
+findings:
+  present:
+  - tinnitus
+  - tinnitus_pulsing
+  - tinnitus_one_ear
+  - tinnitus_regular_or_constant
+  - tinnitus_bothering_you
+  absent:
+  - hearing_loss
+  - dizziness_spinning
+  - face_droop_one_side
+  - head_injury_last_3_months
+  - ear_pain
+  - ear_discharge
+  - headache
+  - vision_change
+  - stroke_signs
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 47
+    sex: female
+  full:
+    age: 47
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Tinnitus that beats in time with the pulse
+  findings:
+  - tinnitus_pulsing
+  minimum_acuity: urgent
+  source:
+    page: tinnitus.txt
+    quote: you have tinnitus that beats in time with your pulse
+safety_netting_should_cover:
+- point: Ask for an urgent GP appointment
+  any_of:
+  - urgent GP
+  - GP
+- point: Go to A&E or call 999 if sudden hearing loss, face weakness or vertigo
+  any_of:
+  - A&E
+  - '999'
+source:
+  expected_outcome:
+    page: tinnitus.txt
+    quote: you have tinnitus that beats in time with your pulse
+  minimum_safe_acuity:
+    page: tinnitus.txt
+    quote: you have tinnitus that beats in time with your pulse
+atypical: false
+notes: 'Red flag that is easy to miss: the other tinnitus features alone would give a non-urgent GP visit. Only the pulsing character makes it urgent.'

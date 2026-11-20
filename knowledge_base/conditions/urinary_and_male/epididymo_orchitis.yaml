@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: epididymo_orchitis
+body_system: urinary_and_male
+entry_symptoms: [testicle_pain, testicle_lump_or_swelling]
+name: "Infection of the tube behind the testicle (epididymitis)"
+medical_name: "Epididymo-orchitis"
+snomed: "197983000"
+# Usually an STI under 35 and a urine infection over 35. Needs antibiotics the
+# same day (AI judgement: the Epididymitis page says see a GP). Danger moderate.
+acuity_needed: urgent
+danger: moderate
+sex: male
+prevalence: common
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+  - {finding: testicle_pain, prevalence: common}
+  - {finding: testicle_lump_or_swelling, prevalence: uncommon}
+findings:
+  # What tells it apart from a twisted testicle: pain that builds up over a day or
+  # more, a red, warm scrotum, and signs of a urine infection or STI.
+  testicle_pain_came_on_gradually: strongly_supports
+  scrotum_red_hot_swollen: strongly_supports
+  pain_when_peeing: supports
+  discharge_from_penis: supports
+  very_high_temperature: supports
+  new_or_unprotected_sex: supports
+key_findings: [testicle_pain_came_on_gradually, scrotum_red_hot_swollen, pain_when_peeing, discharge_from_penis]
+source: nhs_epididymitis
+informed_by: [nhs_epididymitis, nhs_testicle_pain, nhs_chlamydia, nhs_gonorrhoea]

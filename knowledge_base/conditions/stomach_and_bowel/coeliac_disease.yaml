@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: coeliac_disease
+body_system: stomach_and_bowel
+entry_symptoms: [bloating, farting_a_lot, diarrhoea_or_vomiting, stomach_ache]
+name: "Coeliac condition (the body reacts to gluten, which damages the gut)"
+medical_name: "Coeliac disease"
+snomed: "396331005"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+findings:
+  after_gluten_foods: strongly_supports
+  bloating: supports
+  diarrhoea: supports
+  farting_a_lot: supports
+  very_tired: supports
+  weight_loss: supports
+key_findings: [after_gluten_foods, weight_loss, very_tired]
+source: nhs_coeliac_disease
+informed_by: [nhs_coeliac_disease, nhs_bloating, nhs_flatulence]

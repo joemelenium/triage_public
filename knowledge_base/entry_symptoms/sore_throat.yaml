@@ -1,0 +1,182 @@
+# Entry symptom: sore throat.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: sore_throat
+name: "Sore throat"
+presenting_finding: sore_throat
+status: "AI-drafted, not clinically reviewed"
+
+# Screens ask about several red flags in one question, to keep the number of
+# questions down. Every red flag must be checked, so nothing is saved by asking
+# them one at a time.
+screens:
+  - id: sore_throat_emergency_screen
+    level: emergency
+    question: "Do any of these apply to you right now? Choose all that apply."
+    findings:
+      - difficulty_breathing
+      - unable_to_swallow
+      - drooling
+      - stridor
+      - severe_and_worsening_quickly
+      - swelling_in_mouth_and_throat
+      - difficulty_speaking
+      - difficulty_opening_mouth
+
+  - id: sore_throat_urgent_screen
+    level: urgent
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - dehydration_signs
+      - weakened_immune_system
+      - pus_on_tonsils
+      - too_painful_to_eat_or_drink
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: sore_throat_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - sore_throat_over_a_week
+      - frequent_sore_throats
+      - lump_in_mouth_or_neck
+      - mouth_ulcer_over_3_weeks
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_st_breathing_or_swallowing
+    description: "Sore throat with difficulty breathing or being unable to swallow"
+    when: {any: [difficulty_breathing, unable_to_swallow]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sore_throat_emergency
+    source: nhs_sore_throat
+
+  - id: rf_st_drooling
+    description: "Sore throat with drooling, which can be a sign of not being able to swallow"
+    when: drooling
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sore_throat_emergency
+    source: nhs_sore_throat
+
+  - id: rf_st_stridor
+    description: "Sore throat with a high-pitched sound when breathing"
+    when: stridor
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sore_throat_emergency
+    source: nhs_sore_throat
+
+  - id: rf_st_severe_and_worsening
+    description: "Sore throat with severe symptoms that are getting worse quickly"
+    when: severe_and_worsening_quickly
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sore_throat_emergency
+    source: nhs_sore_throat
+
+  - id: rf_st_quinsy_signs
+    description: "Sore throat with swelling inside the mouth and throat, difficulty speaking or difficulty opening the mouth"
+    when: {any: [swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sore_throat_emergency
+    source: nhs_tonsillitis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_st_high_temperature
+    description: "Sore throat with a very high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get advice from 111 now"}
+    advice: advice_sore_throat_urgent
+    source: nhs_sore_throat
+
+  - id: rf_st_dehydration
+    description: "Sore throat with signs of dehydration"
+    when: dehydration_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get advice from 111 now"}
+    advice: advice_sore_throat_urgent
+    source: nhs_sore_throat
+
+  - id: rf_st_weakened_immune_system
+    description: "Sore throat in someone with a weakened immune system"
+    when: weakened_immune_system
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get advice from 111 now"}
+    advice: advice_sore_throat_urgent
+    source: nhs_sore_throat
+
+  - id: rf_st_pus_on_tonsils
+    description: "Sore throat with pus-filled spots on the tonsils"
+    when: pus_on_tonsils
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_sore_throat_urgent
+    source: nhs_tonsillitis
+
+  - id: rf_st_too_painful_to_eat_or_drink
+    description: "Sore throat so painful it is difficult to eat or drink"
+    when: too_painful_to_eat_or_drink
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_sore_throat_urgent
+    source: nhs_tonsillitis
+
+outcome_rules:
+  - id: or_st_worried
+    description: "Sore throat and worried about the symptoms"
+    when: worried_about_symptoms
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get advice from 111 now"}
+    advice: advice_sore_throat_urgent
+    source: nhs_sore_throat
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+    note: "Taken directly from the source, but likely to over-triage: many people using a triage tool would say they are worried. Needs a clinical decision on whether to keep, reword or remove."
+
+  - id: or_st_over_a_week
+    description: "Sore throat that has not improved after a week"
+    when: sore_throat_over_a_week
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sore_throat_gp
+    source: nhs_sore_throat
+
+  - id: or_st_frequent
+    description: "Often gets sore throats"
+    when: frequent_sore_throats
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sore_throat_gp
+    source: nhs_sore_throat
+
+  - id: or_st_lump_or_ulcer
+    description: "Sore throat with a lump in the mouth or neck, or a mouth ulcer lasting more than 3 weeks"
+    when: {any: [lump_in_mouth_or_neck, mouth_ulcer_over_3_weeks]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sore_throat_gp_lump_or_ulcer
+    source: nhs_sore_throat
+
+  - id: or_st_hoarse_3_weeks
+    description: "Sore throat with a hoarse or croaky voice that has lasted more than 3 weeks"
+    when: hoarse_voice_3_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_mouth_lump_gp
+    source: nhs_laryngeal_cancer
+    note: "Added in the ear, nose and throat batch. The Laryngeal cancer and Mouth cancer pages say see a GP for a hoarse voice that does not go away."
+
+  - id: or_st_child_under_5_needs_help
+    description: "Child under 5 who needs help for a sore throat"
+    when: {all: [wants_help_with_sore_throat, age_under_5]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sore_throat_gp
+    source: nhs_sore_throat
+
+  - id: or_st_pharmacy_help
+    description: "Adult or child aged 5 or over who needs help for a sore throat"
+    when: {all: [wants_help_with_sore_throat, {not: age_under_5}]}
+    outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "See a pharmacist. The source gives no fixed time."}
+    advice: advice_sore_throat_pharmacy
+    source: nhs_sore_throat
+
+default:
+  description: "Sore throat with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Sore throats normally get better by themselves within a week"}
+  advice: advice_sore_throat_self_care
+  source: nhs_sore_throat
+

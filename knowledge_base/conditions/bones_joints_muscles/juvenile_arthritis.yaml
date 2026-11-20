@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: juvenile_arthritis
+body_system: bones_joints_muscles
+entry_symptoms: [limp, joint_pain]
+name: "Juvenile arthritis (long-term joint swelling in children)"
+medical_name: "Juvenile idiopathic arthritis"
+snomed: "410502007"
+acuity_needed: soon
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  swollen_area: strongly_supports
+  morning_stiffness_over_30_min: strongly_supports
+  pain_not_improving: supports
+  several_joints: supports
+key_findings: [swollen_area, morning_stiffness_over_30_min, pain_not_improving]
+source: nhs_limp_in_children
+informed_by: [nhs_limp_in_children]

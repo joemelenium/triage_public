@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: septic_arthritis
+body_system: bones_joints_muscles
+# Can destroy a joint within days and lead to sepsis. What tells it apart: one hot,
+# swollen joint that is hard to move, often with a high temperature. In children, the
+# main cause to tell apart from irritable hip.
+entry_symptoms: [joint_pain, knee_pain, hip_pain, shoulder_pain, arm_pain, hand_pain, foot_pain, limp]
+name: "Septic arthritis (an infection in a joint)"
+medical_name: "Septic arthritis"
+snomed: "372939007"
+acuity_needed: urgent   # the source page says an urgent GP appointment or 111; its 999 signs are red flags (DECISIONS 167)
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: joint_replacement, prevalence: uncommon}
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: has_rheumatoid_arthritis, prevalence: uncommon}
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  swollen_area_red_hot: strongly_supports
+  swollen_area: strongly_supports
+  very_high_temperature: supports
+  feels_very_unwell: supports
+  cannot_move_painful_part: supports
+  cannot_bear_weight: supports
+  severe_pain: supports
+  red_or_discoloured_skin: supports
+  one_joint_only: supports
+key_findings: [swollen_area_red_hot, very_high_temperature, cannot_move_painful_part, cannot_bear_weight]
+source: nhs_septic_arthritis
+informed_by: [nhs_septic_arthritis, nhs_joint_pain, nhs_hip_pain, nhs_limp_in_children, nhs_knee_pain]

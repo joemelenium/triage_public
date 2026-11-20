@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: glue_ear
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, ear_pain]
+name: "Glue ear (fluid behind the eardrum that muffles hearing, common in children)"
+medical_name: "Otitis media with effusion"
+snomed: "232255003"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_5, prevalence: very_common}
+  - {finding: age_under_16, prevalence: common}
+findings:
+  # What tells it apart from a middle ear infection: muffled hearing in a child without much pain or
+  # a high temperature, often after a cold.
+  hearing_loss: strongly_supports
+  ear_feels_blocked: supports
+  recent_viral_illness: supports
+  tinnitus: supports
+  ear_pain: supports
+key_findings: [ear_feels_blocked, recent_viral_illness, very_high_temperature]
+source: nhs_glue_ear
+informed_by: [nhs_glue_ear, nhs_hearing_loss]

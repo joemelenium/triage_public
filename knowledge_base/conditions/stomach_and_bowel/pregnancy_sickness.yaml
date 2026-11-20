@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pregnancy_sickness
+body_system: stomach_and_bowel
+entry_symptoms: [feeling_sick, diarrhoea_or_vomiting]
+name: "Sickness in pregnancy (morning sickness)"
+medical_name: "Nausea and vomiting of pregnancy"
+snomed: "51885006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  may_be_pregnant: strongly_supports
+  pregnant_or_recently_given_birth: supports
+  vomiting: supports
+key_findings: [may_be_pregnant]
+source: nhs_vomiting_in_pregnancy
+informed_by: [nhs_vomiting_in_pregnancy, nhs_feeling_sick_nausea]

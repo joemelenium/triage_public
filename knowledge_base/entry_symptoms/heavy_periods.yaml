@@ -1,0 +1,165 @@
+# Entry symptom: heavy periods.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The main symptom, heavy_periods, was first written for the anaemia card in
+# observations/chest_and_heart.yaml. It is reused here, and this entry symptom
+# covers the NHS Heavy periods page through also_covers.
+#
+# The NHS Heavy periods page only gives "see a GP" signs. The emergency and
+# urgent rules come from the Miscarriage and Pelvic pain pages, and from
+# clinical knowledge (AI judgement).
+
+id: heavy_periods
+name: "Heavy periods"
+presenting_finding: heavy_periods
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_heavy_periods]
+
+screens:
+  - id: heavy_periods_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - heavy_vaginal_bleeding
+      - fainted
+      - light_headed
+      - sa_severe
+      - shoulder_tip_pain
+
+  - id: heavy_periods_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - may_be_pregnant
+      - short_of_breath
+      - palpitations
+      - pelvic_pain
+      - pain_not_helped_by_painkillers
+
+  - id: heavy_periods_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - heavy_periods_affecting_life
+      - heavy_periods_long_time
+      - periods_changed
+      - period_pain_stops_daily_life
+      - bleeding_between_periods_or_after_sex
+      - pain_when_peeing
+      - pain_when_pooing
+      - pain_during_sex
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_hp_heavy_and_faint
+    description: "Very heavy bleeding with feeling faint, dizzy or light-headed, or passing out"
+    when: {all: [heavy_vaginal_bleeding, {any: [light_headed, fainted]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_heavy_bleeding_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: very heavy bleeding with feeling faint can mean a lot of blood has been lost."
+
+  - id: rf_hp_fainted
+    description: "Heavy periods and passed out (fainted)"
+    when: fainted
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_heavy_bleeding_emergency
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+
+  - id: rf_hp_pregnant_heavy
+    description: "Heavy bleeding in someone who is pregnant: possible miscarriage"
+    when: {all: [pregnant_now, heavy_vaginal_bleeding]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_miscarriage
+
+  - id: rf_hp_may_be_pregnant_heavy
+    description: "Heavy bleeding in someone who could be pregnant"
+    when: {all: [may_be_pregnant, heavy_vaginal_bleeding]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_miscarriage
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Miscarriage page says call 999 for heavy bleeding in pregnancy. Applying it to someone who only could be pregnant is AI judgement."
+
+  - id: rf_hp_severe_pain_or_shoulder
+    description: "Heavy bleeding with severe tummy pain, or pain in the tip of the shoulder"
+    when: {any: [sa_severe, shoulder_tip_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+    note: "The Pelvic pain page: pelvic pain with heavy bleeding, or pain in the tip of the shoulder, needs 999 or A&E."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_hp_may_be_pregnant
+    description: "Heavy or unusual bleeding in someone who is or could be pregnant"
+    when: {any: [may_be_pregnant, pregnant_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_miscarriage
+    note: "The Miscarriage page says get urgent help for any bleeding in pregnancy."
+
+  - id: rf_hp_light_headed
+    description: "Heavy periods with feeling light-headed or dizzy"
+    when: light_headed
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_heavy_periods_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: feeling light-headed with heavy bleeding can be a sign of losing a lot of blood, or of anaemia."
+
+  - id: rf_hp_breathless_or_palpitations
+    description: "Heavy periods with breathlessness or a racing heart: possible anaemia"
+    when: {any: [short_of_breath, palpitations]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_heavy_periods_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement, and these are common with mild anaemia
+    note: "Clinical knowledge: these can be signs of severe anaemia from blood loss. The Heavy periods page lists feeling tired or short of breath a lot as part of heavy periods, so soft."
+
+  - id: rf_hp_painkillers_not_helping
+    description: "Heavy periods with severe pain, or pain worse than usual, that painkillers have not helped"
+    when: pain_not_helped_by_painkillers
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_period_pain_urgent
+    source: nhs_period_pain
+    note: "The Period pain page says an urgent GP appointment or 111 for pelvic or period pain that is severe or worse than usual, and painkillers have not helped. Firm, as in the Period pain entry symptom. It was bundled with any pelvic pain in one soft rule."
+
+  - id: rf_hp_pelvic_pain
+    description: "Heavy periods with pelvic pain"
+    when: pelvic_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_period_pain_urgent
+    source: nhs_period_pain
+    soft: true    # likely conditions may lower this: pain with heavy periods is common and usually from period pain
+    note: "Including any pelvic pain is an AI reading of the Period pain page, so soft."
+
+outcome_rules:
+  - id: or_hp_affecting_life
+    description: "Heavy periods that affect daily life, or have lasted for some time"
+    when: {any: [heavy_periods_affecting_life, heavy_periods_long_time]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_heavy_periods_gp
+    source: nhs_heavy_periods
+
+  - id: or_hp_severe_pain_or_changed
+    description: "Heavy periods with severe period pain, or periods that have changed"
+    when: {any: [period_pain_stops_daily_life, periods_changed]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_heavy_periods_gp
+    source: nhs_heavy_periods
+
+  - id: or_hp_other_symptoms
+    description: "Heavy periods with bleeding between periods or after sex, or pain when peeing, pooing or having sex"
+    when: {any: [bleeding_between_periods_or_after_sex, pain_when_peeing, pain_when_pooing, pain_during_sex]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_heavy_periods_gp
+    source: nhs_heavy_periods
+
+default:
+  description: "Heavy periods that are not affecting daily life, with nothing that needs more help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Heavy periods can be normal. See a GP if they affect your life."}
+  advice: advice_heavy_periods_self_care
+  source: nhs_heavy_periods
+  note: "The page says heavy periods may be normal, and to see a GP if they affect your life or have lasted for some time. Likely conditions (for example anaemia or fibroids) can raise this."

@@ -1,0 +1,1175 @@
+# Observations: bones, joints and muscles.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Same fields as the other observation files (see general.yaml).
+
+# ===========================================================================
+# Main symptoms (each has an entry symptom file)
+# ===========================================================================
+- id: back_pain
+  label: "Back pain"
+  question: "Do you have back pain?"
+  question_carer: "Does the person have back pain?"
+  kind: presenting
+  snomed: "161891005"
+  phrases: ["back pain", "bad back", "my back hurts", "lower back pain"]
+  source: nhs_back_pain
+
+- id: neck_pain
+  label: "Neck pain or stiff neck"
+  question: "Do you have pain or stiffness in your neck?"
+  kind: presenting
+  snomed: "81680005"
+  phrases: ["neck pain", "stiff neck", "cricked my neck", "can't turn my head"]
+  source: nhs_neck_pain_and_stiff_neck
+
+- id: shoulder_pain
+  label: "Shoulder pain"
+  question: "Do you have pain in your shoulder?"
+  kind: presenting
+  snomed: "45326000"
+  phrases: ["shoulder pain", "my shoulder hurts", "frozen shoulder"]
+  source: nhs_shoulder_pain
+
+- id: arm_pain
+  label: "Elbow or arm pain"
+  question: "Do you have pain in your arm or elbow?"
+  question_carer: "Does your child have pain in their arm or elbow, or are they not using their arm?"
+  kind: presenting
+  snomed: "102556003"
+  phrases: ["arm pain", "elbow pain", "my arm hurts", "sore elbow"]
+  source: nhs_elbow_and_arm_pain
+
+- id: hand_pain
+  label: "Hand, wrist, finger or thumb pain"
+  question: "Do you have pain in your hand, wrist, fingers or thumb?"
+  kind: presenting
+  snomed: "53057004"
+  phrases: ["hand pain", "wrist pain", "sore finger", "thumb hurts"]
+  source: nhs_hand_pain
+
+- id: hip_pain
+  label: "Hip pain"
+  question: "Do you have pain in your hip?"
+  question_carer: "Does your child have pain in their hip? Hip problems can also be felt in the thigh or knee."
+  kind: presenting
+  snomed: "49218002"
+  phrases: ["hip pain", "my hip hurts", "pain in my groin"]
+  source: nhs_hip_pain
+
+- id: knee_pain
+  label: "Knee pain"
+  question: "Do you have pain in your knee?"
+  kind: presenting
+  snomed: "1003722009"
+  phrases: ["knee pain", "sore knee", "my knee hurts"]
+  source: nhs_knee_pain
+
+- id: foot_pain
+  label: "Foot, ankle, heel or toe pain"
+  question: "Do you have pain in your foot, ankle, heel or toes?"
+  kind: presenting
+  snomed: "47933007"
+  phrases: ["foot pain", "ankle pain", "heel pain", "sore toe"]
+  source: nhs_foot_pain
+
+- id: joint_pain
+  label: "Joint pain"
+  question: "Do you have pain in one or more of your joints?"
+  kind: presenting
+  snomed: "57676002"
+  phrases: ["joint pain", "aching joints", "my joints hurt", "painful joints"]
+  source: nhs_joint_pain
+
+- id: leg_cramps
+  label: "Leg cramps"
+  question: "Do you get cramp in your leg? Cramp is when a muscle suddenly tightens and hurts."
+  kind: presenting
+  snomed: "449917004"
+  phrases: ["leg cramp", "calf cramp", "cramp at night", "charley horse"]
+  source: nhs_leg_cramps
+
+- id: tailbone_pain
+  label: "Tailbone pain"
+  question: "Do you have pain at the base of your spine, near the top of your bottom (your tailbone)?"
+  kind: presenting
+  snomed: "34789001"
+  phrases: ["tailbone pain", "coccyx pain", "hurts to sit down", "pain at the bottom of my spine"]
+  source: nhs_tailbone_coccyx_pain
+
+- id: limp
+  label: "Limping"
+  question: "Are you limping?"
+  question_carer: "Is your child limping, or not walking as they usually do?"
+  checklist_text: "Limping"
+  kind: presenting
+  snomed: "16973004"
+  phrases: ["limping", "won't walk properly", "walking funny", "favouring one leg"]
+  source: nhs_limp_in_children
+
+# The main symptom for injuries and falls. It is also asked in other entry
+# symptoms ("did this start after an injury?"), and a "yes" there brings in the
+# injury rules as well.
+- id: injury_or_fall
+  label: "Started after an injury, fall or accident"
+  question: "Did this start after an injury, a fall or an accident?"
+  question_carer: "Did this start after an injury, a fall or an accident?"
+  checklist_text: "Started after an injury, fall or accident"
+  kind: presenting
+  phrases: ["I fell", "had a fall", "hurt it playing football", "twisted it", "after a car crash"]
+  source: nhs_sprains_and_strains
+
+# ===========================================================================
+# Where it hurts (children of the main symptoms)
+# ===========================================================================
+- id: lower_back_pain
+  label: "Pain in the lower back"
+  question: "Is the pain in your lower back?"
+  kind: symptom
+  snomed: "279039007"
+  parent: back_pain
+  relation: location
+  phrases: ["lower back", "small of my back"]
+  source: nhs_back_pain
+
+- id: elbow_pain
+  label: "Pain in or around the elbow"
+  question: "Is the pain mainly in or around your elbow?"
+  kind: symptom
+  snomed: "74323005"
+  parent: arm_pain
+  relation: location
+  phrases: ["elbow pain", "sore elbow"]
+  source: nhs_elbow_and_arm_pain
+
+- id: outer_elbow_pain
+  label: "Pain on the outside of the elbow, worse when gripping"
+  question: "Is the pain on the outside or inside of your elbow, and worse when you grip, lift or twist things?"
+  kind: symptom
+  parent: elbow_pain
+  relation: location
+  phrases: ["hurts to grip", "pain opening jars", "tennis elbow"]
+  source: nhs_tennis_elbow
+
+- id: wrist_pain
+  label: "Pain in the wrist"
+  question: "Is the pain in your wrist?"
+  kind: symptom
+  snomed: "56608008"
+  parent: hand_pain
+  relation: location
+  phrases: ["wrist pain", "sore wrist"]
+  source: nhs_wrist_pain
+
+- id: finger_pain
+  label: "Pain in a finger"
+  question: "Is the pain in one or more of your fingers?"
+  kind: symptom
+  snomed: "18876004"
+  parent: hand_pain
+  relation: location
+  phrases: ["finger pain", "sore finger", "jammed my finger"]
+  source: nhs_finger_pain
+
+- id: thumb_pain
+  label: "Pain in the thumb"
+  question: "Is the pain in your thumb, or at the base of your thumb near the wrist?"
+  kind: symptom
+  parent: hand_pain
+  relation: location
+  snomed: "300955002"
+  phrases: ["thumb pain", "base of my thumb"]
+  source: nhs_thumb_pain
+
+- id: palm_pain
+  label: "Pain in the palm of the hand"
+  question: "Is the pain in the palm of your hand?"
+  kind: symptom
+  parent: hand_pain
+  relation: location
+  phrases: ["palm hurts", "pain in my palm"]
+  source: nhs_pain_in_the_palm_of_the_hand
+
+- id: back_of_hand_pain
+  label: "Pain in the back of the hand"
+  question: "Is the pain in the back of your hand?"
+  kind: symptom
+  parent: hand_pain
+  relation: location
+  phrases: ["back of my hand", "top of my hand"]
+  source: nhs_pain_in_the_back_of_the_hand
+
+- id: ankle_pain
+  label: "Pain in the ankle"
+  question: "Is the pain in your ankle?"
+  kind: symptom
+  snomed: "247373008"
+  parent: foot_pain
+  relation: location
+  phrases: ["ankle pain", "sore ankle", "went over on my ankle"]
+  source: nhs_ankle_pain
+
+- id: heel_pain
+  label: "Pain in the heel"
+  question: "Is the pain in your heel, or the back of your heel?"
+  kind: symptom
+  snomed: "2733002"
+  parent: foot_pain
+  relation: location
+  phrases: ["heel pain", "sore heel"]
+  source: nhs_heel_pain
+
+- id: ball_of_foot_pain
+  label: "Pain in the ball of the foot"
+  question: "Is the pain in the ball of your foot, just behind your toes?"
+  kind: symptom
+  snomed: "10085004"
+  parent: foot_pain
+  relation: location
+  phrases: ["ball of my foot", "behind my toes"]
+  source: nhs_pain_in_the_ball_of_the_foot
+
+- id: bottom_of_foot_pain
+  label: "Pain in the bottom of the foot"
+  question: "Is the pain in the bottom of your foot, such as the arch or the sole?"
+  kind: symptom
+  parent: foot_pain
+  relation: location
+  phrases: ["arch of my foot", "sole of my foot"]
+  source: nhs_pain_in_the_bottom_of_the_foot
+
+- id: top_of_foot_pain
+  label: "Pain in the top of the foot"
+  question: "Is the pain in the top of your foot?"
+  kind: symptom
+  parent: foot_pain
+  relation: location
+  phrases: ["top of my foot"]
+  source: nhs_pain_in_the_top_of_the_foot
+
+- id: toe_pain
+  label: "Pain in a toe, or the joint at the base of the big toe"
+  question: "Is the pain in your toes, or in the joint at the base of your big toe?"
+  kind: symptom
+  parent: foot_pain
+  relation: location
+  phrases: ["big toe", "sore toe", "stubbed my toe"]
+  source: nhs_foot_pain
+
+- id: knee_front_below_kneecap
+  label: "Pain and a tender lump just below the kneecap"
+  question: "Is the pain just below your kneecap, with a tender bump there?"
+  kind: symptom
+  parent: knee_pain
+  relation: location
+  phrases: ["lump below my kneecap", "bump under my knee"]
+  source: nhs_knee_pain
+
+- id: knee_pain_stairs_or_squatting
+  label: "Pain at the front of the knee, worse on stairs or squatting"
+  question: "Is the pain at the front of your knee, and worse going down stairs, squatting or after sitting for a long time?"
+  kind: symptom
+  parent: knee_pain
+  relation: exacerbating_factor
+  phrases: ["hurts going downstairs", "hurts when I squat", "runner's knee"]
+  source: ai_judgement
+
+- id: pain_in_groin_thigh_or_knee
+  label: "Pain in the groin, thigh or knee"
+  question: "Is there pain in the groin, thigh or knee? In children, hip problems are often felt there."
+  question_carer: "Does your child have pain in their groin, thigh or knee? In children, hip problems are often felt there."
+  checklist_text: "Pain in the groin, thigh or knee"
+  kind: symptom
+  phrases: ["pain in my groin", "thigh hurts", "knee pain but no injury"]
+  source: nhs_hip_pain_children_irritable_hip
+
+# ===========================================================================
+# Injury: what happened
+# ===========================================================================
+- id: serious_accident
+  label: "A serious accident, such as a car crash or a fall from a height"
+  question: "Was it a serious accident, such as a car crash, or a fall from higher than 1 metre or down 5 or more stairs?"
+  checklist_text: "A serious accident, such as a car crash or a fall from a height"
+  kind: symptom
+  parent: injury_or_fall
+  relation: character
+  seriousness: emergency
+  phrases: ["car crash", "fell off a ladder", "came off my motorbike", "fell down the stairs"]
+  source: nhs_back_pain
+
+- id: had_a_fall
+  label: "Had a fall"
+  question: "Did you have a fall?"
+  question_carer: "Did the person have a fall?"
+  kind: symptom
+  snomed: "1912002"
+  parent: injury_or_fall
+  relation: character
+  phrases: ["I fell", "had a fall", "tripped over", "slipped"]
+  source: nhs_falls
+
+- id: heard_snap_at_injury
+  label: "Heard or felt a snap, crack or pop at the time of injury"
+  question: "Did you hear or feel a snap, crack, pop or grinding at the time of the injury?"
+  checklist_text: "Heard a snap, crack, pop or grinding when it happened"
+  kind: symptom
+  parent: injury_or_fall
+  relation: character
+  phrases: ["heard a crack", "felt a pop", "heard it snap"]
+  source: nhs_wrist_pain
+
+- id: twisted_or_overstretched
+  label: "Twisted, rolled or overstretched it"
+  question: "Did you twist, roll or overstretch it? For example, going over on your ankle."
+  kind: symptom
+  parent: injury_or_fall
+  relation: character
+  phrases: ["went over on my ankle", "twisted my knee", "pulled a muscle", "rolled my ankle"]
+  source: nhs_sprains_and_strains
+
+- id: numb_after_injury
+  label: "Numb, tingling or no feeling below the injury"
+  question: "Since the injury, has the injured area, or the part below it, gone numb or tingly, or lost feeling?"
+  checklist_text: "Numb, tingling or no feeling in or below the injured area"
+  kind: symptom
+  parent: injury_or_fall
+  relation: character
+  seriousness: emergency
+  phrases: ["can't feel my fingers", "my foot has gone numb", "pins and needles since I fell"]
+  source: nhs_sprains_and_strains
+
+- id: fall_could_not_get_up
+  label: "Could not get up after a fall"
+  question: "After the fall, can you not get up, or were you on the floor for an hour or more?"
+  question_carer: "After the fall, can the person not get up, or were they on the floor for an hour or more?"
+  checklist_text: "Cannot get up after the fall, or on the floor for an hour or more"
+  kind: symptom
+  parent: had_a_fall
+  relation: severity
+  seriousness: emergency_ambulance
+  phrases: ["can't get up", "on the floor all night", "couldn't get up after falling"]
+  source: nhs_falls
+
+- id: fall_blackout_or_dizzy
+  label: "Blacked out or felt dizzy or faint just before falling"
+  question: "Just before the fall, did you black out, or feel dizzy, faint or that your heart was racing?"
+  question_carer: "Just before the fall, did the person black out, or seem dizzy or faint?"
+  checklist_text: "Blacked out or felt dizzy or faint just before falling"
+  kind: symptom
+  parent: had_a_fall
+  relation: character
+  seriousness: serious
+  phrases: ["blacked out and fell", "came over dizzy and fell", "fainted and fell"]
+  source: nhs_falls
+
+- id: falls_more_than_once
+  label: "Has fallen more than once, or worried about balance"
+  question: "Have you fallen more than once in the last year, or are you worried about your balance or walking?"
+  question_carer: "Has the person fallen more than once in the last year, or are you worried about their balance or walking?"
+  kind: history
+  phrases: ["keep falling", "unsteady on my feet", "worried I'll fall again"]
+  source: nhs_falls
+
+- id: arm_pulled_child
+  label: "Child's arm was pulled or yanked, and now not used"
+  question: "Was your child's arm pulled or yanked, for example when lifted by the hand, and now they will not use it?"
+  question_carer: "Was your child's arm pulled or yanked, for example when lifted by the hand, and now they will not use it?"
+  kind: symptom
+  asked_only_if: age_under_16
+  phrases: ["pulled his arm", "swung her by the arms", "won't use her arm"]
+  source: ai_judgement
+
+- id: signs_of_shock
+  label: "Cold, pale, sweaty skin or fast breathing after an injury"
+  question: "Is your skin cold, pale and sweaty, or are you breathing fast or feeling very faint?"
+  question_carer: "Is the person's skin cold, pale and sweaty, or are they breathing fast or very faint?"
+  checklist_text: "Cold, pale and sweaty skin, fast breathing, or feeling very faint"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["cold and clammy", "very pale and sweaty"]
+  source: nhs_broken_leg
+
+# ===========================================================================
+# Signs of a broken bone, dislocation or damage to nerves and blood vessels
+# ===========================================================================
+- id: think_bone_broken
+  label: "Thinks a bone may be broken"
+  question: "Do you think you might have broken a bone?"
+  question_carer: "Do you think your child might have broken a bone?"
+  checklist_text: "You think you might have broken a bone"
+  kind: symptom
+  phrases: ["I think it's broken", "might be fractured"]
+  source: nhs_wrist_pain
+
+- id: changed_shape
+  label: "Changed shape, or pointing at an odd angle"
+  question: "Has the painful area changed shape, or is it pointing at an odd angle?"
+  checklist_text: "Changed shape, or pointing at an odd angle"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["looks deformed", "bent the wrong way", "at a funny angle"]
+  source: nhs_sprains_and_strains
+
+- id: bone_through_skin
+  label: "Bone sticking out, or a deep cut over the injury"
+  question: "Is a bone sticking out through the skin, or is there a deep cut over the injury?"
+  checklist_text: "A bone sticking out, or a deep cut over the injury"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["bone sticking out", "can see the bone"]
+  source: nhs_broken_arm_or_wrist
+
+- id: joint_out_of_place
+  label: "A joint has moved out of place"
+  question: "Do you think a joint has moved out of place (dislocated), even if it then went back by itself?"
+  checklist_text: "A joint has moved out of place"
+  kind: symptom
+  phrases: ["dislocated", "popped out", "knee cap went out"]
+  source: nhs_joint_pain
+
+- id: cannot_bear_weight
+  label: "Cannot walk or put weight on the leg"
+  question: "Are you unable to walk, or to put any weight on your leg?"
+  question_carer: "Is your child unable to walk, or to put any weight on their leg?"
+  checklist_text: "Cannot walk, or cannot put any weight on the leg"
+  kind: symptom
+  snomed: "285674009"
+  seriousness: serious
+  phrases: ["can't walk on it", "can't put weight on it", "won't stand on it"]
+  source: nhs_hip_pain
+
+- id: cannot_move_painful_part
+  label: "Cannot move the painful joint or limb, or hold things"
+  question: "Are you unable to move the painful joint, arm or leg, or unable to hold things?"
+  question_carer: "Is your child unable to move the painful joint, arm or leg, or not using it at all?"
+  checklist_text: "Cannot move the painful joint, arm or leg, or cannot hold things"
+  kind: symptom
+  phrases: ["can't move it", "can't lift my arm", "can't grip anything"]
+  source: nhs_shoulder_pain
+
+- id: tender_bone
+  label: "Very painful to press on the bone"
+  question: "Does it hurt a lot when you press on the bone itself? For example, the bony lump on each side of the ankle."
+  kind: symptom
+  phrases: ["bone is really tender", "hurts to touch the bone"]
+  source: ai_judgement
+
+- id: bruised
+  label: "Bruising"
+  question: "Is there bruising over the painful area?"
+  kind: symptom
+  phrases: ["bruised", "black and blue"]
+  source: nhs_sprains_and_strains
+
+- id: limb_cold_pale_or_blue
+  label: "Arm, hand, leg or foot cold, pale, blue or grey"
+  question: "Is your arm, hand, leg or foot on the painful side cold to touch, or has it turned pale, white, blue or grey?"
+  checklist_text: "Arm, hand, leg or foot cold, pale, white, blue or grey"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["foot is cold and white", "fingers have gone blue", "leg feels cold"]
+  source: nhs_sprains_and_strains
+
+- id: pain_out_of_proportion
+  label: "Very bad pain that keeps getting worse, even with painkillers"
+  question: "Is the pain very bad and getting worse, even with painkillers? For example, a muscle that feels very tight and hurts more when it is moved."
+  checklist_text: "Very bad pain that keeps getting worse, even with painkillers"
+  kind: symptom
+  parent: severe_pain
+  relation: severity
+  seriousness: emergency
+  phrases: ["pain is out of control", "painkillers aren't touching it", "muscle feels like it will burst"]
+  source: nhs_compartment_syndrome
+
+- id: cast_problem
+  label: "Plaster cast feels too tight, or fingers or toes numb, swollen or discoloured"
+  question: "Do you have a plaster cast or splint that feels too tight? Or have your fingers or toes gone numb, swollen, blue or white?"
+  checklist_text: "A plaster cast that feels too tight, or numb, swollen, blue or white fingers or toes"
+  kind: symptom
+  seriousness: serious
+  phrases: ["cast is too tight", "toes have gone white in my cast"]
+  source: nhs_broken_arm_or_wrist
+
+- id: faint_or_sick_from_pain
+  label: "Feels faint, dizzy or sick from the pain"
+  question: "Do you feel faint, dizzy or sick because of the pain?"
+  checklist_text: "Feeling faint, dizzy or sick from the pain"
+  kind: symptom
+  phrases: ["pain is making me feel sick", "nearly passed out with the pain"]
+  source: nhs_wrist_pain
+
+- id: cannot_stand_on_tiptoe
+  label: "Cannot stand or walk on tiptoe, or walk up stairs"
+  question: "Are you unable to stand or walk on your tiptoes, or to walk up stairs, on the painful side?"
+  checklist_text: "Cannot stand on tiptoe or walk up stairs"
+  kind: symptom
+  phrases: ["can't go on tiptoe", "can't push off with my foot"]
+  source: nhs_heel_pain
+
+- id: snap_back_of_heel
+  label: "Felt a snap, or like being kicked, in the back of the ankle or heel"
+  question: "Did you feel a snap, or as if someone had kicked you, in the back of your ankle or heel?"
+  kind: symptom
+  asked_only_if: foot_pain
+  phrases: ["felt like someone kicked me in the heel", "heard a snap at the back of my ankle"]
+  source: nhs_heel_pain
+
+- id: calf_ankle_swelling_bruising
+  label: "Swelling and bruising in the calf and ankle"
+  question: "Do you have swelling and bruising in your calf and ankle?"
+  kind: symptom
+  phrases: ["calf is bruised and swollen"]
+  source: nhs_heel_pain
+
+- id: leg_short_or_turned_out
+  label: "Leg looks shorter, or foot turned outwards"
+  question: "Does the leg on the painful side look shorter than the other, or is the foot turned outwards?"
+  kind: symptom
+  phrases: ["leg looks shorter", "foot is turned out"]
+  source: nhs_hip_fracture
+
+- id: knee_gives_way_or_locks
+  label: "Knee locks, gives way or painfully clicks"
+  question: "Does your knee lock, give way, or click painfully? Clicking that does not hurt is usual."
+  checklist_text: "Knee locks, gives way or clicks painfully"
+  kind: symptom
+  asked_only_if: knee_pain
+  phrases: ["knee gives way", "knee locks", "knee buckles"]
+  source: nhs_knee_pain
+
+- id: cannot_straighten_finger_tip
+  label: "Cannot straighten the end of a finger"
+  question: "Are you unable to straighten the end of your finger, so it stays bent?"
+  kind: symptom
+  asked_only_if: finger_pain
+  phrases: ["finger tip droops", "can't straighten my finger"]
+  source: nhs_mallet_finger
+
+- id: child_not_using_arm
+  label: "Child not using an arm, holding it still"
+  question: "Is your child not using their arm, and holding it still by their side?"
+  question_carer: "Is your child not using their arm, and holding it still by their side?"
+  kind: symptom
+  asked_only_if: age_under_16
+  phrases: ["won't use his arm", "holding her arm still"]
+  source: ai_judgement
+
+# ===========================================================================
+# What the pain is like
+# ===========================================================================
+- id: severe_pain
+  label: "Severe pain"
+  question: "Is the pain severe? Severe pain is there all the time and so bad it is hard to think, talk or sleep."
+  question_carer: "Is the pain severe? Severe pain is there all the time and so bad it is hard to think, talk or sleep."
+  checklist_text: "Severe pain: so bad it is hard to think, talk or sleep"
+  kind: symptom
+  phrases: ["agony", "worst pain ever", "can't bear it"]
+  source: nhs_thumb_pain
+
+- id: pain_started_suddenly
+  label: "Pain started suddenly"
+  question: "Did the pain start suddenly?"
+  kind: symptom
+  phrases: ["came on all of a sudden", "started suddenly", "out of nowhere"]
+  source: nhs_back_pain
+
+- id: pain_getting_worse_quickly
+  label: "Pain getting worse quickly"
+  question: "Is the pain getting worse quickly?"
+  question_carer: "Is the pain or limp getting worse quickly?"
+  checklist_text: "Pain getting worse quickly"
+  kind: symptom
+  phrases: ["getting worse by the hour", "worse and worse"]
+  source: nhs_back_pain
+
+- id: pain_worse_at_night_or_rest
+  label: "Pain worse at night, or not better with rest"
+  question: "Is the pain worse at night, or does it not get better when you rest?"
+  question_carer: "Is the pain worse at night, or does it not get better when your child rests?"
+  kind: symptom
+  phrases: ["worse at night", "wakes me up", "even hurts lying still"]
+  source: nhs_back_pain
+
+- id: pain_worse_cough_sneeze
+  label: "Pain worse when coughing, sneezing or pooing"
+  question: "Is the pain worse when you cough, sneeze or poo?"
+  kind: symptom
+  phrases: ["hurts when I sneeze", "hurts to cough"]
+  source: nhs_back_pain
+
+- id: pain_worse_moving_better_rest
+  label: "Pain worse when moving, easier when resting"
+  question: "Is the pain worse when you move, and easier when you keep still or change position?"
+  kind: symptom
+  phrases: ["hurts to move", "better when I lie still"]
+  source: ai_judgement
+
+- id: pain_not_improving
+  label: "Pain for 2 weeks or more, not getting better"
+  question: "Have you had the pain for 2 weeks or more, and it has not got better with treatment at home?"
+  question_carer: "Has your child had the pain or limp for 2 weeks or more, and it has not got better?"
+  kind: symptom
+  phrases: ["had it for weeks", "not getting better"]
+  source: nhs_joint_pain
+
+- id: pain_over_3_months
+  label: "Pain on and off for more than 3 months"
+  question: "Have you had this pain on and off for more than 3 months?"
+  kind: symptom
+  parent: pain_not_improving
+  relation: duration
+  phrases: ["had it for months", "had it for years"]
+  source: ai_judgement
+
+- id: pain_getting_worse_or_recurring
+  label: "Pain getting worse, or keeps coming back"
+  question: "Is the pain slowly getting worse, or does it keep coming back?"
+  kind: symptom
+  phrases: ["keeps coming back", "slowly getting worse"]
+  source: nhs_joint_pain
+
+- id: stopping_daily_activities
+  label: "Pain stopping usual activities or affecting sleep"
+  question: "Is the pain stopping you doing your usual activities, or affecting your sleep?"
+  question_carer: "Is the pain stopping your child doing their usual activities, or affecting their sleep?"
+  kind: symptom
+  phrases: ["can't work", "can't sleep with it", "stopping me doing things"]
+  source: nhs_joint_pain
+
+- id: painkillers_not_helping
+  label: "Painkillers have not helped"
+  question: "Have painkillers like paracetamol or ibuprofen not helped?"
+  kind: symptom
+  phrases: ["painkillers aren't working", "ibuprofen hasn't helped"]
+  source: nhs_neck_pain_and_stiff_neck
+
+- id: after_lifting_or_awkward_movement
+  label: "Started after lifting, bending, twisting or an awkward movement"
+  question: "Did the pain start when you lifted, bent or twisted? Or after a sudden, odd movement?"
+  kind: symptom
+  phrases: ["lifting something heavy", "bent down and it went", "put my back out"]
+  source: nhs_back_pain
+
+- id: overuse
+  label: "Started after more activity than usual, or doing the same movement many times"
+  question: "Did the pain start after more exercise or activity than usual, such as running or a new sport? Or after doing the same movement many times, such as typing or using tools?"
+  kind: symptom
+  phrases: ["started running", "after a long walk", "too much typing", "overdid it at the gym"]
+  source: nhs_ankle_pain
+
+- id: pain_with_exercise_eases_with_rest
+  label: "Pain comes on with exercise or walking, and goes with rest"
+  question: "Does the pain come on when you exercise or walk, and go away after a few minutes of rest?"
+  kind: symptom
+  phrases: ["calves hurt when I walk", "have to stop walking", "arm hurts when I use it then goes"]
+  source: nhs_peripheral_arterial_disease
+
+- id: pain_worse_sitting
+  label: "Pain worse when sitting, or going from sitting to standing"
+  question: "Is the pain worse when you sit, or when you go from sitting to standing?"
+  kind: symptom
+  phrases: ["hurts to sit", "need a cushion to sit"]
+  source: nhs_tailbone_coccyx_pain
+
+- id: pain_kneeling_or_leaning
+  label: "Painful to kneel, lean on or lie on the area"
+  question: "Is it painful to kneel, lean on, or lie on the painful area?"
+  kind: symptom
+  phrases: ["can't lie on that side", "hurts to kneel", "hurts to lean on my elbow"]
+  source: nhs_bursitis
+
+- id: pain_lifting_arm
+  label: "Pain lifting the arm out to the side or above the head"
+  question: "Does it hurt to lift your arm out to the side or above your head?"
+  kind: symptom
+  asked_only_if: shoulder_pain
+  phrases: ["can't lift my arm above my head", "hurts to reach up"]
+  source: nhs_shoulder_impingement_syndrome
+
+- id: shoulder_very_stiff
+  label: "Shoulder very stiff, cannot move it far"
+  question: "Is your shoulder very stiff, so you cannot move it far even when someone else tries to move it for you?"
+  kind: symptom
+  asked_only_if: shoulder_pain
+  phrases: ["shoulder is stuck", "can't move my shoulder at all"]
+  source: nhs_frozen_shoulder
+
+- id: neck_locked_after_sleep_or_posture
+  label: "Neck stiff after sleeping awkwardly or sitting for a long time"
+  question: "Did your neck get stiff or sore after you slept in an odd position? Or after you sat at a desk for a long time?"
+  kind: symptom
+  asked_only_if: neck_pain
+  phrases: ["slept funny", "cricked my neck", "stiff from sitting at my desk"]
+  source: nhs_neck_pain_and_stiff_neck
+
+- id: head_jolted
+  label: "Head suddenly jolted, for example in a car crash"
+  question: "Did it start after your head was suddenly jolted forwards, backwards or sideways? For example, in a car crash, a fall or playing sport."
+  kind: symptom
+  parent: injury_or_fall
+  relation: character
+  phrases: ["rear-ended", "whiplash", "head snapped back"]
+  source: nhs_whiplash
+
+- id: pain_spreads_down_arm
+  label: "Pain spreads from the neck or shoulder down the arm"
+  question: "Does the pain spread from your neck or shoulder down your arm?"
+  kind: symptom
+  phrases: ["shooting pain down my arm", "pain goes into my hand"]
+  source: nhs_cervical_spondylosis
+
+- id: pain_down_leg
+  label: "Pain spreads from the back or bottom down the leg"
+  question: "Does pain spread from your back or bottom down your leg, sometimes as far as your foot?"
+  kind: symptom
+  phrases: ["shooting pain down my leg", "sciatica", "pain down the back of my leg"]
+  source: nhs_sciatica
+
+- id: pain_first_steps_morning
+  label: "Pain worst with the first steps in the morning or after resting"
+  question: "Is the pain worst when you take your first steps in the morning, or after sitting for a while?"
+  kind: symptom
+  phrases: ["first thing in the morning", "hurts when I first get up"]
+  source: nhs_plantar_fasciitis
+
+- id: feels_like_stone_in_shoe
+  label: "Feels like standing on a small stone, with burning or shooting pain near the toes"
+  question: "Does it feel like you are standing on a small stone, with burning or shooting pain near your toes?"
+  kind: symptom
+  asked_only_if: foot_pain
+  phrases: ["like a stone in my shoe", "burning between my toes"]
+  source: nhs_mortons_neuroma
+
+- id: bony_lump_big_toe
+  label: "Hard, bony lump at the side of the big toe"
+  question: "Is there a hard, bony lump at the side of your foot, by your big toe?"
+  kind: symptom
+  asked_only_if: foot_pain
+  phrases: ["bunion", "lump by my big toe"]
+  source: nhs_bunions
+
+- id: hard_skin_or_verruca
+  label: "Hard skin, a corn or a verruca on the foot"
+  question: "Is there hard, thick skin, a corn, or a verruca (a hard patch with black dots) where it hurts?"
+  kind: symptom
+  asked_only_if: foot_pain
+  phrases: ["corn on my foot", "hard skin", "verruca"]
+  source: nhs_pain_in_the_bottom_of_the_foot
+
+- id: flat_feet
+  label: "Flat feet (no arch when standing)"
+  question: "When you stand up, is there no gap (arch) under your foot, so it presses flat on the floor?"
+  kind: symptom
+  asked_only_if: foot_pain
+  phrases: ["flat feet", "fallen arches"]
+  source: nhs_flat_feet
+
+- id: finger_clicks_or_locks
+  label: "Finger or thumb clicks, catches or gets stuck"
+  question: "Does a finger or thumb click, catch or get stuck when you bend or straighten it?"
+  kind: symptom
+  asked_only_if: hand_pain
+  phrases: ["finger gets stuck", "trigger finger", "finger clicks"]
+  source: nhs_trigger_finger
+
+- id: smooth_lump_near_joint
+  label: "Smooth lump near a joint or tendon"
+  question: "Is there a smooth, rubbery lump near a joint, often on the wrist or a finger?"
+  kind: symptom
+  phrases: ["lump on my wrist", "ganglion"]
+  source: nhs_ganglion_cyst
+
+- id: cut_bite_or_puncture
+  label: "A cut, bite or puncture wound where it hurts"
+  question: "Did the pain start after a cut, a bite (from an animal or a person), or something sharp going into the skin there?"
+  kind: symptom
+  phrases: ["dog bite", "cut my finger", "punched someone in the teeth", "thorn in my finger"]
+  source: ai_judgement
+
+- id: foot_wound_or_ulcer
+  label: "A wound or sore on the foot or leg that is not healing"
+  question: "Do you have a wound, sore or ulcer on your foot or leg that is not healing?"
+  kind: symptom
+  phrases: ["sore on my foot won't heal", "ulcer on my foot"]
+  source: nhs_peripheral_arterial_disease
+
+# ===========================================================================
+# Swelling, heat and infection
+# ===========================================================================
+- id: swollen_area
+  label: "Swelling of the painful area"
+  question: "Is the painful area swollen?"
+  question_carer: "Is the painful area swollen?"
+  checklist_text: "Swelling of the painful area"
+  kind: symptom
+  phrases: ["it's swollen", "puffed up", "swollen joint"]
+  source: nhs_joint_pain
+
+- id: badly_swollen
+  label: "Badly swollen, or swelled up very quickly"
+  question: "Is it badly swollen, or did it swell up very quickly?"
+  checklist_text: "Badly swollen, or swelled up very quickly"
+  kind: symptom
+  parent: swollen_area
+  relation: severity
+  phrases: ["massively swollen", "ballooned up"]
+  source: nhs_knee_pain
+
+- id: red_or_discoloured_skin
+  label: "Skin over the painful area has changed colour"
+  question: "Has the skin over the painful area changed colour, for example gone red or purple? This may be harder to see on brown or black skin."
+  checklist_text: "Skin over the painful area has changed colour"
+  kind: symptom
+  phrases: ["it's gone red", "skin is purple", "red skin"]
+  source: nhs_hip_pain
+
+- id: one_joint_only
+  label: "Pain in just one joint"
+  question: "Is the pain in just one joint?"
+  kind: symptom
+  asked_only_if: joint_pain
+  phrases: ["just my knee", "only one joint"]
+  source: nhs_septic_arthritis
+
+- id: several_joints
+  label: "Pain in several joints"
+  question: "Do you have pain in several joints?"
+  kind: symptom
+  phrases: ["all my joints ache", "lots of joints hurt"]
+  source: nhs_joint_pain
+
+- id: same_joints_both_sides
+  label: "Same joints painful on both sides of the body"
+  question: "Are the same joints painful on both sides of your body? For example, both hands or both knees."
+  kind: symptom
+  phrases: ["both hands", "both knees hurt"]
+  source: nhs_joint_pain
+
+- id: small_joints_hands_feet
+  label: "Small joints of the hands or feet painful, swollen or stiff"
+  question: "Are the small joints of your fingers, hands or feet painful, swollen or stiff?"
+  kind: symptom
+  phrases: ["knuckles are swollen", "fingers are stiff and swollen"]
+  source: nhs_rheumatoid_arthritis
+
+- id: morning_stiffness_over_30_min
+  label: "Stiff for more than 30 minutes after waking"
+  question: "Are you stiff for more than 30 minutes after you wake up in the morning?"
+  question_carer: "Is your child stiff for more than 30 minutes after they wake up in the morning?"
+  kind: symptom
+  phrases: ["stiff in the mornings", "takes ages to get going"]
+  source: nhs_joint_pain
+
+- id: stiffness_better_with_movement
+  label: "Stiffness and pain get better with exercise, not with rest"
+  question: "Does the pain and stiffness get better when you move about or exercise, but not when you rest?"
+  kind: symptom
+  phrases: ["better once I get moving", "loosens up with exercise"]
+  source: nhs_ankylosing_spondylitis
+
+- id: pain_stiff_both_shoulders_or_hips
+  label: "Pain and stiffness in both shoulders or both hips, worst in the morning"
+  question: "Do you have pain and stiffness in both shoulders, or both hips, that is worst in the morning?"
+  checklist_text: "Pain and stiffness in both shoulders or both hips"
+  kind: symptom
+  phrases: ["both shoulders are stiff", "can't lift my arms to brush my hair"]
+  source: nhs_polymyalgia_rheumatica
+
+- id: recent_gut_or_sex_infection
+  label: "Diarrhoea, or an infection caught through sex, in the weeks before"
+  question: "In the 4 weeks before the joint pain started, did you have diarrhoea, or an infection you caught through sex?"
+  kind: history
+  phrases: ["had food poisoning", "had chlamydia", "had a tummy bug"]
+  source: nhs_reactive_arthritis
+
+- id: had_gout_before
+  label: "Diagnosed with gout"
+  question: "Has a doctor told you that you have gout?"
+  kind: history
+  phrases: ["I get gout", "had gout before"]
+  source: nhs_gout
+
+- id: has_rheumatoid_arthritis
+  label: "Diagnosed with rheumatoid arthritis"
+  question: "Has a doctor told you that you have rheumatoid arthritis?"
+  kind: history
+  phrases: ["I have rheumatoid arthritis", "my RA"]
+  source: nhs_rheumatoid_arthritis
+
+- id: joint_replacement
+  label: "Has an artificial (replacement) joint where it hurts"
+  question: "Do you have an artificial (replacement) joint where it hurts? For example, a hip or knee replacement."
+  kind: history
+  phrases: ["new hip", "knee replacement"]
+  source: ai_judgement
+
+- id: perimenopause
+  label: "Going through the menopause or the time leading up to it"
+  question: "Are you going through the menopause, or the time leading up to it?"
+  kind: history
+  sex: female
+  phrases: ["going through the change", "perimenopausal"]
+  source: nhs_joint_pain
+
+- id: widespread_pain
+  label: "Pain all over the body, with tiredness and poor sleep"
+  question: "Do you have pain all over your body, and also feel very tired and sleep badly?"
+  kind: symptom
+  phrases: ["hurt all over", "ache everywhere"]
+  source: nhs_fibromyalgia
+
+- id: joints_very_bendy
+  label: "Very bendy joints that often click, sprain or dislocate"
+  question: "Are your joints very bendy, and do they often click, sprain or come out of place?"
+  kind: history
+  phrases: ["double-jointed", "hypermobile"]
+  source: nhs_joint_hypermobility
+
+- id: has_osteoporosis_or_steroids
+  label: "Thin bones (osteoporosis), or long-term steroid tablets"
+  question: "Do you have thin, weak bones (osteoporosis)? Or have you taken steroid tablets for 3 months or more?"
+  kind: history
+  phrases: ["brittle bones", "I have osteoporosis", "on long-term steroids"]
+  source: nhs_osteoporosis
+
+- id: lump_near_tailbone
+  label: "Painful lump, swelling or hole in the skin near the top of the crease of the bottom"
+  question: "Is there a painful lump, swelling or small hole in the skin near the top of the crease of your bottom?"
+  kind: symptom
+  asked_only_if: tailbone_pain
+  phrases: ["lump at the top of my bum crack", "boil near my tailbone"]
+  source: ai_judgement
+
+- id: pus_or_blood_leaking
+  label: "Pus or blood leaking from a lump"
+  question: "Is pus or blood leaking from the lump?"
+  kind: symptom
+  parent: lump_near_tailbone
+  relation: character
+  phrases: ["pus coming out", "it's weeping"]
+  source: ai_judgement
+
+- id: lump_on_bone
+  label: "A lump or swelling on a bone"
+  question: "Is there a lump or swelling on a bone, for example on the leg?"
+  question_carer: "Is there a lump or swelling on one of your child's bones, for example on their leg?"
+  kind: symptom
+  phrases: ["lump on his shin", "swelling on the bone"]
+  source: nhs_limp_in_children
+
+- id: back_lump_or_shape_change
+  label: "A lump or swelling in the back, or the back has changed shape"
+  question: "Is there a lump or swelling in your back, or has your back changed shape?"
+  checklist_text: "A lump or swelling in your back, or your back has changed shape"
+  kind: symptom
+  asked_only_if: back_pain
+  phrases: ["lump on my spine", "my back is curved", "hunched"]
+  source: nhs_back_pain
+
+# ===========================================================================
+# Nerves and spinal cord
+# ===========================================================================
+- id: both_legs_symptoms
+  label: "Pain, tingling, weakness or numbness in both legs"
+  question: "Do you have pain, tingling, weakness or numbness in both legs?"
+  checklist_text: "Pain, tingling, weakness or numbness in both legs"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["both legs are numb", "sciatica in both legs", "both legs feel weak"]
+  source: nhs_back_pain
+
+- id: saddle_numbness
+  label: "Numb or no feeling around the genitals or bottom"
+  question: "Have you lost feeling, or got numbness, around your genitals or your bottom (anus)? For example, you cannot feel the toilet paper when you wipe."
+  checklist_text: "Numbness or loss of feeling around your genitals or bottom"
+  kind: symptom
+  snomed: "449813001"
+  seriousness: emergency
+  phrases: ["numb down below", "can't feel when I wipe", "numb bottom"]
+  source: nhs_back_pain
+
+- id: bladder_bowel_change
+  label: "New problems peeing or pooing"
+  question: "Have you had new problems peeing or pooing? For example, finding it hard to start peeing, not being able to pee, or peeing or pooing yourself."
+  checklist_text: "New problems peeing or pooing, such as not being able to pee, or wetting or soiling yourself"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["can't pee", "wet myself", "can't control my bowels"]
+  source: nhs_back_pain
+
+- id: sexual_function_change
+  label: "Changes in feeling or function during sex"
+  question: "Have you noticed a change in how your penis or vagina feels during sex? Or are you suddenly unable to get or keep an erection, or to orgasm?"
+  checklist_text: "A change in how your penis or vagina feels during sex. Or new problems with erections or orgasm."
+  kind: symptom
+  seriousness: emergency
+  phrases: ["can't feel anything during sex", "suddenly can't get an erection"]
+  source: nhs_back_pain
+
+- id: leg_weakness
+  label: "Weakness in one or both legs, or a foot that drags"
+  question: "Do you have weakness in one or both legs, or does your foot drag or slap when you walk?"
+  checklist_text: "Weakness in a leg, or a foot that drags when you walk"
+  kind: symptom
+  parent: numbness_or_weakness   # so the headache, dizziness and head injury rules on weakness see it
+  relation: location
+  seriousness: serious
+  phrases: ["leg is weak", "foot drop", "tripping over my foot"]
+  source: nhs_whiplash
+
+- id: new_problems_walking
+  label: "New problems walking, with balance, or doing fiddly tasks"
+  question: "Have you got new problems walking or with your balance? Or sudden clumsiness with tasks like doing up buttons?"
+  checklist_text: "New problems walking or with balance, or sudden clumsiness with your hands"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["can't walk properly", "dropping things", "unsteady"]
+  source: nhs_cervical_spondylosis
+
+- id: leg_numb_or_tingling
+  label: "Numbness, tingling or pins and needles in the leg or foot"
+  question: "Do you have numbness, tingling or pins and needles in your leg or foot?"
+  checklist_text: "Numbness, tingling or pins and needles in your leg or foot"
+  kind: symptom
+  parent: pins_and_needles
+  relation: location
+  phrases: ["foot is numb", "pins and needles in my leg"]
+  source: nhs_sciatica
+
+- id: arm_hand_tingling
+  label: "Pins and needles, tingling or numbness in the arm, hand or fingers"
+  question: "Do you have pins and needles, tingling or numbness in your arm, hand or fingers?"
+  checklist_text: "Pins and needles, tingling or numbness in your arm, hand or fingers"
+  kind: symptom
+  parent: pins_and_needles
+  relation: location
+  phrases: ["pins and needles in my hand", "numb fingers", "tingling arm"]
+  source: nhs_neck_pain_and_stiff_neck
+
+- id: hand_tingling_worse_at_night
+  label: "Hand pain or tingling worse at night"
+  question: "Is the pain or tingling in your hand worse at night, or does it wake you up?"
+  kind: symptom
+  parent: arm_hand_tingling
+  relation: exacerbating_factor
+  phrases: ["hand wakes me up at night", "have to shake my hand at night"]
+  source: nhs_carpal_tunnel_syndrome
+
+- id: lost_feeling_in_hand_or_arm
+  label: "Lost all feeling in part or all of the hand or arm"
+  question: "Have you lost all feeling in part or all of your hand or arm?"
+  checklist_text: "Lost all feeling in part or all of your hand or arm"
+  kind: symptom
+  parent: arm_hand_tingling
+  relation: severity
+  seriousness: serious
+  phrases: ["can't feel my hand", "hand is dead"]
+  source: nhs_wrist_pain
+
+- id: arm_weakness
+  label: "Weak arm or hand, or a weak grip"
+  question: "Does your arm or hand feel weak or heavy, or is your grip weak?"
+  checklist_text: "A weak or heavy arm or hand, or a weak grip"
+  kind: symptom
+  parent: numbness_or_weakness
+  relation: location
+  phrases: ["dropping things", "weak grip", "arm feels heavy"]
+  source: nhs_cervical_spondylosis
+
+- id: electric_shock_feeling
+  label: "Electric shock feeling in the neck or back, into the arms or legs"
+  question: "Do you get a sudden electric shock feeling in your neck or back, which may go into your arms or legs?"
+  checklist_text: "An electric shock feeling in your neck or back"
+  kind: symptom
+  seriousness: serious
+  phrases: ["electric shocks down my back"]
+  source: nhs_whiplash
+
+# ===========================================================================
+# Blood clots and blood supply
+# ===========================================================================
+- id: dvt_signs
+  label: "One leg swollen, warm and painful, often in the calf"
+  question: "Is one of your legs swollen, warm and painful, usually in the calf? The skin may look red or darker, and the veins may look swollen."
+  checklist_text: "One leg swollen, warm and painful, usually in the calf"
+  kind: symptom
+  parent: leg_pain_or_swelling
+  relation: character
+  seriousness: serious
+  phrases: ["swollen calf", "hot red calf", "one leg is bigger than the other"]
+  source: nhs_deep_vein_thrombosis
+
+- id: cramps_at_night
+  label: "Cramps mostly at night or when resting"
+  question: "Do the cramps mostly happen at night or when you are resting?"
+  kind: symptom
+  asked_only_if: leg_cramps
+  phrases: ["cramp in bed", "wakes me up with cramp"]
+  source: nhs_leg_cramps
+
+- id: cramps_with_exercise
+  label: "Cramps during or after exercise, or in hot weather"
+  question: "Do the cramps happen during or just after exercise, or in hot weather?"
+  kind: symptom
+  asked_only_if: leg_cramps
+  phrases: ["cramp when I run", "cramp after football"]
+  source: nhs_leg_cramps
+
+- id: cramps_last_over_10_minutes
+  label: "Cramps lasting more than 10 minutes"
+  question: "Do the cramps last longer than 10 minutes?"
+  kind: symptom
+  asked_only_if: leg_cramps
+  phrases: ["cramp lasts ages"]
+  source: nhs_leg_cramps
+
+- id: leg_numb_or_swollen_with_cramps
+  label: "Numbness or swelling in the legs as well as cramps"
+  question: "As well as the cramps, do you have numbness or swelling in your legs?"
+  kind: symptom
+  asked_only_if: leg_cramps
+  phrases: ["legs are swollen and numb"]
+  source: nhs_leg_cramps
+
+- id: takes_statin_or_water_tablets
+  label: "Takes a statin, or water tablets"
+  question: "Do you take a statin for cholesterol? Or water tablets for blood pressure or swelling?"
+  kind: history
+  phrases: ["on statins", "take water tablets", "on furosemide"]
+  source: nhs_leg_cramps
+
+- id: limp_obvious_minor_cause
+  label: "Limp from an obvious minor cause, and otherwise well"
+  question: "Is the limp from something small you can see, like a blister, a cut or a bruise? And is your child well in every other way?"
+  question_carer: "Is the limp from something small you can see, like a blister, a cut or a bruise? And is your child well in every other way?"
+  kind: symptom
+  asked_only_if: limp
+  phrases: ["just a blister", "new shoes rubbing", "small cut on her foot"]
+  source: nhs_limp_in_children
+
+- id: grating_when_moving
+  label: "Grating or crackling when moving the joint"
+  question: "Do you feel or hear a grating or crackling when you move the painful joint?"
+  kind: symptom
+  phrases: ["creaky knees", "crunching in my knee", "grinding in the joint"]
+  source: nhs_pain_in_the_top_of_the_foot
+
+- id: painful_swollen_joints
+  label: "Painful or swollen joints"
+  question: "Are any of your joints painful or swollen, such as your knees or ankles?"
+  question_carer: "Are any of your child's joints painful or swollen, such as their knees or ankles?"
+  kind: symptom
+  phrases: ["sore knees", "swollen ankles", "joints ache"]
+  source: nhs_hsp
+
+- id: legs_weak_or_numb
+  label: "Numbness or weakness in both legs"
+  question: "Do you have numbness, tingling or weakness in both legs?"
+  question_carer: "Does your child have numbness, tingling or weakness in both legs?"
+  checklist_text: "Numbness, tingling or weakness in both legs"
+  kind: symptom
+  parent: both_legs_symptoms
+  relation: character
+  seriousness: emergency
+  phrases: ["both legs are numb", "legs feel weak", "can't feel my legs"]
+  source: nhs_back_pain

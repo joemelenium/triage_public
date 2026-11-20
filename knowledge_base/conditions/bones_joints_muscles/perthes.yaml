@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: perthes
+body_system: bones_joints_muscles
+# Usually children aged 4 to 10. A limp and pain in the groin, thigh or knee over weeks.
+entry_symptoms: [hip_pain, limp, knee_pain]
+name: "Perthes (a problem with the blood supply to the top of the thigh bone in children)"
+medical_name: "Legg-Calve-Perthes disease"
+snomed: "111255008"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  limp: strongly_supports
+  pain_in_groin_thigh_or_knee: strongly_supports
+  pain_not_improving: supports
+  cannot_move_painful_part: supports
+key_findings: [pain_in_groin_thigh_or_knee, pain_not_improving]
+source: nhs_hip_pain_children_irritable_hip
+informed_by: [nhs_hip_pain_children_irritable_hip, nhs_limp_in_children]

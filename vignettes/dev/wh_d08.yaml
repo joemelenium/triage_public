@@ -1,0 +1,69 @@
+id: wh_d08
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- heavy_periods
+summary: 'A 44-year-old woman has had heavy periods for about a year: changing pads every 1 to 2 hours on heavy
+  days, passing clots bigger than a 10p coin, flooding through to her clothes and taking days off work. She feels
+  tired a lot. No bleeding between periods and no pain with sex.'
+opening_statement: My periods have been really heavy for about a year now. I'm changing pads every hour or two and
+  passing big clots, and I've had to take time off work.
+findings:
+  present:
+  - heavy_periods
+  - heavy_periods_affecting_life
+  - heavy_periods_long_time
+  - passing_large_clots
+  - tired_for_weeks
+  absent:
+  - heavy_vaginal_bleeding
+  - periods_last_over_7_days
+  - bleeding_between_periods
+  - bleeding_after_sex
+  - pelvic_pain
+  - period_pain_stops_daily_life
+  - pain_during_sex
+  - pain_when_peeing
+  - may_be_pregnant
+  - dizziness
+  - fainted
+  - takes_blood_thinners
+  - bruising_or_bleeding_easily
+  - weight_loss
+  - short_of_breath
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 44
+    sex: female
+  full:
+    age: 44
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Treatments are available
+  any_of:
+  - treatment
+  - tranexamic
+  - contraception
+source:
+  expected_outcome:
+    page: heavy_periods.txt
+    quote: heavy periods are affecting your life
+  minimum_safe_acuity:
+    page: heavy_periods.txt
+    quote: you've had heavy periods for some time
+atypical: false
+notes: 'heavy_vaginal_bleeding is answered no: that question is about acute heavy bleeding (for example with pelvic
+  pain or in pregnancy); her heavy periods are captured by heavy_periods and its specific ids. She feels tired but
+  is not short of breath, so the breathlessness on heavy_periods.txt is not present. heavy_periods is a history
+  id, not a presenting id, but it is the best match for her main complaint.'

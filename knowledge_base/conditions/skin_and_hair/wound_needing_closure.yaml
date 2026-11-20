@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: wound_needing_closure
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound]
+name: "Cut that needs closing with stitches, strips or glue"
+medical_name: "Laceration needing closure"
+snomed: "312608009"
+acuity_needed: urgent
+danger: moderate
+prevalence: common
+findings:
+  # What tells it apart from a small cut: longer than about 5cm, deep, or the edges gape apart.
+  wound_over_5cm: strongly_supports
+  wound_edges_gaping: strongly_supports
+  wound_large_or_deep: supports
+  wound_on_face_or_palm: supports
+key_findings: [wound_over_5cm, wound_edges_gaping]
+source: nhs_cuts_and_grazes
+informed_by: [nhs_cuts_and_grazes]

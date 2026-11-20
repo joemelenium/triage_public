@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bone_or_blood_cancer
+body_system: bones_joints_muscles
+entry_symptoms: [limp, knee_pain]
+name: "A rare cancer affecting the bones or blood, such as leukaemia (a cancer of the blood)"
+medical_name: "Bone tumour or leukaemia"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  pain_worse_at_night_or_rest: strongly_supports
+  lump_on_bone: supports
+  weight_loss: supports
+  very_tired: supports
+  feels_very_unwell: supports
+key_findings: [pain_worse_at_night_or_rest, lump_on_bone, weight_loss]
+source: nhs_limp_in_children
+informed_by: [nhs_limp_in_children, nhs_bone_cancer]

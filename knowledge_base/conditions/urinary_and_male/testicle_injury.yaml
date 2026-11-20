@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: testicle_injury
+body_system: urinary_and_male
+entry_symptoms: [testicle_pain, testicle_lump_or_swelling]
+name: "Injury to a testicle"
+medical_name: "Injury of testis"
+snomed: "262921003"
+# AI judgement: an injured testicle can bleed inside or burst, so needs checking
+# the same day; severe pain after an injury is an emergency through the red flags.
+acuity_needed: urgent
+danger: serious
+sex: male
+prevalence: uncommon
+prevalence_when:
+  - {finding: testicle_pain, prevalence: uncommon}
+  - {finding: testicle_lump_or_swelling, prevalence: rare}
+findings:
+  testicle_injury: strongly_supports
+  testicle_pain_sudden_severe: supports
+  scrotum_red_hot_swollen: supports
+  nausea_or_vomiting: supports
+key_findings: [testicle_injury, scrotum_red_hot_swollen]
+source: ai_judgement
+informed_by: [nhs_testicle_pain]

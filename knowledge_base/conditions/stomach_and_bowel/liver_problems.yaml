@@ -1,0 +1,34 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: liver_problems
+body_system: stomach_and_bowel
+# Liver damage (for example from alcohol) can cause yellow skin, a swollen tummy, swollen legs,
+# tiredness and weight loss. The page says see a GP.
+entry_symptoms: [swollen_ankles, weight_loss, very_tired, stomach_ache, feeling_sick]
+name: "Liver problems (such as liver damage from alcohol)"
+medical_name: "Disorder of liver"
+snomed: "235856003"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: has_kidney_or_liver_condition, prevalence: common}
+  - {finding: drinks_a_lot_of_alcohol, prevalence: uncommon}
+findings:
+  # What tells it apart: yellow skin or eyes and a swollen tummy.
+  yellow_skin_or_eyes: strongly_supports
+  swelling_elsewhere: supports
+  loss_of_appetite: supports
+  very_tired: supports
+  weight_loss: supports
+  nausea_or_vomiting: supports
+  swollen_ankles: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  poo_pale_pee_dark: strongly_supports
+  sa_upper_right: supports
+  drinks_a_lot_of_alcohol: supports
+  feeling_sick: supports
+  itchy_elsewhere: supports
+key_findings: [yellow_skin_or_eyes, swelling_elsewhere, drinks_a_lot_of_alcohol, poo_pale_pee_dark]
+source: nhs_liver_disease
+informed_by: [nhs_liver_disease, nhs_oedema, nhs_jaundice, nhs_hepatitis, nhs_gallstones, nhs_jaundice]

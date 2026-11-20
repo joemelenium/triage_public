@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hrt_bleeding
+body_system: womens_health
+entry_symptoms: [bleeding_after_menopause]
+name: "Bleeding caused by HRT (hormone treatment for the menopause)"
+medical_name: "Bleeding related to hormone replacement therapy"
+# Common in the first months of HRT or after a change. Still needs checking.
+acuity_needed: routine
+danger: minor
+sex: female
+prevalence: uncommon
+findings:
+  pill_or_hrt: strongly_supports
+  hormone_medicine_started_recently: strongly_supports
+key_findings: [pill_or_hrt, hormone_medicine_started_recently]
+source: nhs_post_menopausal_bleeding
+informed_by: [nhs_post_menopausal_bleeding]

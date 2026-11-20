@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: glomerulonephritis
+body_system: urinary_and_male
+entry_symptoms: [blood_in_urine]
+name: "Swelling inside the kidneys (glomerulonephritis)"
+medical_name: "Glomerulonephritis"
+snomed: "36171008"
+# Level soon (AI judgement): the page says see a GP, and blood tests are needed to
+# check how well the kidneys work. Danger serious: it can damage the kidneys.
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  foamy_pee: strongly_supports
+  puffy_face_or_eyes: strongly_supports
+  swollen_ankles: supports
+  recent_sore_throat_or_skin_infection: supports
+  not_making_much_pee: supports
+key_findings: [foamy_pee, puffy_face_or_eyes, swollen_ankles, recent_sore_throat_or_skin_infection]
+source: nhs_glomerulonephritis
+informed_by: [nhs_glomerulonephritis, nhs_blood_in_urine]

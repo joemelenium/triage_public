@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: multiple_sclerosis
+body_system: brain_and_nerves
+entry_symptoms: [pins_and_needles, weakness_or_paralysis, face_numbness]
+name: "Multiple sclerosis (MS) warning signs"
+medical_name: "Multiple sclerosis"
+snomed: "24700007"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  # Usually starts in young adults. What tells it apart: numbness or tingling in different places at different times, problems with vision, and symptoms that come and go.
+  pins_needles_different_places: strongly_supports
+  vision_change: supports
+  weakness_comes_and_goes: supports
+  very_tired: supports
+  trouble_with_balance_or_walking: supports
+  face_numbness: supports
+key_findings: [pins_needles_different_places, vision_change, weakness_comes_and_goes]
+source: nhs_multiple_sclerosis
+informed_by: [nhs_multiple_sclerosis, nhs_pins_and_needles, nhs_paralysis]

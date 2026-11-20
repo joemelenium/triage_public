@@ -1,0 +1,60 @@
+id: sob_d08
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "An 81-year-old woman who over the past week has needed three pillows to sleep and has woken up gasping twice. Her ankles are more puffy than usual. Her record shows heart failure, but she only knows she 'sees a heart doctor about a water tablet' and is not sure whether she has a heart condition."
+
+opening_statement: "I can't seem to lie flat any more without getting out of breath. I've been propping myself up on three pillows."
+
+findings:
+  present: [short_of_breath, sob_lying_flat, sob_everyday_activity, swollen_ankles, heart_failure_worse, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, passed_out, fainted, chest_pain, cp_tight_or_squeezing, cp_heavy, frothy_pink_phlegm, coughing_up_blood, palpitations, heart_beating_very_fast, very_high_temperature, cough_mucus_or_temperature, leg_pain_or_swelling, has_copd, has_asthma, recent_surgery_or_immobile, recent_long_journey, wheezing]
+  unknown: [known_heart_condition, sudden_weight_gain, has_heart_failure, sob_more_than_usual]
+
+context:
+  none: {}
+  basic: {age: 81, sex: female}
+  full:
+    age: 81
+    sex: female
+    findings: {known_heart_condition: "yes", long_term_condition: "yes", has_heart_failure: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Breathless when lying down, in someone with heart failure"
+    findings: [sob_lying_flat]
+    minimum_acuity: urgent
+    source: {page: heart_failure.txt, quote: "you feel breathless when lying down or from everyday activity"}
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or NHS 111"
+    any_of: ["111", "urgent GP", "GP"]
+  - point: "Call 999 if severe difficulty breathing, lips or skin pale, blue or grey"
+    any_of: ["999"]
+  - point: "Weigh herself; sudden weight gain matters"
+    any_of: ["weigh", "weight"]
+
+source:
+  expected_outcome: {page: heart_failure.txt, quote: "Urgent advice: Ask for an urgent GP appoint or get help from NHS 111 if:"}
+  minimum_safe_acuity: {page: heart_failure.txt, quote: "you feel breathless when lying down or from everyday activity"}
+
+variants:
+  - id: sob_d08_v1
+    style: "rambling older patient"
+    opening_statement: "Well dear, I've been sleeping sat up for a week now, three pillows, and I woke up gasping a couple of nights. My ankles are like balloons. I take a water tablet the heart doctor gave me, but I don't really know what for."
+    volunteered: [sob_lying_flat, swollen_ankles]
+
+context_test:
+  what_context_adds: "The record shows known heart failure (known_heart_condition yes, long_term_condition yes). The patient is not sure she has a heart condition."
+  expected_direction: more_urgent
+
+atypical: false
+notes: "Context test. Without the record, shortness_of_breath.txt points to a non-urgent GP visit ('Non-urgent advice: See a GP if' breathlessness 'when you lie down' or 'you feel short of breath and have swollen ankles'). With known heart failure, heart_failure.txt gives 'Urgent advice' for breathlessness lying down. SOURCE DIFFERENCE: heart_failure.txt applies the urgent advice to anyone with these symptoms, so an engine could reach 'urgent' without context; the record makes the heart failure reading much more certain. She is not sure whether she has put on weight suddenly (unknown); sudden weight gain would also be urgent on heart_failure.txt. For the questions added to the list later: has_heart_failure is 'not sure' (the record says yes); heart_failure_worse is yes because her breathlessness and ankle swelling are worse than usual, although it is only asked once heart failure is known; sob_more_than_usual is 'not sure' because she does not know she has a heart condition."

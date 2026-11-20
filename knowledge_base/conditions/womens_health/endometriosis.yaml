@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: endometriosis
+body_system: womens_health
+entry_symptoms: [pelvic_pain, period_pain, heavy_periods, ovulation_pain]
+name: "Endometriosis (tissue like the lining of the womb growing in other places)"
+medical_name: "Endometriosis"
+snomed: "129103003"
+# Severe period pain that stops daily activities, pain during sex or when
+# pooing, and difficulty getting pregnant tell it apart from ordinary period pain.
+acuity_needed: routine
+danger: moderate
+sex: female
+prevalence: uncommon
+prevalence_when:
+  - {finding: period_pain, prevalence: common}
+  - {finding: pelvic_pain, prevalence: common}
+findings:
+  period_pain_stops_daily_life: strongly_supports
+  pain_keeps_coming_back: strongly_supports
+  period_pain: strongly_supports
+  pain_during_sex: supports
+  pain_when_pooing: supports
+  very_tired: supports
+  difficulty_getting_pregnant: supports
+  pelvic_pain: supports
+key_findings: [period_pain_stops_daily_life, pain_during_sex, pain_when_pooing, difficulty_getting_pregnant]
+source: nhs_endometriosis
+informed_by: [nhs_endometriosis, nhs_period_pain, nhs_pelvic_pain]

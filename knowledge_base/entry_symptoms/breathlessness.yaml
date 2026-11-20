@@ -1,0 +1,479 @@
+# Entry symptom: breathlessness (shortness of breath).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+# Rules with source ai_judgement come from clinical knowledge, not a page.
+
+id: breathlessness
+name: "Breathlessness"
+presenting_finding: short_of_breath
+also_covers: [nhs_shortness_of_breath]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: breathlessness_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - chest_pain
+      - cp_tight_or_squeezing
+      - cp_heavy
+      - cp_spreads
+      - sob_sudden
+      - too_breathless_to_talk
+      - child_struggling_to_breathe
+      - child_floppy_or_hard_to_wake
+      - lips_tongue_throat_swelling
+      - choked_on_something
+      - stridor
+      - seriously_unwell_getting_worse
+      - fainted
+      - sweating
+      - light_headed
+
+  - id: breathlessness_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - difficulty_breathing
+      - sob_at_rest
+      - sob_lying_flat
+      - very_high_temperature
+      - nausea_or_vomiting
+      - coughing_up_blood
+      - frothy_pink_phlegm
+      - leg_pain_or_swelling
+      - palpitations
+      - sob_more_than_usual
+      - recent_surgery_or_immobile
+      - previous_blood_clot
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_sob_chest_pain
+    description: "Short of breath with chest pain"
+    when: chest_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 straight away"}
+    advice: advice_chest_pain_999
+    source: nhs_chest_pain
+    note: "The Chest pain page says to call 999 for chest pain with shortness of breath. The chest pain entry symptom also applies once chest pain is reported."
+
+  - id: rf_sob_chest_tight_or_heavy_no_asthma
+    description: "Short of breath and the chest feels tight or heavy, in someone without asthma"
+    when: {all: [{any: [cp_tight_or_squeezing, cp_heavy]}, {not: has_asthma}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_breathless_ae
+    source: nhs_shortness_of_breath
+    note: "Taken directly from the Shortness of breath page. Firm for people without asthma: a tight or heavy chest with breathlessness can be a heart attack, which has no card in this entry symptom, so no likely condition should lower it. Added after the pilot check."
+
+  - id: rf_sob_chest_tight_or_heavy
+    description: "Short of breath and the chest feels tight or heavy"
+    when: {any: [cp_tight_or_squeezing, cp_heavy]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_breathless_ae
+    source: nhs_shortness_of_breath
+    soft: true    # likely conditions may lower this: a tight chest is also a common asthma symptom
+    note: "Taken directly from the Shortness of breath page. The firm rule above covers people without asthma. Marked soft because the Asthma page lists a tight chest as an everyday asthma symptom, not an emergency on its own. Needs clinical review."
+
+  - id: rf_sob_pain_spreads
+    description: "Short of breath with pain that spreads to the arms, back, neck or jaw"
+    when: cp_spreads
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_breathless_ae
+    source: nhs_shortness_of_breath
+
+  - id: rf_sob_fainted
+    description: "Short of breath and has passed out (fainted)"
+    when: fainted
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_breathless_ae
+    source: nhs_pulmonary_embolism
+    note: "The Pulmonary embolism page lists passing out with breathlessness as a reason to call 999 or go to A&E. Added after the pilot check."
+
+  - id: rf_sob_sweaty_or_light_headed
+    description: "Short of breath and sweaty, clammy or light-headed"
+    when: {any: [sweating, light_headed]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_breathless_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: a panic attack also causes sweating and light-headedness
+    note: "AI judgement from clinical knowledge: breathlessness with sweating or light-headedness can be a heart attack, a blood clot in the lung or a dangerous heart rhythm. Soft, so a likely panic attack can lower it. Added after the pilot check."
+
+  - id: rf_sob_sudden
+    description: "Difficulty breathing that came on suddenly, or suddenly got much worse"
+    when: sob_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_breathless_ae
+    source: nhs_pulmonary_embolism
+    note: "The COVID-19 page gives the same advice when breathing has suddenly got worse."
+
+  - id: rf_sob_cannot_talk
+    description: "So short of breath that cannot say a short sentence when resting"
+    when: too_breathless_to_talk
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_breathless_ae
+    source: nhs_covid_19
+    note: "Applying the COVID-19 page's sign to all breathlessness is AI judgement. It is also a standard sign of a severe asthma attack."
+
+  - id: rf_sob_child_struggling
+    description: "A child struggling to breathe: grunting, or tummy sucking in under the ribs"
+    when: {all: [age_under_16, child_struggling_to_breathe]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_child_breathing_emergency
+    source: nhs_shortness_of_breath
+
+  - id: rf_sob_child_floppy
+    description: "A child who is limp, floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_child_breathing_emergency
+    source: nhs_shortness_of_breath
+    note: "The Croup page gives the same advice for a child who is sleepier than usual or hard to wake. The Bronchiolitis page says call 999 for a child who is floppy and will not wake up; that case is also caught by the universal red flag for passing out."
+
+  - id: rf_sob_pauses_in_breathing
+    description: "Pauses in a young child's breathing"
+    when: {all: [age_under_5, pauses_in_breathing]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_child_breathing_999
+    source: nhs_bronchiolitis
+
+  - id: rf_sob_allergic_swelling
+    description: "Short of breath with lips, mouth, tongue or throat suddenly swollen"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_sob_throat_tight
+    description: "Short of breath with the throat feeling tight"
+    when: throat_tight
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_sob_after_allergy_trigger
+    description: "Short of breath that started soon after a food, medicine or insect sting"
+    when: after_allergy_trigger
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+    note: "AI reading of the Anaphylaxis page, which says call 999 for struggling to breathe after contact with something you are allergic to. Kept firm, not soft, on purpose: missing a severe allergic reaction is life-threatening. Needs clinical review."
+
+  - id: rf_sob_choked
+    description: "Breathing problems that started suddenly after choking on something"
+    when: choked_on_something
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_breathless_ae
+    source: ai_judgement
+    note: "Clinical knowledge: something breathed into the airway needs to be checked and removed in hospital. No NHS symptom page in the source log covers this."
+
+  - id: rf_sob_asthma_reliever_not_helping
+    description: "Asthma attack and no better after the most puffs of reliever inhaler allowed, or getting worse"
+    when: {all: [has_asthma, asthma_attack_now, reliever_not_helping]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_asthma_attack_999
+    source: nhs_asthma
+
+  - id: rf_sob_asthma_no_inhaler
+    description: "Asthma attack and no reliever inhaler"
+    when: {all: [has_asthma, asthma_attack_now, no_reliever_inhaler]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_asthma_attack_999
+    source: nhs_asthma
+
+  - id: rf_sob_sepsis_signs
+    description: "Breathing very fast with a high temperature or feeling very unwell: possible sepsis"
+    when: {all: [breathing_very_fast, {any: [very_high_temperature, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "The Sepsis page lists breathing very fast as a reason to call 999 or go to A&E. Requiring a high temperature or feeling very unwell, for adults, is AI judgement so that fast breathing from a panic attack is not sent to A&E on its own."
+
+  - id: rf_sob_child_breathing_fast
+    description: "A child under 5 who is breathless and breathing very fast"
+    when: {all: [age_under_5, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_sepsis
+    note: "The Bronchiolitis page says call 999 for difficulty breathing, including breathing quickly. The Sepsis page says call 999 or go to A&E. A&E is used; the 999 ambulance case is caught by the grunting and pauses rules."
+
+  - id: rf_sob_baby_feeding_poorly
+    description: "A baby under 1 who is breathless and feeding much less than usual"
+    when: {all: [age_under_1, feeding_much_less]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_child_breathing_emergency
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source pages give a lower urgency
+    note: "AI judgement from clinical knowledge: a breathless baby who is not feeding may be tiring and needs checking in hospital. The Bronchiolitis page says an urgent GP appointment or 111 for a child feeding much less than usual, so the rule is soft, with the firm urgent rule below as its floor. Needs clinical review."
+
+  - id: rf_sob_baby_high_temperature
+    description: "A breathless baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: {all: [age_under_1, baby_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Bronchiolitis page says an urgent GP appointment or 111 for this temperature. The Sepsis page says call 999 or go to A&E. The more urgent is used."
+
+  - id: rf_sob_young_child_not_peeing
+    description: "A breathless child under 5 who has not had a pee for 12 hours or more"
+    when: {all: [age_under_5, not_peed_12_hours]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Bronchiolitis page says an urgent GP appointment or 111 for a dry nappy for 12 hours. The Sepsis page says call 999 or go to A&E. The more urgent is used."
+
+  - id: rf_sob_child_sit_up_or_drooling
+    description: "A child who is drooling more than usual, or wants to sit up rather than lie down and has a high-pitched sound when breathing"
+    when: {all: [age_under_16, {any: [drooling, {all: [child_wants_to_sit_up, stridor]}]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_croup
+    note: "The Croup page says call 999 or go to A&E if a child is unwell and drooling more than usual, finding it hard to swallow, or wants to sit rather than lie down. Requiring a high-pitched sound when breathing with wanting to sit up is AI judgement, so that a child with a blocked nose who sleeps propped up is not sent to A&E. Added in the breathing batch after test-case authors found no question for it."
+
+  - id: rf_sob_stridor
+    description: "A high-pitched sound when breathing in"
+    when: stridor
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_breathless_ae
+    source: nhs_sore_throat
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Same as the cough rule. Source difference: the Sore throat page says call 999 or go to A&E for a high-pitched sound when breathing. The Croup page lists it as a croup symptom and says an urgent GP appointment or 111. The more urgent is used, marked soft."
+
+  - id: rf_sob_seriously_unwell
+    description: "Very unwell and getting worse, or feels something is seriously wrong"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_covid_19
+    soft: true    # likely conditions may lower this: it rests on the person's own judgement
+    note: "Same as the cough rule. The COVID-19 page says call 999 or go to A&E if you seem very unwell, are getting worse or think something is seriously wrong. The Sepsis and Bronchiolitis pages also say to trust your instincts. Added in the breathing batch so that sepsis can be recognised from breathlessness."
+
+  - id: rf_sob_sepsis_cold_or_shivery
+    description: "Feeling cold to the touch or shivery, with feeling very unwell or breathing very fast: possible sepsis, even without a high temperature"
+    when: {all: [cold_or_shivery, {any: [feels_very_unwell, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: flu also makes people shivery and very unwell
+    note: "The Sepsis page says call 999 or go to A&E for an adult who feels hot or cold to the touch or is shivery, and says a high temperature is less common in older adults with sepsis. Requiring feeling very unwell or breathing very fast is AI judgement, so that everyone with a shivery cold is not sent to A&E. Soft, so that likely flu can lower it; sepsis itself, if likely, keeps the outcome at emergency."
+
+  - id: rf_sob_young_child_cold_or_shivery
+    description: "A child under 5 who feels cold to the touch or is shivery"
+    when: {all: [age_under_5, cold_or_shivery]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Sepsis page says call 999 or go to A&E for a child under 5 who feels cold to the touch or is shivery. The Bronchiolitis page says an urgent GP appointment or 111 for a child who feels hot or cold to the touch or is shivering. The more urgent is used, marked soft, with the urgent high temperature rule as its floor."
+
+  - id: rf_sob_very_slow_heartbeat
+    description: "Heart beating very slowly, with feeling faint, passing out, chest pain or breathlessness"
+    when: {all: [heart_beating_very_slowly, {any: [light_headed, fainted, chest_pain, short_of_breath]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_breathless_ae
+    source: ai_judgement
+    note: "AI judgement from clinical knowledge: a very slow heartbeat with these signs can mean the heart is not pumping enough blood (for example heart block). Added after the pilot check."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_sob_difficulty_breathing
+    description: "Difficulty breathing, or more short of breath than usual"
+    when: difficulty_breathing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_shortness_of_breath
+
+  - id: rf_sob_at_rest
+    description: "Short of breath even when resting"
+    when: sob_at_rest
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_breathless_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: breathlessness at rest needs to be checked the same day. The Shortness of breath page says contact 111 for difficulty breathing, which this is a form of."
+
+  - id: rf_sob_lying_flat
+    description: "Short of breath when lying down flat"
+    when: sob_lying_flat
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_heart_failure
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Heart failure page says an urgent GP appointment or 111. The Shortness of breath page says see a GP (non-urgent). The more urgent is used."
+
+  - id: rf_sob_high_temperature
+    description: "Short of breath with a high temperature"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_pneumonia
+    note: "The Pneumonia and Bronchitis pages say an urgent GP appointment or 111 for feeling short of breath with symptoms of a chest infection. Using a high temperature to mark that is AI judgement."
+
+  - id: rf_sob_nausea
+    description: "Short of breath and feeling sick or being sick"
+    when: nausea_or_vomiting
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_shortness_of_breath
+
+  - id: rf_sob_coughing_up_blood
+    description: "Short of breath and coughing up blood"
+    when: coughing_up_blood
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_shortness_of_breath
+    note: "The coughing up blood entry symptom also applies once this is reported. It sends someone who is coughing up blood and finding it hard to breathe to A&E."
+
+  - id: rf_sob_frothy_pink_phlegm
+    description: "Short of breath and coughing up frothy pink phlegm"
+    when: frothy_pink_phlegm
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_heart_failure
+
+  - id: rf_sob_sudden_weight_gain
+    description: "Short of breath and suddenly put on weight"
+    when: sudden_weight_gain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_heart_failure
+
+  - id: rf_sob_leg_pain_or_swelling
+    description: "Short of breath with pain or swelling in one leg"
+    when: leg_pain_or_swelling
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_shortness_of_breath
+
+  - id: rf_sob_clot_risk
+    description: "Short of breath with something that makes a blood clot more likely: an operation, hospital stay or long time not moving, a long journey, a clot before, pregnancy or a recent birth, or cancer"
+    when: {any: [recent_surgery_or_immobile, recent_long_journey, previous_blood_clot, pregnant_or_recently_given_birth, has_cancer]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_breathless_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: these are common and most breathlessness in them has another cause
+    note: "AI judgement from clinical knowledge and the Pulmonary embolism page, which lists these as things that make a clot more likely. A same-day check is a reading of that. Added after the pilot check."
+
+  - id: rf_sob_palpitations
+    description: "Short of breath with the heart racing, going too slowly, skipping or fluttering"
+    when: palpitations
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_shortness_of_breath
+    note: "The heart palpitations entry symptom also applies once this is reported. It sends someone whose heart is racing right now and who is short of breath to 999."
+
+  - id: rf_sob_copd_flare_up
+    description: "COPD that is worse than usual"
+    when: {all: [age_16_or_over, has_copd, copd_flare_up]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_copd_flare_urgent
+    source: nhs_copd
+
+  - id: rf_sob_asthma_attack
+    description: "Diagnosed asthma and having an asthma attack now"
+    when: {all: [has_asthma, asthma_attack_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Use your reliever inhaler now. Then get an urgent GP appointment, even if you feel better."}
+    advice: advice_asthma_attack_urgent
+    source: nhs_asthma
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "AI reading of the Asthma page, which says to see a GP within 2 days of an asthma attack, even after recovering. Same-day help is used because the attack is happening now. Needs clinical review."
+
+  - id: rf_sob_breathing_fast
+    description: "Short of breath and breathing very fast"
+    when: breathing_very_fast
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_breathless_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: fast breathing is also common in a panic attack
+    note: "AI judgement. With a high temperature or feeling very unwell, or in a child under 5, the emergency rules above apply instead."
+
+  - id: rf_sob_child_feeding_less
+    description: "A breathless baby or young child feeding or eating much less than usual"
+    when: {all: [age_under_5, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_breathless_urgent
+    source: nhs_bronchiolitis
+
+  - id: rf_sob_not_peed
+    description: "Short of breath and no pee for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_breathless_urgent
+    source: nhs_bronchiolitis
+    note: "For children under 5 the more urgent rule above, from the Sepsis page, applies. For adults the Sepsis page lists peeing very little as a symptom without its own action, so urgent is AI judgement."
+
+  - id: rf_sob_more_than_usual
+    description: "A long-term lung or heart condition, and more short of breath than usual"
+    when: sob_more_than_usual
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breathless_urgent
+    source: nhs_bronchiectasis
+    note: "The Bronchiectasis and COPD pages say an urgent GP appointment or 111 for being more short of breath than usual. The Shortness of breath page says contact 111 for difficulty breathing, 'you may be more short of breath than usual'. Applying it to any long-term lung or heart condition is AI judgement. Added in the breathing batch: before this it could only be reached through a question about COPD."
+
+  - id: rf_sob_young_child_worse
+    description: "A child under 5 whose symptoms are getting worse, or not getting better"
+    when: {all: [age_under_5, symptoms_worse_or_not_better]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_breathless_urgent
+    source: nhs_bronchiolitis
+    note: "The Bronchiolitis page says an urgent GP appointment or 111 if a child has had a cold and it is getting worse. The Croup page says the same for a child getting worse or not getting better."
+
+  - id: rf_sob_baby_born_early_or_heart_lung
+    description: "A baby under 1 who was born early, or has a heart or lung condition or a weak immune system"
+    when: {all: [age_under_1, baby_premature_or_heart_lung_condition]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_breathless_urgent
+    source: ai_judgement
+    note: "AI judgement. The Bronchiolitis page says these babies have a higher chance of getting seriously ill, but gives no action for it on its own. A same-day check for a baby like this with breathing symptoms is a reading of that. Needs clinical review."
+
+outcome_rules:
+  - id: or_sob_asthma_attack_recovered
+    description: "Diagnosed asthma, and an asthma attack in the last few days that has now settled"
+    when: {all: [has_asthma, asthma_attack_recovered]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within 2 days, even if you feel better"}
+    advice: advice_asthma_attack_recovered
+    source: nhs_asthma
+    note: "The Asthma page says: if you've had an asthma attack and have recovered, see a GP within 2 days. Added in the breathing batch after test-case authors found no question for it."
+
+  - id: or_sob_everyday_activity
+    description: "Short of breath doing everyday things that used to be easy"
+    when: sob_everyday_activity
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breathless_gp
+    source: nhs_shortness_of_breath
+
+  - id: or_sob_swollen_ankles
+    description: "Short of breath with swollen ankles"
+    when: swollen_ankles
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breathless_gp
+    source: nhs_shortness_of_breath
+
+  - id: or_sob_cough_3_weeks
+    description: "Short of breath and coughing for 3 weeks or more"
+    when: cough_3_weeks_or_more
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breathless_gp
+    source: nhs_shortness_of_breath
+
+  - id: or_sob_slowly_worse
+    description: "Breathlessness that has come on slowly over weeks or months"
+    when: sob_slowly_worse
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breathless_gp
+    source: nhs_pulmonary_fibrosis
+
+default:
+  description: "Breathlessness where no rule for a more urgent outcome applies: see a GP to find the cause"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_breathless_gp
+  source: nhs_shortness_of_breath
+  # A floor: the source says "always see a GP" and not to self-diagnose the cause,
+  # so likely conditions can never take the outcome below this.
+  floor: true
+  note: "The page says 'Do not try to self-diagnose the cause of shortness of breath – always see a GP'. Mapping 'See a GP' to 'routine' follows settings.yaml."

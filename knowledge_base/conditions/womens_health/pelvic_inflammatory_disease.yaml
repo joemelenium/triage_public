@@ -1,0 +1,35 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pelvic_inflammatory_disease
+body_system: womens_health
+entry_symptoms: [pelvic_pain, vaginal_discharge, period_pain, bleeding_between_periods_or_after_sex, heavy_periods, stomach_ache]
+name: "Pelvic infection (infection of the womb, tubes or ovaries)"
+medical_name: "Pelvic inflammatory disease"
+snomed: "198130006"
+# Pelvic pain with unusual discharge, deep pain during sex or a high temperature.
+# The PID page says get urgent help if you think you have it. Danger serious:
+# untreated it can cause infertility or an ectopic pregnancy later.
+acuity_needed: urgent
+danger: serious
+sex: female
+prevalence: rare
+prevalence_when:
+  - {finding: pelvic_pain, prevalence: uncommon}
+  - {finding: vaginal_discharge, prevalence: uncommon}
+findings:
+  pelvic_pain: strongly_supports
+  vaginal_discharge: supports
+  pain_during_sex: supports
+  very_high_temperature: supports
+  bleeding_between_periods_or_after_sex: supports
+  new_or_unprotected_sex: supports
+  partner_has_sti: supports
+  periods_changed: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  sa_low_down: strongly_supports
+  unusual_vaginal_bleeding_or_discharge: strongly_supports
+  pain_when_peeing: supports
+  feels_very_unwell: supports
+key_findings: [pain_during_sex, very_high_temperature, new_or_unprotected_sex, partner_has_sti, unusual_vaginal_bleeding_or_discharge, sa_low_down]
+source: nhs_pelvic_inflammatory_disease
+informed_by: [nhs_pelvic_inflammatory_disease, nhs_pelvic_pain, nhs_period_pain, nhs_stomach_ache]

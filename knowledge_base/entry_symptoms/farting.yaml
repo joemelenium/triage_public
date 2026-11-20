@@ -1,0 +1,39 @@
+# Entry symptom: farting (flatulence or wind).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Farting page gives only non-urgent advice. A stomach ache or bloating brings
+# in their own rules.
+
+id: farting
+name: "Farting (flatulence)"
+presenting_finding: farting_a_lot
+status: "AI-drafted, not clinically reviewed"
+
+screens: []
+
+red_flags: []
+
+outcome_rules:
+  - id: or_fart_affecting_life
+    description: "Farting is affecting life, and self-help and pharmacy treatments have not worked"
+    when: farting_affecting_life
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_farting_gp
+    source: nhs_flatulence
+
+  - id: or_fart_other_symptoms
+    description: "Farting with a stomach ache or bloating that will not go away or keeps coming back, constipation or diarrhoea that keeps happening, weight loss, or blood in poo"
+    when: {any: [sa_keeps_coming_back, bloating_regular, constipation_often, poo_alternates, diarrhoea_over_7_days, weight_loss, bleeding_from_bottom]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_farting_gp
+    source: nhs_flatulence
+
+default:
+  description: "Farting with nothing that needs more help: changes to food and drink can help, and a pharmacist can advise"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Farting is normal. Simple changes usually help."}
+  advice: advice_farting_self_care
+  source: nhs_flatulence

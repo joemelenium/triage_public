@@ -1,0 +1,882 @@
+# Advice for the skin and hair batch.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml. Wording adapted from the cited NHS website page.
+
+# ---------------------------------------------------------------------------
+# Rash
+# ---------------------------------------------------------------------------
+- id: advice_rash_non_fading_emergency
+  what_to_do: "Call 999 or go to A&E now. A rash with these signs can mean a serious infection, such as meningitis (an infection of the layers around the brain) or sepsis (a life-threatening reaction to an infection)."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it. On brown or black skin, check paler areas such as the palms, soles, inside the eyelids or the roof of the mouth."
+    - "Being very sleepy, hard to wake, confused, or floppy"
+    - "Skin, lips or tongue that look pale, blue, grey or blotchy"
+  get_more_help_when:
+    - "Call 999 if the person gets worse while you wait, or you cannot get to A&E safely"
+    - "Trust your instincts. Get help straight away if you think something is seriously wrong."
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines the person takes."
+  self_care:
+    - "Do not wait for a rash to appear if the person seems very unwell"
+  source: nhs_meningitis
+  also_informed_by: [nhs_rashes_babies_and_children]
+
+- id: advice_skin_reaction_emergency
+  what_to_do: "Call 999 or go to A&E now. A rash with blisters, peeling skin, or sores in the mouth or eyes can be a serious reaction to a medicine or an infection. It needs treatment in hospital."
+  look_out_for:
+    - "Skin that blisters, peels or comes away easily"
+    - "Sore, swollen mouth, lips, eyes or genitals"
+    - "Wheezing, a tight chest or throat, or trouble breathing or talking"
+  get_more_help_when:
+    - "Call 999 if breathing gets harder or the person gets worse"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Bring any medicines you take, including any you started recently."
+  self_care:
+    - "Do not take any more doses of a new medicine until a doctor has checked you"
+  source: nhs_stevens_johnson
+
+- id: advice_skin_infection_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs of a serious skin infection that is spreading, which can be life-threatening."
+  look_out_for:
+    - "Pain much worse than you would expect"
+    - "Black, purple or grey patches or blisters on the skin"
+    - "Feeling dizzy or faint, confused, or a fast heartbeat"
+  get_more_help_when:
+    - "Call 999 if the person gets worse, becomes confused or stops responding"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_necrotising_fasciitis
+  also_informed_by: [nhs_cellulitis]
+
+- id: advice_rash_non_fading_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A rash that does not fade when pressed, in someone who feels well, can be caused by swollen blood vessels (Henoch-Schonlein purpura), but it must be checked today."
+  look_out_for:
+    - "Starting to feel very unwell, a high temperature, a stiff neck, or bright light hurting the eyes"
+    - "The rash spreading quickly"
+    - "Tummy pain, or blood in the pee or poo"
+  get_more_help_when:
+    - "Call 999 or go to A&E straight away if the person becomes unwell, sleepy or confused"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_hsp
+
+- id: advice_rash_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. The rash needs to be checked today."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it"
+    - "A stiff neck, bright light hurting the eyes, or being very sleepy or confused"
+    - "Difficulty breathing, or skin, lips or tongue that look pale, blue, grey or blotchy"
+    - "Peeing less than usual, or a baby with fewer wet nappies"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you notice any of these signs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5. If it could be chickenpox or measles, call before you go in."
+  self_care:
+    - "Drink plenty of fluids. Babies should keep having their usual feeds."
+    - "Take paracetamol or ibuprofen if it hurts. Do not give aspirin to children under 16. Do not use ibuprofen for chickenpox unless a doctor says so."
+  source: nhs_rashes_babies_and_children
+  also_informed_by: [nhs_chickenpox, nhs_measles, nhs_hand_foot_mouth]
+
+- id: advice_skin_infection_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Painful, hot, swollen skin can be a skin infection called cellulitis. Early treatment with antibiotics can stop it becoming more serious."
+  look_out_for:
+    - "The redness or swelling spreading"
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "A fast heartbeat, fast breathing, or feeling dizzy or faint"
+    - "Purple patches on the skin, or cold, clammy, pale skin"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of these signs, or become confused"
+    - "Contact your GP if you do not start to feel better 2 to 3 days after starting antibiotics"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Raise the affected area on a pillow or chair to reduce swelling"
+    - "Take paracetamol or ibuprofen for the pain"
+    - "Drink plenty of fluids"
+  source: nhs_cellulitis
+
+- id: advice_eczema_infected_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your eczema may be infected. Or it may be a more serious problem called eczema herpeticum. You may need medicine to treat it."
+  look_out_for:
+    - "Clusters of small blisters or open sores that spread quickly"
+    - "A high temperature, or feeling generally unwell"
+    - "Sores near the eyes"
+  get_more_help_when:
+    - "Call 999 or go to A&E if they get very unwell, very sleepy or confused"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5."
+  self_care:
+    - "Do not scratch, and keep nails short"
+    - "Do not share towels or creams. Use a spoon or pump to take cream out of a pot."
+  source: nhs_atopic_eczema
+
+- id: advice_rash_pregnancy_urgent
+  what_to_do: "Call your midwife, maternity unit, GP or NHS 111 now. A new rash in pregnancy needs checking, because some infections that cause a rash, such as chickenpox or measles, can affect your baby."
+  look_out_for:
+    - "A high temperature, or feeling very unwell"
+    - "Being near someone with chickenpox, measles or slapped cheek"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the rash does not fade when you press a glass against it, or you feel very unwell"
+  where_to_go: "Call your midwife or maternity unit if you have the number. If not, call your GP surgery or 111."
+  source: nhs_pityriasis_rosea
+  also_informed_by: [nhs_chickenpox, nhs_measles, nhs_slapped_cheek]
+
+- id: advice_measles_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Measles spreads very easily, so call the surgery before you go in."
+  look_out_for:
+    - "Difficulty breathing, or feeling more short of breath than usual"
+    - "A baby or child not feeding well, or peeing less than usual"
+    - "A high temperature that stays high after paracetamol"
+  get_more_help_when:
+    - "Call 999 or go to A&E for a fit, or bad trouble breathing. Also call if they cannot stay awake, get confused, go limp or floppy, or have a stiff neck. And for a rash that does not fade when pressed."
+  where_to_go: "Call your GP surgery before you go in, or call 111 or use 111 online."
+  self_care:
+    - "Rest, and drink plenty of fluids"
+    - "Stay away from school, work and other people for 4 days after the rash appears"
+    - "Keep away from babies, and anyone who is pregnant or less able to fight infection"
+  source: nhs_measles
+
+- id: advice_kawasaki_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A high temperature for 5 days or more, with a rash, red eyes, red lips or red hands and feet, can be Kawasaki. This is rare. It needs treatment in hospital to protect the heart."
+  look_out_for:
+    - "Red, bloodshot eyes"
+    - "Dry, cracked lips, or a red, swollen tongue"
+    - "Red or swollen hands and feet, or peeling fingers and toes"
+    - "A child who is very irritable"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the child becomes floppy, very sleepy, or finds it hard to breathe"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111. Call 111 for a child under 5."
+  self_care:
+    - "Do not give aspirin to children under 16 unless a doctor prescribes it"
+  source: nhs_kawasaki_disease
+
+- id: advice_tick_bite_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A round or oval rash or flu-like symptoms after a tick bite can be an infection spread by ticks, which is easier to treat early with antibiotics."
+  look_out_for:
+    - "A rash that spreads, or looks like a bullseye"
+    - "A high temperature, a headache, aches and pains, or feeling tired"
+  get_more_help_when:
+    - "Ask for help again if you get pain and swelling in your joints, numbness, or heart problems in the weeks after"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Tell them if you have been in forests or grassy areas."
+  self_care:
+    - "If the tick is still there, remove it with fine-tipped tweezers or a tick tool, close to the skin. Pull slowly upwards."
+    - "Clean the bite with antiseptic or soap and water"
+  source: nhs_lyme_disease
+
+- id: advice_rosacea_eye_urgent
+  what_to_do: "Ask for an urgent GP appointment or call NHS 111 today. A painful, red or gritty eye with a red face can mean the eye is affected, which can be serious if not treated quickly."
+  look_out_for:
+    - "Your vision getting worse"
+    - "The eye becoming more painful, or bright light hurting it"
+  get_more_help_when:
+    - "Go to A&E if you suddenly lose sight, or the eye pain is severe"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  source: nhs_rosacea
+
+- id: advice_rash_gp
+  what_to_do: "See a GP about the rash. The source gives no fixed time. If it could be scarlet fever, impetigo or another infection that spreads, call the surgery before you go in."
+  look_out_for:
+    - "A high temperature, or feeling very unwell"
+    - "The rash spreading quickly, or becoming painful, hot and swollen"
+    - "A rash that does not fade when you press a glass against it"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get a high temperature. Do the same if the skin gets painful, hot and swollen."
+    - "Call 999 or go to A&E for a rash that does not fade, with feeling very unwell"
+  where_to_go: "Book an appointment with your GP surgery. A pharmacist can advise on creams and treatments in the meantime."
+  self_care:
+    - "Put a moisturiser with no perfume on dry or itchy skin, many times a day"
+    - "Do not scratch. Pat or tap the skin instead."
+    - "Do not share towels or flannels"
+  source: nhs_atopic_eczema
+  also_informed_by: [nhs_scarlet_fever, nhs_impetigo, nhs_psoriasis]
+
+- id: advice_rash_pharmacy
+  what_to_do: "Speak to a pharmacist. Many rashes are not serious, and a pharmacist can help with heat rash, ringworm, impetigo, scabies, hives and nappy rash."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it"
+    - "A high temperature, or feeling very unwell"
+    - "Skin that becomes painful, hot and swollen"
+    - "The rash not getting better, or spreading"
+  get_more_help_when:
+    - "See a GP if the rash does not get better after treatment, or keeps coming back"
+    - "Ask for an urgent GP appointment or call 111 if you get a high temperature or feel unwell"
+    - "Call 999 or go to A&E for a rash that does not fade when pressed, or swelling of the lips, mouth or throat"
+  where_to_go: "Go to a pharmacy. You do not need an appointment."
+  self_care:
+    - "Keep the skin cool, and wear loose cotton clothing"
+    - "Use an unperfumed moisturiser, and avoid perfumed soaps"
+    - "Do not scratch. Pat or tap the skin instead."
+  source: nhs_rashes_babies_and_children
+
+# ---------------------------------------------------------------------------
+# Itchy skin and jaundice
+# ---------------------------------------------------------------------------
+- id: advice_itch_pregnancy_urgent
+  what_to_do: "Call your maternity unit now. If you cannot contact them, call 111. Very itchy skin in pregnancy can be a liver problem called ICP (intrahepatic cholestasis of pregnancy). So can itchy palms or soles, or itching that is worse at night. It needs urgent treatment."
+  look_out_for:
+    - "Your skin or the whites of your eyes turning yellow"
+    - "Dark pee or pale poo"
+    - "Your baby moving less than usual"
+  get_more_help_when:
+    - "Call your maternity unit straight away if your baby is moving less than usual"
+  where_to_go: "Call your maternity unit if you have the number. If not, call 111."
+  self_care:
+    - "Have cool or warm (not hot) baths or showers"
+    - "Use an unperfumed moisturiser, and wear loose cotton clothing"
+  source: nhs_cholestasis_pregnancy
+
+- id: advice_itchy_skin_gp
+  what_to_do: "See a GP about your itchy skin. The source gives no fixed time. They will look at your skin, and may arrange a blood test to find the cause."
+  look_out_for:
+    - "A rash that spreads or becomes painful, hot and swollen"
+    - "Your skin or the whites of your eyes turning yellow"
+    - "Losing weight without trying, or night sweats"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your skin or eyes turn yellow"
+    - "Call 999 if your lips, mouth or throat suddenly swell"
+  where_to_go: "Book an appointment with your GP surgery. A pharmacist can suggest treatments in the meantime."
+  self_care:
+    - "Pat or tap your skin instead of scratching it"
+    - "Put on a moisturiser with no perfume often. Have cool or warm baths or showers, not hot ones."
+    - "Wear loose cotton or silk clothing"
+  source: nhs_itchy_skin
+
+- id: advice_itchy_skin_self_care
+  what_to_do: "You can usually treat itchy skin yourself, and it often goes away after a few weeks. A pharmacist can suggest products, such as antihistamines or cooling creams."
+  look_out_for:
+    - "Itching that affects your daily life, is severe, or is all over your body"
+    - "Itching that does not get better with self-care, or keeps coming back"
+    - "A new rash, lump or swelling you are worried about"
+  get_more_help_when:
+    - "See a GP if any of these happen, or you are pregnant"
+    - "Ask for an urgent GP appointment or call 111 if your skin or eyes turn yellow"
+  where_to_go: "Treat it yourself at home. A pharmacy can help. See a GP if it does not get better."
+  self_care:
+    - "Pat or tap your skin instead of scratching it, and keep your nails short"
+    - "Hold something cool on your skin, like a damp towel"
+    - "Use an unperfumed moisturiser regularly"
+    - "Do not wear tight clothes or wool, and do not use perfumed soaps"
+  source: nhs_itchy_skin
+
+- id: advice_jaundice_emergency
+  what_to_do: "Call 999 or go to A&E now. Yellow skin or eyes with tummy pain, a very high temperature or feeling very unwell can mean a blocked or infected bile duct, or a serious liver problem."
+  look_out_for:
+    - "Being confused, very sleepy or hard to wake"
+    - "Being sick, or blood in your sick or poo"
+    - "Feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_gallstones
+  also_informed_by: [nhs_jaundice]
+
+- id: advice_jaundice_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Yellow skin or yellow whites of the eyes (jaundice) can be a sign of something serious, such as a liver problem, and needs checking today."
+  look_out_for:
+    - "Tummy pain, especially under the ribs on the right"
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Being confused or very sleepy"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get tummy pain, a very high temperature, or become confused"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5."
+  self_care:
+    - "Do not drink alcohol until you have been checked"
+  source: nhs_jaundice
+  also_informed_by: [nhs_hepatitis, nhs_pancreatic_cancer, nhs_gilberts]
+
+- id: advice_baby_jaundice_emergency
+  what_to_do: "Call 999 or go to A&E now. Your baby has jaundice (yellow skin or yellow whites of the eyes) with signs that they need to be seen in hospital straight away."
+  look_out_for:
+    - "Your baby being very sleepy, hard to wake, floppy or stiff"
+    - "Jerking or twitching movements"
+    - "Not feeding, or no wet nappies"
+  get_more_help_when:
+    - "Call 999 if your baby gets worse while you are on your way"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance."
+  source: nhs_newborn_jaundice
+
+- id: advice_baby_jaundice_urgent
+  what_to_do: "Ask for an urgent GP or midwife appointment, or call NHS 111 today. Jaundice is common in newborn babies and is usually harmless, but your baby needs a check to see if they need treatment."
+  look_out_for:
+    - "Dark yellow or brown pee, or pale, creamy poo. Keep a sample of poo to show the midwife or doctor."
+    - "Your baby becoming sleepier than usual, hard to wake, or not feeding"
+    - "A high temperature, or feeling cold, or no wet nappies"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your baby is floppy or stiff, or has jerking movements. Do the same if they are not feeding or have no wet nappies."
+  where_to_go: "Contact your midwife or GP surgery for an urgent appointment, or call 111."
+  self_care:
+    - "Feed your baby often, around 8 to 12 times a day. If they are sleepy, wake them for feeds."
+  source: nhs_newborn_jaundice
+
+- id: advice_gilberts_self_care
+  what_to_do: "Yellowing that comes and goes with Gilbert's syndrome does not usually need treatment."
+  look_out_for:
+    - "Yellowing that is worse than usual, or does not go away within a few days"
+    - "Itchy skin, dark pee or pale poo, which Gilbert's syndrome does not usually cause"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the yellowing is worse than usual or lasts more than a few days"
+  where_to_go: "No appointment needed. Speak to a GP or pharmacist before taking new medicines."
+  self_care:
+    - "Try to avoid things that set it off. For example, too little sleep, not drinking enough, alcohol or too much exercise."
+  source: nhs_gilberts
+
+# ---------------------------------------------------------------------------
+# Hives
+# ---------------------------------------------------------------------------
+- id: advice_hives_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. The hives or swelling need checking, and you may need medicine such as antihistamines or steroid tablets."
+  look_out_for:
+    - "Swelling of the lips, mouth, tongue or throat"
+    - "Struggling to breathe, or very wheezy"
+    - "Feeling suddenly very confused, drowsy or dizzy"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of these signs. Use an adrenaline auto-injector if you have one."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Try to work out what set it off, such as a food, medicine, plant or heat, so you can avoid it"
+    - "Do not scratch, and wear loose clothes"
+  source: nhs_hives
+  also_informed_by: [nhs_angioedema]
+
+- id: advice_hives_pharmacy
+  what_to_do: "Speak to a pharmacist about antihistamine treatment. Hives usually get better within a few days. Tell the pharmacist if you have a long-term condition."
+  look_out_for:
+    - "Hives not getting better after 2 days, spreading, or coming back"
+    - "Swelling under the skin, such as the eyelids, hands or feet"
+    - "A high temperature with feeling unwell"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if any of these happen"
+    - "Call 999 if your lips, mouth, throat or tongue suddenly swell, or you struggle to breathe"
+  where_to_go: "Go to a pharmacy. You do not need an appointment."
+  self_care:
+    - "Try to find out what sets your hives off, so you can avoid it"
+    - "Keep cool and wear loose clothing"
+  source: nhs_hives
+
+# ---------------------------------------------------------------------------
+# Lumps
+# ---------------------------------------------------------------------------
+- id: advice_lump_emergency
+  what_to_do: "Go to A&E now, or call 999. A painful, hard lump in the groin or tummy that will not go back in can be a trapped hernia, which needs treatment the same day."
+  look_out_for:
+    - "Being sick"
+    - "Not being able to poo or fart"
+    - "The pain getting worse"
+  get_more_help_when:
+    - "Call 999 if the pain is severe or you feel very unwell"
+  where_to_go: "Go to A&E or call 999. Do not drive yourself. Do not eat or drink until you have been checked."
+  source: ai_judgement
+
+- id: advice_lump_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A painful, red or hot lump may be an abscess (a pocket of pus) or an infected cyst, which may need draining or antibiotics."
+  look_out_for:
+    - "Redness or swelling spreading away from the lump"
+    - "Feeling hot, cold or shivery"
+    - "Feeling dizzy or faint, or a fast heartbeat"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel very unwell, dizzy or confused, or the skin turns black, purple or grey"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Do not squeeze or try to burst the lump"
+    - "Take paracetamol or ibuprofen for the pain"
+  source: nhs_skin_abscess
+  also_informed_by: [nhs_skin_cyst]
+
+- id: advice_lump_gp
+  what_to_do: "See a GP about the lump. The source gives no fixed time. Most lumps are harmless, but it is important to get a new lump checked. If the GP is not sure, they may send you for a scan or test."
+  look_out_for:
+    - "The lump getting bigger, or becoming hard and fixed"
+    - "The lump becoming painful, red or hot"
+    - "A mole that changes size, shape or colour, bleeds or crusts"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the lump gets painful, red or hot. Do the same if you feel hot, cold or shivery."
+  where_to_go: "Book an appointment with your GP surgery."
+  source: nhs_lumps
+  also_informed_by: [nhs_lipoma, nhs_melanoma_symptoms]
+
+- id: advice_lump_self_care
+  what_to_do: "A doctor has checked this lump, and it has not changed. You do not need to be seen again."
+  look_out_for:
+    - "The lump getting bigger, or changing in how it feels"
+    - "The lump becoming painful, red or hot"
+  get_more_help_when:
+    - "See a GP if the lump changes"
+    - "Ask for an urgent GP appointment or call 111 if it becomes painful, red or hot"
+  where_to_go: "No appointment needed unless it changes."
+  source: nhs_lipoma
+
+# ---------------------------------------------------------------------------
+# Hair
+# ---------------------------------------------------------------------------
+- id: advice_hair_loss_gp
+  what_to_do: "See a GP if you are worried about your hair loss, or want to know the cause. The source gives no fixed time. Most hair loss is not a sign of anything serious."
+  look_out_for:
+    - "Bald patches, or an itchy, flaky or scaly scalp"
+    - "Feeling very tired, or skin paler than usual"
+    - "Hair loss affecting your mood or wellbeing"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if a patch of scalp becomes painful, hot and swollen"
+  where_to_go: "Book an appointment with your GP surgery. See a GP before going to a private hair clinic."
+  self_care:
+    - "Hair loss after an illness or stress usually grows back by itself"
+    - "If your hair loss is upsetting you, a GP may be able to help you get counselling or support"
+  source: nhs_hair_loss
+
+- id: advice_hair_growth_urgent
+  what_to_do: "Ask for an urgent GP appointment. Thick, dark hair that starts growing suddenly, with a deeper voice or bigger muscles, can be caused by a change in hormones that needs checking quickly."
+  look_out_for:
+    - "Periods becoming irregular or stopping"
+    - "Changes to the shape of your body"
+  get_more_help_when:
+    - "Call 111 if you cannot get an urgent GP appointment"
+  where_to_go: "Ask your GP surgery for an urgent appointment."
+  source: nhs_hirsutism
+
+- id: advice_hair_growth_gp
+  what_to_do: "See a GP about the hair growth. The source gives no fixed time. It is often caused by a change in hormones, such as polycystic ovary syndrome, which can be treated."
+  look_out_for:
+    - "New hair starting to grow suddenly"
+    - "Your voice getting lower, or your muscles getting bigger"
+    - "Irregular periods"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment if hair starts to grow quickly. Do the same if your voice gets lower or your muscles get bigger."
+  where_to_go: "Book an appointment with your GP surgery. You may have a blood test to check your hormones."
+  self_care:
+    - "You can remove hair at home. For example, by shaving, waxing or plucking, or with creams or bleach."
+    - "If you are overweight, losing weight can help control hormone levels"
+  source: nhs_hirsutism
+
+- id: advice_hair_growth_self_care
+  what_to_do: "Light, fine hair on the face or body is probably not hirsutism. Most women get more of it as they get older."
+  look_out_for:
+    - "Thick, dark hair starting to grow"
+    - "Irregular periods, a deeper voice or bigger muscles"
+  get_more_help_when:
+    - "See a GP if thick, dark hair grows on your face or body"
+    - "Ask for an urgent GP appointment if hair starts growing suddenly, or your voice gets lower"
+  where_to_go: "No appointment needed."
+  source: nhs_hirsutism
+
+# ---------------------------------------------------------------------------
+# Nails
+# ---------------------------------------------------------------------------
+- id: advice_nail_gp
+  what_to_do: "See a GP about the nail. The source gives no fixed time. You may also be able to refer yourself to a foot specialist (podiatrist)."
+  look_out_for:
+    - "The skin around the nail becoming painful, hot and swollen, with the redness spreading"
+    - "Pus coming out, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if redness spreads or you get a high temperature"
+  where_to_go: "Book an appointment with your GP surgery, or a podiatrist for toenails."
+  self_care:
+    - "Trim nails straight across, not down the edges"
+    - "Keep your feet clean and dry, and treat athlete's foot"
+  source: nhs_nail_problems
+  also_informed_by: [nhs_fungal_nail, nhs_ingrown_toenail]
+
+- id: advice_nail_self_care
+  what_to_do: "Nail problems are not usually serious. You can look after your nails yourself, and a pharmacist can suggest treatment for a fungal nail infection."
+  look_out_for:
+    - "A nail that changes shape or colour, or falls off, and you do not know why"
+    - "Sore, red, swollen, warm skin around the nail"
+    - "A dark area under a nail that was not caused by an injury"
+  get_more_help_when:
+    - "See a GP if any of these happen, or treatment does not help"
+  where_to_go: "Treat it yourself at home. A pharmacy or podiatrist can help."
+  self_care:
+    - "Wear rubber gloves if your hands are often in water"
+    - "Trim nails straight across, and do not bite or pick them"
+    - "A nail that falls off after an injury should grow back: fingernails in about 6 months, toenails in up to 18 months"
+  source: nhs_nail_problems
+
+# ---------------------------------------------------------------------------
+# Sweating, blushing and smells
+# ---------------------------------------------------------------------------
+- id: advice_sweating_gp_soon
+  what_to_do: "See a GP in the next few days. Sweating with weight loss, a fast heartbeat or a swelling in the neck can be caused by another condition, such as an overactive thyroid, that needs tests."
+  look_out_for:
+    - "Night sweats, or a high temperature"
+    - "Losing more weight"
+    - "A racing heartbeat, or chest pain"
+  get_more_help_when:
+    - "Call 999 if you get chest pain"
+    - "Ask for an urgent GP appointment or call 111 if you feel very unwell"
+  where_to_go: "Make an appointment with a GP for the next few days."
+  source: ai_judgement
+  also_informed_by: [nhs_excessive_sweating_hyperhidrosis, nhs_overactive_thyroid]
+
+- id: advice_sweating_gp
+  what_to_do: "See a GP about your sweating. The source gives no fixed time. They may check for another cause, and can suggest stronger treatments."
+  look_out_for:
+    - "Night sweats"
+    - "Losing weight without trying"
+    - "A racing heartbeat"
+  get_more_help_when:
+    - "See a GP sooner if you also lose weight without trying"
+  where_to_go: "Book an appointment with your GP surgery. A pharmacist can suggest products in the meantime."
+  self_care:
+    - "Wear loose clothes, and avoid tight clothes and nylon"
+    - "Change your socks at least twice a day, and wear leather shoes"
+    - "Use a strong antiperspirant instead of a deodorant"
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: advice_sweating_pharmacy
+  what_to_do: "Speak to a pharmacist. They can suggest stronger antiperspirants, sweat shields, foot powders and gentle soap substitutes."
+  look_out_for:
+    - "Self-care not helping, or sweating lasting 6 months or more"
+    - "Sweating at night, or sweating that stops you doing everyday things"
+  get_more_help_when:
+    - "See a GP if any of these happen, if it runs in your family, or if you take a medicine that may cause it"
+  where_to_go: "Go to a pharmacy. You do not need an appointment."
+  self_care:
+    - "Wear loose clothes, and avoid tight clothes and nylon"
+    - "Avoid alcohol and spicy food if they make it worse"
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: advice_blushing_gp
+  what_to_do: "See a GP about your blushing. The source gives no fixed time. Treatment depends on the cause, such as rosacea, the menopause, an overactive thyroid or a medicine."
+  look_out_for:
+    - "A painful, red or gritty eye, or blurred vision"
+    - "Swelling in your neck, or a fast heartbeat"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your eye becomes painful or your vision is blurred"
+  where_to_go: "Book an appointment with your GP surgery."
+  self_care:
+    - "Keep cool by taking off a layer of clothing and drinking water"
+    - "Avoid spicy food, alcohol and hot drinks if they make you blush"
+  source: nhs_blushing
+  also_informed_by: [nhs_rosacea]
+
+- id: advice_blushing_self_care
+  what_to_do: "Blushing is common, and is often caused by feeling embarrassed, hot or anxious. There are things you can do to help."
+  look_out_for:
+    - "Blushing affecting your everyday life"
+    - "A red face most of the time, with small blood vessels or spots"
+    - "Hot flushes, or a swelling in the neck"
+  get_more_help_when:
+    - "See a GP if any of these happen, or you think a medicine may be causing it"
+  where_to_go: "No appointment needed."
+  self_care:
+    - "Keep cool by taking off a layer of clothing and drinking water"
+    - "Make-up that reduces redness can help in stressful situations"
+    - "Avoid spicy food, alcohol and hot drinks if they make you blush"
+  source: nhs_blushing
+
+- id: advice_body_odour_gp
+  what_to_do: "See a GP about your body odour. The source gives no fixed time. A change in how you smell can sometimes be a sign of another condition, such as diabetes."
+  look_out_for:
+    - "Feeling very thirsty, or peeing more than usual"
+    - "Your skin or eyes turning yellow"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your skin or eyes turn yellow"
+  where_to_go: "Book an appointment with your GP surgery."
+  self_care:
+    - "Wash your armpits, groin and feet at least twice a day, and dry them well"
+    - "Use antiperspirants, and change your clothes regularly"
+  source: nhs_body_odour_bo
+
+- id: advice_body_odour_self_care
+  what_to_do: "You can usually treat body odour yourself. A pharmacist can suggest products that help."
+  look_out_for:
+    - "A change in how you usually smell"
+    - "Suddenly sweating much more than usual"
+    - "Body odour that affects your self-esteem and does not get better"
+  get_more_help_when:
+    - "See a GP if any of these happen"
+  where_to_go: "Treat it yourself at home. A pharmacy can help."
+  self_care:
+    - "Wash your armpits, groin and feet at least twice a day, and dry them well"
+    - "Wear clothes made of cotton, and change them often"
+    - "Do not eat too much strong-smelling or spicy food, or drink too much alcohol"
+  source: nhs_body_odour_bo
+
+- id: advice_smelly_feet_gp
+  what_to_do: "See a GP about your smelly feet. The source gives no fixed time. They can check for a fungal infection or heavy sweating that needs treatment."
+  look_out_for:
+    - "Your foot or leg becoming hot, painful, swollen and red"
+    - "A sore or cut on your foot that is not healing, especially if you have diabetes"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your foot becomes hot, painful and swollen"
+  where_to_go: "Book an appointment with your GP surgery, or a podiatrist."
+  self_care:
+    - "Wash your feet at least once a day and dry between your toes"
+    - "Do not wear the same socks or shoes 2 days in a row"
+  source: nhs_smelly_feet
+
+- id: advice_smelly_feet_self_care
+  what_to_do: "You can usually treat smelly feet yourself by keeping them clean and dry. A pharmacist can suggest antibacterial soaps, foot powders or treatment for athlete's foot."
+  look_out_for:
+    - "Smelly feet that do not get better after treating them yourself"
+    - "Itchy, flaky skin between your toes that does not clear up"
+    - "Your foot becoming hot, painful and swollen"
+  get_more_help_when:
+    - "See a GP if your feet do not get better or it affects your daily life"
+    - "Ask for an urgent GP appointment or call 111 if your foot becomes hot, painful and swollen"
+  where_to_go: "Treat it yourself at home. A pharmacy can help."
+  self_care:
+    - "Wash your feet at least once a day, and dry between your toes"
+    - "Wear cotton socks, and let shoes dry out before wearing them again"
+    - "Do not wear the same socks or shoes 2 days in a row"
+  source: nhs_smelly_feet
+  also_informed_by: [nhs_athletes_foot]
+
+- id: advice_stretch_marks_gp
+  what_to_do: "See a GP. The source gives no fixed time. Large stretch marks with these body changes can be a sign of Cushing's syndrome, which is caused by too much of a hormone called cortisol."
+  look_out_for:
+    - "Bruising easily, or weak muscles"
+    - "Changes in your mood"
+    - "Irregular periods"
+  get_more_help_when:
+    - "See a GP sooner if you get new symptoms"
+  where_to_go: "Book an appointment with your GP surgery. Do not stop taking steroid medicine suddenly unless a doctor tells you to."
+  source: nhs_stretch_marks
+  also_informed_by: [nhs_cushings]
+
+- id: advice_stretch_marks_self_care
+  what_to_do: "Stretch marks are very common and harmless. They usually fade over time, but may not go completely."
+  look_out_for:
+    - "Large stretch marks with more fat on your chest and tummy, and slim arms and legs"
+    - "A red, puffy, round face"
+  get_more_help_when:
+    - "See a GP if you notice these changes"
+  where_to_go: "No appointment needed."
+  self_care:
+    - "Keeping a healthy weight is the best way to lower your chance of getting them"
+    - "Creams and treatments that claim to remove stretch marks have very little evidence"
+  source: nhs_stretch_marks
+
+# ---------------------------------------------------------------------------
+# Bites and stings
+# ---------------------------------------------------------------------------
+- id: advice_snake_bite_emergency
+  what_to_do: "Call 999 or go to A&E now. Most snake bites in the UK are not serious, but you must get medical help."
+  look_out_for:
+    - "Swelling spreading from the bite"
+    - "Feeling sick, faint or dizzy"
+    - "Swelling of the lips, mouth or throat, or difficulty breathing"
+  get_more_help_when:
+    - "Call 999 if the person gets worse"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself."
+  self_care:
+    - "Stay calm and keep the bitten part of the body as still as you can"
+    - "Do not try to suck out the poison, and do not put a tight band around the limb"
+  source: nhs_snake_bites
+
+- id: advice_bite_urgent
+  what_to_do: "Get an urgent GP appointment or help from NHS 111 today. The bite or sting needs checking."
+  look_out_for:
+    - "Swelling of the lips, mouth, throat or tongue"
+    - "Breathing very fast or struggling to breathe"
+    - "Feeling very confused, drowsy or dizzy"
+  get_more_help_when:
+    - "Call 999 if you get any of these signs. Use an adrenaline auto-injector if you have one."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5."
+  self_care:
+    - "Remove a sting by scraping it sideways with a fingernail or bank card"
+    - "Wash the area with soap and water, and hold a cold, wet cloth on it"
+  source: nhs_insect_bites
+
+- id: advice_bite_gp
+  what_to_do: "See a GP about the bite or sting. The source gives no fixed time."
+  look_out_for:
+    - "The area getting more red, hot, swollen or painful"
+    - "A high temperature, or the baby seeming unwell"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if symptoms get worse"
+    - "Call 999 if the baby's lips or mouth swell, or they struggle to breathe"
+  where_to_go: "Book an appointment with your GP surgery."
+  source: nhs_insect_bites
+
+- id: advice_bite_pharmacy
+  what_to_do: "See a pharmacist. They can suggest antihistamines and steroid creams, and can give antibiotics if the bite or sting is infected."
+  look_out_for:
+    - "Redness or swelling spreading"
+    - "A high temperature, or feeling unwell"
+    - "Symptoms getting worse"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if symptoms get worse or you get a high temperature"
+    - "Call 999 if your lips, mouth or throat swell, or you struggle to breathe"
+  where_to_go: "Go to a pharmacy. You do not need an appointment."
+  self_care:
+    - "Wash the area with soap and water"
+    - "Hold an ice pack wrapped in a cloth on it for up to 20 minutes, and keep it raised if you can"
+    - "Do not scratch"
+  source: nhs_insect_bites
+
+- id: advice_bite_self_care
+  what_to_do: "You can usually treat an insect bite or sting yourself. It should get better in a few days."
+  look_out_for:
+    - "The area becoming red, hot, painful or swollen, or leaking pus"
+    - "A round or oval rash like a bullseye after a tick bite"
+    - "Feeling unwell, or a high temperature"
+  get_more_help_when:
+    - "See a pharmacist if it looks infected"
+    - "Ask for an urgent GP appointment or call 111 if symptoms get worse"
+    - "Call 999 if your lips, mouth or throat swell, or you struggle to breathe"
+  where_to_go: "Treat it yourself at home. A pharmacy can help."
+  self_care:
+    - "Remove a sting or tick if it is still in the skin, then wash the area with soap and water"
+    - "Hold an ice pack wrapped in a cloth on it for up to 20 minutes"
+    - "A pharmacist can suggest tablets or creams to help the itch. Do not scratch."
+  source: nhs_insect_bites
+
+# ---------------------------------------------------------------------------
+# Burns
+# ---------------------------------------------------------------------------
+- id: advice_burn_999
+  what_to_do: "Call 999 now. This burn needs checking and treating in hospital straight away."
+  look_out_for:
+    - "A hoarse voice, coughing or noisy breathing after breathing in smoke"
+    - "Difficulty breathing"
+    - "Feeling faint or confused"
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+  where_to_go: "Call 999. Do not drive to A&E."
+  self_care:
+    - "For a chemical burn, wear gloves. Take off any clothes with the chemical on them. Brush off dry chemicals. Then rinse the skin with lots of cool running water for about an hour."
+    - "Do not put anything on the burn, such as creams or other chemicals"
+  source: nhs_chemical_burns
+  also_informed_by: [nhs_burns]
+
+- id: advice_burn_ae
+  what_to_do: "Call 999 or go to A&E now. A large or deep burn, a burn on the face, genitals or bottom, or a burn from electricity needs checking in hospital."
+  look_out_for:
+    - "Difficulty breathing"
+    - "Feeling faint, cold or shivery"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance."
+  self_care:
+    - "Hold the burn under cool running water for 20 minutes"
+    - "Remove clothing or jewellery near the burn, but not anything stuck to it"
+    - "Lay cling film over the burn once it has cooled. Do not wrap it around."
+  source: nhs_burns
+
+- id: advice_tetanus_emergency
+  what_to_do: "Call 999 or go to A&E now. A stiff jaw or painful muscle spasms after a wound or burn can be tetanus, which needs treatment in hospital straight away."
+  look_out_for:
+    - "Difficulty breathing or swallowing"
+    - "A fast heartbeat, or a seizure (fit)"
+  get_more_help_when:
+    - "Call 999 if the person gets worse"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself."
+  source: nhs_tetanus
+
+- id: advice_sunburn_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Severe sunburn can lead to heat exhaustion or heatstroke, which can be very serious."
+  look_out_for:
+    - "Feeling very hot, confused, or not sweating even though you are hot"
+    - "Fast breathing, or a fit"
+    - "Not responding"
+  get_more_help_when:
+    - "Call 999 if someone is confused, has a fit, or is not responding"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5."
+  self_care:
+    - "Get out of the sun, and cool the skin with a cool shower or damp towel"
+    - "Drink plenty of water"
+    - "Do not burst blisters, and do not put ice on sunburnt skin"
+  source: nhs_sunburn
+
+- id: advice_burn_urgent
+  what_to_do: "Get help from NHS 111 today. The burn or scald needs checking by a nurse or doctor."
+  look_out_for:
+    - "The burn becoming red, hot, swollen or more painful"
+    - "Pus or a bad smell"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the burn turns out to be large or deep, or the person feels very unwell"
+  where_to_go: "Call 111 or use 111 online, or ask your GP surgery for an urgent appointment. Call 111 for a child under 5."
+  self_care:
+    - "Hold the burn under cool running water for 20 minutes, as soon as possible"
+    - "Cover it loosely with cling film. Do not use creams, butter or sticky plasters."
+    - "Do not burst any blisters"
+  source: nhs_burns
+  also_informed_by: [nhs_tetanus]
+
+- id: advice_burn_self_care
+  what_to_do: "Small burns and scalds can often be treated at home, and take around 2 weeks to heal."
+  look_out_for:
+    - "The burn becoming red, hot, swollen or more painful, or leaking pus"
+    - "A high temperature"
+    - "The burn not healing after 2 weeks"
+  get_more_help_when:
+    - "Call 111 if the burn looks infected or you are not sure what to do"
+    - "Call 999 or go to A&E if the burn is large or deep, or on the face, genitals or bottom"
+  where_to_go: "Treat it yourself at home. A pharmacist can advise on dressings and moisturisers."
+  self_care:
+    - "Hold the burn under cool running water for 20 minutes, as soon as possible"
+    - "Take paracetamol or ibuprofen for the pain"
+    - "Do not put creams, oils or butter on it, do not use sticky plasters, and do not burst blisters"
+  source: nhs_burns
+
+# ---------------------------------------------------------------------------
+# Cuts and wounds
+# ---------------------------------------------------------------------------
+- id: advice_wound_ae
+  what_to_do: "Call 999 or go to A&E now. The wound needs checking and treating in hospital."
+  look_out_for:
+    - "Bleeding that will not stop, or blood spurting out"
+    - "Feeling faint or dizzy"
+  get_more_help_when:
+    - "Call 999 if you cannot stop the bleeding or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance."
+  self_care:
+    - "Press firmly on the wound with a bandage or a clean, folded cloth"
+    - "If something is stuck in the wound, do not take it out. Press on either side of it."
+    - "Raise the injured part if you can. If part of a finger or ear has come off, wrap it in clean tissue, put it in a plastic bag, and keep it on ice."
+  source: nhs_cuts_and_grazes
+  also_informed_by: [nhs_animal_bites]
+
+- id: advice_wound_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. The wound may need cleaning, closing, antibiotics or a tetanus injection."
+  look_out_for:
+    - "The wound getting more red, swollen or painful, or pus coming out"
+    - "A high temperature, or feeling generally unwell"
+    - "Pain much worse than you would expect, or dark patches near the wound"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the pain is much worse than you would expect, or you feel very unwell. Do the same if you get a stiff jaw or muscle spasms."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. An urgent treatment centre may also be able to help."
+  self_care:
+    - "Rinse the wound with tap water, pat it dry and cover it with a clean dressing"
+    - "Take paracetamol or ibuprofen if it hurts. Do not give aspirin to children under 16."
+  source: nhs_cuts_and_grazes
+  also_informed_by: [nhs_tetanus]
+
+- id: advice_bite_wound_urgent
+  what_to_do: "Get help from NHS 111 or ask for an urgent GP appointment today. Bites from people and animals often get infected and may need antibiotics. A bite abroad may need treatment to prevent rabies."
+  look_out_for:
+    - "The bite becoming hot, swollen, red or more painful"
+    - "Fluid leaking, or an unpleasant smell"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Go to A&E if the wound is large or deep, or you cannot stop the bleeding"
+  where_to_go: "Call 111 or use 111 online, or ask your GP surgery for an urgent appointment."
+  self_care:
+    - "Clean the bite straight away under warm running water for a few minutes"
+    - "Gently squeeze it to make it bleed a little, unless it is already bleeding a lot"
+    - "Cover it with a clean dressing"
+  source: nhs_animal_bites
+
+- id: advice_wound_self_care
+  what_to_do: "You can treat a small cut or graze yourself. Stop any bleeding, clean the wound and cover it with a plaster or dressing."
+  look_out_for:
+    - "The cut becoming swollen, red and more painful, or pus coming out"
+    - "A high temperature, or feeling unwell"
+    - "Losing feeling near the wound, or trouble moving it"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the wound looks infected. Do the same if you are not sure you have had all your tetanus jabs."
+    - "Call 999 or go to A&E if you cannot stop the bleeding"
+  where_to_go: "Treat it yourself at home."
+  self_care:
+    - "Wash your hands, then rinse the wound with tap water or use sterile wipes"
+    - "Pat it dry and cover it with a plaster or dressing. Keep it clean and dry."
+    - "Take paracetamol or ibuprofen if it hurts. Do not give aspirin to children under 16."
+  source: nhs_cuts_and_grazes
+
+- id: advice_shingles_pharmacy
+  what_to_do: "See a pharmacist as soon as possible, and within 3 days of the rash appearing. They can give the same medicine for shingles as a GP. It works best when started early."
+  look_out_for:
+    - "The rash near your eye, or changes to your vision"
+    - "The rash spreading over a large area, or you feeling very unwell"
+  get_more_help_when:
+    - "Get an urgent GP appointment or call 111 if the rash is near your eye. Do the same if you are pregnant, or your body finds it hard to fight germs (for example during cancer care)."
+    - "Call 999 if you get sudden chest pain, or pain that spreads to your arm, neck, jaw or back"
+  where_to_go: "A pharmacy. You can also call 111 or use 111 online."
+  self_care:
+    - "Take paracetamol to help with the pain"
+    - "Keep the rash clean and dry, and wear loose clothing"
+    - "Do not share towels. Keep away from babies and people who are pregnant until the blisters dry."
+  source: nhs_shingles

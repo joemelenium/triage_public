@@ -1,0 +1,71 @@
+id: cg_h08
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: A 55-year-old man with a cough bringing up clear phlegm for 3 and a half weeks since a chest cold. It is not getting better, but he feels well otherwise.
+opening_statement: I've had this cough for three and a half weeks now since a chest cold and it's just not going. I feel OK in myself.
+findings:
+  present:
+  - cough
+  - cough_phlegm
+  - cough_3_weeks_or_more
+  - recent_viral_illness
+  - symptoms_worse_or_not_better
+  absent:
+  - severe_breathing_difficulty
+  - lips_or_skin_blue_grey
+  - sudden_confusion
+  - coughing_up_blood
+  - chest_pain
+  - difficulty_breathing
+  - short_of_breath
+  - breathing_very_fast
+  - skin_blotchy
+  - rash_does_not_fade
+  - feels_very_unwell
+  - cough_very_bad_or_worsening
+  - swollen_neck_glands
+  - phlegm_yellow_or_green
+  - very_high_temperature
+  - weight_loss
+  - night_sweats
+  - smoker
+  - wheezing
+  - weakened_immune_system
+  - long_term_condition
+  - hoarse_voice
+  - tb_contact_or_travel
+  - frequent_chest_infections
+  - dust_or_fumes_exposure
+  - has_bronchiectasis
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 55
+    sex: male
+  full:
+    age: 55
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP about the persistent cough
+  any_of:
+  - GP
+- point: Get urgent help (111 or urgent GP) if the cough gets much worse, breathing becomes hard, chest pain or coughing up blood
+  any_of:
+  - '111'
+  - urgent GP
+source:
+  expected_outcome: &id001
+    page: cough.txt
+    quote: you've had a cough for more than 3 weeks (persistent cough)
+  minimum_safe_acuity: *id001
+atypical: false
+notes: 'Sources differ. cough.txt, tuberculosis.txt, lung_cancer.txt, copd.txt and common_cold.txt put a cough of more than 3 weeks under ''See a GP'' (non-urgent). bronchitis.txt puts ''a cough for more than 3 weeks and it is not getting better'' under ''Urgent advice: Ask for an urgent GP appointment or get help from NHS 111''. Judgement: routine, as most pages and the cough page say; an engine answer of urgent would be acceptable over-triage.'

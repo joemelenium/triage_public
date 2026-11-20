@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: fluid_build_up
+body_system: general
+# The commonest cause of swelling: standing or sitting still for a long time, hot weather, salty
+# food, being overweight, or a medicine (some blood pressure medicines, the pill, steroids).
+entry_symptoms: [swollen_ankles, swollen_arm_or_hand]
+name: "Fluid build-up from standing, heat, salty food or a medicine"
+medical_name: "Dependent oedema"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: it comes with heat or long standing and goes down overnight or when
+  # raised.
+  swelling_from_heat_or_position: strongly_supports
+  new_medicine_recently: supports
+  swelling_has_obvious_cause: supports
+key_findings: [swelling_from_heat_or_position, new_medicine_recently]
+source: nhs_oedema
+informed_by: [nhs_oedema, nhs_swollen_arms_and_hands_oedema]

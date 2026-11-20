@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: narcolepsy
+body_system: brain_and_nerves
+entry_symptoms: [daytime_sleepiness]
+name: "Narcolepsy (you fall asleep suddenly, without warning)"
+medical_name: "Narcolepsy"
+snomed: "60380001"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+findings:
+  # Usually starts in children and young adults. What tells it apart: falling asleep suddenly without warning, and muscles going weak with laughter or surprise.
+  falls_asleep_suddenly: strongly_supports
+  muscles_weak_with_emotion: strongly_supports
+  trouble_sleeping: supports
+key_findings: [falls_asleep_suddenly, muscles_weak_with_emotion]
+source: nhs_narcolepsy
+informed_by: [nhs_narcolepsy, nhs_excessive_daytime_sleepiness_hypersomnia]

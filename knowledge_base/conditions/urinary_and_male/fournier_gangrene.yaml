@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: fournier_gangrene
+body_system: urinary_and_male
+entry_symptoms: [testicle_pain, testicle_lump_or_swelling, penis_lump_or_spot]
+name: "A bad skin infection of the genitals that spreads fast (Fournier's gangrene)"
+medical_name: "Necrotising fasciitis of the perineum and genitals (Fournier's gangrene)"
+snomed: "398318005"
+# Must not be missed: rare, but life-threatening within hours. More likely with
+# diabetes or a weakened immune system. No NHS page; AI judgement.
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: has_diabetes, prevalence: rare}
+  - {finding: weakened_immune_system, prevalence: rare}
+findings:
+  genital_skin_dark_or_spreading: strongly_supports
+  scrotum_red_hot_swollen: strongly_supports
+  feels_very_unwell: strongly_supports
+  very_high_temperature: supports
+  has_diabetes: supports
+key_findings: [genital_skin_dark_or_spreading, feels_very_unwell, scrotum_red_hot_swollen]
+source: ai_judgement
+informed_by: [nhs_testicle_pain, nhs_sepsis]

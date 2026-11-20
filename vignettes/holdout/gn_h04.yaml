@@ -1,0 +1,54 @@
+id: gn_h04
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- night_sweats
+summary: A 49-year-old woman who wakes most nights with her nightclothes and sheets soaked, even with the bedroom cool. Her periods have become irregular. No weight loss, no fever, no cough.
+opening_statement: I'm waking up most nights absolutely drenched, I have to change the sheets. My periods have been all over the place lately too.
+findings:
+  present:
+  - night_sweats
+  - irregular_periods
+  - perimenopause
+  absent:
+  - weight_loss
+  - very_high_temperature
+  - cough
+  - diarrhoea
+  - lump_neck_armpit_or_groin
+  - new_medicine_recently
+  - drinks_a_lot_of_alcohol
+  - has_diabetes
+  unknown:
+  - feeling_anxious
+context:
+  none: {}
+  basic:
+    age: 49
+    sex: female
+  full:
+    age: 49
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Get help sooner if weight loss or a high temperature develops
+  any_of:
+  - weight
+  - temperature
+source:
+  expected_outcome:
+    page: night_sweats.txt
+    quote: you have night sweats regularly that wake you up or worry you
+  minimum_safe_acuity:
+    page: night_sweats.txt
+    quote: you have night sweats regularly that wake you up or worry you
+atypical: false
+notes: Regular night sweats, most likely menopause-related (night_sweats.txt lists menopause as a common cause). Weight loss, fever and cough are absent. She is unsure whether she is anxious (unknown).

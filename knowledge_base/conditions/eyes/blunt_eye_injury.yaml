@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: blunt_eye_injury
+body_system: eyes
+# A blow to the eye can cause bleeding inside the eye or break the bone around
+# it. A black eye on its own is usually minor and is left to the other cause.
+entry_symptoms: [eye_pain, red_eye, double_vision, vision_change]
+name: "Serious injury from a blow to the eye (bleeding inside the eye or a broken eye socket)"
+medical_name: "Blunt eye injury (hyphaema or orbital fracture)"
+acuity_needed: emergency
+danger: serious
+prevalence: very_rare
+findings:
+  blow_to_eye: strongly_supports
+  eye_injury: strongly_supports
+  double_vision: supports
+  eye_hard_to_move: supports
+  eye_pain_severe: supports
+  nausea_or_vomiting: supports
+  vision_change: supports
+key_findings: [blow_to_eye, double_vision, vision_change]
+source: nhs_eye_injuries
+informed_by: [nhs_eye_injuries, nhs_head_injury]

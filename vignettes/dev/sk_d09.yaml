@@ -1,0 +1,54 @@
+id: sk_d09
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- nail_problem
+summary: 48-year-old woman with a dark brown streak under her thumbnail that appeared over a few months. She has not injured it and it does not hurt.
+opening_statement: I've noticed a dark brown line under my thumbnail. I haven't banged it or anything.
+findings:
+  present:
+  - nail_problem
+  - dark_area_under_nail
+  - nail_changed_no_reason
+  absent:
+  - nail_injured_recently
+  - skin_around_nail_red_swollen
+  - nail_thick_discoloured_crumbly
+  - finger_pain
+  - mole_changed
+  - skin_growth_bleeds_or_crusts
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 48
+    sex: female
+  full:
+    age: 48
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags:
+- description: Dark area under a nail without an injury (possible melanoma)
+  findings:
+  - dark_area_under_nail
+  minimum_acuity: routine
+  source:
+    page: melanoma_symptoms.txt
+    quote: you have a dark area under a nail that has not been caused by an injury
+safety_netting_should_cover:
+- point: See a GP to have it checked
+  any_of:
+  - GP
+source:
+  expected_outcome:
+    page: melanoma_symptoms.txt
+    quote: you have a dark area under a nail that has not been caused by an injury
+  minimum_safe_acuity:
+    page: nail_problems.txt
+    quote: a nail has changed shape, changed colour or fallen off and you do not know why
+atypical: false
+notes: 'Red flag with a routine outcome: possible subungual melanoma. The pages say ''See a GP'' without urgency, so the danger is under-triage to self-care. melanoma_symptoms.txt: ''Finding a melanoma as early as possible can mean it''s easier to treat.'''

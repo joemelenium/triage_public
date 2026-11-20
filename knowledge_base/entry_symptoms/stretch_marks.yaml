@@ -1,0 +1,41 @@
+# Entry symptom: stretch marks.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: stretch_marks
+name: "Stretch marks"
+presenting_finding: stretch_marks
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: stretch_marks_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - cushings_body_shape
+      - bruising_or_bleeding_easily
+      - takes_steroids
+
+red_flags: []
+
+outcome_rules:
+  - id: or_sm_cushings
+    description: "Stretch marks with more fat on the chest, tummy and back of the neck, thin arms and legs, or a round, red face (possible Cushing's syndrome)"
+    when: cushings_body_shape
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stretch_marks_gp
+    source: nhs_stretch_marks
+
+  - id: or_sm_steroids_bruising
+    description: "Stretch marks with easy bruising while taking steroids"
+    when: {all: [takes_steroids, bruising_or_bleeding_easily]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stretch_marks_gp
+    source: nhs_cushings
+    note: "The Cushing's syndrome page says see a GP if you have its symptoms, particularly if you take steroid medicine."
+
+default:
+  description: "Stretch marks: harmless and often fade over time"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "No appointment needed"}
+  advice: advice_stretch_marks_self_care
+  source: nhs_stretch_marks

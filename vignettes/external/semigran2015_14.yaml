@@ -1,0 +1,21 @@
+id: semigran2015_14
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Stroke
+original_triage_label: Requires emergent care
+original_triage: emergency
+presenting_text: right-sided weakness with difficulty speaking and understanding, nausea and vomiting
+presenting: []
+age: 70
+sex: male
+findings:
+  present:
+  - stroke_signs
+  - difficulty_speaking
+  - nausea_or_vomiting
+  - severe_and_worsening_quickly
+  absent: []
+  unknown: []
+conversion_notes: 'Right-sided weakness, slurred speech, aphasia and right arm paralysis are mapped to stroke_signs; ''difficulty speaking'' to difficulty_speaking. ''Started with only mild slurred speech before progressing over several minutes to severe aphasia and right arm paralysis'' is mapped to severe_and_worsening_quickly. Difficulty comprehending language is not mapped to sudden_confusion. Atrial fibrillation is past history and is not mapped to palpitations. The symptoms are reported by a family member. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 14 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

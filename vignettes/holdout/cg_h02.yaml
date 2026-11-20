@@ -1,0 +1,65 @@
+id: cg_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: A 29-year-old woman with a dry cough, sneezing, itchy watery eyes and a runny nose for 10 days in June, worse on high-pollen days. She has had hay fever before.
+opening_statement: Every year about now I start sneezing and my eyes stream, and this year I've got a tickly cough as well.
+findings:
+  present:
+  - cough
+  - cough_dry
+  - itchy_watery_eyes_sneezing
+  - blocked_or_runny_nose
+  - triggered_by_allergy
+  - has_allergies
+  absent:
+  - short_of_breath
+  - wheezing
+  - difficulty_breathing
+  - chest_pain
+  - very_high_temperature
+  - feels_very_unwell
+  - cough_3_weeks_or_more
+  - has_asthma
+  - lips_tongue_throat_swelling
+  - throat_tight
+  - raised_itchy_rash
+  - after_allergy_trigger
+  - coughing_up_blood
+  - pregnant_or_recently_given_birth
+  - cough_very_bad_or_worsening
+  - aching_body
+  - severe_breathing_difficulty
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 29
+    sex: female
+  full:
+    age: 29
+    sex: female
+expected:
+  acuity: self_manageable
+  level_of_care: community_pharmacy
+  timeframe: not_needed
+minimum_safe_acuity: self_manageable
+red_flags: []
+safety_netting_should_cover:
+- point: A pharmacist can advise on treatments
+  any_of:
+  - pharmacist
+  - pharmacy
+- point: See a GP if symptoms get worse or pharmacy medicines do not help
+  any_of:
+  - GP
+source:
+  expected_outcome:
+    page: hay_fever.txt
+    quote: Speak to a pharmacist if you have hay fever.
+  minimum_safe_acuity:
+    page: hay_fever.txt
+    quote: You cannot cure it, but there are things you can do to help your symptoms, or medicines you can take to help.
+atypical: false
+notes: Hay fever with cough. cough.txt lists allergies such as hay fever as a cause of cough.

@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: womb_cancer
+body_system: womens_health
+entry_symptoms: [bleeding_after_menopause, bleeding_between_periods_or_after_sex, heavy_periods, vaginal_discharge]
+name: "Womb cancer (cancer of the lining of the womb)"
+medical_name: "Endometrial cancer"
+snomed: "93781006"
+# Must not be missed. Most common after the menopause. Level soon: a GP should
+# refer within 2 weeks.
+acuity_needed: soon
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: rare}
+  - {finding: bleeding_after_menopause, prevalence: uncommon}
+findings:
+  bleeding_after_menopause: strongly_supports
+  periods_changed: supports
+  vaginal_discharge: supports
+  pelvic_pain: supports
+  lower_back_pain: supports
+  pain_during_sex: supports
+  weight_loss: supports
+  bleeding_between_periods: supports
+  heavy_vaginal_bleeding: supports
+key_findings: [periods_changed, pelvic_pain, weight_loss]
+source: nhs_womb_cancer_symptoms
+informed_by: [nhs_womb_cancer, nhs_womb_cancer_symptoms, nhs_post_menopausal_bleeding]

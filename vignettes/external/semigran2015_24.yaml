@@ -1,0 +1,22 @@
+id: semigran2015_24
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Mononucleosis
+original_triage_label: Requires non-emergent care
+original_triage: non_emergency
+presenting_text: fever, sore throat and fatigue for a week, gradually getting worse
+presenting:
+- sore_throat
+age: 16
+sex: female
+findings:
+  present:
+  - very_high_temperature
+  - pus_on_tonsils
+  absent:
+  - severe_and_worsening_quickly
+  unknown: []
+conversion_notes: 'Sore throat is one of the main complaints. ''A fever every day'' and ''febrile'' are mapped to very_high_temperature. ''Exudative pharyngitis'' is mapped to pus_on_tonsils (the publication''s simplified version says ''exudates''). ''Her symptoms are gradually getting worse'' is mapped to severe_and_worsening_quickly absent (gradual, not quick). ''Difficulty swallowing'' is not mapped to unable_to_swallow (difficulty, not inability) or to too_painful_to_eat_or_drink (pain on eating or drinking is not stated). She ''started feeling sick 1 week ago'': not clearly more than a week, so sore_throat_over_a_week is left out. ''Enlarged cervical lymph nodes'' are not mapped to lump_in_mouth_or_neck. Rule used for very_high_temperature in this set: present when the text states a fever (not described as low-grade), chills, rigors or feeling hot; left out when the fever is described as low-grade or measured below 38.0 C; absent when fever is explicitly ruled out. Text is from the
+  ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 24 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

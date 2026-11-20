@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hernia
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, testicle_lump_or_swelling, testicle_pain, pelvic_pain, skin_lump]
+name: "Hernia (a lump where part of the gut pushes through a weak spot in the tummy wall)"
+medical_name: "Abdominal wall or groin hernia"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_1, prevalence: common}
+  - {finding: stomach_ache, prevalence: uncommon}
+  - {finding: testicle_lump_or_swelling, prevalence: uncommon}
+  - {finding: testicle_pain, prevalence: uncommon}
+  - {finding: pelvic_pain, prevalence: uncommon}
+  - {finding: skin_lump, prevalence: rare}
+findings:
+  lump_in_tummy_or_groin: strongly_supports
+  sa_worse_moving_or_coughing: supports
+  sa_low_down: supports
+  # From the urinary_and_male card for this condition (merged):
+  groin_bulge: strongly_supports
+  testicle_ache_worse_standing: supports
+key_findings: [lump_in_tummy_or_groin, groin_bulge, lump_painful_and_firm]
+source: nhs_hernia
+informed_by: [nhs_hernia, nhs_inguinal_hernia, nhs_testicle_pain]
+# Merged with the urinary_and_male card for this condition. Its notes:
+# What tells it apart: a bulge in the groin that gets bigger when coughing and
+# smaller when lying down, sometimes with a dragging ache.

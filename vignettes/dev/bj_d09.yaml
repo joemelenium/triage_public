@@ -1,0 +1,59 @@
+id: bj_d09
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- foot_pain
+- joint_pain
+summary: 55-year-old man woken in the night by a very painful, swollen, red, hot big toe joint. First time ever. No fever, not feeling sick, and the pain is not getting worse.
+opening_statement: I woke up in the night with my big toe throbbing. It's red and swollen and I can't even bear the sheet on it.
+findings:
+  present:
+  - foot_pain
+  - joint_pain
+  - toe_pain
+  - one_joint_only
+  - swollen_area
+  - swollen_area_red_hot
+  - red_or_discoloured_skin
+  - severe_pain
+  - pain_started_suddenly
+  - overweight
+  absent:
+  - had_gout_before
+  - injury_or_fall
+  - very_high_temperature
+  - feels_very_unwell
+  - nausea_or_vomiting
+  - pain_getting_worse_quickly
+  - cut_bite_or_puncture
+  - has_diabetes
+  - several_joints
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 55
+    sex: male
+  full:
+    age: 55
+    sex: male
+expected:
+  acuity: soon
+  level_of_care: general_practice
+  timeframe: few_days
+minimum_safe_acuity: soon
+red_flags: []
+safety_netting_should_cover:
+- point: Urgent help (111) if the pain gets worse, a high temperature starts, or he feels sick or cannot eat
+  any_of:
+  - '111'
+  - urgent
+source:
+  expected_outcome:
+    page: gout.txt
+    quote: you have symptoms of gout for the first time
+  minimum_safe_acuity:
+    page: gout.txt
+    quote: An attack of gout usually lasts 1 to 2 weeks if left untreated.
+atypical: false
+notes: 'Classic first gout attack (joint_pain.txt: ''Hot, swollen toe joint (usually the big toe) with very bad pain that comes on suddenly, often overnight''). Source difference: gout.txt gives ''See a GP'' for a first attack and keeps urgent help for worsening pain, fever or feeling sick; joint_pain.txt and septic_arthritis.txt give ''Ask for an urgent GP appointment or get help from NHS 111'' for a joint that is swollen and feels hot. The gout page fits this story better, so soon (GP within a few days, given a first painful attack); the joint_pain page would support urgent, so over-triage to urgent is acceptable here. Minimum safe acuity soon rather than routine because a hot swollen joint should not wait.'

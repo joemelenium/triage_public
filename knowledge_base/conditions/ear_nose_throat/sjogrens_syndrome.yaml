@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sjogrens_syndrome
+body_system: ear_nose_throat
+entry_symptoms: [dry_mouth]
+name: "Sjogren's syndrome (a condition that causes dry eyes and a dry mouth)"
+medical_name: "Sjogren's syndrome"
+snomed: "83901003"
+acuity_needed: routine
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: sex_female, prevalence: uncommon}
+findings:
+  # What tells it apart: dry, gritty eyes as well as a dry mouth that does not go away, with
+  # tiredness and aching joints.
+  dry_eyes: strongly_supports
+  dry_mouth_few_weeks: supports
+  very_tired: supports
+  aching_body: supports
+key_findings: [dry_eyes, dry_mouth_few_weeks]
+source: nhs_sjogrens_syndrome
+informed_by: [nhs_sjogrens_syndrome, nhs_dry_mouth]

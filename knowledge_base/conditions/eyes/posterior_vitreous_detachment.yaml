@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: posterior_vitreous_detachment
+body_system: eyes
+# The usual cause of new floaters in older people, and harmless in itself. It
+# needs an urgent check because it can tear the retina, so the level is urgent
+# with moderate danger.
+entry_symptoms: [floaters_or_flashes]
+name: "The jelly inside the eye shrinking and pulling away, a common cause of new floaters"
+medical_name: "Posterior vitreous detachment"
+snomed: "247081001"
+acuity_needed: urgent
+danger: moderate
+prevalence: common
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: very_common}
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  floaters_new_or_sudden: strongly_supports
+  floaters_or_flashes: strongly_supports
+  short_sighted: supports
+  eye_surgery_recent: supports    # after cataract surgery
+key_findings: [floaters_new_or_sudden]
+source: nhs_floaters_and_flashes_in_the_eyes
+informed_by: [nhs_floaters_and_flashes_in_the_eyes, nhs_detached_retina]

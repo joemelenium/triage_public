@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: diverticulitis
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, bleeding_from_bottom]
+name: "Diverticulitis (infected pouches in the bowel wall)"
+medical_name: "Diverticulitis"
+snomed: "307496006"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart: pain low on the left, with a high temperature, in older adults.
+  sa_lower_left: strongly_supports
+  very_high_temperature: strongly_supports
+  sa_getting_worse: supports
+  constipation: supports
+  diarrhoea: supports
+  bleeding_from_bottom: supports
+  mucus_in_poo: supports
+key_findings: [sa_lower_left, very_high_temperature, sa_getting_worse]
+source: nhs_diverticulitis
+informed_by: [nhs_diverticulitis]

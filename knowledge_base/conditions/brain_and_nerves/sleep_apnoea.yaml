@@ -1,0 +1,40 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sleep_apnoea
+body_system: brain_and_nerves
+entry_symptoms: [daytime_sleepiness, trouble_sleeping, very_tired, snoring, teeth_grinding]
+name: "Sleep apnoea (breathing that stops and starts during sleep)"
+medical_name: "Obstructive sleep apnoea"
+snomed: "78275009"
+acuity_needed: routine
+danger: moderate
+prevalence: common
+prevalence_when:
+  - {finding: overweight, prevalence: common}
+  - {finding: sex_male, prevalence: common}
+  - {finding: daytime_sleepiness, prevalence: common}
+  - {finding: trouble_sleeping, prevalence: common}
+  - {finding: very_tired, prevalence: uncommon}
+  - {finding: snoring, prevalence: uncommon}
+  - {finding: teeth_grinding, prevalence: uncommon}
+findings:
+  # What tells it apart: loud snoring, or someone has seen breathing stop or gasping in sleep.
+  breathing_stops_in_sleep: strongly_supports
+  very_tired: supports
+  trouble_sleeping: supports
+  sleepiness_affecting_life: supports
+  # From the general card for this condition (merged):
+  tired_for_weeks: supports
+  # From the ear_nose_throat card for this condition (merged):
+  daytime_sleepiness: strongly_supports
+  snoring: strongly_supports
+  overweight: supports
+key_findings: [breathing_stops_in_sleep, sleepiness_affecting_life, daytime_sleepiness]
+source: nhs_sleep_apnoea
+informed_by: [nhs_sleep_apnoea, nhs_excessive_daytime_sleepiness_hypersomnia, nhs_tiredness_and_fatigue, nhs_snoring, nhs_teeth_grinding]
+# Merged with the general card for this condition. Its notes: Breathing stops and starts
+# in sleep, so sleep is poor. The page says see a GP; untreated it raises the chance of
+# a stroke or an accident. What tells it apart: loud snoring with gasping or choking
+# noises, reported by a partner. Merged with the ear_nose_throat card for this
+# condition. Its notes: What tells it apart from simple snoring: breathing that stops
+# and starts with gasping or choking in sleep, and feeling very sleepy in the day.

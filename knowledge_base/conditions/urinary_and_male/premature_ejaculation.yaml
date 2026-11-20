@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: premature_ejaculation
+body_system: urinary_and_male
+entry_symptoms: [ejaculation_problems]
+name: "Coming too soon (premature ejaculation)"
+medical_name: "Premature ejaculation"
+snomed: "44001008"
+acuity_needed: self_manageable
+danger: minor
+sex: male
+prevalence: very_common
+findings:
+  coming_too_soon: strongly_supports
+  stressful_time: supports
+key_findings: [coming_too_soon]
+source: nhs_ejaculation_problems
+informed_by: [nhs_ejaculation_problems]

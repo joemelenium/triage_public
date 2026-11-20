@@ -1,0 +1,28 @@
+id: semigran2015_12
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Pulmonary embolism
+original_triage_label: Requires emergent care
+original_triage: emergency
+presenting_text: sudden shortness of breath for 30 minutes, with left-sided chest pain that is worse on breathing in
+presenting:
+- chest_pain
+age: 65
+sex: male
+findings:
+  present:
+  - cp_present_now
+  - cp_worse_breathing_in
+  - short_of_breath
+  - light_headed
+  - leg_pain_or_swelling
+  - very_high_temperature
+  absent:
+  - fainted
+  - passed_out
+  - has_angina
+  unknown: []
+conversion_notes: 'The main complaints are shortness of breath and chest pain, so chest_pain is listed as presenting. ''He is complaining of left-sided chest pain'' is taken as pain present now. ''He felt faint but did not lose consciousness'' is mapped to light_headed present (stated for the start of the episode) and to fainted and passed_out absent. ''Swelling in his left calf, which is tender'' is mapped to leg_pain_or_swelling. ''Fever of 100.4 F (38.0 C)'' is mapped to very_high_temperature (stated as fever, though only at 38 C). ''No history of cardiopulmonary disease'' is mapped to has_angina absent. Heart rate 112 bpm is an examination value and is not mapped to heart_beating_very_fast. The onset of the chest pain itself is not described, so cp_sudden_not_going_away is left out. Rule used for very_high_temperature in this set: present when the text states a fever (not described as low-grade), chills, rigors or feeling hot; left out when the fever is described as low-grade or measured
+  below 38.0 C; absent when fever is explicitly ruled out. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 12 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: conjunctivitis
+body_system: eyes
+# Infective conjunctivitis (a virus or bacteria). The eye allergy is a separate
+# card. A pharmacist can treat it, so the level of care is a pharmacy.
+entry_symptoms: [red_eye, eye_pain, watering_eyes, eyelid_problem, something_in_eye]
+name: "Conjunctivitis (a red, sticky eye infection)"
+medical_name: "Infective conjunctivitis"
+snomed: "299699004"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: red_eye, prevalence: very_common}
+  - {finding: eyelid_problem, prevalence: common}
+  - {finding: watering_eyes, prevalence: common}
+  - {finding: eye_pain, prevalence: common}
+findings:
+  sticky_discharge: strongly_supports    # pus that sticks to the lashes
+  gritty_or_burning: strongly_supports
+  red_eye: strongly_supports
+  both_eyes_affected: supports    # usually both eyes
+  itchy_eyes: supports
+  watering_eyes: supports
+  cough_or_runny_nose: supports    # often comes with a cold
+key_findings: [sticky_discharge, gritty_or_burning, both_eyes_affected]
+source: nhs_conjunctivitis
+informed_by: [nhs_conjunctivitis, nhs_red_eye]

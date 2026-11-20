@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: severe_dehydration
+body_system: general
+# Needs urgent treatment, sometimes fluids into a vein. Babies, young children and older
+# adults are most at risk.
+entry_symptoms: [dehydration_signs, baby_unsettled_or_not_feeding, generally_unwell]
+name: "Serious dehydration (not having enough water in the body)"
+medical_name: "Severe dehydration"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_1, prevalence: common}
+  - {finding: age_65_or_over, prevalence: common}
+findings:
+  # What tells it apart from mild dehydration: dizzy on standing, no pee for 12 hours, cannot
+  # keep fluids down, a fast heartbeat, or in a child dry nappies and no tears.
+  cannot_keep_fluids_down: strongly_supports
+  dizzy_when_standing: strongly_supports
+  not_peed_12_hours: strongly_supports
+  heart_beating_very_fast: supports
+  child_dehydration_signs: supports
+  sunken_soft_spot: supports
+  diarrhoea_or_vomiting: supports
+  very_tired: supports
+  child_floppy_or_hard_to_wake: supports
+key_findings: [dizzy_when_standing, not_peed_12_hours, cannot_keep_fluids_down, child_dehydration_signs]
+source: nhs_dehydration
+informed_by: [nhs_dehydration, nhs_fever_in_children]

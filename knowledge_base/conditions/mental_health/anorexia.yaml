@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: anorexia
+body_system: mental_health
+entry_symptoms: [eating_problem, low_mood]
+name: "Anorexia (eating very little to keep weight low)"
+medical_name: "Anorexia nervosa"
+snomed: "56882008"
+# See a GP as soon as you can. Serious: starvation harms the heart and other
+# organs, and it has the highest death rate of any mental health condition.
+acuity_needed: soon
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: eating_problem, prevalence: uncommon}
+findings:
+  eating_very_little: strongly_supports
+  fear_of_weight_gain: strongly_supports
+  very_low_weight_or_fast_loss: strongly_supports
+  exercising_too_much: supports
+  weak_or_cannot_stand: supports
+key_findings: [eating_very_little, fear_of_weight_gain, very_low_weight_or_fast_loss, exercising_too_much]
+source: nhs_anorexia
+informed_by: [nhs_anorexia, nhs_eating_disorders]

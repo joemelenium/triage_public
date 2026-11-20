@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cervical_cancer
+body_system: womens_health
+entry_symptoms: [bleeding_between_periods_or_after_sex, vaginal_discharge, bleeding_after_menopause]
+name: "Cervical cancer (cancer of the cervix, the entrance to the womb)"
+medical_name: "Cervical cancer"
+# Must not be missed. Bleeding after sex is its main sign.
+acuity_needed: soon
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: bleeding_between_periods_or_after_sex, prevalence: rare}
+  - {finding: bleeding_after_menopause, prevalence: rare}
+findings:
+  bleeding_after_sex: strongly_supports
+  vaginal_discharge: supports
+  pain_during_sex: supports
+  lower_back_pain: supports
+  pelvic_pain: supports
+  bleeding_between_periods: supports
+  bleeding_after_menopause: supports
+key_findings: [bleeding_after_sex, pain_during_sex]
+source: nhs_cervical_cancer_symptoms
+informed_by: [nhs_cervical_cancer, nhs_cervical_cancer_symptoms]

@@ -1,0 +1,39 @@
+# The allowed outcome values. Generated: do not edit by hand.
+# Each list runs from most urgent or most intensive to least.
+acuity:
+- id: emergency
+  label: Emergency (help now)
+- id: urgent
+  label: Urgent (help today)
+- id: soon
+  label: Soon (help within a few days)
+- id: routine
+  label: Routine (help needed, timing not critical)
+- id: self_manageable
+  label: Self-manageable
+level_of_care:
+- id: emergency_ambulance
+  label: Emergency ambulance
+- id: emergency_department
+  label: Emergency department
+- id: urgent_care
+  label: Urgent care
+- id: general_practice
+  label: General practice
+- id: dental
+  label: Dentist
+- id: community_pharmacy
+  label: Community pharmacy
+- id: self_care
+  label: Self-care
+timeframe:
+- id: now
+  label: Now
+- id: today
+  label: Today
+- id: few_days
+  label: Within a few days
+- id: no_fixed_time
+  label: No fixed time given in the source
+- id: not_needed
+  label: No appointment needed

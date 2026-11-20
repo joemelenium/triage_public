@@ -1,0 +1,631 @@
+# Observations: chest and heart.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# An observation is anything the engine can know about a patient: a symptom, a
+# feature of a symptom, a risk factor (history, lifestyle, an event) or context
+# such as age. Each is answered "yes", "no" or "not sure". Observations are kept
+# in one file per body system. All files together form one shared network.
+#
+# Fields:
+#   id             used by rules and condition cards to refer to it
+#   label          short name used in reports
+#   question       what the patient is asked
+#   question_carer optional: the question when someone answers for another person
+#   checklist_text optional: a short form, used as one line of a checklist
+#   kind           presenting (a main symptom), symptom, history, or context
+#   parent         optional: a more general observation this one belongs to. A "yes"
+#                  here means "yes" to the parent too; a "no" to the parent means
+#                  "no" here, so it is not asked.
+#   relation       with a parent: duration, severity, character, exacerbating_factor,
+#                  diminishing_factor, location or radiation
+#   sex            optional: female or male, if it only applies to one
+#   asked_only_if  optional: only asked after a "yes" (or "not sure") to that observation
+#   seriousness    optional: serious, emergency or emergency_ambulance, where a source
+#                  names it as an alarming sign (used in the five-level output)
+#   group          related observations share a group so evidence is not counted twice
+#   age_range      the answer is worked out from the patient's age, when the age is known
+#   snomed         SNOMED CT code, only where checked and listed in sources/snomed_codes.yaml
+#   source         id in sources/source_log.yaml
+
+- id: chest_pain
+  label: "Chest pain"
+  question: "Do you have pain or discomfort in your chest?"
+  kind: presenting
+  snomed: "29857009"
+  phrases: ["chest pain", "pain in my chest", "tight chest", "chest hurts"]
+  source: nhs_chest_pain
+
+- id: cp_present_now
+  label: "Chest pain is there now"
+  question: "Is the pain or discomfort in your chest there right now?"
+  checklist_text: "Chest pain there right now"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  phrases: ["it still hurts", "the pain is still there", "hurting now"]
+  source: nhs_pulmonary_embolism
+
+- id: cp_sudden_not_going_away
+  label: "Sudden chest pain that does not go away"
+  question: "Did the pain or discomfort in your chest come on suddenly, and has it not gone away? It can feel like squeezing, pressure, burning or indigestion."
+  checklist_text: "Chest pain that came on suddenly and has not gone away"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  group: chest_pain_character
+  phrases: ["came on suddenly", "won't go away", "feels like indigestion"]
+  source: nhs_chest_pain
+
+- id: cp_tight_or_squeezing
+  label: "Chest feels tight or squeezed"
+  question: "Does your chest feel tight, or like it is being squeezed?"
+  checklist_text: "Chest feels tight or squeezed"
+  kind: symptom
+  snomed: "23924001"
+  group: chest_pain_character
+  phrases: ["tight chest", "heavy chest", "crushing", "like an elephant on my chest"]
+  source: nhs_heart_attack
+
+- id: cp_heavy
+  label: "Chest feels heavy"
+  question: "Does your chest feel heavy?"
+  checklist_text: "Chest feels heavy"
+  kind: symptom
+  group: chest_pain_character
+  phrases: ["heavy chest", "a weight on my chest", "like something sitting on my chest"]
+  source: nhs_shortness_of_breath
+
+- id: cp_spreads
+  label: "Pain spreads to arm, neck, jaw, shoulder, stomach or back"
+  question: "Does the pain spread to your left or right arm, or to your neck, jaw, shoulder, stomach or back?"
+  checklist_text: "Pain spreading to your arm, neck, jaw, shoulder, stomach or back"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  snomed: "10000006"
+  phrases: ["goes down my arm", "pain in my jaw", "spreads to my back"]
+  source: nhs_angina
+
+- id: sweating
+  label: "Feels sweaty"
+  question: "Do you feel sweaty?"
+  checklist_text: "Feeling sweaty"
+  kind: symptom
+  snomed: "415690000"
+  phrases: ["sweating", "clammy", "sweaty"]
+  source: nhs_chest_pain
+
+- id: nausea_or_vomiting
+  label: "Feels sick or has been sick"
+  question: "Do you feel sick, or have you been sick?"
+  checklist_text: "Feeling sick, or been sick"
+  kind: symptom
+  phrases: ["feel sick", "nauseous", "been sick", "vomiting"]
+  source: nhs_chest_pain
+
+- id: light_headed
+  label: "Feels light-headed"
+  question: "Do you feel light-headed?"
+  checklist_text: "Feeling light-headed"
+  kind: symptom
+  snomed: "386705008"
+  phrases: ["light-headed", "dizzy", "faint"]
+  source: nhs_chest_pain
+
+- id: short_of_breath
+  label: "Short of breath"
+  question: "Do you feel short of breath?"
+  question_carer: "Does your child seem short of breath, or are they breathing harder than usual?"
+  checklist_text: "Short of breath"
+  kind: presenting   # also the main symptom for the breathlessness entry symptom
+  snomed: "267036007"
+  group: breathing
+  phrases: ["short of breath", "breathless", "out of breath"]
+  source: nhs_chest_pain
+
+- id: heart_beating_very_fast
+  label: "Heart beating very fast"
+  question: "Is your heart beating very fast?"
+  checklist_text: "Heart beating very fast"
+  kind: symptom
+  snomed: "3424008"
+  group: heartbeat
+  phrases: ["heart is racing", "heart pounding", "heart going really fast"]
+  source: nhs_pulmonary_embolism
+
+- id: heart_beating_very_slowly
+  label: "Heart beating very slowly"
+  question: "Is your heart beating much more slowly than usual?"
+  checklist_text: "Heart beating very slowly"
+  kind: symptom
+  snomed: "48867003"
+  group: heartbeat
+  seriousness: serious
+  phrases: ["heart is really slow", "pulse is very slow", "heart barely beating"]
+  source: ai_judgement
+
+- id: fainted
+  label: "Passed out (fainted)"
+  question: "Have you passed out (fainted)?"
+  checklist_text: "Passed out (fainted)"
+  kind: symptom
+  snomed: "271594007"
+  group: consciousness
+  phrases: ["fainted", "blacked out", "passed out"]
+  source: nhs_pulmonary_embolism
+
+- id: palpitations
+  label: "Heart racing, slow, skipping or fluttering"
+  question: "Does your heart feel like it is racing, going too slowly, skipping a beat or fluttering?"
+  checklist_text: "Heart racing, slow, skipping or fluttering"
+  kind: presenting   # also the main symptom for the heart palpitations entry symptom
+  snomed: "80313002"
+  group: heartbeat
+  phrases: ["palpitations", "skipping a beat", "fluttering in my chest"]
+  source: nhs_heart_attack
+
+- id: has_angina
+  label: "Diagnosed with angina"
+  question: "Has a doctor told you that you have angina? Angina is chest pain caused by narrowed blood vessels to the heart."
+  kind: history
+  snomed: "194828000"
+  phrases: ["I have angina", "I've got angina"]
+  source: nhs_angina
+
+- id: angina_pain_not_settling
+  label: "Pain not stopped by rest or angina medicine"
+  question: "Is the chest pain still there after a few minutes of rest? Or after you take your angina medicine?"
+  kind: symptom
+  asked_only_if: has_angina   # only makes sense for someone already diagnosed
+  phrases: ["spray hasn't worked", "resting hasn't helped"]
+  source: nhs_angina
+
+- id: angina_worse_than_usual
+  label: "Angina worse than before"
+  question: "Is your angina worse than before? For example, it happens more often, lasts longer or happens when you are resting."
+  kind: symptom
+  asked_only_if: has_angina   # only makes sense for someone already diagnosed
+  phrases: ["angina is getting worse", "happening more often"]
+  source: nhs_angina
+
+- id: cp_comes_and_goes
+  label: "Chest pain comes and goes"
+  question: "Does the chest pain come and go?"
+  checklist_text: "Chest pain that comes and goes"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  group: pain_pattern_over_time
+  phrases: ["comes and goes", "on and off"]
+  source: nhs_chest_pain
+
+- id: coughing_up_blood
+  label: "Coughing up blood"
+  question: "Are you coughing up blood?"
+  question_carer: "Is your child coughing up blood?"
+  checklist_text: "Coughing up blood"
+  kind: presenting   # also the main symptom for the coughing up blood entry symptom
+  snomed: "66857006"
+  phrases: ["coughing up blood", "blood when I cough"]
+  source: nhs_pulmonary_embolism
+
+- id: cp_worse_breathing_in
+  label: "Chest pain worse when breathing in"
+  question: "Is the chest pain worse when you breathe in?"
+  checklist_text: "Chest pain worse when you breathe in"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  snomed: "2237002"
+  phrases: ["hurts when I breathe in", "sharp pain when I breathe"]
+  source: nhs_pulmonary_embolism
+
+- id: leg_pain_or_swelling
+  label: "Pain or swelling in one leg"
+  question: "Do you have pain or swelling in one of your legs?"
+  checklist_text: "Pain or swelling in one leg"
+  kind: symptom
+  phrases: ["swollen leg", "calf pain", "painful leg"]
+  source: nhs_shortness_of_breath
+
+- id: cp_on_exertion
+  label: "Pain comes on with activity, stress or cold, and eases with rest"
+  question: "Does the pain come on when you are active, stressed or cold, and ease when you rest?"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  group: pain_pattern_over_time
+  phrases: ["when I walk uphill", "goes when I sit down", "comes on when I exert myself"]
+  source: nhs_angina
+
+- id: cp_after_eating
+  label: "Pain starts after eating"
+  question: "Does the pain start after eating, with food or bitter fluid coming back up, or feeling full and bloated?"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  phrases: ["after meals", "acid coming up", "bloated"]
+  source: nhs_chest_pain
+
+- id: cp_after_injury_or_exercise
+  label: "Pain started after a chest injury or exercise"
+  question: "Did the pain start after a chest injury or exercise, and does it feel better when you rest the muscle?"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  phrases: ["pulled a muscle", "after the gym", "hurts when I move"]
+  source: nhs_chest_pain
+
+- id: cp_with_worry
+  label: "Pain triggered by worry or stress"
+  question: "Is the pain triggered by worry or a stressful situation?"
+  kind: symptom
+  asked_only_if: chest_pain   # only makes sense if there is chest pain
+  phrases: ["when I'm anxious", "panic attack", "stressed"]
+  source: nhs_chest_pain
+
+- id: cough_mucus_or_temperature
+  label: "Coughing up yellow or green phlegm, or a high temperature"
+  question: "Are you coughing up yellow or green phlegm, or do you have a high temperature?"
+  kind: symptom
+  phrases: ["green phlegm", "chesty cough", "fever"]
+  source: nhs_chest_pain
+
+- id: heart_risk_factors
+  label: "Smokes, or has high blood pressure, diabetes or high cholesterol"
+  question: "Do you smoke, or have high blood pressure, diabetes or high cholesterol?"
+  kind: history
+  group: heart_risk
+  asked_only_if: age_16_or_over   # not asked about children
+  phrases: ["I smoke", "I'm diabetic", "high blood pressure"]
+  source: nhs_chest_pain
+
+- id: family_heart_history
+  label: "Close relative had a heart attack or angina before 60"
+  question: "Has a close relative had heart problems before the age of 60? For example, a heart attack, or angina (chest pain caused by narrowed blood vessels to the heart)."
+  kind: history
+  group: heart_risk
+  asked_only_if: age_16_or_over   # not asked about children
+  phrases: ["my dad had a heart attack", "runs in the family"]
+  source: nhs_chest_pain
+
+# ===========================================================================
+# Chest and breathing pilot: more detail about chest pain
+# ===========================================================================
+- id: cp_sharp_or_stabbing
+  label: "Chest pain is sharp or stabbing"
+  question: "Is the chest pain sharp or stabbing?"
+  checklist_text: "Sharp or stabbing chest pain"
+  kind: symptom
+  parent: chest_pain
+  relation: character
+  phrases: ["stabbing pain", "sharp pain", "like a knife"]
+  source: nhs_pericarditis
+
+- id: cp_better_leaning_forward
+  label: "Chest pain eases when leaning forward, and is worse lying down"
+  question: "Does the chest pain get better when you sit up and lean forward? Is it worse when you lie down?"
+  checklist_text: "Chest pain that eases when you lean forward, and is worse lying down"
+  kind: symptom
+  parent: chest_pain
+  relation: diminishing_factor
+  phrases: ["better leaning forward", "worse lying flat"]
+  source: nhs_pericarditis
+
+- id: cp_tender_to_press
+  label: "Chest hurts more when pressed"
+  question: "Does it hurt more when you press on your chest or ribs?"
+  kind: symptom
+  parent: chest_pain
+  relation: exacerbating_factor
+  snomed: "102591006"
+  phrases: ["sore to touch", "hurts when I press my ribs"]
+  source: nhs_costochondritis
+
+- id: cp_tearing_to_back
+  label: "Sudden severe chest or back pain, like something tearing"
+  question: "Did severe pain in your chest or back start suddenly, and feel like something is tearing inside?"
+  checklist_text: "Sudden, severe chest or back pain that feels like something tearing inside"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["tearing pain", "ripping pain through to my back", "worst pain of my life in my chest"]
+  source: nhs_costochondritis
+
+- id: upper_back_pain
+  label: "Pain in the upper back"
+  question: "Do you have pain in your upper back?"
+  checklist_text: "Pain in your upper back"
+  kind: symptom
+  snomed: "279038004"
+  phrases: ["pain between my shoulder blades", "upper back pain"]
+  source: nhs_coughing_up_blood
+
+- id: rash_one_side_of_body
+  label: "Tingling, pain or a rash of blisters on one side of the body"
+  question: "Do you have a tingling or painful patch of skin, or a rash of blisters, on one side of your body only?"
+  kind: symptom
+  phrases: ["rash on one side", "blisters on my chest", "tingling skin then a rash"]
+  source: nhs_shingles
+
+- id: heartburn_or_sour_taste
+  label: "Heartburn or a sour taste in the mouth"
+  question: "Do you get heartburn (a burning feeling in the middle of your chest), or a sour taste in your mouth?"
+  kind: symptom
+  phrases: ["acid reflux", "heartburn", "sour taste", "acid in my throat"]
+  source: nhs_heartburn
+
+- id: feeling_of_panic
+  label: "Sudden rush of intense fear or panic"
+  question: "Did this come with a sudden rush of intense fear or panic, or a feeling of dread?"
+  kind: symptom
+  snomed: "225624000"
+  phrases: ["panic attack", "felt like I was going to die", "sense of doom"]
+  source: nhs_panic_disorder
+
+- id: tingling_fingers
+  label: "Tingling or pins and needles in the fingers or around the mouth"
+  question: "Do you have tingling or pins and needles in your fingers or around your mouth?"
+  kind: symptom
+  phrases: ["pins and needles", "tingly fingers", "numb lips"]
+  source: nhs_panic_disorder
+
+- id: has_anxiety_or_panic
+  label: "Diagnosed with anxiety or panic attacks"
+  question: "Has a doctor told you that you have anxiety or panic attacks?"
+  kind: history
+  phrases: ["I get panic attacks", "I have anxiety"]
+  source: nhs_panic_disorder
+
+# ===========================================================================
+# Heart palpitations: more detail under palpitations
+# ===========================================================================
+- id: palpitations_now
+  label: "Heart racing, pounding or fluttering right now"
+  question: "Is your heart racing, pounding, fluttering or skipping beats right now?"
+  checklist_text: "Heart racing, pounding, fluttering or skipping beats right now"
+  kind: symptom
+  parent: palpitations
+  relation: duration
+  phrases: ["it's happening now", "heart still racing"]
+  source: nhs_heart_palpitations
+
+- id: palpitations_last_minutes
+  label: "Each episode lasts longer than a few minutes"
+  question: "Does your heart racing or fluttering last longer than a few minutes each time?"
+  checklist_text: "Heart racing or fluttering that lasts longer than a few minutes"
+  kind: symptom
+  parent: palpitations
+  relation: duration
+  phrases: ["goes on for ages", "lasted half an hour"]
+  source: nhs_heart_palpitations
+
+- id: palpitations_keep_coming_back
+  label: "Keep coming back, or happening more often"
+  question: "Does your heart racing or fluttering keep coming back, or is it happening more often?"
+  kind: symptom
+  parent: palpitations
+  relation: duration
+  phrases: ["keeps happening", "more and more often"]
+  source: nhs_heart_palpitations
+
+- id: palpitations_irregular
+  label: "Heartbeat feels irregular, with no steady rhythm"
+  question: "Does your heartbeat feel irregular, as if it has no steady rhythm?"
+  checklist_text: "A heartbeat that feels irregular, with no steady rhythm"
+  kind: symptom
+  parent: palpitations
+  relation: character
+  snomed: "361137007"
+  phrases: ["all over the place", "irregular heartbeat", "pulse is jumping about"]
+  source: nhs_atrial_fibrillation
+
+- id: palpitations_skipped_beat
+  label: "Feels like a skipped beat or extra thump, then back to normal"
+  question: "Does it feel like your heart skips a beat, or gives an extra thump, and then goes back to normal?"
+  kind: symptom
+  parent: palpitations
+  relation: character
+  phrases: ["missed a beat", "a thud in my chest", "extra beat"]
+  source: nhs_heart_palpitations
+
+- id: palpitations_start_stop_suddenly
+  label: "Fast heartbeat starts and stops suddenly"
+  question: "Does the fast heartbeat start and stop suddenly, like flicking a switch?"
+  kind: symptom
+  parent: palpitations
+  relation: character
+  phrases: ["switches on and off", "suddenly stops"]
+  source: nhs_svt
+
+- id: palpitations_during_exercise
+  label: "Heart racing or fluttering comes on during exercise"
+  question: "Does your heart racing or fluttering come on while you are exercising?"
+  checklist_text: "Heart racing or fluttering that comes on while exercising"
+  kind: symptom
+  parent: palpitations
+  relation: exacerbating_factor
+  phrases: ["when I'm running", "during sport"]
+  source: ai_judgement
+
+- id: palpitations_after_triggers
+  label: "Comes on after caffeine, alcohol, smoking, stress or poor sleep"
+  question: "Does it come on after caffeine, alcohol or smoking? Or when you are stressed, or have not slept well?"
+  kind: symptom
+  parent: palpitations
+  relation: exacerbating_factor
+  phrases: ["after too much coffee", "after a night out", "when I'm stressed"]
+  source: nhs_heart_palpitations
+
+- id: known_heart_condition
+  label: "Has a heart condition"
+  question: "Has a doctor told you that you have a heart condition? For example, heart failure, a heart valve problem or a heart rhythm problem."
+  question_carer: "Has a doctor told you that your child has a heart condition?"
+  kind: history
+  phrases: ["I have a heart condition", "heart valve problem", "heart failure"]
+  source: nhs_heart_palpitations
+
+- id: has_heart_rhythm_problem
+  label: "Has a heart rhythm problem, such as atrial fibrillation or SVT"
+  question: "Has a doctor told you that you have a heart rhythm problem? For example, atrial fibrillation (an irregular heartbeat), or SVT (episodes of a very fast heartbeat)."
+  kind: history
+  parent: known_heart_condition
+  relation: character
+  phrases: ["I have AF", "I have SVT", "irregular heartbeat diagnosed"]
+  source: nhs_svt
+
+- id: episode_longer_than_usual
+  label: "Episode of fast heartbeat lasting longer than usual"
+  question: "Has your fast heartbeat gone on for longer than it usually does this time?"
+  kind: symptom
+  asked_only_if: has_heart_rhythm_problem
+  seriousness: emergency_ambulance
+  phrases: ["it usually stops by now", "longer than normal"]
+  source: nhs_svt
+
+# ===========================================================================
+# Heart failure and anaemia signs
+# ===========================================================================
+- id: swollen_ankles
+  label: "Swollen feet, ankles or legs"
+  question: "Are your feet, ankles or legs swollen?"
+  checklist_text: "Swollen feet, ankles or legs"
+  kind: symptom
+  phrases: ["puffy ankles", "swollen legs", "shoes feel tight"]
+  source: nhs_heart_failure
+
+- id: sudden_weight_gain
+  label: "Suddenly put on weight"
+  question: "Have you suddenly put on weight over a few days?"
+  checklist_text: "Suddenly put on weight over a few days"
+  kind: symptom
+  seriousness: serious
+  phrases: ["put on weight quickly", "weight shot up"]
+  source: nhs_heart_failure
+
+- id: has_heart_failure
+  label: "Diagnosed with heart failure"
+  question: "Has a doctor told you that you have heart failure? This is when your heart cannot pump blood around your body as well as it should."
+  kind: history
+  parent: known_heart_condition
+  relation: character
+  phrases: ["I have heart failure", "my heart failure", "I'm on water tablets for my heart"]
+  source: nhs_heart_failure
+
+- id: heart_failure_worse
+  label: "Heart failure symptoms worse than usual"
+  question: "Are your heart failure symptoms worse than usual? For example, you are more out of breath, your feet or ankles are more swollen, or you have put on weight quickly."
+  kind: symptom
+  asked_only_if: has_heart_failure   # only makes sense for someone already diagnosed
+  seriousness: serious
+  phrases: ["my heart failure is playing up", "more breathless than normal", "ankles more swollen than usual"]
+  source: nhs_heart_failure
+
+- id: paler_than_usual
+  label: "Skin paler than usual for weeks or longer"
+  question: "Has your skin been paler than usual for weeks or longer?"
+  kind: symptom
+  phrases: ["look washed out", "people say I look pale"]
+  source: nhs_iron_deficiency_anaemia
+
+- id: heavy_periods
+  label: "Heavy periods"
+  question: "Do you have heavy periods?"
+  kind: history
+  sex: female
+  snomed: "386692008"
+  phrases: ["heavy periods", "flooding"]
+  source: nhs_iron_deficiency_anaemia
+
+# ===========================================================================
+# Things that make a blood clot or heart inflammation more likely
+# ===========================================================================
+- id: recent_surgery_or_immobile
+  label: "Operation, hospital stay or long time not moving, in the last 3 months"
+  question: "In the last 3 months, have you had an operation or been in hospital? Or have you been unable to move about much, for example after an injury?"
+  checklist_text: "An operation or hospital stay in the last 3 months, or unable to move about much"
+  kind: history
+  phrases: ["had an operation", "leg in plaster", "been in bed for weeks"]
+  source: ai_judgement
+
+- id: recent_long_journey
+  label: "Long journey of 4 hours or more in the last 4 weeks"
+  question: "In the last 4 weeks, have you been on a long journey of 4 hours or more? For example, a flight or car journey."
+  checklist_text: "A long journey of 4 hours or more in the last 4 weeks"
+  kind: history
+  phrases: ["long-haul flight", "long drive", "just flew back from Australia"]
+  source: nhs_pulmonary_embolism
+
+- id: previous_blood_clot
+  label: "Has had a blood clot before"
+  question: "Have you had a blood clot before, in your leg or lungs?"
+  checklist_text: "A blood clot before, in your leg or lungs"
+  kind: history
+  phrases: ["I had a DVT", "had a clot before", "blood clot in my lung last year"]
+  source: ai_judgement
+
+- id: pregnant_or_recently_given_birth
+  label: "Pregnant, or gave birth in the last 6 weeks"
+  question: "Are you pregnant, or have you given birth in the last 6 weeks?"
+  checklist_text: "Pregnant, or given birth in the last 6 weeks"
+  kind: history
+  sex: female
+  phrases: ["I'm pregnant", "just had a baby", "expecting"]
+  source: nhs_flu
+
+- id: pill_or_hrt
+  label: "Takes the combined pill or HRT"
+  question: "Do you take the combined pill for contraception, or HRT for the menopause?"
+  kind: history
+  sex: female
+  phrases: ["on the pill", "on HRT"]
+  source: ai_judgement
+
+- id: has_cancer
+  label: "Has cancer, or is having treatment for cancer"
+  question: "Do you have cancer, or are you having treatment for cancer?"
+  checklist_text: "Cancer, or having treatment for cancer"
+  kind: history
+  phrases: ["I have cancer", "on chemo", "having radiotherapy"]
+  source: ai_judgement
+
+- id: recent_viral_illness
+  label: "Cold, flu, COVID-19 or a similar illness in the last few weeks"
+  question: "Have you had a cold, flu, COVID-19 or a similar illness in the last few weeks?"
+  kind: history
+  phrases: ["had a virus recently", "just got over COVID", "had flu last week"]
+  source: ai_judgement
+
+# ===========================================================================
+# Added with the breathing condition cards: symptoms that have now stopped
+# ===========================================================================
+- id: cp_lasted_15_minutes
+  label: "Sudden chest pain that lasted 15 minutes or more, even if it has stopped"
+  question: "Did the chest pain come on suddenly and last for 15 minutes or more? Answer yes even if it has stopped now."
+  checklist_text: "Sudden chest pain that lasted 15 minutes or more, even if it has stopped"
+  kind: symptom
+  parent: chest_pain
+  relation: duration
+  seriousness: emergency
+  phrases: ["pain went on for half an hour", "lasted about 20 minutes", "pain for over 15 minutes this morning"]
+  source: nhs_pleurisy
+
+- id: palpitations_came_with_symptoms
+  label: "Palpitations came with chest pain, breathlessness or feeling faint, even if they have stopped"
+  question: "When your heart was racing or fluttering, did you also have chest pain, feel short of breath, feel faint or faint? Answer yes even if this has stopped now."
+  checklist_text: "Chest pain, shortness of breath, or feeling faint or fainting with it, even if it has stopped"
+  kind: symptom
+  parent: palpitations
+  relation: character
+  seriousness: serious
+  phrases: ["felt faint when my heart was racing", "had chest pain with it earlier", "it's stopped now but I felt breathless"]
+  source: nhs_heart_palpitations
+
+- id: shingles_eye_or_vision
+  label: "Shingles rash on or near the eye or nose, or changes to vision"
+  question: "Is the rash or painful patch on or near your eye or nose? Or have you noticed any changes to your vision?"
+  checklist_text: "A rash on or near your eye or nose, or changes to your vision"
+  kind: symptom
+  asked_only_if: rash_one_side_of_body
+  seriousness: serious
+  phrases: ["rash by my eye", "blisters on my nose", "my eye is red and sore", "blurry vision with the rash"]
+  source: nhs_shingles
+
+- id: family_sudden_death
+  label: "Family member died suddenly under 40, or has an inherited heart condition"
+  question: "Has anyone in your family died suddenly when they were under 40? Or been told they have a heart problem that runs in the family?"
+  question_carer: "Has anyone in the person's family died suddenly when they were under 40? Or been told they have a heart problem that runs in the family?"
+  kind: history
+  phrases: ["my uncle died suddenly at 30", "heart condition runs in the family"]
+  source: ai_judgement

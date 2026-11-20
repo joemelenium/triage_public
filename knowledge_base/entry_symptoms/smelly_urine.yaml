@@ -1,0 +1,129 @@
+# Entry symptom: smelly urine (pee).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: smelly_urine
+name: "Smelly urine"
+presenting_finding: smelly_urine
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: smelly_urine_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - skin_blotchy
+      - rash_does_not_fade
+      - breathing_very_fast
+      - vomiting
+      - breathing_deep_and_fast
+      - fruity_breath
+
+  - id: smelly_urine_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - blood_in_urine
+      - sa_low_down
+      - loin_pain
+      - feels_very_unwell
+      - very_high_temperature
+      - temperature_very_low
+      - very_thirsty
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: smelly_urine_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - peeing_more_often
+      - peeing_at_night_more
+      - pain_when_peeing
+      - cloudy_pee
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_su_drowsy
+    description: "Smelly pee and very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_urinary_tract_infections
+    note: "The Smelly urine page says an urgent GP appointment or 111 for feeling confused or agitated. The UTI page says 999 or A&E for confused, drowsy or difficulty speaking. The more urgent is used. Sudden confusion is in the universal red flags."
+
+  - id: rf_su_sepsis_skin
+    description: "Smelly pee with blotchy skin, or a rash that does not fade when pressed: possible sepsis"
+    when: {any: [skin_blotchy, rash_does_not_fade]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_su_sepsis_breathing
+    description: "Breathing very fast, with a high or very low temperature or shivering: possible sepsis"
+    when: {all: [breathing_very_fast, {any: [very_high_temperature, temperature_very_low]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Requiring a high or very low temperature is AI judgement, so that fast breathing from worry is not sent to A&E on its own."
+
+  - id: rf_su_diabetes_emergency
+    description: "Very thirsty, with being sick, fast deep breathing or fruity-smelling breath: possible diabetic ketoacidosis"
+    when: {all: [very_thirsty, {any: [vomiting, breathing_deep_and_fast, fruity_breath]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_diabetes_emergency
+    source: nhs_type_1_diabetes_symptoms
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_su_urgent_signs
+    description: "Smelly pee with blood in it, lower tummy pain, or pain in the back under the ribs"
+    when: {any: [blood_in_urine, sa_low_down, loin_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_smelly_urine
+
+  - id: rf_su_unwell_or_temperature
+    description: "Smelly pee and feeling unwell, a very high or very low temperature, or feeling hot, cold or shivery"
+    when: {any: [feels_very_unwell, very_high_temperature, temperature_very_low]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_smelly_urine
+    note: "The page says 'you feel tired and unwell'. The existing question about feeling very unwell is used."
+
+  - id: rf_su_thirsty_weight_loss
+    description: "Very thirsty, and losing weight or very tired: possible diabetes"
+    when: {all: [very_thirsty, {any: [weight_loss, very_tired]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    soft: true    # likely conditions may lower this: type 2 diabetes needs only a GP
+    note: "The Type 1 diabetes page says an urgent GP appointment or 111 if you think you have it. The Type 2 diabetes page says see a GP. The more urgent is used, marked soft. The Smelly urine page says type 2 diabetes can cause smelly pee."
+
+outcome_rules:
+  - id: or_su_uti_signs
+    description: "Smelly pee and needing to pee suddenly, more often or at night, pain or burning when peeing, or cloudy pee"
+    when: {any: [peeing_more_often, peeing_at_night_more, pain_when_peeing, cloudy_pee]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_smelly_urine_gp
+    source: nhs_smelly_urine
+    note: "The UTI page sends women aged 16 to 64 who are not pregnant to a pharmacist instead. The pain when peeing entry symptom applies once those signs are reported, with its own rules."
+
+  - id: or_su_thirsty
+    description: "Smelly pee and very thirsty all the time: possible diabetes"
+    when: very_thirsty
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_diabetes_gp
+    source: nhs_type_2_diabetes_symptoms
+
+default:
+  description: "Smelly pee with nothing else that needs help: drink more and see if it settles"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Smelly pee on its own is not usually a cause for concern"}
+  advice: advice_smelly_urine_self_care
+  source: nhs_smelly_urine

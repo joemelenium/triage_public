@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: normal_discharge
+body_system: womens_health
+entry_symptoms: [vaginal_discharge]
+name: "Normal changes in discharge, for example in pregnancy"
+medical_name: "Physiological vaginal discharge"
+# Clear or white discharge with no strong smell, that changes with the cycle.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: common
+findings:
+  discharge_clear_no_smell: strongly_supports
+  discharge_changes_with_cycle: strongly_supports
+  pregnant_now: supports
+  hormonal_contraception: supports
+key_findings: [discharge_clear_no_smell, discharge_changes_with_cycle]
+source: nhs_vaginal_discharge
+informed_by: [nhs_vaginal_discharge]

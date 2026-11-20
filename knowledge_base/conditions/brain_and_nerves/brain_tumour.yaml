@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: brain_tumour
+body_system: brain_and_nerves
+entry_symptoms: [headache, had_a_fit, weakness_or_paralysis]
+name: "Brain tumour warning signs"
+medical_name: "Neoplasm of brain"
+snomed: "126952004"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart: a headache that keeps getting worse over weeks, or is worst on waking, with being sick, seizures, or changes in personality.
+  headache_worse_over_time: strongly_supports
+  headache_on_waking: supports
+  personality_or_behaviour_change: supports
+  vomiting: supports
+  had_a_fit: supports
+  weakness_gradual: supports
+  headache_unlike_usual: supports
+  vision_change: supports
+key_findings: [headache_worse_over_time, headache_on_waking, personality_or_behaviour_change, weakness_gradual]
+source: nhs_brain_tumours
+informed_by: [nhs_brain_tumours, nhs_headaches]

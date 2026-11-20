@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: low_testosterone
+body_system: urinary_and_male
+entry_symptoms: [erection_problems, low_sex_drive]
+name: "Low testosterone (male hormone)"
+medical_name: "Male hypogonadism"
+snomed: "48723006"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: sex_female, prevalence: very_rare}
+findings:
+  low_testosterone_signs: strongly_supports
+  very_tired: supports
+  low_mood: supports
+  low_sex_drive: supports
+key_findings: [low_testosterone_signs, very_tired, low_sex_drive]
+source: nhs_male_menopause
+informed_by: [nhs_male_menopause, nhs_erection_problems_erectile_dysfunction, nhs_loss_of_libido]

@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: body_odour_from_another_condition
+body_system: skin_and_hair
+entry_symptoms: [body_odour]
+name: "A change in body smell from another health problem"
+medical_name: "Body odour change due to systemic illness"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+findings:
+  # What tells it apart from ordinary body odour: a change in how the body usually smells, or suddenly sweating much more than usual.
+  smell_changed: strongly_supports
+  sweating_suddenly_much_more: supports
+  very_tired: supports
+key_findings: [smell_changed, sweating_suddenly_much_more]
+source: nhs_body_odour_bo
+informed_by: [nhs_body_odour_bo]

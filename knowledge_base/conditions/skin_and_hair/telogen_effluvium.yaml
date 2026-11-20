@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: telogen_effluvium
+body_system: skin_and_hair
+entry_symptoms: [hair_loss]
+name: "Hair shedding after an illness, stress, having a baby or weight loss"
+medical_name: "Telogen effluvium"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a lot of hair falling out all over the head, a few months after an illness, stress, giving birth or losing weight. It usually grows back.
+  hair_shedding_after_illness_or_stress: strongly_supports
+  pregnant_or_recently_given_birth: supports
+  weight_loss: supports
+key_findings: [hair_shedding_after_illness_or_stress]
+source: nhs_hair_loss
+informed_by: [nhs_hair_loss]

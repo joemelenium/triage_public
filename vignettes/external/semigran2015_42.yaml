@@ -1,0 +1,17 @@
+id: semigran2015_42
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Stye
+original_triage_label: Self-care appropriate
+original_triage: self_care
+presenting_text: painful, swollen right eye for a day
+presenting: []
+age: 30
+sex: male
+findings:
+  present: []
+  absent: []
+  unknown: []
+conversion_notes: 'No findings match the question list. He denies trauma, crusting and change in vision, none of which has a matching question. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 42 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

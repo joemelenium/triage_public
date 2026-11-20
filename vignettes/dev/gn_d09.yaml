@@ -1,0 +1,66 @@
+id: gn_d09
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- weight_loss
+summary: A 52-year-old man who has lost about a stone over 3 months without trying, and has been waking with soaking night sweats for the last month. He has no cough, no fever, and no other symptoms.
+opening_statement: I've lost nearly a stone and I'm not dieting, and for the last few weeks I keep waking up drenched in sweat.
+findings:
+  present:
+  - weight_loss
+  - night_sweats
+  absent:
+  - very_high_temperature
+  - cough
+  - coughing_up_blood
+  - diarrhoea
+  - vomiting_blood
+  - bleeding_from_bottom
+  - difficulty_swallowing
+  - lump_neck_armpit_or_groin
+  - short_of_breath
+  - low_mood
+  - very_thirsty
+  - restless_shaky_hot
+  - eating_problem
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 52
+    sex: male
+  full:
+    age: 52
+    sex: male
+expected:
+  acuity: soon
+  level_of_care: general_practice
+  timeframe: few_days
+minimum_safe_acuity: routine
+red_flags:
+- description: Unintentional weight loss with night sweats
+  findings:
+  - weight_loss
+  - night_sweats
+  minimum_acuity: routine
+  source:
+    page: night_sweats.txt
+    quote: you have night sweats and you're losing weight for no reason
+safety_netting_should_cover:
+- point: See a GP as soon as possible
+  any_of:
+  - GP
+- point: Get help sooner if new symptoms appear
+  any_of:
+  - new symptoms
+  - get worse
+  - worse
+source:
+  expected_outcome:
+    page: unintentional_weight_loss.txt
+    quote: It's important to see a GP as soon as possible if you have weight loss and other symptoms.
+  minimum_safe_acuity:
+    page: night_sweats.txt
+    quote: you have night sweats and you're losing weight for no reason
+atypical: false
+notes: unintentional_weight_loss.txt says to see a GP 'as soon as possible' when weight loss comes with other symptoms, which is mapped to soon. night_sweats.txt lists the same combination under non-urgent advice, which sets the minimum safe acuity at routine. No question id exists for 'how much weight was lost', so the amount is in the summary only.

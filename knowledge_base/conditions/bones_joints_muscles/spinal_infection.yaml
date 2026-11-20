@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: spinal_infection
+body_system: bones_joints_muscles
+# Needs urgent blood tests and a scan. The emergency signs of pressure on the nerves are
+# caught by the rules.
+entry_symptoms: [back_pain, neck_pain, tailbone_pain]
+name: "An infection in the spine, such as a spinal abscess (a pocket of pus) or an infected disc"
+medical_name: "Spinal infection (vertebral osteomyelitis, discitis or spinal epidural abscess)"
+acuity_needed: urgent
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: has_diabetes, prevalence: uncommon}
+findings:
+  very_high_temperature: strongly_supports
+  feels_very_unwell: supports
+  cold_or_shivery: supports
+  pain_worse_at_night_or_rest: supports
+  severe_pain: supports
+key_findings: [very_high_temperature, feels_very_unwell, pain_worse_at_night_or_rest, weakened_immune_system]
+source: ai_judgement
+informed_by: [nhs_back_pain, nhs_osteomyelitis]

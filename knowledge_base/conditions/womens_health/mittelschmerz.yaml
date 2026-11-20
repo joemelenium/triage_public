@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mittelschmerz
+body_system: womens_health
+entry_symptoms: [ovulation_pain, pelvic_pain]
+name: "Ovulation pain (pain when an egg is released, between periods)"
+medical_name: "Mittelschmerz"
+snomed: "43548008"
+# One-sided pain about 2 weeks before a period, lasting minutes to 2 days and
+# switching sides.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: uncommon
+prevalence_when:
+  - {finding: ovulation_pain, prevalence: very_common}
+findings:
+  one_sided_lower_tummy_pain: strongly_supports
+  ovulation_pain: strongly_supports
+  pain_switches_sides: supports
+  pain_lasts_minutes_to_2_days: supports
+key_findings: [pain_switches_sides, pain_lasts_minutes_to_2_days]
+source: nhs_ovulation_pain
+informed_by: [nhs_ovulation_pain]

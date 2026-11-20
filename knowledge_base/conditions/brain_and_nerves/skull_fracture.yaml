@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: skull_fracture
+body_system: brain_and_nerves
+entry_symptoms: [head_injury]
+name: "Broken skull (a crack or break in the bone of the head)"
+medical_name: "Fracture of skull"
+snomed: "71642004"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # The Head injury page sends these signs to A&E: fluid or blood from the ears
+  # or nose, bruising behind the ears or around the eyes, a dent in the head.
+  skull_injury_signs: strongly_supports
+  head_injury_high_force: supports
+  head_bruise_swelling_or_cut: supports
+  hearing_loss: supports
+  headache: supports
+key_findings: [skull_injury_signs, head_injury_high_force]
+source: nhs_head_injury
+informed_by: [nhs_head_injury]

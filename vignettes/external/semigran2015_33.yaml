@@ -1,0 +1,18 @@
+id: semigran2015_33
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Acute conjunctivitis
+original_triage_label: Self-care appropriate
+original_triage: self_care
+presenting_text: red, irritated eyes with watery discharge for 3 days
+presenting: []
+age: 14
+sex: male
+findings:
+  present: []
+  absent:
+  - weakened_immune_system
+  unknown: []
+conversion_notes: '''No significant past medical history'' is mapped to weakened_immune_system absent. ''Recent upper respiratory symptoms'' are not specified, so nothing is mapped from them. The tender preauricular lymph node (in front of the ear) is not mapped to lump_in_mouth_or_neck. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 33 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

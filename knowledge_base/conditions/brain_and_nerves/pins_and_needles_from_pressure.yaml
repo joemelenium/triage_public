@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pins_and_needles_from_pressure
+body_system: brain_and_nerves
+entry_symptoms: [pins_and_needles]
+name: "Pins and needles from pressure, such as sitting on a leg"
+medical_name: "Transient paraesthesia from pressure"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # The usual cause of pins and needles. It goes within a few minutes of moving.
+  pins_needles_after_pressure: strongly_supports
+  # Usually in an arm or a leg that was pressed on (added at the merge).
+  arm_hand_tingling: supports
+  leg_numb_or_tingling: supports
+key_findings: [pins_needles_after_pressure]
+source: nhs_pins_and_needles
+informed_by: [nhs_pins_and_needles]

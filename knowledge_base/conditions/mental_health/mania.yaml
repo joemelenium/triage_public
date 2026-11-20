@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mania
+body_system: mental_health
+entry_symptoms: [agitated_or_out_of_control, hearing_or_seeing_things]
+name: "Mania (a very high mood, often part of bipolar, where mood swings between very high and very low)"
+medical_name: "Mania"
+snomed: "231494001"
+# Urgent: mania can lead to harmful behaviour and needs same-day mental health
+# help (AI judgement; the Bipolar disorder page points to urgent help).
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_bipolar, prevalence: very_common}
+  - {finding: agitated_or_out_of_control, prevalence: common}
+findings:
+  high_mood_now: strongly_supports
+  risky_out_of_character_behaviour: strongly_supports
+  not_slept_for_nights: supports
+  muddled_thinking: supports
+  believes_things_not_true: supports
+  aggressive_or_violent: supports
+key_findings: [high_mood_now, risky_out_of_character_behaviour, not_slept_for_nights, has_bipolar]
+source: nhs_bipolar
+informed_by: [nhs_bipolar]

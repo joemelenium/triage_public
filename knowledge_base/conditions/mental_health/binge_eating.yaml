@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: binge_eating
+body_system: mental_health
+entry_symptoms: [eating_problem]
+name: "Binge eating (often eating very large amounts and feeling out of control)"
+medical_name: "Binge eating disorder"
+snomed: "439960005"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  binge_eating: strongly_supports
+  eating_in_secret: strongly_supports
+  feeling_worthless_or_guilty: supports
+  low_mood: supports
+key_findings: [binge_eating, eating_in_secret, making_self_sick]
+source: nhs_binge_eating
+informed_by: [nhs_binge_eating, nhs_eating_disorders]

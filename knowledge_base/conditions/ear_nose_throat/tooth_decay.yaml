@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tooth_decay
+body_system: ear_nose_throat
+entry_symptoms: [toothache, bad_breath]
+name: "Tooth decay (a hole in a tooth)"
+medical_name: "Dental caries"
+snomed: "80967001"
+acuity_needed: routine
+level_of_care: dental
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: a sharp pain with hot, cold or sweet things, and a hole or dark spot on the
+  # tooth.
+  tooth_hole_or_spots: strongly_supports
+  tooth_sensitive: strongly_supports
+  toothache: strongly_supports
+  toothache_over_2_days: supports
+  bad_breath: supports
+key_findings: [tooth_sensitive, tooth_hole_or_spots]
+source: nhs_tooth_decay
+informed_by: [nhs_tooth_decay, nhs_toothache]

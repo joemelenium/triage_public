@@ -1,0 +1,58 @@
+id: bn_d01
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [headache]
+
+summary: "A 52-year-old woman got a sudden, extremely painful headache while lifting a heavy box an hour ago. It is the worst headache of her life, with a stiff neck, vomiting and light hurting her eyes."
+
+opening_statement: "I was lifting a box and suddenly got this horrendous headache, like I'd been hit on the back of the head. I've been sick and the light is really hurting."
+
+findings:
+  present: [headache, headache_sudden_severe, very_painful_headache, headache_unlike_usual, stiff_neck, bothered_by_light, nausea_or_vomiting]
+  absent: [had_a_fit, numbness_or_weakness, difficulty_speaking, sudden_confusion, drowsy_hard_to_wake, head_injury_last_3_months, very_high_temperature, rash_does_not_fade, vision_change, has_migraine, headaches_regular, takes_blood_thinners]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 52, sex: female}
+  full:
+    age: 52
+    sex: female
+    findings: {has_migraine: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Sudden, extremely painful headache (thunderclap)"
+    findings: [headache_sudden_severe]
+    minimum_acuity: emergency
+    source: {page: subarachnoid_haemorrhage.txt, quote: "gets a sudden headache that is extremely painful and does not go away"}
+  - description: "Headache with a stiff neck and light hurting the eyes"
+    findings: [stiff_neck, bothered_by_light]
+    minimum_acuity: emergency
+    source: {page: headaches.txt, quote: "has a very high temperature, a stiff neck, or bright lights are bothering you"}
+
+safety_netting_should_cover:
+  - point: "Call 999 now"
+    any_of: ["999"]
+  - point: "Not to drive herself to hospital"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: headaches.txt, quote: "it started suddenly and is extremely painful"}
+  minimum_safe_acuity: {page: subarachnoid_haemorrhage.txt, quote: "It's a life-threatening emergency that needs treatment in hospital as soon as possible."}
+
+variants:
+  - id: bn_d01_v1
+    style: "brief and frightened"
+    opening_statement: "Worst headache of my life, came out of nowhere."
+    volunteered: [headache_sudden_severe]
+
+atypical: false
+notes: "Thunderclap headache. headaches.txt says 'Call 999 or go to A&E'; subarachnoid_haemorrhage.txt says 'Call 999'. Ambulance chosen because she is vomiting and in severe pain. The question list has no id for 'came on during exertion such as lifting'; it is in the summary only."

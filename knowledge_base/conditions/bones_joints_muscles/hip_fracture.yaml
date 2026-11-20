@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hip_fracture
+body_system: bones_joints_muscles
+# Mostly older people after a fall. Some can still walk at first.
+entry_symptoms: [hip_pain, injury_or_fall]
+name: "A broken hip"
+medical_name: "Fracture of neck of femur (hip fracture)"
+snomed: "5913000"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: has_osteoporosis_or_steroids, prevalence: uncommon}
+findings:
+  injury_or_fall: strongly_supports
+  cannot_bear_weight: strongly_supports
+  had_a_fall: supports
+  severe_pain: supports
+  leg_short_or_turned_out: supports
+key_findings: [had_a_fall, cannot_bear_weight, leg_short_or_turned_out]
+source: nhs_hip_fracture
+informed_by: [nhs_hip_fracture, nhs_hip_pain, nhs_osteoporosis]

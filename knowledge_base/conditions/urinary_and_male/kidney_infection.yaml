@@ -1,0 +1,41 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: kidney_infection
+body_system: urinary_and_male
+# A kidney infection can cause sepsis if not treated. The page says an urgent GP
+# appointment or 111 with a high temperature or back pain.
+entry_symptoms: [very_high_temperature, generally_unwell, stomach_ache, diarrhoea_or_vomiting, feeling_sick, back_pain, painful_or_frequent_peeing, smelly_urine, blood_in_urine, bedwetting, urinary_incontinence]
+name: "Kidney infection"
+medical_name: "Pyelonephritis"
+snomed: "45816000"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: common}
+  - {finding: has_urinary_catheter, prevalence: common}
+  - {finding: painful_or_frequent_peeing, prevalence: uncommon}
+  - {finding: smelly_urine, prevalence: uncommon}
+  - {finding: blood_in_urine, prevalence: uncommon}
+  - {finding: bedwetting, prevalence: rare}
+  - {finding: urinary_incontinence, prevalence: rare}
+findings:
+  # What tells it apart from a bladder infection: pain in the back just under the ribs, a high
+  # temperature with shivering, and being sick.
+  loin_pain: strongly_supports
+  very_high_temperature: strongly_supports
+  pain_when_peeing: supports
+  cold_or_shivery: supports
+  nausea_or_vomiting: supports
+  peeing_more_often: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  vomiting: supports
+  feels_very_unwell: supports
+key_findings: [loin_pain, pain_when_peeing, cold_or_shivery, very_high_temperature, nausea_or_vomiting]
+source: nhs_kidney_infection
+informed_by: [nhs_kidney_infection, nhs_urinary_tract_infections, nhs_smelly_urine]
+# Merged with the urinary_and_male card for this condition. Its notes:
+# The Kidney infection page asks for an urgent GP appointment or 111 for its main
+# signs, because it can lead to sepsis. Danger serious.
+# What tells it apart from a bladder infection: a high temperature or shivering,
+# pain in the back or side under the ribs, and feeling or being sick.

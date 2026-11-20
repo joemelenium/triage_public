@@ -1,0 +1,1509 @@
+# Observations: skin and hair (rashes, itching, lumps, hair, nails, sweating,
+# bites and stings, burns, cuts and wounds, yellow skin).
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Shared observations used here that live in other files, and are reused rather
+# than repeated:
+#   breathing.yaml        raised_itchy_rash (now also the main symptom for hives),
+#                         rash_does_not_fade, skin_blotchy, feels_very_unwell,
+#                         seriously_unwell_getting_worse, child_floppy_or_hard_to_wake,
+#                         breathing_very_fast, child_struggling_to_breathe,
+#                         lips_tongue_throat_swelling, throat_tight, after_allergy_trigger,
+#                         baby_high_temperature, cold_or_shivery, not_peed_12_hours,
+#                         feeding_much_less, had_a_fit, has_allergies, aching_body,
+#                         weight_loss, night_sweats, finger_clubbing,
+#                         symptoms_worse_or_not_better
+#   ear_nose_throat.yaml  very_high_temperature, difficulty_breathing, unable_to_swallow,
+#                         dehydration_signs, weakened_immune_system, swollen_neck_glands,
+#                         cough_or_runny_nose, worried_about_symptoms, very_tired
+#   chest_and_heart.yaml  rash_one_side_of_body, light_headed, sweating, nausea_or_vomiting,
+#                         heart_beating_very_fast, fainted, chest_pain, paler_than_usual,
+#                         heavy_periods, has_cancer, pregnant_or_recently_given_birth
+#   general.yaml          lips_or_skin_blue_grey, passed_out, sudden_confusion,
+#                         heavy_bleeding, age bands, sex
+#
+# Fields: see observations/general.yaml.
+
+# ===========================================================================
+# Main symptoms (one per entry symptom)
+# ===========================================================================
+- id: rash
+  label: "Rash or spots on the skin"
+  question: "Do you have a rash or spots on your skin?"
+  question_carer: "Does your child have a rash or spots on their skin?"
+  checklist_text: "A rash or spots on the skin"
+  kind: presenting
+  snomed: "271807003"
+  phrases: ["rash", "spots", "blotches on my skin", "red patches"]
+  source: nhs_rashes_babies_and_children
+
+- id: itchy_skin
+  label: "Itchy skin"
+  question: "Is your skin itchy?"
+  question_carer: "Is your child's skin itchy?"
+  checklist_text: "Itchy skin"
+  kind: presenting
+  phrases: ["itchy", "itching all over", "can't stop scratching"]
+  source: nhs_itchy_skin
+
+- id: skin_lump
+  label: "Lump or growth on or under the skin"
+  question: "Do you have a lump, bump or growth on or under your skin?"
+  question_carer: "Does your child have a lump, bump or growth on or under their skin?"
+  checklist_text: "A lump or growth on or under the skin"
+  kind: presenting
+  phrases: ["lump under my skin", "a growth", "a bump", "new mole"]
+  source: nhs_lumps
+
+- id: hair_loss
+  label: "Hair loss"
+  question: "Are you losing hair, or has your hair become thinner?"
+  question_carer: "Is your child losing hair?"
+  kind: presenting
+  snomed: "56317004"
+  phrases: ["hair falling out", "going bald", "bald patch", "thinning hair"]
+  source: nhs_hair_loss
+
+- id: excess_hair_growth
+  label: "Too much hair growth (thick, dark hair on the face or body)"
+  question: "Do you have thick, dark hair growing on your face, neck, chest, tummy, lower back, bottom or thighs?"
+  kind: presenting
+  snomed: "399939002"
+  phrases: ["facial hair", "hairy chin", "too much body hair"]
+  source: nhs_hirsutism
+
+- id: nail_problem
+  label: "Problem with a fingernail or toenail"
+  question: "Do you have a problem with a fingernail or toenail? For example, it has changed colour or shape, is thick or brittle, or is coming off."
+  question_carer: "Does your child have a problem with a fingernail or toenail?"
+  kind: presenting
+  snomed: "247491004"
+  phrases: ["nail has gone yellow", "thick toenail", "nail falling off"]
+  source: nhs_nail_problems
+
+- id: sweating_a_lot
+  label: "Sweating too much"
+  question: "Do you sweat a lot more than you need to, even when you are not hot or exercising?"
+  kind: presenting
+  snomed: "52613005"
+  phrases: ["sweat too much", "always sweaty", "sweaty hands"]
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: blushing
+  label: "Blushing or a red face"
+  question: "Do you blush, or does your face go red, a lot?"
+  kind: presenting
+  snomed: "271812002"
+  phrases: ["going red", "blushing", "face flushing"]
+  source: nhs_blushing
+
+- id: body_odour
+  label: "Body odour"
+  question: "Are you worried about body odour (how your body smells)?"
+  kind: presenting
+  snomed: "81917002"
+  phrases: ["BO", "I smell", "sweat smells bad"]
+  source: nhs_body_odour_bo
+
+- id: smelly_feet
+  label: "Smelly feet"
+  question: "Do your feet smell?"
+  kind: presenting
+  phrases: ["smelly feet", "feet stink"]
+  source: nhs_smelly_feet
+
+- id: stretch_marks
+  label: "Stretch marks"
+  question: "Do you have stretch marks? These are lines or streaks across the skin."
+  kind: presenting
+  snomed: "201066002"
+  phrases: ["stretch marks", "lines on my tummy"]
+  source: nhs_stretch_marks
+
+- id: insect_bite_or_sting
+  label: "Insect bite or sting"
+  question: "Have you been bitten or stung by an insect, such as a bee, wasp, mosquito or tick?"
+  question_carer: "Has your child been bitten or stung by an insect, such as a bee, wasp, mosquito or tick?"
+  checklist_text: "An insect bite or sting"
+  kind: presenting
+  snomed: "276433004"
+  phrases: ["bee sting", "wasp sting", "bitten by something", "mosquito bite"]
+  source: nhs_insect_bites
+
+- id: burn
+  label: "Burn or scald"
+  question: "Do you have a burn or scald?"
+  question_carer: "Does your child have a burn or scald?"
+  kind: presenting
+  snomed: "284196006"
+  phrases: ["burnt my hand", "scalded", "burn from the oven"]
+  source: nhs_burns
+
+- id: cut_or_wound
+  label: "Cut, graze, bite wound or other wound"
+  question: "Do you have a cut, graze or other wound, including a bite from an animal or person?"
+  question_carer: "Does your child have a cut, graze or other wound, including a bite from an animal or person?"
+  kind: presenting
+  snomed: "262526004"
+  phrases: ["cut my finger", "graze", "dog bit me", "wound"]
+  source: nhs_cuts_and_grazes
+
+- id: yellow_skin_or_eyes
+  label: "Yellow skin or yellow whites of the eyes (jaundice)"
+  question: "Have your skin or the whites of your eyes turned yellow?"
+  question_carer: "Have your child's skin or the whites of their eyes turned yellow?"
+  checklist_text: "Yellow skin, or yellow whites of the eyes"
+  kind: presenting
+  snomed: "18165001"
+  phrases: ["skin looks yellow", "yellow eyes", "jaundice"]
+  source: nhs_jaundice
+
+# ===========================================================================
+# What the rash looks like and where it is (only asked if there is a rash)
+# ===========================================================================
+- id: rash_itchy
+  label: "Rash is itchy"
+  question: "Is the rash itchy?"
+  question_carer: "Does your child's rash seem itchy?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["itchy rash", "keeps scratching it"]
+  source: nhs_rashes_babies_and_children
+
+- id: rash_sore_or_painful
+  label: "Rash is sore or painful"
+  question: "Is the rash sore or painful?"
+  question_carer: "Does your child's rash seem sore or painful?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["sore rash", "rash hurts", "raw skin"]
+  source: nhs_rashes_babies_and_children
+
+- id: rash_blisters
+  label: "Blisters or fluid-filled spots"
+  question: "Does the rash have blisters or spots filled with fluid?"
+  question_carer: "Does your child's rash have blisters or spots filled with fluid?"
+  kind: symptom
+  parent: rash
+  relation: character
+  snomed: "823996003"
+  phrases: ["blisters", "watery spots", "spots filled with fluid"]
+  source: nhs_rashes_babies_and_children
+
+- id: spots_blisters_and_scabs
+  label: "Small itchy spots that turn into blisters, then scabs"
+  question: "Did small itchy spots turn into blisters and then scabs, with new spots still coming?"
+  question_carer: "Did your child get small itchy spots that turned into blisters and then scabs, with new spots still coming?"
+  kind: symptom
+  parent: rash_blisters
+  relation: character
+  phrases: ["spots then blisters", "scabby spots", "looks like chickenpox"]
+  source: nhs_chickenpox
+
+- id: rash_crusty_golden
+  label: "Sores or blisters that burst and leave crusty, golden-brown patches"
+  question: "Are there sores or blisters that burst and leave crusty, golden-brown patches, often around the nose and mouth?"
+  question_carer: "Does your child have sores or blisters that burst and leave crusty, golden-brown patches, often around the nose and mouth?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["crusty sores", "looks like cornflakes on the skin", "golden crust"]
+  source: nhs_impetigo
+
+- id: rash_dry_cracked
+  label: "Dry, cracked, scaly skin"
+  question: "Is the skin in the rash dry, cracked or scaly?"
+  question_carer: "Is the skin in your child's rash dry, cracked or scaly?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["dry cracked skin", "flaky patches"]
+  source: nhs_atopic_eczema
+
+- id: rash_in_skin_creases
+  label: "Rash in the skin creases (inside elbows, behind knees, neck), or on a baby's face"
+  question: "Is the rash in the creases of the skin, such as inside the elbows, behind the knees or on the neck? In a baby, is it on the cheeks?"
+  question_carer: "Is your child's rash in the creases of the skin, such as inside the elbows, behind the knees or on the neck? In a baby, is it on the cheeks?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["behind my knees", "in the folds of my elbows"]
+  source: nhs_atopic_eczema
+
+- id: rash_comes_and_goes
+  label: "Rash comes and goes, with flare-ups"
+  question: "Does the rash come and go, with times when it flares up and times when it is better?"
+  question_carer: "Does your child's rash come and go, with times when it flares up and times when it is better?"
+  kind: symptom
+  parent: rash
+  relation: duration
+  phrases: ["flares up", "keeps coming back"]
+  source: nhs_atopic_eczema
+
+- id: rash_silvery_scaly_patches
+  label: "Raised patches with silvery-white scales"
+  question: "Are there raised, flaky patches covered in silvery-white scales? On brown or black skin they may look grey."
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["silvery scales", "scaly plaques", "flaky patches"]
+  source: nhs_psoriasis
+
+- id: rash_on_elbows_knees_scalp
+  label: "Patches on the outside of the elbows or knees, or on the scalp"
+  question: "Are the patches on the outside of your elbows or knees, on your scalp, or on your lower back?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["on my elbows and knees", "on my scalp"]
+  source: nhs_psoriasis
+
+- id: rash_where_skin_touched_something
+  label: "Rash where the skin touched something, such as a soap, metal, plant or chemical"
+  question: "Is the rash where your skin touched something? For example, soap, cream, metal, a plant or a chemical."
+  question_carer: "Is your child's rash where their skin touched something, such as a soap, cream, metal, a plant or a chemical?"
+  kind: symptom
+  parent: rash
+  relation: exacerbating_factor
+  phrases: ["after new washing powder", "where my watch strap is", "after using a new cream"]
+  source: nhs_contact_dermatitis
+
+- id: rash_after_heat
+  label: "Small itchy or prickly spots after being hot or sweaty"
+  question: "Did small, itchy or prickly spots come on after being hot or sweating a lot?"
+  question_carer: "Did your child get small, itchy or prickly spots after being hot or sweating a lot?"
+  kind: symptom
+  parent: rash
+  relation: exacerbating_factor
+  phrases: ["prickly heat", "after a hot day", "came up in the heat"]
+  source: nhs_heat_rash
+
+- id: rash_sandpaper
+  label: "Rash of small raised bumps that feels rough, like sandpaper"
+  question: "Is the rash made of small raised bumps that feel rough, like sandpaper? It often starts on the chest and tummy."
+  question_carer: "Is your child's rash made of small raised bumps that feel rough, like sandpaper? It often starts on the chest and tummy."
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["feels like sandpaper", "rough rash"]
+  source: nhs_scarlet_fever
+
+- id: bright_red_cheeks
+  label: "Bright red rash on one or both cheeks"
+  question: "Is there a bright red rash on one or both cheeks, as if they have been slapped?"
+  question_carer: "Does your child have a bright red rash on one or both cheeks, as if they have been slapped?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["red cheeks", "looks like they've been slapped"]
+  source: nhs_slapped_cheek
+
+- id: spots_hands_feet_and_mouth_ulcers
+  label: "Spots or blisters on the hands and feet, with ulcers in the mouth"
+  question: "Are there spots or blisters on the hands and feet, and sore ulcers in the mouth?"
+  question_carer: "Does your child have spots or blisters on their hands and feet, and sore ulcers in their mouth?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["spots on hands and feet", "mouth ulcers and spots"]
+  source: nhs_hand_foot_mouth
+
+- id: rash_started_on_face_spread_down
+  label: "Rash started on the face or behind the ears and spread down the body"
+  question: "Did the rash start on the face or behind the ears, then spread to the rest of the body?"
+  question_carer: "Did your child's rash start on their face or behind their ears, then spread to the rest of their body?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["started behind the ears", "spread from the face down"]
+  source: nhs_measles
+
+- id: rash_ring_shaped_scaly
+  label: "Itchy, dry, ring-shaped patch"
+  question: "Is there an itchy, dry, ring-shaped patch of skin?"
+  question_carer: "Does your child have an itchy, dry, ring-shaped patch of skin?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["ring-shaped rash", "circle of rash", "ringworm"]
+  source: nhs_ringworm
+
+- id: rash_on_legs_and_bottom
+  label: "Raised red or purple spots like small bruises on the legs and bottom"
+  question: "Are there raised red or purple spots, like small bruises, mainly on the legs and bottom?"
+  question_carer: "Does your child have raised red or purple spots, like small bruises, mainly on their legs and bottom?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["bruise-like spots on legs", "purple spots on bottom"]
+  source: nhs_hsp
+
+- id: rash_in_nappy_area
+  label: "Red, sore patches in the nappy area"
+  question: "Is the rash in the nappy area, with red or sore patches on the bottom?"
+  question_carer: "Is your baby's rash in the nappy area, with red or sore patches on their bottom?"
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["nappy rash", "sore bottom"]
+  source: nhs_nappy_rash
+
+- id: rash_circles_darker_middle
+  label: "Round patches that are darker in the middle and lighter around the outside"
+  question: "Is the rash made of round patches that are darker in the middle and lighter around the outside?"
+  question_carer: "Is your child's rash made of round patches that are darker in the middle and lighter around the outside?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["target-shaped spots", "rings with a dark centre"]
+  source: nhs_stevens_johnson
+
+- id: one_patch_then_many_smaller
+  label: "One larger scaly patch first, then many smaller patches"
+  question: "Did one big, scaly patch come first? Then, a few days later, lots of small patches on the body?"
+  kind: symptom
+  parent: rash
+  relation: character
+  phrases: ["one big patch then lots of small ones"]
+  source: nhs_pityriasis_rosea
+
+- id: rash_spreading
+  label: "Rash spreading"
+  question: "Is the rash spreading?"
+  question_carer: "Is your child's rash spreading?"
+  checklist_text: "The rash is spreading"
+  kind: symptom
+  phrases: ["rash is spreading", "getting bigger", "all over now"]
+  source: nhs_hives
+
+- id: rash_bullseye
+  label: "Round or oval rash, like a bullseye, after a tick bite"
+  question: "Do you have a round or oval rash that may look like a bullseye on a dartboard? On brown or black skin it may look like a bruise."
+  question_carer: "Does your child have a round or oval rash that may look like a bullseye on a dartboard?"
+  checklist_text: "A round or oval rash, like a bullseye"
+  kind: symptom
+  phrases: ["bullseye rash", "ring around the bite"]
+  source: nhs_lyme_disease
+
+- id: skin_peeling_or_blistering_widely
+  label: "Skin blistering or peeling over a large area"
+  question: "Is the skin blistering or peeling over a large area? Or does it come away easily?"
+  question_carer: "Is your child's skin blistering or peeling over a large area? Or does it come away easily?"
+  checklist_text: "Skin blistering or peeling over a large area"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["skin peeling off", "big blisters everywhere"]
+  source: nhs_stevens_johnson
+
+- id: sores_mouth_eyes_or_genitals
+  label: "Sores or blisters in the mouth, on the lips, eyes or genitals, with a rash"
+  question: "Do you have painful sores or blisters on your lips, in your mouth, in your eyes or on your genitals?"
+  question_carer: "Does your child have painful sores or blisters on their lips, in their mouth, in their eyes or on their genitals?"
+  checklist_text: "Painful sores or blisters on the lips, mouth, eyes or genitals"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["sores in my mouth and eyes", "lips blistered"]
+  source: nhs_stevens_johnson
+
+- id: sore_mouth_or_mouth_ulcers
+  label: "Sore mouth or mouth ulcers"
+  question: "Do you have a sore mouth or mouth ulcers?"
+  question_carer: "Does your child have a sore mouth or mouth ulcers?"
+  kind: symptom
+  phrases: ["mouth ulcers", "sore mouth", "won't eat because mouth hurts"]
+  source: nhs_hand_foot_mouth
+
+- id: contact_with_measles
+  label: "Close contact with someone who has measles"
+  question: "Have you been in close contact with someone who has measles in the last 3 weeks?"
+  question_carer: "Has your child been in close contact with someone who has measles in the last 3 weeks?"
+  checklist_text: "Close contact with someone who has measles"
+  kind: history
+  phrases: ["measles at school", "friend had measles"]
+  source: nhs_measles
+
+- id: not_had_mmr_vaccine
+  label: "Not had 2 doses of the MMR or MMRV vaccine"
+  question: "Have you missed either of the 2 doses of the MMR or MMRV vaccine, or are you not sure?"
+  question_carer: "Has your child missed either of the 2 doses of the MMR or MMRV vaccine, or are you not sure?"
+  kind: history
+  phrases: ["not vaccinated", "missed the MMR"]
+  source: nhs_measles
+
+- id: contact_with_chickenpox
+  label: "Close contact with someone who has chickenpox or shingles"
+  question: "Have you been near someone with chickenpox or shingles in the last 3 weeks?"
+  question_carer: "Has your child been near someone with chickenpox or shingles in the last 3 weeks?"
+  kind: history
+  phrases: ["chickenpox going round nursery", "sister has chickenpox"]
+  source: nhs_chickenpox
+
+# ===========================================================================
+# Eczema and psoriasis that are already diagnosed
+# ===========================================================================
+- id: has_eczema
+  label: "Diagnosed with eczema"
+  question: "Has a doctor told you that you have eczema?"
+  question_carer: "Has a doctor told you that your child has eczema?"
+  kind: history
+  phrases: ["I have eczema", "my eczema"]
+  source: nhs_atopic_eczema
+
+- id: eczema_infected_signs
+  label: "Eczema weeping, crusty, painful or warm, or with spots of pus"
+  question: "Is your eczema leaking fluid, crusty, painful, swollen or warm? Or does it have spots filled with pus?"
+  question_carer: "Is your child's eczema leaking fluid, crusty, painful, swollen or warm? Or does it have spots filled with pus?"
+  checklist_text: "Eczema that is leaking, crusty, painful, warm or has spots of pus"
+  kind: symptom
+  asked_only_if: has_eczema
+  seriousness: serious
+  phrases: ["eczema is weeping", "eczema looks infected"]
+  source: nhs_atopic_eczema
+
+- id: eczema_painful_blisters_sudden
+  label: "Eczema suddenly much worse and painful, with clusters of blisters or open sores"
+  question: "Has your eczema suddenly got much worse and painful? Are there groups of small blisters or open sores?"
+  question_carer: "Has your child's eczema suddenly got much worse and painful? Are there groups of small blisters or open sores?"
+  checklist_text: "Eczema suddenly much worse and painful, with clusters of blisters or sores"
+  kind: symptom
+  asked_only_if: has_eczema
+  seriousness: serious
+  phrases: ["eczema suddenly flared with blisters", "punched-out sores"]
+  source: nhs_atopic_eczema
+
+- id: has_psoriasis
+  label: "Diagnosed with psoriasis"
+  question: "Has a doctor told you that you have psoriasis?"
+  kind: history
+  phrases: ["I have psoriasis", "my psoriasis"]
+  source: nhs_psoriasis
+
+- id: psoriasis_pus_bumps
+  label: "Psoriasis turned red quickly with white, pus-filled bumps"
+  question: "Has your skin quickly turned red with white, pus-filled bumps? Or are there pus-filled patches on your feet or fingertips?"
+  checklist_text: "Skin quickly turned red with white bumps filled with pus"
+  kind: symptom
+  asked_only_if: has_psoriasis
+  seriousness: emergency
+  phrases: ["pus spots all over", "psoriasis full of pus"]
+  source: nhs_psoriasis
+
+- id: redness_spreading
+  label: "Redness or swelling spreading"
+  question: "Is the redness or swelling spreading?"
+  question_carer: "Is the redness or swelling on your child's skin spreading?"
+  checklist_text: "Redness or swelling that is spreading"
+  kind: symptom
+  parent: swollen_area_red_hot
+  relation: severity
+  seriousness: serious
+  phrases: ["red line going up my arm", "redness getting bigger"]
+  source: nhs_skin_abscess
+
+- id: pus_or_fluid_leaking
+  label: "Pus or fluid leaking"
+  question: "Is pus or fluid leaking from it?"
+  question_carer: "Is pus or fluid leaking from it?"
+  checklist_text: "Pus or fluid leaking out"
+  kind: symptom
+  phrases: ["pus coming out", "weeping", "oozing"]
+  source: nhs_cuts_and_grazes
+
+- id: pain_much_worse_than_expected
+  label: "Pain much worse than you would expect"
+  question: "Is the pain much worse than you would expect, for example from a small cut or a red patch of skin?"
+  question_carer: "Does your child's pain seem much worse than you would expect, for example from a small cut or a red patch of skin?"
+  checklist_text: "Pain much worse than you would expect"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["agony from a small cut", "worst pain ever", "pain out of all proportion"]
+  source: nhs_necrotising_fasciitis
+
+- id: purple_black_patches_on_skin
+  label: "Black, purple or grey patches or blisters near a wound or red area"
+  question: "Are there black, purple or grey patches, or blisters, near a wound or a red or swollen area of skin?"
+  question_carer: "Are there black, purple or grey patches, or blisters, near your child's wound or a red or swollen area of their skin?"
+  checklist_text: "Black, purple or grey patches or blisters near a wound or red area"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["skin going black", "purple blotches around the cut"]
+  source: nhs_necrotising_fasciitis
+
+# ===========================================================================
+# Itching
+# ===========================================================================
+- id: itch_worse_at_night
+  label: "Itching worse at night"
+  question: "Is the itching worse at night?"
+  question_carer: "Is your child's itching worse at night?"
+  kind: symptom
+  parent: itchy_skin
+  relation: exacerbating_factor
+  phrases: ["itchy at night", "keeps me awake"]
+  source: nhs_scabies
+
+- id: itchy_palms_and_soles
+  label: "Itchy palms or soles in pregnancy"
+  question: "Are the palms of your hands or the soles of your feet itchy?"
+  checklist_text: "Itchy palms of the hands or soles of the feet"
+  kind: symptom
+  parent: itchy_skin
+  relation: location
+  asked_only_if: pregnant_or_recently_given_birth
+  seriousness: serious
+  phrases: ["itchy hands and feet", "palms itch"]
+  source: nhs_cholestasis_pregnancy
+
+- id: itch_all_over_without_rash
+  label: "Itching all over the body, without a rash"
+  question: "Are you itchy all over your body, without a rash?"
+  question_carer: "Is your child itchy all over their body, without a rash?"
+  checklist_text: "Itching all over your body"
+  kind: symptom
+  parent: itchy_skin
+  relation: location
+  snomed: "418290006"
+  phrases: ["itchy everywhere", "itch all over but nothing to see"]
+  source: nhs_itchy_skin
+
+- id: itch_severe
+  label: "Severe itching, for example keeping you awake"
+  question: "Is the itching severe? For example, does it keep you awake at night?"
+  question_carer: "Is your child's itching severe? For example, does it keep them awake at night?"
+  checklist_text: "Severe itching, for example it keeps you awake"
+  kind: symptom
+  parent: itchy_skin
+  relation: severity
+  phrases: ["unbearable itch", "can't sleep for itching"]
+  source: nhs_itchy_skin
+
+- id: spots_between_fingers_or_wrists
+  label: "Very itchy spots between the fingers or on the wrists, sometimes with tiny lines"
+  question: "Are there very itchy spots between your fingers, on your wrists or around your waist? There may be tiny raised lines with a dot at one end."
+  question_carer: "Does your child have very itchy spots between their fingers, on their wrists or around their waist? There may be tiny raised lines with a dot at one end."
+  kind: symptom
+  parent: rash
+  relation: location
+  phrases: ["itchy between my fingers", "little lines on my wrist"]
+  source: nhs_scabies
+
+- id: others_at_home_itchy
+  label: "Other people at home or in close contact are itchy too"
+  question: "Are other people you live with, or are close to, itchy too?"
+  question_carer: "Are other people your child lives with, or is close to, itchy too?"
+  kind: history
+  phrases: ["whole family is itchy", "my partner is itching too"]
+  source: nhs_scabies
+
+- id: dry_skin
+  label: "Dry skin"
+  question: "Is your skin dry, rough or flaky?"
+  question_carer: "Is your child's skin dry, rough or flaky?"
+  kind: symptom
+  snomed: "89105000"
+  phrases: ["dry skin", "skin feels rough"]
+  source: nhs_itchy_skin
+
+- id: scalp_scaly_or_itchy
+  label: "Itchy, flaky or scaly scalp"
+  question: "Is your scalp itchy, flaky or scaly?"
+  question_carer: "Is your child's scalp itchy, flaky or scaly?"
+  kind: symptom
+  phrases: ["itchy head", "scaly scalp", "flaky scalp"]
+  source: nhs_ringworm
+
+- id: lice_or_nits_seen
+  label: "Lice or eggs (nits) seen in the hair"
+  question: "Have you seen lice or their eggs (nits) in the hair?"
+  question_carer: "Have you seen lice or their eggs (nits) in your child's hair?"
+  kind: symptom
+  snomed: "81000006"
+  phrases: ["nits", "head lice", "found a louse"]
+  source: nhs_head_lice
+
+# ===========================================================================
+# Hives (raised, itchy rash) and swelling
+# ===========================================================================
+- id: welts_come_and_go
+  label: "Raised patches move around and each fades within a day"
+  question: "Do the raised patches come and go, with each one fading within a day?"
+  question_carer: "Do the raised patches on your child's skin come and go, with each one fading within a day?"
+  kind: symptom
+  parent: raised_itchy_rash
+  relation: duration
+  phrases: ["moves around", "comes and goes in hours"]
+  source: nhs_hives
+
+- id: hives_not_better_after_2_days
+  label: "Hives not getting better after 2 days"
+  question: "Has the raised, itchy rash not got better after 2 days?"
+  question_carer: "Has your child's raised, itchy rash not got better after 2 days?"
+  checklist_text: "Rash not getting better after 2 days"
+  kind: symptom
+  parent: raised_itchy_rash
+  relation: duration
+  phrases: ["still there after a few days"]
+  source: nhs_hives
+
+- id: hives_keeps_coming_back
+  label: "Hives keeps coming back"
+  question: "Does the raised, itchy rash keep coming back?"
+  question_carer: "Does your child's raised, itchy rash keep coming back?"
+  checklist_text: "The rash keeps coming back"
+  kind: symptom
+  parent: raised_itchy_rash
+  relation: duration
+  phrases: ["keeps happening", "get hives every week"]
+  source: nhs_hives
+
+- id: swelling_under_skin
+  label: "Sudden swelling of part of the body, such as the eyelids, hands, feet or genitals"
+  question: "Has part of your body suddenly become swollen, such as your eyelids, hands, feet or genitals?"
+  question_carer: "Has part of your child's body suddenly become swollen, such as their eyelids, hands, feet or genitals?"
+  checklist_text: "Sudden swelling of the eyelids, hands, feet or genitals"
+  kind: symptom
+  seriousness: serious
+  phrases: ["puffy eyes", "swollen hands", "face swelling up"]
+  source: nhs_angioedema
+
+- id: previous_severe_allergic_reaction
+  label: "Had a severe allergic reaction before"
+  question: "Have you had a severe allergic reaction (anaphylaxis) before? For example, to a sting, a food or a medicine."
+  question_carer: "Has your child had a severe allergic reaction (anaphylaxis) before? For example, to a sting, a food or a medicine."
+  checklist_text: "A severe allergic reaction (anaphylaxis) before"
+  kind: history
+  phrases: ["I carry an EpiPen", "reacted badly to a wasp before"]
+  source: nhs_insect_bites
+
+# ===========================================================================
+# Insect bites and stings
+# ===========================================================================
+- id: bitten_in_mouth_throat_or_near_eye
+  label: "Stung or bitten in the mouth or throat, or near the eyes"
+  question: "Were you stung or bitten in the mouth or throat, or near the eyes?"
+  question_carer: "Was your child stung or bitten in the mouth or throat, or near the eyes?"
+  checklist_text: "Stung or bitten in the mouth or throat, or near the eyes"
+  kind: symptom
+  parent: insect_bite_or_sting
+  relation: location
+  seriousness: serious
+  phrases: ["stung in the mouth", "bite on my eyelid"]
+  source: nhs_insect_bites
+
+- id: stung_many_times
+  label: "Stung more than once"
+  question: "Were you stung more than once?"
+  question_carer: "Was your child stung more than once?"
+  checklist_text: "Stung more than once"
+  kind: symptom
+  parent: insect_bite_or_sting
+  relation: severity
+  phrases: ["stung lots of times", "disturbed a nest"]
+  source: nhs_insect_bites
+
+- id: bite_lump_itchy_or_painful
+  label: "Small, itchy or painful swollen lump where bitten or stung"
+  question: "Is there a small, itchy or painful swollen lump where you were bitten or stung?"
+  question_carer: "Is there a small, itchy or painful swollen lump where your child was bitten or stung?"
+  kind: symptom
+  parent: insect_bite_or_sting
+  relation: character
+  phrases: ["itchy lump", "small red bump"]
+  source: nhs_insect_bites
+
+- id: bite_swelling_large
+  label: "Large swelling around the bite or sting, spreading over a few days"
+  question: "Has a large area around the bite or sting become swollen, for example bigger than the palm of your hand?"
+  question_carer: "Has a large area around your child's bite or sting become swollen, for example bigger than the palm of their hand?"
+  kind: symptom
+  parent: insect_bite_or_sting
+  relation: severity
+  phrases: ["whole arm swollen", "huge swelling after the sting"]
+  source: ai_judgement
+
+- id: tick_bite_or_tick_area
+  label: "Bitten by a tick, or been in grassy or wooded areas with ticks, in the last 3 months"
+  question: "In the last 3 months, have you been bitten by a tick, or spent time in grassy or wooded areas where ticks live?"
+  question_carer: "In the last 3 months, has your child been bitten by a tick, or spent time in grassy or wooded areas where ticks live?"
+  checklist_text: "Bitten by a tick, or in grassy or wooded areas, in the last 3 months"
+  kind: history
+  snomed: "95898004"
+  phrases: ["found a tick", "walking in the woods", "camping"]
+  source: nhs_lyme_disease
+
+- id: bitten_by_snake
+  label: "Bitten by a snake"
+  question: "Have you been bitten by a snake?"
+  question_carer: "Has your child been bitten by a snake?"
+  checklist_text: "Bitten by a snake"
+  kind: history
+  seriousness: emergency
+  snomed: "283840005"
+  phrases: ["adder bite", "snake bit me"]
+  source: nhs_snake_bites
+
+# ===========================================================================
+# Burns and scalds
+# ===========================================================================
+- id: burn_large_or_deep
+  label: "Burn that is large or deep"
+  question: "Is the burn large or deep? For example, bigger than the palm of the hand, or the skin looks white, brown, black or leathery."
+  question_carer: "Is your child's burn large or deep? For example, bigger than the palm of their hand, or the skin looks white, brown, black or leathery."
+  checklist_text: "A large or deep burn (bigger than the palm of the hand, or white, brown, black or leathery skin)"
+  kind: symptom
+  parent: burn
+  relation: severity
+  seriousness: emergency
+  snomed: "403192003"
+  phrases: ["big burn", "skin looks white", "charred skin"]
+  source: nhs_burns
+
+- id: burn_on_face_genitals_or_bottom
+  label: "Burn on the face, genitals or bottom"
+  question: "Is the burn on the face, genitals or bottom?"
+  question_carer: "Is your child's burn on their face, genitals or bottom?"
+  checklist_text: "A burn on the face, genitals or bottom"
+  kind: symptom
+  parent: burn
+  relation: location
+  seriousness: emergency
+  phrases: ["burnt my face", "scald on the bottom"]
+  source: nhs_burns
+
+- id: burn_on_hands_feet_or_joint
+  label: "Burn on the hands, feet or over a joint"
+  question: "Is the burn on the hands or feet, or over a joint such as the knee or elbow?"
+  question_carer: "Is your child's burn on their hands or feet, or over a joint such as the knee or elbow?"
+  kind: symptom
+  parent: burn
+  relation: location
+  phrases: ["burnt my palm", "burn on my foot"]
+  source: ai_judgement
+
+- id: burn_from_chemical
+  label: "Burn caused by an acid or chemical"
+  question: "Was the burn caused by an acid or chemical, such as bleach or drain cleaner?"
+  question_carer: "Was your child's burn caused by an acid or chemical, such as bleach or drain cleaner?"
+  checklist_text: "Caused by an acid or chemical"
+  kind: symptom
+  parent: burn
+  relation: character
+  seriousness: emergency_ambulance
+  snomed: "426284001"
+  phrases: ["bleach on my skin", "acid burn", "chemical splash"]
+  source: nhs_chemical_burns
+
+- id: burn_from_electricity
+  label: "Burn caused by electricity"
+  question: "Was the burn caused by electricity?"
+  question_carer: "Was your child's burn caused by electricity?"
+  checklist_text: "Caused by electricity"
+  kind: symptom
+  parent: burn
+  relation: character
+  seriousness: emergency
+  phrases: ["electric shock", "touched a live wire"]
+  source: nhs_burns
+
+- id: burn_from_sun
+  label: "Sunburn"
+  question: "Is it sunburn, from too much sun?"
+  question_carer: "Is it sunburn, from too much sun?"
+  kind: symptom
+  parent: burn
+  relation: character
+  snomed: "403194002"
+  phrases: ["sunburnt", "burnt in the sun"]
+  source: nhs_sunburn
+
+- id: burn_blistered
+  label: "Burn or sunburn has blistered or is swollen"
+  question: "Has the burn blistered, or is it swollen?"
+  question_carer: "Has your child's burn blistered, or is it swollen?"
+  checklist_text: "The burn has blistered or is swollen"
+  kind: symptom
+  parent: burn
+  relation: severity
+  phrases: ["blisters on the burn", "swollen sunburn"]
+  source: nhs_sunburn
+
+- id: burn_small
+  label: "Small burn, smaller than the palm of the hand"
+  question: "Is the burn small, smaller than the palm of the hand, and only red or pink with no blisters?"
+  question_carer: "Is your child's burn small, smaller than the palm of their hand, and only red or pink with no blisters?"
+  kind: symptom
+  parent: burn
+  relation: severity
+  phrases: ["just a small burn", "touched the oven briefly"]
+  source: nhs_burns
+
+- id: breathed_in_smoke
+  label: "Breathed in smoke or hot fumes, or burns around the mouth or nose"
+  question: "Did you breathe in smoke or hot fumes, for example in a fire? Or are there burns or black soot around the mouth or nose?"
+  question_carer: "Did your child breathe in smoke or hot fumes, for example in a fire? Or are there burns or black soot around their mouth or nose?"
+  checklist_text: "Breathed in smoke or hot fumes, or soot or burns around the mouth or nose"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["was in a house fire", "breathed in smoke", "soot around the nose"]
+  source: ai_judgement
+
+# ===========================================================================
+# Cuts, grazes and bites
+# ===========================================================================
+- id: wound_large_or_deep
+  label: "Wound very large or deep"
+  question: "Is the wound very large or deep? For example, you can see fat, muscle or bone, or the edges gape open."
+  question_carer: "Is your child's wound very large or deep? For example, you can see fat, muscle or bone, or the edges gape open."
+  checklist_text: "A very large or deep wound"
+  kind: symptom
+  parent: cut_or_wound
+  relation: severity
+  seriousness: emergency
+  snomed: "262562003"
+  phrases: ["really deep cut", "can see inside", "gaping wound"]
+  source: nhs_cuts_and_grazes
+
+- id: wound_over_5cm
+  label: "Cut longer than about 5cm (2 inches)"
+  question: "Is the cut longer than about 5cm (2 inches)?"
+  question_carer: "Is your child's cut longer than about 5cm (2 inches)?"
+  checklist_text: "A cut longer than about 5cm (2 inches)"
+  kind: symptom
+  parent: cut_or_wound
+  relation: severity
+  phrases: ["long cut", "big gash"]
+  source: nhs_cuts_and_grazes
+
+- id: wound_edges_gaping
+  label: "Edges of the cut gape apart"
+  question: "Do the edges of the cut gape apart, so they do not stay together on their own?"
+  question_carer: "Do the edges of your child's cut gape apart, so they do not stay together on their own?"
+  kind: symptom
+  parent: cut_or_wound
+  relation: character
+  phrases: ["cut is open", "might need stitches"]
+  source: ai_judgement
+
+- id: wound_on_face_or_palm
+  label: "Bad cut on the face or palm of the hand"
+  question: "Is it a bad cut on the face or the palm of the hand?"
+  question_carer: "Is it a bad cut on your child's face or the palm of their hand?"
+  checklist_text: "A bad cut on the face or palm of the hand"
+  kind: symptom
+  parent: cut_or_wound
+  relation: location
+  seriousness: emergency
+  phrases: ["cut my palm", "cut on my face"]
+  source: nhs_cuts_and_grazes
+
+- id: object_stuck_in_wound
+  label: "Something stuck in the wound, such as glass"
+  question: "Is there something stuck in the wound, such as a piece of glass?"
+  question_carer: "Is there something stuck in your child's wound, such as a piece of glass?"
+  checklist_text: "Something stuck in the wound, such as glass"
+  kind: symptom
+  parent: cut_or_wound
+  relation: character
+  seriousness: emergency
+  phrases: ["glass in the cut", "splinter stuck deep"]
+  source: nhs_cuts_and_grazes
+
+- id: wound_numb_or_cannot_move
+  label: "Loss of feeling near the wound, or trouble moving the area"
+  question: "Have you lost feeling near the wound, or do you have trouble moving the area, such as a finger?"
+  question_carer: "Has your child lost feeling near the wound, or do they have trouble moving the area, such as a finger?"
+  checklist_text: "Lost feeling near the wound, or trouble moving it"
+  kind: symptom
+  parent: cut_or_wound
+  relation: character
+  seriousness: emergency
+  phrases: ["finger is numb", "can't bend my finger"]
+  source: nhs_cuts_and_grazes
+
+- id: wound_dirty
+  label: "Wound has soil, pus or body fluids in it, or is still dirty after cleaning"
+  question: "Does the wound have soil, pus or body fluids in it, or is it still dirty after cleaning it?"
+  question_carer: "Does your child's wound have soil, pus or body fluids in it, or is it still dirty after cleaning it?"
+  checklist_text: "Soil, pus or body fluids in the wound, or still dirty after cleaning"
+  kind: symptom
+  parent: cut_or_wound
+  relation: character
+  phrases: ["dirt in the cut", "cut on rusty metal", "fell in the garden"]
+  source: nhs_cuts_and_grazes
+
+- id: wound_small_and_shallow
+  label: "Small, shallow cut or graze"
+  question: "Is it a small, shallow cut or graze?"
+  question_carer: "Is it a small, shallow cut or graze?"
+  kind: symptom
+  parent: cut_or_wound
+  relation: severity
+  phrases: ["just a graze", "small cut", "scraped knee"]
+  source: nhs_cuts_and_grazes
+
+- id: bleeding_stopped
+  label: "Bleeding has stopped, or stops with pressing"
+  question: "Has the bleeding stopped, or does it stop when you press on it for a few minutes?"
+  question_carer: "Has your child's bleeding stopped, or does it stop when you press on it for a few minutes?"
+  kind: symptom
+  parent: cut_or_wound
+  relation: character
+  phrases: ["stopped bleeding", "bleeding stopped with a plaster"]
+  source: nhs_cuts_and_grazes
+
+- id: bitten_by_animal_or_person
+  label: "Bitten by an animal or a person"
+  question: "Was the wound caused by a bite from an animal or a person?"
+  question_carer: "Was your child's wound caused by a bite from an animal or a person?"
+  kind: symptom
+  parent: cut_or_wound
+  relation: character
+  snomed: "424685008"
+  phrases: ["dog bite", "cat bit me", "bitten by a child at nursery"]
+  source: nhs_animal_bites
+
+- id: bite_on_hand_foot_face_head
+  label: "Bite on the hands, feet, face or head"
+  question: "Is the bite on the hands, feet, face or head?"
+  question_carer: "Is your child's bite on their hands, feet, face or head?"
+  checklist_text: "A bite on the hands, feet, face or head"
+  kind: symptom
+  asked_only_if: bitten_by_animal_or_person
+  phrases: ["dog bit my hand", "bite on my face"]
+  source: nhs_animal_bites
+
+- id: bitten_by_person_or_wild_animal
+  label: "Bitten by a person, or by a wild or stray animal (including abroad)"
+  question: "Were you bitten by a person, or by a wild or stray animal, or by any animal abroad?"
+  question_carer: "Was your child bitten by a person, or by a wild or stray animal, or by any animal abroad?"
+  checklist_text: "Bitten by a person, or a wild or stray animal, or any animal abroad"
+  kind: symptom
+  asked_only_if: bitten_by_animal_or_person
+  phrases: ["human bite", "stray dog", "bitten by a monkey on holiday", "bat bite"]
+  source: nhs_cuts_and_grazes
+
+- id: tetanus_not_up_to_date
+  label: "Not fully vaccinated against tetanus, or not sure"
+  question: "Have you missed any tetanus jabs? Or are you not sure if you have had them all?"
+  question_carer: "Has your child missed any tetanus jabs? Or are you not sure if they have had them all?"
+  checklist_text: "Not fully vaccinated against tetanus, or not sure"
+  kind: history
+  phrases: ["not had a tetanus jab", "don't know about my vaccinations"]
+  source: nhs_tetanus
+
+- id: stiff_jaw_or_muscle_spasms
+  label: "Stiff jaw or painful muscle spasms"
+  question: "Do you have a stiff jaw that makes it hard to open your mouth, or painful muscle spasms or stiffness?"
+  question_carer: "Does your child have a stiff jaw that makes it hard to open their mouth, or painful muscle spasms or stiffness?"
+  checklist_text: "A stiff jaw, or painful muscle spasms or stiffness"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["lockjaw", "muscles going into spasm"]
+  source: nhs_tetanus
+
+# ===========================================================================
+# Lumps and growths
+# ===========================================================================
+- id: lump_getting_bigger
+  label: "Lump getting bigger"
+  question: "Is the lump getting bigger?"
+  question_carer: "Is your child's lump getting bigger?"
+  checklist_text: "The lump is getting bigger"
+  kind: symptom
+  parent: skin_lump
+  relation: duration
+  phrases: ["growing", "bigger than last month"]
+  source: nhs_lumps
+
+- id: lump_hard_and_does_not_move
+  label: "Lump hard and does not move"
+  question: "Is the lump hard, and does it stay still when you press it?"
+  question_carer: "Is your child's lump hard, and does it stay still when you press it?"
+  checklist_text: "The lump is hard and does not move"
+  kind: symptom
+  parent: skin_lump
+  relation: character
+  phrases: ["rock hard", "stuck down", "doesn't move"]
+  source: nhs_lumps
+
+- id: lump_more_than_2_weeks
+  label: "Lump there for more than 2 weeks"
+  question: "Has the lump been there for more than 2 weeks?"
+  question_carer: "Has your child's lump been there for more than 2 weeks?"
+  checklist_text: "The lump has been there for more than 2 weeks"
+  kind: symptom
+  parent: skin_lump
+  relation: duration
+  phrases: ["had it for months", "not gone away"]
+  source: nhs_lumps
+
+- id: lump_came_back_after_removal
+  label: "Lump grew back after it was removed"
+  question: "Has the lump grown back after it was removed?"
+  checklist_text: "The lump grew back after it was removed"
+  kind: symptom
+  parent: skin_lump
+  relation: duration
+  phrases: ["came back after surgery"]
+  source: nhs_lumps
+
+- id: lump_large
+  label: "Lump bigger than a golf ball (about 5cm)"
+  question: "Is the lump bigger than a golf ball (about 5cm across)?"
+  question_carer: "Is your child's lump bigger than a golf ball (about 5cm across)?"
+  kind: symptom
+  parent: skin_lump
+  relation: severity
+  phrases: ["big lump", "size of an egg"]
+  source: nhs_lumps
+
+- id: lump_soft_and_moves
+  label: "Soft, squashy lump that moves under the skin"
+  question: "Is the lump soft and squashy, and does it move slightly under your skin when you press it?"
+  question_carer: "Is your child's lump soft and squashy, and does it move slightly under the skin when you press it?"
+  kind: symptom
+  parent: skin_lump
+  relation: character
+  phrases: ["squishy lump", "moves about", "fatty lump"]
+  source: nhs_lipoma
+
+- id: lump_round_with_central_dot
+  label: "Smooth, round lump just under the skin, sometimes with a dark dot in the middle"
+  question: "Is the lump smooth and round, just under the skin, perhaps with a small dark dot in the middle?"
+  question_carer: "Is your child's lump smooth and round, just under the skin, perhaps with a small dark dot in the middle?"
+  kind: symptom
+  parent: skin_lump
+  relation: character
+  phrases: ["round lump with a black dot", "cyst"]
+  source: nhs_skin_cyst
+
+- id: small_fleshy_growth_hanging
+  label: "Small, soft, fleshy growth that hangs off the skin"
+  question: "Is it a small, soft, fleshy growth that hangs off the skin, for example on the neck, armpits or groin?"
+  kind: symptom
+  parent: skin_lump
+  relation: character
+  snomed: "201091002"
+  phrases: ["skin tag", "little flap of skin"]
+  source: nhs_skin_tags
+
+- id: rough_growth_on_skin
+  label: "Small, rough, hard growth, often on the hands or feet"
+  question: "Is it a small, rough, hard growth, for example on the hands, fingers or soles of the feet?"
+  question_carer: "Is it a small, rough, hard growth on your child's skin, for example on their hands, fingers or soles of the feet?"
+  kind: symptom
+  parent: skin_lump
+  relation: character
+  phrases: ["wart", "verruca", "rough bump on my finger"]
+  source: nhs_warts
+
+- id: mole_changed
+  label: "New mole, or a mole that has changed size, shape or colour"
+  question: "Is it a new mole, or a mole that has changed size, shape or colour?"
+  checklist_text: "A new mole, or a mole that has changed size, shape or colour"
+  kind: symptom
+  phrases: ["mole has got bigger", "mole changed colour", "new dark spot"]
+  source: nhs_melanoma_symptoms
+
+- id: mole_uneven_or_mixed_colours
+  label: "Mole with an uneven shape or edges, a mix of colours, or wider than 6mm"
+  question: "Does the mole have an uneven shape or edges, or a mix of colours? Or is it wider than the end of a pencil (6mm)?"
+  kind: symptom
+  phrases: ["mole with jagged edges", "two colours in the mole"]
+  source: nhs_melanoma_symptoms
+
+- id: skin_growth_bleeds_or_crusts
+  label: "Mole or growth that bleeds, itches, crusts or is sore"
+  question: "Does the mole or growth bleed, itch, crust or scab, or is it sore or swollen?"
+  checklist_text: "A mole or growth that bleeds, itches, crusts or is sore"
+  kind: symptom
+  phrases: ["mole bleeds", "crusty spot", "itchy mole"]
+  source: nhs_melanoma_symptoms
+
+- id: skin_growth_not_healing_4_weeks
+  label: "Growth or patch of skin that has not healed for more than 4 weeks"
+  question: "Is there a growth, sore or patch of skin that has not healed for more than 4 weeks?"
+  checklist_text: "A growth, sore or patch of skin that has not healed for 4 weeks"
+  kind: symptom
+  phrases: ["spot that won't heal", "sore that keeps scabbing"]
+  source: nhs_non_melanoma_symptoms
+
+- id: dark_area_under_nail
+  label: "Dark area or streak under a nail, not caused by an injury"
+  question: "Is there a dark area or dark line under a nail that was not caused by an injury?"
+  checklist_text: "A dark area under a nail, not caused by an injury"
+  kind: symptom
+  phrases: ["black line in my nail", "dark streak under nail"]
+  source: nhs_melanoma_symptoms
+
+- id: lump_known_and_unchanged
+  label: "Lump already checked by a doctor and not changed since"
+  question: "Has a doctor already checked this lump, and has it stayed the same since then?"
+  question_carer: "Has a doctor already checked your child's lump, and has it stayed the same since then?"
+  kind: history
+  phrases: ["GP said it's a lipoma", "had it checked years ago"]
+  source: nhs_lipoma
+
+# ===========================================================================
+# Hair
+# ===========================================================================
+- id: hair_loss_patches
+  label: "Round or oval bald patches"
+  question: "Are there round or oval bald patches, rather than thinning all over?"
+  question_carer: "Does your child have round or oval bald patches, rather than thinning all over?"
+  kind: symptom
+  parent: hair_loss
+  relation: character
+  snomed: "68225006"
+  phrases: ["bald patch", "patch of hair fell out"]
+  source: nhs_hair_loss
+
+- id: hair_thinning_gradually
+  label: "Hair thinning slowly on the top of the head or at the temples"
+  question: "Has your hair been thinning slowly over months or years, on the top of your head or at the temples?"
+  kind: symptom
+  parent: hair_loss
+  relation: character
+  phrases: ["receding hairline", "thin on top", "parting getting wider"]
+  source: nhs_hair_loss
+
+- id: hair_shedding_after_illness_or_stress
+  label: "Lots of hair falling out a few months after an illness, stress, giving birth or losing weight"
+  question: "Has a lot of hair started falling out all over? Did it start a few months after an illness, stress, having a baby or losing weight?"
+  kind: symptom
+  parent: hair_loss
+  relation: character
+  snomed: "39479004"
+  phrases: ["hair coming out in handfuls", "after having COVID", "after having my baby"]
+  source: nhs_hair_loss
+
+- id: family_history_hair_loss
+  label: "Hair loss runs in the family"
+  question: "Does hair loss or baldness run in your family?"
+  kind: history
+  phrases: ["my dad went bald", "runs in the family"]
+  source: nhs_hair_loss
+
+- id: nail_pits
+  label: "Small dents or pits in the nails"
+  question: "Do your nails have small dents or pits in them?"
+  question_carer: "Do your child's nails have small dents or pits in them?"
+  kind: symptom
+  snomed: "89704006"
+  phrases: ["pitted nails", "dents in my nails"]
+  source: nhs_nail_problems
+
+# ===========================================================================
+# Too much hair growth
+# ===========================================================================
+- id: hair_growth_sudden
+  label: "New thick, dark hair suddenly started growing"
+  question: "Has new thick, dark hair suddenly started growing on your face or body, over weeks or a few months?"
+  checklist_text: "New thick, dark hair suddenly growing on the face or body"
+  kind: symptom
+  parent: excess_hair_growth
+  relation: duration
+  seriousness: serious
+  phrases: ["sudden beard growth", "hair appeared quickly"]
+  source: nhs_hirsutism
+
+- id: hair_fine_and_light
+  label: "Hair is light and fine, not thick and dark"
+  question: "Is the hair light and fine, rather than thick and dark?"
+  kind: symptom
+  parent: excess_hair_growth
+  relation: character
+  phrases: ["fine fluffy hair", "light downy hair"]
+  source: nhs_hirsutism
+
+- id: voice_getting_deeper
+  label: "Voice getting lower or deeper"
+  question: "Is your voice getting lower or deeper?"
+  checklist_text: "Your voice is getting lower"
+  kind: symptom
+  sex: female
+  seriousness: serious
+  phrases: ["voice has dropped", "deeper voice"]
+  source: nhs_hirsutism
+
+- id: muscles_getting_bigger
+  label: "Muscles getting bigger without trying"
+  question: "Are your muscles getting bigger without you trying?"
+  checklist_text: "Your muscles are getting bigger"
+  kind: symptom
+  sex: female
+  seriousness: serious
+  phrases: ["more muscly", "arms look bigger"]
+  source: nhs_hirsutism
+
+- id: acne_or_oily_skin
+  label: "Oily skin or acne (spots)"
+  question: "Do you have oily skin or acne (spots)?"
+  kind: symptom
+  phrases: ["spotty skin", "oily face", "acne"]
+  source: nhs_pcos
+
+- id: cushings_body_shape
+  label: "More fat on the chest, tummy and back of the neck, thin arms and legs, and a round, red face"
+  question: "Have you got more fat on your chest, tummy, upper back or the back of your neck, with thin arms and legs? Or a round, red face?"
+  checklist_text: "More fat on the chest, tummy and back of the neck, with thin arms and legs, or a round, red face"
+  kind: symptom
+  snomed: "67967009"
+  phrases: ["moon face", "fat on my neck", "thin legs but big tummy"]
+  source: nhs_cushings
+
+# ===========================================================================
+# Nails
+# ===========================================================================
+- id: nail_changed_no_reason
+  label: "Nail changed shape or colour, or fell off, for no known reason"
+  question: "Has a nail changed shape or colour, or fallen off, and you do not know why?"
+  question_carer: "Has one of your child's nails changed shape or colour, or fallen off, and you do not know why?"
+  checklist_text: "A nail has changed shape or colour, or fallen off, and you do not know why"
+  kind: symptom
+  parent: nail_problem
+  relation: character
+  phrases: ["nail went a funny colour", "nail came off by itself"]
+  source: nhs_nail_problems
+
+- id: nail_thick_discoloured_crumbly
+  label: "Nail thick, white or yellow, and brittle or crumbly"
+  question: "Is the nail thicker than usual, white or yellow, and brittle or crumbly?"
+  question_carer: "Is your child's nail thicker than usual, white or yellow, and brittle or crumbly?"
+  kind: symptom
+  parent: nail_problem
+  relation: character
+  snomed: "414941008"
+  phrases: ["thick yellow toenail", "crumbly nail"]
+  source: nhs_fungal_nail
+
+- id: nail_growing_into_skin
+  label: "Nail growing into the skin of the toe"
+  question: "Is the nail curving or growing into the skin at its edge, usually on the big toe?"
+  question_carer: "Is your child's nail curving or growing into the skin at its edge, usually on the big toe?"
+  kind: symptom
+  parent: nail_problem
+  relation: character
+  snomed: "400097005"
+  phrases: ["ingrown toenail", "nail digging in"]
+  source: nhs_ingrown_toenail
+
+- id: skin_around_nail_red_swollen
+  label: "Skin around the nail sore, red, swollen and warm"
+  question: "Is the skin around the nail sore, red, swollen and warm?"
+  question_carer: "Is the skin around your child's nail sore, red, swollen and warm?"
+  checklist_text: "The skin around the nail is sore, red, swollen and warm"
+  kind: symptom
+  parent: nail_problem
+  relation: location
+  snomed: "71906005"
+  phrases: ["infected nail bed", "swollen finger by the nail", "whitlow"]
+  source: nhs_nail_problems
+
+- id: nail_injured_recently
+  label: "Nail injured, for example trapped or stubbed"
+  question: "Did the problem start after the nail was injured, for example trapped in a door or stubbed?"
+  question_carer: "Did the problem start after your child's nail was injured, for example trapped in a door or stubbed?"
+  kind: history
+  parent: nail_problem
+  relation: character
+  snomed: "269219004"
+  phrases: ["shut my finger in the door", "dropped something on my toe", "black nail after injury"]
+  source: nhs_nail_problems
+
+- id: nail_spoon_shaped
+  label: "Nails curve inwards like a spoon"
+  question: "Do your nails curve inwards, like a spoon?"
+  kind: symptom
+  parent: nail_problem
+  relation: character
+  snomed: "66270006"
+  phrases: ["spoon-shaped nails", "nails dip in the middle"]
+  source: nhs_nail_problems
+
+# ===========================================================================
+# Sweating, blushing and smells
+# ===========================================================================
+- id: sweating_in_one_area
+  label: "Sweating mainly in the armpits, hands, feet or face"
+  question: "Is the sweating mainly in your armpits, hands, feet or face, rather than all over?"
+  kind: symptom
+  parent: sweating_a_lot
+  relation: location
+  phrases: ["sweaty palms", "sweaty armpits", "sweaty feet"]
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: sweating_6_months_or_more
+  label: "Sweating too much for at least 6 months"
+  question: "Have you been sweating too much for at least 6 months?"
+  checklist_text: "It has lasted for at least 6 months"
+  kind: symptom
+  parent: sweating_a_lot
+  relation: duration
+  phrases: ["had it for years", "since I was a teenager"]
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: sweating_at_least_weekly
+  label: "Sweating too much at least once a week"
+  question: "Does the heavy sweating happen at least once a week?"
+  checklist_text: "It happens at least once a week"
+  kind: symptom
+  parent: sweating_a_lot
+  relation: duration
+  phrases: ["every week", "most days"]
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: sweating_runs_in_family
+  label: "Sweating too much runs in the family"
+  question: "Does sweating too much run in your family?"
+  checklist_text: "Sweating too much runs in your family"
+  kind: history
+  phrases: ["my mum sweats a lot too"]
+  source: nhs_excessive_sweating_hyperhidrosis
+
+- id: sweating_suddenly_much_more
+  label: "Suddenly sweating much more than usual"
+  question: "Have you suddenly started to sweat much more than usual?"
+  checklist_text: "Suddenly sweating much more than usual"
+  kind: symptom
+  phrases: ["sweating more than ever", "started sweating loads recently"]
+  source: nhs_body_odour_bo
+
+- id: blushing_when_embarrassed_or_anxious
+  label: "Blushing when embarrassed, anxious or hot"
+  question: "Does the blushing mostly happen when you feel embarrassed, anxious or hot?"
+  kind: symptom
+  parent: blushing
+  relation: exacerbating_factor
+  phrases: ["go red when I speak in meetings", "when I'm nervous"]
+  source: nhs_blushing
+
+- id: face_red_most_of_time
+  label: "Face red most of the time, with small blood vessels or spots"
+  question: "Is your face red most of the time, with small blood vessels showing, or small red spots?"
+  kind: symptom
+  phrases: ["always red-faced", "thread veins on my cheeks", "red spots on my nose"]
+  source: nhs_rosacea
+
+- id: smell_changed
+  label: "Body odour has changed from how it usually smells"
+  question: "Has your body odour changed from how it usually smells?"
+  checklist_text: "A change in how it usually smells"
+  kind: symptom
+  parent: body_odour
+  relation: character
+  phrases: ["smells different", "fishy smell", "sweet smell"]
+  source: nhs_body_odour_bo
+
+- id: smell_worse_after_sweating
+  label: "Smell is worse after sweating, exercise or hot weather"
+  question: "Is the smell worse after you sweat, exercise or in hot weather?"
+  kind: symptom
+  parent: body_odour
+  relation: exacerbating_factor
+  snomed: "65382006"
+  phrases: ["after the gym", "on hot days"]
+  source: nhs_body_odour_bo
+
+- id: feet_sweat_a_lot
+  label: "Feet sweat a lot"
+  question: "Do your feet sweat a lot?"
+  kind: symptom
+  phrases: ["sweaty feet", "socks get wet"]
+  source: nhs_smelly_feet
+
+- id: itchy_flaky_skin_between_toes
+  label: "Itchy, white or flaky skin between the toes"
+  question: "Do you have itchy, white, flaky or cracked skin between your toes?"
+  question_carer: "Does your child have itchy, white, flaky or cracked skin between their toes?"
+  kind: symptom
+  snomed: "6020002"
+  phrases: ["athlete's foot", "peeling between my toes"]
+  source: nhs_athletes_foot
+
+# ===========================================================================
+# Shared: how much it affects life, and self-care
+# ===========================================================================
+- id: not_better_with_self_care
+  label: "Not better after treating it yourself, or keeps coming back"
+  question: "Has it not got better after treating it yourself, or does it keep coming back?"
+  question_carer: "Has your child's problem not got better after treating it yourself, or does it keep coming back?"
+  checklist_text: "Not better after treating it yourself, or keeps coming back"
+  kind: symptom
+  phrases: ["tried everything", "creams haven't worked", "keeps coming back"]
+  source: nhs_itchy_skin
+
+- id: affecting_daily_life_or_wellbeing
+  label: "Affecting daily life, mood or self-esteem"
+  question: "Is it affecting your daily life, your mood or how you feel about yourself?"
+  question_carer: "Is it affecting your child's daily life, mood or how they feel about themselves?"
+  checklist_text: "Affecting your daily life, mood or how you feel about yourself"
+  kind: symptom
+  phrases: ["really getting me down", "stops me going out", "so embarrassed"]
+  source: nhs_itchy_skin
+
+# ===========================================================================
+# Stretch marks
+# ===========================================================================
+- id: gained_or_lost_weight_quickly
+  label: "Gained or lost weight quickly, or a growth spurt"
+  question: "Have you gained or lost weight quickly, or had a growth spurt, for example in puberty?"
+  kind: history
+  phrases: ["put on weight fast", "grew a lot this year"]
+  source: nhs_stretch_marks
+
+# ===========================================================================
+# Yellow skin (jaundice)
+# ===========================================================================
+- id: baby_under_24_hours_old
+  label: "Baby less than 24 hours old"
+  question: "Is the baby less than 24 hours old?"
+  kind: context
+  age_range: {below: 0.003}
+  source: nhs_newborn_jaundice
+
+- id: yellow_skin_but_eyes_white
+  label: "Skin looks yellow or orange, but the whites of the eyes are still white"
+  question: "Does the skin look yellow or orange, while the whites of the eyes are still white?"
+  question_carer: "Does your child's skin look yellow or orange, while the whites of their eyes are still white?"
+  kind: symptom
+  parent: yellow_skin_or_eyes
+  relation: location
+  snomed: "35487009"
+  phrases: ["orange palms", "eats lots of carrots", "eyes are white"]
+  source: ai_judgement
+
+- id: jaundice_comes_and_goes
+  label: "Mild yellowing that comes and goes, for example when ill, tired or not eating"
+  question: "Does the yellowing come and go, for example when you are ill, tired, stressed or have not eaten?"
+  kind: symptom
+  parent: yellow_skin_or_eyes
+  relation: duration
+  phrases: ["happens when I'm run down", "goes yellow when fasting"]
+  source: nhs_gilberts
+
+- id: has_gilberts_syndrome
+  label: "Diagnosed with Gilbert's syndrome"
+  question: "Has a doctor told you that you have Gilbert's syndrome? This is a common, usually harmless condition that can make the skin go slightly yellow at times."
+  kind: history
+  phrases: ["I have Gilbert's", "Gilbert's syndrome"]
+  source: nhs_gilberts
+
+- id: gilberts_jaundice_worse_than_usual
+  label: "Yellowing worse than usual, or not going away within a few days"
+  question: "Is the yellowing worse than usual, or has it not gone away within a few days?"
+  checklist_text: "Yellowing worse than usual, or not gone within a few days"
+  kind: symptom
+  asked_only_if: has_gilberts_syndrome
+  phrases: ["more yellow than normal", "not going away this time"]
+  source: nhs_gilberts
+
+- id: eats_lots_of_orange_foods
+  label: "Eats a lot of carrots, sweet potatoes or other orange foods"
+  question: "Do you eat or drink a lot of carrots, sweet potatoes, squash or other orange foods?"
+  question_carer: "Does your child eat or drink a lot of carrots, sweet potatoes, squash or other orange foods?"
+  kind: history
+  phrases: ["loads of carrots", "carrot juice every day"]
+  source: ai_judgement

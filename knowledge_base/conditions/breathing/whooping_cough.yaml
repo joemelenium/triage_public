@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: whooping_cough
+body_system: breathing
+entry_symptoms: [cough]
+name: "Whooping cough (an infection that causes long coughing fits)"
+medical_name: "Pertussis"
+snomed: "27836007"
+# Level soon: antibiotics within 3 weeks of the cough starting stop it spreading,
+# and a GP can confirm it. Danger serious: it can be dangerous for babies, who
+# are sent for help the same day by the cough rules.
+acuity_needed: soon
+danger: serious
+# "uncommon": the coughing fits are asked about for everyone with a cough, and a
+# "no" lowers it quickly.
+prevalence: uncommon
+prevalence_when:
+  - {finding: contact_whooping_cough, prevalence: common}
+findings:
+  # What tells it apart: coughing fits lasting minutes, sometimes with a "whoop"
+  # and being sick, after a week of cold symptoms.
+  cough_whoop: strongly_supports
+  sick_after_coughing: supports
+  cough_worse_at_night: supports
+  cough_3_weeks_or_more: supports
+  blocked_or_runny_nose: supports
+key_findings: [cough_whoop, sick_after_coughing, contact_whooping_cough, cough_worse_at_night]
+source: nhs_whooping_cough
+informed_by: [nhs_whooping_cough, nhs_croup]

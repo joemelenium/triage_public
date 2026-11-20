@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: primary_period_pain
+body_system: womens_health
+entry_symptoms: [period_pain, pelvic_pain, stomach_ache]
+name: "Period pain (cramps from the womb tightening during a period)"
+medical_name: "Primary dysmenorrhoea"
+snomed: "65754002"
+# The most common cause of period pain and a common cause of pelvic pain. Pain at
+# the start of a period, lasting up to 3 days.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: common
+prevalence_when:
+  - {finding: period_pain, prevalence: very_common}
+  - {finding: pelvic_pain, prevalence: common}
+  - {finding: stomach_ache, prevalence: uncommon}
+findings:
+  period_pain_at_start: strongly_supports
+  period_pain: strongly_supports
+  period_pain_spreads_to_back_thighs: supports
+  periods_started_recently: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  sa_with_period: strongly_supports
+  sa_low_down: strongly_supports
+  sa_comes_in_waves: supports
+key_findings: [period_pain_at_start, period_pain_spreads_to_back_thighs, sa_with_period]
+source: nhs_period_pain
+informed_by: [nhs_period_pain, nhs_pelvic_pain, nhs_stomach_ache]

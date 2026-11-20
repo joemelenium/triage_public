@@ -1,0 +1,894 @@
+# Observations: women's health (periods, pelvic pain, the vagina, breasts and pregnancy).
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Same fields as observations/general.yaml. Observations that only apply to
+# women carry "sex: female", so they are never asked of a man. Breast lumps,
+# breast pain, nipple discharge and pelvic pain can affect anyone, so those main
+# symptoms carry no sex.
+#
+
+# ===========================================================================
+# Main symptoms (one per entry symptom)
+# ===========================================================================
+- id: pelvic_pain
+  label: "Pelvic pain (pain low down in the tummy)"
+  question: "Do you have pain low down in your tummy, between your hips (your pelvis)?"
+  question_carer: "Do they have pain low down in their tummy, between their hips (the pelvis)?"
+  checklist_text: "Pain low down in your tummy, between your hips"
+  kind: presenting
+  phrases: ["pelvic pain", "pain low down in my tummy", "lower tummy pain", "pain in my pelvis"]
+  source: nhs_pelvic_pain
+
+- id: period_pain
+  label: "Period pain"
+  snomed: "266599000"
+  question: "Do you have pain or cramps in your tummy just before or during your period?"
+  checklist_text: "Pain or cramps just before or during your period"
+  kind: presenting
+  sex: female
+  phrases: ["period pain", "period cramps", "painful periods"]
+  source: nhs_period_pain
+
+- id: ovulation_pain
+  label: "Ovulation pain (pain midway between periods)"
+  question: "Do you get pain on one side, low in your tummy, about 2 weeks before your period? This is when an egg is released (ovulation)."
+  checklist_text: "Pain on one side of your lower tummy about 2 weeks before your period"
+  kind: presenting
+  sex: female
+  phrases: ["ovulation pain", "pain mid cycle", "pain halfway through my cycle"]
+  source: nhs_ovulation_pain
+
+- id: irregular_periods
+  label: "Irregular periods"
+  snomed: "80182007"
+  question: "Are your periods irregular? For example, the time between them is less than 21 days or more than 35 days, or it keeps changing."
+  checklist_text: "Irregular periods"
+  kind: presenting
+  sex: female
+  phrases: ["irregular periods", "periods all over the place", "periods are not regular"]
+  source: nhs_irregular_periods
+
+- id: missed_or_late_period
+  label: "Missed or late period"
+  question: "Have you missed a period, or is your period late?"
+  checklist_text: "A missed or late period"
+  kind: presenting
+  sex: female
+  phrases: ["missed period", "period is late", "no period this month"]
+  source: nhs_missed_or_late_periods
+
+- id: bleeding_between_periods_or_after_sex
+  label: "Vaginal bleeding between periods or after sex"
+  question: "Are you bleeding from your vagina between periods or after sex?"
+  checklist_text: "Bleeding from your vagina between periods or after sex"
+  kind: presenting
+  parent: unusual_vaginal_bleeding_or_discharge
+  relation: character
+  sex: female
+  phrases: ["bleeding between periods", "spotting", "bleeding after sex"]
+  source: nhs_vaginal_bleeding_between_periods_or_after_sex
+
+- id: bleeding_after_menopause
+  label: "Vaginal bleeding after the menopause"
+  snomed: "76742009"
+  question: "Have you had any bleeding from your vagina after your menopause? This means after your periods had stopped for a year or more. Answer yes even if it was a small amount or only happened once."
+  checklist_text: "Any bleeding from your vagina after your periods had stopped for a year or more"
+  kind: presenting
+  parent: unusual_vaginal_bleeding_or_discharge
+  relation: character
+  sex: female
+  asked_only_if: age_40_or_over   # age gate: not asked of younger women unless they say it themselves
+  phrases: ["bleeding after the menopause", "postmenopausal bleeding", "spotting after my periods stopped"]
+  source: nhs_post_menopausal_bleeding
+
+- id: vaginal_discharge
+  label: "Vaginal discharge that is unusual"
+  snomed: "271939006"
+  question: "Do you have vaginal discharge that is unusual for you? For example, it has changed colour, smell or texture, or there is more than usual."
+  checklist_text: "Vaginal discharge that is unusual for you"
+  kind: presenting
+  parent: unusual_vaginal_bleeding_or_discharge
+  relation: character
+  sex: female
+  phrases: ["discharge", "smelly discharge", "discharge has changed"]
+  source: nhs_vaginal_discharge
+
+- id: vaginal_dryness
+  label: "Vaginal dryness"
+  snomed: "31908003"
+  question: "Does your vagina feel dry or sore? For example, during sex."
+  checklist_text: "Vaginal dryness"
+  kind: presenting
+  sex: female
+  phrases: ["vaginal dryness", "dry down there", "sex is painful because I'm dry"]
+  source: nhs_vaginal_dryness
+
+- id: breast_lump
+  label: "Lump or swelling in the breast, chest or armpit"
+  snomed: "89164003"
+  question: "Do you have a lump or swelling in your breast, chest or armpit?"
+  checklist_text: "A lump or swelling in your breast, chest or armpit"
+  kind: presenting
+  phrases: ["breast lump", "lump in my breast", "lump in my armpit"]
+  source: nhs_breast_lump
+
+- id: breast_pain
+  label: "Breast pain"
+  snomed: "53430007"
+  question: "Do you have pain in one or both breasts?"
+  checklist_text: "Pain in one or both breasts"
+  kind: presenting
+  phrases: ["breast pain", "sore breasts", "tender breasts"]
+  source: nhs_breast_pain
+
+- id: nipple_discharge
+  label: "Nipple discharge"
+  question: "Is liquid coming out of one or both nipples, either on its own or when squeezed?"
+  checklist_text: "Liquid coming out of a nipple"
+  kind: presenting
+  phrases: ["nipple discharge", "leaking nipple", "fluid from my nipple"]
+  source: nhs_nipple_discharge
+
+- id: bleeding_in_pregnancy
+  label: "Vaginal bleeding in pregnancy"
+  question: "Are you pregnant and bleeding from your vagina? This includes spots of pink, red or brown blood."
+  checklist_text: "Pregnant and bleeding from your vagina, even spotting"
+  kind: presenting
+  sex: female
+  parent: pregnant_now        # bleeding in pregnancy means the person is pregnant
+  relation: character
+  phrases: ["bleeding in pregnancy", "spotting while pregnant", "pregnant and bleeding"]
+  source: nhs_vaginal_bleeding_pregnancy
+
+- id: stomach_pain_in_pregnancy
+  label: "Stomach pain in pregnancy"
+  snomed: "309737007"
+  question: "Are you pregnant and have pain or cramps in your tummy?"
+  checklist_text: "Pregnant with pain or cramps in your tummy"
+  kind: presenting
+  sex: female
+  parent: pregnant_now        # stomach pain in pregnancy means the person is pregnant
+  relation: character
+  phrases: ["tummy pain in pregnancy", "pregnant with stomach cramps", "abdominal pain pregnant"]
+  source: nhs_stomach_pain_pregnancy
+
+# ===========================================================================
+# Pregnancy: whether someone is or could be pregnant, and how far along
+# ===========================================================================
+- id: may_be_pregnant
+  label: "Pregnant, or could be pregnant"
+  question: "Are you pregnant, or could you be? For example, your period is late, or you have had sex without contraception since your last period."
+  checklist_text: "Pregnant, or could be pregnant"
+  kind: history
+  sex: female
+  asked_only_if: age_10_or_over
+  phrases: ["might be pregnant", "could be pregnant", "period is late"]
+  source: nhs_pelvic_pain
+
+- id: pregnant_now
+  label: "Pregnant (a positive test, or told by a midwife or doctor)"
+  question: "Are you pregnant? Answer yes if you have had a positive pregnancy test, or a midwife or doctor has told you."
+  checklist_text: "Pregnant: a positive test, or told by a midwife or doctor"
+  kind: history
+  sex: female
+  parent: pregnant_or_recently_given_birth
+  relation: character
+  phrases: ["I'm pregnant", "positive pregnancy test"]
+  source: nhs_vaginal_bleeding_pregnancy
+
+- id: pregnancy_under_12_weeks
+  label: "Less than 12 weeks pregnant"
+  question: "Are you less than 12 weeks pregnant?"
+  kind: context
+  sex: female
+  asked_only_if: pregnant_now
+  phrases: ["early pregnancy", "first trimester"]
+  source: nhs_ectopic_pregnancy
+
+- id: pregnancy_20_weeks_or_more
+  label: "20 weeks pregnant or more"
+  question: "Are you 20 weeks pregnant or more?"
+  kind: context
+  sex: female
+  asked_only_if: pregnant_now
+  phrases: ["20 weeks", "second half of pregnancy", "third trimester"]
+  source: nhs_pelvic_pain
+
+- id: baby_moving_less
+  label: "Baby moving less than usual"
+  question: "Is your baby moving less than usual? Or have the movements changed, or stopped?"
+  checklist_text: "Baby moving less than usual, or a change in the usual pattern"
+  kind: symptom
+  sex: female
+  asked_only_if: pregnancy_20_weeks_or_more
+  seriousness: serious
+  phrases: ["baby not moving", "baby moving less", "can't feel the baby"]
+  source: nhs_baby_movements
+
+- id: regular_tightenings
+  label: "Regular cramps or tightenings in the tummy"
+  question: "Are you having regular cramps or tightenings in your tummy, which come and go?"
+  checklist_text: "Regular cramps or tightenings that come and go"
+  kind: symptom
+  sex: female
+  asked_only_if: pregnant_now
+  phrases: ["contractions", "tightenings", "regular cramps"]
+  source: nhs_stomach_pain_pregnancy
+
+- id: fluid_leaking_from_vagina
+  label: "Fluid leaking from the vagina"
+  question: "Is fluid leaking or gushing from your vagina? It could be your waters breaking."
+  checklist_text: "Fluid leaking or gushing from your vagina"
+  kind: symptom
+  sex: female
+  phrases: ["waters broke", "fluid leaking", "gush of water"]
+  source: nhs_miscarriage
+
+- id: passed_tissue
+  label: "Pink, grey or white lumps coming from the vagina"
+  question: "Have pink, grey or white lumps come out of your vagina? They may look or feel stringy."
+  checklist_text: "Pink, grey or white lumps coming out of your vagina"
+  kind: symptom
+  sex: female
+  phrases: ["passed tissue", "passed clots", "lumps came out"]
+  source: nhs_miscarriage
+
+- id: bleeding_light_spotting
+  label: "Only spotting or light bleeding"
+  question: "Is it only spotting or light bleeding? For example, spots on your underwear or toilet paper, or only enough to need a pad now and then."
+  kind: symptom
+  sex: female
+  parent: bleeding_in_pregnancy
+  relation: severity
+  phrases: ["just spotting", "only a little blood"]
+  source: nhs_vaginal_bleeding_pregnancy
+
+- id: told_low_lying_placenta
+  label: "Told the placenta is low-lying"
+  question: "Have you been told at a scan that your placenta is low-lying?"
+  kind: history
+  sex: female
+  asked_only_if: pregnant_now
+  phrases: ["low-lying placenta", "placenta praevia"]
+  source: ai_judgement
+
+- id: pain_below_ribs
+  label: "Pain just below the ribs"
+  question: "Do you have pain just below your ribs, especially on the right side?"
+  checklist_text: "Pain just below your ribs"
+  kind: symptom
+  parent: stomach_ache
+  relation: location
+  phrases: ["pain under my ribs", "pain below my ribs"]
+  source: nhs_pre_eclampsia
+
+- id: sudden_swelling_face_hands_feet
+  label: "Sudden swelling of the face, hands or feet"
+  question: "Have your face, hands or feet suddenly swollen?"
+  checklist_text: "Sudden swelling of your face, hands or feet"
+  kind: symptom
+  phrases: ["face is puffy", "hands swollen", "feet suddenly swollen"]
+  source: nhs_pre_eclampsia
+
+- id: pelvic_pain_severe_or_worsening
+  label: "Pelvic pain that is severe, getting worse, or hurts when moving or touched"
+  question: "Is the pain severe or getting worse? Or does it hurt when you move or touch the area?"
+  checklist_text: "The pain is severe, getting worse, or hurts when you move or touch the area"
+  kind: symptom
+  parent: pelvic_pain
+  relation: severity
+  seriousness: emergency
+  phrases: ["pain is getting worse", "hurts to move", "hurts to touch"]
+  source: nhs_pelvic_pain
+
+- id: one_sided_lower_tummy_pain
+  label: "Pain low down on one side of the tummy"
+  question: "Do you have pain low down on one side of your tummy?"
+  checklist_text: "Pain low down on one side of your tummy"
+  kind: symptom
+  phrases: ["pain on one side", "left side pain", "right side pain low down"]
+  source: nhs_ectopic_pregnancy
+
+- id: pain_keeps_coming_back
+  label: "Tummy or pelvic pain that keeps coming back or does not go away"
+  question: "Does the pain keep coming back, or has it not gone away?"
+  checklist_text: "Pain that keeps coming back or does not go away"
+  kind: symptom
+  phrases: ["keeps coming back", "never goes away", "on and off for months"]
+  source: nhs_pelvic_pain
+
+- id: pain_not_helped_by_painkillers
+  label: "Severe pain, or worse than usual, and painkillers have not helped"
+  question: "Is the pain severe or worse than usual, and have painkillers not helped?"
+  checklist_text: "Severe pain, or worse than usual, and painkillers have not helped"
+  kind: symptom
+  seriousness: serious
+  phrases: ["painkillers aren't working", "worst period pain ever"]
+  source: nhs_period_pain
+
+- id: pain_during_sex
+  label: "Pain deep inside during or after sex"
+  snomed: "247419003"
+  question: "Do you get pain deep inside during or after sex?"
+  checklist_text: "Pain during or after sex"
+  kind: symptom
+  sex: female
+  phrases: ["painful sex", "hurts during sex"]
+  source: nhs_pelvic_inflammatory_disease
+
+- id: period_pain_at_start
+  label: "Pain starts just before or at the start of a period and lasts up to 3 days"
+  question: "Does the pain start just before or at the start of your period, and ease within about 3 days?"
+  kind: symptom
+  sex: female
+  parent: period_pain
+  relation: character
+  phrases: ["first day of my period", "always the first couple of days"]
+  source: nhs_period_pain
+
+- id: period_pain_spreads_to_back_thighs
+  label: "Period cramps spread to the back and thighs"
+  question: "Do the cramps spread to your back and thighs?"
+  kind: symptom
+  sex: female
+  parent: period_pain
+  relation: radiation
+  phrases: ["goes into my back", "down my legs"]
+  source: nhs_period_pain
+
+- id: period_pain_stops_daily_life
+  label: "Period pain stops usual daily activities"
+  question: "Does your period pain stop you doing your usual daily activities, such as work or school?"
+  checklist_text: "Period pain that stops you doing your usual daily activities"
+  kind: symptom
+  sex: female
+  parent: period_pain
+  relation: severity
+  phrases: ["have to take time off", "can't go to school"]
+  source: nhs_period_pain
+
+- id: periods_changed
+  label: "Periods have changed: irregular, heavier, more painful or stopped"
+  question: "Have your periods changed? For example, they have become irregular, heavier or more painful, or they have stopped."
+  checklist_text: "Periods that have become more painful, heavier or irregular"
+  kind: symptom
+  sex: female
+  phrases: ["periods are getting worse", "periods have changed"]
+  source: nhs_period_pain
+
+- id: pain_switches_sides
+  label: "The pain switches sides from month to month"
+  question: "Does the pain switch sides from one month to the next?"
+  kind: symptom
+  sex: female
+  parent: ovulation_pain
+  relation: location
+  phrases: ["sometimes left, sometimes right"]
+  source: nhs_ovulation_pain
+
+- id: pain_lasts_minutes_to_2_days
+  label: "The pain lasts from a few minutes to 2 days"
+  question: "Does the pain last from a few minutes up to 1 or 2 days, and then go away?"
+  kind: symptom
+  sex: female
+  parent: ovulation_pain
+  relation: duration
+  phrases: ["only lasts a day", "goes after a few hours"]
+  source: nhs_ovulation_pain
+
+- id: pain_eases_with_rest
+  label: "Mild pain that goes away with rest or a change of position"
+  question: "Is the pain mild, and does it go away when you change position, rest, poo or pass wind?"
+  kind: symptom
+  sex: female
+  parent: stomach_pain_in_pregnancy
+  relation: diminishing_factor
+  phrases: ["goes when I sit down", "eases when I rest"]
+  source: nhs_stomach_pain_pregnancy
+
+- id: pain_not_eased_by_rest
+  label: "Pain that has not gone after 30 to 60 minutes of rest"
+  question: "Has the pain not gone away after resting for 30 to 60 minutes?"
+  checklist_text: "Pain that has not gone after resting for 30 to 60 minutes"
+  kind: symptom
+  sex: female
+  parent: stomach_pain_in_pregnancy
+  relation: duration
+  seriousness: serious
+  phrases: ["won't go away even when I rest"]
+  source: nhs_stomach_pain_pregnancy
+
+- id: sharp_pain_on_moving
+  label: "Sharp cramp on one side when moving"
+  question: "Is it a sharp cramp low down on one side, which comes when you move, cough or get up?"
+  kind: symptom
+  sex: female
+  parent: stomach_pain_in_pregnancy
+  relation: exacerbating_factor
+  phrases: ["ligament pain", "growing pains", "sharp when I stand up"]
+  source: nhs_stomach_pain_pregnancy
+
+# ===========================================================================
+# Bleeding from the vagina
+# ===========================================================================
+- id: heavy_vaginal_bleeding
+  label: "Heavy bleeding from the vagina"
+  question: "Are you bleeding heavily from your vagina? For example, soaking a pad soon after putting it on, or passing large clots."
+  checklist_text: "Heavy bleeding from your vagina: soaking a pad soon after putting it on"
+  kind: symptom
+  sex: female
+  seriousness: emergency
+  phrases: ["soaking through pads", "bleeding heavily", "flooding"]
+  source: nhs_vaginal_bleeding_pregnancy
+
+- id: bleeding_after_sex
+  label: "Bleeding after sex"
+  snomed: "48880000"
+  question: "Does the bleeding happen after sex?"
+  kind: symptom
+  sex: female
+  parent: bleeding_between_periods_or_after_sex
+  relation: character
+  phrases: ["bleed after sex", "spotting after sex"]
+  source: nhs_vaginal_bleeding_between_periods_or_after_sex
+
+- id: bleeding_between_periods
+  label: "Bleeding between periods"
+  snomed: "237130006"
+  question: "Do you bleed or spot between your periods, not linked to sex?"
+  kind: symptom
+  sex: female
+  parent: bleeding_between_periods_or_after_sex
+  relation: character
+  phrases: ["spotting mid cycle", "bleeding between periods"]
+  source: nhs_vaginal_bleeding_between_periods_or_after_sex
+
+- id: periods_last_over_7_days
+  label: "Periods last more than 7 days"
+  question: "Do your periods last more than 7 days?"
+  checklist_text: "Periods that last more than 7 days"
+  kind: symptom
+  sex: female
+  phrases: ["period goes on for over a week"]
+  source: nhs_irregular_periods
+
+# ===========================================================================
+# Heavy periods (the main symptom, heavy_periods, is in chest_and_heart.yaml)
+# ===========================================================================
+- id: heavy_periods_affecting_life
+  label: "Heavy periods affect daily life"
+  question: "Are your heavy periods affecting your daily life? For example, you avoid exercise or take time off work."
+  checklist_text: "Heavy periods that affect your daily life"
+  kind: symptom
+  sex: female
+  parent: heavy_periods
+  relation: severity
+  phrases: ["can't leave the house on my period", "bleed through my clothes"]
+  source: nhs_heavy_periods
+
+- id: heavy_periods_long_time
+  label: "Heavy periods for some time"
+  question: "Have you had heavy periods for several months or more?"
+  checklist_text: "Heavy periods for several months or more"
+  kind: symptom
+  sex: female
+  parent: heavy_periods
+  relation: duration
+  phrases: ["always had heavy periods", "heavy for months"]
+  source: nhs_heavy_periods
+
+- id: passing_large_clots
+  label: "Passing blood clots bigger than a 10p coin"
+  question: "During your period, do you pass blood clots bigger than a 10p coin (about 2.5cm)?"
+  kind: symptom
+  sex: female
+  parent: heavy_periods
+  relation: character
+  phrases: ["big clots", "passing clots"]
+  source: nhs_heavy_periods
+
+# ===========================================================================
+# Irregular, missed or late periods
+# ===========================================================================
+- id: missed_3_periods
+  label: "Missed 3 periods in a row"
+  question: "Have you missed 3 periods in a row?"
+  checklist_text: "Missed 3 periods in a row"
+  kind: symptom
+  sex: female
+  parent: missed_or_late_period
+  relation: duration
+  phrases: ["no period for 3 months"]
+  source: nhs_missed_or_late_periods
+
+- id: periods_not_started_by_15
+  label: "Periods have not started by the age of 15"
+  question: "Are you 15 or older and your periods have not started yet?"
+  question_carer: "Is your child 15 or older and their periods have not started yet?"
+  checklist_text: "Aged 15 or older and periods have not started"
+  kind: symptom
+  sex: female
+  phrases: ["never had a period", "periods haven't started"]
+  source: nhs_missed_or_late_periods
+
+- id: periods_started_recently
+  label: "Periods started in the last 2 years"
+  question: "Did your periods start in the last 2 years?"
+  question_carer: "Did your child's periods start in the last 2 years?"
+  kind: history
+  sex: female
+  phrases: ["just started my periods", "only had periods for a year"]
+  source: nhs_irregular_periods
+
+- id: difficulty_getting_pregnant
+  label: "Struggling to get pregnant"
+  question: "Have you been trying to get pregnant for a year or more without success?"
+  checklist_text: "Trying to get pregnant for a year or more without success"
+  kind: history
+  sex: female
+  phrases: ["can't get pregnant", "trying for a baby"]
+  source: nhs_irregular_periods
+
+- id: stress_weight_or_exercise_change
+  label: "Recent stress, big weight change, or much more exercise"
+  question: "Have you been very stressed lately? Or lost or gained a lot of weight, or done much more exercise than usual?"
+  kind: history
+  phrases: ["really stressed", "lost a lot of weight", "training for a marathon"]
+  source: nhs_missed_or_late_periods
+
+- id: hormonal_contraception
+  label: "Uses hormonal contraception"
+  question: "Do you use hormonal contraception? For example, the pill, the implant, the injection or a hormonal coil (IUS)."
+  kind: history
+  sex: female
+  phrases: ["on the pill", "have the implant", "have the coil"]
+  source: nhs_irregular_periods
+
+- id: hormone_medicine_started_recently
+  label: "Started or changed hormonal contraception or HRT in the last 6 months"
+  question: "In the last 6 months, have you started or changed hormone contraception? Or HRT, the hormone treatment for the menopause?"
+  kind: history
+  sex: female
+  phrases: ["just started the pill", "changed my HRT"]
+  source: nhs_vaginal_bleeding_between_periods_or_after_sex
+
+- id: periods_stopped_12_months
+  label: "Periods stopped for 12 months or more (the menopause)"
+  question: "Have your periods stopped for 12 months or more?"
+  kind: history
+  sex: female
+  asked_only_if: age_40_or_over
+  phrases: ["been through the menopause", "periods stopped years ago"]
+  source: nhs_menopause_symptoms
+
+- id: feel_full_quickly
+  label: "Feels full quickly or has no appetite"
+  question: "Do you feel full quickly when you eat, or have you lost your appetite?"
+  checklist_text: "Feeling full quickly, or no appetite"
+  kind: symptom
+  phrases: ["full after a few mouthfuls", "not hungry"]
+  source: nhs_pelvic_pain
+
+# ===========================================================================
+# Vaginal discharge and dryness
+# ===========================================================================
+- id: discharge_fishy_smell
+  label: "Discharge smells fishy"
+  snomed: "289564005"
+  question: "Does the discharge have a strong fishy smell?"
+  kind: symptom
+  sex: female
+  parent: vaginal_discharge
+  relation: character
+  phrases: ["smells fishy", "bad smell down there"]
+  source: nhs_vaginal_discharge
+
+- id: discharge_thick_white
+  label: "Discharge is thick and white, like cottage cheese"
+  question: "Is the discharge thick and white, like cottage cheese?"
+  kind: symptom
+  sex: female
+  parent: vaginal_discharge
+  relation: character
+  phrases: ["cottage cheese", "thick white discharge"]
+  source: nhs_vaginal_discharge
+
+- id: discharge_green_yellow_frothy
+  label: "Discharge is green, yellow or frothy"
+  question: "Is the discharge green, yellow or frothy?"
+  kind: symptom
+  sex: female
+  parent: vaginal_discharge
+  relation: character
+  phrases: ["green discharge", "yellow discharge", "frothy discharge"]
+  source: nhs_vaginal_discharge
+
+- id: discharge_thin_grey_white
+  label: "Discharge is thin and watery, white or grey"
+  question: "Is the discharge thin and watery, and white or grey?"
+  kind: symptom
+  sex: female
+  parent: vaginal_discharge
+  relation: character
+  phrases: ["watery discharge", "grey discharge"]
+  source: nhs_bacterial_vaginosis
+
+- id: discharge_clear_no_smell
+  label: "Discharge is clear or white with no strong smell"
+  question: "Is the discharge clear or white, with no strong or unpleasant smell?"
+  kind: symptom
+  sex: female
+  parent: vaginal_discharge
+  relation: character
+  phrases: ["clear discharge", "no smell"]
+  source: nhs_vaginal_discharge
+
+- id: discharge_changes_with_cycle
+  label: "Discharge changes with the monthly cycle"
+  question: "Does the amount of discharge change at different times of the month? For example, more in the middle of your cycle."
+  kind: symptom
+  sex: female
+  parent: vaginal_discharge
+  relation: character
+  phrases: ["more discharge mid cycle"]
+  source: nhs_vaginal_discharge
+
+- id: vagina_itchy_or_sore
+  label: "Itchy or sore in or around the vagina"
+  question: "Do you feel itchy or sore in or around your vagina?"
+  checklist_text: "Itchy or sore in or around your vagina"
+  kind: symptom
+  sex: female
+  phrases: ["itchy down there", "sore vagina"]
+  source: nhs_vaginal_discharge
+
+- id: vaginal_dryness_weeks_not_helped
+  label: "Vaginal dryness for a few weeks, and self-help has not worked"
+  question: "Have you had vaginal dryness for a few weeks, and the things you have tried yourself have not helped?"
+  checklist_text: "Dryness for a few weeks, and things you have tried have not helped"
+  kind: symptom
+  sex: female
+  parent: vaginal_dryness
+  relation: duration
+  phrases: ["lubricant isn't helping"]
+  source: nhs_vaginal_dryness
+
+- id: vaginal_dryness_affecting_life
+  label: "Vaginal dryness is affecting daily life"
+  question: "Is vaginal dryness affecting your daily life?"
+  checklist_text: "Dryness that affects your daily life"
+  kind: symptom
+  sex: female
+  parent: vaginal_dryness
+  relation: severity
+  phrases: ["can't have sex", "uncomfortable all the time"]
+  source: nhs_vaginal_dryness
+
+# ===========================================================================
+# Breasts
+# ===========================================================================
+- id: breast_hot_red_swollen
+  label: "Part of the breast is hot, swollen or a different colour"
+  question: "Is any part of your breast hot, swollen or a different colour? On black or brown skin it may look darker than usual. On white skin it may look red."
+  checklist_text: "Part of your breast is hot, swollen or a different colour"
+  kind: symptom
+  seriousness: serious
+  phrases: ["breast is red", "breast is hot", "swollen breast"]
+  source: nhs_breast_pain
+
+- id: breastfeeding
+  label: "Breastfeeding"
+  question: "Are you breastfeeding, or did you stop in the last few weeks?"
+  kind: history
+  sex: female
+  phrases: ["breastfeeding", "feeding my baby"]
+  source: nhs_mastitis
+
+- id: had_mastitis_recently
+  label: "Had a breast infection (mastitis) in the last few weeks"
+  question: "Have you had a breast infection (mastitis) in the last few weeks?"
+  kind: history
+  phrases: ["had mastitis", "breast infection"]
+  source: nhs_breast_abscess
+
+- id: lump_hard_or_fixed
+  label: "The lump feels hard, or seems stuck in place"
+  question: "Does the lump feel hard, or does it seem stuck in place?"
+  kind: symptom
+  parent: breast_lump
+  relation: character
+  phrases: ["hard lump", "lump doesn't move"]
+  source: ai_judgement
+
+- id: lump_smooth_moves
+  label: "The lump is smooth and rubbery, and moves easily"
+  question: "Does the lump feel smooth and rubbery, and move easily under your fingers?"
+  kind: symptom
+  parent: breast_lump
+  relation: character
+  phrases: ["moves around", "rubbery lump"]
+  source: ai_judgement
+
+- id: lump_changes_with_period
+  label: "The lump gets bigger or more tender before a period"
+  question: "Does the lump get bigger or more tender before your period, then settle down?"
+  kind: symptom
+  sex: female
+  parent: breast_lump
+  relation: character
+  phrases: ["lumpy before my period"]
+  source: ai_judgement
+
+- id: lump_in_armpit
+  label: "Lump or swelling in the armpit"
+  question: "Is there a lump or swelling in your armpit?"
+  checklist_text: "A lump or swelling in your armpit"
+  kind: symptom
+  parent: breast_lump
+  relation: location
+  phrases: ["lump under my arm"]
+  source: nhs_breast_lump
+
+- id: swelling_behind_nipple
+  label: "Rubbery swelling just behind the nipple"
+  question: "Is there a rubbery or firm swelling just behind the nipple, on one or both sides?"
+  kind: symptom
+  parent: breast_lump
+  relation: location
+  phrases: ["lump behind my nipple", "puffy nipples"]
+  source: nhs_gynaecomastia
+
+- id: breast_skin_dimpled
+  label: "Skin on the breast is dimpled, like orange peel"
+  question: "Is the skin on your breast dimpled, like orange peel?"
+  checklist_text: "Dimpled skin on your breast, like orange peel"
+  kind: symptom
+  phrases: ["dimpled skin", "orange peel"]
+  source: nhs_breast_cancer_symptoms
+
+- id: nipple_changed
+  label: "Nipple has turned inwards or has a rash"
+  question: "Has your nipple changed? For example, it has turned inwards, or there is a rash on it."
+  checklist_text: "A change to your nipple, such as turning inwards or a rash"
+  kind: symptom
+  phrases: ["nipple has gone in", "rash on my nipple"]
+  source: nhs_breast_cancer_symptoms
+
+- id: breast_shape_changed
+  label: "One breast has changed size or shape"
+  question: "Has the size or shape of one of your breasts changed?"
+  checklist_text: "A change in the size or shape of a breast"
+  kind: symptom
+  phrases: ["one breast is bigger now", "breast looks different"]
+  source: nhs_breast_cancer_symptoms
+
+- id: family_history_breast_ovarian_cancer
+  label: "A close relative has had breast or ovarian cancer"
+  question: "Has a close relative had breast cancer or ovarian cancer? For example, a parent, brother or sister."
+  checklist_text: "A close relative has had breast or ovarian cancer"
+  kind: history
+  phrases: ["mum had breast cancer", "runs in my family"]
+  source: nhs_breast_pain
+
+- id: breast_pain_before_period
+  label: "Breast pain starts before a period and goes when it ends"
+  question: "Does the breast pain start in the 2 weeks before your period, and go away when your period ends?"
+  kind: symptom
+  sex: female
+  parent: breast_pain
+  relation: character
+  phrases: ["sore before my period"]
+  source: nhs_breast_pain
+
+- id: breast_pain_both_breasts
+  label: "Pain in both breasts"
+  question: "Is the pain in both breasts?"
+  kind: symptom
+  parent: breast_pain
+  relation: location
+  phrases: ["both breasts hurt"]
+  source: nhs_breast_pain
+
+- id: breast_pain_worse_moving_or_pressing
+  label: "Pain in one spot, worse when moving the arm or pressing"
+  question: "Is the pain in one spot, and worse when you move your arm or press on the area?"
+  kind: symptom
+  parent: breast_pain
+  relation: exacerbating_factor
+  phrases: ["hurts when I lift my arm", "sore when I press it"]
+  source: nhs_breast_pain
+
+- id: breast_pain_after_strain_or_bra
+  label: "Breast pain started after an injury, lifting, exercise or a badly fitting bra"
+  question: "Did the pain start after an injury, lifting or exercise? Or after wearing a new bra, or one that does not fit well?"
+  kind: symptom
+  parent: breast_pain
+  relation: exacerbating_factor
+  phrases: ["pulled a muscle", "new bra"]
+  source: nhs_breast_pain
+
+- id: breast_pain_not_improving
+  label: "Breast pain not improving, or painkillers not helping"
+  question: "Is the breast pain not getting better, or are painkillers not helping?"
+  checklist_text: "Breast pain that is not getting better, or painkillers are not helping"
+  kind: symptom
+  parent: breast_pain
+  relation: duration
+  phrases: ["still sore after weeks"]
+  source: nhs_breast_pain
+
+- id: breast_pain_new_or_different
+  label: "Breast pain is new or different"
+  question: "Is the breast pain new for you, or different from breast pain you have had before?"
+  checklist_text: "Breast pain that is new or different for you"
+  kind: symptom
+  parent: breast_pain
+  relation: character
+  phrases: ["never had this before"]
+  source: nhs_breast_pain
+
+- id: nipple_discharge_bloody
+  label: "Nipple discharge with blood in it"
+  snomed: "290113009"
+  question: "Is there blood in the liquid from your nipple?"
+  checklist_text: "Blood in the liquid from your nipple"
+  kind: symptom
+  parent: nipple_discharge
+  relation: character
+  phrases: ["bloody discharge from my nipple"]
+  source: nhs_breast_lump
+
+- id: nipple_discharge_milky
+  label: "Milky nipple discharge"
+  snomed: "290112004"
+  question: "Does the liquid from your nipple look like milk?"
+  kind: symptom
+  parent: nipple_discharge
+  relation: character
+  phrases: ["milk coming out", "milky discharge"]
+  source: nhs_nipple_discharge
+
+- id: nipple_discharge_one_side
+  label: "Discharge from one nipple only"
+  question: "Is the liquid coming from one nipple only?"
+  kind: symptom
+  parent: nipple_discharge
+  relation: location
+  phrases: ["only one side"]
+  source: nhs_nipple_discharge
+
+- id: nipple_discharge_both_sides
+  label: "Discharge from both nipples"
+  question: "Is the liquid coming from both nipples?"
+  kind: symptom
+  parent: nipple_discharge
+  relation: location
+  phrases: ["both nipples leaking"]
+  source: nhs_nipple_discharge
+
+- id: nipple_discharge_green_or_thick
+  label: "Thick, sticky or green nipple discharge"
+  question: "Is the liquid from your nipple thick and sticky, or green, yellow or brown?"
+  kind: symptom
+  parent: nipple_discharge
+  relation: character
+  phrases: ["green discharge from nipple", "sticky discharge"]
+  source: ai_judgement
+
+- id: lump_in_breast_or_testicle
+  label: "Lump in the breast or testicle"
+  question: "Is the lump in a breast or a testicle?"
+  checklist_text: "A lump in a breast or testicle"
+  kind: symptom
+  phrases: ["lump in my breast", "lump on my testicle"]
+  source: nhs_lumps
+
+- id: unusual_vaginal_bleeding_or_discharge
+  label: "Unusual bleeding or discharge from the vagina"
+  question: "Do you have bleeding from your vagina that is not usual for you? Or a new discharge, such as a brown, watery one?"
+  checklist_text: "Unusual bleeding or discharge from your vagina"
+  kind: symptom
+  sex: female
+  asked_only_if: age_10_or_over
+  phrases: ["spotting", "bleeding between periods", "strange discharge"]
+  source: nhs_stomach_ache

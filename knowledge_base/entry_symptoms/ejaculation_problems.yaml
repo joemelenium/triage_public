@@ -1,0 +1,93 @@
+# Entry symptom: ejaculation problems (coming too soon, taking a long time, or
+# not at all).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: ejaculation_problems
+name: "Ejaculation problems"
+presenting_finding: ejaculation_problems
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: ejaculation_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - saddle_numbness
+      - legs_weak_or_numb
+
+  - id: ejaculation_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - blood_in_semen
+      - pain_when_peeing
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: ejaculation_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - ejaculation_problem_keeps_happening
+      - pain_when_ejaculating
+      - little_or_no_semen
+      - new_medicine_recently
+
+red_flags:
+  - id: rf_ej_nerve_signs
+    description: "Problems coming, with numbness around the genitals or bottom, or new weakness or numbness in both legs: possible cauda equina syndrome"
+    when: {any: [saddle_numbness, legs_weak_or_numb]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    note: "The Back pain page lists not being able to orgasm with back pain and these signs as a reason to call 999 or go to A&E."
+
+  - id: rf_ej_painful_with_temperature
+    description: "Pain when coming, or pain when peeing, with a high temperature: possible prostatitis"
+    when: {all: [very_high_temperature, {any: [pain_when_ejaculating, pain_when_peeing]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_prostatitis_urgent
+    source: nhs_prostatitis
+    note: "The Prostatitis page says it can be serious and needs urgent medical help. Using a high temperature to mark it is AI judgement."
+
+outcome_rules:
+  - id: or_ej_keeps_happening
+    description: "A problem with coming that keeps happening and is bothering the person"
+    when: ejaculation_problem_keeps_happening
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_ejaculation_gp
+    source: nhs_ejaculation_problems
+
+  - id: or_ej_pain
+    description: "Pain when coming"
+    when: pain_when_ejaculating
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_ejaculation_gp
+    source: nhs_prostatitis
+
+  - id: or_ej_little_semen
+    description: "Little or no semen when coming: possible retrograde ejaculation"
+    when: little_or_no_semen
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_ejaculation_gp
+    source: nhs_ejaculation_problems
+
+  - id: or_ej_medicine
+    description: "Problems coming after starting or changing a medicine"
+    when: new_medicine_recently
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Do not stop a prescribed medicine without talking to them."}
+    advice: advice_ejaculation_gp
+    source: nhs_ejaculation_problems
+
+default:
+  description: "Problems coming now and then, with nothing else that needs help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Problems now and then are common. See a GP if it keeps happening."}
+  advice: advice_ejaculation_self_care
+  source: nhs_ejaculation_problems

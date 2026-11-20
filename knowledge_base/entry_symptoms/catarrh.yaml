@@ -1,0 +1,103 @@
+# Entry symptom: catarrh (a build-up of phlegm in the nose, sinuses or throat).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Catarrh and Sinusitis pages, and clinical knowledge where
+# marked ai_judgement (the rare spread of a sinus infection to the eye or brain).
+
+id: catarrh
+name: "Catarrh"
+presenting_finding: catarrh
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: catarrh_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - swelling_around_eye
+      - vision_change_sudden
+      - very_painful_headache
+      - stiff_neck
+      - bothered_by_light
+
+  - id: catarrh_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - feels_very_unwell
+      - sinus_pain_severe_or_worse
+      - weakened_immune_system
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ca_eye_swelling
+    description: "Catarrh with swelling, redness or pain around the eye"
+    when: swelling_around_eye
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a sinus infection can rarely spread to the tissue around the eye, which needs treatment in hospital the same day."
+
+  - id: rf_ca_vision
+    description: "Catarrh with sudden problems with eyesight"
+    when: vision_change_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: double or blurred vision with a sinus infection can mean it has spread to the eye socket."
+
+  - id: rf_ca_meningitis_signs
+    description: "Catarrh with a very bad headache and a stiff neck, or bright light hurting the eyes"
+    when: {all: [very_painful_headache, {any: [stiff_neck, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a sinus infection can rarely spread to the lining of the brain (meningitis)."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ca_very_unwell
+    description: "Catarrh or sinusitis and feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_nose_urgent
+    source: nhs_sinusitis
+
+  - id: rf_ca_sinus_pain_worse
+    description: "Face pain that is severe, getting worse, or not helped by painkillers"
+    when: sinus_pain_severe_or_worse
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_nose_urgent
+    source: nhs_sinusitis
+
+  - id: rf_ca_weak_immune_sinusitis
+    description: "Signs of sinusitis in someone with a weakened immune system"
+    when: {all: [weakened_immune_system, face_pain_around_nose_and_eyes]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_nose_urgent
+    source: nhs_sinusitis
+
+outcome_rules:
+  - id: or_ca_few_weeks
+    description: "Catarrh for more than a few weeks"
+    when: catarrh_few_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nose_gp
+    source: nhs_catarrh
+
+  - id: or_ca_new_symptoms
+    description: "Catarrh with new symptoms such as problems swallowing or a lost sense of smell"
+    when: {any: [difficulty_swallowing, loss_of_smell_or_taste]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nose_gp
+    source: nhs_catarrh
+    note: "The Catarrh page also lists a new sore throat. That is left to the sore throat rules, because a sore throat with catarrh is usually a cold."
+
+default:
+  description: "Catarrh with nothing that needs more help: it usually clears up by itself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Catarrh usually clears up by itself. A pharmacist can help."}
+  advice: advice_catarrh_self_care
+  source: nhs_catarrh

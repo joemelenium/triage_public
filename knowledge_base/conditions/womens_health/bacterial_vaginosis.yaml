@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bacterial_vaginosis
+body_system: womens_health
+entry_symptoms: [vaginal_discharge]
+name: "Bacterial vaginosis (a change to germs in the vagina)"
+medical_name: "Bacterial vaginosis"
+snomed: "419760006"
+# Thin, grey or white discharge with a fishy smell, usually without itching.
+acuity_needed: routine
+danger: minor
+sex: female
+prevalence: very_common
+findings:
+  discharge_fishy_smell: strongly_supports
+  discharge_thin_grey_white: strongly_supports
+  new_or_unprotected_sex: supports
+  partner_has_sti: supports
+key_findings: [discharge_fishy_smell, discharge_thin_grey_white]
+source: nhs_bacterial_vaginosis
+informed_by: [nhs_bacterial_vaginosis, nhs_vaginal_discharge]

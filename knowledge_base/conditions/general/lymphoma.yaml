@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lymphoma
+body_system: general
+# Night sweats, weight loss and a painless lump together are the classic signs.
+entry_symptoms: [weight_loss, night_sweats, swollen_glands]
+name: "Lymphoma (a cancer of the lymph glands)"
+medical_name: "Malignant lymphoma"
+snomed: "118600007"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart: a painless lump in the neck, armpit or groin for more than 2 weeks,
+  # with night sweats and weight loss.
+  lump_neck_armpit_or_groin: strongly_supports
+  night_sweats: strongly_supports
+  weight_loss: strongly_supports
+  very_high_temperature: supports
+  very_tired: supports
+  # From the ear_nose_throat card for this condition (merged):
+  glands_painless: strongly_supports
+  glands_over_a_week: strongly_supports
+  glands_hard_or_fixed: supports
+  glands_no_other_illness: supports
+key_findings: [lump_neck_armpit_or_groin, night_sweats, weight_loss, glands_painless, glands_over_a_week]
+source: nhs_hodgkin_lymphoma
+informed_by: [nhs_hodgkin_lymphoma, nhs_non_hodgkin_lymphoma, nhs_night_sweats, nhs_swollen_glands]
+# Merged with the ear_nose_throat card for this condition. Its notes:
+# What tells it apart from glands swollen by an infection: a painless lump that keeps growing for
+# weeks, with night sweats, weight loss or no other sign of illness.

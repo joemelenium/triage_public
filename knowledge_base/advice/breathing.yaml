@@ -1,0 +1,51 @@
+# Advice for the breathing and airway conditions batch.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml.
+
+- id: advice_asthma_attack_recovered
+  what_to_do: "See a GP within 2 days of your asthma attack, even if you feel better now. They will check your treatment and help stop it happening again."
+  look_out_for:
+    - "Your symptoms come back, or you need your reliever inhaler more than usual"
+    - "Another asthma attack: severe symptoms that make it hard to breathe"
+    - "Not being able to say a short sentence because you are so short of breath"
+  get_more_help_when:
+    - "Use your reliever inhaler if symptoms come back. Sit up straight and try to stay calm."
+    - "Call 999 if you have another attack and get worse, your inhaler does not help, or you do not have it"
+  where_to_go: "Ask your GP surgery for an appointment in the next 2 days. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Always have your reliever inhaler with you"
+    - "Follow your asthma action plan if you have one"
+    - "Try to avoid things that set off your asthma, such as smoke, pollen or animals"
+  source: nhs_asthma
+
+- id: advice_shingles_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Shingles near the eye or nose, or with changes to your vision, needs checking quickly to protect your sight."
+  look_out_for:
+    - "Your eye becoming more red or painful"
+    - "Your vision getting worse"
+    - "The rash spreading, or you feeling very unwell"
+  get_more_help_when:
+    - "Medicine for shingles works best if you start it within 3 days of the rash appearing"
+    - "Call 999 if you get sudden chest pain. Call 999 if pain spreads to your arm, neck, jaw or back."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Take paracetamol to help with the pain"
+    - "Keep the rash clean and dry, and wear loose clothing"
+    - "Do not share towels. Keep away from babies and people who are pregnant until the blisters dry."
+  source: nhs_shingles
+
+- id: advice_cough_flu_higher_risk
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You may be more likely to get seriously ill with flu, and treatment can help if it is started early."
+  look_out_for:
+    - "Sudden chest pain"
+    - "Difficulty breathing"
+    - "Coughing up blood"
+    - "Symptoms getting worse, or not getting better after a week"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get sudden chest pain, find it hard to breathe, or start coughing up a lot of blood"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest and sleep"
+    - "Keep warm"
+    - "Drink plenty of water to avoid dehydration (peeing less than usual can be a sign)"
+  source: nhs_flu

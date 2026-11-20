@@ -1,0 +1,50 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: depression
+body_system: mental_health
+entry_symptoms: [low_mood, suicidal_thoughts_or_self_harm, feeling_anxious, eating_problem, very_tired, weight_loss, low_sex_drive, erection_problems, ejaculation_problems]
+name: "Depression"
+medical_name: "Depressive disorder"
+snomed: "35489007"
+# See a GP (non-urgent) for symptoms most of the day, every day, for more than 2
+# weeks. Moderate: needs treatment, and suicide is the main harm if it is missed,
+# but the suicide and self-harm rules catch immediate danger.
+acuity_needed: routine
+danger: moderate
+diagnosed_by: has_depression
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_depression, prevalence: very_common}
+  - {finding: low_mood, prevalence: common}
+  - {finding: suicidal_thoughts_or_self_harm, prevalence: common}
+  - {finding: feeling_anxious, prevalence: common}
+  - {finding: low_sex_drive, prevalence: common}
+  - {finding: very_tired, prevalence: common}
+  - {finding: weight_loss, prevalence: common}
+  - {finding: erection_problems, prevalence: uncommon}
+  - {finding: ejaculation_problems, prevalence: uncommon}
+findings:
+  # What tells it apart from a reaction to stress or grief: it lasts more than 2
+  # weeks, with loss of interest and enjoyment, hopelessness and guilt.
+  low_mood_over_2_weeks: strongly_supports
+  lost_interest_or_enjoyment: strongly_supports
+  feeling_hopeless: supports
+  feeling_worthless_or_guilty: supports
+  sleep_problems: supports
+  appetite_or_weight_change: supports
+  very_tired: supports
+  low_mood: strongly_supports               # evidence for the other entry symptoms, not for low mood itself
+  withdrawn_from_others: supports
+  # From the general card for this condition (merged):
+  trouble_sleeping: supports
+  loss_of_appetite: supports
+  weight_loss: supports
+  stressful_time: supports
+key_findings: [low_mood_over_2_weeks, lost_interest_or_enjoyment, feeling_hopeless, feeling_worthless_or_guilty, low_mood, trouble_sleeping, loss_of_appetite, very_tired]
+source: nhs_depression
+informed_by: [nhs_depression, nhs_low_mood, nhs_tiredness_and_fatigue, nhs_unintentional_weight_loss, nhs_loss_of_libido, nhs_erection_problems_erectile_dysfunction]
+# Merged with the general card for this condition. Its notes: A common cause of
+# tiredness and of weight loss. Thoughts of suicide or self-harm are caught by the
+# universal red flags. What tells it apart: low mood or no pleasure in things for most
+# of the day, with poor sleep and appetite. Merged with the urinary_and_male card for
+# this condition. Its notes:

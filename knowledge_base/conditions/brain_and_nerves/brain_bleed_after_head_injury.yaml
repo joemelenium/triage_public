@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: brain_bleed_after_head_injury
+body_system: brain_and_nerves
+entry_symptoms: [head_injury]
+name: "Bleeding in the brain, or a broken skull, after a head injury"
+medical_name: "Intracranial haemorrhage following injury"
+snomed: "450410005"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: takes_blood_thinners, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart from concussion: being knocked out, drowsiness, being sick, a fit, or changes in behaviour. More likely with blood thinners or in older people.
+  knocked_out: strongly_supports
+  drowsy_hard_to_wake: strongly_supports
+  child_floppy_or_hard_to_wake: strongly_supports
+  vomiting: supports
+  headache: supports
+  had_a_fit: supports
+  sudden_confusion: supports
+  behaviour_changed_since_injury: supports
+  skull_injury_signs: supports
+  weakness_or_paralysis: supports
+  difficulty_speaking: supports
+key_findings: [knocked_out, drowsy_hard_to_wake, vomiting, takes_blood_thinners, behaviour_changed_since_injury]
+source: nhs_head_injury
+informed_by: [nhs_head_injury, nhs_subarachnoid_haemorrhage]

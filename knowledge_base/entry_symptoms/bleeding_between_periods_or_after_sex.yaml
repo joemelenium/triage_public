@@ -1,0 +1,92 @@
+# Entry symptom: vaginal bleeding between periods or after sex.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS page says always get it checked, so the default is a GP or sexual
+# health clinic, and a floor. Bleeding in someone who knows they are pregnant is
+# handled by the "bleeding in pregnancy" entry symptom, which a "yes" to being
+# pregnant brings in.
+
+id: bleeding_between_periods_or_after_sex
+name: "Bleeding between periods or after sex"
+presenting_finding: bleeding_between_periods_or_after_sex
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bleeding_between_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - heavy_vaginal_bleeding
+      - sa_sudden_severe
+      - shoulder_tip_pain
+      - fainted
+      - light_headed
+
+  - id: bleeding_between_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - missed_or_late_period
+      - may_be_pregnant
+      - bleeding_in_pregnancy
+      - pelvic_pain
+      - one_sided_lower_tummy_pain
+      - very_high_temperature
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bb_heavy_and_faint
+    description: "Very heavy bleeding with feeling faint or dizzy, or passing out"
+    when: {all: [heavy_vaginal_bleeding, {any: [light_headed, fainted]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_heavy_bleeding_emergency
+    source: ai_judgement
+
+  - id: rf_bb_ectopic_burst_signs
+    description: "Unusual bleeding with a sharp, sudden and very bad tummy pain, pain in the tip of the shoulder, or passing out"
+    when: {any: [sa_sudden_severe, shoulder_tip_pain, fainted]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_ectopic_pregnancy
+    note: "AI reading: these are the Ectopic pregnancy page's signs of a burst ectopic pregnancy, which can first look like unusual bleeding."
+
+  - id: rf_bb_heavy_may_be_pregnant
+    description: "Heavy bleeding in someone who could be pregnant"
+    when: {all: [heavy_vaginal_bleeding, {any: [may_be_pregnant, missed_or_late_period]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_miscarriage
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bb_missed_period_and_pain
+    description: "Recently missed a period, with unusual bleeding and tummy pain: possible ectopic pregnancy"
+    when: {all: [{any: [missed_or_late_period, may_be_pregnant]}, {any: [pelvic_pain, one_sided_lower_tummy_pain, stomach_ache]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_vaginal_bleeding_between_periods_or_after_sex
+    note: "The page names a recently missed period. Including 'could be pregnant' is AI judgement, from the Ectopic pregnancy page. The page says pain anywhere in the tummy, so a stomach ache counts as well as pelvic pain."
+
+  - id: rf_bb_pregnant
+    description: "Bleeding in someone who is pregnant"
+    when: {any: [pregnant_now, bleeding_in_pregnancy]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit, or NHS 111"}
+    advice: advice_bleeding_pregnancy_urgent
+    source: nhs_vaginal_bleeding_pregnancy
+
+  - id: rf_bb_pain_and_temperature
+    description: "Unusual bleeding with pelvic pain and a high temperature: possible pelvic infection"
+    when: {all: [pelvic_pain, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_discharge_urgent
+    source: nhs_pelvic_inflammatory_disease
+
+outcome_rules: []
+
+default:
+  description: "Bleeding between periods or after sex: always get it checked"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or go to a sexual health clinic. The source gives no fixed time."}
+  advice: advice_bleeding_between_periods_gp
+  source: nhs_vaginal_bleeding_between_periods_or_after_sex
+  # A floor: the source says always get it checked by a doctor.
+  floor: true

@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: low_blood_sugar
+body_system: brain_and_nerves
+entry_symptoms: [dizziness, sudden_confusion, tremor, had_a_fit, fainted]
+name: "Low blood sugar (hypoglycaemia, a hypo)"
+medical_name: "Hypoglycaemia"
+snomed: "302866003"
+acuity_needed: urgent
+danger: critical
+prevalence: rare
+findings:
+  # Diabetes is linked as a finding, not only as a starting chance, because nearly everyone who has a hypo has diabetes, so a 'no' should count against it. What tells it apart: shaky, sweaty and hungry in someone with diabetes.
+  has_diabetes: strongly_supports
+  diabetes_low_sugar_signs: strongly_supports
+  sweating: supports
+  tremor: supports
+  light_headed: supports
+  sudden_confusion: supports
+  tingling_fingers: supports
+  palpitations: supports
+key_findings: [has_diabetes, diabetes_low_sugar_signs, sweating]
+source: nhs_low_blood_sugar
+informed_by: [nhs_low_blood_sugar, nhs_confusion, nhs_dizziness]

@@ -1,0 +1,78 @@
+id: um_h01
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- stomach_ache
+summary: 12-year-old boy with pain low in his tummy and vomiting for 2 hours. He only mentions when asked that his left testicle hurts too. He is not sure whether the testicle pain came on suddenly.
+opening_statement: My tummy really hurts down low and I keep being sick.
+findings:
+  present:
+  - stomach_ache
+  - sa_low_down
+  - vomiting
+  - feeling_sick
+  - testicle_pain
+  - testicle_pain_over_an_hour
+  absent:
+  - testicle_injury
+  - diarrhoea
+  - very_high_temperature
+  - sa_moved_to_lower_right
+  - sa_lower_right
+  - painful_or_frequent_peeing
+  - green_vomit
+  - rash_does_not_fade
+  - cannot_pee
+  - vomiting_blood
+  - bleeding_from_bottom
+  unknown:
+  - testicle_pain_sudden_severe
+context:
+  none: {}
+  basic:
+    age: 12
+    sex: male
+  full:
+    age: 12
+    sex: male
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Testicle pain with tummy pain and being sick (easy to miss when the boy only mentions his tummy)
+  findings:
+  - testicle_pain
+  - stomach_ache
+  - vomiting
+  minimum_acuity: emergency
+  source:
+    page: testicle_pain.txt
+    quote: testicle pain along with feeling sick, being sick or pain in your tummy
+- description: Testicle pain lasting more than an hour
+  findings:
+  - testicle_pain_over_an_hour
+  minimum_acuity: emergency
+  source:
+    page: testicle_pain.txt
+    quote: testicle pain that has lasted more than an hour or continues when you're resting
+safety_netting_should_cover:
+- point: Go to A&E immediately or call 999
+  any_of:
+  - A&E
+  - '999'
+- point: Not to drive themselves to A&E
+  any_of:
+  - do not drive
+  - don't drive
+  - ask someone to drive
+source:
+  expected_outcome:
+    page: testicle_pain.txt
+    quote: testicle pain along with feeling sick, being sick or pain in your tummy
+  minimum_safe_acuity:
+    page: epididymitis.txt
+    quote: you get sudden, unbearable pain in your testicles or tummy
+atypical: true
+notes: 'Atypical: presents as a stomach ache and the testicle pain is only found if asked about. The opening statement does not mention the testicle. Testicle pain with tummy pain or vomiting is an emergency on testicle_pain.txt whatever the onset, so the unknown onset does not change the outcome.'

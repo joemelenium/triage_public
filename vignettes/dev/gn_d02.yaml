@@ -1,0 +1,84 @@
+id: gn_d02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- generally_unwell
+summary: A 79-year-old woman who has been burning when peeing for 2 days, and today is suddenly muddled, breathing fast and generally unwell. Her daughter says she has barely peed today. She has no high temperature.
+opening_statement: Mum's not right today. She's all muddled and breathing really fast, and she says she feels awful. She's had a water infection, I think, but she hasn't got a temperature.
+findings:
+  present:
+  - generally_unwell
+  - sudden_confusion
+  - breathing_very_fast
+  - painful_or_frequent_peeing
+  - not_making_much_pee
+  - feels_very_unwell
+  absent:
+  - very_high_temperature
+  - rash_does_not_fade
+  - chest_pain
+  - stroke_signs
+  - head_injury_last_3_months
+  - lips_or_skin_blue_grey
+  - skin_blotchy
+  - short_of_breath
+  unknown:
+  - takes_blood_thinners
+context:
+  none: {}
+  basic:
+    age: 79
+    sex: female
+  full:
+    age: 79
+    sex: female
+    findings:
+      long_term_condition: 'yes'
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Sudden confusion with an infection (possible sepsis)
+  findings:
+  - sudden_confusion
+  minimum_acuity: emergency
+  source:
+    page: sepsis.txt
+    quote: is confused, has slurred speech, or is not making sense
+- description: Breathing very fast with an infection (possible sepsis)
+  findings:
+  - breathing_very_fast
+  minimum_acuity: emergency
+  source:
+    page: sepsis.txt
+    quote: is breathing very fast
+safety_netting_should_cover:
+- point: Call 999 or go to A&E now
+  any_of:
+  - '999'
+  - A&E
+- point: Not to drive to A&E
+  any_of:
+  - do not drive
+  - don't drive
+source:
+  expected_outcome:
+    page: sepsis.txt
+    quote: 'Immediate action required: Call 999 or go to A&E if:'
+  minimum_safe_acuity:
+    page: sepsis.txt
+    quote: is confused, has slurred speech, or is not making sense
+variants:
+- id: gn_d02_v1
+  style: daughter rambling, mentions much up front
+  opening_statement: I'm ringing about my mum, she's 79. She's had stinging when she pees since the weekend, and this morning she's confused, doesn't know what day it is, she's breathing fast and she's hardly been to the loo all day. No temperature though, I checked.
+  volunteered:
+  - sudden_confusion
+  - breathing_very_fast
+  - painful_or_frequent_peeing
+  - not_making_much_pee
+  - very_high_temperature
+atypical: true
+notes: 'Atypical: possible sepsis in an older adult without a high temperature. sepsis.txt says ''a high temperature is less common in older adults''. Short of breath is listed absent because the daughter reports fast breathing, not breathlessness; if an engine treats them as the same, the outcome is unchanged. Possible stroke is ruled out by stroke_signs absent. The finding ''has a urine catheter'' (a sepsis risk factor) has no question id, so it is left out. Blood thinners unknown: the daughter is not sure of all her medicines; it does not change the outcome.'

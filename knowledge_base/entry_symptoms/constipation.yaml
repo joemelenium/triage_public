@@ -1,0 +1,117 @@
+# Entry symptom: constipation, in adults and children.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Constipation page gives only non-urgent advice. The urgent and emergency
+# rules come from other pages and clinical knowledge: a blocked bowel, and
+# pressure on the nerves at the base of the spine.
+
+id: constipation
+name: "Constipation"
+presenting_finding: constipation
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: constipation_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - cannot_poo_or_fart
+      - sa_sudden_severe
+      - saddle_numbness
+      - legs_weak_or_numb
+      - cannot_pee_at_all
+
+  - id: constipation_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - tummy_swollen
+      - vomiting
+      - bleeding_from_bottom
+      - black_or_dark_red_poo
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_con_blocked_bowel
+    description: "Cannot poo or fart at all, with being sick or a swollen tummy: possible blocked bowel"
+    when: {all: [cannot_poo_or_fart, {any: [vomiting, tummy_swollen, stomach_ache]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_constipation_ae
+    source: nhs_diverticulitis
+    note: "The Diverticulitis page says 999 or A&E for severe tummy pain with being sick, a swollen tummy, or not being able to poo or fart. The Stomach ache page says 999 or A&E for a stomach ache with not being able to poo or fart, so a stomach ache is included: without it, the urgent rule below settled the outcome and the tummy pain was never asked about."
+
+  - id: rf_con_sudden_severe_pain
+    description: "Constipation with a sudden, severe tummy ache"
+    when: sa_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_constipation_ae
+    source: nhs_stomach_ache
+
+  - id: rf_con_nerve_signs
+    description: "Loss of feeling around the bottom or genitals, or weakness or numbness in both legs, or cannot pee: possible pressure on the nerves at the base of the spine"
+    when: {any: [saddle_numbness, legs_weak_or_numb, cannot_pee_at_all]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_nerve_emergency
+    source: nhs_back_pain
+    note: "The Back pain page says 999 or A&E for back pain with these signs (cauda equina syndrome). Applying them to constipation without back pain is AI judgement: changes in pooing can be the first sign."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_con_cannot_poo_or_fart
+    description: "Cannot poo or fart at all"
+    when: cannot_poo_or_fart
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_constipation_urgent
+    source: nhs_bloating
+
+  - id: rf_con_child_swollen_and_sick
+    description: "A child who is constipated or soiling, with a swollen tummy and being sick"
+    when: {all: [age_under_16, tummy_swollen, vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_constipation_urgent
+    source: nhs_soiling_child_pooing_their_pants
+
+  - id: rf_con_swollen_or_sick
+    description: "Constipation with a swollen tummy, or with being sick"
+    when: {any: [tummy_swollen, vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_constipation_urgent
+    source: nhs_bloating
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Bloating page says an urgent GP appointment or 111 for bloating with being sick or constipation. Using a swollen tummy for bloating is a reading of the source."
+
+  - id: rf_con_black_poo
+    description: "Black or dark red poo"
+    when: black_or_dark_red_poo
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+    note: "Iron tablets can make poo dark. The question says so."
+
+outcome_rules:
+  - id: or_con_child
+    description: "A child who may be constipated"
+    when: age_under_16
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Take your child to see a GP. The source gives no fixed time."}
+    advice: advice_constipation_child_gp
+    source: nhs_constipation_in_children
+    note: "The Constipation in children page says take your child to a GP if you think they may be constipated, and get help early."
+
+  - id: or_con_gp
+    description: "Constipation not getting better with treatment, regularly constipated, or with blood in poo, weight loss, tiredness, tummy pain, a medicine that causes it, or sudden changes in pooing"
+    when: {any: [constipation_not_helped, constipation_often, bloating, bleeding_from_bottom, weight_loss, very_tired, takes_constipating_medicine, bowel_habit_change_3_weeks, stomach_ache]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_constipation_gp
+    source: nhs_constipation
+    note: "The page says see a GP if you are regularly bloated. Using any bloating is AI judgement."
+
+default:
+  description: "Constipation with nothing that needs more help: treat it with changes to diet and lifestyle, and ask a pharmacist if these do not help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "You may notice a difference within a few days"}
+  advice: advice_constipation_self_care
+  source: nhs_constipation

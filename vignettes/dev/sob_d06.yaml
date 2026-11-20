@@ -1,0 +1,60 @@
+id: sob_d06
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 2-year-old boy (his father answering) with a cold and cough for three days and a temperature since yesterday. Tonight he is breathing fast, making grunting noises, and his tummy is sucking in under his ribs."
+
+opening_statement: "My little boy's breathing is really fast and he's making a grunting noise with each breath. His tummy keeps sucking in under his ribs."
+
+findings:
+  present: [short_of_breath, child_struggling_to_breathe, difficulty_breathing, breathing_very_fast, cough, very_high_temperature, blocked_or_runny_nose, recent_viral_illness, symptoms_worse_or_not_better]
+  absent: [lips_or_skin_blue_grey, child_floppy_or_hard_to_wake, passed_out, sudden_confusion, pauses_in_breathing, rash_does_not_fade, had_a_fit, skin_blotchy, not_peed_12_hours, choked_on_something, cough_barking, stridor, drooling, unable_to_swallow, lips_tongue_throat_swelling, after_allergy_trigger, baby_premature_or_heart_lung_condition, has_asthma, cough_whoop, wheezing]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 2, sex: male}
+  full:
+    age: 2
+    sex: male
+    findings: {baby_premature_or_heart_lung_condition: "no", has_asthma: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Child struggling to breathe: grunting and tummy sucking in under the ribs"
+    findings: [child_struggling_to_breathe, difficulty_breathing]
+    minimum_acuity: emergency
+    source: {page: shortness_of_breath.txt, quote: "has difficulty breathing – they may make grunting noises or suck their stomach in under their ribcage"}
+  - description: "Child under 5 breathing very fast with an infection"
+    findings: [breathing_very_fast]
+    minimum_acuity: emergency
+    source: {page: sepsis.txt, quote: "is breathing very fast or having difficulty breathing – they may make grunting noises or their tummy may be sucking under their ribcage when they breathe"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now"
+    any_of: ["999", "A&E"]
+
+source:
+  expected_outcome: {page: shortness_of_breath.txt, quote: "Call 999 or go to A&E immediately if your child"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "has difficulty breathing – they may make grunting noises or suck their stomach in under their ribcage"}
+
+variants:
+  - id: sob_d06_v1
+    style: "panicked parent, few details"
+    opening_statement: "He can't breathe properly! He's two, he's had a cold, now he's grunting!"
+    volunteered: [difficulty_breathing, child_struggling_to_breathe]
+  - id: sob_d06_v2
+    style: "calm parent, starts with the cold"
+    opening_statement: "My son's had a cold and a cough for a few days and a temperature since yesterday. I've just noticed he's breathing quite quickly and his belly is pulling in under his ribs."
+    volunteered: [blocked_or_runny_nose, cough, very_high_temperature, breathing_very_fast, child_struggling_to_breathe]
+
+atypical: false
+notes: "Child emergency. shortness_of_breath.txt, sepsis.txt, pneumonia.txt and croup.txt all agree: grunting or tummy sucking in under the ribs means 999 or A&E. No wheeze, stridor or barking cough, so the cause is left open (could be pneumonia)."

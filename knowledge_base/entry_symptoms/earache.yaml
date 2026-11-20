@@ -1,0 +1,189 @@
+# Entry symptom: earache.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Earache and Ear infections pages, with the Mastoiditis and
+# Bell's palsy pages, and clinical knowledge where marked ai_judgement.
+
+id: earache
+name: "Earache"
+presenting_finding: ear_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: earache_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - very_painful_headache
+      - stiff_neck
+      - bothered_by_light
+      - child_floppy_or_hard_to_wake
+      - rash_does_not_fade
+      - head_injury
+
+  - id: earache_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swelling_around_ear
+      - ear_discharge
+      - very_high_temperature
+      - feels_very_unwell
+      - hearing_loss
+      - object_in_ear
+      - face_droop_one_side
+      - dizziness_spinning
+      - weakened_immune_system
+      - long_term_condition
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ea_meningitis_signs
+    description: "Earache with a very bad headache and a stiff neck, or bright light hurting the eyes"
+    when: {all: [very_painful_headache, {any: [stiff_neck, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_earache_ae
+    source: ai_judgement
+    note: "Clinical knowledge: an ear infection can rarely spread to the lining of the brain (meningitis). The Mastoiditis page names meningitis as a complication, and the Mumps page says go to A&E or call 999 for a very bad headache with a stiff neck."
+
+  - id: rf_ea_child_floppy
+    description: "A child with earache who is limp, floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_ea_rash_not_fading
+    description: "Earache with a rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_ea_head_injury
+    description: "Earache, or fluid from the ear, that started after a head injury"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_head_injury_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: AI judgement, and a head injury brings in the head injury rules, which are the firm floor
+    note: "AI reading of the Tinnitus page, which says go to A&E for tinnitus after a head injury. Ear pain, bleeding or fluid from the ear after a head injury can be a sign of a skull injury."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ea_over_2_to_3_days
+    description: "Earache for more than 2 to 3 days"
+    when: earache_2_to_3_days
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Earache page says an urgent GP appointment or 111 for earache lasting more than 2 to 3 days. The Ear infections page says see a GP (not urgent) for earache that does not get better after 3 days. The more urgent is used, marked soft."
+
+  - id: rf_ea_unwell
+    description: "Earache and feeling generally unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+
+  - id: rf_ea_high_temperature
+    description: "Earache with a very high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+
+  - id: rf_ea_swelling_around_ear
+    description: "Earache with swelling around or behind the ear"
+    when: swelling_around_ear
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+    note: "The Mastoiditis page also says an urgent GP appointment or 111 for redness or swelling behind the ear."
+
+  - id: rf_ea_discharge
+    description: "Earache with fluid coming from the ear"
+    when: ear_discharge
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+
+  - id: rf_ea_hearing_change
+    description: "Earache with hearing loss or a change in hearing"
+    when: hearing_loss
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+
+  - id: rf_ea_object
+    description: "Earache with something stuck in the ear"
+    when: object_in_ear
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_object_stuck_urgent
+    source: nhs_earache
+
+  - id: rf_ea_child_under_2_both_ears
+    description: "A child under 2 with earache in both ears"
+    when: {all: [age_under_2, earache_both_ears]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_earache_urgent
+    source: nhs_earache
+    note: "The Ear infections page says under 12 months; the Earache page says under 2. The wider age is used."
+
+  - id: rf_ea_sick_or_dizzy
+    description: "Earache with feeling sick or being sick, or feeling dizzy"
+    when: {any: [nausea_or_vomiting, dizziness_spinning, light_headed]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_ear_infections
+
+  - id: rf_ea_long_term_condition
+    description: "Earache in someone with diabetes, a heart, lung, kidney or brain condition, or a weakened immune system"
+    when: {any: [long_term_condition, weakened_immune_system]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_earache_urgent
+    source: nhs_ear_infections
+
+  - id: rf_ea_facial_weakness
+    description: "Earache with weakness or drooping of one side of the face"
+    when: face_droop_one_side
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_earache_urgent
+    source: nhs_bells_palsy
+    note: "The Bell's palsy page says an urgent GP appointment or 111, because treatment works best if started within 72 hours. Signs of a stroke are checked for everyone first. A face that is weak with ear pain or a rash in the ear can also be shingles of the ear."
+
+  - id: rf_ea_rash_on_ear
+    description: "Earache with a painful rash or blisters in or around the ear"
+    when: rash_blisters_on_ear
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_earache_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: blisters in the ear can be shingles of the ear, which can weaken the face and affect hearing. Treatment works best if started early. The Shingles page says see a GP urgently for shingles near the eye; applying it to the ear is AI judgement."
+
+outcome_rules:
+  - id: or_ea_keeps_coming_back
+    description: "Keeps getting earache or ear infections"
+    when: earache_keeps_coming_back
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_earache_gp
+    source: nhs_earache
+
+  - id: or_ea_baby_under_1
+    description: "A baby under 12 months with earache"
+    when: age_under_1
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_earache_gp
+    source: nhs_ear_infections
+    note: "The Ear infections page says see a GP if your child is under 12 months and you think they have an ear infection. A pharmacist can treat children aged 1 to 17."
+
+default:
+  description: "Earache with nothing that needs more help: most earaches get better on their own within 3 days"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most earaches get better on their own within 2 to 3 days. A pharmacist can help."}
+  advice: advice_earache_self_care
+  source: nhs_earache

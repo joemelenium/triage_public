@@ -1,0 +1,1331 @@
+# Source log. Every source used by the knowledge base is listed here.
+# Knowledge base items point to a source by its id.
+#
+# Licence for all NHS website entries: Open Government Licence v3.0, subject to
+# the NHS website terms. Content here has been adapted. It must not be
+# attributed to the NHS website, does not imply NHS endorsement, and no longer
+# carries the NHS website's clinical approval.
+#
+# Pages were read directly from the public website, a few at a time, on the
+# date shown. Text snapshots are in sources/nhs_uk/.
+
+- id: nhs_chest_pain
+  title: Chest pain
+  url: https://www.nhs.uk/symptoms/chest-pain/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2023-08-08'
+  licence: OGL v3.0
+  used_for: Chest pain red flags, default outcome and possible causes
+  note: The page's own review date (August 2026) had passed when accessed.
+- id: nhs_heart_attack
+  title: Heart attack
+  url: https://www.nhs.uk/conditions/heart-attack/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2026-03-31'
+  licence: OGL v3.0
+  used_for: Chest pain red flags, universal red flags, advice while waiting for help
+- id: nhs_angina
+  title: Angina
+  url: https://www.nhs.uk/conditions/angina/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2025-03-18'
+  licence: OGL v3.0
+  used_for: Chest pain red flags for people with and without diagnosed angina
+- id: nhs_pulmonary_embolism
+  title: Pulmonary embolism
+  url: https://www.nhs.uk/conditions/pulmonary-embolism/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2026-10-15'
+  licence: OGL v3.0
+  used_for: Chest pain red flags
+- id: nhs_shortness_of_breath
+  title: Shortness of breath
+  url: https://www.nhs.uk/symptoms/shortness-of-breath/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2024-01-30'
+  licence: OGL v3.0
+  used_for: Universal red flag for sudden confusion; chest pain rule for pain or swelling
+    in one leg
+- id: nhs_sore_throat
+  title: Sore throat
+  url: https://www.nhs.uk/symptoms/sore-throat/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2024-04-08'
+  licence: OGL v3.0
+  used_for: Sore throat red flags, outcome rules, default outcome and self-care advice
+- id: nhs_tonsillitis
+  title: Tonsillitis
+  url: https://www.nhs.uk/conditions/tonsillitis/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2024-03-08'
+  licence: OGL v3.0
+  used_for: Sore throat red flags (including signs of quinsy) and outcome rules
+- id: nhs_stroke_symptoms
+  title: Symptoms of a stroke
+  url: https://www.nhs.uk/conditions/stroke/symptoms/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2024-09-12'
+  licence: OGL v3.0
+  used_for: Universal red flag for signs of a stroke
+- id: nhs_cuts_and_grazes
+  title: Cuts and grazes
+  url: https://www.nhs.uk/conditions/cuts-and-grazes/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2026-04-02'
+  licence: OGL v3.0
+  used_for: Universal red flag for heavy bleeding
+- id: nhs_suicidal_thoughts
+  title: Help for suicidal thoughts
+  url: https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2024-04-26'
+  licence: OGL v3.0
+  used_for: Universal red flag for serious self-harm or immediate risk
+- id: nhs_when_to_call_999
+  title: When to call 999
+  url: https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2023-02-03'
+  licence: OGL v3.0
+  used_for: Advice for presentations that are not covered
+  note: The page's own review date (February 2026) had passed when accessed.
+- id: nhs_when_to_go_to_ae
+  title: When to go to A&E
+  url: https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-go-to-ae/
+  accessed: '2026-11-18'
+  page_last_reviewed: '2023-02-03'
+  licence: OGL v3.0
+  used_for: Advice on getting to A&E safely
+  note: The page's own review date (February 2026) had passed when accessed.
+- id: nhs_symptoms_a_to_z
+  title: Symptoms A to Z
+  url: https://www.nhs.uk/symptoms/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: The list that coverage is reported against. No clinical content was taken
+    from it.
+- id: nhs_service_manual_a_to_z
+  title: A to Z of NHS health writing (NHS digital service manual)
+  url: https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Words to avoid in patient-facing text, and what to use instead (knowledge_base/plain_language.yaml)
+- id: nhs_service_manual_health_literacy
+  title: Health literacy (NHS digital service manual)
+  url: https://service-manual.nhs.uk/content/health-literacy
+  accessed: '2026-11-18'
+  page_last_reviewed: 2023-10
+  licence: OGL v3.0
+  used_for: 'How the reading level check is used: readability scores only help prioritise;
+    testing with users is what counts'
+- id: nhs_cough
+  title: Cough
+  url: https://www.nhs.uk/symptoms/cough/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 08 December 2023'
+- id: nhs_heart_palpitations
+  title: Heart palpitations
+  url: https://www.nhs.uk/symptoms/heart-palpitations/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 17 March 2026'
+- id: nhs_coughing_up_blood
+  title: Coughing up blood
+  url: https://www.nhs.uk/symptoms/coughing-up-blood/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 13 June 2024'
+- id: nhs_asthma
+  title: Asthma
+  url: https://www.nhs.uk/conditions/asthma/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 07 April 2025'
+- id: nhs_copd
+  title: COPD
+  url: https://www.nhs.uk/conditions/chronic-obstructive-pulmonary-disease-copd/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 2 November 2026'
+- id: nhs_pneumonia
+  title: Pneumonia
+  url: https://www.nhs.uk/conditions/pneumonia/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 17 July 2026'
+- id: nhs_bronchitis
+  title: Bronchitis
+  url: https://www.nhs.uk/conditions/bronchitis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 18 August 2026'
+- id: nhs_chest_infection
+  title: Chest infection
+  url: https://www.nhs.uk/conditions/chest-infection/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 21 June 2023'
+- id: nhs_common_cold
+  title: Common cold
+  url: https://www.nhs.uk/conditions/common-cold/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 22 March 2024'
+- id: nhs_flu
+  title: Flu
+  url: https://www.nhs.uk/conditions/flu/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 03 February 2026'
+- id: nhs_whooping_cough
+  title: Whooping cough
+  url: https://www.nhs.uk/conditions/whooping-cough/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 06 August 2026'
+- id: nhs_croup
+  title: Croup
+  url: https://www.nhs.uk/conditions/croup/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 02 August 2023'
+- id: nhs_bronchiolitis
+  title: Bronchiolitis
+  url: https://www.nhs.uk/conditions/bronchiolitis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 19 February 2026'
+- id: nhs_tuberculosis
+  title: Tuberculosis (TB)
+  url: https://www.nhs.uk/conditions/tuberculosis-tb/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 10 September 2026'
+- id: nhs_pleurisy
+  title: Pleurisy
+  url: https://www.nhs.uk/conditions/pleurisy/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 16 September 2026'
+- id: nhs_pulmonary_fibrosis
+  title: Idiopathic pulmonary fibrosis
+  url: https://www.nhs.uk/conditions/idiopathic-pulmonary-fibrosis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 27 August 2026'
+- id: nhs_bronchiectasis
+  title: Bronchiectasis
+  url: https://www.nhs.uk/conditions/bronchiectasis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 11 June 2025'
+- id: nhs_anaphylaxis
+  title: Anaphylaxis
+  url: https://www.nhs.uk/conditions/anaphylaxis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 21 June 2023'
+- id: nhs_heart_failure
+  title: Heart failure
+  url: https://www.nhs.uk/conditions/heart-failure/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 26 June 2026'
+- id: nhs_atrial_fibrillation
+  title: Atrial fibrillation
+  url: https://www.nhs.uk/conditions/atrial-fibrillation/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 13 January 2025'
+- id: nhs_svt
+  title: Supraventricular tachycardia (SVT)
+  url: https://www.nhs.uk/conditions/supraventricular-tachycardia-svt/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 12 June 2024'
+- id: nhs_pericarditis
+  title: Pericarditis
+  url: https://www.nhs.uk/conditions/pericarditis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 17 July 2023'
+- id: nhs_sepsis
+  title: Sepsis
+  url: https://www.nhs.uk/conditions/sepsis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 14 May 2026'
+- id: nhs_iron_deficiency_anaemia
+  title: Iron deficiency anaemia
+  url: https://www.nhs.uk/conditions/iron-deficiency-anaemia/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 26 January 2024'
+- id: nhs_panic_disorder
+  title: Panic disorder
+  url: https://www.nhs.uk/mental-health/conditions/panic-disorder/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 22 August 2023'
+- id: nhs_costochondritis
+  title: Costochondritis
+  url: https://www.nhs.uk/conditions/costochondritis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 14 August 2026'
+- id: nhs_shingles
+  title: Shingles
+  url: https://www.nhs.uk/conditions/shingles/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 23 November 2023'
+- id: nhs_hay_fever
+  title: Hay fever
+  url: https://www.nhs.uk/conditions/hay-fever/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 21 March 2024'
+- id: nhs_heartburn
+  title: Heartburn and acid reflux
+  url: https://www.nhs.uk/conditions/heartburn-and-acid-reflux/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 20 November 2023'
+- id: nhs_sinusitis
+  title: Sinusitis
+  url: https://www.nhs.uk/conditions/sinusitis-sinus-infection/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 31 January 2024'
+- id: nhs_sarcoidosis
+  title: Sarcoidosis
+  url: https://www.nhs.uk/conditions/sarcoidosis/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 06 October 2022'
+- id: nhs_coronary_heart_disease
+  title: Coronary heart disease
+  url: https://www.nhs.uk/conditions/coronary-heart-disease/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 17 January 2024'
+- id: nhs_fainting
+  title: Fainting
+  url: https://www.nhs.uk/symptoms/fainting/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 17 August 2026'
+- id: nhs_covid_19
+  title: COVID-19 symptoms and what to do
+  url: https://www.nhs.uk/conditions/covid-19/covid-19-symptoms-and-what-to-do/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 21 March 2023'
+- id: nhs_lung_cancer
+  title: Lung cancer symptoms
+  url: https://www.nhs.uk/conditions/lung-cancer/symptoms/
+  accessed: '2026-11-18'
+  licence: OGL v3.0
+  used_for: Chest and breathing pilot
+  note: 'Page last reviewed: 20 August 2026'
+
+- id: nhs_back_pain
+  title: Back pain
+  url: https://www.nhs.uk/conditions/back-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 05 March 2026'
+
+- id: nhs_bowel_incontinence
+  title: Bowel incontinence
+  url: https://www.nhs.uk/conditions/bowel-incontinence/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 15 August 2024'
+
+- id: nhs_catarrh
+  title: Catarrh
+  url: https://www.nhs.uk/conditions/catarrh/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 16 June 2026'
+
+- id: nhs_constipation
+  title: Constipation
+  url: https://www.nhs.uk/conditions/constipation/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 October 2023'
+
+- id: nhs_dehydration
+  title: Dehydration
+  url: https://www.nhs.uk/conditions/dehydration/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 01 May 2026'
+
+- id: nhs_ejaculation_problems
+  title: Ejaculation problems
+  url: https://www.nhs.uk/conditions/ejaculation-problems/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 09 February 2023'
+
+- id: nhs_erection_problems_erectile_dysfunction
+  title: Erectile dysfunction (impotence)
+  url: https://www.nhs.uk/conditions/erection-problems-erectile-dysfunction/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 28 July 2023'
+
+- id: nhs_excessive_daytime_sleepiness_hypersomnia
+  title: Excessive daytime sleepiness (hypersomnia)
+  url: https://www.nhs.uk/conditions/excessive-daytime-sleepiness-hypersomnia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 23 June 2023'
+
+- id: nhs_excessive_sweating_hyperhidrosis
+  title: Excessive sweating (hyperhidrosis)
+  url: https://www.nhs.uk/conditions/excessive-sweating-hyperhidrosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 07 November 2023'
+
+- id: nhs_hearing_loss
+  title: Deafness
+  url: https://www.nhs.uk/conditions/hearing-loss/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 30 May 2025'
+
+- id: nhs_heavy_periods
+  title: Heavy periods
+  url: https://www.nhs.uk/conditions/heavy-periods/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 19 September 2024'
+
+- id: nhs_hives
+  title: Hives
+  url: https://www.nhs.uk/conditions/hives/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 April 2024'
+
+- id: nhs_indigestion
+  title: Indigestion
+  url: https://www.nhs.uk/conditions/indigestion/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 05 May 2023'
+
+- id: nhs_insomnia
+  title: Insomnia
+  url: https://www.nhs.uk/conditions/insomnia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 19 March 2024'
+
+- id: nhs_leg_cramps
+  title: Leg cramps
+  url: https://www.nhs.uk/conditions/leg-cramps/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 01 December 2023'
+
+- id: nhs_oedema
+  title: Ankles (swollen)
+  url: https://www.nhs.uk/conditions/oedema/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 February 2026'
+
+- id: nhs_reflux_in_babies
+  title: Acid reflux in babies
+  url: https://www.nhs.uk/conditions/reflux-in-babies/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 10 June 2025'
+
+- id: nhs_stretch_marks
+  title: Stretch marks
+  url: https://www.nhs.uk/conditions/stretch-marks/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 30 April 2024'
+
+- id: nhs_swollen_arms_and_hands_oedema
+  title: Swollen arms and hands (oedema)
+  url: https://www.nhs.uk/conditions/swollen-arms-and-hands-oedema/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 01 October 2025'
+
+- id: nhs_tailbone_coccyx_pain
+  title: Coccyx pain
+  url: https://www.nhs.uk/conditions/tailbone-coccyx-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 20 November 2025'
+
+- id: nhs_tinnitus
+  title: Tinnitus
+  url: https://www.nhs.uk/conditions/tinnitus/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 12 January 2024'
+
+- id: nhs_urinary_incontinence
+  title: Incontinence (urinary)
+  url: https://www.nhs.uk/conditions/urinary-incontinence/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 15 June 2023'
+
+- id: nhs_vision_loss
+  title: Vision loss
+  url: https://www.nhs.uk/conditions/vision-loss/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 28 August 2025'
+
+- id: nhs_anal_pain
+  title: Anal pain
+  url: https://www.nhs.uk/symptoms/anal-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 27 October 2025'
+
+- id: nhs_bad_breath
+  title: Bad breath
+  url: https://www.nhs.uk/symptoms/bad-breath/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 05 June 2025'
+
+- id: nhs_bedwetting
+  title: Bedwetting in children
+  url: https://www.nhs.uk/symptoms/bedwetting/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 11 November 2026'
+
+- id: nhs_bleeding_from_the_bottom_rectal_bleeding
+  title: Bleeding from the bottom (rectal bleeding)
+  url: https://www.nhs.uk/symptoms/bleeding-from-the-bottom-rectal-bleeding/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 12 April 2023'
+
+- id: nhs_bloating
+  title: Bloating
+  url: https://www.nhs.uk/symptoms/bloating/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 21 January 2026'
+
+- id: nhs_blood_in_semen
+  title: Blood in semen
+  url: https://www.nhs.uk/symptoms/blood-in-semen/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 23 September 2025'
+
+- id: nhs_blood_in_urine
+  title: Blood in urine
+  url: https://www.nhs.uk/symptoms/blood-in-urine/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 25 September 2026'
+
+- id: nhs_blue_skin_or_lips_cyanosis
+  title: Blue or grey skin or lips (cyanosis)
+  url: https://www.nhs.uk/symptoms/blue-skin-or-lips-cyanosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 04 October 2023'
+
+- id: nhs_blushing
+  title: Blushing
+  url: https://www.nhs.uk/symptoms/blushing/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 25 July 2025'
+
+- id: nhs_body_odour_bo
+  title: Body odour (BO)
+  url: https://www.nhs.uk/symptoms/body-odour-bo/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 14 May 2025'
+
+- id: nhs_breast_lump
+  title: Breast lumps
+  url: https://www.nhs.uk/symptoms/breast-lump/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 10 November 2026'
+
+- id: nhs_breast_pain
+  title: Breast pain
+  url: https://www.nhs.uk/symptoms/breast-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 23 October 2026'
+
+- id: nhs_bulging_eyes
+  title: Bulging eyes (exophthalmos)
+  url: https://www.nhs.uk/symptoms/bulging-eyes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 June 2026'
+
+- id: nhs_confusion
+  title: Confusion (sudden)
+  url: https://www.nhs.uk/symptoms/confusion/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 28 May 2024'
+
+- id: nhs_diarrhoea_and_vomiting
+  title: Being sick
+  url: https://www.nhs.uk/symptoms/diarrhoea-and-vomiting/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 21 December 2023'
+
+- id: nhs_dizziness
+  title: Dizziness
+  url: https://www.nhs.uk/symptoms/dizziness/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 21 April 2023'
+
+- id: nhs_double_vision
+  title: Double vision
+  url: https://www.nhs.uk/symptoms/double-vision/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 12 January 2024'
+
+- id: nhs_dry_eyes
+  title: Dry eyes
+  url: https://www.nhs.uk/symptoms/dry-eyes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 06 January 2025'
+
+- id: nhs_dry_mouth
+  title: Dry mouth
+  url: https://www.nhs.uk/symptoms/dry-mouth/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 29 November 2023'
+
+- id: nhs_earache
+  title: Earache
+  url: https://www.nhs.uk/symptoms/earache/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 27 October 2025'
+
+- id: nhs_elbow_and_arm_pain
+  title: Arm pain
+  url: https://www.nhs.uk/symptoms/elbow-and-arm-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 January 2024'
+
+- id: nhs_eye_pain
+  title: Eye pain
+  url: https://www.nhs.uk/symptoms/eye-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 21 October 2025'
+
+- id: nhs_eyelid_problems
+  title: Eyelid problems
+  url: https://www.nhs.uk/symptoms/eyelid-problems/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 17 November 2023'
+
+- id: nhs_feeling_sick_nausea
+  title: Feeling sick (nausea)
+  url: https://www.nhs.uk/symptoms/feeling-sick-nausea/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 17 November 2023'
+
+- id: nhs_fever_in_adults
+  title: Fever in adults
+  url: https://www.nhs.uk/symptoms/fever-in-adults/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 19 October 2026'
+
+- id: nhs_fever_in_children
+  title: Fever in children
+  url: https://www.nhs.uk/symptoms/fever-in-children/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 03 January 2024'
+
+- id: nhs_flatulence
+  title: Farting (flatulence)
+  url: https://www.nhs.uk/symptoms/flatulence/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 02 April 2026'
+
+- id: nhs_floaters_and_flashes_in_the_eyes
+  title: Eye floaters and flashes
+  url: https://www.nhs.uk/symptoms/floaters-and-flashes-in-the-eyes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 20 June 2023'
+
+- id: nhs_foot_pain
+  title: Foot pain
+  url: https://www.nhs.uk/symptoms/foot-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+
+- id: nhs_ankle_pain
+  title: Ankle pain
+  url: https://www.nhs.uk/symptoms/foot-pain/ankle-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 20 November 2025'
+
+- id: nhs_heel_pain
+  title: Heel pain
+  url: https://www.nhs.uk/symptoms/foot-pain/heel-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 24 October 2025'
+
+- id: nhs_pain_in_the_ball_of_the_foot
+  title: Metatarsalgia
+  url: https://www.nhs.uk/symptoms/foot-pain/pain-in-the-ball-of-the-foot/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 5 November 2025'
+
+- id: nhs_pain_in_the_bottom_of_the_foot
+  title: Pain in the bottom of the foot
+  url: https://www.nhs.uk/symptoms/foot-pain/pain-in-the-bottom-of-the-foot/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 11 September 2025'
+
+- id: nhs_pain_in_the_top_of_the_foot
+  title: Pain in the top of the foot
+  url: https://www.nhs.uk/symptoms/foot-pain/pain-in-the-top-of-the-foot/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 24 October 2025'
+
+- id: nhs_hair_loss
+  title: Hair loss
+  url: https://www.nhs.uk/symptoms/hair-loss/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 24 January 2024'
+
+- id: nhs_hand_pain
+  title: Hand pain
+  url: https://www.nhs.uk/symptoms/hand-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+
+- id: nhs_finger_pain
+  title: Finger pain
+  url: https://www.nhs.uk/symptoms/hand-pain/finger-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 5 November 2025'
+
+- id: nhs_pain_in_the_back_of_the_hand
+  title: Pain in the back of the hand
+  url: https://www.nhs.uk/symptoms/hand-pain/pain-in-the-back-of-the-hand/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 5 November 2025'
+
+- id: nhs_pain_in_the_palm_of_the_hand
+  title: Pain in the palm of the hand
+  url: https://www.nhs.uk/symptoms/hand-pain/pain-in-the-palm-of-the-hand/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 16 December 2025'
+
+- id: nhs_thumb_pain
+  title: Thumb pain
+  url: https://www.nhs.uk/symptoms/hand-pain/thumb-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 6 June 2025'
+
+- id: nhs_wrist_pain
+  title: Wrist pain
+  url: https://www.nhs.uk/symptoms/hand-pain/wrist-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 5 November 2025'
+
+- id: nhs_headaches
+  title: Headaches
+  url: https://www.nhs.uk/symptoms/headaches/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 17 April 2024'
+
+- id: nhs_hiccups
+  title: Hiccups
+  url: https://www.nhs.uk/symptoms/hiccups/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 23 June 2023'
+
+- id: nhs_hip_pain_children_irritable_hip
+  title: Hip pain in children (irritable hip)
+  url: https://www.nhs.uk/symptoms/hip-pain-children-irritable-hip/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 03 April 2024'
+
+- id: nhs_hip_pain
+  title: Hip pain in adults
+  url: https://www.nhs.uk/symptoms/hip-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 20 November 2025'
+
+- id: nhs_hirsutism
+  title: Excessive hair growth (hirsutism)
+  url: https://www.nhs.uk/symptoms/hirsutism/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 18 August 2025'
+
+- id: nhs_irregular_periods
+  title: Irregular periods
+  url: https://www.nhs.uk/symptoms/irregular-periods/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 June 2026'
+
+- id: nhs_itchy_anus
+  title: Anus (itchy)
+  url: https://www.nhs.uk/symptoms/itchy-anus/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 03 October 2023'
+
+- id: nhs_itchy_skin
+  title: Itchy skin
+  url: https://www.nhs.uk/symptoms/itchy-skin/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 19 July 2023'
+
+- id: nhs_joint_pain
+  title: Joint pain
+  url: https://www.nhs.uk/symptoms/joint-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 February 2026'
+
+- id: nhs_knee_pain
+  title: Knee pain
+  url: https://www.nhs.uk/symptoms/knee-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 21 December 2023'
+
+- id: nhs_limp_in_children
+  title: Limping in children
+  url: https://www.nhs.uk/symptoms/limp-in-children/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 23 January 2025'
+
+- id: nhs_loss_of_libido
+  title: Low sex drive (loss of libido)
+  url: https://www.nhs.uk/symptoms/loss-of-libido/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 May 2026'
+
+- id: nhs_lost_or_changed_sense_smell
+  title: Anosmia
+  url: https://www.nhs.uk/symptoms/lost-or-changed-sense-smell/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 01 December 2023'
+
+- id: nhs_lumps
+  title: Lumps
+  url: https://www.nhs.uk/symptoms/lumps/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 05 February 2024'
+
+- id: nhs_memory_loss_amnesia
+  title: Amnesia
+  url: https://www.nhs.uk/symptoms/memory-loss-amnesia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 09 October 2023'
+
+- id: nhs_metallic_taste
+  title: Metallic taste
+  url: https://www.nhs.uk/symptoms/metallic-taste/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 04 August 2023'
+
+- id: nhs_missed_or_late_periods
+  title: Missed or late periods
+  url: https://www.nhs.uk/symptoms/missed-or-late-periods/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 12 June 2026'
+
+- id: nhs_nail_problems
+  title: Nail problems
+  url: https://www.nhs.uk/symptoms/nail-problems/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 12 March 2024'
+
+- id: nhs_neck_pain_and_stiff_neck
+  title: Neck pain
+  url: https://www.nhs.uk/symptoms/neck-pain-and-stiff-neck/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 27 April 2023'
+
+- id: nhs_night_sweats
+  title: Night sweats
+  url: https://www.nhs.uk/symptoms/night-sweats/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 09 November 2023'
+
+- id: nhs_nipple_discharge
+  title: Nipple discharge
+  url: https://www.nhs.uk/symptoms/nipple-discharge/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 29 January 2024'
+
+- id: nhs_ovulation_pain
+  title: Ovulation pain
+  url: https://www.nhs.uk/symptoms/ovulation-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 17 July 2026'
+
+- id: nhs_paralysis
+  title: Paralysis
+  url: https://www.nhs.uk/symptoms/paralysis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 17 July 2023'
+
+- id: nhs_pelvic_pain
+  title: Pelvic pain
+  url: https://www.nhs.uk/symptoms/pelvic-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 24 November 2025'
+
+- id: nhs_penis_lumps_and_spots
+  title: Penis lumps and spots
+  url: https://www.nhs.uk/symptoms/penis-lumps-and-spots/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 25 June 2024'
+
+- id: nhs_period_pain
+  title: Menstrual pain
+  url: https://www.nhs.uk/symptoms/period-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 18 March 2026'
+
+- id: nhs_pins_and_needles
+  title: Pins and needles
+  url: https://www.nhs.uk/symptoms/pins-and-needles/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 04 January 2024'
+
+- id: nhs_post_menopausal_bleeding
+  title: Bleeding after the menopause
+  url: https://www.nhs.uk/symptoms/post-menopausal-bleeding/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 24 September 2026'
+
+- id: nhs_priapism_painful_erections
+  title: Priapism (painful erections)
+  url: https://www.nhs.uk/symptoms/priapism-painful-erections/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 05 December 2023'
+
+- id: nhs_rashes_babies_and_children
+  title: Rashes in babies and children
+  url: https://www.nhs.uk/symptoms/rashes-babies-and-children/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 03 October 2024'
+
+- id: nhs_red_eye
+  title: Red eye
+  url: https://www.nhs.uk/symptoms/red-eye/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 27 October 2025'
+
+- id: nhs_shoulder_pain
+  title: Shoulder pain
+  url: https://www.nhs.uk/symptoms/shoulder-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 22 May 2023'
+
+- id: nhs_smelly_feet
+  title: Smelly feet
+  url: https://www.nhs.uk/symptoms/smelly-feet/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 16 July 2025'
+
+- id: nhs_smelly_urine
+  title: Smelly urine
+  url: https://www.nhs.uk/symptoms/smelly-urine/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 16 October 2023'
+
+- id: nhs_snoring
+  title: Snoring
+  url: https://www.nhs.uk/symptoms/snoring/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 04 August 2023'
+
+- id: nhs_soiling_child_pooing_their_pants
+  title: Soiling (child pooing their pants)
+  url: https://www.nhs.uk/symptoms/soiling-child-pooing-their-pants/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 22 November 2023'
+
+- id: nhs_sore_or_dry_lips
+  title: Dry lips
+  url: https://www.nhs.uk/symptoms/sore-or-dry-lips/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 13 February 2025'
+
+- id: nhs_sore_or_white_tongue
+  title: Sore or white tongue
+  url: https://www.nhs.uk/symptoms/sore-or-white-tongue/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 16 May 2023'
+
+- id: nhs_stomach_ache
+  title: Stomach ache
+  url: https://www.nhs.uk/symptoms/stomach-ache/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 20 October 2026'
+
+- id: nhs_swallowing_problems_dysphagia
+  title: Dysphagia (swallowing problems)
+  url: https://www.nhs.uk/symptoms/swallowing-problems-dysphagia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 October 2026'
+
+- id: nhs_swollen_glands
+  title: Swollen glands
+  url: https://www.nhs.uk/symptoms/swollen-glands/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 29 September 2023'
+
+- id: nhs_teeth_grinding
+  title: Bruxism
+  url: https://www.nhs.uk/symptoms/teeth-grinding/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 08 April 2026'
+
+- id: nhs_testicle_lumps_and_swellings
+  title: Testicle lumps and swellings
+  url: https://www.nhs.uk/symptoms/testicle-lumps-and-swellings/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 18 July 2023'
+
+- id: nhs_testicle_pain
+  title: Pain in testicles
+  url: https://www.nhs.uk/symptoms/testicle-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 26 June 2025'
+
+- id: nhs_thirst
+  title: Excessive thirst
+  url: https://www.nhs.uk/symptoms/thirst/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 09 November 2023'
+
+- id: nhs_tiredness_and_fatigue
+  title: Tiredness and fatigue
+  url: https://www.nhs.uk/symptoms/tiredness-and-fatigue/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 02 June 2023'
+
+- id: nhs_toothache
+  title: Dental pain
+  url: https://www.nhs.uk/symptoms/toothache/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 01 July 2024'
+
+- id: nhs_tremor_or_shaking_hands
+  title: Essential tremor
+  url: https://www.nhs.uk/symptoms/tremor-or-shaking-hands/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 14 November 2023'
+
+- id: nhs_twitching_eyes_and_muscles
+  title: Twitching eyes and muscles
+  url: https://www.nhs.uk/symptoms/twitching-eyes-and-muscles/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 30 October 2023'
+
+- id: nhs_unintentional_weight_loss
+  title: Unintentional weight loss
+  url: https://www.nhs.uk/symptoms/unintentional-weight-loss/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 28 July 2025'
+
+- id: nhs_vaginal_bleeding_between_periods_or_after_sex
+  title: Bleeding between periods or after sex
+  url: https://www.nhs.uk/symptoms/vaginal-bleeding-between-periods-or-after-sex/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 13 August 2024'
+
+- id: nhs_vaginal_discharge
+  title: Vaginal discharge
+  url: https://www.nhs.uk/symptoms/vaginal-discharge/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 15 February 2024'
+
+- id: nhs_vaginal_dryness
+  title: Vaginal dryness
+  url: https://www.nhs.uk/symptoms/vaginal-dryness/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 24 July 2025'
+
+- id: nhs_vomiting_blood
+  title: Vomiting blood
+  url: https://www.nhs.uk/symptoms/vomiting-blood/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 18 August 2025'
+
+- id: nhs_watering_eyes
+  title: Watering eyes
+  url: https://www.nhs.uk/symptoms/watering-eyes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 12 November 2024'
+
+- id: nhs_what_to_do_if_someone_has_a_seizure_fit
+  title: Fits (seizures)
+  url: https://www.nhs.uk/symptoms/what-to-do-if-someone-has-a-seizure-fit/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 19 December 2023'
+
+- id: nhs_worms_in_humans
+  title: Hookworm
+  url: https://www.nhs.uk/symptoms/worms-in-humans/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Entry symptom page (full coverage build)
+  note: 'Page last reviewed: 20 November 2023'

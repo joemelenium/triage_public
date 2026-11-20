@@ -1,0 +1,34 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stroke
+body_system: brain_and_nerves
+entry_symptoms: [headache, dizziness, sudden_confusion, weakness_or_paralysis, face_numbness, pins_and_needles]
+name: "Stroke"
+medical_name: "Cerebrovascular accident"
+snomed: "230690007"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  # Starting chance by entry symptom: a stroke is a leading cause of new weakness,
+  # but only a small share of headaches, dizzy spells or pins and needles.
+  - {finding: weakness_or_paralysis, prevalence: common}
+  - {finding: face_numbness, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: heart_risk_factors, prevalence: uncommon}
+  - {finding: sudden_confusion, prevalence: uncommon}
+findings:
+  # What tells it apart: sudden weakness or numbness on one side, a drooping face, or slurred speech.
+  stroke_signs: strongly_supports
+  weakness_sudden: strongly_supports
+  weakness_one_side: strongly_supports
+  weakness_or_paralysis: strongly_supports
+  difficulty_speaking: supports
+  pins_needles_sudden_one_side: supports
+  face_numbness_sudden: supports
+  vision_change: supports
+  trouble_with_balance_or_walking: supports
+  sudden_confusion: supports
+key_findings: [stroke_signs, weakness_sudden, weakness_one_side, difficulty_speaking, vision_change, pins_needles_sudden_one_side]
+source: nhs_stroke_symptoms
+informed_by: [nhs_stroke_symptoms, nhs_stroke, nhs_paralysis, nhs_dizziness]

@@ -1,0 +1,52 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ectopic_pregnancy
+body_system: womens_health
+entry_symptoms: [pelvic_pain, period_pain, ovulation_pain, missed_or_late_period, irregular_periods, bleeding_between_periods_or_after_sex, heavy_periods, bleeding_in_pregnancy, stomach_pain_in_pregnancy, stomach_ache]
+name: "Ectopic pregnancy (a pregnancy growing outside the womb)"
+medical_name: "Ectopic pregnancy"
+snomed: "34801009"
+# Must not be missed in anyone who could be pregnant with tummy pain or unusual
+# bleeding. Level urgent, danger critical: the Ectopic pregnancy page says get advice
+# right away (GP or 111), and call 999 for signs of a burst tube, which the red flags
+# catch. Being pregnant, or possibly pregnant, sets the starting chance; it is not
+# linked as a finding. Very rare from 20 weeks of pregnancy. The burst-tube signs
+# (shoulder tip pain, fainting, sudden severe pain) are red flags rather than findings:
+# most people with an ectopic pregnancy do not have them, and a "no" should not count
+# against it.
+acuity_needed: urgent   # the source page says an urgent GP appointment or 111; its 999 signs are red flags (DECISIONS 167)
+danger: critical
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnancy_20_weeks_or_more, prevalence: very_rare}
+  - {finding: pregnancy_under_12_weeks, prevalence: uncommon}
+  - {finding: may_be_pregnant, prevalence: uncommon}
+  - {finding: pregnant_now, prevalence: uncommon}
+  - {finding: bleeding_in_pregnancy, prevalence: uncommon}
+  - {finding: stomach_pain_in_pregnancy, prevalence: rare}
+  - {finding: missed_or_late_period, prevalence: rare}
+  - {finding: irregular_periods, prevalence: rare}
+  - {finding: stomach_ache, prevalence: rare}
+findings:
+  one_sided_lower_tummy_pain: strongly_supports
+  pelvic_pain: strongly_supports
+  bleeding_between_periods_or_after_sex: supports
+  missed_or_late_period: supports
+  stomach_pain_in_pregnancy: supports
+  bleeding_in_pregnancy: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  may_be_pregnant: strongly_supports
+  sa_low_down: strongly_supports
+  unusual_vaginal_bleeding_or_discharge: supports
+  shoulder_tip_pain: supports
+  light_headed: supports
+  fainted: supports
+  pain_when_pooing: supports
+key_findings: [may_be_pregnant, one_sided_lower_tummy_pain, pregnancy_under_12_weeks, pain_when_pooing, shoulder_tip_pain, sa_low_down, unusual_vaginal_bleeding_or_discharge]
+source: nhs_ectopic_pregnancy
+informed_by: [nhs_ectopic_pregnancy, nhs_pelvic_pain, nhs_vaginal_bleeding_between_periods_or_after_sex, nhs_ovulation_pain, nhs_stomach_pain_pregnancy, nhs_stomach_ache]
+# Merged with the stomach_and_bowel card for this condition. Its notes:
+# Being pregnant, or possibly pregnant, is linked as a finding, not a starting
+# chance: "rare" is the lowest band, and the finding is the only way a "no" (or
+# being male) can take it lower.

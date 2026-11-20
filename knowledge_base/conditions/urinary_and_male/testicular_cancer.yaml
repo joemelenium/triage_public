@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: testicular_cancer
+body_system: urinary_and_male
+entry_symptoms: [testicle_lump_or_swelling, testicle_pain]
+name: "Testicular cancer"
+medical_name: "Malignant neoplasm of testis"
+snomed: "363449006"
+# The page says see a GP (non-urgent). Danger serious: it is easier to treat if
+# found early. Most common between 15 and 49.
+acuity_needed: routine
+danger: serious
+sex: male
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: rare}
+  - {finding: testicle_lump_or_swelling, prevalence: uncommon}
+  - {finding: testicle_pain, prevalence: rare}
+findings:
+  # What tells it apart from a harmless lump: a hard lump in the testicle itself,
+  # or a testicle that has got bigger or feels heavy.
+  hard_painless_testicle_lump: strongly_supports
+  testicle_changed_size_or_shape: strongly_supports
+  weight_loss: supports
+  back_pain: supports
+key_findings: [hard_painless_testicle_lump, testicle_changed_size_or_shape]
+source: nhs_testicular_cancer_symptoms
+informed_by: [nhs_testicular_cancer_symptoms, nhs_testicle_lumps_and_swellings]

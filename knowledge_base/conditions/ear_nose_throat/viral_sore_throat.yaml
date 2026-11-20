@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: viral_sore_throat
+body_system: ear_nose_throat
+entry_symptoms: [sore_throat]
+name: "Sore throat from a virus, such as a cold or flu"
+medical_name: "Viral pharyngitis"
+snomed: "1532007"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from tonsillitis or strep throat: it comes with a cold (a
+  # cough, a runny or blocked nose, a hoarse voice, aches), usually without pus on
+  # the tonsils, and gets better by itself within about a week.
+  cough_or_runny_nose: strongly_supports
+  blocked_or_runny_nose: supports
+  hoarse_voice: supports
+  aching_body: supports
+  recent_viral_illness: supports
+  # Kept for the single-cause method only; the network method ignores these.
+  sore_throat_over_a_week: argues_against
+  pus_on_tonsils: argues_against
+  unable_to_swallow: strongly_argues_against
+  difficulty_opening_mouth: strongly_argues_against
+key_findings: [cough_or_runny_nose, hoarse_voice, pus_on_tonsils]
+source: nhs_sore_throat
+informed_by: [nhs_sore_throat, nhs_common_cold, nhs_tonsillitis]

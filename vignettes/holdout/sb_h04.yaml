@@ -1,0 +1,58 @@
+id: sb_h04
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- bowel_incontinence
+summary: 71-year-old woman who has had three children. For several months poo has leaked out without her being able to stop it, and she cannot always reach the toilet in time. Her poo is normal colour, with no blood, and she has no numbness or back pain.
+opening_statement: This is embarrassing, but I keep leaking poo and sometimes I can't get to the toilet in time.
+findings:
+  present:
+  - bowel_incontinence
+  - has_given_birth
+  absent:
+  - black_or_dark_red_poo
+  - bleeding_from_bottom
+  - diarrhoea
+  - bowel_habit_change_3_weeks
+  - saddle_numbness
+  - legs_weak_or_numb
+  - leg_weakness
+  - back_pain
+  - weight_loss
+  - stomach_ache
+  - constipation
+  - urinary_incontinence
+  - bladder_bowel_change
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 71
+    sex: female
+  full:
+    age: 71
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP; treatments can help
+  any_of:
+  - GP
+- point: Get an urgent GP appointment or call 111 if poo is black or dark red or there is bloody diarrhoea
+  any_of:
+  - black
+  - dark red
+  - bloody
+source:
+  expected_outcome:
+    page: bowel_incontinence.txt
+    quote: you think you have bowel incontinence
+  minimum_safe_acuity:
+    page: bowel_incontinence.txt
+    quote: you think you have bowel incontinence
+atypical: false
+notes: The page lists weaker muscles after childbirth or with age as causes. New loss of bowel control with numbness around the bottom or back pain would be an emergency under sciatica.txt; those are stated as absent, and bladder_bowel_change is absent because this is long-standing, not new.

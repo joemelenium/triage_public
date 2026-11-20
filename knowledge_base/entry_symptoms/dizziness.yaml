@@ -1,0 +1,226 @@
+# Entry symptom: dizziness (including vertigo).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+# The Dizziness page sends most of its alarming signs (numbness, weakness,
+# changes to vision or speech) to a GP. The Vertigo, Ménière's disease and
+# Stroke pages send the same signs to 999 or A&E, because they can be a stroke
+# affecting balance. The more urgent pages are used.
+#
+# Must-not-miss causes: stroke or mini-stroke (TIA), bleeding on the brain,
+# carbon monoxide poisoning, low blood sugar, and heart problems (a "yes" to
+# fainting, chest pain or palpitations brings in those entry symptoms too).
+
+id: dizziness
+name: "Dizziness"
+presenting_finding: dizziness
+also_covers: [nhs_vertigo]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: dizziness_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - numbness_or_weakness
+      - difficulty_speaking
+      - sight_lost
+      - trouble_with_balance_or_walking
+      - headache_sudden_severe
+      - chest_pain
+      - fainted
+      - palpitations_now
+      - pins_and_needles
+      - double_vision
+
+  - id: dizziness_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vision_change
+      - hearing_loss
+      - vomiting
+      - very_high_temperature
+      - headache
+      - others_in_home_unwell
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_dz_stroke_signs
+    description: "Dizziness with numbness or weakness in the face, arms or legs, or difficulty speaking"
+    when: {any: [numbness_or_weakness, difficulty_speaking]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_menieres_disease
+    note: "Source difference: the Dizziness page says see a GP if your face, arms or legs feel numb or weak, or you find it harder to speak. The Vertigo page says call 999 or go to A&E. The Ménière's disease and Stroke pages say call 999, because these can be signs of a stroke. The most urgent is used."
+
+  - id: rf_dz_vision_loss
+    description: "Dizziness with loss of vision"
+    when: sight_lost
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_menieres_disease
+    note: "The Ménière's disease page says call 999 for spinning with sudden problems with the vision in one eye. The Vertigo page says 999 or A&E for loss of vision."
+
+  - id: rf_dz_spinning_double_vision
+    description: "Spinning (vertigo) with double vision or other changes to vision"
+    when: {all: [dizziness_spinning, {any: [vision_change, double_vision]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dizziness_ae
+    source: nhs_vertigo
+    note: "The Vertigo page names double vision. It is a separate observation from other changes in sight, so it is named here too."
+
+  - id: rf_dz_spinning_tingling
+    description: "Spinning (vertigo) with tingling or pins and needles"
+    when: {all: [dizziness_spinning, pins_and_needles]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dizziness_ae
+    source: nhs_vertigo
+    soft: true    # likely conditions may lower this: tingling is common and often long-standing
+    note: "The Vertigo page says call 999 or go to A&E for vertigo with leg or arm weakness, numbness or tingling. Numbness and weakness are covered by the firm stroke rule above. Tingling alone is soft, because long-standing tingling (for example from a trapped nerve) and the tingling of a migraine aura are common."
+
+  - id: rf_dz_spinning_off_balance
+    description: "Spinning (vertigo) and feeling very off-balance, finding it hard to walk"
+    when: {all: [dizziness_spinning, trouble_with_balance_or_walking]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_menieres_disease
+    soft: true    # likely conditions may lower this: labyrinthitis also makes it hard to walk straight
+    note: "The Ménière's disease page says call 999 for spinning with feeling very off-balance, as a sign of a stroke. The Labyrinthitis page lists finding it difficult to stay upright or walk in a straight line as a usual symptom. Soft, with the urgent rule below as its floor. Needs clinical review: telling a stroke from labyrinthitis needs an examination."
+
+  - id: rf_dz_spinning_hearing
+    description: "Spinning (vertigo) with hearing loss"
+    when: {all: [dizziness_spinning, hearing_loss]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dizziness_ae
+    source: nhs_vertigo
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Vertigo page says call 999 or go to A&E for vertigo with hearing loss. The Labyrinthitis page lists hearing loss and ringing as usual symptoms and says an urgent GP appointment or 111 for sudden hearing loss in one ear. The Ménière's disease page says see a GP. The most urgent is used, marked soft, with the urgent rule below as its floor. Ringing in the ears (tinnitus) is not on the Vertigo page's list. A yes to it brings in the tinnitus entry symptom, whose own soft A&E rule for tinnitus with vertigo (Tinnitus page) then applies, so it is not repeated here."
+
+  - id: rf_dz_headache_sudden
+    description: "Dizziness with a headache that came on suddenly and is extremely painful"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_headache_999
+    source: nhs_subarachnoid_haemorrhage
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_dz_off_balance
+    description: "Dizziness and finding it hard to balance or walk"
+    when: trouble_with_balance_or_walking
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_dizziness_urgent
+    source: ai_judgement
+    note: "AI judgement: a floor under the soft 999 rule above, so that someone who cannot walk straight is checked the same day."
+
+  - id: rf_dz_spinning_hearing_urgent
+    description: "Spinning (vertigo) with hearing loss: the floor under the soft rule above"
+    when: {all: [dizziness_spinning, hearing_loss]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dizziness_urgent
+    source: nhs_labyrinthitis
+    note: "The Labyrinthitis page says an urgent GP appointment or 111 for sudden hearing loss in one ear. Hearing loss that comes on quickly can need treatment within days to save the hearing."
+
+  - id: rf_dz_spinning_severe_headache
+    description: "Spinning (vertigo) with a severe headache"
+    when: {all: [dizziness_spinning, very_painful_headache]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dizziness_urgent
+    source: nhs_vertigo
+    note: "The Vertigo page says this for a severe headache. Firm. The soft rule below covers any headache."
+
+  - id: rf_dz_spinning_being_sick
+    description: "Spinning (vertigo) and being sick"
+    when: {all: [dizziness_spinning, vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dizziness_urgent
+    source: nhs_vertigo
+
+  - id: rf_dz_spinning_temperature
+    description: "Spinning (vertigo) with a very high temperature, or feeling hot, cold or shivery"
+    when: {all: [dizziness_spinning, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dizziness_urgent
+    source: nhs_vertigo
+
+  - id: rf_dz_spinning_headache
+    description: "Spinning (vertigo) with a headache"
+    when: {all: [dizziness_spinning, headache]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dizziness_urgent
+    source: nhs_vertigo
+    soft: true    # likely conditions may lower this: the source says a severe headache
+    note: "The Vertigo page says a severe headache. The question asks about any headache, so the rule is soft: migraine often causes both."
+
+  - id: rf_dz_others_unwell
+    description: "Dizziness, and other people at home or pets unwell too: possible carbon monoxide poisoning"
+    when: others_in_home_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go outside into fresh air, then call NHS 111 now"}
+    advice: advice_carbon_monoxide
+    source: nhs_carbon_monoxide_poisoning
+
+  - id: rf_dz_low_sugar
+    description: "Diabetes and signs of low blood sugar (a hypo)"
+    when: {all: [has_diabetes, diabetes_low_sugar_signs]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Treat the low blood sugar now. If it does not improve, get help from NHS 111, or call 999 if the person becomes drowsy or confused."}
+    advice: advice_low_blood_sugar
+    source: nhs_low_blood_sugar
+    note: "The Low blood sugar page says to treat a hypo yourself straight away, and to call 999 if someone is not responding normally. Same-day help if it does not settle is AI judgement."
+
+outcome_rules:
+  - id: or_dz_keeps_coming_back
+    description: "Dizziness that will not go away or keeps coming back"
+    when: dizziness_keeps_coming_back
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dizziness_gp
+    source: nhs_dizziness
+
+  - id: or_dz_hearing
+    description: "Dizziness with hearing loss, or ringing or other sounds in the ears"
+    when: {any: [hearing_loss, tinnitus]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dizziness_gp
+    source: nhs_dizziness
+
+  - id: or_dz_vision
+    description: "Dizziness with double vision, blurred vision or other changes in eyesight"
+    when: vision_change
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dizziness_gp
+    source: nhs_dizziness
+    note: "With spinning, the emergency rule above applies instead."
+
+  - id: or_dz_other_symptoms
+    description: "Dizziness with other symptoms: headaches, feeling or being sick, fainting, or a change to the pulse"
+    when: {any: [headache, nausea_or_vomiting, fainted, palpitations]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dizziness_gp
+    source: nhs_dizziness
+
+  - id: or_dz_new_medicine
+    description: "Dizziness that started after a new medicine"
+    when: new_medicine_recently
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or speak to a pharmacist. Do not stop a prescribed medicine without advice."}
+    advice: advice_dizziness_gp
+    source: nhs_dizziness
+
+  - id: or_dz_worried
+    description: "Worried about dizziness or vertigo"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_dizziness_gp
+    source: nhs_dizziness
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+default:
+  description: "Dizziness with nothing that needs more help: it usually goes away on its own"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Dizziness usually goes away on its own"}
+  advice: advice_dizziness_self_care
+  source: nhs_dizziness

@@ -1,0 +1,35 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chest_infection
+body_system: breathing
+# The middle of three infection cards: bronchitis (a short-term virus infection
+# of the airways, self-care), this card (a chest infection that may be caused by
+# bacteria and needs a GP to check it, for example for antibiotics), and
+# pneumonia (an infection deep in the lungs, help the same day).
+# Not a candidate for wheezing: infection with a wheeze is covered there by
+# bronchitis, bronchiolitis and asthma or COPD set off by an infection.
+entry_symptoms: [cough, short_of_breath, chest_pain, coughing_up_blood]
+name: "Chest infection that may need treatment from a GP"
+medical_name: "Lower respiratory tract infection, possibly bacterial (not pneumonia)"
+snomed: "50417007"
+# The Chest infection page says see a GP if you feel very unwell, it gets worse,
+# or you are in a group more likely to get seriously ill. Level soon.
+acuity_needed: routine   # the source page says "Non-urgent advice: See a GP"; attacks and warning signs are rules (DECISIONS 168)
+danger: moderate
+prevalence: common
+findings:
+  cough: strongly_supports
+  cough_mucus_or_temperature: strongly_supports    # the chest pain question for a chest infection
+  # What tells it apart from bronchitis: a chesty cough with yellow or green
+  # phlegm that is getting worse or not settling, often after a cold or flu.
+  # From pneumonia: not as unwell, and not breathing fast.
+  cough_phlegm: strongly_supports
+  phlegm_yellow_or_green: strongly_supports
+  symptoms_worse_or_not_better: supports
+  recent_viral_illness: supports
+  very_high_temperature: supports
+  cp_worse_breathing_in: supports
+  short_of_breath: supports
+key_findings: [phlegm_yellow_or_green, symptoms_worse_or_not_better, very_high_temperature, recent_viral_illness]
+source: nhs_chest_infection
+informed_by: [nhs_chest_infection, nhs_chest_pain, nhs_bronchitis, nhs_pneumonia]

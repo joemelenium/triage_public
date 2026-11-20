@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lactose_intolerance
+body_system: stomach_and_bowel
+entry_symptoms: [bloating, farting_a_lot, diarrhoea_or_vomiting, stomach_ache]
+name: "Lactose intolerance (cannot easily digest the sugar in milk)"
+medical_name: "Lactose intolerance"
+snomed: "782415009"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  after_milk_or_dairy: strongly_supports
+  bloating: strongly_supports
+  farting_a_lot: supports
+  diarrhoea: supports
+  sa_comes_in_waves: supports
+  feeling_sick: supports
+key_findings: [after_milk_or_dairy]
+source: nhs_lactose_intolerance
+informed_by: [nhs_lactose_intolerance, nhs_flatulence]

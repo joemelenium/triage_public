@@ -1,0 +1,1130 @@
+# Observations: stomach and bowel (stomach ache, diarrhoea and being sick, bleeding,
+# constipation, bloating, the bottom, worms, and babies who bring up milk).
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Shared observations used here that live in other files, and are reused rather
+# than repeated:
+#   chest_and_heart.yaml  sweating, light_headed, fainted, short_of_breath, chest_pain,
+#                         cp_tight_or_squeezing, cp_heavy, cp_spreads, heartburn_or_sour_taste,
+#                         heart_beating_very_fast, heart_risk_factors, has_heart_rhythm_problem,
+#                         pregnant_or_recently_given_birth, has_cancer, recent_viral_illness,
+#                         upper_back_pain
+#   breathing.yaml        breathing_very_fast, feels_very_unwell, seriously_unwell_getting_worse,
+#                         baby_high_temperature, skin_blotchy, rash_does_not_fade, not_peed_12_hours,
+#                         cold_or_shivery, child_floppy_or_hard_to_wake, feeding_much_less,
+#                         weight_loss, night_sweats, smoker, long_term_condition, has_allergies,
+#                         raised_itchy_rash, had_a_fit
+#   ear_nose_throat.yaml  very_high_temperature, dehydration_signs, weakened_immune_system,
+#                         difficulty_breathing, very_tired, worried_about_symptoms
+#   general.yaml          sudden_confusion, lips_or_skin_blue_grey, passed_out, severe_breathing_difficulty,
+#                         age bands, sex_female, sex_male
+#
+# Fields: as in general.yaml.
+
+# ===========================================================================
+# Stomach ache (a main symptom) and what it is like
+# ===========================================================================
+- id: stomach_ache
+  label: "Stomach ache"
+  question: "Do you have a stomach ache (pain in your tummy)?"
+  question_carer: "Does your child have a stomach ache (pain in their tummy)? A baby may cry, pull their legs up or not settle."
+  checklist_text: "Stomach ache (pain in your tummy)"
+  kind: presenting
+  snomed: "21522001"
+  phrases: ["tummy ache", "stomach pain", "belly ache", "pain in my tummy", "cramps in my stomach"]
+  source: nhs_stomach_ache
+
+- id: sa_sudden_severe
+  label: "Stomach ache that started suddenly and is severe"
+  question: "Did the pain in your tummy start suddenly, and is it severe? Severe pain is there all the time and is so bad it is hard to think or talk."
+  question_carer: "Did the pain in your child's tummy start suddenly, and is it severe? Severe pain is there all the time and is so bad it is hard for them to think or talk."
+  checklist_text: "Sudden, severe tummy pain"
+  kind: symptom
+  parent: sa_severe   # a more specific kind of severe tummy pain
+  relation: character
+  seriousness: emergency
+  phrases: ["worst pain ever", "came on all of a sudden", "agony in my stomach", "doubled up in pain"]
+  source: nhs_stomach_ache
+
+- id: sa_severe
+  label: "Severe stomach ache"
+  question: "Is the pain in your tummy severe? This means it is there all the time and so bad it is hard to think or talk, you cannot sleep, or it is very hard to move."
+  question_carer: "Is the pain in your child's tummy severe? This means it is there all the time and so bad it is hard for them to think or talk, they cannot sleep, or it is very hard for them to move."
+  checklist_text: "Severe tummy pain: there all the time, and so bad it is hard to think, talk, sleep or move"
+  kind: symptom
+  parent: stomach_ache
+  relation: severity
+  also_part_of: [severe_pain]   # severe tummy pain is a kind of severe pain
+  seriousness: emergency
+  phrases: ["really bad pain", "can't move with the pain", "the pain is unbearable"]
+  source: nhs_appendicitis
+
+- id: sa_much_worse_suddenly
+  label: "Stomach ache that has suddenly got much worse"
+  question: "Has the pain in your tummy suddenly got much worse?"
+  question_carer: "Has the pain in your child's tummy suddenly got much worse?"
+  checklist_text: "Tummy pain that has suddenly got much worse"
+  kind: symptom
+  parent: stomach_ache
+  relation: severity
+  seriousness: serious
+  phrases: ["suddenly much worse", "pain shot up", "much worse in the last hour"]
+  source: nhs_stomach_ache
+
+- id: sa_getting_worse
+  label: "Stomach ache gradually getting worse"
+  question: "Has the pain in your tummy been getting worse over the last few hours or days?"
+  question_carer: "Has the pain in your child's tummy been getting worse over the last few hours or days?"
+  checklist_text: "Tummy pain that keeps getting worse"
+  kind: symptom
+  parent: stomach_ache
+  relation: duration
+  phrases: ["getting worse and worse", "worse than this morning", "keeps building up"]
+  source: nhs_appendicitis
+
+- id: sa_moved_to_lower_right
+  label: "Pain started around the belly button and moved to the lower right"
+  question: "Did the pain start around your belly button, and then move to the lower right side of your tummy?"
+  question_carer: "Did your child's pain start around their belly button, and then move to the lower right side of their tummy?"
+  checklist_text: "Pain that started around the belly button and moved to the lower right side"
+  kind: symptom
+  parent: stomach_ache
+  relation: location
+  seriousness: serious
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["started in the middle then moved", "moved to the right side", "pain by my belly button went lower"]
+  source: nhs_appendicitis
+
+- id: sa_lower_right
+  label: "Pain in the lower right side of the tummy"
+  question: "Is the pain in the lower right side of your tummy?"
+  question_carer: "Is the pain in the lower right side of your child's tummy?"
+  checklist_text: "Pain in the lower right side of the tummy"
+  kind: symptom
+  snomed: "301754002"
+  parent: stomach_ache
+  relation: location
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["bottom right of my tummy", "right side low down", "near my right hip"]
+  source: nhs_stomach_ache
+
+- id: sa_upper_right
+  label: "Pain in the upper right of the tummy, just under the ribs"
+  question: "Is the pain in the upper right side of your tummy, just under your ribs?"
+  question_carer: "Is the pain in the upper right side of your child's tummy, just under their ribs?"
+  kind: symptom
+  snomed: "301717006"
+  parent: pain_below_ribs   # a kind of pain just below the ribs, so the pre-eclampsia rules see it
+  relation: location
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["under my right ribs", "top right of my stomach"]
+  source: nhs_gallstones
+
+- id: sa_upper_middle
+  label: "Pain in the upper middle of the tummy, below the breastbone"
+  question: "Is the pain in the middle of your upper tummy, just below your breastbone?"
+  question_carer: "Is the pain in the middle of your child's upper tummy, just below their breastbone?"
+  kind: symptom
+  snomed: "79922009"
+  parent: stomach_ache
+  relation: location
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["pit of my stomach", "top of my tummy", "just under my chest"]
+  source: nhs_stomach_ulcer
+
+- id: sa_lower_left
+  label: "Pain in the lower left side of the tummy"
+  question: "Is the pain in the lower left side of your tummy?"
+  question_carer: "Is the pain in the lower left side of your child's tummy?"
+  kind: symptom
+  snomed: "301716002"
+  parent: stomach_ache
+  relation: location
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["bottom left of my tummy", "left side low down"]
+  source: nhs_diverticulitis
+
+- id: sa_low_down
+  label: "Pain low down in the tummy, below the belly button"
+  question: "Is the pain low down in your tummy, below your belly button?"
+  question_carer: "Is the pain low down in your child's tummy, below their belly button?"
+  kind: symptom
+  snomed: "54586004"
+  parent: stomach_ache
+  relation: location
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["low down in my stomach", "just above my private parts", "pelvic pain"]
+  source: nhs_ectopic_pregnancy
+
+- id: sa_spreads_to_back
+  label: "Tummy pain that spreads to the back"
+  question: "Does the pain in your tummy spread through to your back?"
+  question_carer: "Does the pain in your child's tummy spread through to their back?"
+  checklist_text: "Tummy pain that spreads to your back"
+  kind: symptom
+  parent: stomach_ache
+  relation: radiation
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["goes through to my back", "pain in my back as well", "like a band round me"]
+  source: nhs_acute_pancreatitis
+
+- id: sa_worse_moving_or_coughing
+  label: "Tummy pain worse when moving, coughing or going over bumps"
+  question: "Is the pain in your tummy worse when you move, cough, or go over bumps in a car?"
+  question_carer: "Is the pain in your child's tummy worse when they move or cough? Do they want to lie very still?"
+  kind: symptom
+  parent: stomach_ache
+  relation: exacerbating_factor
+  phrases: ["hurts to walk", "hurts when I cough", "lying very still"]
+  source: nhs_appendicitis
+
+- id: sa_comes_in_waves
+  label: "Cramping tummy pain that comes and goes in waves"
+  question: "Does the pain in your tummy come and go in waves, like cramps?"
+  question_carer: "Does the pain in your child's tummy come and go in waves, like cramps?"
+  kind: symptom
+  parent: stomach_ache
+  relation: character
+  phrases: ["comes in waves", "cramping", "griping pain"]
+  source: nhs_ibs
+
+- id: sa_after_eating
+  label: "Tummy pain that comes on after eating, especially fatty food"
+  question: "Does the pain in your tummy come on after eating, especially after fatty food?"
+  question_carer: "Does the pain in your child's tummy come on after eating, especially after fatty food?"
+  kind: symptom
+  parent: stomach_ache
+  relation: exacerbating_factor
+  phrases: ["after a fry-up", "after meals", "after a big dinner"]
+  source: nhs_gallstones
+
+- id: sa_better_after_pooing
+  label: "Tummy pain eases after pooing or farting"
+  question: "Does the pain in your tummy get better after you poo or fart?"
+  question_carer: "Does the pain in your child's tummy get better after they poo or fart?"
+  kind: symptom
+  parent: stomach_ache
+  relation: diminishing_factor
+  phrases: ["better after the toilet", "eases when I break wind"]
+  source: nhs_ibs
+
+- id: sa_keeps_coming_back
+  label: "Stomach ache that does not go away or keeps coming back"
+  question: "Have you had the pain in your tummy for a long time, or does it keep coming back?"
+  question_carer: "Has your child had the pain in their tummy for a long time, or does it keep coming back?"
+  kind: symptom
+  parent: stomach_ache
+  relation: duration
+  phrases: ["on and off for months", "keeps coming back", "had it for weeks"]
+  source: nhs_stomach_ache
+
+- id: sa_with_period
+  label: "Tummy pain that comes with periods"
+  question: "Does the pain come when you have your period, or just before it?"
+  kind: symptom
+  parent: stomach_ache
+  relation: character
+  sex: female
+  asked_only_if: age_10_or_over
+  phrases: ["time of the month", "period cramps", "on my period"]
+  source: nhs_period_pain
+
+- id: tummy_painful_to_touch
+  label: "Tummy very painful to touch, or hard"
+  question: "Is your tummy very painful when you touch or press it, or does it feel hard?"
+  question_carer: "Is your child's tummy very painful when you touch or press it, or does it feel hard?"
+  checklist_text: "Tummy very painful to touch, or hard"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["too sore to touch", "stomach is rock hard", "won't let me touch their tummy"]
+  source: nhs_stomach_ulcer
+
+- id: tummy_swollen
+  label: "Tummy looks swollen or much bigger than usual"
+  question: "Does your tummy look swollen, or much bigger than usual?"
+  question_carer: "Does your child's tummy look swollen, or much bigger than usual?"
+  checklist_text: "Tummy looks swollen or much bigger than usual"
+  kind: symptom
+  snomed: "60728008"
+  phrases: ["swollen belly", "stomach is blown up", "tummy is distended"]
+  source: nhs_bloating
+
+- id: lump_in_tummy_or_groin
+  label: "A lump or swelling in the tummy or groin"
+  question: "Do you have a lump or swelling in your tummy or groin? It may go away when you lie down."
+  question_carer: "Does your child have a lump or swelling in their tummy or groin? It may go away when they lie down."
+  checklist_text: "A lump or swelling in your tummy or groin"
+  kind: symptom
+  phrases: ["lump in my groin", "bulge in my tummy", "swelling by my belly button"]
+  source: nhs_hernia
+
+- id: lump_painful_and_firm
+  label: "The lump is painful or firm, or cannot be pushed back in"
+  question: "Is the lump painful or firm, or can it no longer be pushed back in?"
+  question_carer: "Is the lump painful or firm, or can it no longer be pushed back in?"
+  checklist_text: "A lump in the tummy or groin that is painful, or cannot be pushed back in"
+  kind: symptom
+  parent: lump_in_tummy_or_groin
+  relation: severity
+  seriousness: serious
+  phrases: ["hernia has gone hard", "can't push it back", "lump is really sore"]
+  source: nhs_hernia
+
+- id: pulsing_in_tummy
+  label: "A pulsing feeling in the tummy"
+  question: "Can you feel a pulsing or throbbing in your tummy, like a heartbeat?"
+  kind: symptom
+  snomed: "2981001"
+  asked_only_if: age_16_or_over
+  phrases: ["can feel my heartbeat in my stomach", "throbbing lump in my belly"]
+  source: nhs_abdominal_aortic_aneurysm
+
+- id: has_aaa
+  label: "Told they have a swelling in the main blood vessel in the tummy (abdominal aortic aneurysm)"
+  question: "Has a doctor told you that you have an abdominal aortic aneurysm? This is a swelling in the main blood vessel that runs through your tummy."
+  kind: history
+  snomed: "233985008"
+  asked_only_if: age_45_or_over
+  phrases: ["I have an aneurysm", "AAA", "my aorta is swollen"]
+  source: nhs_abdominal_aortic_aneurysm
+
+- id: shoulder_tip_pain
+  label: "Pain in the tip of the shoulder"
+  question: "Do you have pain in the tip of your shoulder, where your arm meets your shoulder?"
+  checklist_text: "Pain in the tip of your shoulder"
+  kind: symptom
+  asked_only_if: age_5_or_over   # young children cannot say where the pain is
+  phrases: ["pain in my shoulder tip", "shoulder hurts for no reason"]
+  source: nhs_ectopic_pregnancy
+
+- id: cold_clammy_skin
+  label: "Cold, clammy and pale skin"
+  question: "Is your skin cold, clammy and pale?"
+  question_carer: "Is their skin cold, clammy and pale?"
+  checklist_text: "Cold, clammy, pale skin"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["cold and clammy", "white as a sheet", "sweaty and cold"]
+  source: nhs_vomiting_blood
+
+# ===========================================================================
+# Diarrhoea and being sick (a main symptom, with each part under it)
+# ===========================================================================
+- id: diarrhoea_or_vomiting
+  label: "Diarrhoea, or being sick"
+  question: "Do you have diarrhoea, or have you been sick?"
+  question_carer: "Does your child have diarrhoea, or have they been sick?"
+  checklist_text: "Diarrhoea, or being sick"
+  kind: presenting
+  phrases: ["runny poo", "throwing up", "stomach bug", "the runs"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: diarrhoea
+  label: "Diarrhoea"
+  question: "Do you have diarrhoea? This means passing watery or runny poo more often than usual."
+  question_carer: "Does your child have diarrhoea? This means passing watery or runny poo more often than usual."
+  checklist_text: "Diarrhoea (runny or watery poo)"
+  kind: symptom
+  snomed: "62315008"
+  parent: diarrhoea_or_vomiting
+  relation: character
+  phrases: ["runny poo", "watery poo", "the runs", "upset stomach"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: vomiting
+  label: "Being sick"
+  question: "Have you been sick (vomiting)?"
+  question_carer: "Has your child been sick (vomiting)? For a baby, this means more than bringing up a little milk."
+  checklist_text: "Being sick"
+  kind: symptom
+  snomed: "422400008"
+  parent: diarrhoea_or_vomiting
+  relation: character
+  also_part_of: [nausea_or_vomiting]   # so rules on "feel sick or been sick" see it
+  phrases: ["throwing up", "being sick", "can't stop being sick"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: keeps_being_sick
+  label: "Keeps being sick"
+  question: "Do you keep being sick, again and again?"
+  question_carer: "Does your child keep being sick, again and again?"
+  checklist_text: "Being sick again and again"
+  kind: symptom
+  parent: vomiting
+  relation: severity
+  phrases: ["sick every hour", "can't stop throwing up"]
+  source: nhs_stomach_ulcer
+
+- id: cannot_keep_fluids_down
+  label: "Keeps being sick and cannot keep fluids down"
+  question: "Do you keep being sick, so that you cannot keep any drinks down?"
+  question_carer: "Does your child keep being sick, so that they cannot keep any drinks down?"
+  checklist_text: "Being sick so often you cannot keep drinks down"
+  kind: symptom
+  parent: keeps_being_sick
+  relation: severity
+  seriousness: serious
+  phrases: ["even water comes back up", "can't keep anything down"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: green_vomit
+  label: "Green or yellow-green sick"
+  question: "Have you been sick, and was the sick green or yellow-green?"
+  question_carer: "Has your child been sick, and was the sick green or yellow-green?"
+  checklist_text: "Being sick, and the sick is green or yellow-green"
+  kind: symptom
+  snomed: "71419002"
+  parent: vomiting
+  relation: character
+  seriousness: emergency
+  phrases: ["green sick", "bright green vomit", "bile"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: projectile_vomiting
+  label: "Being sick with great force (projectile)"
+  question: "Has your baby been sick with much more force than usual, so that it shoots out (projectile)?"
+  question_carer: "Has your baby been sick with much more force than usual, so that it shoots out (projectile)?"
+  checklist_text: "Being sick with much more force than usual (projectile)"
+  kind: symptom
+  snomed: "8579004"
+  parent: vomiting
+  relation: character
+  seriousness: serious
+  asked_only_if: age_under_1
+  phrases: ["shoots across the room", "projectile", "really forceful sick"]
+  source: nhs_reflux_in_babies
+
+- id: vomiting_over_2_days
+  label: "Being sick for more than 2 days"
+  question: "Have you been sick on and off for more than 2 days?"
+  question_carer: "Has your child been sick on and off for more than 2 days?"
+  checklist_text: "Being sick for more than 2 days"
+  kind: symptom
+  parent: vomiting
+  relation: duration
+  phrases: ["sick since the weekend", "three days of vomiting"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: diarrhoea_over_7_days
+  label: "Diarrhoea for more than 7 days"
+  question: "Have you had diarrhoea for more than 7 days?"
+  question_carer: "Has your child had diarrhoea for more than 7 days?"
+  checklist_text: "Diarrhoea for more than 7 days"
+  kind: symptom
+  parent: diarrhoea
+  relation: duration
+  phrases: ["diarrhoea for over a week", "the runs for ten days"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: tummy_symptoms_over_2_weeks
+  label: "Being sick, diarrhoea or stomach ache for more than 2 weeks"
+  question: "Have you been sick, had diarrhoea or had a stomach ache for more than 2 weeks?"
+  question_carer: "Has your child been sick, had diarrhoea or had a stomach ache for more than 2 weeks?"
+  kind: symptom
+  phrases: ["upset tummy for weeks", "diarrhoea for a fortnight"]
+  source: nhs_worms_in_humans
+
+- id: swallowed_something_harmful
+  label: "May have swallowed something poisonous or harmful"
+  question: "Could you have swallowed something poisonous? For example, a cleaning product, a plant, or someone else's medicine. Or a button battery or magnets?"
+  question_carer: "Could your child have swallowed something poisonous? For example, a cleaning product, a plant, or someone else's medicine. Or a button battery or magnets?"
+  checklist_text: "May have swallowed poison, a button battery or magnets"
+  kind: history
+  seriousness: emergency
+  phrases: ["drank bleach", "ate some tablets", "swallowed a battery", "swallowed a magnet"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: after_suspect_food
+  label: "Started after eating food that may have been off, or others who ate it are ill"
+  question: "Did it start within a few hours or days of eating food that may not have been safe? For example, undercooked meat, reheated rice, or food past its use-by date."
+  question_carer: "Did it start within a few hours or days of your child eating food that may not have been safe? For example, undercooked meat, reheated rice, or food past its use-by date."
+  kind: history
+  phrases: ["dodgy takeaway", "undercooked chicken", "barbecue", "ate out last night"]
+  source: nhs_food_poisoning
+
+- id: others_ill_same
+  label: "Others nearby have the same symptoms"
+  question: "Do other people you live with, or people you ate with, have the same symptoms?"
+  question_carer: "Do other people your child lives with, or other children at nursery or school, have the same symptoms?"
+  kind: history
+  phrases: ["whole family has it", "going round school", "my partner is ill too"]
+  source: nhs_norovirus
+
+- id: recent_antibiotics
+  label: "Taking antibiotics now, or took them recently"
+  question: "Are you taking antibiotics, or have you taken them in the last few weeks?"
+  question_carer: "Is your child taking antibiotics, or have they taken them in the last few weeks?"
+  checklist_text: "Taking antibiotics, or took them in the last few weeks"
+  kind: history
+  phrases: ["just finished antibiotics", "on amoxicillin", "had a course of antibiotics"]
+  source: nhs_c_difficile
+
+- id: travel_sickness_trigger
+  label: "Started while travelling by car, boat, plane or on a ride"
+  question: "Did the sick feeling start while travelling, for example in a car, boat or plane, or on a fairground ride?"
+  question_carer: "Did your child's sick feeling start while travelling, for example in a car, boat or plane, or on a fairground ride?"
+  kind: history
+  phrases: ["car sick", "seasick", "on the ferry", "travel sick"]
+  source: nhs_motion_sickness
+
+# ===========================================================================
+# Feeling sick (a main symptom)
+# ===========================================================================
+- id: feeling_sick
+  label: "Feeling sick (nausea)"
+  question: "Do you feel sick (nausea)?"
+  question_carer: "Does your child say they feel sick?"
+  checklist_text: "Feeling sick"
+  kind: presenting
+  parent: nausea_or_vomiting
+  relation: character
+  snomed: "422587007"
+  phrases: ["queasy", "nauseous", "feel like I'm going to throw up", "sick to my stomach"]
+  source: nhs_feeling_sick_nausea
+
+- id: feeling_sick_few_days
+  label: "Feeling sick for more than a few days"
+  question: "Have you felt sick for more than a few days without it getting better?"
+  question_carer: "Has your child felt sick for more than a few days without it getting better?"
+  kind: symptom
+  parent: feeling_sick
+  relation: duration
+  phrases: ["sick feeling for a week", "still queasy after days"]
+  source: nhs_feeling_sick_nausea
+
+- id: often_feel_sick
+  label: "Often feels sick"
+  question: "Do you often feel sick? For example, it keeps coming back over weeks or months."
+  question_carer: "Does your child often feel sick? For example, it keeps coming back over weeks or months."
+  kind: symptom
+  parent: feeling_sick
+  relation: duration
+  phrases: ["always feeling sick", "keeps coming back"]
+  source: nhs_feeling_sick_nausea
+
+- id: full_quickly
+  label: "Feels full after eating only a little"
+  question: "Do you feel full after eating only a small amount of food?"
+  kind: symptom
+  asked_only_if: age_16_or_over
+  phrases: ["full after a few mouthfuls", "can't finish meals"]
+  source: nhs_stomach_ulcer
+
+# ===========================================================================
+# Vomiting blood (a main symptom)
+# ===========================================================================
+- id: vomiting_blood
+  label: "Being sick with blood in it (vomiting blood)"
+  question: "Have you been sick with blood in it (vomiting blood)? It can be bright red, dark brown or black, or look like coffee granules."
+  question_carer: "Has your child been sick with blood in it (vomiting blood)? It can be bright red, dark brown or black, or look like coffee granules."
+  checklist_text: "Being sick with blood in it, or sick that looks like coffee granules"
+  kind: presenting
+  snomed: "8765009"
+  seriousness: serious
+  phrases: ["threw up blood", "coffee grounds in my sick", "blood in my vomit"]
+  source: nhs_vomiting_blood
+
+- id: vomiting_blood_large_amount
+  label: "A lot of blood, or still being sick with blood"
+  question: "Are you still being sick with blood, or was there a lot of blood, such as a cupful or more?"
+  question_carer: "Is your child still being sick with blood, or was there a lot of blood, such as a cupful or more?"
+  checklist_text: "Still being sick with blood, or a lot of blood"
+  kind: symptom
+  parent: vomiting_blood
+  relation: severity
+  seriousness: emergency
+  phrases: ["a lot of blood", "keeps bringing up blood", "bowl full of blood"]
+  source: nhs_diarrhoea_and_vomiting
+
+- id: blood_after_retching
+  label: "The blood came up only after being sick or retching many times"
+  question: "Did the blood only come up after you had been sick or retched (heaved) many times, or coughed a lot?"
+  question_carer: "Did the blood only come up after your child had been sick or retched (heaved) many times, or coughed a lot?"
+  kind: symptom
+  parent: vomiting_blood
+  relation: character
+  phrases: ["after being sick all night", "after a lot of heaving", "streaks after retching"]
+  source: nhs_vomiting_blood
+
+# ===========================================================================
+# Bleeding from the bottom (a main symptom) and the colour of poo
+# ===========================================================================
+- id: bleeding_from_bottom
+  label: "Bleeding from the bottom, or blood in poo"
+  question: "Have you had bleeding from your bottom, or blood in your poo? This includes blood on the toilet paper, red streaks on your poo, or pink water in the toilet."
+  question_carer: "Has your child had bleeding from their bottom, or blood in their poo or nappy?"
+  checklist_text: "Bleeding from your bottom, or blood in your poo"
+  kind: presenting
+  snomed: "12063002"
+  phrases: ["blood when I wipe", "blood in the toilet", "bloody poo", "blood in the nappy"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: heavy_bleeding_from_bottom
+  label: "Heavy or non-stop bleeding from the bottom"
+  question: "Are you bleeding non-stop from your bottom, or is there a lot of blood? For example, the toilet water turns red or you see large blood clots."
+  question_carer: "Is your child bleeding non-stop from their bottom, or is there a lot of blood? For example, the toilet water turns red or you see large blood clots."
+  checklist_text: "A lot of blood from your bottom, or bleeding that will not stop"
+  kind: symptom
+  parent: bleeding_from_bottom
+  relation: severity
+  seriousness: emergency
+  phrases: ["toilet full of blood", "big clots", "won't stop bleeding from my bottom"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: bright_red_blood_on_paper
+  label: "Bright red blood on the toilet paper or on the outside of the poo"
+  question: "Is the blood bright red, and only on the toilet paper or on the outside of your poo?"
+  question_carer: "Is the blood bright red, and only on the toilet paper or on the outside of your child's poo?"
+  kind: symptom
+  parent: bleeding_from_bottom
+  relation: character
+  phrases: ["bright red on the paper", "streaks on my poo"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: blood_in_poo_3_weeks
+  label: "Blood in poo for 3 weeks or more"
+  question: "Have you had blood in your poo for 3 weeks or more?"
+  kind: symptom
+  parent: bleeding_from_bottom
+  relation: duration
+  phrases: ["bleeding for a month", "blood on and off for weeks"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: black_or_dark_red_poo
+  label: "Black, sticky poo, or dark red poo"
+  question: "Is your poo black and sticky, or dark red? Iron tablets can turn poo dark, but black sticky poo can be a sign of bleeding."
+  question_carer: "Is your child's poo black and sticky, or dark red?"
+  checklist_text: "Black, sticky poo, or dark red poo"
+  kind: symptom
+  parent: bleeding_from_bottom   # blood from the gut, as the Bleeding from the bottom page treats it
+  relation: character
+  seriousness: serious
+  phrases: ["poo like tar", "black poo", "dark red poo"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: mucus_in_poo
+  label: "Slime (mucus) in poo"
+  question: "Have you noticed slime in your poo? It may look like clear or white jelly."
+  question_carer: "Have you noticed slime in your child's poo? It may look like clear or white jelly."
+  kind: symptom
+  snomed: "271864008"
+  phrases: ["slimy poo", "jelly in my poo"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: bowel_habit_change_3_weeks
+  label: "Changes in pooing for 3 weeks or more"
+  question: "For 3 weeks or more, has your poo changed in a way that is not usual for you? For example, it is softer, thinner or runnier, you poo more often, or you are constipated."
+  kind: symptom
+  snomed: "88111009"
+  asked_only_if: age_16_or_over
+  phrases: ["going more often for weeks", "my bowels have changed", "poo is thinner than it used to be"]
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: poo_alternates
+  label: "Pooing changes between diarrhoea and constipation"
+  question: "Does your pooing keep changing between diarrhoea and constipation?"
+  kind: symptom
+  phrases: ["one minute the runs, next minute blocked up", "up and down bowels"]
+  source: nhs_ibs
+
+- id: poo_pale_pee_dark
+  label: "Pale poo and dark pee"
+  question: "Is your poo paler than usual (pale or clay-coloured), and your pee darker than usual?"
+  question_carer: "Is your child's poo paler than usual (pale or chalky), and their pee darker than usual?"
+  kind: symptom
+  phrases: ["white poo", "pee like tea", "clay-coloured poo"]
+  source: nhs_jaundice
+
+# ===========================================================================
+# Constipation (a main symptom)
+# ===========================================================================
+- id: constipation
+  label: "Constipation"
+  question: "Are you constipated? This means pooing less often than usual, or finding it hard to poo."
+  question_carer: "Is your child constipated? This means pooing less often than usual, or finding it hard to poo."
+  checklist_text: "Constipated: pooing less often, or finding it hard to poo"
+  kind: presenting
+  phrases: ["bunged up", "can't go", "haven't been for days", "hard poo"]
+  source: nhs_constipation
+
+- id: hard_lumpy_poo
+  label: "Hard, dry or lumpy poo, or straining"
+  question: "Is your poo hard, dry or lumpy, or like small pellets? Or do you have to strain to poo?"
+  question_carer: "Is your child's poo hard, dry or lumpy, or like small pellets? Or do they have to strain to poo?"
+  kind: symptom
+  parent: constipation
+  relation: character
+  phrases: ["like rabbit droppings", "rock hard", "really have to push"]
+  source: nhs_constipation
+
+- id: constipation_not_helped
+  label: "Constipation not getting better with treatment"
+  question: "Is your constipation not getting better? For example, you have tried changes to what you eat and drink, or pharmacy medicines."
+  question_carer: "Is your child's constipation not getting better? For example, after changes to what they eat and drink, or medicines."
+  kind: symptom
+  parent: constipation
+  relation: duration
+  phrases: ["laxatives aren't working", "tried everything"]
+  source: nhs_constipation
+
+- id: constipation_often
+  label: "Often constipated"
+  question: "Do you often get constipated?"
+  question_carer: "Does your child often get constipated?"
+  kind: symptom
+  parent: constipation
+  relation: duration
+  phrases: ["always constipated", "keeps happening"]
+  source: nhs_constipation
+
+- id: cannot_poo_or_fart
+  label: "Cannot poo or fart at all"
+  question: "Are you unable to poo or fart at all?"
+  question_carer: "Is your child unable to poo or fart at all?"
+  checklist_text: "Cannot poo or fart at all"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["can't pass wind", "nothing is coming out", "completely blocked"]
+  source: nhs_stomach_ache
+
+- id: takes_constipating_medicine
+  label: "Takes a medicine that can cause constipation"
+  question: "Do you take a medicine that can cause constipation? For example, strong painkillers such as codeine or morphine, or iron tablets."
+  kind: history
+  phrases: ["on codeine", "taking morphine", "iron tablets"]
+  source: nhs_constipation
+
+- id: pain_when_pooing
+  label: "Pain when pooing"
+  question: "Does it hurt when you poo?"
+  question_carer: "Does it hurt your child to poo? They may try to hold their poo in."
+  kind: symptom
+  phrases: ["hurts to go to the toilet", "stinging when I poo", "scared to poo"]
+  source: nhs_anal_fissure
+
+# ===========================================================================
+# Bloating and farting (main symptoms)
+# ===========================================================================
+- id: bloating
+  label: "Bloating"
+  question: "Do you feel bloated? This means your tummy feels full, tight or uncomfortable."
+  question_carer: "Does your child's tummy seem bloated, full or uncomfortable?"
+  checklist_text: "Feeling bloated"
+  kind: presenting
+  snomed: "116289008"
+  phrases: ["bloated", "tummy feels full", "blown up like a balloon"]
+  source: nhs_bloating
+
+- id: bloating_regular
+  label: "Bloated regularly, or it does not go away"
+  question: "Have you felt bloated, or had a swollen tummy, most days, or on and off for 3 weeks or more? Or does it not go away, even when you change what you eat?"
+  kind: symptom
+  parent: bloating
+  relation: duration
+  phrases: ["bloated every day", "bloated for weeks"]
+  source: nhs_bloating
+
+- id: farting_a_lot
+  label: "Farting a lot, or smelly farts"
+  question: "Are you farting (passing wind) more than usual, or are your farts very smelly?"
+  question_carer: "Is your child farting (passing wind) more than usual, or are their farts very smelly?"
+  checklist_text: "Farting more than usual"
+  kind: presenting
+  snomed: "80301007"
+  phrases: ["wind", "gassy", "passing wind all the time", "smelly farts"]
+  source: nhs_flatulence
+
+- id: farting_affecting_life
+  label: "Farting is affecting life and has not got better with self-help"
+  question: "Is farting affecting your life, and have changes to your food and pharmacy treatments not helped?"
+  kind: symptom
+  parent: farting_a_lot
+  relation: severity
+  phrases: ["embarrassing", "can't go out", "nothing helps"]
+  source: nhs_flatulence
+
+- id: after_milk_or_dairy
+  label: "Symptoms come on after milk or dairy foods"
+  question: "Do your symptoms come on after you have milk or dairy foods, such as cheese or yoghurt?"
+  question_carer: "Do your child's symptoms come on after they have milk or dairy foods?"
+  kind: symptom
+  phrases: ["after milk", "after cheese", "dairy upsets me"]
+  source: nhs_lactose_intolerance
+
+- id: after_gluten_foods
+  label: "Symptoms come on after foods with wheat, barley or rye"
+  question: "Do your symptoms come on after foods with wheat, barley or rye in them, such as bread, pasta or cereal?"
+  question_carer: "Do your child's symptoms come on after foods with wheat, barley or rye in them, such as bread, pasta or cereal?"
+  kind: symptom
+  phrases: ["after bread", "after pasta", "gluten"]
+  source: nhs_coeliac_disease
+
+# ===========================================================================
+# Indigestion (a main symptom)
+# ===========================================================================
+- id: indigestion
+  label: "Indigestion or heartburn"
+  question: "Do you have indigestion or heartburn? This is a burning feeling in your chest or upper tummy, or feeling full, often after eating."
+  checklist_text: "Indigestion or heartburn"
+  kind: presenting
+  phrases: ["indigestion", "acid", "heartburn", "reflux"]
+  source: nhs_indigestion
+
+- id: indigestion_keeps_happening
+  label: "Keeps getting indigestion"
+  question: "Do you keep getting indigestion? Or has it not gone away with pharmacy medicine?"
+  kind: symptom
+  parent: indigestion
+  relation: duration
+  phrases: ["indigestion every day", "antacids are not working"]
+  source: nhs_indigestion
+
+# ===========================================================================
+# The bottom: pain, itching, lumps and worms (main symptoms)
+# ===========================================================================
+- id: anal_pain
+  label: "Pain in the bottom (anus)"
+  question: "Do you have pain in or around your bottom (anus)?"
+  question_carer: "Does your child have pain in or around their bottom (anus)?"
+  checklist_text: "Pain in or around your bottom"
+  kind: presenting
+  snomed: "68653001"
+  phrases: ["sore bottom", "pain in my backside", "it hurts down below when I sit"]
+  source: nhs_anal_pain
+
+- id: anal_pain_severe
+  label: "Severe pain in the bottom"
+  question: "Is the pain in your bottom severe?"
+  question_carer: "Is the pain in your child's bottom severe?"
+  kind: symptom
+  parent: anal_pain
+  relation: severity
+  phrases: ["agony to sit down", "excruciating"]
+  source: nhs_anal_pain
+
+- id: anal_pain_not_improving
+  label: "Bottom pain not better after a few days"
+  question: "Has the pain in your bottom not got better after a few days?"
+  question_carer: "Has the pain in your child's bottom not got better after a few days?"
+  kind: symptom
+  parent: anal_pain
+  relation: duration
+  phrases: ["still sore after a week", "not easing"]
+  source: nhs_anal_pain
+
+- id: bottom_throbbing_swelling_pus
+  label: "Constant throbbing pain, swelling or pus near the bottom"
+  question: "Do you have a constant, throbbing pain near your bottom, with a red swelling or pus?"
+  question_carer: "Does your child have a constant, throbbing pain near their bottom, with a red swelling or pus?"
+  checklist_text: "Throbbing pain near your bottom, with a red swelling or pus"
+  kind: symptom
+  phrases: ["boil by my bottom", "pus when I wipe", "throbbing lump near my bum"]
+  source: nhs_anal_pain
+
+- id: lump_at_bottom
+  label: "A lump in or around the bottom"
+  question: "Can you feel a lump in or around your bottom (anus)?"
+  question_carer: "Can you see or feel a lump in or around your child's bottom (anus)?"
+  kind: symptom
+  phrases: ["lump on my bum", "something hanging down", "piles"]
+  source: nhs_piles
+
+- id: itchy_bottom
+  label: "Itchy bottom"
+  question: "Do you have an itchy bottom (anus)?"
+  question_carer: "Does your child have an itchy bottom (anus)? They may scratch it a lot, or wake at night."
+  checklist_text: "Itchy bottom"
+  kind: presenting
+  snomed: "90446007"
+  phrases: ["itchy bum", "itching down there", "scratching their bottom"]
+  source: nhs_itchy_anus
+
+- id: itchy_bottom_worse_at_night
+  label: "Itchy bottom worse at night"
+  question: "Is the itching worse at night?"
+  question_carer: "Is your child's itching worse at night?"
+  kind: symptom
+  parent: itchy_bottom
+  relation: exacerbating_factor
+  phrases: ["keeps them awake", "worse in bed"]
+  source: nhs_threadworms
+
+- id: itch_not_going_away
+  label: "Itchy bottom not going away, or keeps coming back"
+  question: "Is the itching not going away, or does it keep coming back? Or has a cream from a pharmacy not helped after 1 week?"
+  question_carer: "Is your child's itching not going away, or does it keep coming back?"
+  kind: symptom
+  parent: itchy_bottom
+  relation: duration
+  phrases: ["itchy for weeks", "cream hasn't worked"]
+  source: nhs_itchy_anus
+
+- id: itchy_elsewhere
+  label: "Itchy skin on other parts of the body too"
+  question: "Is your skin itchy on other parts of your body too?"
+  question_carer: "Is your child's skin itchy on other parts of their body too?"
+  kind: symptom
+  phrases: ["itchy all over", "eczema elsewhere"]
+  source: nhs_itchy_anus
+
+- id: worms_seen
+  label: "Has seen worms, or thinks they have worms"
+  question: "Have you seen worms in your poo or around your bottom, or do you think you have worms?"
+  question_carer: "Have you seen worms in your child's poo or around their bottom, or do you think they have worms?"
+  checklist_text: "Worms in your poo or around your bottom"
+  kind: presenting
+  phrases: ["worms", "something wriggling in my poo", "threadworms"]
+  source: nhs_worms_in_humans
+
+- id: threadlike_worms
+  label: "Tiny white worms like pieces of thread"
+  question: "Are the worms tiny, white and like pieces of thread? They may be seen in poo or around the bottom, often at night."
+  question_carer: "Are the worms tiny, white and like pieces of thread? They may be seen in your child's poo or around their bottom, often at night."
+  kind: symptom
+  parent: worms_seen
+  relation: character
+  phrases: ["like bits of white cotton", "tiny white worms"]
+  source: nhs_threadworms
+
+- id: large_worm_or_eggs
+  label: "A large worm, a piece of worm or worm eggs"
+  question: "Have you found a large worm, a piece of a worm, or worm eggs in your poo?"
+  question_carer: "Have you found a large worm, a piece of a worm, or worm eggs in your child's poo?"
+  kind: symptom
+  parent: worms_seen
+  relation: character
+  phrases: ["looked like an earthworm", "long flat worm", "piece of tapeworm"]
+  source: nhs_worms_in_humans
+
+- id: worm_shaped_rash
+  label: "Red, itchy, worm-shaped rash on the skin"
+  question: "Do you have a red, itchy rash on your skin that is shaped like a worm?"
+  question_carer: "Does your child have a red, itchy rash on their skin that is shaped like a worm?"
+  kind: symptom
+  phrases: ["wiggly line rash", "raised red line on my foot"]
+  source: nhs_worms_in_humans
+
+- id: been_abroad_2_years
+  label: "Has been abroad in the last 2 years"
+  question: "Have you been abroad in the last 2 years? Tell us even if it was a while ago, because some worms take a long time to cause symptoms."
+  question_carer: "Has your child been abroad in the last 2 years?"
+  kind: history
+  phrases: ["went travelling", "was in India last year", "holiday abroad"]
+  source: nhs_worms_in_humans
+
+# ===========================================================================
+# Bowel incontinence and soiling (main symptoms), and nerve warning signs
+# ===========================================================================
+- id: bowel_incontinence
+  label: "Cannot control when you poo"
+  question: "Are you unable to control when you poo? For example, poo leaks out, or you cannot get to the toilet in time."
+  checklist_text: "Cannot control when you poo, or poo leaking"
+  kind: presenting
+  snomed: "72042002"
+  phrases: ["accidents", "leaking poo", "pooing myself", "can't hold it"]
+  source: nhs_bowel_incontinence
+
+- id: child_soiling
+  label: "A child regularly pooing their pants (soiling)"
+  question: "Is your child, who is already potty trained, regularly pooing their pants (soiling)?"
+  question_carer: "Is your child, who is already potty trained, regularly pooing their pants (soiling)?"
+  checklist_text: "A child who keeps pooing their pants"
+  kind: presenting
+  snomed: "302690004"
+  asked_only_if: age_under_16   # only asked about children
+  phrases: ["poo in their pants", "skid marks", "keeps soiling"]
+  source: nhs_soiling_child_pooing_their_pants
+
+# ===========================================================================
+# Babies: reflux and other feeding problems (a main symptom)
+# ===========================================================================
+- id: baby_bringing_up_milk
+  label: "Baby bringing up milk or being sick during or after feeds"
+  question: "Is your baby bringing up milk, or being sick, during or shortly after feeds?"
+  question_carer: "Is your baby bringing up milk, or being sick, during or shortly after feeds?"
+  checklist_text: "A baby bringing up milk during or after feeds"
+  kind: presenting
+  phrases: ["possets", "spits up", "brings up milk", "reflux"]
+  source: nhs_reflux_in_babies
+
+- id: baby_unsettled_feeding
+  label: "Baby coughing, gulping or unsettled during feeds"
+  question: "Does your baby cough, hiccup, gulp or seem unsettled during feeds?"
+  question_carer: "Does your baby cough, hiccup, gulp or seem unsettled during feeds?"
+  kind: symptom
+  asked_only_if: age_under_1
+  phrases: ["arches back when feeding", "fussy at the bottle", "gulps after feeds"]
+  source: nhs_reflux_in_babies
+
+- id: baby_not_gaining_weight
+  label: "Baby not gaining weight, or losing weight"
+  question: "Is your baby not gaining weight, or losing weight?"
+  question_carer: "Is your baby not gaining weight, or losing weight?"
+  checklist_text: "A baby not gaining weight, or losing weight"
+  kind: symptom
+  snomed: "36440009"
+  asked_only_if: age_under_1
+  seriousness: serious
+  phrases: ["dropped centiles", "not putting on weight", "health visitor worried about weight"]
+  source: nhs_reflux_in_babies
+
+- id: baby_hungry_after_being_sick
+  label: "Baby seems hungry straight after being sick"
+  question: "Does your baby seem hungry and want to feed again straight after being sick?"
+  question_carer: "Does your baby seem hungry and want to feed again straight after being sick?"
+  kind: symptom
+  asked_only_if: age_under_1
+  phrases: ["wants feeding again straight away", "starving after being sick"]
+  source: ai_judgement
+
+- id: reflux_late_or_lasting
+  label: "Reflux started after 6 months old, or still there after 1 year"
+  question: "Did the reflux start after your baby was 6 months old? Or is your child over 1 and still bringing up feeds?"
+  question_carer: "Did the reflux start after your baby was 6 months old? Or is your child over 1 and still bringing up feeds?"
+  kind: symptom
+  parent: baby_bringing_up_milk
+  relation: duration
+  phrases: ["started at 7 months", "still refluxing at 14 months"]
+  source: nhs_reflux_in_babies
+
+- id: reflux_not_improving
+  label: "Reflux not improving after trying things to ease it"
+  question: "Is your baby's reflux not getting better after trying things to ease it, such as holding them upright after feeds?"
+  question_carer: "Is your baby's reflux not getting better after trying things to ease it, such as holding them upright after feeds?"
+  kind: symptom
+  parent: baby_bringing_up_milk
+  relation: duration
+  phrases: ["tried everything", "no better"]
+  source: nhs_reflux_in_babies
+
+- id: crying_a_lot_hard_to_settle
+  label: "Baby crying a lot and hard to settle"
+  question: "Does your baby cry a lot and is hard to settle, often in the late afternoon or evening? They may clench their fists, go red in the face or bring their knees up."
+  question_carer: "Does your baby cry a lot and is hard to settle, often in the late afternoon or evening? They may clench their fists, go red in the face or bring their knees up."
+  kind: symptom
+  snomed: "788918005"
+  asked_only_if: age_under_1
+  phrases: ["screams every evening", "colicky", "won't settle"]
+  source: nhs_colic
+
+- id: baby_will_not_stop_crying
+  label: "Baby will not stop crying and is very distressed"
+  question: "Will your baby not stop crying, and do they seem very distressed?"
+  question_carer: "Will your baby not stop crying, and do they seem very distressed?"
+  checklist_text: "A baby who will not stop crying and is very distressed"
+  kind: symptom
+  parent: child_crying_will_not_stop
+  relation: character
+  asked_only_if: age_under_1
+  seriousness: serious
+  phrases: ["inconsolable", "crying for hours and nothing works"]
+  source: nhs_reflux_in_babies
+
+- id: baby_weak_or_high_pitched_cry
+  label: "Baby has a weak or high-pitched cry, or a cry not like their usual one"
+  question: "Does your baby have a weak or high-pitched cry, or a cry that does not sound like their usual cry?"
+  question_carer: "Does your baby have a weak or high-pitched cry, or a cry that does not sound like their usual cry?"
+  checklist_text: "A baby with a weak or high-pitched cry, or a cry not like their usual one"
+  kind: symptom
+  parent: child_crying_will_not_stop
+  relation: character
+  asked_only_if: age_under_1
+  seriousness: emergency
+  phrases: ["strange cry", "squeaky cry", "whimpering"]
+  source: nhs_colic
+
+- id: screaming_bouts_pale_between
+  label: "Young child with bouts of screaming and knees drawn up, pale or floppy between bouts"
+  question: "Does your child have sudden bouts of screaming or crying with their knees pulled up to their chest, every 15 to 20 minutes? Do they go pale, quiet or floppy in between?"
+  question_carer: "Does your child have sudden bouts of screaming or crying with their knees pulled up to their chest, every 15 to 20 minutes? Do they go pale, quiet or floppy in between?"
+  checklist_text: "A young child with bouts of screaming and knees pulled up, and pale or floppy in between"
+  kind: symptom
+  asked_only_if: age_under_5
+  seriousness: emergency
+  phrases: ["screams then goes quiet", "pulls knees up and screams", "pale between attacks"]
+  source: ai_judgement
+
+- id: high_ketones
+  label: "High ketones, or high blood sugar that insulin is not bringing down"
+  question: "Have you tested your ketones and they are high (over 3mmol/L in blood, or over 2+ in pee)? Or is your blood sugar high and your insulin is not bringing it down?"
+  question_carer: "Have you tested your child's ketones and they are high (over 3mmol/L in blood, or over 2+ in pee)? Or is their blood sugar high and insulin is not bringing it down?"
+  checklist_text: "High ketones, or high blood sugar that insulin is not bringing down"
+  kind: symptom
+  parent: high_blood_sugar_or_ketones
+  relation: severity
+  seriousness: emergency
+  phrases: ["ketones are high", "sugars are through the roof", "blood sugar won't come down"]
+  source: nhs_diabetic_ketoacidosis
+
+- id: has_liver_problems
+  label: "Has liver problems, such as scarring of the liver"
+  question: "Has a doctor told you that you have a liver problem? For example, scarring of the liver (cirrhosis), or harm from alcohol."
+  kind: history
+  phrases: ["I have cirrhosis", "my liver is damaged", "fatty liver"]
+  source: nhs_alcohol_related_liver_disease
+
+# ===========================================================================
+# Medicines and past problems
+# ===========================================================================
+- id: takes_anti_inflammatory_painkillers
+  label: "Regularly takes ibuprofen, aspirin or similar painkillers"
+  question: "Do you take painkillers like ibuprofen or aspirin most days? Naproxen and diclofenac count too."
+  kind: history
+  asked_only_if: age_10_or_over
+  phrases: ["take ibuprofen every day", "on aspirin", "naproxen for my back"]
+  source: nhs_stomach_ulcer
+
+- id: has_stomach_ulcer
+  label: "Has had a stomach ulcer"
+  question: "Has a doctor told you that you have, or have had, a stomach ulcer (an open sore in the lining of the stomach)?"
+  kind: history
+  asked_only_if: age_10_or_over
+  phrases: ["I've had an ulcer", "peptic ulcer"]
+  source: nhs_stomach_ulcer
+
+- id: has_gallstones
+  label: "Has gallstones"
+  question: "Has a doctor told you that you have gallstones?"
+  kind: history
+  asked_only_if: age_10_or_over
+  phrases: ["I've got gallstones", "gallbladder problems"]
+  source: nhs_gallstones
+
+- id: has_ibd
+  label: "Has Crohn's or ulcerative colitis"
+  question: "Has a doctor told you that you have Crohn's or ulcerative colitis? These are long-term conditions that cause swelling of the gut."
+  question_carer: "Has a doctor told you that your child has Crohn's or ulcerative colitis? These are long-term conditions that cause swelling of the gut."
+  kind: history
+  phrases: ["I have Crohn's", "my colitis", "IBD"]
+  source: nhs_crohns_disease
+
+- id: had_tummy_operation
+  label: "Has had an operation on the tummy"
+  question: "Have you ever had an operation on your tummy? For example, to take out your appendix or part of your bowel, or a C-section."
+  question_carer: "Has your child ever had an operation on their tummy?"
+  kind: history
+  phrases: ["had my appendix out", "bowel surgery", "had a C-section"]
+  source: ai_judgement
+
+- id: severe_lower_tummy_pain
+  label: "Severe pain in the lower tummy"
+  question: "Do you have severe pain in the lower part of your tummy?"
+  question_carer: "Does your child also have severe pain in the lower part of their tummy?"
+  checklist_text: "Severe pain in the lower tummy"
+  kind: symptom
+  parent: sa_severe   # a more specific kind of severe tummy pain
+  relation: severity
+  seriousness: emergency
+  phrases: ["bad tummy ache", "pain low in his tummy"]
+  source: nhs_limp_in_children
+
+- id: very_bad_tummy_pain_with_back_pain
+  label: "Sudden, very bad pain in the tummy as well as the back"
+  question: "As well as the back pain, did very bad pain in your tummy come on suddenly?"
+  checklist_text: "Sudden, very bad pain in the tummy as well"
+  kind: symptom
+  parent: sa_sudden_severe   # a kind of sudden, severe tummy pain, so the rules on that see it
+  relation: character
+  seriousness: emergency_ambulance
+  phrases: ["tummy and back pain came on suddenly"]
+  source: nhs_abdominal_aortic_aneurysm

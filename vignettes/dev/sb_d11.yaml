@@ -1,0 +1,69 @@
+id: sb_d11
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- bloating
+- farting_a_lot
+summary: 58-year-old woman who has felt bloated most days for 2 months, farts more than usual, feels full after eating only a little and has lost some weight without trying.
+opening_statement: I feel bloated nearly every day and I'm farting much more. I get full really quickly and my clothes are looser.
+findings:
+  present:
+  - bloating
+  - bloating_regular
+  - farting_a_lot
+  - full_quickly
+  - weight_loss
+  absent:
+  - stomach_ache
+  - vomiting
+  - diarrhoea
+  - constipation
+  - bleeding_from_bottom
+  - very_high_temperature
+  - lump_in_tummy_or_groin
+  - tummy_swollen
+  - cannot_poo_or_fart
+  - heartburn_or_sour_taste
+  - bleeding_after_menopause
+  - after_gluten_foods
+  - after_milk_or_dairy
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 58
+    sex: female
+  full:
+    age: 58
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags:
+- description: 'Bloating that does not go away, with weight loss: possible ovarian cancer'
+  findings:
+  - bloating_regular
+  - weight_loss
+  minimum_acuity: routine
+  source:
+    page: bloating.txt
+    quote: bloating that does not go away can be a sign of something more serious
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Get an urgent GP appointment or call 111 if a stomach ache, a lump, a fever or vomiting develops
+  any_of:
+  - '111'
+  - urgent
+source:
+  expected_outcome:
+    page: bloating.txt
+    quote: you have bloating and unintentional weight loss
+  minimum_safe_acuity:
+    page: flatulence.txt
+    quote: you have lost weight without trying
+atypical: false
+notes: bloating.txt and flatulence.txt both give non-urgent GP advice for this. No stomach ache and no swelling or lump in the tummy, which would make it urgent under bloating.txt. Her tummy feels full but does not look swollen. The pages give no faster timeframe for the cancer concern.

@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: subarachnoid_haemorrhage
+body_system: brain_and_nerves
+entry_symptoms: [headache, sudden_confusion, fainted, had_a_fit]
+name: "Bleeding on the brain (subarachnoid haemorrhage)"
+medical_name: "Subarachnoid haemorrhage"
+snomed: "21454007"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  # Rare among headaches and sudden confusion; much rarer among faints. Headache
+  # comes first so a faint with a headache keeps the headache figure.
+  - {finding: headache, prevalence: rare}
+  - {finding: fainted, prevalence: very_rare}
+findings:
+  # What tells it apart: a sudden, extremely painful headache, often with a stiff neck and being sick.
+  headache_sudden_severe: strongly_supports
+  headache: strongly_supports
+  stiff_neck: supports
+  vomiting: supports
+  bothered_by_light: supports
+  drowsy_hard_to_wake: supports
+  fainted: supports
+  had_a_fit: supports
+  sudden_confusion: supports
+key_findings: [headache_sudden_severe, stiff_neck, vomiting, drowsy_hard_to_wake]
+source: nhs_subarachnoid_haemorrhage
+informed_by: [nhs_subarachnoid_haemorrhage, nhs_headaches]

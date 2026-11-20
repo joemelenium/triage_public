@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cervical_artery_dissection
+body_system: bones_joints_muscles
+# Rare. Neck pain with a sudden, very bad headache or stroke signs, sometimes after a
+# minor neck injury or twist. Both are on emergency checklists, so they are always
+# asked.
+entry_symptoms: [neck_pain]
+name: "A tear in an artery in the neck, which can cause a stroke"
+medical_name: "Cervical artery dissection"
+acuity_needed: emergency
+danger: critical
+# Very rare among people with neck pain (AI judgement): a few cases per 100,000
+# people a year. Its telling signs raise it quickly.
+prevalence: very_rare
+findings:
+  headache_sudden_severe: strongly_supports
+  stroke_signs: strongly_supports
+  pain_started_suddenly: supports
+  head_jolted: supports
+key_findings: [headache_sudden_severe, stroke_signs]
+source: ai_judgement
+informed_by: [nhs_stroke_symptoms]

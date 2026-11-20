@@ -1,0 +1,18 @@
+id: semigran2015_04
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: COPD flare (more severe)
+original_triage_label: Requires emergent care
+original_triage: emergency
+presenting_text: 3 days of worsening breathlessness and more frequent cough, now with green sputum
+presenting: []
+age: 67
+sex: female
+findings:
+  present:
+  - short_of_breath
+  absent: []
+  unknown: []
+conversion_notes: '''Dyspnea'' is mapped to short_of_breath, following the publication''s own simplified wording (''shortness of breath''); difficulty_breathing is left out. ''Intermittent, low-grade fever of 100 F (37.7 C)'' is not mapped to very_high_temperature (low-grade, below 38 C): left out rather than marked absent. Sputum is green and purulent; blood is not mentioned either way. Rule used for very_high_temperature in this set: present when the text states a fever (not described as low-grade), chills, rigors or feeling hot; left out when the fever is described as low-grade or measured below 38.0 C; absent when fever is explicitly ruled out. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 4 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

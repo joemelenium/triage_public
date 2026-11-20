@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mastitis
+body_system: womens_health
+entry_symptoms: [breast_pain, breast_lump, nipple_discharge]
+name: "Breast infection or inflammation (mastitis)"
+medical_name: "Mastitis"
+snomed: "82789004"
+# A hot, red, swollen area of one breast, often while breastfeeding. Level urgent,
+# from the Breast pain page; the Mastitis page says many breastfeeding women can
+# treat it at home first.
+acuity_needed: urgent
+danger: moderate
+prevalence: uncommon
+findings:
+  breast_hot_red_swollen: strongly_supports
+  breast_pain: strongly_supports
+  breastfeeding: supports
+  very_high_temperature: supports
+  aching_body: supports
+  nipple_discharge: supports
+  breast_lump: supports
+key_findings: [breast_hot_red_swollen, breastfeeding, very_high_temperature]
+source: nhs_mastitis
+informed_by: [nhs_mastitis, nhs_breast_pain]

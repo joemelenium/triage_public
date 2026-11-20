@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: aortic_dissection
+body_system: chest_and_heart
+entry_symptoms: [chest_pain]
+name: "A tear in the body's main blood vessel (aortic dissection)"
+medical_name: "Aortic dissection"
+snomed: "308546005"
+acuity_needed: emergency
+danger: critical
+# Very rare in people with chest pain. "rare" is the lowest band there is, so
+# it is already higher than the true figure. The tearing pain is on the
+# emergency checklist for chest pain, so it is always asked.
+prevalence: rare
+findings:
+  # What tells it apart from a heart attack: tearing pain, felt in the back.
+  cp_tearing_to_back: strongly_supports
+  upper_back_pain: strongly_supports
+  cp_sudden_not_going_away: strongly_supports   # at its worst from the very start
+  cp_present_now: strongly_supports
+  cp_spreads: supports
+  heart_risk_factors: supports                  # high blood pressure is the main cause
+  sweating: supports
+key_findings: [cp_tearing_to_back, upper_back_pain, cp_sudden_not_going_away, heart_risk_factors]
+source: ai_judgement
+informed_by: [nhs_costochondritis, nhs_chest_pain]

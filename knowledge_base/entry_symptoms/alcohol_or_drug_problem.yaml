@@ -1,0 +1,132 @@
+# Entry symptom: problems with alcohol or drugs.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Must-not-miss causes: alcohol poisoning, an overdose or poisoning, a bad
+# reaction to a drug, and severe alcohol withdrawal (fits, or seeing or hearing
+# things). The source says everyone worried about their drinking should see a GP
+# or an alcohol support service, so the default is a floor.
+
+id: alcohol_or_drug_problem
+name: "Problems with alcohol or drugs"
+presenting_finding: alcohol_or_drug_problem
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: alcohol_drugs_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - alcohol_poisoning_signs
+      - breathing_slow_or_irregular
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - had_a_fit
+      - taken_overdose
+      - drug_bad_reaction
+      - severe_withdrawal_signs
+      - cannot_keep_safe
+
+  - id: alcohol_drugs_urgent_screen
+    level: urgent
+    question: "These questions help us find the right help. Do any of these apply? Choose all that apply."
+    findings:
+      - alcohol_or_drug_stopped_recently
+      - past_severe_withdrawal
+      - suicidal_thoughts_or_self_harm
+      - hearing_or_seeing_things
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ad_alcohol_poisoning
+    description: "Signs of alcohol poisoning"
+    when: alcohol_poisoning_signs
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_alcohol_poisoning_999
+    source: nhs_alcohol_poisoning
+
+  - id: rf_ad_slow_breathing
+    description: "Breathing very slowly, or with long gaps between breaths"
+    when: breathing_slow_or_irregular
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_alcohol_poisoning_999
+    source: nhs_alcohol_poisoning
+    note: "Also a sign of an overdose of heroin or another opioid (AI judgement)."
+
+  - id: rf_ad_drowsy
+    description: "Very sleepy or hard to wake after alcohol or a drug"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_alcohol_poisoning_999
+    source: nhs_poisoning
+    note: "The Poisoning page lists feeling sleepy as a symptom of poisoning, and the Alcohol poisoning page says call 999 if someone loses consciousness. Treating being hard to wake as a 999 sign is AI judgement."
+
+  - id: rf_ad_fit
+    description: "Has had a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_alcohol_poisoning_999
+    source: nhs_alcohol_poisoning
+
+  - id: rf_ad_overdose
+    description: "Has taken an overdose or swallowed something harmful"
+    when: taken_overdose
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_overdose_or_injury
+    source: nhs_poisoning
+
+  - id: rf_ad_drug_reaction
+    description: "Very unwell after taking a drug"
+    when: drug_bad_reaction
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_poisoning_ae
+    source: nhs_poisoning
+
+  - id: rf_ad_severe_withdrawal
+    description: "Signs of severe alcohol withdrawal"
+    when: severe_withdrawal_signs
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_withdrawal_ae
+    source: nhs_alcohol_misuse
+
+  - id: rf_ad_cannot_keep_safe
+    description: "Cannot keep themselves or someone else safe right now"
+    when: cannot_keep_safe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: nhs_urgent_mental_health
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ad_stopped_after_severe_withdrawal
+    description: "Stopped or cut down drinking in the last few days, and has had fits or severe withdrawal before"
+    when: {all: [alcohol_or_drug_stopped_recently, past_severe_withdrawal]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, or call NHS 111, today"}
+    advice: advice_withdrawal_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: someone who has had fits or severe withdrawal before is more likely to have them again, so needs medical help with stopping straight away. The Alcohol misuse page says it can be very dangerous to stop suddenly if you are dependent."
+
+  - id: rf_ad_withdrawal_symptoms
+    description: "Withdrawal symptoms after stopping or cutting down in the last few days"
+    when: {all: [alcohol_or_drug_stopped_recently, alcohol_withdrawal_symptoms]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, or call NHS 111, today"}
+    advice: advice_withdrawal_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source gives a lower urgency
+    note: "Source difference: the Alcohol misuse page says see a GP (non-urgent) for withdrawal symptoms such as anxiety, sweating or feeling sick. Clinical knowledge: fits and severe withdrawal usually start 1 to 3 days after stopping, so same-day advice is used. Soft."
+
+outcome_rules: []
+
+default:
+  description: "Worried about alcohol or drug use, with no sign of danger now"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or a local alcohol or drug support service. The source gives no fixed time."}
+  advice: advice_alcohol_drugs_gp
+  source: nhs_alcohol_misuse
+  # A floor: the source says see a GP or a support service if you are worried about
+  # your drinking or want help to stop. Likely conditions can never take it lower.
+  floor: true
+  note: "The Drug addiction page also says a GP is a good place to start, or a local drug service directly."

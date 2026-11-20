@@ -1,0 +1,48 @@
+id: sob_h03
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath, cough]
+
+summary: "A 51-year-old woman, not pregnant, with five days of a cough bringing up yellow phlegm, a high temperature and aches. Since yesterday she has felt short of breath walking to the bathroom. She can talk normally and is thinking clearly."
+
+opening_statement: "I've had this horrible chesty cough for five days with a temperature, and now I'm getting short of breath just walking about the house."
+
+findings:
+  present: [short_of_breath, sob_everyday_activity, cough, cough_phlegm, phlegm_yellow_or_green, cough_mucus_or_temperature, very_high_temperature, aching_body, very_tired, recent_viral_illness, cold_or_shivery, symptoms_worse_or_not_better]
+  absent: [sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, skin_blotchy, sudden_confusion, passed_out, chest_pain, coughing_up_blood, rash_does_not_fade, breathing_very_fast, sob_sudden, leg_pain_or_swelling, cough_3_weeks_or_more, has_asthma, has_copd, known_heart_condition, long_term_condition, weakened_immune_system, pregnant_or_recently_given_birth, seriously_unwell_getting_worse, not_peed_12_hours, wheezing, sob_more_than_usual, has_heart_failure]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 51, sex: female}
+  full:
+    age: 51
+    sex: female
+    findings: {long_term_condition: "no", pregnant_or_recently_given_birth: "no"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or NHS 111 today"
+    any_of: ["111", "urgent GP", "GP"]
+  - point: "Call 999 if struggling to breathe, lips or skin turn blue or blotchy, or she becomes confused"
+    any_of: ["999"]
+  - point: "Rest and drink plenty of fluids"
+    any_of: ["fluids", "rest", "drink"]
+
+source:
+  expected_outcome: {page: pneumonia.txt, quote: "you're feeling short of breath"}
+  minimum_safe_acuity: {page: pneumonia.txt, quote: "Urgent advice: Ask for an urgent GP appointment or get help from NHS 111 if:"}
+
+variants: []
+
+atypical: false
+notes: "Possible pneumonia. pneumonia.txt urgent list includes 'you're coughing up yellow or green mucus (phlegm)' and 'you're feeling short of breath'; bronchitis.txt agrees (urgent). chest_infection.txt is less urgent ('Non-urgent advice: See a GP if' symptoms get worse) but notes 'You may have pneumonia if your symptoms are severe.' Judgement: urgent, following pneumonia.txt. Level of care: the source says 'urgent GP appointment or NHS 111'; general_practice/today chosen, urgent_care is equally acceptable. very_high_temperature is answered yes because she feels hot and shivery (question wording: 'or do you feel hot, cold or shivery'). This could also trigger the sepsis page's 'very high or very low temperature, feels hot or cold to the touch, or is shivery' for adults (999); judged not to apply because she has no other sepsis signs and the pneumonia page is more specific. Reviewers should note this tension."

@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: inhaled_object
+body_system: breathing
+# No NHS page for this is saved in the source log, so the card is AI judgement.
+# Mostly young children. "rare" is already far higher than its true share.
+entry_symptoms: [cough, wheezing, short_of_breath]
+name: "Something breathed into the airway or lungs, such as food or a small toy"
+medical_name: "Inhaled (aspirated) foreign body in the airway"
+snomed: "262599003"
+# Needs checking and removing in hospital. Danger critical: it can block the airway.
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart: it started suddenly after choking on something.
+  choked_on_something: strongly_supports
+  cough: strongly_supports
+  sob_sudden: supports
+  wheezing: supports                    # often on one side only
+  stridor: supports
+key_findings: [choked_on_something, sob_sudden, stridor]
+source: ai_judgement
+informed_by: [nhs_cough, nhs_shortness_of_breath]

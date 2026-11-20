@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: arc_eye
+body_system: eyes
+# A burn to the surface of the eye from welding or a sunbed. Very painful 6 to
+# 12 hours later, usually both eyes. Heals in a day or two. The NHS page could
+# not be found.
+entry_symptoms: [eye_pain, something_in_eye, red_eye, watering_eyes]
+name: "Arc eye (a burn to the surface of the eye from welding or sunbed light)"
+medical_name: "Photokeratitis"
+snomed: "1714005"
+acuity_needed: urgent
+danger: moderate
+prevalence: very_rare
+prevalence_when:
+  - {finding: welding_or_uv, prevalence: common}
+findings:
+  welding_or_uv: strongly_supports
+  both_eyes_affected: strongly_supports
+  gritty_or_burning: supports
+  bothered_by_light: supports
+  watering_eyes: supports
+key_findings: [welding_or_uv]
+source: ai_judgement
+informed_by: [nhs_eye_pain]

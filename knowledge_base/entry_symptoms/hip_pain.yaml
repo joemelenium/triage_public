@@ -1,0 +1,178 @@
+# Entry symptom: hip pain, in adults and children.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# One entry symptom covers the NHS pages on hip pain in adults and hip pain in
+# children (irritable hip). Rules that only apply to children say so with
+# age_under_16, and the condition cards use age to change how common each cause
+# is. A limping child also brings in the limping in children entry symptom.
+#
+# Must-not-miss causes: a broken hip (especially in older people after a fall),
+# an infected hip joint (septic arthritis), and in children a slipped growth
+# plate at the top of the thigh bone (slipped upper femoral epiphysis) and
+# Perthes. Irritable hip must be told apart from an infected hip.
+
+id: hip_pain
+name: "Hip pain"
+presenting_finding: hip_pain
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_hip_pain_children_irritable_hip]
+
+screens:
+  - id: hip_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - cannot_bear_weight
+      - numb_after_injury
+      - changed_shape
+      - leg_short_or_turned_out
+      - limb_cold_pale_or_blue
+      - severe_lower_tummy_pain
+
+  - id: hip_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - severe_pain
+      - pain_started_suddenly
+      - swollen_area_red_hot
+      - red_or_discoloured_skin
+      - very_high_temperature
+      - feels_very_unwell
+      - injury_or_fall
+      - limp
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_hip_severe_after_injury
+    description: "Severe hip pain after a fall or injury"
+    when: {all: [injury_or_fall, severe_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_hip_pain_emergency
+    source: nhs_hip_pain
+    note: "The Hip fracture page gives the same advice."
+
+  - id: rf_hip_cannot_bear_weight
+    description: "Hip pain and unable to walk or put weight on the leg"
+    when: cannot_bear_weight
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_hip_pain_emergency
+    source: nhs_hip_pain
+    note: "For children, the Limping in children page says the same. The Irritable hip page says urgent GP or 111 for a child who cannot put weight on a leg. The more urgent is used."
+
+  - id: rf_hip_numb_after_injury
+    description: "Tingling or loss of feeling in the hip or leg after an injury"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_hip_pain_emergency
+    source: nhs_hip_pain
+
+  - id: rf_hip_misshapen
+    description: "Leg has changed shape or is at an odd angle, or after an injury looks shorter or turned outwards"
+    when: {any: [changed_shape, {all: [injury_or_fall, leg_short_or_turned_out]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_hip_pain_emergency
+    source: nhs_limp_in_children
+    note: "A leg that looks shorter and turned out after a fall is a classic sign of a broken hip. Adding it is AI judgement."
+
+  - id: rf_hip_cold_leg
+    description: "Leg or foot cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_sprains_and_strains
+    note: "Can mean the blood supply to the leg is blocked. Applying it without an injury is AI judgement."
+
+  - id: rf_hip_older_fall
+    description: "Hip pain after a fall in someone aged 65 or over"
+    when: {all: [had_a_fall, age_65_or_over]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_hip_pain_emergency
+    source: nhs_falls
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Falls page says call 999 if someone has fallen and may have injured their hip. A broken hip in an older person can still allow some walking. Marked soft because the Hip pain page only says 999 for severe pain or not being able to walk. A firm urgent rule below still applies."
+
+  - id: rf_hip_child_unwell
+    description: "A child with hip pain who feels generally unwell, with a high temperature or feeling hot, cold or shivery"
+    when: {all: [age_under_16, {any: [very_high_temperature, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    note: "Could be an infected hip joint, which can damage the joint within hours. The Irritable hip page says take the child back to a GP if they get a high temperature. The more urgent is used."
+
+  - id: rf_hip_child_sudden
+    description: "A child with sudden pain in the hip, thigh or knee"
+    when: {all: [age_under_16, pain_started_suddenly]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Limping in children page says 999 or A&E for sudden pain in the hip, knee or thigh. The Irritable hip page says urgent GP or 111. The more urgent is used, marked soft so a likely irritable hip in a well child can lower it to urgent."
+
+  - id: rf_hip_child_tummy_pain
+    description: "A child with hip pain and severe pain in the lower tummy"
+    when: {all: [age_under_16, severe_lower_tummy_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_hip_severe_sudden
+    description: "Severe hip pain that started suddenly, with no fall or injury"
+    when: {all: [severe_pain, pain_started_suddenly]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hip_pain_urgent
+    source: nhs_hip_pain
+
+  - id: rf_hip_hot_or_colour
+    description: "Hip swollen and hot, or the skin around the hip has changed colour"
+    when: {any: [swollen_area_red_hot, red_or_discoloured_skin]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_hip_pain
+
+  - id: rf_hip_unwell
+    description: "Hip pain with feeling generally unwell and a high temperature, or feeling hot, cold or shivery"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_hip_pain
+
+  - id: rf_hip_child_limp
+    description: "A child with hip pain who is limping"
+    when: {all: [age_under_16, limp]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_child_hip_urgent
+    source: nhs_hip_pain_children_irritable_hip
+
+  - id: rf_hip_older_fall_urgent
+    description: "Hip pain after a fall or injury in someone aged 65 or over, or with thin bones"
+    when: {all: [injury_or_fall, {any: [age_65_or_over, has_osteoporosis_or_steroids]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_hip_pain_urgent
+    source: nhs_osteoporosis
+    note: "The Osteoporosis page says get urgent help after a recent fall or injury if the pain is not getting better."
+
+outcome_rules:
+  - id: or_hip_child_checked
+    description: "Hip pain in a child, which should always be checked"
+    when: age_under_16
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within a few days, sooner if it gets worse"}
+    advice: advice_child_hip_soon
+    source: nhs_hip_pain_children_irritable_hip
+    note: "The Irritable hip page says hip pain in children should always be checked. Within a few days is AI judgement; sudden pain or a limp is urgent by the rules above."
+
+  - id: or_hip_gp
+    description: "Hip pain stopping usual activities or sleep, getting worse or coming back, not better after 2 weeks, or stiff for more than 30 minutes after waking"
+    when: {any: [stopping_daily_activities, pain_getting_worse_or_recurring, pain_not_improving, morning_stiffness_over_30_min, pain_stiff_both_shoulders_or_hips]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_hip_pain
+
+default:
+  description: "Hip pain in an adult with nothing that needs more help: ease it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if it has not improved after 2 weeks"}
+  advice: advice_hip_pain_self_care
+  source: nhs_hip_pain

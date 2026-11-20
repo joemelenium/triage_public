@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: varicocele
+body_system: urinary_and_male
+entry_symptoms: [testicle_lump_or_swelling, testicle_pain]
+name: "Swollen veins in the scrotum (varicocele)"
+medical_name: "Varicocele"
+snomed: "51070004"
+acuity_needed: routine
+danger: minor
+sex: male
+prevalence: common
+prevalence_when:
+  - {finding: testicle_lump_or_swelling, prevalence: common}
+  - {finding: testicle_pain, prevalence: uncommon}
+findings:
+  # What tells it apart: feels like a bag of worms above the testicle, with a
+  # dragging ache that is worse when standing.
+  swelling_like_bag_of_worms: strongly_supports
+  testicle_ache_worse_standing: strongly_supports
+  swelling_grew_slowly: supports
+key_findings: [swelling_like_bag_of_worms, testicle_ache_worse_standing]
+source: nhs_testicle_lumps_and_swellings
+informed_by: [nhs_testicle_lumps_and_swellings, nhs_testicle_pain]

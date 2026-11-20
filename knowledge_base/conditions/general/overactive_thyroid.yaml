@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: overactive_thyroid
+body_system: general
+# The page says see a GP. Danger moderate: untreated, it strains the heart.
+entry_symptoms: [weight_loss, very_tired, night_sweats, sweating_a_lot, blushing, tremor]
+name: "Overactive thyroid (the thyroid gland in the neck makes too much hormone)"
+medical_name: "Hyperthyroidism"
+snomed: "34486009"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: sex_female, prevalence: uncommon}
+findings:
+  # What tells it apart: weight loss while eating well, feeling restless, shaky and too hot,
+  # and a racing heart.
+  restless_shaky_hot: strongly_supports
+  weight_loss: strongly_supports
+  palpitations: supports
+  sweating: supports
+  very_tired: supports
+  night_sweats: supports
+  # From the skin_and_hair card for this condition (merged):
+  heart_beating_very_fast: supports
+  swelling_front_of_neck: supports
+  feeling_anxious: supports
+  tremor: supports   # trembling hands; added when tremor became an entry symptom for this card
+key_findings: [restless_shaky_hot, palpitations, weight_loss, swelling_front_of_neck, heart_beating_very_fast]
+source: nhs_overactive_thyroid
+informed_by: [nhs_overactive_thyroid, nhs_tiredness_and_fatigue, nhs_unintentional_weight_loss, nhs_blushing]
+# Merged with the skin_and_hair card for this condition. Its notes:
+# What tells it apart from ordinary heavy sweating: losing weight, a fast heartbeat, feeling anxious or on edge, and a swelling at the front of the neck.

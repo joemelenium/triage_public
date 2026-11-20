@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tonsillitis
+body_system: ear_nose_throat
+entry_symptoms: [sore_throat, ear_pain, swollen_glands, bad_breath, very_high_temperature]
+name: "Tonsillitis (infected tonsils at the back of the throat)"
+snomed: "90176007"
+acuity_needed: routine
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: sore_throat, prevalence: common}
+  - {finding: ear_pain, prevalence: common}
+  - {finding: swollen_glands, prevalence: common}
+  - {finding: bad_breath, prevalence: common}
+  - {finding: very_high_temperature, prevalence: uncommon}
+findings:
+  # What tells it apart from a sore throat with a cold: swollen tonsils with
+  # pus-filled spots, a high temperature and swollen neck glands, and no cough.
+  pus_on_tonsils: supports
+  very_high_temperature: supports
+  too_painful_to_eat_or_drink: supports
+  frequent_sore_throats: supports
+  lump_in_mouth_or_neck: supports
+  swollen_neck_glands: supports
+  very_tired: supports
+  # Kept for the single-cause method only; the network method ignores this.
+  cough_or_runny_nose: argues_against
+key_findings: [pus_on_tonsils, very_high_temperature, swollen_neck_glands]
+source: nhs_tonsillitis
+informed_by: [nhs_tonsillitis, nhs_earache, nhs_bad_breath, nhs_swollen_glands]

@@ -1,0 +1,1403 @@
+# Observations: ear, nose and throat.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# An observation is anything the engine can know about a patient: a symptom, a
+# feature of a symptom, a risk factor (history, lifestyle, an event) or context
+# such as age. Each is answered "yes", "no" or "not sure". Observations are kept
+# in one file per body system. All files together form one shared network.
+#
+# Fields:
+#   id             used by rules and condition cards to refer to it
+#   label          short name used in reports
+#   question       what the patient is asked
+#   question_carer optional: the question when someone answers for another person
+#   checklist_text optional: a short form, used as one line of a checklist
+#   kind           presenting (a main symptom), symptom, history, or context
+#   parent         optional: a more general observation this one belongs to. A "yes"
+#                  here means "yes" to the parent too; a "no" to the parent means
+#                  "no" here, so it is not asked.
+#   relation       with a parent: duration, severity, character, exacerbating_factor,
+#                  diminishing_factor, location or radiation
+#   sex            optional: female or male, if it only applies to one
+#   asked_only_if  optional: only asked after a "yes" (or "not sure") to that observation
+#   seriousness    optional: serious, emergency or emergency_ambulance, where a source
+#                  names it as an alarming sign (used in the five-level output)
+#   group          related observations share a group so evidence is not counted twice
+#   age_range      the answer is worked out from the patient's age, when the age is known
+#   snomed         SNOMED CT code, only where checked and listed in sources/snomed_codes.yaml
+#   source         id in sources/source_log.yaml
+
+- id: sore_throat
+  label: "Sore throat"
+  question: "Do you have a sore throat?"
+  kind: presenting
+  snomed: "267102003"
+  phrases: ["sore throat", "throat hurts", "painful throat", "hurts to swallow"]
+  source: nhs_sore_throat
+
+- id: difficulty_breathing
+  label: "Difficulty breathing"
+  question: "Are you finding it hard to breathe? In a child, this can look like grunting noises, or the stomach sucking in under the ribs."
+  checklist_text: "Finding it hard to breathe (in a child: grunting, or the stomach sucking in under the ribs)"
+  kind: symptom
+  parent: short_of_breath
+  relation: severity
+  snomed: "230145002"
+  group: breathing
+  phrases: ["hard to breathe", "struggling to breathe"]
+  source: nhs_sore_throat
+
+- id: unable_to_swallow
+  label: "Unable to swallow"
+  question: "Are you unable to swallow?"
+  checklist_text: "Cannot swallow"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: severity
+  seriousness: emergency
+  group: swallowing
+  phrases: ["can't swallow", "cannot swallow anything"]
+  source: nhs_sore_throat
+
+- id: drooling
+  label: "Drooling"
+  question: "Are you drooling? This can be a sign of not being able to swallow."
+  checklist_text: "Drooling"
+  kind: symptom
+  snomed: "62718007"
+  group: swallowing
+  phrases: ["drooling", "dribbling", "can't swallow my spit"]
+  source: nhs_sore_throat
+
+- id: stridor
+  label: "High-pitched sound when breathing"
+  question: "Are you making a high-pitched sound when you breathe?"
+  checklist_text: "A high-pitched sound when breathing"
+  kind: symptom
+  snomed: "70407001"
+  phrases: ["noisy breathing", "high-pitched noise when breathing", "wheezy squeak"]
+  source: nhs_sore_throat
+
+- id: severe_and_worsening_quickly
+  label: "Severe symptoms getting worse quickly"
+  question: "Are your symptoms severe and getting worse quickly?"
+  checklist_text: "Severe symptoms getting worse quickly"
+  kind: symptom
+  phrases: ["getting worse fast", "much worse in the last few hours"]
+  source: nhs_sore_throat
+
+- id: swelling_in_mouth_and_throat
+  label: "Swelling inside the mouth and throat"
+  question: "Do you have swelling inside your mouth and throat?"
+  checklist_text: "Swelling inside your mouth and throat"
+  kind: symptom
+  phrases: ["swelling in my mouth and throat"]
+  source: nhs_tonsillitis
+
+- id: difficulty_speaking
+  label: "Difficulty speaking"
+  question: "Are you finding it hard to speak?"
+  checklist_text: "Finding it hard to speak"
+  kind: symptom
+  snomed: "286378009"
+  phrases: ["hard to talk", "can't speak properly", "muffled voice"]
+  source: nhs_tonsillitis
+
+- id: difficulty_opening_mouth
+  label: "Difficulty opening the mouth"
+  question: "Are you finding it hard to open your mouth?"
+  checklist_text: "Finding it hard to open your mouth"
+  kind: symptom
+  snomed: "87866006"
+  phrases: ["can't open my mouth", "jaw won't open"]
+  source: nhs_tonsillitis
+
+- id: very_high_temperature
+  label: "Very high temperature, or feels hot, cold or shivery"
+  question: "Do you have a very high temperature, or do you feel hot, cold or shivery?"
+  checklist_text: "Very high temperature, or feeling hot, cold or shivery"
+  kind: symptom
+  phrases: ["high temperature", "fever", "shivering", "hot and cold"]
+  source: nhs_sore_throat
+
+- id: dehydration_signs
+  label: "Signs of dehydration"
+  question: "Do you have signs of dehydration, such as peeing less than usual or dark, strong-smelling pee?"
+  checklist_text: "Peeing less than usual, or dark, strong-smelling pee"
+  kind: symptom
+  snomed: "34095006"
+  phrases: ["not peeing much", "dark pee", "dehydrated"]
+  source: nhs_sore_throat
+
+- id: weakened_immune_system
+  label: "Weakened immune system"
+  question: "Is your body less able to fight infection than usual? For example, because of diabetes, or treatment for cancer."
+  checklist_text: "Less able to fight infection. For example, because of diabetes or cancer treatment."
+  kind: history
+  snomed: "370388006"
+  phrases: ["on chemotherapy", "I have diabetes", "weak immune system"]
+  source: nhs_sore_throat
+
+- id: pus_on_tonsils
+  label: "Pus-filled spots on the tonsils"
+  question: "Do you have pus-filled spots on your tonsils, at the back of your throat?"
+  checklist_text: "Pus-filled spots on your tonsils, at the back of your throat"
+  kind: symptom
+  snomed: "301791008"
+  phrases: ["white spots on my tonsils", "pus at the back of my throat"]
+  source: nhs_tonsillitis
+
+- id: too_painful_to_eat_or_drink
+  label: "Throat so painful it is difficult to eat or drink"
+  question: "Is your throat so painful that it is difficult to eat or drink?"
+  checklist_text: "Throat so painful it is hard to eat or drink"
+  kind: symptom
+  phrases: ["can't eat", "too sore to drink", "hurts too much to eat"]
+  source: nhs_tonsillitis
+
+- id: worried_about_symptoms
+  label: "Worried about symptoms"
+  question: "Are you worried about your symptoms?"
+  kind: symptom
+  phrases: ["I'm really worried", "I'm scared something is wrong"]
+  source: nhs_sore_throat
+
+- id: sore_throat_over_a_week
+  label: "Sore throat not improved after a week"
+  question: "Have you had the sore throat for more than a week without it getting better?"
+  kind: symptom
+  phrases: ["had it over a week", "not getting better"]
+  source: nhs_sore_throat
+
+- id: frequent_sore_throats
+  label: "Often gets sore throats"
+  question: "Do you often get sore throats?"
+  kind: history
+  phrases: ["keep getting sore throats", "always getting tonsillitis"]
+  source: nhs_sore_throat
+
+- id: lump_in_mouth_or_neck
+  label: "Lump in the mouth or neck"
+  question: "Do you have a lump in your mouth or neck?"
+  kind: symptom
+  phrases: ["lump in my neck", "lump in my mouth"]
+  source: nhs_sore_throat
+
+- id: mouth_ulcer_over_3_weeks
+  label: "Mouth ulcer lasting more than 3 weeks"
+  question: "Do you have a mouth ulcer that has lasted more than 3 weeks?"
+  checklist_text: "A mouth ulcer that has lasted more than 3 weeks"
+  kind: symptom
+  parent: mouth_ulcer
+  relation: duration
+  phrases: ["mouth ulcer that won't heal"]
+  source: nhs_sore_throat
+
+- id: wants_help_with_sore_throat
+  label: "Wants help with the sore throat"
+  question: "Would you like help with your sore throat, such as advice on treatments?"
+  kind: symptom
+  phrases: ["what can I take for it", "I need something for my throat"]
+  source: nhs_sore_throat
+
+- id: cough_or_runny_nose
+  label: "Cough or runny nose"
+  question: "Do you also have a cough or a runny nose?"
+  kind: symptom
+  phrases: ["bit of a cough", "runny nose", "got a cold"]
+  source: nhs_sore_throat
+
+- id: swollen_neck_glands
+  label: "Swollen glands in the neck"
+  question: "Do you have swollen glands in your neck?"
+  kind: symptom
+  parent: swollen_glands
+  relation: location
+  phrases: ["glands are up", "swollen glands"]
+  source: nhs_sore_throat
+
+- id: very_tired
+  label: "Feels very tired"
+  question: "Do you feel very tired?"
+  kind: symptom
+  phrases: ["exhausted", "wiped out", "no energy"]
+  source: nhs_tonsillitis
+
+# ===========================================================================
+# Ear, nose, mouth and throat (the rest of the body system)
+# ===========================================================================
+
+# ---- Main symptoms (one entry symptom each) --------------------------------
+- id: ear_pain
+  label: "Earache"
+  question: "Do you have earache or pain in your ear?"
+  question_carer: "Does your child have earache? A young child may rub or pull at their ear."
+  kind: presenting
+  snomed: "301354004"
+  phrases: ["ear hurts", "ear pain", "sore ear", "pulling at their ear"]
+  source: nhs_earache
+
+- id: hearing_loss
+  label: "Hearing loss or a change in hearing"
+  question: "Have you lost some or all of your hearing, or has your hearing changed?"
+  question_carer: "Has your child's hearing changed? For example, they do not react to some sounds, or they want the TV louder."
+  checklist_text: "Hearing loss or a change in hearing"
+  kind: presenting
+  phrases: ["can't hear properly", "deaf in one ear", "muffled hearing", "going deaf"]
+  source: nhs_hearing_loss
+
+- id: tinnitus
+  label: "Tinnitus (ringing or buzzing in the ears)"
+  question: "Can you hear noises like ringing, buzzing or humming that do not come from around you? This is called tinnitus."
+  checklist_text: "Ringing or buzzing in the ears (tinnitus)"
+  kind: presenting
+  snomed: "60862001"
+  phrases: ["ringing in my ears", "buzzing in my ear", "whooshing noise in my head"]
+  source: nhs_tinnitus
+
+- id: catarrh
+  label: "Catarrh (a build-up of phlegm in the nose or throat)"
+  question: "Do you have a build-up of phlegm in your nose or throat that you keep needing to clear? This is called catarrh."
+  kind: presenting
+  snomed: "161959005"
+  phrases: ["catarrh", "always clearing my throat", "mucus in my throat", "bunged up with phlegm"]
+  source: nhs_catarrh
+
+- id: swollen_glands
+  label: "Swollen glands"
+  question: "Do you have swollen glands? They feel like lumps in the neck, under the chin, in the armpits or in the groin."
+  checklist_text: "Swollen glands"
+  kind: presenting
+  snomed: "30746006"
+  phrases: ["glands are up", "lump in my neck", "lump under my arm"]
+  source: nhs_swollen_glands
+
+- id: difficulty_swallowing
+  label: "Problems swallowing"
+  question: "Do you have problems swallowing? For example, food or drink gets stuck, or you cough or choke when you eat or drink."
+  question_carer: "Does the person have problems swallowing? For example, food or drink gets stuck, or they cough or choke when they eat or drink."
+  checklist_text: "Problems swallowing"
+  kind: presenting
+  snomed: "40739000"
+  phrases: ["food gets stuck", "hard to swallow", "choking on food"]
+  source: nhs_swallowing_problems_dysphagia
+
+- id: bad_breath
+  label: "Bad breath"
+  question: "Do you have bad breath?"
+  question_carer: "Does your child have bad breath?"
+  kind: presenting
+  snomed: "79879001"
+  phrases: ["my breath smells", "bad breath", "halitosis"]
+  source: nhs_bad_breath
+
+- id: dry_mouth
+  label: "Dry mouth"
+  question: "Does your mouth feel dry a lot of the time?"
+  kind: presenting
+  snomed: "87715008"
+  phrases: ["mouth is dry", "no spit", "dry mouth at night"]
+  source: nhs_dry_mouth
+
+- id: sore_or_dry_lips
+  label: "Sore or dry lips"
+  question: "Are your lips sore, dry or cracked?"
+  question_carer: "Are your child's lips sore, dry or cracked?"
+  kind: presenting
+  snomed: "248181001"
+  phrases: ["chapped lips", "cracked lips", "sore lips"]
+  source: nhs_sore_or_dry_lips
+
+- id: sore_or_white_tongue
+  label: "Sore or white tongue"
+  question: "Is your tongue sore, or does it look white or patchy?"
+  question_carer: "Is your child's tongue sore, or does it look white or patchy?"
+  kind: presenting
+  phrases: ["white tongue", "sore tongue", "patches on my tongue"]
+  source: nhs_sore_or_white_tongue
+
+- id: metallic_taste
+  label: "Metallic taste in the mouth"
+  question: "Do you have a metallic taste in your mouth?"
+  kind: presenting
+  snomed: "11193009"
+  phrases: ["taste of metal", "mouth tastes like coins"]
+  source: nhs_metallic_taste
+
+- id: toothache
+  label: "Toothache"
+  question: "Do you have toothache, or pain in your teeth, gums or jaw?"
+  question_carer: "Does your child have toothache, or pain in their teeth, gums or jaw?"
+  kind: presenting
+  snomed: "27355003"
+  phrases: ["tooth hurts", "dental pain", "sore tooth", "pain in my gum"]
+  source: nhs_toothache
+
+- id: teeth_grinding
+  label: "Teeth grinding or jaw clenching"
+  question: "Do you grind your teeth or clench your jaw, while awake or asleep? Someone else may have heard you at night."
+  question_carer: "Does your child grind their teeth or clench their jaw, while awake or asleep?"
+  kind: presenting
+  snomed: "90207007"
+  phrases: ["grinding my teeth", "clenching my jaw", "partner says I grind my teeth"]
+  source: nhs_teeth_grinding
+
+- id: snoring
+  label: "Snoring"
+  question: "Do you snore?"
+  question_carer: "Does your child snore?"
+  kind: presenting
+  snomed: "72863001"
+  phrases: ["snoring", "my partner says I snore"]
+  source: nhs_snoring
+
+- id: hiccups
+  label: "Hiccups"
+  question: "Do you have hiccups?"
+  kind: presenting
+  snomed: "65958008"
+  phrases: ["hiccups", "can't stop hiccuping"]
+  source: nhs_hiccups
+
+- id: nosebleed
+  label: "Nosebleed"
+  question: "Do you have a nosebleed, or have you had one recently?"
+  question_carer: "Does your child have a nosebleed, or have they had one recently?"
+  checklist_text: "A nosebleed"
+  kind: presenting
+  phrases: ["nose is bleeding", "nosebleed", "blood from my nose"]
+  source: nhs_nosebleed
+
+# ---- Ears ------------------------------------------------------------------
+- id: earache_2_to_3_days
+  label: "Earache for more than 2 to 3 days"
+  question: "Have you had earache for more than 2 to 3 days?"
+  checklist_text: "Earache for more than 2 to 3 days"
+  kind: symptom
+  parent: ear_pain
+  relation: duration
+  phrases: ["had it for days", "not getting better"]
+  source: nhs_earache
+
+- id: earache_keeps_coming_back
+  label: "Keeps getting earache or ear infections"
+  question: "Do you keep getting earache or ear infections?"
+  question_carer: "Does your child keep getting earache or ear infections?"
+  checklist_text: "Keeps getting earache or ear infections"
+  kind: history
+  parent: ear_pain
+  relation: duration
+  phrases: ["always getting ear infections"]
+  source: nhs_earache
+
+- id: earache_both_ears
+  label: "Earache in both ears"
+  question: "Is the pain in both ears?"
+  checklist_text: "Earache in both ears"
+  kind: symptom
+  parent: ear_pain
+  relation: location
+  phrases: ["both ears hurt"]
+  source: nhs_earache
+
+- id: ear_pain_worse_touching
+  label: "Ear hurts more when touched or pulled"
+  question: "Does your ear hurt more when you touch it, pull it or press just in front of it?"
+  kind: symptom
+  parent: ear_pain
+  relation: exacerbating_factor
+  phrases: ["hurts to touch my ear"]
+  source: ai_judgement
+
+- id: ear_discharge
+  label: "Fluid or pus coming out of the ear"
+  question: "Is fluid or pus coming out of your ear?"
+  question_carer: "Is fluid or pus coming out of your child's ear?"
+  checklist_text: "Fluid or pus coming out of the ear"
+  kind: symptom
+  snomed: "300132001"
+  phrases: ["ear is leaking", "gunk coming out of my ear", "pus from ear"]
+  source: nhs_earache
+
+- id: ear_discharge_smelly_long_lasting
+  label: "Smelly ear discharge, or discharge that keeps coming back"
+  question: "Is the fluid from your ear smelly, or has it kept coming back for weeks?"
+  kind: symptom
+  parent: ear_discharge
+  relation: character
+  phrases: ["smelly ear", "ear keeps leaking"]
+  source: nhs_cholesteatoma
+
+- id: swelling_around_ear
+  label: "Swelling, redness or tenderness around or behind the ear"
+  question: "Is there swelling, redness or tenderness around or behind the ear? The ear may stick out more than usual."
+  checklist_text: "Swelling or redness around or behind the ear"
+  kind: symptom
+  seriousness: serious
+  phrases: ["swollen behind my ear", "ear sticking out"]
+  source: nhs_earache
+
+- id: object_in_ear
+  label: "Something stuck in the ear"
+  question: "Is there something stuck in the ear?"
+  checklist_text: "Something stuck in the ear"
+  kind: symptom
+  phrases: ["bead in my child's ear", "bug in my ear", "cotton bud stuck"]
+  source: nhs_earache
+
+- id: ear_itchy
+  label: "Itchy ear, or flaky skin in or around the ear"
+  question: "Is your ear itchy, or is the skin in or around it dry and flaky?"
+  kind: symptom
+  phrases: ["itchy ear", "flaky ear"]
+  source: nhs_ear_infections
+
+- id: ear_feels_blocked
+  label: "Ear feels blocked or full"
+  question: "Does your ear feel blocked or full, as if there is pressure inside it?"
+  kind: symptom
+  snomed: "103281005"
+  phrases: ["ear feels blocked", "pressure in my ear", "ear feels full"]
+  source: nhs_ear_infections
+
+- id: water_or_cotton_buds_in_ear
+  label: "Recent swimming, water in the ear, cotton buds or earplugs"
+  question: "Have you been swimming or got water in your ear, or do you use cotton buds or earplugs?"
+  kind: history
+  phrases: ["been swimming", "use cotton buds"]
+  source: nhs_ear_infections
+
+- id: after_loud_noise_blow_or_flying
+  label: "Started suddenly after a loud noise, a blow to the ear, flying or diving"
+  question: "Did it start suddenly after a very loud noise, a blow to the ear, a flight or a dive?"
+  kind: history
+  phrases: ["after a flight", "hit on the ear", "after a loud bang"]
+  source: nhs_perforated_eardrum
+
+- id: child_pulling_ear
+  label: "Young child rubbing or pulling their ear"
+  question: "Is the child rubbing or pulling at their ear?"
+  question_carer: "Is your child rubbing or pulling at their ear?"
+  kind: symptom
+  asked_only_if: age_under_5
+  phrases: ["tugging at her ear", "keeps pulling his ear"]
+  source: nhs_earache
+
+- id: child_irritable_or_off_food
+  label: "Young child irritable, restless or off their food"
+  question: "Is the child irritable or restless, or off their food?"
+  question_carer: "Is your child irritable or restless, or off their food?"
+  kind: symptom
+  asked_only_if: age_under_5
+  phrases: ["grizzly", "won't eat", "unsettled"]
+  source: nhs_earache
+
+- id: rash_blisters_on_ear
+  label: "Painful rash or blisters in or around the ear"
+  question: "Do you have a painful rash or blisters in or around your ear?"
+  kind: symptom
+  phrases: ["blisters in my ear", "rash on my ear"]
+  source: ai_judgement
+
+# ---- Hearing -----------------------------------------------------------------
+- id: hearing_loss_sudden
+  label: "Hearing loss that came on suddenly"
+  question: "Did the hearing loss come on suddenly, over a few hours or a few days?"
+  checklist_text: "Hearing loss that came on suddenly"
+  kind: symptom
+  parent: hearing_loss
+  relation: character
+  seriousness: serious
+  phrases: ["woke up deaf in one ear", "suddenly lost my hearing"]
+  source: nhs_hearing_loss
+
+- id: hearing_worse_days_weeks
+  label: "Hearing getting worse over days or weeks"
+  question: "Has your hearing been getting worse over the last few days or weeks?"
+  checklist_text: "Hearing getting worse over the last few days or weeks"
+  kind: symptom
+  parent: hearing_loss
+  relation: duration
+  phrases: ["hearing is getting worse every day"]
+  source: nhs_hearing_loss
+
+- id: hearing_loss_gradual
+  label: "Hearing getting slowly worse over months or years"
+  question: "Has your hearing been getting slowly worse over months or years?"
+  kind: symptom
+  parent: hearing_loss
+  relation: duration
+  phrases: ["TV keeps getting louder", "hearing going over the years"]
+  source: nhs_hearing_loss
+
+- id: hearing_loss_one_ear
+  label: "Hearing loss in one ear only"
+  question: "Is the hearing loss in one ear only?"
+  kind: symptom
+  parent: hearing_loss
+  relation: location
+  phrases: ["only one ear", "deaf in one ear"]
+  source: nhs_hearing_loss
+
+- id: hearing_not_back_after_treatment
+  label: "Hearing not back after treatment for an ear infection or earwax"
+  question: "Have you had treatment for an ear infection or earwax, but your hearing has not come back?"
+  kind: history
+  parent: hearing_loss
+  relation: duration
+  phrases: ["had my ears cleaned and still can't hear"]
+  source: nhs_hearing_loss
+
+- id: loud_noise_exposure
+  label: "Around a lot of loud noise over the years"
+  question: "Have you been around a lot of loud noise over the years? For example, at work or from loud music."
+  kind: history
+  phrases: ["work in a factory", "loud music", "used to be in a band"]
+  source: nhs_hearing_loss
+
+- id: symptoms_come_in_attacks
+  label: "Symptoms come in attacks lasting minutes to hours"
+  question: "Do your symptoms come in sudden attacks that last from a few minutes to a few hours, then settle?"
+  kind: symptom
+  phrases: ["comes in attacks", "comes and goes in bouts"]
+  source: nhs_menieres_disease
+
+# ---- Tinnitus ----------------------------------------------------------------
+- id: tinnitus_pulsing
+  label: "Tinnitus that beats in time with the pulse"
+  question: "Does the noise beat in time with your heartbeat, like a pulse?"
+  checklist_text: "A noise in the ear that beats in time with your heartbeat"
+  kind: symptom
+  parent: tinnitus
+  relation: character
+  seriousness: serious
+  phrases: ["whooshing with my heartbeat", "I can hear my pulse"]
+  source: nhs_tinnitus
+
+- id: tinnitus_regular_or_constant
+  label: "Tinnitus regularly or all the time"
+  question: "Do you hear the noise regularly or all the time?"
+  kind: symptom
+  parent: tinnitus
+  relation: duration
+  phrases: ["it never stops", "every day"]
+  source: nhs_tinnitus
+
+- id: tinnitus_getting_worse
+  label: "Tinnitus getting worse"
+  question: "Is the noise getting worse?"
+  kind: symptom
+  parent: tinnitus
+  relation: severity
+  phrases: ["getting louder"]
+  source: nhs_tinnitus
+
+- id: tinnitus_bothering_you
+  label: "Tinnitus affecting sleep, concentration or mood"
+  question: "Is the noise affecting your sleep or concentration, or making you feel anxious or low?"
+  kind: symptom
+  parent: tinnitus
+  relation: severity
+  phrases: ["can't sleep because of the ringing", "driving me mad"]
+  source: nhs_tinnitus
+
+- id: tinnitus_one_ear
+  label: "Tinnitus in one ear only"
+  question: "Is the noise in one ear only?"
+  kind: symptom
+  parent: tinnitus
+  relation: location
+  phrases: ["only in my left ear", "only in my right ear"]
+  source: nhs_acoustic_neuroma
+
+# ---- Nose, sinuses and smell -------------------------------------------------
+- id: nose_symptoms_3_weeks
+  label: "Blocked or runny nose for more than 3 weeks"
+  question: "Has your nose been blocked or runny for more than 3 weeks?"
+  kind: symptom
+  parent: blocked_or_runny_nose
+  relation: duration
+  phrases: ["blocked for weeks", "never clears"]
+  source: nhs_sinusitis
+
+- id: green_yellow_nasal_mucus
+  label: "Green or yellow phlegm from the nose"
+  question: "Is the phlegm (mucus) from your nose green or yellow?"
+  kind: symptom
+  parent: blocked_or_runny_nose
+  relation: character
+  phrases: ["green snot", "yellow mucus"]
+  source: nhs_sinusitis
+
+- id: nose_blocked_one_side
+  label: "Only one side of the nose blocked"
+  question: "Is only one side of your nose blocked?"
+  question_carer: "Is only one side of your child's nose blocked?"
+  kind: symptom
+  parent: blocked_or_runny_nose
+  relation: location
+  phrases: ["one nostril blocked"]
+  source: nhs_nasal_and_sinus_cancer
+
+- id: object_in_nose
+  label: "Something stuck up the nose"
+  question: "Is there something stuck up the nose?"
+  checklist_text: "Something stuck up the nose"
+  kind: symptom
+  phrases: ["pushed a bead up his nose", "something up her nose"]
+  source: ai_judgement
+
+- id: sinus_pain_severe_or_worse
+  label: "Face pain that is severe, getting worse, or not helped by painkillers"
+  question: "Is the pain in your face severe or getting worse, or not helped by painkillers?"
+  checklist_text: "Face pain that is severe, getting worse, or not helped by painkillers"
+  kind: symptom
+  parent: face_pain_around_nose_and_eyes
+  relation: severity
+  phrases: ["sinus pain is unbearable", "painkillers not working"]
+  source: nhs_sinusitis
+
+- id: swelling_around_eye
+  label: "Swelling, redness or pain around the eye"
+  question: "Is the skin around your eye swollen, red or painful, or is your eyelid swelling shut?"
+  checklist_text: "Swelling, redness or pain around the eye"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["eye is swollen shut", "puffy red eye"]
+  source: nhs_dental_abscess
+
+- id: nose_spray_over_a_week
+  label: "Used a spray to unblock the nose for more than a week"
+  question: "Have you used a spray to unblock your nose for more than a week?"
+  kind: history
+  phrases: ["using nasal spray every day", "can't stop using my nose spray"]
+  source: ai_judgement
+
+- id: nose_set_off_by_irritants
+  label: "Nose worse with smoke, perfume, weather, alcohol or spicy food"
+  question: "Is your nose worse with smoke, perfume or paint fumes, changes in the weather, alcohol or spicy food?"
+  kind: symptom
+  phrases: ["runs when I eat curry", "worse in cold air"]
+  source: nhs_non_allergic_rhinitis
+
+- id: nose_symptoms_all_year
+  label: "Nose symptoms all year round"
+  question: "Do your nose symptoms carry on all year round, rather than at certain times of year?"
+  kind: symptom
+  phrases: ["all year", "every day of the year"]
+  source: nhs_allergic_rhinitis
+
+- id: breathes_through_mouth
+  label: "Breathes through the mouth, or sleeps with the mouth open"
+  question: "Do you breathe through your mouth most of the time, or sleep with your mouth open?"
+  question_carer: "Does your child breathe through their mouth most of the time, or sleep with their mouth open?"
+  kind: symptom
+  phrases: ["mouth breather", "sleeps with mouth open"]
+  source: nhs_dry_mouth
+
+- id: smell_not_back_few_weeks
+  label: "Sense of smell not back to normal after a few weeks"
+  question: "Has your sense of smell not gone back to normal after a few weeks?"
+  kind: symptom
+  parent: loss_of_smell_or_taste
+  relation: duration
+  phrases: ["still can't smell weeks later"]
+  source: nhs_lost_or_changed_sense_smell
+
+- id: smell_phantom
+  label: "Smelling things that are not there"
+  question: "Do you smell things that are not there, like smoke or burnt toast?"
+  kind: symptom
+  parent: loss_of_smell_or_taste
+  relation: character
+  phrases: ["I keep smelling burning", "phantom smells"]
+  source: nhs_lost_or_changed_sense_smell
+
+- id: smell_distorted
+  label: "Things smell different or unpleasant"
+  question: "Do things smell wrong or bad to you now, when they did not before?"
+  kind: symptom
+  parent: loss_of_smell_or_taste
+  relation: character
+  phrases: ["coffee smells like rubbish", "everything smells wrong"]
+  source: nhs_lost_or_changed_sense_smell
+
+- id: smell_faded_slowly
+  label: "Sense of smell faded slowly over months or years"
+  question: "Has your sense of smell faded slowly over months or years?"
+  kind: symptom
+  parent: loss_of_smell_or_taste
+  relation: duration
+  phrases: ["gradually lost my smell"]
+  source: nhs_lost_or_changed_sense_smell
+
+# ---- Nosebleeds and nose injuries ------------------------------------------
+- id: nosebleed_over_15_minutes
+  label: "Nosebleed lasting longer than 10 to 15 minutes"
+  question: "Has the nosebleed lasted longer than 10 to 15 minutes, even with pinching the soft part of your nose?"
+  checklist_text: "A nosebleed lasting longer than 10 to 15 minutes"
+  kind: symptom
+  parent: nosebleed
+  relation: duration
+  seriousness: emergency
+  phrases: ["won't stop bleeding", "been bleeding for half an hour"]
+  source: nhs_nosebleed
+
+- id: nosebleed_heavy
+  label: "Nosebleed that seems very heavy"
+  question: "Does the bleeding from your nose seem very heavy?"
+  checklist_text: "A nosebleed that seems very heavy"
+  kind: symptom
+  parent: nosebleed
+  relation: severity
+  seriousness: emergency
+  phrases: ["pouring with blood", "so much blood"]
+  source: nhs_nosebleed
+
+- id: swallowing_blood_and_sick
+  label: "Swallowing a lot of blood, which has made them sick"
+  question: "Are you swallowing a lot of blood, and has it made you sick?"
+  checklist_text: "Swallowing a lot of blood, and it has made you sick"
+  kind: symptom
+  parent: nosebleed
+  relation: severity
+  seriousness: emergency
+  phrases: ["sick with blood", "blood going down my throat"]
+  source: nhs_nosebleed
+
+- id: nosebleeds_regular
+  label: "Gets nosebleeds regularly"
+  question: "Do you get nosebleeds regularly?"
+  question_carer: "Does your child get nosebleeds regularly?"
+  kind: history
+  parent: nosebleed
+  relation: duration
+  phrases: ["always getting nosebleeds", "every week"]
+  source: nhs_nosebleed
+
+- id: nosebleed_after_picking_or_dry
+  label: "Nosebleed after picking or blowing the nose, or a dry nose"
+  question: "Did it start after picking or blowing your nose, or is the inside of your nose very dry?"
+  kind: symptom
+  parent: nosebleed
+  relation: exacerbating_factor
+  phrases: ["picked my nose", "blew my nose hard", "dry air"]
+  source: nhs_nosebleed
+
+- id: nose_injury
+  label: "Started after an injury to the nose or face"
+  question: "Did this start after a blow or injury to your nose or face?"
+  kind: history
+  phrases: ["hit in the face", "walked into a door", "broke my nose"]
+  source: nhs_broken_nose
+
+- id: nose_crooked_or_not_healing
+  label: "Nose crooked, or not healing, after an injury"
+  question: "Since the injury, is your nose crooked, or is the swelling not going down after 3 days, or is it hard to breathe through your nose?"
+  kind: symptom
+  asked_only_if: nose_injury
+  phrases: ["nose is bent", "still swollen"]
+  source: nhs_broken_nose
+
+- id: clear_fluid_from_nose
+  label: "Clear, watery fluid trickling from the nose after an injury"
+  question: "Since the injury, is clear, watery fluid trickling from your nose?"
+  checklist_text: "Clear, watery fluid trickling from the nose after an injury"
+  kind: symptom
+  asked_only_if: nose_injury
+  seriousness: emergency
+  phrases: ["clear fluid dripping from my nose"]
+  source: nhs_broken_nose
+
+# ---- Teeth, gums and jaw -------------------------------------------------------
+- id: toothache_over_2_days
+  label: "Toothache for more than 2 days"
+  question: "Have you had the toothache for more than 2 days?"
+  kind: symptom
+  parent: toothache
+  relation: duration
+  phrases: ["for days now"]
+  source: nhs_toothache
+
+- id: toothache_painkillers_not_helping
+  label: "Toothache not going away with painkillers"
+  question: "Is the pain not going away when you take painkillers?"
+  kind: symptom
+  parent: toothache
+  relation: severity
+  phrases: ["painkillers don't touch it"]
+  source: nhs_toothache
+
+- id: toothache_throbbing
+  label: "Intense, throbbing tooth or gum pain"
+  question: "Is it an intense, throbbing pain that keeps you awake?"
+  kind: symptom
+  parent: toothache
+  relation: character
+  phrases: ["throbbing tooth", "kept me up all night"]
+  source: nhs_dental_abscess
+
+- id: pain_when_biting
+  label: "Tooth hurts when biting or chewing"
+  question: "Does it hurt when you bite or chew?"
+  kind: symptom
+  parent: toothache
+  relation: exacerbating_factor
+  phrases: ["hurts to chew", "can't bite down"]
+  source: nhs_toothache
+
+- id: tooth_sensitive
+  label: "Sharp tooth pain with hot, cold or sweet things"
+  question: "Do you get a sharp pain in a tooth when you eat or drink hot, cold or sweet things?"
+  kind: symptom
+  parent: toothache
+  relation: exacerbating_factor
+  phrases: ["sensitive to cold", "hurts with ice cream"]
+  source: nhs_tooth_decay
+
+- id: tooth_hole_or_spots
+  label: "Hole, or white, brown or black spots, on a tooth"
+  question: "Can you see a hole in a tooth, or white, brown or black spots on it?"
+  kind: symptom
+  phrases: ["hole in my tooth", "black spot on my tooth"]
+  source: nhs_tooth_decay
+
+- id: tooth_cracked_or_filling_lost
+  label: "Tooth cracked or broken, or a filling has come out"
+  question: "Is a tooth cracked, chipped or broken, or has a filling come out?"
+  kind: symptom
+  phrases: ["broke my tooth", "filling fell out", "chipped tooth"]
+  source: nhs_toothache
+
+- id: tooth_knocked_out
+  label: "Adult tooth knocked out"
+  question: "Has an adult tooth been knocked out?"
+  checklist_text: "An adult tooth knocked out"
+  kind: symptom
+  seriousness: serious
+  phrases: ["knocked my tooth out", "tooth came out after a fall"]
+  source: nhs_knocked_out_tooth
+
+- id: gums_sore_swollen_bleeding
+  label: "Gums painful, swollen or bleeding"
+  question: "Are your gums painful, swollen or red, or do they bleed when you brush your teeth?"
+  question_carer: "Are your child's gums painful, swollen or red, or do they bleed when they brush their teeth?"
+  kind: symptom
+  phrases: ["bleeding gums", "swollen gums", "gums bleed when I brush"]
+  source: nhs_gum_disease
+
+- id: gums_very_sore_or_teeth_loose
+  label: "Gums very sore and swollen, or teeth loose or falling out"
+  question: "Are your gums very sore and swollen, or are teeth becoming loose or falling out?"
+  checklist_text: "Very sore, swollen gums, or teeth becoming loose"
+  kind: symptom
+  parent: gums_sore_swollen_bleeding
+  relation: severity
+  phrases: ["wobbly tooth", "teeth falling out"]
+  source: nhs_gum_disease
+
+- id: bad_taste_in_mouth
+  label: "Bad taste in the mouth"
+  question: "Do you have a bad or unpleasant taste in your mouth?"
+  kind: symptom
+  phrases: ["horrible taste", "foul taste"]
+  source: nhs_toothache
+
+- id: face_or_jaw_swollen
+  label: "Swollen face, cheek or jaw"
+  question: "Is your face, cheek or jaw swollen?"
+  question_carer: "Is your child's face, cheek or jaw swollen?"
+  checklist_text: "Swollen face, cheek or jaw"
+  kind: symptom
+  seriousness: serious
+  phrases: ["cheek is swollen", "face is puffed up"]
+  source: nhs_toothache
+
+- id: swelling_in_neck_or_under_tongue
+  label: "Swelling in the neck or under the tongue, or a lot of swelling in the mouth"
+  question: "Is there swelling in your neck or under your tongue, or a lot of swelling inside your mouth?"
+  checklist_text: "Swelling in the neck or under the tongue, or a lot of swelling in the mouth"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["neck is swelling up", "swollen under my tongue"]
+  source: nhs_dental_abscess
+
+- id: wisdom_tooth_pain
+  label: "Pain at the very back of the mouth, where a wisdom tooth is coming through"
+  question: "Is the pain at the very back of your mouth, where a wisdom tooth is coming through?"
+  kind: symptom
+  phrases: ["wisdom tooth", "back tooth coming through"]
+  source: nhs_toothache
+
+- id: tooth_removed_recently
+  label: "Had a tooth taken out in the last 2 weeks"
+  question: "Have you had a tooth taken out in the last 2 weeks?"
+  kind: history
+  phrases: ["had a tooth pulled", "extraction last week"]
+  source: nhs_wisdom_tooth_removal
+
+- id: bleeding_after_tooth_removed
+  label: "Bleeding that will not stop where a tooth was taken out"
+  question: "Is the place where the tooth was taken out still bleeding, and it will not stop?"
+  checklist_text: "Bleeding that will not stop where a tooth was taken out"
+  kind: symptom
+  asked_only_if: tooth_removed_recently
+  seriousness: serious
+  phrases: ["socket keeps bleeding"]
+  source: nhs_wisdom_tooth_removal
+
+- id: jaw_clicking_or_aching
+  label: "Jaw aching, clicking, popping or locking"
+  question: "Does your jaw ache, or click, pop or lock when you open your mouth?"
+  kind: symptom
+  phrases: ["jaw clicks", "jaw aches", "jaw locks"]
+  source: nhs_tmd
+
+- id: jaw_locked_or_cannot_eat
+  label: "Jaw locking, or too painful to eat or drink"
+  question: "Is your jaw locking, or is it so painful that you cannot eat or drink?"
+  checklist_text: "Jaw locking, or too painful to eat or drink"
+  kind: symptom
+  parent: jaw_clicking_or_aching
+  relation: severity
+  phrases: ["jaw is stuck", "can't eat for the pain"]
+  source: nhs_tmd
+
+- id: jaw_pain_with_heart_signs
+  label: "Jaw or tooth pain that comes on with activity, or with chest tightness, sweating or feeling sick"
+  question: "Does the pain in your jaw or teeth come on when you are active, or with a tight chest, sweating or feeling sick?"
+  checklist_text: "Jaw pain with a tight chest, sweating or feeling sick, or that comes on with activity"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["jaw aches when I walk", "jaw pain and sweaty"]
+  source: ai_judgement
+
+- id: baby_teething_signs
+  label: "Signs of teething in a baby or young child"
+  question: "Is the child teething? For example, a sore red gum where a tooth is coming through, a flushed cheek, or dribbling and chewing on things more than usual."
+  question_carer: "Is your child teething? For example, a sore red gum where a tooth is coming through, a flushed cheek, or dribbling and chewing on things more than usual."
+  kind: symptom
+  asked_only_if: age_under_5
+  phrases: ["teething", "chewing everything", "dribbling a lot"]
+  source: nhs_teething
+
+- id: teeth_worn_or_sensitive
+  label: "Teeth worn down, chipped or more sensitive than before"
+  question: "Are your teeth worn down, chipped, or more sensitive than before?"
+  kind: symptom
+  phrases: ["teeth are worn flat", "teeth more sensitive"]
+  source: nhs_teeth_grinding
+
+# ---- Mouth, tongue and lips --------------------------------------------------
+- id: mouth_ulcer
+  label: "Painful sores (ulcers) in the mouth"
+  question: "Do you have one or more painful sores (ulcers) inside your mouth?"
+  question_carer: "Does your child have one or more painful sores (ulcers) inside their mouth?"
+  kind: symptom
+  snomed: "26284000"
+  phrases: ["mouth ulcer", "sore in my mouth"]
+  source: nhs_mouth_ulcers
+
+- id: mouth_ulcer_unusual
+  label: "Mouth ulcer that is unusual, bleeding or getting more painful"
+  question: "Is the ulcer bigger than usual or near the back of your throat, or is it bleeding or getting more painful and red?"
+  kind: symptom
+  parent: mouth_ulcer
+  relation: character
+  phrases: ["biggest ulcer I've had", "ulcer is bleeding"]
+  source: nhs_mouth_ulcers
+
+- id: white_patches_in_mouth
+  label: "White patches on the tongue or inside the mouth"
+  question: "Do you have white patches on your tongue or inside your mouth?"
+  question_carer: "Does your child have white patches on their tongue or inside their mouth?"
+  kind: symptom
+  phrases: ["white coating", "white spots in my mouth"]
+  source: nhs_sore_or_white_tongue
+
+- id: white_patches_wipe_off
+  label: "White patches that wipe off, leaving red spots"
+  question: "Do the white patches wipe off, leaving red, sore spots underneath?"
+  kind: symptom
+  parent: white_patches_in_mouth
+  relation: character
+  phrases: ["comes off when I scrape it"]
+  source: nhs_oral_thrush
+
+- id: white_patches_do_not_rub_off
+  label: "White patches that stay when rubbed"
+  question: "Do the white patches stay when you try to rub or scrape them away?"
+  kind: symptom
+  parent: white_patches_in_mouth
+  relation: character
+  phrases: ["won't scrape off"]
+  source: nhs_leukoplakia
+
+- id: mouth_patch_or_lump_3_weeks
+  label: "Red or white patch, or a lump, in the mouth or on the lip for more than 3 weeks"
+  question: "Do you have a red or white patch, or a lump, in your mouth or on your lip that has not gone after 3 weeks?"
+  checklist_text: "A red or white patch, or a lump, in the mouth or on the lip for more than 3 weeks"
+  kind: symptom
+  phrases: ["lump on my lip", "red patch in my mouth"]
+  source: nhs_mouth_cancer
+
+- id: tongue_pain_not_going
+  label: "Tongue pain or itching that is not going away, or is getting worse"
+  question: "Has the pain or itching in your tongue gone on for a long time, or is it getting worse?"
+  kind: symptom
+  parent: sore_or_white_tongue
+  relation: duration
+  phrases: ["tongue has hurt for weeks"]
+  source: nhs_sore_or_white_tongue
+
+- id: tongue_bitten_or_burnt
+  label: "Bit or burnt the tongue"
+  question: "Did it start after you bit your tongue, or burnt it on hot food or drink?"
+  kind: history
+  phrases: ["bit my tongue", "burnt my tongue on tea"]
+  source: nhs_sore_or_white_tongue
+
+- id: tongue_map_patches
+  label: "Red patches with a pale edge on the tongue that move around"
+  question: "Does your tongue have smooth red patches with a white or pale edge, that change place from day to day?"
+  kind: symptom
+  phrases: ["map-like tongue", "patches move around"]
+  source: nhs_sore_or_white_tongue
+
+- id: thrush_risk
+  label: "Wears dentures, uses a steroid inhaler or has recently taken antibiotics"
+  question: "Do you wear false teeth or use a steroid inhaler? Or have you had antibiotics in the last few weeks?"
+  question_carer: "Does the person wear false teeth or use a steroid inhaler? Or have they had antibiotics in the last few weeks?"
+  kind: history
+  phrases: ["false teeth", "brown inhaler", "just finished antibiotics"]
+  source: nhs_oral_thrush
+
+- id: lips_hot_painful_swollen
+  label: "Lips hot, painful and swollen"
+  question: "Are your lips hot, painful and swollen?"
+  kind: symptom
+  parent: sore_or_dry_lips
+  relation: character
+  phrases: ["lip is hot and swollen"]
+  source: nhs_sore_or_dry_lips
+
+- id: cold_sore_blisters
+  label: "Small blisters on or near the lip"
+  question: "Do you have small blisters on or near your lip, that tingled, itched or burned before they appeared?"
+  question_carer: "Does your child have small blisters on or near their lip?"
+  kind: symptom
+  phrases: ["cold sore", "blister on my lip"]
+  source: nhs_cold_sores
+
+- id: cold_sore_large_or_not_healing
+  label: "Cold sore very large or painful, or not healing after 10 days"
+  question: "Is the cold sore very large or painful, or has it not started to heal after 10 days?"
+  kind: symptom
+  parent: cold_sore_blisters
+  relation: severity
+  phrases: ["cold sore won't heal"]
+  source: nhs_cold_sores
+
+- id: cracks_at_mouth_corners
+  label: "Sore cracks at the corners of the mouth"
+  question: "Do you have sore, red cracks at the corners of your mouth?"
+  kind: symptom
+  phrases: ["split corners of my mouth"]
+  source: nhs_oral_thrush
+
+- id: lips_weather_or_licking
+  label: "Lips sore after cold, wind or sun, or from licking them"
+  question: "Did it start in cold, windy or sunny weather, or do you often lick your lips?"
+  kind: history
+  phrases: ["chapped from the wind", "keep licking my lips"]
+  source: nhs_sore_or_dry_lips
+
+# ---- Dry mouth, taste and breath ---------------------------------------------
+- id: dry_mouth_hard_to_eat_or_talk
+  label: "Mouth so dry it is hard to talk or eat"
+  question: "Is your mouth so dry that it is hard to talk or eat, or are you struggling to eat regularly?"
+  kind: symptom
+  parent: dry_mouth
+  relation: severity
+  phrases: ["can't swallow dry food", "tongue sticks"]
+  source: nhs_dry_mouth
+
+- id: dry_mouth_few_weeks
+  label: "Dry mouth not better after a few weeks of self-care"
+  question: "Is your mouth still dry after trying home or pharmacy treatments for a few weeks?"
+  kind: symptom
+  parent: dry_mouth
+  relation: duration
+  phrases: ["tried everything"]
+  source: nhs_dry_mouth
+
+- id: mouth_painful_red_or_bleeding
+  label: "Mouth painful, red, swollen or bleeding"
+  question: "Is your mouth painful, red, swollen or bleeding?"
+  kind: symptom
+  phrases: ["mouth is raw", "mouth bleeding"]
+  source: nhs_dry_mouth
+
+- id: metallic_taste_lasting
+  label: "Metallic taste that does not go away, with no clear cause"
+  question: "Has the metallic taste not gone away, with no clear cause?"
+  kind: symptom
+  parent: metallic_taste
+  relation: duration
+  phrases: ["taste won't go"]
+  source: nhs_metallic_taste
+
+- id: bad_breath_few_weeks
+  label: "Bad breath not gone after a few weeks of cleaning teeth well"
+  question: "Has your bad breath not gone away after a few weeks of cleaning your teeth, tongue and gums well?"
+  kind: symptom
+  parent: bad_breath
+  relation: duration
+  phrases: ["brushing doesn't help"]
+  source: nhs_bad_breath
+
+- id: strong_food_or_drink
+  label: "Bad breath after strong-smelling food or drink"
+  question: "Does it happen after strong-smelling or spicy food or drink, such as garlic, onions or coffee?"
+  kind: symptom
+  parent: bad_breath
+  relation: exacerbating_factor
+  phrases: ["after garlic", "coffee breath"]
+  source: nhs_bad_breath
+
+- id: white_lumps_back_of_throat
+  label: "Small white or yellow lumps at the back of the throat"
+  question: "Do you sometimes find small white or yellow lumps at the back of your throat, or cough them up?"
+  kind: symptom
+  phrases: ["white bits at the back of my throat", "smelly lumps"]
+  source: ai_judgement
+
+# ---- Swallowing -------------------------------------------------------------
+- id: feels_something_stuck
+  label: "Feels like something is stuck in the throat or food pipe after eating"
+  question: "After eating, does it feel like something is stuck in your throat or food pipe?"
+  checklist_text: "Feels like something is stuck in the throat or food pipe after eating"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: character
+  phrases: ["food stuck in my chest", "something stuck in my throat"]
+  source: nhs_swallowing_problems_dysphagia
+
+- id: swallowed_battery_magnet_or_sharp
+  label: "Swallowed a button battery, magnet or something sharp"
+  question: "Has a button battery, a magnet, or something sharp like a bone or pin been swallowed?"
+  checklist_text: "Swallowed a button battery or magnet, or a sharp thing like a bone"
+  kind: history
+  seriousness: emergency
+  phrases: ["swallowed a battery", "fish bone stuck", "swallowed a magnet"]
+  source: ai_judgement
+
+- id: coughing_choking_when_eating
+  label: "Coughs or chokes when eating or drinking"
+  question: "Do you cough or choke when you eat or drink?"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: character
+  phrases: ["food goes down the wrong way"]
+  source: nhs_swallowing_problems_dysphagia
+
+- id: bringing_food_back_up
+  label: "Brings food or milk back up"
+  question: "Do you bring food or milk back up, sometimes through the nose?"
+  question_carer: "Does your child bring food or milk back up, sometimes through the nose?"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: character
+  phrases: ["food comes back up", "milk comes out of his nose"]
+  source: nhs_swallowing_problems_dysphagia
+
+- id: wet_gurgly_voice
+  label: "Wet, gurgly voice after eating or drinking"
+  question: "Does your voice sound wet or gurgly after you eat or drink?"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: character
+  phrases: ["gurgly voice"]
+  source: nhs_swallowing_problems_dysphagia
+
+- id: food_sticks_in_chest
+  label: "Food sticks in the chest, behind the breastbone"
+  question: "Does food feel like it sticks in your chest, behind the breastbone?"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: location
+  phrases: ["food sticks halfway down"]
+  source: nhs_achalasia
+
+- id: swallowing_getting_worse
+  label: "Swallowing getting harder over weeks or months"
+  question: "Has swallowing been getting harder over weeks or months?"
+  kind: symptom
+  parent: difficulty_swallowing
+  relation: duration
+  phrases: ["getting worse every month", "now only soft food"]
+  source: nhs_achalasia
+
+- id: lump_in_throat_feeling
+  label: "Feels like a lump in the throat, though food goes down normally"
+  question: "Do you feel like there is a lump in your throat, even though food and drink go down as usual?"
+  kind: symptom
+  phrases: ["lump in my throat feeling", "something there when I swallow spit"]
+  source: nhs_catarrh
+
+- id: hoarse_voice_3_weeks
+  label: "Hoarse voice for more than 3 weeks"
+  question: "Has your voice been hoarse or croaky for more than 3 weeks?"
+  checklist_text: "A hoarse or croaky voice for more than 3 weeks"
+  kind: symptom
+  parent: hoarse_voice
+  relation: duration
+  phrases: ["voice hasn't come back", "croaky for a month"]
+  source: nhs_laryngeal_cancer
+
+# ---- Swollen glands -----------------------------------------------------------
+- id: glands_armpit_or_groin
+  label: "Swollen glands in the armpit or groin"
+  question: "Are the swollen glands in your armpit or groin?"
+  kind: symptom
+  parent: swollen_glands
+  relation: location
+  phrases: ["lump in my armpit", "lump in my groin"]
+  source: nhs_swollen_glands
+
+- id: glands_near_collarbone
+  label: "Swollen glands just above or below the collarbone"
+  question: "Are the swollen glands just above or below your collarbone?"
+  kind: symptom
+  parent: swollen_glands
+  relation: location
+  phrases: ["lump above my collarbone"]
+  source: nhs_swollen_glands
+
+- id: glands_over_a_week
+  label: "Glands getting bigger, or not gone down after 1 week"
+  question: "Are the swollen glands getting bigger, or have they not gone down after 1 week?"
+  kind: symptom
+  parent: swollen_glands
+  relation: duration
+  phrases: ["still there after a week", "getting bigger"]
+  source: nhs_swollen_glands
+
+- id: glands_hard_or_fixed
+  label: "Glands feel hard, or do not move when pressed"
+  question: "Do the swollen glands feel hard, or do they stay still when you press them?"
+  kind: symptom
+  parent: swollen_glands
+  relation: character
+  phrases: ["rock hard lump", "lump doesn't move"]
+  source: nhs_swollen_glands
+
+- id: glands_painless
+  label: "Swollen gland is painless"
+  question: "Is the swollen gland painless?"
+  kind: symptom
+  parent: swollen_glands
+  relation: character
+  phrases: ["doesn't hurt"]
+  source: nhs_hodgkin_lymphoma
+
+- id: glands_no_other_illness
+  label: "Swollen glands with no other signs of being ill"
+  question: "Have your glands swollen up without any other signs of being ill, such as a cold or sore throat?"
+  kind: symptom
+  parent: swollen_glands
+  relation: character
+  phrases: ["no other symptoms"]
+  source: nhs_swollen_glands
+
+- id: swelling_in_front_of_ears
+  label: "Swelling on the side of the face, in front of and below the ear"
+  question: "Is there swelling on one or both sides of the face, in front of and below the ears?"
+  question_carer: "Is there swelling on one or both sides of your child's face, in front of and below the ears?"
+  kind: symptom
+  phrases: ["hamster cheeks", "swelling by my ear"]
+  source: nhs_mumps
+
+- id: swelling_under_jaw_when_eating
+  label: "Swelling under the jaw or tongue that gets worse when eating"
+  question: "Does a swelling under your jaw or tongue get bigger or more painful when you eat?"
+  kind: symptom
+  phrases: ["swells up at mealtimes"]
+  source: nhs_salivary_gland_stones
+
+# ---- Snoring --------------------------------------------------------------------
+- id: breathing_stops_in_sleep
+  label: "Breathing stops and starts during sleep, or gasping or choking noises"
+  question: "Does your breathing stop and start while you sleep, or do you make gasping or choking noises? Someone else may have noticed this."
+  question_carer: "Does your child's breathing stop and start while they sleep, or do they make gasping or choking noises?"
+  kind: symptom
+  parent: snoring
+  relation: character
+  phrases: ["stop breathing at night", "gasping in my sleep"]
+  source: nhs_snoring
+
+- id: snoring_big_impact
+  label: "Snoring has a big impact, or has not helped with changes"
+  question: "Is your snoring having a big impact on your life or your partner's, or not helped by changes like sleeping on your side?"
+  kind: symptom
+  parent: snoring
+  relation: severity
+  phrases: ["partner sleeps in another room"]
+  source: nhs_snoring
+
+- id: snoring_worse_alcohol_or_on_back
+  label: "Snoring worse after alcohol or when sleeping on the back"
+  question: "Is your snoring worse after drinking alcohol, or when you sleep on your back?"
+  kind: symptom
+  parent: snoring
+  relation: exacerbating_factor
+  phrases: ["worse after a drink"]
+  source: nhs_snoring
+
+# ---- Hiccups ----------------------------------------------------------------------
+- id: hiccups_over_48_hours
+  label: "Hiccups lasting longer than 48 hours"
+  question: "Have the hiccups lasted longer than 48 hours?"
+  kind: symptom
+  parent: hiccups
+  relation: duration
+  phrases: ["hiccups for days"]
+  source: nhs_hiccups
+
+- id: hiccups_keep_coming_back
+  label: "Hiccups keep coming back and affect daily life"
+  question: "Do your hiccups keep coming back and affect your daily life?"
+  kind: symptom
+  parent: hiccups
+  relation: duration
+  phrases: ["hiccups every day"]
+  source: nhs_hiccups
+
+- id: hiccups_after_trigger
+  label: "Hiccups after eating, drinking, or feeling stressed or excited"
+  question: "Did the hiccups start after you ate or drank, or after you felt stressed or excited?"
+  kind: symptom
+  parent: hiccups
+  relation: exacerbating_factor
+  phrases: ["after a fizzy drink", "after eating fast"]
+  source: nhs_hiccups
+
+- id: catarrh_few_weeks
+  label: "Catarrh for more than a few weeks"
+  question: "Have you had the build-up of phlegm in your nose or throat for more than a few weeks?"
+  kind: symptom
+  parent: catarrh
+  relation: duration
+  phrases: ["had it for weeks", "never clears up"]
+  source: nhs_catarrh
+
+- id: swelling_neck_armpit_groin_2_weeks
+  label: "Swelling on the side of the neck, armpit or groin that has not gone down in 2 weeks"
+  question: "Is there a swelling on the side of your neck, in your armpit or in your groin that has not gone down within 2 weeks?"
+  question_carer: "Does your child have a swelling on the side of their neck, in their armpit or in their groin that has not gone down within 2 weeks?"
+  checklist_text: "A swelling in the neck, armpit or groin that has not gone down in 2 weeks"
+  kind: symptom
+  parent: glands_over_a_week
+  relation: duration
+  phrases: ["swollen gland for weeks", "lump in my armpit"]
+  source: nhs_lumps

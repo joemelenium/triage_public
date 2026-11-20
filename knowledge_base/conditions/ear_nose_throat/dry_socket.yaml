@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dry_socket
+body_system: ear_nose_throat
+entry_symptoms: [toothache, bad_breath]
+name: "Dry socket (pain a few days after a tooth is taken out, when the healing blood clot is lost)"
+medical_name: "Alveolar osteitis"
+snomed: "61804006"
+acuity_needed: soon
+level_of_care: dental
+danger: minor
+prevalence: rare
+findings:
+  # What tells it apart: a tooth was taken out in the last few days, and the pain is getting worse
+  # rather than better, with a bad taste.
+  tooth_removed_recently: strongly_supports
+  toothache_throbbing: supports
+  bad_taste_in_mouth: supports
+  bad_breath: supports
+  toothache_painkillers_not_helping: supports
+key_findings: [tooth_removed_recently, toothache_painkillers_not_helping]
+source: ai_judgement
+informed_by: [nhs_wisdom_tooth_removal, nhs_toothache]

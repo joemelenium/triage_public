@@ -1,0 +1,94 @@
+id: mh_d04
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- suicidal_thoughts_or_self_harm
+- low_mood
+summary: A 38-year-old woman has felt low nearly every day for two months, has lost interest in things and feels
+  hopeless. Over the last week, thoughts that she would be better off dead have come more often. She has no plan,
+  has not harmed herself and feels she can keep herself safe for now.
+opening_statement: I've been feeling really down for a couple of months and lately I keep thinking everyone would
+  be better off without me. I wouldn't do anything, but the thoughts are getting more often and it scares me.
+findings:
+  present:
+  - suicidal_thoughts
+  - suicidal_thoughts_getting_worse
+  - low_mood
+  - low_mood_over_2_weeks
+  - low_mood_struggling_to_cope
+  - feeling_hopeless
+  - lost_interest_or_enjoyment
+  - sleep_problems
+  absent:
+  - suicide_plan
+  - preparing_for_suicide
+  - cannot_keep_safe
+  - taken_overdose
+  - self_harmed
+  - thoughts_of_harming_others
+  - hearing_or_seeing_things
+  - drunk_a_lot_today
+  - recent_drug_use
+  - previous_suicide_attempt
+  - had_baby_in_last_year
+  - high_mood_now
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 38
+    sex: female
+  full:
+    age: 38
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Suicidal thoughts getting stronger or more frequent
+  findings:
+  - suicidal_thoughts
+  - suicidal_thoughts_getting_worse
+  minimum_acuity: urgent
+  source:
+    page: help_for_suicidal_thoughts.txt
+    quote: call NHS 111 or get help from NHS 111 online – they will help you find the support and help you need
+safety_netting_should_cover:
+- point: Emergency GP appointment or NHS 111 (mental health option) today
+  any_of:
+  - GP
+  - '111'
+- point: Call 999 or go to A&E if she feels she might act on the thoughts
+  any_of:
+  - '999'
+  - A&E
+- point: Helplines such as Samaritans
+  any_of:
+  - Samaritans
+  - 116 123
+- point: Tell someone she trusts
+  any_of:
+  - tell someone
+  - talk to
+  - someone you trust
+source:
+  expected_outcome:
+    page: help_for_suicidal_thoughts.txt
+    quote: call a GP – ask for an emergency appointment
+  minimum_safe_acuity:
+    page: urgent_mental_health.txt
+    quote: you need urgent help for your mental health
+variants:
+- id: mh_d04_v1
+  style: brief, only mentions the low mood at first
+  opening_statement: I've just been feeling really low for ages.
+  volunteered:
+  - low_mood
+  - low_mood_over_2_weeks
+atypical: false
+notes: 'low_mood.txt alone would give a non-urgent GP appointment for low mood over 2 weeks; the worsening suicidal
+  thoughts move this to urgent (help_for_suicidal_thoughts.txt: emergency GP appointment or 111). No plan, no preparation
+  and able to keep safe, so not 999. The variant tests whether the engine asks about suicidal thoughts when the
+  patient does not volunteer them.'

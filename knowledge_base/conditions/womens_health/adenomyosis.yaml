@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: adenomyosis
+body_system: womens_health
+entry_symptoms: [heavy_periods, period_pain]
+name: "Adenomyosis (tissue like the lining of the womb growing into the wall of the womb)"
+medical_name: "Adenomyosis"
+snomed: "784314006"
+# Heavy and painful periods together, often in the 40s.
+acuity_needed: routine
+danger: minor
+sex: female
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: common}
+findings:
+  heavy_periods: strongly_supports
+  period_pain: strongly_supports
+  periods_changed: supports
+  bloating_regular: supports
+  pain_during_sex: supports
+  passing_large_clots: supports
+key_findings: [periods_changed, pain_during_sex]
+source: nhs_adenomyosis
+informed_by: [nhs_adenomyosis, nhs_heavy_periods]

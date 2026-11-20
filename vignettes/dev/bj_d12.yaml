@@ -1,0 +1,58 @@
+id: bj_d12
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- knee_pain
+summary: 69-year-old man with aching in both knees for several months, worse when walking, with grating when he moves them and brief stiffness after sitting. No injury, no locking, no fever.
+opening_statement: Both my knees have been aching for months, worse when I walk the dog, and they crunch when I bend them.
+findings:
+  present:
+  - knee_pain
+  - same_joints_both_sides
+  - pain_over_3_months
+  - grating_when_moving
+  - pain_worse_moving_better_rest
+  - joint_pain
+  absent:
+  - injury_or_fall
+  - badly_swollen
+  - very_high_temperature
+  - red_or_discoloured_skin
+  - knee_gives_way_or_locks
+  - morning_stiffness_over_30_min
+  - cannot_bear_weight
+  - takes_blood_thinners
+  - severe_pain
+  - swollen_area_red_hot
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 69
+    sex: male
+  full:
+    age: 69
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: Can refer himself to community MSK or physiotherapy services
+  any_of:
+  - physio
+  - MSK
+- point: Contact 111 if a knee becomes hot and red with a high temperature, locks or gives way
+  any_of:
+  - '111'
+source:
+  expected_outcome:
+    page: knee_pain.txt
+    quote: knee pain does not improve within a few weeks
+  minimum_safe_acuity:
+    page: knee_pain.txt
+    quote: Pain and stiffness in both knees, mild swelling, more common in older people
+atypical: false
+notes: Likely osteoarthritis of both knees.

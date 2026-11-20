@@ -1,0 +1,258 @@
+# Entry symptom: red eye.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Levels of care: the NHS eye pages often say "an urgent appointment with a GP
+# or optician" or "see an optician". There is no optician level and no eye
+# emergency department level in settings.yaml, so these are mapped to the
+# nearest level (urgent care, general practice, emergency department) and the
+# advice names the optician, the minor eye conditions service or eye casualty.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used, marked soft, with a firm rule at the lower level as
+# its floor.
+
+id: red_eye
+name: "Red eye"
+presenting_finding: red_eye
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: red_eye_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vision_change
+      - bothered_by_light
+      - very_painful_headache
+      - eye_very_dark_red
+      - eye_injury
+      - object_stuck_in_eye
+      - chemical_in_eye
+      - pupils_different_sizes
+
+  - id: red_eye_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eye_pain
+      - eye_very_red
+      - contact_lens_wearer
+      - eyelid_red_hot_painful
+      - blisters_around_eye
+      - very_high_temperature
+
+  # Not a red-flag screen: signs that each lead to a GP or optician. Asked as one
+  # checklist after the red flags, and only if the outcome so far is lower than this.
+  - id: red_eye_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - sticky_discharge
+      - red_eye_lasting
+      - eyelashes_rubbing_eye
+      - worried_about_symptoms
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_re_chemical
+    description: "A chemical or other harmful liquid in the eye"
+    when: chemical_in_eye
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Rinse the eye with clean water for at least 20 minutes, then go to A&E or call 999"}
+    advice: advice_chemical_eye
+    source: nhs_eye_injuries
+    note: "The Red eye page says the same. Kept firm: rinsing straight away and getting checked protects the sight."
+
+  - id: rf_re_pierced_or_stuck
+    description: "Something sharp has pierced the eye, something hit it at high speed, or something is stuck in it"
+    when: {any: [eye_pierced, high_speed_object, object_stuck_in_eye]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_red_eye
+    note: "The Eye injuries page gives the same advice for a pierced eye or something hitting it at high speed. 'Stuck' is read as not removed by rinsing (AI reading)."
+
+  - id: rf_re_headache_and_sick
+    description: "Red eye with a severe headache and feeling or being sick"
+    when: {all: [very_painful_headache, nausea_or_vomiting]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_eye_emergency
+    source: nhs_red_eye
+    note: "Can be a sign of sudden glaucoma. The Eye pain and Dry eyes pages say the same."
+
+  - id: rf_re_pupil
+    description: "Red eye and 1 pupil bigger than the other"
+    when: pupils_different_sizes
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_eye_emergency
+    source: nhs_red_eye
+    note: "The Herpes simplex eye infections page says the same."
+
+  - id: rf_re_vision_change
+    description: "Red eye with any change to the sight, like wavy lines, flashing or loss of vision"
+    when: vision_change
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_red_eye
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Red eye and Dry eyes pages say call 999 or go to A&E. The Conjunctivitis, Uveitis and Blepharitis pages say an urgent GP appointment or 111 for changes in vision. The more urgent is used, marked soft, with the firm urgent rule below as its floor."
+
+  - id: rf_re_light
+    description: "Red eye and it hurts to look at light"
+    when: bothered_by_light
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_red_eye
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Red eye and Herpes simplex pages say call 999 or go to A&E. The Conjunctivitis and Uveitis pages say an urgent GP appointment or 111 for sensitivity to light. The more urgent is used, marked soft, with the firm urgent rule below as its floor."
+
+  - id: rf_re_very_dark_red
+    description: "Eye or eyes very dark red"
+    when: eye_very_dark_red
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_red_eye
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Red eye page says call 999 or go to A&E for an eye that is very dark red. The Eyelid problems and Conjunctivitis pages say an urgent GP appointment for a very red eye. Soft, with the firm urgent rule for a very red eye as its floor."
+
+  - id: rf_re_injury
+    description: "Red eye after an injury to the eye"
+    when: eye_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E, or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_red_eye
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Red eye page says call 999 or go to A&E for any injury. The Eye injuries page says minor injuries often get better within a day, and gives an urgent appointment if not better after 24 hours. Soft, with the firm urgent rule below as its floor."
+
+  - id: rf_re_eyelid_infection_spreading
+    description: "Swollen eyelid with the eye hard or painful to move, a bulging eye, or changes to the sight: possible infection behind the eye"
+    when: {all: [eyelid_swollen, {any: [eye_hard_to_move, eye_pain_moving_eye, bulging_eyes, vision_change]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eye_infection_spreading
+    source: nhs_cellulitis
+    note: "The Cellulitis page says cellulitis in the eye is very serious. The signs used for infection spreading behind the eye are AI judgement."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_re_vision_or_light_urgent
+    description: "Red eye with changes to the sight or sensitivity to light"
+    when: {any: [vision_change, bothered_by_light]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_conjunctivitis
+    note: "The firm floor under the soft emergency rules above. The Uveitis and Blepharitis pages say the same."
+
+  - id: rf_re_injury_urgent
+    description: "Red eye after an injury to the eye"
+    when: eye_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_injuries
+    note: "The firm floor under the soft emergency rule for an injury."
+
+  - id: rf_re_very_red
+    description: "The white of the eye is very red"
+    when: eye_very_red
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eyelid_problems
+    note: "The Conjunctivitis, Uveitis and Ectropion pages say the same."
+
+  - id: rf_re_very_painful
+    description: "The eye is very painful and red"
+    when: eye_pain_severe
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_red_eye
+
+  - id: rf_re_painful
+    description: "Red eye that is painful"
+    when: eye_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_dry_eyes
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Dry eyes page says urgent for an eye that is painful and red, and the Conjunctivitis page for pain in the eyes. The Red eye page says urgent only when it is very painful. Soft, so that the gritty soreness of conjunctivitis can lower it; severe pain is firm (rule above)."
+
+  - id: rf_re_contact_lenses
+    description: "Red eye in someone who wears contact lenses: could be an eye infection"
+    when: contact_lens_wearer
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111. Take your lenses out."}
+    advice: advice_eye_contact_lens_urgent
+    source: nhs_red_eye
+    note: "The Dry eyes page says the same."
+
+  - id: rf_re_newborn
+    description: "A baby less than 1 month old with a red eye"
+    when: age_under_1_month
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_baby_eye_urgent
+    source: nhs_red_eye
+    note: "The Red eye page says 28 days, the Conjunctivitis page 30 days, the Eyelid problems page 1 month. 1 month is used."
+
+  - id: rf_re_eyelid_hot_swollen
+    description: "Swollen eyelid that is red, hot, painful, tender or blistered"
+    when: eyelid_red_hot_painful
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_re_shingles_or_blisters
+    description: "Red eye with blisters or a rash around the eye, such as shingles"
+    when: blisters_around_eye
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_shingles_urgent
+    source: nhs_shingles
+    note: "The Herpes simplex eye infections page lists blisters or a rash around the eye, and says to get urgent help if the eye is painful or getting worse. Making blisters with a red eye urgent on their own is AI judgement."
+
+  - id: rf_re_unwell
+    description: "Red eye with a high temperature, or feeling very unwell"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eyelid_problems
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Red eye page says a red eye is probably nothing serious if you do not feel sick or unwell. The Eyelid problems page says urgent for eye symptoms with a very high temperature or feeling unwell. Soft, since a cold often comes with conjunctivitis."
+
+outcome_rules:
+  - id: or_re_child_under_2
+    description: "A child under 2 with a red eye"
+    when: age_under_2
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_red_eye_gp
+    source: nhs_red_eye
+    note: "The Conjunctivitis page says a child under 2 needs a prescription from a GP for treatment."
+
+  - id: or_re_sticky
+    description: "Red eyes with a sticky discharge"
+    when: sticky_discharge
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or optician. The source gives no fixed time."}
+    advice: advice_red_eye_gp
+    source: nhs_red_eye
+    soft: true    # likely conditions may lower this: the source pages disagree
+    note: "Source difference: the Red eye page says see a GP or optician. The Conjunctivitis page says a pharmacist can help, and to see a GP if it has not cleared within 7 days. Soft."
+
+  - id: or_re_lasting
+    description: "Red patches, or an eyelid or eyelash problem, for more than a few days"
+    when: {any: [red_eye_lasting, eyelashes_rubbing_eye]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or optician. The source gives no fixed time."}
+    advice: advice_red_eye_gp
+    source: nhs_red_eye
+    note: "The Herpes simplex page says the same for a red eye with no pain for more than a few days."
+
+  - id: or_re_worried
+    description: "Worried about the eyes"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or optician. The source gives no fixed time."}
+    advice: advice_red_eye_gp
+    source: nhs_red_eye
+
+default:
+  description: "A red eye that does not hurt, with sight not affected and not feeling unwell: probably nothing serious"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "It may get better on its own in a few days. A pharmacist can help."}
+  advice: advice_red_eye_self_care
+  source: nhs_red_eye
+  note: "The page says that if the eye does not hurt, the sight is not affected and you do not feel sick or unwell, it is probably nothing serious and may get better on its own."

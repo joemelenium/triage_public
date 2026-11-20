@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mouth_thrush
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_white_tongue, dry_mouth, sore_or_dry_lips]
+name: "Mouth thrush (a fungal infection that causes white patches in the mouth)"
+medical_name: "Oral candidiasis"
+snomed: "79740000"
+acuity_needed: routine
+level_of_care: community_pharmacy
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_under_1, prevalence: very_common}
+  - {finding: thrush_risk, prevalence: very_common}
+  - {finding: weakened_immune_system, prevalence: very_common}
+findings:
+  # What tells it apart from leukoplakia: white patches that wipe off, leaving red spots, in babies
+  # or people with dentures, a steroid inhaler or recent antibiotics.
+  white_patches_wipe_off: strongly_supports
+  white_patches_in_mouth: strongly_supports
+  cracks_at_mouth_corners: supports
+  mouth_painful_red_or_bleeding: supports
+  bad_taste_in_mouth: supports
+  dry_mouth: supports
+key_findings: [white_patches_wipe_off, thrush_risk]
+source: nhs_oral_thrush
+informed_by: [nhs_oral_thrush, nhs_sore_or_white_tongue, nhs_dry_mouth]

@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ovarian_cyst
+body_system: womens_health
+entry_symptoms: [pelvic_pain, ovulation_pain, period_pain]
+name: "Ovarian cyst (a fluid-filled sac on an ovary)"
+medical_name: "Ovarian cyst"
+# Usually no symptoms. Causes pain if large, if it bursts or if it twists (the
+# twisted ovary card covers a sudden severe pain).
+acuity_needed: routine
+danger: moderate
+sex: female
+prevalence: uncommon
+findings:
+  one_sided_lower_tummy_pain: strongly_supports
+  pain_during_sex: supports
+  bloating_regular: supports
+  peeing_more_often: supports
+  weak_flow_or_straining: supports
+  constipation: supports
+  periods_changed: supports
+key_findings: [one_sided_lower_tummy_pain, bloating_regular, pain_during_sex]
+source: nhs_ovarian_cyst
+informed_by: [nhs_ovarian_cyst, nhs_ovulation_pain]

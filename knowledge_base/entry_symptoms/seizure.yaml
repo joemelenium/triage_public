@@ -1,0 +1,167 @@
+# Entry symptom: a seizure (fit).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom, unless a sourced exception to it applies.
+#
+# The main symptom reuses "had_a_fit" from breathing.yaml.
+# Questions are worded for someone who saw the seizure, because the person who
+# had it often cannot remember it.
+#
+# Must-not-miss causes: a first seizure from any cause, a long seizure, meningitis,
+# encephalitis, bleeding on the brain or after a head injury, low blood sugar,
+# and a brain tumour. Alcohol withdrawal belongs to the mental health batch.
+
+id: seizure
+name: "Seizure (fit)"
+presenting_finding: had_a_fit
+also_covers: [nhs_what_to_do_if_someone_has_a_seizure_fit]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: seizure_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - first_seizure
+      - seizure_long
+      - seizure_not_recovered
+      - seriously_injured_in_collapse
+      - difficulty_breathing
+      - seizure_more_than_one_24h
+      - seizure_one_side
+      - sleepy_long_after_seizure
+      - headache_sudden_severe
+      - rash_does_not_fade
+      - stiff_neck
+      - head_injury_last_3_months
+
+  - id: seizure_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_sz_first
+    description: "The first time someone has had a seizure"
+    when: first_seizure
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_seizure_999
+    source: nhs_what_to_do_if_someone_has_a_seizure_fit
+    note: "The Epilepsy page says the same. The Febrile seizures page says call 999 or go to A&E for a child's first febrile seizure. The more urgent is used."
+
+  - id: rf_sz_long
+    description: "A seizure lasting more than 5 minutes, or longer than usual for the person"
+    when: seizure_long
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_seizure_999
+    source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+  - id: rf_sz_not_recovered
+    description: "Not waking up fully, or several seizures without waking up in between"
+    when: seizure_not_recovered
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_seizure_999
+    source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+  - id: rf_sz_injured
+    description: "Seriously injured during the seizure"
+    when: seriously_injured_in_collapse
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_seizure_999
+    source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+  - id: rf_sz_breathing
+    description: "Difficulty breathing after the seizure"
+    when: difficulty_breathing
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_seizure_999
+    source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+  - id: rf_sz_headache_sudden
+    description: "A seizure with a headache that came on suddenly and is extremely painful"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_headache_999
+    source: nhs_subarachnoid_haemorrhage
+
+  - id: rf_sz_more_than_one
+    description: "More than one seizure in 24 hours"
+    when: seizure_more_than_one_24h
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_seizure_ae
+    source: nhs_febrile_seizures
+    note: "Source difference: the Febrile seizures page says call 999 or go to A&E for more than 1 seizure in 24 hours. The Epilepsy page says call 999 for 3 or more in 24 hours. The Febrile seizures threshold is used for everyone, which is AI judgement for adults."
+
+  - id: rf_sz_one_side
+    description: "Stiffness or jerking on only one side of the body"
+    when: seizure_one_side
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_seizure_ae
+    source: nhs_febrile_seizures
+
+  - id: rf_sz_sleepy_after
+    description: "Much sleepier than usual for more than 1 hour after the seizure stopped"
+    when: sleepy_long_after_seizure
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_seizure_ae
+    source: nhs_febrile_seizures
+
+  - id: rf_sz_rash_or_stiff_neck
+    description: "A seizure with a rash that does not fade when pressed, or a stiff neck: possible meningitis"
+    when: {any: [rash_does_not_fade, stiff_neck]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+
+  - id: rf_sz_head_injury
+    description: "A seizure after a head injury in the last 3 months"
+    when: head_injury_last_3_months
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_seizure_ae
+    source: nhs_headaches
+    note: "The Head injury page says call 999 for a fit after a recent head injury; that entry symptom applies too when the injury was in the last month. The Headaches page says 999 or A&E for a headache after a head injury in the last 3 months."
+
+  - id: rf_sz_low_sugar
+    description: "A seizure in someone with diabetes who has signs of low blood sugar"
+    when: {all: [has_diabetes, diabetes_low_sugar_signs]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999. Do not give food or drink unless they are fully awake and can swallow safely."}
+    advice: advice_low_blood_sugar_emergency
+    source: nhs_low_blood_sugar
+    note: "The Low blood sugar page lists a seizure as a sign of severe low blood sugar, and says call 999 if someone is not responding normally and glucagon is not available or has not worked."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_sz_high_temperature
+    description: "A seizure with a high temperature"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_seizure_urgent
+    source: nhs_febrile_seizures
+    note: "The Febrile seizures page says it is important to get medical help if a child has a seizure. A first febrile seizure is sent to 999 by the rule above. The encephalitis and meningitis condition cards can raise this for an adult."
+
+  - id: rf_sz_after_long_gap
+    description: "Epilepsy, and a seizure after a long time without any"
+    when: {all: [has_epilepsy, seizure_after_long_gap]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_seizure_urgent
+    source: nhs_epilepsy
+
+default:
+  description: "A seizure that has stopped, with full recovery and nothing that needs an ambulance: get checked today"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+  advice: advice_seizure_urgent
+  source: nhs_epilepsy
+  floor: true
+  note: "The Epilepsy page says an urgent GP appointment or 111 if you think you may have had a first seizure and did not go to hospital. Using it for every seizure that does not need an ambulance is AI judgement. A floor, with the exception below for someone with epilepsy having one of their usual seizures."
+
+default_exceptions:
+  - id: de_sz_usual_seizure
+    description: "Diagnosed epilepsy, and one of their usual seizures with a usual recovery"
+    when: {all: [has_epilepsy, seizure_like_usual]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Follow the care plan. Let your epilepsy team or GP know about the seizure."}
+    advice: advice_seizure_known_epilepsy
+    source: nhs_what_to_do_if_someone_has_a_seizure_fit
+    note: "The page says people with epilepsy do not always need an ambulance or to go to hospital, and usually have a care plan. Mapping that to a routine GP contact is AI judgement."

@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: encephalitis
+body_system: brain_and_nerves
+entry_symptoms: [headache, sudden_confusion, had_a_fit]
+name: "Encephalitis (swelling of the brain)"
+medical_name: "Encephalitis"
+snomed: "45170000"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: uncommon}
+findings:
+  # What tells it apart: flu-like symptoms, then confusion, changes in behaviour, seizures or trouble speaking.
+  very_high_temperature: strongly_supports
+  sudden_confusion: strongly_supports
+  personality_or_behaviour_change: supports
+  had_a_fit: supports
+  difficulty_speaking: supports
+  drowsy_hard_to_wake: supports
+  headache: supports
+  weakness_or_paralysis: supports
+key_findings: [sudden_confusion, personality_or_behaviour_change, had_a_fit, difficulty_speaking]
+source: nhs_encephalitis
+informed_by: [nhs_encephalitis]

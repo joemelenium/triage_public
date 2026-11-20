@@ -1,0 +1,6 @@
+- code: '698247007'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '48867003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'

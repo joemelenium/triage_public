@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: skin_abscess
+body_system: skin_and_hair
+entry_symptoms: [skin_lump]
+name: "Skin abscess (a painful pocket of pus in the skin)"
+medical_name: "Abscess of skin and subcutaneous tissue"
+snomed: "31928004"
+acuity_needed: urgent
+danger: moderate
+prevalence: uncommon
+findings:
+  # What tells it apart from a cyst: a painful, warm, red lump that may be soft in the middle, may leak pus, and may come with a high temperature.
+  swollen_area_red_hot: strongly_supports
+  pus_or_fluid_leaking: supports
+  very_high_temperature: supports
+  lump_getting_bigger: supports
+key_findings: [swollen_area_red_hot, pus_or_fluid_leaking]
+source: nhs_skin_abscess
+informed_by: [nhs_skin_abscess, nhs_lumps]

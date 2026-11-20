@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bulimia
+body_system: mental_health
+entry_symptoms: [eating_problem]
+name: "Bulimia (eating a lot, then making yourself sick to stay thin)"
+medical_name: "Bulimia nervosa"
+snomed: "78004001"
+acuity_needed: routine
+danger: moderate
+prevalence: common
+findings:
+  # What tells it apart from binge eating: ridding the body of food afterwards.
+  making_self_sick: strongly_supports
+  binge_eating: strongly_supports
+  fear_of_weight_gain: supports
+  cannot_keep_fluids_down: supports
+  eating_in_secret: supports
+key_findings: [making_self_sick, binge_eating, cannot_keep_fluids_down]
+source: nhs_bulimia
+informed_by: [nhs_bulimia, nhs_eating_disorders]

@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: frozen_shoulder
+body_system: bones_joints_muscles
+entry_symptoms: [shoulder_pain]
+name: "Frozen shoulder (a painful, stiff shoulder that is hard to move)"
+medical_name: "Adhesive capsulitis of shoulder"
+snomed: "399114005"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_diabetes, prevalence: common}
+findings:
+  shoulder_very_stiff: strongly_supports
+  pain_over_3_months: supports
+  pain_worse_at_night_or_rest: supports
+  cannot_move_painful_part: supports
+key_findings: [shoulder_very_stiff, pain_over_3_months]
+source: nhs_frozen_shoulder
+informed_by: [nhs_frozen_shoulder]

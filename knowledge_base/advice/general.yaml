@@ -1,0 +1,580 @@
+# Advice for the general body system: high temperature, tiredness, weight loss,
+# night sweats, thirst, dehydration, swelling, blue or grey skin, feeling unwell,
+# and a baby who is unsettled or not feeding.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml. Wording is adapted from the cited NHS page.
+
+# ---------------------------------------------------------------------------
+# High temperature
+# ---------------------------------------------------------------------------
+- id: advice_fever_child_999
+  what_to_do: "Call 999 now. Your child has a high temperature and a sign of serious illness, such as meningitis or sepsis (a life-threatening reaction to an infection)."
+  look_out_for:
+    - "Your child becoming floppy, very sleepy or hard to wake"
+    - "Breathing that gets harder, with grunting or the tummy sucking in under the ribs"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+    - "A fit (seizure)"
+  get_more_help_when:
+    - "Call 999 again if your child gets worse before help arrives"
+    - "If your child stops responding and stops breathing, the 999 call handler will tell you how to start CPR. This means you press hard and fast on the middle of their chest."
+  where_to_go: "Call 999. Do not drive your child to A&E yourself. Stay with your child until help arrives."
+  self_care:
+    - "Do not give your child anything to eat or drink until a doctor has seen them, unless the 999 call handler says so"
+    - "Do not wrap your child up or sponge them down to cool them"
+  source: nhs_fever_in_children
+  also_informed_by: [nhs_sepsis, nhs_meningitis]
+
+- id: advice_febrile_fit_999
+  what_to_do: "Call 999 now. Your child has had a fit (seizure) with a high temperature."
+  look_out_for:
+    - "A fit that lasts more than 5 minutes"
+    - "Difficulty breathing"
+    - "Stiffness or twitching on only one side of the body"
+    - "Being much sleepier than usual for more than an hour after the fit stops"
+  get_more_help_when:
+    - "Call 999 again if your child has another fit, or gets worse before help arrives"
+  where_to_go: "Call 999. Do not take your child to A&E yourself while they are still having a fit or are not responding."
+  self_care:
+    - "Put your child on their side on a soft surface, away from anything that could hurt them"
+    - "Do not put anything in their mouth"
+    - "Stay with them and note how long the fit lasts"
+  source: nhs_febrile_seizures
+  also_informed_by: [nhs_fever_in_children]
+
+- id: advice_fever_baby_emergency
+  what_to_do: "Call 999 or go to A&E now. A baby this young with a high temperature needs to be checked in hospital straight away, even if they seem otherwise well."
+  look_out_for:
+    - "Your baby becoming floppy, very sleepy or hard to wake"
+    - "A weak, high-pitched or continuous cry"
+    - "Not feeding, or a dry nappy for 12 hours"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy, or a rash that does not fade when you press a glass on it"
+  get_more_help_when:
+    - "Call 999 if your baby gets worse or you cannot get to A&E safely"
+    - "Trust your instincts. If you think something is seriously wrong, get help straight away."
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself if you need to watch your baby. Ask someone to drive you or call 999."
+  self_care:
+    - "Keep breastfeeding or giving feeds if your baby will take them"
+    - "Do not give medicine for the temperature unless a doctor says so"
+  source: nhs_sepsis
+  also_informed_by: [nhs_fever_in_children, nhs_baby_seriously_ill]
+
+- id: advice_fever_chemo_emergency
+  what_to_do: "Call your cancer care team's 24-hour phone line now, or go to A&E. A high temperature during chemotherapy (a treatment for cancer) can mean a serious infection. The treatment makes it harder to fight infection."
+  look_out_for:
+    - "Shivering or feeling very cold"
+    - "Breathing very fast, or feeling confused or very sleepy"
+    - "Blotchy or very pale skin"
+  get_more_help_when:
+    - "Call 999 if you get worse quickly, or cannot reach your care team or get to A&E safely"
+  where_to_go: "Use the 24-hour number your cancer team gave you, or go to A&E. Do not drive yourself. Take your treatment record or alert card with you."
+  self_care:
+    - "Do not wait to see if the temperature goes down with paracetamol"
+  source: ai_judgement
+  also_informed_by: [nhs_sepsis]
+
+- id: advice_heatstroke_999
+  what_to_do: "Call 999 now. These are signs of heatstroke, which is an emergency."
+  look_out_for:
+    - "Confusion, or not being able to stand or walk properly"
+    - "A fit (seizure)"
+    - "Passing out"
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+  where_to_go: "Call 999. Stay with the person until help arrives."
+  self_care:
+    - "Move the person somewhere cool"
+    - "Cool their skin with cool water, or wet cloths, and fan them"
+    - "Give them sips of water if they are awake and can swallow"
+    - "If they stop responding, put them on their side"
+  source: nhs_heat_exhaustion
+
+- id: advice_fever_child_urgent
+  what_to_do: "Call 111 now, or ask for an urgent GP appointment. Your child's high temperature needs to be checked today."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it"
+    - "A stiff neck, or bright light hurting their eyes"
+    - "Being floppy, very sleepy or hard to wake, or not interested in feeding or playing"
+    - "Breathing very fast, grunting, or the tummy sucking in under the ribs"
+    - "Unusually cold hands and feet, or blotchy skin"
+  get_more_help_when:
+    - "Call 999 if your child gets any of the signs above, or has a fit"
+    - "Trust your instincts. If you think something is seriously wrong, call 999."
+  where_to_go: "Call 111 or use 111 online. Call 111 if you need advice for a child under 5. In an emergency call 999."
+  self_care:
+    - "Give plenty of fluids. If your baby is breastfed, keep breastfeeding as usual."
+    - "Check on your child regularly, including during the night"
+    - "Do not undress your child or sponge them down to cool them, and do not cover them in too many clothes or blankets"
+    - "Do not give a baby under 3 months ibuprofen. Do not give a baby under 2 months paracetamol."
+    - "Never give aspirin to children under 16"
+  source: nhs_fever_in_children
+
+- id: advice_fever_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your high temperature needs to be checked."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it"
+    - "A stiff neck, or bright light hurting your eyes"
+    - "Breathing very fast, or feeling confused or very sleepy"
+    - "Blotchy skin, or hands and feet that feel cold"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above, or you feel something is seriously wrong"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Get lots of rest"
+    - "Drink plenty of fluids, so your pee is light yellow and clear"
+    - "Take paracetamol or ibuprofen if you feel uncomfortable"
+  source: nhs_fever_in_adults
+  also_informed_by: [nhs_fever_in_children, nhs_urinary_tract_infections, nhs_kidney_infection]
+
+- id: advice_malaria_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Say where you have travelled. A high temperature after being somewhere malaria is found needs a blood test the same day."
+  look_out_for:
+    - "Feeling confused or very sleepy"
+    - "Breathing very fast, or finding it hard to breathe"
+    - "Yellow skin or eyes, or dark pee"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above, or get worse quickly"
+    - "Tell anyone you travelled with to get help straight away if they get symptoms"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_malaria
+
+- id: advice_fever_self_care
+  what_to_do: "You can usually look after a high temperature at home. It should get better within 1 to 4 days."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it"
+    - "A stiff neck, or bright light hurting the eyes"
+    - "Being very sleepy or hard to wake, or confused"
+    - "Breathing very fast, or blotchy, blue or grey skin"
+    - "Signs of not having enough water in the body: peeing less, dark pee, or in children dry nappies or no tears"
+  get_more_help_when:
+    - "Call 999 if you or your child get any of the signs above"
+    - "Call 111 or ask for an urgent GP appointment if the high temperature lasts 5 days or more. Do the same if treating it at home is not helping."
+    - "Call 111 if a child is not their usual self and you are worried"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice about medicines. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest, and drink plenty of fluids. Keep breastfeeding a baby as usual."
+    - "Take, or give, paracetamol or ibuprofen if you or your child are uncomfortable. Check the leaflet for the right dose for a child."
+    - "Do not undress a child or sponge them down to cool them"
+    - "Check on a child regularly, including during the night"
+    - "Stay at home and avoid contact with other people until you do not have a high temperature"
+  source: nhs_fever_in_children
+  also_informed_by: [nhs_fever_in_adults]
+
+# ---------------------------------------------------------------------------
+# Diabetes, thirst and blood sugar
+# ---------------------------------------------------------------------------
+- id: advice_ketoacidosis_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs of diabetic ketoacidosis, a life-threatening problem from a lack of insulin. It can happen to people who do not know they have diabetes."
+  look_out_for:
+    - "Becoming confused, very sleepy or hard to wake"
+    - "Breathing that gets faster and deeper"
+    - "Being sick again and again"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines and insulin you take."
+  source: nhs_diabetic_ketoacidosis
+  also_informed_by: [nhs_type_1_diabetes_symptoms]
+
+- id: advice_type_1_diabetes_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Being very thirsty, peeing more, feeling tired and losing weight can be signs of type 1 diabetes, which needs treatment quickly."
+  look_out_for:
+    - "Tummy pain, or feeling or being sick"
+    - "Breath that smells fruity, like pear drops or nail polish remover"
+    - "Breathing faster and more deeply than usual"
+    - "Feeling very sleepy or confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you or your child get any of the signs above, or get worse quickly"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. It can help to take a sample of pee with you. In an emergency call 999."
+  source: nhs_type_1_diabetes_symptoms
+
+- id: advice_high_blood_sugar_urgent
+  what_to_do: "Call your diabetes care team now, or get help from NHS 111. Follow your sick day rules if you have them."
+  look_out_for:
+    - "Breath that smells fruity, like pear drops or nail polish remover"
+    - "Breathing faster and more deeply than usual"
+    - "Tummy pain, or being sick"
+    - "Feeling very sleepy or confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above, or your ketones are very high"
+  where_to_go: "Call your diabetes care team, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep checking your blood sugar and ketones as your care team told you"
+    - "Keep drinking sugar-free fluids"
+    - "Do not stop taking your insulin"
+  source: nhs_diabetic_ketoacidosis
+
+- id: advice_thirst_gp
+  what_to_do: "See a GP. They can check what is making you so thirsty, for example diabetes or a medicine you take."
+  look_out_for:
+    - "Peeing much more than usual, especially at night"
+    - "Losing weight without trying"
+    - "Feeling very tired"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you also lose weight, or a child has these symptoms"
+    - "Call 999 or go to A&E if you are being sick, have tummy pain, fruity-smelling breath, or feel very sleepy or confused"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink more fluids, especially water"
+    - "Cut down on alcohol and caffeine"
+  source: nhs_thirst
+  also_informed_by: [nhs_type_1_diabetes_symptoms]
+
+- id: advice_thirst_self_care
+  what_to_do: "Most thirst means you need to drink more. Drink more fluids and avoid alcohol and caffeine to see if it helps."
+  look_out_for:
+    - "Still being very thirsty after drinking more for several days"
+    - "Needing to pee much more often"
+    - "Signs of not having enough water in the body: dark yellow, strong-smelling pee, peeing less, or feeling dizzy"
+  get_more_help_when:
+    - "See a GP if drinking more for several days has not helped, you need to pee often, or you are pregnant"
+    - "Call 999 or go to A&E if you are very thirsty and being sick, have tummy pain or fruity breath, or feel very sleepy"
+  where_to_go: "You do not need an appointment now. See a GP if it does not get better. In an emergency call 999."
+  self_care:
+    - "Drink enough so your pee is a pale colour"
+    - "Drink more in hot weather, after exercise, or if you have been sick or have diarrhoea"
+    - "Eat less salty or spicy food"
+  source: nhs_thirst
+
+# ---------------------------------------------------------------------------
+# Dehydration
+# ---------------------------------------------------------------------------
+- id: advice_dehydration_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs of shock, a serious problem caused by not having enough water in the body."
+  look_out_for:
+    - "Becoming confused, very sleepy or hard to wake"
+    - "Skin, lips or tongue turning blue, grey or pale"
+    - "Lots of quick breaths"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_dehydration
+
+- id: advice_dehydration_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. These can be signs of serious dehydration (not having enough water in the body) that needs treatment."
+  look_out_for:
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+    - "Skin that feels cold, or lots of quick breaths"
+    - "Becoming confused, or sleepier than usual or hard to wake"
+    - "Feeling dizzy when you stand up, and it does not go away"
+    - "Breathing quickly, or a fast heartbeat"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your skin, lips or tongue turn blue, grey or blotchy. Do the same if you feel cold, confused or hard to wake."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 if you need advice for a child under 5. In an emergency call 999."
+  self_care:
+    - "Keep drinking. If you feel sick, start with small sips and slowly drink more."
+    - "A pharmacist can suggest rehydration drinks. These put back the sugar and salts you have lost."
+    - "Keep breastfeeding or giving formula to a baby, in small amounts more often. Do not make formula weaker."
+  source: nhs_dehydration
+
+- id: advice_dehydration_pharmacy
+  what_to_do: "See a pharmacist. They can recommend rehydration drinks to replace what you have lost through diarrhoea or being sick. Keep drinking fluids."
+  look_out_for:
+    - "Feeling unusually tired, or a child seeming drowsy"
+    - "Feeling dizzy when you stand up, and it does not go away"
+    - "Peeing less than usual, or a baby having fewer wet nappies"
+    - "Breathing quickly or a fast heartbeat"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 or go to A&E if your skin turns blotchy or cold, or you become confused or very sleepy"
+  where_to_go: "Go to a pharmacy. You do not need an appointment. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Start with small sips if you feel sick, then slowly drink more"
+    - "Avoid alcohol and drinks with caffeine"
+    - "Do not give young children fruit juice or fizzy drinks"
+  source: nhs_dehydration
+
+# ---------------------------------------------------------------------------
+# Tiredness, weight loss and night sweats
+# ---------------------------------------------------------------------------
+- id: advice_tiredness_gp
+  what_to_do: "See a GP. They can check for causes of tiredness, for example with blood tests for anaemia, diabetes or thyroid problems."
+  look_out_for:
+    - "Losing weight without trying"
+    - "Feeling very low, or thoughts of harming yourself"
+    - "Being very thirsty and peeing more than usual"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you are very thirsty, peeing more and losing weight"
+    - "If you have thoughts of harming yourself, call 111 and choose the mental health option, or call Samaritans on 116 123. Call 999 if your life is in danger."
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Try to go to bed and get up at the same times, and aim for 6 to 9 hours of sleep"
+    - "Eat a healthy diet and exercise regularly"
+    - "Do not drink too much alcohol, and do not smoke"
+  source: nhs_tiredness_and_fatigue
+
+- id: advice_tiredness_self_care
+  what_to_do: "It is normal to feel tired sometimes. Try these things for a few weeks. See a GP if you are still tired and do not know why."
+  look_out_for:
+    - "Tiredness that lasts a few weeks or affects your daily life"
+    - "Weight loss, low mood, or being told you make gasping or choking noises in your sleep"
+    - "Being very thirsty and peeing more than usual"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above"
+    - "Call 999 or go to A&E if you become very sleepy or hard to wake"
+  where_to_go: "You do not need an appointment now. See a GP if it does not get better."
+  self_care:
+    - "Try to stick to the same sleep times and aim for 6 to 9 hours of sleep"
+    - "Relax for a couple of hours before bed, and avoid screens in the hour before sleep"
+    - "Have a healthy diet and exercise regularly"
+    - "Do not drink too much alcohol, and avoid caffeine before bed"
+  source: nhs_tiredness_and_fatigue
+
+- id: advice_weight_loss_gp
+  what_to_do: "See a GP. Losing weight without trying should be checked, just in case."
+  look_out_for:
+    - "Other symptoms, such as night sweats, a lump, losing your appetite, or losing a lot of weight quickly"
+    - "Being very thirsty and peeing more than usual"
+    - "Yellow skin or eyes"
+  get_more_help_when:
+    - "See a GP as soon as possible if you get other symptoms"
+    - "Ask for an urgent GP appointment or call 111 if you are very thirsty and peeing more, or your skin or eyes turn yellow"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  source: nhs_unintentional_weight_loss
+
+- id: advice_weight_loss_soon
+  what_to_do: "See a GP as soon as possible, ideally in the next few days. Weight loss or night sweats with other symptoms should be checked early, so that any cause is found and treated sooner."
+  look_out_for:
+    - "Losing weight faster"
+    - "New symptoms, such as a lump, coughing up blood, or yellow skin or eyes"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get worse before you are seen"
+    - "Call 999 or go to A&E in an emergency"
+  where_to_go: "Make an appointment with a GP in the next few days. For urgent help call 111 or use 111 online."
+  source: nhs_unintentional_weight_loss
+  also_informed_by: [nhs_cancer_signs, nhs_night_sweats]
+
+- id: advice_weight_loss_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Weight loss with yellow skin or eyes needs to be checked quickly."
+  look_out_for:
+    - "Pale poo or dark pee"
+    - "Tummy pain, or a high temperature with shivering"
+    - "Feeling confused or very sleepy"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get severe tummy pain, or become confused or very sleepy"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+  also_informed_by: [nhs_liver_disease]
+
+- id: advice_night_sweats_gp
+  what_to_do: "See a GP if you regularly wake up with soaking wet sheets, or it worries you. They will check for other symptoms, and whether a medicine you take might be the cause."
+  look_out_for:
+    - "Losing weight for no reason"
+    - "A lump in your neck, armpit or groin"
+    - "A high temperature, a cough or diarrhoea"
+  get_more_help_when:
+    - "See a GP as soon as possible if you are also losing weight, or find a lump"
+    - "Get help today if you have a high temperature and a weak immune system. This means your body is less able to fight infection."
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Keep your bedroom cool and use light bedding"
+    - "Cut down on alcohol and caffeine"
+  source: nhs_night_sweats
+
+# ---------------------------------------------------------------------------
+# Swelling
+# ---------------------------------------------------------------------------
+- id: advice_swelling_999
+  what_to_do: "Call 999 now. Swelling with breathlessness or chest pain can mean a blood clot in the lung, which needs treatment in hospital straight away."
+  look_out_for:
+    - "Breathing that gets harder"
+    - "Chest pain that gets worse"
+    - "Lips or skin turning blue, grey or pale"
+    - "Passing out"
+  get_more_help_when:
+    - "Call 999 again if you get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  source: nhs_oedema
+  also_informed_by: [nhs_deep_vein_thrombosis, nhs_swollen_arms_and_hands_oedema]
+
+- id: advice_swelling_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your swelling needs to be checked."
+  look_out_for:
+    - "Feeling short of breath, or your chest feeling tight, heavy or painful"
+    - "Coughing up blood"
+    - "The swollen area getting redder, hotter or more painful"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 if you get short of breath, chest pain, or cough up blood. You could have a blood clot in the lung."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Raise the swollen arm or leg on pillows when you can"
+    - "Do not wear clothes, socks or shoes that are too tight"
+  source: nhs_oedema
+  also_informed_by: [nhs_swollen_arms_and_hands_oedema, nhs_deep_vein_thrombosis, nhs_cellulitis]
+
+- id: advice_swelling_gp
+  what_to_do: "See a GP. They can find what is causing the swelling and help with treatment."
+  look_out_for:
+    - "Swelling in only one leg, or swelling that is painful, red or hot"
+    - "Swelling that spreads to your face or tummy"
+    - "Feeling short of breath"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 if you get short of breath, chest pain, or cough up blood"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Raise your legs or the swollen area on pillows when you can"
+    - "Get some gentle exercise, like walking, to help your blood flow"
+    - "Do not stand or sit still for long periods"
+  source: nhs_oedema
+  also_informed_by: [nhs_swollen_arms_and_hands_oedema]
+
+- id: advice_swelling_self_care
+  what_to_do: "Swelling like this often goes away on its own. Try these things for a few days."
+  look_out_for:
+    - "Swelling that does not go down after a few days, or gets worse"
+    - "Swelling in only one arm or leg, or swelling that is painful, red or hot"
+    - "Feeling short of breath, or chest pain"
+  get_more_help_when:
+    - "See a GP if the swelling has not improved after a few days"
+    - "Ask for an urgent GP appointment or call 111 if the swelling is in one leg or arm, or is red, hot or painful"
+    - "Call 999 if you get short of breath, chest pain, or cough up blood"
+  where_to_go: "You do not need an appointment now. See a GP if it does not get better."
+  self_care:
+    - "Raise the swollen area on a chair or pillows when you can"
+    - "Get some gentle exercise, like walking, to help your blood flow"
+    - "Wear wide, comfortable shoes, and do not wear clothes, socks or shoes that are too tight"
+    - "Do not stand or sit still for long periods, and try to stay cool in hot weather"
+  source: nhs_oedema
+  also_informed_by: [nhs_swollen_arms_and_hands_oedema]
+
+# ---------------------------------------------------------------------------
+# Blue or grey skin
+# ---------------------------------------------------------------------------
+- id: advice_cyanosis_999
+  what_to_do: "Call 999 now. Blue or grey skin or lips with these signs means the body may not be getting enough oxygen or blood, which is a serious problem."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  source: nhs_blue_skin_or_lips_cyanosis
+
+- id: advice_cyanosis_urgent
+  what_to_do: "Get help from NHS 111 now. Blue or grey fingers, toes, hands or feet can be a sign of a problem with blood flow."
+  look_out_for:
+    - "Blue or grey colour spreading to the lips, tongue or face"
+    - "Difficulty breathing or chest pain"
+    - "Feeling confused or dizzy"
+    - "An arm or leg that is cold, pale and painful"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above"
+  where_to_go: "Call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Warm up slowly if you have been in the cold"
+    - "Take off any tight clothing or jewellery"
+  source: nhs_blue_skin_or_lips_cyanosis
+
+- id: advice_raynauds_gp
+  what_to_do: "See a GP. Fingers or toes that change colour in the cold are often caused by Raynaud's, which is usually harmless but should be checked."
+  look_out_for:
+    - "Symptoms only on one side of the body"
+    - "Joint pain, skin rashes or muscle weakness"
+    - "Sores on your fingers or toes that do not heal"
+  get_more_help_when:
+    - "Call 111 if your fingers or toes stay blue or grey, or do not warm up"
+    - "Call 999 if your lips or face turn blue or grey, or an arm or leg goes cold, pale and painful"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep your home warm, and wear warm clothes, gloves and socks in cold weather"
+    - "Exercise regularly to help your blood flow"
+    - "Try to stop smoking"
+  source: nhs_raynauds
+
+# ---------------------------------------------------------------------------
+# Feeling generally unwell
+# ---------------------------------------------------------------------------
+- id: advice_unwell_emergency
+  what_to_do: "Call 999 or go to A&E now. Being very sleepy or hard to wake can be a sign of a serious illness, such as sepsis (a life-threatening reaction to an infection)."
+  look_out_for:
+    - "Not responding, or becoming confused"
+    - "Breathing very fast"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_sepsis
+
+- id: advice_unwell_urgent
+  what_to_do: "Get help today. Ask for an urgent GP appointment, or call 111 or use 111 online."
+  look_out_for:
+    - "Breathing very fast, or finding it hard to breathe"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy, or a rash that does not fade when pressed"
+    - "Becoming confused, very sleepy or hard to wake"
+    - "Not peeing all day"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+    - "Trust your instincts. If you think something is seriously wrong, get help straight away."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_sepsis
+
+- id: advice_unwell_gp
+  what_to_do: "See a GP if you are not getting better, or you are worried. Most short illnesses get better on their own."
+  look_out_for:
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Pain when peeing, or not peeing much"
+    - "Feeling very thirsty, or losing weight"
+    - "Getting worse instead of better"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you feel very unwell or get worse"
+    - "Call 999 or go to A&E if you are breathing very fast, have blotchy skin, or become very sleepy or confused"
+    - "Call 999 or go to A&E for a rash that does not fade when you press a glass on it"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest and drink plenty of fluids"
+  source: ai_judgement
+  also_informed_by: [nhs_sepsis]
+
+# ---------------------------------------------------------------------------
+# A baby who is unsettled or not feeding
+# ---------------------------------------------------------------------------
+- id: advice_baby_emergency
+  what_to_do: "Call 999 or go to A&E now. Your baby has a sign of serious illness and needs to be checked in hospital straight away."
+  look_out_for:
+    - "Your baby becoming floppy, very sleepy or hard to wake"
+    - "Breathing that gets harder, with grunting or the tummy sucking in"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+    - "A fit (seizure)"
+    - "Green sick, or no wet nappy"
+  get_more_help_when:
+    - "Call 999 if your baby gets worse or you cannot get to A&E safely"
+    - "Trust your instincts. If you think something is seriously wrong, get help straight away."
+  where_to_go: "Call 999 or go to A&E. Ask someone to drive you so you can watch your baby, or call 999. Bring your baby's red book if you have it."
+  source: nhs_baby_seriously_ill
+  also_informed_by: [nhs_sepsis, nhs_colic, nhs_diarrhoea_and_vomiting]
+
+- id: advice_baby_urgent
+  what_to_do: "Call 111 now, or ask for an urgent GP appointment. Your baby needs to be checked today."
+  look_out_for:
+    - "A weak, high-pitched cry, or a cry that does not sound like their usual cry"
+    - "Being floppy, very sleepy or hard to wake"
+    - "Breathing very fast, or grunting"
+    - "A dry nappy for 12 hours"
+    - "Being sick green, or blood in their poo"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your baby gets any of the signs above"
+    - "Trust your instincts. If you think something is seriously wrong, call 999."
+  where_to_go: "Call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep offering feeds little and often. Keep breastfeeding, or give formula as usual. Do not make formula weaker."
+  source: nhs_baby_seriously_ill
+  also_informed_by: [nhs_dehydration, nhs_bronchiolitis]
+
+- id: advice_baby_gp
+  what_to_do: "Your answers do not show signs of serious illness. See a GP or your health visitor if you are worried about your baby's crying or feeding, or they are not putting on weight."
+  look_out_for:
+    - "A weak, high-pitched cry, or a cry that does not sound like their usual cry"
+    - "Feeding much less than usual, or fewer wet nappies"
+    - "A high temperature"
+    - "Being sick green, or blood in their poo"
+  get_more_help_when:
+    - "Call 111 if your baby is feeding much less, has a high temperature, or you are worried"
+    - "Call 999 or go to A&E if your baby is floppy, hard to wake, or has a weak or high-pitched cry"
+    - "If you are finding it hard to cope, talk to your health visitor or GP, or call 111"
+  where_to_go: "Make an appointment with a GP, or talk to your health visitor. For urgent help call 111. In an emergency call 999."
+  self_care:
+    - "Hold or cuddle your baby when they are crying, and try gently rocking them or a warm bath"
+    - "Hold your baby upright during feeds, and wind them after feeds"
+    - "If you feel you cannot cope, put your baby somewhere safe, such as their cot, and take a few minutes for yourself"
+  source: nhs_colic
+  also_informed_by: [nhs_baby_seriously_ill]

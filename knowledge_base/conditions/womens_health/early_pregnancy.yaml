@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: early_pregnancy
+body_system: womens_health
+entry_symptoms: [missed_or_late_period, irregular_periods, breast_pain]
+name: "Pregnancy"
+medical_name: "Pregnancy"
+snomed: "77386006"
+# The most common cause of a missed period. Level routine: see a GP or midwife
+# to start pregnancy care. Could be pregnant is linked as a finding here, so it
+# is asked when it matters.
+acuity_needed: routine
+danger: minor
+sex: female
+prevalence: rare
+prevalence_when:
+  - {finding: pregnant_now, prevalence: very_common}
+  - {finding: missed_or_late_period, prevalence: common}
+findings:
+  may_be_pregnant: strongly_supports
+  missed_or_late_period: strongly_supports
+  nausea_or_vomiting: supports
+  breast_pain: supports
+  very_tired: supports
+  peeing_more_often: supports
+key_findings: [may_be_pregnant, nausea_or_vomiting]
+source: nhs_pregnancy_signs
+informed_by: [nhs_pregnancy_signs, nhs_missed_or_late_periods, nhs_breast_pain]

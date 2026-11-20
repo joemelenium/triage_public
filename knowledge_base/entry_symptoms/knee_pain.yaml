@@ -1,0 +1,177 @@
+# Entry symptom: knee pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# Must-not-miss causes: an infected knee joint (septic arthritis), a broken
+# bone or dislocated kneecap, bleeding into the joint (especially on medicine
+# that thins the blood), a blood clot in the leg (DVT), and in children a hip
+# problem felt in the knee (slipped upper femoral epiphysis or Perthes).
+
+id: knee_pain
+name: "Knee pain"
+presenting_finding: knee_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: knee_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - changed_shape
+      - bone_through_skin
+      - numb_after_injury
+      - limb_cold_pale_or_blue
+      - heard_snap_at_injury
+
+  - id: knee_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - severe_pain
+      - cannot_bear_weight
+      - cannot_move_painful_part
+      - badly_swollen
+      - knee_gives_way_or_locks
+      - swollen_area_red_hot
+      - very_high_temperature
+      - joint_out_of_place
+      - dvt_signs
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_knee_injury_misshapen
+    description: "Knee injury where the knee has changed shape or became very swollen very quickly, or a bone is sticking out"
+    when: {any: [bone_through_skin, {all: [injury_or_fall, {any: [changed_shape, badly_swollen]}]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E. Call 999 if you cannot move your leg because of the pain."}
+    advice: advice_msk_emergency_ae
+    source: nhs_dislocated_kneecap
+    note: "The Knee pain page says get advice from 111 if the knee is badly swollen or has changed shape. The Dislocated kneecap page says A&E after an injury. The more urgent is used after an injury."
+
+  - id: rf_knee_injury_pop
+    description: "Knee injury with a pop or snap felt at the time"
+    when: heard_snap_at_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_dislocated_kneecap
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Dislocated kneecap page says A&E if you felt a pop or snap in your knee. The Knee pain page links a pop during injury to a torn ligament or cartilage, and says 111 only if the knee is unstable. The more urgent is used, marked soft so a likely torn ligament can lower it."
+
+  - id: rf_knee_numb_after_injury
+    description: "Numbness, tingling or no feeling in the leg or foot after a knee injury"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_sprains_and_strains
+
+  - id: rf_knee_cold_leg
+    description: "Leg or foot cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_sprains_and_strains
+    note: "A dislocated knee can damage the main blood vessel behind it. Applying the rule without an injury is AI judgement."
+
+  - id: rf_knee_dvt_breathless
+    description: "Signs of a blood clot in the leg with shortness of breath or chest pain"
+    when: {all: [dvt_signs, {any: [short_of_breath, chest_pain]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dvt_emergency
+    source: nhs_deep_vein_thrombosis
+
+  - id: rf_knee_child_unwell
+    description: "A child with knee pain who feels generally unwell, with a high temperature or feeling hot, cold or shivery"
+    when: {all: [age_under_16, {any: [very_high_temperature, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+
+  - id: rf_knee_child_no_weight
+    description: "A child with knee pain who cannot put any weight on the leg"
+    when: {all: [age_under_16, cannot_bear_weight]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    note: "The Limping in children page says 999 or A&E for a child who cannot put any weight on their leg. Split from the soft rule below, so the likely conditions cannot lower it."
+
+  - id: rf_knee_child_sudden_or_no_weight
+    description: "A child with sudden knee or thigh pain"
+    when: {all: [age_under_16, pain_started_suddenly]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "The Limping in children page says 999 or A&E, as hip problems can be felt in the knee. The Irritable hip page says urgent GP or 111. The more urgent is used, marked soft."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_knee_severe
+    description: "Very painful knee"
+    when: severe_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get advice from NHS 111 now, or go to an urgent treatment centre"}
+    advice: advice_knee_pain_urgent
+    source: nhs_knee_pain
+
+  - id: rf_knee_cannot_move_or_weight
+    description: "Cannot move the knee or put any weight on it"
+    when: {any: [cannot_move_painful_part, cannot_bear_weight]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get advice from NHS 111 now, or go to an urgent treatment centre"}
+    advice: advice_knee_pain_urgent
+    source: nhs_knee_pain
+
+  - id: rf_knee_swollen_or_misshapen
+    description: "Knee badly swollen or changed shape"
+    when: {any: [badly_swollen, changed_shape]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get advice from NHS 111 now"}
+    advice: advice_knee_pain_urgent
+    source: nhs_knee_pain
+
+  - id: rf_knee_locks
+    description: "Knee locks, gives way or painfully clicks"
+    when: knee_gives_way_or_locks
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get advice from NHS 111 now"}
+    advice: advice_knee_pain_urgent
+    source: nhs_knee_pain
+
+  - id: rf_knee_infection_signs
+    description: "Knee hot and swollen, red, or with a high temperature or feeling hot, cold or shivery"
+    when: {any: [swollen_area_red_hot, red_or_discoloured_skin, very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get advice from NHS 111 now"}
+    advice: advice_joint_infection_urgent
+    source: nhs_septic_arthritis
+    note: "The Knee pain page lists a high temperature with redness or heat around the knee. The Septic arthritis and Joint pain pages say urgent help for any one of these. The more urgent reading is used."
+
+  - id: rf_knee_kneecap_went_back
+    description: "Thinks the kneecap moved out of place, even if it went back by itself"
+    when: joint_out_of_place
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_knee_pain_urgent
+    source: nhs_dislocated_kneecap
+
+  - id: rf_knee_blood_thinners_swelling
+    description: "A swollen knee in someone who takes medicine that thins the blood"
+    when: {all: [takes_blood_thinners, swollen_area]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get advice from NHS 111 today"}
+    advice: advice_knee_pain_urgent
+    source: ai_judgement
+    note: "The Knee pain page says bleeding into the joint is more likely on medicine that thins the blood. Making it urgent is AI judgement, needs clinical review."
+
+  - id: rf_knee_dvt
+    description: "Signs of a blood clot in the leg: one leg swollen, warm and painful, usually in the calf"
+    when: dvt_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dvt_urgent
+    source: nhs_deep_vein_thrombosis
+
+outcome_rules:
+  - id: or_knee_gp
+    description: "Knee pain that has not improved within a few weeks, is getting worse, or is stopping usual activities"
+    when: {any: [pain_not_improving, pain_getting_worse_or_recurring, stopping_daily_activities]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_knee_pain
+
+default:
+  description: "Knee pain with nothing that needs more help: treat it at home and it should start to feel better in a few days"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "You should start to feel better in a few days"}
+  advice: advice_knee_pain_self_care
+  source: nhs_knee_pain

@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: object_in_ear
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain, hearing_loss]
+name: "Something stuck in the ear"
+medical_name: "Foreign body in ear"
+snomed: "75441006"
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  # What tells it apart: something has gone into the ear, often in a child. Do not try to remove it
+  # yourself.
+  object_in_ear: strongly_supports
+  hearing_loss_one_ear: supports
+  ear_discharge: supports
+  ear_feels_blocked: supports
+key_findings: [object_in_ear]
+source: nhs_earache
+informed_by: [nhs_earache, nhs_glue_ear]

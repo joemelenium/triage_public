@@ -1,0 +1,86 @@
+id: cg_h01
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: A 45-year-old man with a dry cough that has lingered for 2 weeks after a cold. It is slowly improving and he otherwise feels well.
+opening_statement: I had a cold a couple of weeks ago and the cough just hasn't gone. It's getting a bit better but I wanted to check it's normal.
+findings:
+  present:
+  - cough
+  - cough_dry
+  - recent_viral_illness
+  absent:
+  - severe_breathing_difficulty
+  - lips_or_skin_blue_grey
+  - sudden_confusion
+  - coughing_up_blood
+  - chest_pain
+  - difficulty_breathing
+  - short_of_breath
+  - breathing_very_fast
+  - skin_blotchy
+  - rash_does_not_fade
+  - feels_very_unwell
+  - cough_very_bad_or_worsening
+  - swollen_neck_glands
+  - cough_3_weeks_or_more
+  - very_high_temperature
+  - weight_loss
+  - night_sweats
+  - weakened_immune_system
+  - long_term_condition
+  - wheezing
+  - smoker
+  - cough_phlegm
+  - hoarse_voice
+  - tb_contact_or_travel
+  - frequent_chest_infections
+  - symptoms_worse_or_not_better
+  - cold_or_shivery
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 45
+    sex: male
+  full:
+    age: 45
+    sex: male
+expected:
+  acuity: self_manageable
+  level_of_care: self_care
+  timeframe: not_needed
+minimum_safe_acuity: self_manageable
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP if the cough lasts more than 3 weeks
+  any_of:
+  - 3 weeks
+  - three weeks
+- point: Rest and drink plenty of fluids
+  any_of:
+  - rest
+  - fluids
+- point: Get urgent help (111 or urgent GP) if the cough gets much worse, breathing becomes hard, chest pain or coughing up blood
+  any_of:
+  - '111'
+  - urgent GP
+source:
+  expected_outcome:
+    page: cough.txt
+    quote: A cough will usually clear up on its own within 3 to 4 weeks.
+  minimum_safe_acuity:
+    page: cough.txt
+    quote: There's usually no need to see a GP if you have a cough.
+variants:
+- id: cg_h01_v1
+  style: worried and rambling
+  opening_statement: It's been two weeks now since my cold and I'm still coughing, it's dry, no blood or anything, I'm not breathless, but my wife says I should get it checked because it's been going on so long.
+  volunteered:
+  - recent_viral_illness
+  - cough_dry
+  - coughing_up_blood
+  - short_of_breath
+atypical: false
+notes: Post-viral cough under 3 weeks. Over-triage would be the mistake.

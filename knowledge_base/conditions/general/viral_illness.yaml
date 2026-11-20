@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: viral_illness
+body_system: general
+# The commonest cause of a high temperature or feeling unwell, in children and adults: a cold,
+# a tummy bug, or another virus. It gets better on its own. Also covers tiredness for a few
+# weeks after a virus.
+entry_symptoms: [very_high_temperature, generally_unwell, very_tired, baby_unsettled_or_not_feeding]
+name: "Viral infection (such as a cold, a tummy bug or another virus)"
+medical_name: "Viral infection, unspecified"
+snomed: "34014006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_under_5, prevalence: very_common}
+findings:
+  # What tells it apart: cold or tummy bug symptoms, aching, and no danger signs.
+  blocked_or_runny_nose: strongly_supports
+  aching_body: supports
+  cough: supports
+  diarrhoea_or_vomiting: supports
+  very_high_temperature: supports
+  very_tired: supports
+key_findings: [blocked_or_runny_nose, aching_body, diarrhoea_or_vomiting]
+source: ai_judgement
+informed_by: [nhs_fever_in_children, nhs_fever_in_adults, nhs_common_cold, nhs_diarrhoea_and_vomiting]

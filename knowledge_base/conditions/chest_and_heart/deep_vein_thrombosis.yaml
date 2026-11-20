@@ -1,0 +1,44 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: deep_vein_thrombosis
+body_system: chest_and_heart
+# A blood clot in a deep vein, usually in one leg, sometimes in an arm. The page says an
+# urgent GP appointment or 111, and 999 with breathlessness or chest pain (a clot in the
+# lung, its own card). Things that make a clot more likely raise the starting chance, as
+# in the blood clot in the lung card.
+entry_symptoms: [swollen_ankles, swollen_arm_or_hand, leg_cramps, knee_pain, foot_pain]
+name: "Blood clot in a vein, usually in the leg (deep vein thrombosis, DVT)"
+medical_name: "Deep venous thrombosis"
+snomed: "128053003"
+acuity_needed: urgent
+danger: critical
+prevalence: uncommon
+prevalence_when:
+  - {finding: previous_blood_clot, prevalence: common}
+  - {finding: recent_surgery_or_immobile, prevalence: common}
+  - {finding: has_cancer, prevalence: common}
+  - {finding: pregnant_or_recently_given_birth, prevalence: common}
+  - {finding: recent_long_journey, prevalence: common}
+  - {finding: pill_or_hrt, prevalence: common}
+  - {finding: swollen_ankles, prevalence: uncommon}
+  - {finding: swollen_arm_or_hand, prevalence: uncommon}
+  - {finding: leg_cramps, prevalence: rare}
+  - {finding: knee_pain, prevalence: rare}
+  - {finding: foot_pain, prevalence: rare}
+findings:
+  # What tells it apart from fluid build-up: pain and swelling in one leg only, often in the
+  # calf, that came on over hours or days.
+  leg_pain_or_swelling: strongly_supports
+  swelling_severe_painful_or_sudden: supports
+  swollen_area_red_hot: supports
+  # From the bones_joints_muscles card for this condition (merged):
+  dvt_signs: strongly_supports
+  swollen_area: supports
+  red_or_discoloured_skin: supports
+key_findings: [leg_pain_or_swelling, recent_surgery_or_immobile, previous_blood_clot, dvt_signs]
+source: nhs_deep_vein_thrombosis
+informed_by: [nhs_deep_vein_thrombosis, nhs_oedema, nhs_swollen_arms_and_hands_oedema]
+# Merged with the bones_joints_muscles card for this condition. Its notes:
+# Critical because the clot can travel to the lungs. Things that make a clot more likely
+# raise the starting chance; they are not linked as findings, because most people with a
+# clot have none of them.

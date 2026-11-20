@@ -1,0 +1,61 @@
+id: wh_d11
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- irregular_periods
+summary: A 23-year-old woman's periods have come every 6 to 8 weeks for the past year. She has put on weight and
+  has thick dark hair growing on her chin. She is not trying to get pregnant and is not on hormonal contraception.
+opening_statement: My periods are all over the place, sometimes two months apart. I've also put on weight and I've
+  got hair growing on my chin which is really getting me down.
+findings:
+  present:
+  - irregular_periods
+  - excess_hair_growth
+  - weight_gain
+  absent:
+  - may_be_pregnant
+  - missed_3_periods
+  - bleeding_between_periods
+  - periods_last_over_7_days
+  - pelvic_pain
+  - hormonal_contraception
+  - hormone_medicine_started_recently
+  - stress_weight_or_exercise_change
+  - difficulty_getting_pregnant
+  - heavy_periods
+  - tired_for_weeks
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 23
+    sex: female
+  full:
+    age: 23
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Keep track of periods
+  any_of:
+  - diary
+  - app
+  - track
+source:
+  expected_outcome:
+    page: irregular_periods.txt
+    quote: you have irregular periods and other symptoms like weight gain, tiredness, hair growth on your face,
+      and dry or oily skin
+  minimum_safe_acuity:
+    page: irregular_periods.txt
+    quote: Irregular periods are not usually a sign of a problem.
+atypical: false
+notes: Possible PMOS (irregular_periods.txt). She has not missed 3 periods in a row. 'Dry or oily skin' and acne
+  have no question id and are left out.

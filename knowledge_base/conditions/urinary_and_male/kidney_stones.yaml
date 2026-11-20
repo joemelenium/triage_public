@@ -1,0 +1,47 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: kidney_stones
+body_system: urinary_and_male
+entry_symptoms: [stomach_ache, back_pain, blood_in_urine, painful_or_frequent_peeing, smelly_urine, testicle_pain, pelvic_pain, stomach_pain_in_pregnancy]
+name: "Kidney stones"
+medical_name: "Kidney stone (renal colic)"
+snomed: "95570007"
+# The Kidney stones page says an urgent GP appointment or 111 for severe pain.
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: rare}
+  - {finding: had_kidney_stones_before, prevalence: common}
+  - {finding: blood_in_urine, prevalence: common}
+  - {finding: testicle_pain, prevalence: uncommon}
+  - {finding: stomach_ache, prevalence: uncommon}
+  - {finding: back_pain, prevalence: uncommon}
+  - {finding: painful_or_frequent_peeing, prevalence: uncommon}
+  - {finding: smelly_urine, prevalence: rare}
+  - {finding: pelvic_pain, prevalence: rare}
+  - {finding: stomach_pain_in_pregnancy, prevalence: rare}
+findings:
+  # What tells it apart: severe pain in the side or back, coming in waves, going
+  # to the groin, sometimes with blood in the pee.
+  loin_pain: strongly_supports
+  sa_comes_in_waves: strongly_supports
+  blood_in_urine: supports
+  sa_severe: supports
+  feeling_sick: supports
+  vomiting: supports
+  # From the urinary_and_male card for this condition (merged):
+  loin_pain_severe_in_waves: strongly_supports
+  pain_spreads_to_groin: strongly_supports
+  nausea_or_vomiting: supports
+  had_kidney_stones_before: supports
+  peeing_more_often: supports
+key_findings: [loin_pain, sa_comes_in_waves, blood_in_urine, loin_pain_severe_in_waves, pain_spreads_to_groin, had_kidney_stones_before, nausea_or_vomiting]
+source: nhs_kidney_stones
+informed_by: [nhs_kidney_stones, nhs_stomach_ache, nhs_blood_in_urine, nhs_smelly_urine]
+# Merged with the urinary_and_male card for this condition. Its notes: A candidate for testicle pain because the pain
+# can spread to the testicle, so it is a look-alike for a twisted testicle. The Kidney
+# stones page asks for an urgent GP appointment or 111 for severe pain or a high
+# temperature. Danger serious: a stone that blocks an infected kidney is an emergency.
+# What tells it apart: severe pain in the side that comes in waves, so the person cannot
+# keep still, and spreads to the groin.

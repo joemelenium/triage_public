@@ -1,0 +1,103 @@
+# Entry symptom: tiredness and fatigue.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Uses the network's existing "very tired" observation as its main symptom, so a
+# "yes" to it in another session (for example a cough) brings these rules in too.
+# The NHS page has no emergency or urgent advice. The emergency and urgent rules
+# here come from the diabetes pages (a new diagnosis of type 1 diabetes can show
+# first as tiredness) and are marked with their source.
+
+id: tiredness
+name: "Tiredness or fatigue"
+presenting_finding: very_tired
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_tiredness_and_fatigue]
+
+screens:
+  - id: tiredness_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - fruity_breath
+      - breathing_deep_and_fast
+      - sob_at_rest
+
+  - id: tiredness_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_thirsty
+      - peeing_more_often
+      - weight_loss
+      - paler_than_usual
+      - low_mood
+
+red_flags:
+  - id: rf_tired_drowsy
+    description: "So drowsy they are hard to wake or cannot stay awake, or a child who is floppy or not responding as usual"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_unwell_emergency
+    source: nhs_sepsis
+    note: "Being sleepier than usual or hard to wake is a sign of sepsis, and of diabetic ketoacidosis on the Type 1 diabetes page. Applying it to tiredness is AI judgement: it is the line between being tired and being dangerously drowsy."
+
+  - id: rf_tired_ketoacidosis_signs
+    description: "Tired, with breath that smells fruity or breathing faster and more deeply than usual: possible diabetic ketoacidosis"
+    when: {any: [fruity_breath, breathing_deep_and_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_ketoacidosis_emergency
+    source: nhs_diabetic_ketoacidosis
+
+  - id: rf_tired_breathless_at_rest
+    description: "Tired and short of breath even when resting"
+    when: sob_at_rest
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_breathless_urgent
+    source: ai_judgement
+    note: "Same as the breathlessness rule. Breathlessness at rest with tiredness can be severe anaemia or heart failure."
+
+  - id: rf_tired_type_1_diabetes
+    description: "Tired, very thirsty and peeing more, in a child or with weight loss: possible type 1 diabetes"
+    when: {all: [very_thirsty, peeing_more_often, {any: [age_under_16, weight_loss]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_type_1_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    note: "The Type 1 diabetes page says an urgent GP appointment or 111 if you think you or your child has type 1 diabetes, and lists the 4 Ts: toilet, thirsty, tired, thinner. Requiring a child or weight loss, so that an adult more likely to have type 2 diabetes gets a routine appointment, is AI judgement."
+
+outcome_rules:
+  - id: or_tired_for_weeks
+    description: "Tired for a few weeks or more, without knowing why"
+    when: tired_for_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tiredness_gp
+    source: nhs_tiredness_and_fatigue
+
+  - id: or_tired_affects_daily_life
+    description: "Tiredness that affects daily life"
+    when: tiredness_affects_daily_life
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tiredness_gp
+    source: nhs_tiredness_and_fatigue
+
+  - id: or_tired_other_symptoms
+    description: "Tired with other symptoms: weight loss, low mood, or gasping or choking noises in sleep"
+    when: {any: [weight_loss, low_mood, breathing_stops_in_sleep, tired_worse_after_activity]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tiredness_gp
+    source: nhs_tiredness_and_fatigue
+    note: "The ME/CFS sign (extreme tiredness for 3 months, worse after activity) is added from the conditions table on the same page."
+
+  - id: or_tired_thirsty_peeing
+    description: "Tired, very thirsty and peeing more than usual: possible diabetes"
+    when: {all: [very_thirsty, peeing_more_often]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tiredness_gp
+    source: nhs_tiredness_and_fatigue
+
+default:
+  description: "Tiredness with nothing that needs more help: try the self-help advice first"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "It's normal to feel tired sometimes. See a GP if it goes on for a few weeks."}
+  advice: advice_tiredness_self_care
+  source: nhs_tiredness_and_fatigue

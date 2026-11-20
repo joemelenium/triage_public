@@ -1,0 +1,177 @@
+# Entry symptom: toothache.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by the conditions that look likely.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Toothache page, with the Dental abscess, Gum disease,
+# Knocked-out tooth and Wisdom tooth removal pages, and clinical knowledge where
+# marked ai_judgement. Tooth and gum problems go to a dentist, not a GP: the
+# Toothache page says a GP cannot give dental treatment.
+
+id: toothache
+name: "Toothache"
+presenting_finding: toothache
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: toothache_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - swelling_around_eye
+      - swelling_in_neck_or_under_tongue
+      - difficulty_breathing
+      - difficulty_swallowing
+      - difficulty_speaking
+      - difficulty_opening_mouth
+      - vision_change_sudden
+      - jaw_pain_with_heart_signs
+
+  - id: toothache_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - face_or_jaw_swollen
+      - very_high_temperature
+      - toothache_throbbing
+      - tooth_knocked_out
+      - bleeding_after_tooth_removed
+      - gums_very_sore_or_teeth_loose
+      - feels_very_unwell
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_th_heart_signs
+    description: "Jaw or tooth pain that comes on with activity, or with a tight chest, sweating or feeling sick"
+    when: jaw_pain_with_heart_signs
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: ai_judgement
+    note: "Clinical knowledge: pain from the heart can be felt in the jaw or teeth. The Heart attack and Chest pain pages say call 999 for pain that spreads to the jaw with feeling sweaty, sick or short of breath."
+
+  - id: rf_th_eye_or_neck_swelling
+    description: "Toothache with swelling around the eye or in the neck"
+    when: {any: [swelling_around_eye, swelling_in_neck_or_under_tongue]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_toothache_ae
+    source: nhs_toothache
+
+  - id: rf_th_breathe_swallow_speak
+    description: "Toothache and finding it hard to breathe, swallow or speak"
+    when: {any: [difficulty_breathing, difficulty_swallowing, difficulty_speaking]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_toothache_ae
+    source: nhs_dental_abscess
+    note: "The Toothache page says go to A&E if swelling in the mouth or neck makes it hard to breathe, swallow or speak. The Dental abscess page says call 999 or go to A&E for any of these."
+
+  - id: rf_th_vision
+    description: "Toothache with sudden problems with eyesight"
+    when: vision_change_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_toothache_ae
+    source: nhs_dental_abscess
+
+  - id: rf_th_opening_mouth
+    description: "Toothache and finding it hard to open the mouth"
+    when: difficulty_opening_mouth
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_toothache_ae
+    source: nhs_dental_abscess
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Dental abscess page says call 999 or go to A&E if you are finding it hard to open your mouth. The jaw joint (TMD) page says an urgent GP appointment or 111 for difficulty opening the mouth fully. The more urgent is used, marked soft."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_th_face_swollen
+    description: "Toothache with a swollen face, cheek or jaw"
+    when: face_or_jaw_swollen
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment. If you cannot get one, call 111."}
+    advice: advice_dentist_urgent
+    source: nhs_dental_abscess
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Toothache page says see a dentist (not urgent) if your cheek or jaw is swollen. The Dental abscess page says ask for an urgent dentist appointment if you think you have an abscess. The more urgent is used, marked soft."
+
+  - id: rf_th_high_temperature
+    description: "Toothache with a high temperature"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment. If you cannot get one, call 111."}
+    advice: advice_dentist_urgent
+    source: nhs_dental_abscess
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Toothache page says see a dentist (not urgent) for toothache with a high temperature. The Dental abscess page lists a high temperature as a sign of an abscess, which needs an urgent dentist appointment."
+
+  - id: rf_th_throbbing
+    description: "Intense, throbbing toothache that keeps you awake"
+    when: toothache_throbbing
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment. If you cannot get one, call 111."}
+    advice: advice_dentist_urgent
+    source: nhs_dental_abscess
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "AI reading of the Dental abscess page, which lists intense toothache as the main sign of an abscess and says ask for an urgent dentist appointment if you think you have one."
+
+  - id: rf_th_knocked_out
+    description: "An adult tooth has been knocked out"
+    when: tooth_knocked_out
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an emergency dentist appointment as soon as possible. If you cannot get one, call 111."}
+    advice: advice_knocked_out_tooth
+    source: nhs_knocked_out_tooth
+
+  - id: rf_th_bleeding_after_tooth_out
+    description: "Bleeding that does not stop where a tooth was taken out"
+    when: {all: [tooth_removed_recently, bleeding_after_tooth_removed]}
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment, or get help from NHS 111"}
+    advice: advice_dentist_urgent
+    source: nhs_wisdom_tooth_removal
+
+  - id: rf_th_gums_very_sore
+    description: "Very sore and swollen gums, or teeth becoming loose or falling out"
+    when: gums_very_sore_or_teeth_loose
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment. If you cannot get one, call 111."}
+    advice: advice_dentist_urgent
+    source: nhs_gum_disease
+
+  - id: rf_th_feels_unwell
+    description: "Toothache and feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment, or get help from NHS 111"}
+    advice: advice_dentist_urgent
+    source: nhs_wisdom_tooth_removal
+    note: "The Wisdom tooth removal page says ask for an urgent dentist appointment or get help from 111 for pain with a high temperature or feeling unwell."
+
+outcome_rules:
+  - id: or_th_over_2_days
+    description: "Toothache that lasts more than 2 days"
+    when: toothache_over_2_days
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_toothache_dentist
+    source: nhs_toothache
+
+  - id: or_th_painkillers
+    description: "Toothache that does not go away with painkillers"
+    when: toothache_painkillers_not_helping
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_toothache_dentist
+    source: nhs_toothache
+
+  - id: or_th_biting_gums_taste
+    description: "Toothache with pain when biting, red gums, or a bad taste in the mouth"
+    when: {any: [pain_when_biting, gums_sore_swollen_bleeding, bad_taste_in_mouth]}
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_toothache_dentist
+    source: nhs_toothache
+
+  - id: or_th_broken_tooth
+    description: "A cracked or broken tooth, or a filling that has come out"
+    when: tooth_cracked_or_filling_lost
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_toothache_dentist
+    source: nhs_toothache
+    note: "The Toothache page lists a cracked tooth or a loose or broken filling as a cause of toothache. Seeing a dentist for it is an AI reading."
+
+default:
+  description: "Toothache for 2 days or less with nothing that needs more help: ease it while you wait"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Ease the pain yourself. See a dentist if it lasts more than 2 days."}
+  advice: advice_toothache_self_care
+  source: nhs_toothache

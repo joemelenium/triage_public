@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dislocated_joint
+body_system: bones_joints_muscles
+entry_symptoms: [shoulder_pain, arm_pain, hand_pain, knee_pain, joint_pain, injury_or_fall]
+name: "A dislocated joint (a bone pushed out of its usual place), such as a shoulder, kneecap or finger"
+medical_name: "Dislocation of joint"
+snomed: "108367008"
+acuity_needed: emergency
+danger: serious
+prevalence: rare
+findings:
+  joint_out_of_place: strongly_supports
+  changed_shape: strongly_supports
+  cannot_move_painful_part: strongly_supports
+  injury_or_fall: strongly_supports
+  severe_pain: supports
+key_findings: [joint_out_of_place, changed_shape, cannot_move_painful_part]
+source: nhs_dislocated_shoulder
+informed_by: [nhs_dislocated_shoulder, nhs_dislocated_kneecap, nhs_joint_pain]

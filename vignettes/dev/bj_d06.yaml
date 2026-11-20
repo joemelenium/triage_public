@@ -1,0 +1,72 @@
+id: bj_d06
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- knee_pain
+- joint_pain
+summary: 67-year-old man with rheumatoid arthritis whose right knee became hot, red and swollen over a day. He feels hot and shivery and can hardly bend it. No injury.
+opening_statement: My right knee has swollen up overnight, it's red and hot and I feel shivery.
+findings:
+  present:
+  - knee_pain
+  - joint_pain
+  - one_joint_only
+  - swollen_area
+  - swollen_area_red_hot
+  - red_or_discoloured_skin
+  - very_high_temperature
+  - came_on_over_hours_or_days
+  - has_rheumatoid_arthritis
+  - severe_pain
+  absent:
+  - injury_or_fall
+  - cut_bite_or_puncture
+  - had_gout_before
+  - joint_replacement
+  - several_joints
+  - sudden_confusion
+  - breathing_very_fast
+  - skin_blotchy
+  - takes_blood_thinners
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 67
+    sex: male
+  full:
+    age: 67
+    sex: male
+    findings:
+      has_rheumatoid_arthritis: 'yes'
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Hot, red, swollen knee with a high temperature (possible joint infection)
+  findings:
+  - swollen_area_red_hot
+  - very_high_temperature
+  minimum_acuity: urgent
+  source:
+    page: knee_pain.txt
+    quote: you have a very high temperature (or feel hot, cold or shivery) and have redness or heat around your knee
+safety_netting_should_cover:
+- point: Get advice from 111 now
+  any_of:
+  - '111'
+- point: Go to A&E or call 999 if he becomes confused or very unwell
+  any_of:
+  - '999'
+  - A&E
+source:
+  expected_outcome:
+    page: knee_pain.txt
+    quote: you have a very high temperature (or feel hot, cold or shivery) and have redness or heat around your knee
+  minimum_safe_acuity:
+    page: septic_arthritis.txt
+    quote: you have pain in a joint and feel generally unwell and have a high temperature, or feel hot, cold or shivery
+atypical: false
+notes: Possible septic arthritis. septic_arthritis.txt lists people 'with rheumatoid arthritis' as more at risk. knee_pain.txt says 'Get advice from 111 now'; septic_arthritis.txt says 'Ask for an urgent GP appointment or get help from NHS 111'. Both urgent. No sepsis signs (confusion, fast breathing, blotchy skin) are present.

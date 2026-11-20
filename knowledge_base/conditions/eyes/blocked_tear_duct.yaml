@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: blocked_tear_duct
+body_system: eyes
+# The tube that drains tears is blocked. Common in babies, when it usually gets
+# better by itself. In adults a GP can refer for treatment if it stops everyday
+# activities (a rule).
+entry_symptoms: [watering_eyes]
+name: "Blocked tear duct (the small tube that drains tears is blocked)"
+medical_name: "Nasolacrimal duct obstruction"
+snomed: "314022009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_1, prevalence: very_common}
+findings:
+  watering_baby_since_birth: strongly_supports
+  watering_constant: strongly_supports
+  sticky_discharge: supports
+  watering_affects_daily_life: supports
+key_findings: [watering_constant, watering_baby_since_birth]
+source: nhs_watering_eyes
+informed_by: [nhs_watering_eyes]

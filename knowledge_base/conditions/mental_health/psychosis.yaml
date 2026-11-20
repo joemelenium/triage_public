@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: psychosis
+body_system: mental_health
+entry_symptoms: [hearing_or_seeing_things, agitated_or_out_of_control, low_mood, feeling_anxious]
+name: "Psychosis (losing touch with what is real)"
+medical_name: "Psychotic disorder"
+snomed: "69322001"
+# A new episode needs an urgent mental health assessment (AI judgement; the
+# Charles Bonnet syndrome page says get urgent help for hallucinations).
+acuity_needed: urgent
+danger: serious
+diagnosed_by: has_psychosis_history
+prevalence: rare
+prevalence_when:
+  - {finding: has_psychosis_history, prevalence: very_common}
+  - {finding: hearing_or_seeing_things, prevalence: common}
+  - {finding: agitated_or_out_of_control, prevalence: uncommon}
+findings:
+  # What tells it apart from harmless hallucinations or delirium: false beliefs,
+  # muddled thinking, not knowing the experiences are not real, while alert.
+  believes_things_not_true: strongly_supports
+  hearing_or_seeing_things: strongly_supports
+  muddled_thinking: supports
+  voices_telling_to_harm: supports
+  withdrawn_from_others: supports
+  not_slept_for_nights: supports
+key_findings: [believes_things_not_true, muddled_thinking, voices_telling_to_harm, recent_drug_use]
+source: nhs_psychosis
+informed_by: [nhs_psychosis, nhs_charles_bonnet]

@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pneumothorax
+body_system: breathing
+# No NHS page for this is saved in the source log, so the card is AI judgement.
+entry_symptoms: [short_of_breath, chest_pain]
+name: "Collapsed lung (pneumothorax)"
+medical_name: "Pneumothorax"
+snomed: "36118008"
+# Needs a chest X-ray in hospital the same day. Danger serious, not critical: a
+# large, life-threatening one causes severe breathing difficulty, which the red
+# flags already send to 999. Most often in tall, thin young men and in smokers.
+acuity_needed: emergency
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart from a chest infection or a strain: it starts suddenly,
+  # with sharp pain on one side that is worse breathing in.
+  sob_sudden: strongly_supports
+  cp_sharp_or_stabbing: strongly_supports
+  cp_worse_breathing_in: strongly_supports
+  short_of_breath: strongly_supports
+  cp_present_now: supports
+  heart_beating_very_fast: supports
+  smoker: supports
+key_findings: [sob_sudden, cp_sharp_or_stabbing, cp_worse_breathing_in, smoker]
+source: ai_judgement
+informed_by: [nhs_shortness_of_breath, nhs_chest_pain]

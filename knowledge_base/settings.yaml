@@ -1,0 +1,144 @@
+# Settings for the whole knowledge base.
+# Everything a clinician might want to change about scales and limits lives here.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+kb_version: "0.4.0"
+status: "AI-drafted, not clinically reviewed"
+
+# ---------------------------------------------------------------------------
+# Outcome scales. PLACEHOLDERS until aligned with the national acuity scale
+# and the Triage Outcome Model. The order of each list matters: the first
+# entry is the most urgent or most intensive.
+# ---------------------------------------------------------------------------
+acuity:
+  - {id: emergency,       label: "Emergency (help now)"}
+  - {id: urgent,          label: "Urgent (help today)"}
+  - {id: soon,            label: "Soon (help within a few days)"}
+  - {id: routine,         label: "Routine (help needed, timing not critical)"}
+  - {id: self_manageable, label: "Self-manageable"}
+
+level_of_care:
+  - {id: emergency_ambulance,  label: "Emergency ambulance"}
+  - {id: emergency_department, label: "Emergency department"}
+  - {id: urgent_care,          label: "Urgent care"}
+  - {id: general_practice,     label: "General practice"}
+  - {id: dental,               label: "Dentist"}
+  - {id: community_pharmacy,   label: "Community pharmacy"}
+  - {id: self_care,            label: "Self-care"}
+
+timeframe:
+  - {id: now,           label: "Now"}
+  - {id: today,         label: "Today"}
+  - {id: few_days,      label: "Within a few days"}
+  - {id: no_fixed_time, label: "No fixed time given in the source"}
+  - {id: not_needed,    label: "No appointment needed"}
+
+# How NHS website wording was turned into the scales above. This mapping is
+# AI judgement and needs clinical review. It is written here so it is visible.
+#   "Call 999"                                   -> emergency, emergency_ambulance, now
+#   "Call 999 or go to A&E"                      -> emergency, emergency_department, now
+#   "Urgent GP appointment or get help from 111" -> urgent, urgent_care, today
+#   "See a GP" (the site labels this non-urgent) -> routine, general_practice, no_fixed_time
+#   "See a pharmacist"                           -> routine, community_pharmacy, no_fixed_time
+#   Self-care advice only                        -> self_manageable, self_care, not_needed
+
+# ---------------------------------------------------------------------------
+# Limits
+# ---------------------------------------------------------------------------
+# The most questions the engine will ask before it must give an outcome. Red-flag
+# questions and checklists do not count: every red flag is always checked.
+question_limit: 20
+
+# ---------------------------------------------------------------------------
+# What to return when no module covers the presenting symptom.
+# The universal red-flag screen is still run first.
+# ---------------------------------------------------------------------------
+not_covered:
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today}
+  advice: advice_not_covered
+  source: ai_judgement
+  note: "Cautious placeholder. The NHS website says to get help from NHS 111 if you are not sure what to do. Mapping that to 'urgent' is AI judgement."
+
+# ---------------------------------------------------------------------------
+# Probability bands. ALL AI JUDGEMENT. NOT SOURCED.
+# This engine is a mock-up of a condition-based triage engine, so best-judgement
+# estimates are used where no better figure exists. Never for clinical use.
+# ---------------------------------------------------------------------------
+# How common a possible cause is among people with the presenting symptom.
+prevalence_bands:
+  very_common: 0.40
+  common: 0.15
+  uncommon: 0.04
+  rare: 0.01
+  very_rare: 0.002   # rare diseases that only become plausible with a telling sign (for example a cough for 3 weeks)
+
+# How often someone with a possible cause would say "yes" to a finding.
+support_bands:
+  strongly_supports: 0.80
+  supports: 0.50
+  argues_against: 0.03
+  strongly_argues_against: 0.01
+
+# Used when a possible cause says nothing about a finding.
+background_chance: 0.10
+
+# A stand-in for "some other cause not listed", so likelihoods never add up
+# to false certainty.
+other_cause_prevalence: 0.15
+
+# ---------------------------------------------------------------------------
+# How the outcome is decided.
+#   rules_and_conditions  Firm rules (red flags and other sourced rules) set a
+#                         floor. Above that floor, the level comes from the
+#                         conditions that look likely. Rules marked "soft", and
+#                         each module's default, can be raised OR lowered by them.
+#                         This is how condition-based triage engines work.
+#   rules_only            sourced rules alone. Kept so the two can be compared.
+# ---------------------------------------------------------------------------
+outcome_method: rules_and_conditions
+
+# How the likelihood of each condition is worked out:
+#   single_cause  one condition (or something not on the list) explains everything.
+#   noisy_or      a Bayesian network: several conditions can be present at once, and
+#                 evidence for one can "explain away" a symptom that points to another.
+#                 The closest published equivalent to condition-based engines.
+inference_method: noisy_or
+
+# RISK BALANCE: DANGER CLASSES. Every possible condition has a danger class,
+# set by how bad it would be to miss it. Each class has two lines:
+#   likely    above this chance, the outcome is the level the condition needs
+#   possible  above this chance, the outcome is one step below that level, and
+#             the engine asks more questions if any could settle it
+# Conditions in the same class that need the same level are added together, so
+# several small chances of something dangerous count as one bigger chance.
+# The lines are far lower for dangerous conditions: a small chance of something
+# life-threatening is acted on, while a minor condition must be likely to count.
+# "weight" says how much learning about a class matters when choosing questions.
+# AI JUDGEMENT, starting values to tune against the test cases and the sweep.
+danger_classes:
+  critical: {possible: 0.01, likely: 0.03, weight: 1.0}    # life-threatening if missed
+  serious:  {possible: 0.05, likely: 0.15, weight: 0.5}    # real harm if missed or delayed
+  moderate: {possible: 0.15, likely: 0.30, weight: 0.25}   # needs seeing, little harm from a short delay
+  minor:    {possible: 0.30, likely: 0.50, weight: 0.0}    # usually gets better on its own
+
+# If "something not on the list" is at least this likely, the conditions do not
+# explain the patient well enough to LOWER an outcome. They can still raise it.
+unknown_cause_threshold: 0.50
+# To lower an outcome, something the patient said must also point to a condition
+# that is at least this likely and needs no more than the lower level.
+min_likelihood_to_explain: 0.20
+
+# The level of care, timeframe and advice used when likely conditions set the level.
+condition_outcomes:
+  emergency: {level_of_care: emergency_department, timeframe: now, advice: advice_condition_emergency}
+  urgent: {level_of_care: urgent_care, timeframe: today, advice: advice_condition_urgent}
+  soon: {level_of_care: general_practice, timeframe: few_days, advice: advice_condition_soon}
+  routine: {level_of_care: general_practice, timeframe: no_fixed_time, advice: advice_condition_routine}
+  self_manageable: {level_of_care: self_care, timeframe: not_needed, advice: advice_condition_self_care}
+
+# Questions that tell the possible conditions apart. A question is asked only if
+# a yes or a no would move the danger-weighted risk by at least this much, or
+# would change the outcome outright.
+min_risk_shift_to_ask: 0.01
+# The most of these questions asked in one session, to keep the burden down.
+max_condition_questions: 8

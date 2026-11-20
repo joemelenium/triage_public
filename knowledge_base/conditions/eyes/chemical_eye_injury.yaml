@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chemical_eye_injury
+body_system: eyes
+# A chemical, especially an alkali such as oven cleaner, cement or plaster, can
+# burn the eye. Rinse for at least 20 minutes, then A&E. Critical because the
+# damage to sight happens within minutes.
+entry_symptoms: [something_in_eye, red_eye, eye_pain]
+name: "Chemical in the eye"
+medical_name: "Chemical injury of the eye"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: chemical_in_eye, prevalence: very_common}
+findings:
+  chemical_in_eye: strongly_supports
+  eye_pain: supports
+  red_eye: supports
+  watering_eyes: supports
+key_findings: [chemical_in_eye]
+source: nhs_eye_injuries
+informed_by: [nhs_eye_injuries, nhs_red_eye]

@@ -1,0 +1,156 @@
+# Entry symptom: feeling out of control, or very agitated or restless.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Must-not-miss causes: sudden confusion (delirium) from a physical illness,
+# poisoning or a bad reaction to a drug, severe alcohol withdrawal, a very high
+# mood (mania) and psychosis. Low blood sugar and head injury are covered by the
+# brain and nerves body system. Crisis needs use the emergency department or
+# urgent care, with advice naming crisis lines.
+
+id: agitated_or_out_of_control
+name: "Feeling out of control or very agitated"
+presenting_finding: agitated_or_out_of_control
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: agitation_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - cannot_keep_safe
+      - taken_overdose
+      - drug_bad_reaction
+      - severe_withdrawal_signs
+      - had_a_fit
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - very_high_temperature
+      - chest_pain
+
+  - id: agitation_urgent_screen
+    level: urgent
+    question: "These questions help us find the right help. Do any of these apply? Choose all that apply."
+    findings:
+      - alcohol_or_drug_stopped_recently
+      - came_on_over_hours_or_days
+      - aggressive_or_violent
+      - suicidal_thoughts_or_self_harm
+      - hearing_or_seeing_things
+      - believes_things_not_true
+      - high_mood_now
+      - pregnant_or_recently_given_birth
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ag_cannot_keep_safe
+    description: "Cannot keep themselves or someone else safe right now"
+    when: cannot_keep_safe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: nhs_urgent_mental_health
+
+  - id: rf_ag_overdose
+    description: "Agitated after an overdose, or after swallowing something harmful"
+    when: taken_overdose
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_overdose_or_injury
+    source: nhs_poisoning
+
+  - id: rf_ag_drug_reaction
+    description: "Agitated and very unwell after taking a drug"
+    when: drug_bad_reaction
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_poisoning_ae
+    source: nhs_poisoning
+
+  - id: rf_ag_severe_withdrawal
+    description: "Signs of severe alcohol withdrawal"
+    when: severe_withdrawal_signs
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_withdrawal_ae
+    source: nhs_alcohol_misuse
+
+  - id: rf_ag_after_stopping
+    description: "Very restless or upset after stopping or cutting down alcohol, or a drug or medicine they rely on"
+    when: alcohol_or_drug_stopped_recently
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_withdrawal_ae
+    source: nhs_alcohol_misuse
+    note: "The Alcohol misuse page lists being unusually restless, irritable or upset after stopping drinking as severe withdrawal (999 or A&E). Applying it to other drugs or medicines someone relies on is AI judgement."
+
+  - id: rf_ag_fit
+    description: "Agitated and has had a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_mh_physical_cause_ae
+    source: nhs_poisoning
+
+  - id: rf_ag_drowsy
+    description: "Agitated, and at times very sleepy or hard to wake"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_physical_cause_ae
+    source: ai_judgement
+    note: "Clinical knowledge: restlessness that comes and goes with drowsiness is typical of sudden confusion (delirium), which the Confusion page says needs A&E or 999."
+
+  - id: rf_ag_high_temperature
+    description: "Agitated with a very high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_physical_cause_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: agitation with a high temperature can be an infection causing sudden confusion, overheating from a drug such as ecstasy, or a reaction to a medicine."
+
+  - id: rf_ag_sudden_older
+    description: "Agitation that came on suddenly, in someone aged 65 or over"
+    when: {all: [came_on_over_hours_or_days, age_65_or_over]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_mh_physical_cause_ae
+    source: nhs_confusion
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "Reading sudden agitation in an older person as possible sudden confusion (delirium) is AI judgement. The Confusion page says go to A&E or call 999 if someone suddenly becomes confused."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ag_aggressive
+    description: "Aggressive, violent or threatening to hurt someone"
+    when: aggressive_or_violent
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2) now. Call 999 if anyone is in danger."}
+    advice: advice_agitation_urgent
+    source: ai_judgement
+    note: "Clinical knowledge. If someone cannot be kept safe, the emergency rule applies."
+
+  - id: rf_ag_psychosis_or_mania
+    description: "Agitated with hearing or seeing things, believing things that are not true, or a very high mood"
+    when: {any: [hearing_or_seeing_things, believes_things_not_true, high_mood_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+    advice: advice_mh_urgent
+    source: nhs_bipolar
+    note: "The Bipolar disorder and Psychosis pages point to urgent help in a crisis. Making it same-day is AI judgement."
+
+  - id: rf_ag_after_birth
+    description: "Agitated or out of control while pregnant or within 6 weeks of giving birth (possible postpartum psychosis)"
+    when: pregnant_or_recently_given_birth
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "See a GP straight away and ask for an urgent assessment today. Call 111 if you cannot. Call 999 or go to A&E if anyone may be in danger."}
+    advice: advice_postpartum_psychosis_urgent
+    source: nhs_postpartum_psychosis
+    soft: true    # likely conditions may lower this: agitation after a birth has many milder causes
+    note: "The page lists restlessness and agitation among the signs, and says to get an assessment the same day. Soft, because restlessness after a birth is common."
+
+outcome_rules: []
+
+default:
+  description: "Feeling out of control or very agitated: get urgent mental health help today"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+  advice: advice_agitation_urgent
+  source: nhs_urgent_mental_health
+  # A floor: feeling out of control is treated as needing urgent help for mental
+  # health. Likely conditions can never take it lower.
+  floor: true
+  note: "The page says get advice from NHS 111 or ask for an urgent GP appointment if you need urgent help for your mental health. Treating feeling out of control or very agitated as that, for everyone, is AI judgement."

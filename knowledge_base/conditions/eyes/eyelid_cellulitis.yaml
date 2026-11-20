@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: eyelid_cellulitis
+body_system: eyes
+# A skin infection of the eyelid and the skin around the eye, in front of the
+# eye. Needs antibiotics the same day.
+entry_symptoms: [eyelid_problem, red_eye, eye_pain]
+name: "Skin infection of the eyelid and the skin around the eye"
+medical_name: "Preseptal (periorbital) cellulitis"
+snomed: "314516007"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: eyelid_problem, prevalence: uncommon}
+findings:
+  eyelid_red_hot_painful: strongly_supports
+  eyelid_swollen: strongly_supports
+  eyelid_lump_painful: supports    # can spread from a stye
+  very_high_temperature: supports
+key_findings: [eyelid_red_hot_painful, very_high_temperature]
+source: nhs_cellulitis
+informed_by: [nhs_cellulitis, nhs_eyelid_problems]

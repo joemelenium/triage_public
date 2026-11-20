@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: psoriatic_arthritis
+body_system: bones_joints_muscles
+entry_symptoms: [joint_pain, hand_pain, foot_pain]
+name: "Psoriatic arthritis (joint pain linked to psoriasis)"
+medical_name: "Psoriatic arthritis"
+snomed: "156370009"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: has_psoriasis, prevalence: common}
+findings:
+  swollen_area: supports
+  small_joints_hands_feet: supports
+  morning_stiffness_over_30_min: supports
+  pain_getting_worse_or_recurring: supports
+key_findings: [has_psoriasis, small_joints_hands_feet]
+source: nhs_psoriatic_arthritis
+informed_by: [nhs_psoriatic_arthritis]

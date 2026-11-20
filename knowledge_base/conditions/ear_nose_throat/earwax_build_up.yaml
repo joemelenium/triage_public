@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: earwax_build_up
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, ear_pain, tinnitus]
+name: "Earwax build-up"
+snomed: "18070006"
+acuity_needed: routine
+level_of_care: community_pharmacy
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a blocked, full feeling and muffled hearing, usually in one ear, sometimes
+  # after using cotton buds.
+  ear_feels_blocked: strongly_supports
+  hearing_loss_one_ear: supports
+  ear_itchy: supports
+  hearing_loss: supports
+  tinnitus: supports
+  water_or_cotton_buds_in_ear: supports
+key_findings: [ear_feels_blocked, hearing_loss_one_ear, water_or_cotton_buds_in_ear]
+source: nhs_earwax_build_up
+informed_by: [nhs_earwax_build_up, nhs_hearing_loss]

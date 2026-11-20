@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: intussusception
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, diarrhoea_or_vomiting, bleeding_from_bottom]
+name: "The bowel sliding into itself in a child (intussusception)"
+medical_name: "Intussusception"
+snomed: "49723003"
+acuity_needed: emergency
+danger: critical
+# Mostly between 3 months and 3 years old. Age is linked as a finding so that a
+# "no" makes it very unlikely in older children and adults.
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_5, prevalence: rare}
+findings:
+  screaming_bouts_pale_between: strongly_supports
+  vomiting: strongly_supports
+  bleeding_from_bottom: supports           # poo with blood and slime, like redcurrant jelly
+  mucus_in_poo: supports
+  child_floppy_or_hard_to_wake: supports
+  sa_comes_in_waves: supports
+key_findings: [screaming_bouts_pale_between, bleeding_from_bottom, mucus_in_poo]
+source: ai_judgement
+informed_by: [nhs_stomach_ache, nhs_reflux_in_babies]

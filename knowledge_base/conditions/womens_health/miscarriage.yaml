@@ -1,0 +1,34 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: miscarriage
+body_system: womens_health
+entry_symptoms: [bleeding_in_pregnancy, stomach_pain_in_pregnancy, heavy_periods, bleeding_between_periods_or_after_sex, period_pain, pelvic_pain, missed_or_late_period]
+name: "Miscarriage (loss of a pregnancy before 24 weeks)"
+medical_name: "Miscarriage, including threatened miscarriage"
+snomed: "17369002"
+# The most common cause of bleeding in early pregnancy. Level urgent: the
+# Miscarriage page says get urgent help for any bleeding in pregnancy, and call
+# 999 for heavy bleeding or severe pain (the red flags). Danger serious: heavy
+# bleeding can be dangerous, and an ectopic pregnancy must be ruled out.
+acuity_needed: urgent
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnancy_20_weeks_or_more, prevalence: rare}
+  - {finding: bleeding_in_pregnancy, prevalence: very_common}
+  - {finding: pregnancy_under_12_weeks, prevalence: common}
+  - {finding: pregnant_now, prevalence: uncommon}
+  - {finding: may_be_pregnant, prevalence: uncommon}
+  - {finding: stomach_pain_in_pregnancy, prevalence: uncommon}
+findings:
+  passed_tissue: strongly_supports
+  bleeding_in_pregnancy: strongly_supports
+  stomach_pain_in_pregnancy: supports
+  heavy_vaginal_bleeding: supports
+  bleeding_between_periods_or_after_sex: supports
+  pelvic_pain: supports
+  missed_or_late_period: supports
+key_findings: [passed_tissue, pregnancy_under_12_weeks, heavy_vaginal_bleeding]
+source: nhs_miscarriage
+informed_by: [nhs_miscarriage, nhs_vaginal_bleeding_pregnancy, nhs_stomach_pain_pregnancy]

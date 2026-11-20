@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: colic
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, baby_bringing_up_milk, baby_unsettled_or_not_feeding]
+name: "Colic (a baby crying a lot for no clear reason)"
+medical_name: "Infantile colic"
+snomed: "35363006"
+acuity_needed: self_manageable
+danger: minor
+# Babies only. Age is linked as a finding so that it is very unlikely in older
+# children and adults.
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_16_or_over, prevalence: very_rare}
+  - {finding: baby_unsettled_or_not_feeding, prevalence: common}
+  - {finding: age_under_1, prevalence: uncommon}
+findings:
+  crying_a_lot_hard_to_settle: strongly_supports
+  baby_will_not_stop_crying: supports
+  # From the general card for this condition (merged):
+  baby_crying_evenings_otherwise_well: strongly_supports
+key_findings: [crying_a_lot_hard_to_settle, baby_crying_evenings_otherwise_well]
+source: nhs_colic
+informed_by: [nhs_colic]
+# Merged with the general card for this condition. Its notes: Very common in the first
+# months and harmless, though hard on parents. The page says call 111 or see a GP if
+# worried, and A&E for a weak or high-pitched cry. What tells it apart from illness:
+# crying in the late afternoon or evening, pulling the knees up, but feeding and growing
+# well.

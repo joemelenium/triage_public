@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stroke_affecting_vision
+body_system: eyes
+# May also be built by the brain and nerves agent as a stroke card. This one is
+# for stroke or mini-stroke (TIA) that shows as a change in sight. The TIA page
+# says call 999 even if the signs go away.
+entry_symptoms: [vision_change, double_vision]
+name: "Stroke or mini-stroke (TIA) affecting the sight"
+medical_name: "Stroke or transient ischaemic attack with visual symptoms"
+acuity_needed: emergency
+danger: critical
+level_of_care: emergency_ambulance
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: rare}
+findings:
+  lost_half_of_vision: strongly_supports
+  vision_loss_brief: strongly_supports
+  vision_change_sudden: strongly_supports
+  difficulty_speaking: supports
+  dizziness: supports
+  double_vision_sudden: supports
+  heart_risk_factors: supports
+key_findings: [lost_half_of_vision, vision_loss_brief, dizziness, heart_risk_factors]
+source: nhs_stroke_symptoms
+informed_by: [nhs_stroke_symptoms, nhs_tia]

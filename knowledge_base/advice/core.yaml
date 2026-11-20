@@ -1,0 +1,814 @@
+# Advice: safety-netting and self-care text for each outcome.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Wording is adapted from the cited NHS website page, aiming for a reading age
+# of 9 to 11. Adapted text no longer carries the NHS website's clinical approval.
+#
+# Every entry has the three parts of safety-netting:
+#   look_out_for        what to watch for
+#   get_more_help_when  when to get more help
+#   where_to_go         where to get it
+
+# ---------------------------------------------------------------------------
+# Universal red flags
+# ---------------------------------------------------------------------------
+- id: advice_stroke
+  what_to_do: "Call 999 now. You may be having a stroke, or may have had one."
+  look_out_for:
+    - "One side of the face drooping"
+    - "Not being able to lift both arms and keep them up"
+    - "Slurred or confused speech"
+    - "Signs of a stroke can stop after a short time. Get help straight away even if they have stopped."
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  source: nhs_stroke_symptoms
+
+- id: advice_breathing_emergency
+  what_to_do: "Call 999 now."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person's condition changes"
+    - "Call 999 again if you move to a different place"
+  where_to_go: "Call 999. Do not drive yourself to A&E. Stay with the person until help arrives."
+  source: nhs_heart_attack
+  also_informed_by: [nhs_when_to_call_999]
+
+- id: advice_heavy_bleeding
+  what_to_do: "Call 999 or go to A&E now."
+  look_out_for:
+    - "Blood that comes out in spurts and is bright red and hard to control"
+    - "Blood coming through the bandage or cloth. If it does, put another one on top and keep pressing."
+  get_more_help_when:
+    - "Call 999 if you cannot stop the bleeding or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Press firmly on the wound with a bandage or a clean, folded cloth"
+    - "If something is stuck in the wound, do not take it out. Press on either side of it."
+    - "If the wound is on a hand or arm, raise it above your head. If it is on a leg, lie down and raise it above the level of your heart."
+  source: nhs_cuts_and_grazes
+
+- id: advice_self_harm
+  what_to_do: "Call 999 for an ambulance or go straight to A&E. Or ask someone else to call 999 or take you to A&E."
+  look_out_for:
+    - "Feeling that you may be about to harm yourself"
+  get_more_help_when:
+    - "If your life is in danger, call 999 now"
+    - "If you need someone to talk to, call Samaritans on 116 123 at any time, or text SHOUT to 85258"
+  where_to_go: "Call 999 or go straight to A&E. Try to be around other people and get yourself to a safe place."
+  source: nhs_suicidal_thoughts
+
+- id: advice_sudden_confusion
+  what_to_do: "Call 999 or go to A&E now."
+  look_out_for:
+    - "Severe difficulty breathing, such as gasping, choking or not being able to get words out"
+    - "Lips or skin turning very pale, blue or grey"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_shortness_of_breath
+
+# ---------------------------------------------------------------------------
+# Chest pain
+# ---------------------------------------------------------------------------
+- id: advice_chest_pain_999
+  what_to_do: "Call 999 now. You could be having a heart attack and need treatment in hospital straight away."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person's condition changes"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  self_care:
+    - "If you think you or someone else is having a heart attack, do these things while you wait for help."
+    - "Sit and rest on the floor with your knees bent and your back supported. If you cannot do this, sit on a chair."
+    - "Take aspirin (300mg) if you have any. Do not give aspirin to someone who has an aspirin allergy."
+    - "If you have angina (chest pain caused by narrowed blood vessels to the heart), use your spray if you have it with you. It goes under your tongue. It may be called glyceryl trinitrate or GTN."
+  source: nhs_heart_attack
+  also_informed_by: [nhs_chest_pain, nhs_angina]
+
+- id: advice_chest_pain_ae
+  what_to_do: "Call 999 or go to A&E now. This could be a sign of a serious condition."
+  look_out_for:
+    - "Pain that spreads to your arm, neck, jaw, stomach or back"
+    - "Your chest feeling tight or squeezed"
+    - "Feeling sweaty, sick, light-headed or short of breath"
+    - "Difficulty breathing that comes on suddenly, or passing out"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above. You could be having a heart attack."
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_pulmonary_embolism
+  also_informed_by: [nhs_chest_pain, nhs_heart_attack]
+
+- id: advice_chest_pain_urgent
+  what_to_do: "Get help from NHS 111 today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Sudden pain or discomfort in your chest that does not go away"
+    - "Chest pain that feels tight or like squeezing"
+    - "Pain that spreads to your arm, neck, jaw, stomach or back"
+    - "Chest pain with feeling sweaty, sick, light-headed or short of breath"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above. You could be having a heart attack."
+    - "Call 999 or go to A&E if the chest pain comes back and does not go away. Do the same if your heart beats very fast, you suddenly find it hard to breathe, or you pass out."
+  where_to_go: "Call 111 or use 111 online today. Call 999 if you get any of the signs above."
+  source: nhs_angina
+  also_informed_by: [nhs_chest_pain, nhs_heart_attack, nhs_pulmonary_embolism]
+
+- id: advice_chest_pain_urgent_gp_or_111
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Difficulty breathing that comes on suddenly"
+    - "Your heart beating very fast"
+    - "Passing out"
+    - "Sudden chest pain that does not go away, feels tight or like squeezing, or spreads to your arm, neck, jaw, stomach or back"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 999 or go to A&E if you get any of the signs above. Do not drive to A&E."
+  source: nhs_pulmonary_embolism
+  also_informed_by: [nhs_chest_pain, nhs_heart_attack]
+
+- id: advice_chest_pain_angina_urgent
+  what_to_do: "Get help from NHS 111 today, because your angina (chest pain caused by narrowed blood vessels to the heart) is worse than usual. You can call 111 or use 111 online."
+  look_out_for:
+    - "Chest pain that does not stop after a few minutes of rest. Or that does not stop after you take your angina medicine."
+    - "Sudden pain or discomfort in your chest that does not go away"
+    - "Pain that spreads to your arm, neck, jaw, shoulder, stomach or back"
+    - "Chest pain with feeling sweaty, sick, light-headed or short of breath"
+  get_more_help_when:
+    - "Call 999 now if you get any of the signs above. You could be having a heart attack."
+  where_to_go: "Call 111 or use 111 online today. Call 999 if you get any of the signs above. Do not drive yourself to A&E."
+  self_care:
+    - "If you get chest pain, stop what you are doing and rest"
+    - "Use the angina medicine you have been prescribed. This is usually a spray you use under your tongue. Take another dose after 5 minutes if the first dose does not help."
+    - "If you still have symptoms 5 minutes after the second dose, call 999 for an ambulance"
+  source: nhs_angina
+
+- id: advice_angina_self_care
+  what_to_do: "Follow the instructions you have been given for your angina. Angina is chest pain caused by narrowed blood vessels to the heart."
+  look_out_for:
+    - "Chest pain that does not stop after a few minutes of rest. Or that does not stop after you take your angina medicine."
+    - "Angina that feels worse than before, happens more often, lasts longer or happens when you are resting"
+    - "Pain that spreads to your arm, neck, jaw, shoulder, stomach or back"
+    - "Chest pain with feeling sweaty, sick, light-headed or short of breath"
+  get_more_help_when:
+    - "Call 999 if you still have pain 5 minutes after your second dose. Do not wait."
+    - "Call 999 now if the pain spreads, or you feel sweaty, sick, light-headed or short of breath. You could be having a heart attack."
+    - "Get help from NHS 111 if your angina is worse than before. For example, it comes more often, lasts longer, or comes when you are resting."
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online. In an emergency call 999. Do not drive yourself to A&E."
+  self_care:
+    - "Stop what you are doing and rest"
+    - "Use any medicine you have been prescribed. This is usually a spray you use under your tongue, called glyceryl trinitrate or GTN."
+    - "Take another dose after 5 minutes if the first dose does not help"
+  source: nhs_angina
+
+- id: advice_chest_pain_gp
+  what_to_do: "See a GP. Most chest pain is not a sign of anything serious, but get medical advice to make sure."
+  look_out_for:
+    - "Sudden pain or discomfort in your chest that does not go away"
+    - "Chest pain that feels tight or like squeezing"
+    - "Pain that spreads to your arm, neck, jaw, stomach or back"
+    - "Chest pain with feeling sweaty, sick, light-headed or short of breath"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above. You could be having a heart attack."
+    - "Call 999 or go to A&E if the chest pain comes back and does not go away. Do the same if your heart beats very fast, you suddenly find it hard to breathe, or you pass out."
+    - "Get help from NHS 111 if the chest pain keeps coming and going"
+  where_to_go: "Make an appointment with a GP. Call 999 if you get any of the signs above."
+  source: nhs_chest_pain
+  also_informed_by: [nhs_angina, nhs_heart_attack, nhs_pulmonary_embolism]
+
+# ---------------------------------------------------------------------------
+# Sore throat
+# ---------------------------------------------------------------------------
+- id: advice_sore_throat_emergency
+  what_to_do: "Call 999 or go to A&E now."
+  look_out_for:
+    - "Difficulty breathing"
+    - "Not being able to swallow, or drooling"
+    - "A high-pitched sound when breathing"
+    - "Swelling inside your mouth and throat. Or finding it hard to speak or open your mouth."
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_sore_throat
+  also_informed_by: [nhs_tonsillitis]
+
+- id: advice_sore_throat_urgent
+  what_to_do: "Ask for an urgent GP appointment or get advice from 111 now. You can call 111 or use 111 online."
+  look_out_for:
+    - "Difficulty breathing, or a high-pitched sound when you breathe"
+    - "Not being able to swallow, or drooling"
+    - "Severe symptoms that are getting worse quickly"
+    - "Swelling inside your mouth and throat. Or finding it hard to speak or open your mouth."
+  get_more_help_when:
+    - "Call 999 or go to A&E now if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 999 or go to A&E if you get any of the signs above."
+  self_care:
+    - "Drink plenty of water"
+    - "Eat cool or soft foods"
+    - "Rest"
+  source: nhs_sore_throat
+  also_informed_by: [nhs_tonsillitis]
+
+- id: advice_sore_throat_gp
+  what_to_do: "See a GP about your sore throat."
+  look_out_for:
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Signs of dehydration, such as peeing less than usual or dark, strong-smelling pee"
+    - "Difficulty breathing, not being able to swallow, drooling, or a high-pitched sound when you breathe"
+    - "Swelling inside your mouth and throat. Or finding it hard to speak or open your mouth."
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get a very high temperature, or you are worried. Do the same if you are peeing less than usual. This can be a sign of dehydration."
+    - "Get help from NHS 111 if you get pus-filled spots on your tonsils, at the back of your throat. Do the same if your throat is so sore it is hard to eat or drink."
+    - "Call 999 or go to A&E now if you find it hard to breathe, speak or open your mouth. Do the same if you cannot swallow, are drooling, or are quickly getting much worse."
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Gargle with warm, salty water (children should not try this)"
+    - "Drink plenty of water"
+    - "Eat cool or soft foods"
+    - "Avoid smoking or smoky places"
+    - "Rest"
+  source: nhs_sore_throat
+  also_informed_by: [nhs_tonsillitis]
+
+
+- id: advice_sore_throat_gp_lump_or_ulcer
+  what_to_do: "See a GP about the lump or the mouth ulcer, as well as your sore throat."
+  look_out_for:
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Signs of dehydration, such as peeing less than usual or dark, strong-smelling pee"
+    - "Difficulty breathing, not being able to swallow, drooling, or a high-pitched sound when you breathe"
+    - "Swelling inside your mouth and throat. Or finding it hard to speak or open your mouth."
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get a very high temperature, or you are worried. Do the same if you are peeing less than usual. This can be a sign of dehydration."
+    - "Get help from NHS 111 if you get pus-filled spots on your tonsils, at the back of your throat. Do the same if your throat is so sore it is hard to eat or drink."
+    - "Call 999 or go to A&E now if you find it hard to breathe, speak or open your mouth. Do the same if you cannot swallow, are drooling, or are quickly getting much worse."
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Gargle with warm, salty water (children should not try this)"
+    - "Drink plenty of water"
+    - "Eat cool or soft foods"
+    - "Avoid smoking or smoky places"
+    - "Rest"
+  source: nhs_sore_throat
+  also_informed_by: [nhs_tonsillitis]
+
+- id: advice_sore_throat_pharmacy
+  what_to_do: "See a pharmacist. They can suggest treatments, give advice, and give antibiotics if you need them."
+  look_out_for:
+    - "A sore throat that does not improve after a week"
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Difficulty breathing, not being able to swallow, drooling, or a high-pitched sound when you breathe"
+    - "Swelling inside your mouth and throat. Or finding it hard to speak or open your mouth."
+  get_more_help_when:
+    - "See a GP if your sore throat does not improve after a week"
+    - "Ask for an urgent GP appointment or call 111 if you get a very high temperature, or you are worried. Do the same if you are peeing less than usual. This can be a sign of dehydration."
+    - "Get help from NHS 111 if you get pus-filled spots on your tonsils, at the back of your throat. Do the same if your throat is so sore it is hard to eat or drink."
+    - "Call 999 or go to A&E now if you find it hard to breathe, speak or open your mouth. Do the same if you cannot swallow, are drooling, or are quickly getting much worse."
+  where_to_go: "Go to a pharmacy. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Gargle with warm, salty water (children should not try this)"
+    - "Drink plenty of water"
+    - "Eat cool or soft foods"
+    - "Avoid smoking or smoky places"
+    - "Suck ice cubes, ice lollies or hard sweets. Do not give young children anything small and hard to suck, because they could choke."
+    - "Rest"
+    - "Some medicines are not safe for everyone, for example if you are pregnant. Check the leaflet or ask the pharmacist before taking them."
+  source: nhs_sore_throat
+  also_informed_by: [nhs_tonsillitis]
+
+- id: advice_sore_throat_self_care
+  what_to_do: "You can treat this yourself. Sore throats usually get better by themselves within a week."
+  look_out_for:
+    - "A sore throat that does not improve after a week"
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Difficulty breathing, not being able to swallow, drooling, or a high-pitched sound when you breathe"
+    - "Swelling inside your mouth and throat. Or finding it hard to speak or open your mouth."
+  get_more_help_when:
+    - "See a pharmacist if you would like help with your sore throat"
+    - "See a GP if your sore throat does not improve after a week, or you often get sore throats"
+    - "Ask for an urgent GP appointment or call 111 if you get a very high temperature, or you are worried. Do the same if you are peeing less than usual. This can be a sign of dehydration."
+    - "Get help from NHS 111 if you get pus-filled spots on your tonsils, at the back of your throat. Do the same if your throat is so sore it is hard to eat or drink."
+    - "Call 999 or go to A&E now if you find it hard to breathe, speak or open your mouth. Do the same if you cannot swallow, are drooling, or are quickly getting much worse."
+  where_to_go: "You do not need an appointment now. A pharmacist can help if you need it. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Gargle with warm, salty water (children should not try this)"
+    - "Drink plenty of water"
+    - "Eat cool or soft foods"
+    - "Avoid smoking or smoky places"
+    - "Suck ice cubes, ice lollies or hard sweets. Do not give young children anything small and hard to suck, because they could choke."
+    - "Rest"
+  source: nhs_sore_throat
+  also_informed_by: [nhs_tonsillitis]
+
+# ---------------------------------------------------------------------------
+# Outcomes set by the conditions that look likely. AI judgement.
+# ---------------------------------------------------------------------------
+- id: advice_condition_emergency
+  what_to_do: "Call 999 or go to A&E now. Your answers suggest a problem that needs emergency help."
+  look_out_for:
+    - "Getting worse while you wait"
+    - "Severe difficulty breathing, passing out, or signs of a stroke"
+  get_more_help_when:
+    - "Call 999 straight away if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: ai_judgement
+
+- id: advice_condition_urgent
+  what_to_do: "Get help today. Ask for an urgent GP appointment, or call 111 or use 111 online. Your answers suggest a problem that should be checked today."
+  look_out_for:
+    - "Symptoms that get worse quickly"
+    - "Severe difficulty breathing, passing out, or signs of a stroke"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get suddenly worse or get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+
+- id: advice_condition_soon
+  what_to_do: "See a GP in the next few days. Your answers suggest a problem that should be checked soon."
+  look_out_for:
+    - "Symptoms that get worse or do not improve"
+    - "New symptoms"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get worse before you are seen"
+    - "Call 999 or go to A&E in an emergency"
+  where_to_go: "Make an appointment with a GP for the next few days. For urgent help call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+
+- id: advice_condition_self_care
+  what_to_do: "You can look after this yourself. Your answers do not point to anything that needs to be seen."
+  look_out_for:
+    - "Symptoms that get worse or do not improve"
+    - "New symptoms"
+  get_more_help_when:
+    - "See a pharmacist or GP if it does not improve or you are worried"
+    - "Ask for an urgent GP appointment or call 111 if you get worse"
+    - "Call 999 or go to A&E in an emergency"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+
+- id: advice_condition_routine
+  what_to_do: "See a GP. Your answers suggest a problem that should be checked, but it is not urgent."
+  look_out_for:
+    - "Symptoms that get worse or do not improve"
+    - "New symptoms"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get worse"
+    - "Call 999 or go to A&E in an emergency"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+
+# ---------------------------------------------------------------------------
+# Not covered
+# ---------------------------------------------------------------------------
+- id: advice_not_covered
+  what_to_do: "This tool does not cover your symptom, so it cannot assess it. Get help from NHS 111, which can check your symptoms and tell you what to do."
+  look_out_for:
+    - "Signs that your life is in danger. For example, signs of a stroke, very bad breathing problems, or bleeding that will not stop."
+  get_more_help_when:
+    - "Call 999 if you think it is a life-threatening emergency"
+  where_to_go: "Call 111 or use 111 online. Call 999 in an emergency."
+  source: nhs_when_to_call_999
+
+# ---------------------------------------------------------------------------
+# Chest and breathing pilot: breathlessness
+# ---------------------------------------------------------------------------
+- id: advice_breathless_ae
+  what_to_do: "Call 999 or go to A&E now. Your breathing problem could be a sign of something serious."
+  look_out_for:
+    - "Severe difficulty breathing, such as gasping, choking or not being able to get words out"
+    - "Lips or skin turning very pale, blue or grey"
+    - "Feeling suddenly confused"
+    - "Passing out"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above, or you get worse while you wait"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Sit upright. Try to stay calm and breathe slowly."
+    - "If you have a reliever inhaler, use it as your care team told you"
+  source: nhs_shortness_of_breath
+  also_informed_by: [nhs_pulmonary_embolism, nhs_covid_19]
+
+- id: advice_breathless_urgent
+  what_to_do: "Get help from NHS 111 or ask for an urgent GP appointment today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Breathing problems that come on suddenly or suddenly get much worse"
+    - "Being so short of breath you cannot say a short sentence"
+    - "Your chest feeling tight or heavy, or pain spreading to your arms, back, neck or jaw"
+    - "Lips or skin turning very pale, blue or grey, or feeling suddenly confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if you get any of the signs above"
+  where_to_go: "Call 111 or use 111 online today, or ask your GP surgery for an urgent appointment. In an emergency call 999 or go to A&E. Do not drive to A&E."
+  self_care:
+    - "Sit upright to help your breathing"
+    - "If you have a reliever inhaler, use it as your care team told you"
+  source: nhs_shortness_of_breath
+  also_informed_by: [nhs_heart_failure, nhs_pneumonia]
+
+- id: advice_breathless_gp
+  what_to_do: "See a GP about your breathlessness. It might not be anything serious, but it is important to find the cause. You are not wasting anyone's time."
+  look_out_for:
+    - "Difficulty breathing, or being more short of breath than usual"
+    - "Coughing up blood, or pain or swelling in one leg"
+    - "Your heart racing, going too slowly, skipping a beat or fluttering"
+    - "Your chest feeling tight or heavy, or breathing problems that come on suddenly"
+  get_more_help_when:
+    - "Contact NHS 111 if you find it hard to breathe, feel sick, cough up blood, or get pain or swelling in one leg"
+    - "Call 999 or go to A&E if you have severe difficulty breathing or your chest feels tight or heavy. Do the same if your lips or skin turn pale, blue or grey."
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Do not try to work out the cause yourself. A GP can check what is causing it."
+    - "If you smoke, stopping will help your breathing"
+  source: nhs_shortness_of_breath
+
+- id: advice_child_breathing_emergency
+  what_to_do: "Call 999 or go to A&E now. Your child needs to be checked in hospital straight away."
+  look_out_for:
+    - "Grunting noises, or their tummy sucking in under their ribs"
+    - "Pauses in their breathing"
+    - "Lips, tongue or skin turning blue, grey, pale or blotchy"
+    - "Being limp, floppy or hard to wake"
+  get_more_help_when:
+    - "Call 999 straight away if your child gets any of the signs above, or gets worse while you wait"
+    - "Trust your own judgement. If you think your child is seriously unwell, call 999."
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines your child takes."
+  self_care:
+    - "Keep your child upright and try to keep them calm. Crying can make breathing harder."
+    - "Do not put your child in a steamy room or get them to breathe in steam"
+  source: nhs_shortness_of_breath
+  also_informed_by: [nhs_croup, nhs_bronchiolitis, nhs_sepsis]
+
+- id: advice_child_breathing_999
+  what_to_do: "Call 999 now. Your child needs emergency help."
+  look_out_for:
+    - "Keep checking that your child is still responding and breathing"
+    - "If they stop responding and stop breathing, the 999 call handler will tell you how to start CPR. This means you press hard and fast on the middle of their chest."
+  get_more_help_when:
+    - "Call 999 again if your child's condition changes before help arrives"
+  where_to_go: "Call 999. Do not drive your child to A&E. Stay with your child until help arrives."
+  self_care:
+    - "Keep your child upright if they are awake, and try to keep them calm"
+  source: nhs_bronchiolitis
+  also_informed_by: [nhs_shortness_of_breath]
+
+- id: advice_anaphylaxis_999
+  what_to_do: "Call 999 now and say you think it is anaphylaxis, a severe allergic reaction. Use an adrenaline auto-injector (such as an EpiPen) straight away if you have one."
+  look_out_for:
+    - "Swelling of the lips, mouth, tongue or throat"
+    - "Struggling to breathe, or very wheezy"
+    - "Skin, tongue or lips turning blue, grey or pale"
+    - "Feeling faint, very confused or drowsy"
+  get_more_help_when:
+    - "If you are no better after 5 minutes, use a second auto-injector if you have one"
+    - "Call 999 again if the person gets worse or stops responding"
+  where_to_go: "Call 999 for an ambulance. Do not drive to A&E. Stay with the person until help arrives."
+  self_care:
+    - "Lie down. You can raise your legs. If you are struggling to breathe, sit up slowly."
+    - "If you are pregnant, lie on your left side"
+    - "If you were stung by an insect, try to remove the sting if it is still in the skin"
+    - "Do not stand or walk at any time, even if you feel better"
+  source: nhs_anaphylaxis
+
+- id: advice_asthma_attack_999
+  what_to_do: "Call 999 now. You may be having a severe asthma attack."
+  look_out_for:
+    - "Feeling worse at any time"
+    - "Lips or skin turning blue, grey or pale"
+    - "Feeling very tired, confused or drowsy"
+  get_more_help_when:
+    - "No better after 10 minutes and no ambulance yet? Use your reliever inhaler again. Take up to the same number of puffs."
+    - "Call 999 again if you get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  self_care:
+    - "Sit up straight and try to stay calm"
+    - "If you have a blue reliever inhaler, take 1 puff every 30 to 60 seconds, up to 10 puffs. Use a spacer if you have one."
+    - "If you have an inhaler you use both to prevent and treat symptoms, take 1 puff every 1 to 3 minutes, up to 6 puffs"
+    - "If your asthma action plan says something different, follow your plan"
+  source: nhs_asthma
+
+- id: advice_asthma_attack_urgent
+  what_to_do: "Use your reliever inhaler now, as your asthma action plan says. Then ask for an urgent GP appointment or get help from NHS 111 today, even if you feel better."
+  look_out_for:
+    - "Feeling worse at any time"
+    - "Your inhaler not helping, even after the most puffs you can take"
+    - "Not being able to say a short sentence because you are so short of breath"
+    - "Lips or skin turning blue, grey or pale"
+  get_more_help_when:
+    - "Call 999 now if you get any of the signs above, or you do not have your inhaler"
+    - "See a GP within 2 days of any asthma attack to check your treatment"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999. Do not drive yourself to A&E."
+  self_care:
+    - "Sit up straight and try to stay calm"
+    - "If you have a blue reliever inhaler, take 1 puff every 30 to 60 seconds, up to 10 puffs. Use a spacer if you have one."
+    - "If you have an inhaler you use both to prevent and treat symptoms, take 1 puff every 1 to 3 minutes, up to 6 puffs"
+  source: nhs_asthma
+
+- id: advice_asthma_gp
+  what_to_do: "See a GP or asthma nurse. Your asthma may need a change of treatment."
+  look_out_for:
+    - "Needing your reliever inhaler more and more"
+    - "Symptoms that wake you at night or stop you doing your usual activities"
+    - "An asthma attack: severe symptoms that make it hard to breathe"
+  get_more_help_when:
+    - "After any asthma attack, see a GP within 2 days, even if you feel better"
+    - "Call 999 if you have an asthma attack and get worse. Also call 999 if your inhaler does not help, or you do not have it."
+  where_to_go: "Make an appointment with a GP or asthma nurse. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Always have your reliever inhaler with you"
+    - "Use your inhalers as your care team told you. A pharmacist can check you are using them the right way."
+    - "Try to avoid things that set off your asthma, such as smoke, pollen or animals"
+  source: nhs_asthma
+
+- id: advice_asthma_self_care
+  what_to_do: "Follow your asthma action plan and use your inhalers as your care team told you."
+  look_out_for:
+    - "Needing your reliever inhaler more often than usual"
+    - "Symptoms that wake you at night or stop you doing your usual activities"
+    - "An asthma attack: severe symptoms that make it hard to breathe"
+  get_more_help_when:
+    - "See a GP if your treatment is not helping or you need your reliever inhaler more often"
+    - "Call 999 if you have an asthma attack and get worse. Also call 999 if your inhaler does not help, or you do not have it."
+  where_to_go: "You do not need an appointment now. For advice see your GP, asthma nurse or a pharmacist. In an emergency call 999."
+  self_care:
+    - "Always have your reliever inhaler with you"
+    - "Try to avoid things that set off your asthma, such as smoke, pollen or animals"
+    - "Have a flu vaccine each year. Viruses like flu can make asthma worse."
+  source: nhs_asthma
+
+- id: advice_sepsis_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs of sepsis, a life-threatening reaction to an infection. It needs treatment in hospital straight away."
+  look_out_for:
+    - "Breathing very fast, or finding it hard to breathe"
+    - "Skin, lips or tongue that are blue, grey, pale or blotchy"
+    - "A rash that does not fade when you press a glass against it"
+    - "Being confused, very sleepy or hard to wake"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+    - "Trust your instincts. If you think something is seriously wrong, get help straight away."
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_sepsis
+  also_informed_by: [nhs_covid_19]
+
+- id: advice_copd_flare_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your COPD, a long-term lung condition, is worse than usual."
+  look_out_for:
+    - "Severe difficulty breathing, such as gasping, choking or not being able to get words out"
+    - "Your chest feeling tight or heavy"
+    - "Lips or skin turning very pale, blue or grey"
+    - "Feeling suddenly confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999 or go to A&E. Do not drive yourself to A&E."
+  self_care:
+    - "Use your inhalers as your care team told you"
+    - "If you have a rescue pack of medicines at home, follow the instructions you were given"
+    - "Avoid smoke and strong smells, such as cleaning products or perfume"
+  source: nhs_copd
+
+# ---------------------------------------------------------------------------
+# Chest and breathing pilot: cough
+# ---------------------------------------------------------------------------
+- id: advice_cough_emergency
+  what_to_do: "Call 999 or go to A&E now. This could be a sign of a serious problem."
+  look_out_for:
+    - "Struggling to breathe, choking or gasping"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+    - "Feeling suddenly confused, or being very sleepy or hard to wake"
+    - "Coughing up more than a few streaks of blood"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above, or you get worse while you wait"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_cough
+  also_informed_by: [nhs_covid_19, nhs_whooping_cough, nhs_pneumonia]
+
+- id: advice_cough_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Struggling to breathe, or so short of breath you cannot say a short sentence"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+    - "Feeling suddenly confused, or a child who is floppy or hard to wake"
+    - "Coughing up more than a few streaks of blood, or sudden chest pain"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Take paracetamol or ibuprofen for any pain or a high temperature. Check the leaflet first."
+    - "Do not take cough medicine if you might have a chest infection. Coughing helps clear it."
+  source: nhs_cough
+  also_informed_by: [nhs_pneumonia, nhs_bronchitis]
+
+- id: advice_cough_gp
+  what_to_do: "See a GP about your cough. It is rarely a sign of something serious, but it should be checked."
+  look_out_for:
+    - "A cough that is very bad or quickly getting worse"
+    - "Coughing up blood"
+    - "Chest pain, or finding it hard to breathe"
+    - "Feeling very unwell, or a swollen, painful side of the neck"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 or go to A&E if you are struggling to breathe or your lips or skin turn blue or grey"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "If you smoke, stopping will help"
+  source: nhs_cough
+  also_informed_by: [nhs_tuberculosis, nhs_lung_cancer]
+
+- id: advice_cough_self_care
+  what_to_do: "You can treat this yourself. A cough usually clears up on its own within 3 to 4 weeks."
+  look_out_for:
+    - "A cough that lasts more than 3 weeks"
+    - "A cough that is very bad or quickly getting worse"
+    - "Chest pain, finding it hard to breathe, or coughing up blood"
+    - "Feeling very unwell"
+  get_more_help_when:
+    - "See a pharmacist if you would like help, such as cough sweets or syrup"
+    - "See a GP if you have had a cough for more than 3 weeks, or you are losing weight for no reason"
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 or go to A&E if you are struggling to breathe or your lips or skin turn blue or grey"
+  where_to_go: "You do not need an appointment now. A pharmacist can help if you need it. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Try to stay at home if you have a high temperature or do not feel well enough to do your usual things"
+    - "Take paracetamol or ibuprofen for any pain"
+    - "Try hot lemon and honey. Do not give honey to babies under 1, and do not give hot drinks to small children."
+    - "Some medicines are not safe for everyone, for example if you are pregnant. Check the leaflet or ask a pharmacist."
+  source: nhs_cough
+
+- id: advice_croup_urgent
+  what_to_do: "Ask for an urgent GP appointment or call NHS 111 today. A barking cough in a child can be croup, and a doctor may give medicine to help."
+  look_out_for:
+    - "Struggling to breathe: grunting, or the tummy sucking in under the ribs"
+    - "Blue, grey, pale or blotchy skin, lips or tongue"
+    - "Being sleepier than usual, hard to wake, or unusually quiet and still"
+    - "Drooling, finding it hard to swallow, or wanting to sit rather than lie down"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if your child gets any of the signs above. Do the same if they are very upset, struggle to breathe and cannot be calmed."
+    - "Call 111 again if your child is not getting better after seeing a doctor"
+  where_to_go: "Ask your GP surgery for an urgent appointment or call 111. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Sit your child upright and try not to let them lie down"
+    - "Comfort them and try to keep them calm. Crying can make it worse."
+    - "Give them plenty of fluids, and check on them often, including at night"
+    - "Do not put your child in a steamy room or get them to breathe in steam"
+  source: nhs_croup
+
+- id: advice_whooping_cough_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. This could be whooping cough, which can be serious in young babies."
+  look_out_for:
+    - "Lips, tongue, face or skin suddenly turning blue or grey"
+    - "Finding it hard to breathe, or shallow breathing"
+    - "Chest pain that is worse when breathing or coughing"
+    - "A seizure (fit)"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if you or your child get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111. For children aged 5 or over you can also use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Get plenty of rest and drink lots of fluids"
+    - "Do not give aspirin to children under 16"
+    - "Stay off school, work or nursery for 2 days after starting antibiotics. With no antibiotics, stay off for 3 weeks after the cough started."
+  source: nhs_whooping_cough
+
+# ---------------------------------------------------------------------------
+# Chest and breathing pilot: heart palpitations
+# ---------------------------------------------------------------------------
+- id: advice_palpitations_999
+  what_to_do: "Call 999 now. A fast or uneven heartbeat with these symptoms needs treatment in hospital straight away."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person's condition changes"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  self_care:
+    - "Sit or lie down and rest while you wait"
+  source: nhs_atrial_fibrillation
+  also_informed_by: [nhs_heart_palpitations, nhs_svt]
+
+- id: advice_palpitations_ae
+  what_to_do: "Call 999 or go to A&E now. Your heart palpitations are not going away and need to be checked."
+  look_out_for:
+    - "Chest pain"
+    - "Shortness of breath"
+    - "Feeling faint, or fainting"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above, or you get worse while you wait"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Sit down and rest while you wait"
+  source: nhs_heart_palpitations
+
+- id: advice_palpitations_urgent
+  what_to_do: "Ask your GP surgery for an urgent appointment, or get help from NHS 111 today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Palpitations that come back and do not go away"
+    - "Chest pain or shortness of breath while your heart is racing"
+    - "Feeling faint, or fainting"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your palpitations come back with any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999 or go to A&E. Do not drive yourself to A&E."
+  self_care:
+    - "Write down when the palpitations happen and how long they last. This helps the doctor."
+    - "Avoid caffeine, alcohol and smoking until you have been checked"
+  source: nhs_heart_palpitations
+  also_informed_by: [nhs_atrial_fibrillation]
+
+- id: advice_palpitations_gp
+  what_to_do: "See a GP about your heart palpitations. They are usually harmless, but it is important to get them checked."
+  look_out_for:
+    - "Palpitations that do not go away"
+    - "Chest pain or shortness of breath"
+    - "Feeling faint, or fainting"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you have palpitations now with any of the signs above, or they do not go away"
+    - "Ask for an urgent GP appointment or call 111 if you had these signs with palpitations that have now stopped"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Write down when the palpitations happen and how long they last"
+    - "Avoid things that can set them off, such as caffeine, alcohol, smoking and stress"
+  source: nhs_heart_palpitations
+
+- id: advice_palpitations_self_care
+  what_to_do: "Heart palpitations are common and usually harmless. You do not need to see anyone now if you feel well."
+  look_out_for:
+    - "Palpitations that keep coming back, or happen more often"
+    - "Palpitations that last longer than a few minutes"
+    - "Chest pain, shortness of breath, feeling faint or fainting"
+  get_more_help_when:
+    - "See a GP if they keep coming back, last longer than a few minutes, or you have a heart condition"
+    - "Call 999 or go to A&E if you have palpitations now that do not go away. Do the same if they come with chest pain, shortness of breath or feeling faint."
+  where_to_go: "You do not need an appointment now. For advice see a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Cut down on caffeine, alcohol and smoking"
+    - "Try to get enough sleep and find ways to manage stress"
+    - "Check the leaflet of any medicine you take, in case it can cause palpitations"
+  source: nhs_heart_palpitations
+
+# ---------------------------------------------------------------------------
+# Chest and breathing pilot: coughing up blood
+# ---------------------------------------------------------------------------
+- id: advice_coughing_blood_ae
+  what_to_do: "Call 999 or go to A&E now. This could be a sign of a serious problem, such as a blood clot in the lung (pulmonary embolism)."
+  look_out_for:
+    - "Coughing up more blood"
+    - "Severe difficulty breathing, such as gasping or not being able to get words out"
+    - "Lips or skin turning pale, blue or grey"
+    - "Passing out"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above, or you get worse while you wait"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_coughing_up_blood
+  also_informed_by: [nhs_pulmonary_embolism]
+
+- id: advice_coughing_blood_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Coughing up blood can have many causes, and it is important to get it checked as soon as possible."
+  look_out_for:
+    - "Coughing up more than just a few spots or streaks of blood"
+    - "Finding it hard to breathe"
+    - "A very fast heartbeat"
+    - "Pain in your chest or upper back"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999 or go to A&E. Do not drive to A&E."
+  source: nhs_coughing_up_blood
+
+# ---------------------------------------------------------------------------
+# Chest and breathing pilot: wheezing
+# ---------------------------------------------------------------------------
+- id: advice_wheezing_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Being so short of breath you cannot say a short sentence"
+    - "A child grunting, or their tummy sucking in under their ribs, or pauses in their breathing"
+    - "Lips, tongue or skin turning blue, grey or pale"
+    - "Swelling of the lips, mouth or throat"
+  get_more_help_when:
+    - "Call 999 now if you or your child get any of the signs above"
+    - "Trust your own judgement. If you think your child is seriously unwell, get help straight away."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Sit upright to help breathing. Keep a child upright as much as possible when they are awake."
+    - "If you have a reliever inhaler, use it as your care team told you"
+    - "Give a baby smaller feeds more often"
+    - "Do not smoke around children"
+  source: nhs_bronchiolitis
+  also_informed_by: [nhs_asthma, nhs_shortness_of_breath]
+
+- id: advice_wheezing_gp
+  what_to_do: "See a GP about the wheezing. It is often caused by asthma or a chest infection, and a GP can find the cause."
+  look_out_for:
+    - "Finding it hard to breathe, or wheezing that gets worse"
+    - "Being so short of breath you cannot say a short sentence"
+    - "Swelling of the lips, mouth or throat"
+    - "Lips, tongue or skin turning blue, grey or pale"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you find it hard to breathe or feel very unwell"
+    - "Call 999 if you cannot say a short sentence, your lips or skin turn blue or grey, or your lips, mouth or throat swell"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Try to avoid things that seem to set off the wheezing, such as smoke, pollen or animals"
+    - "If you smoke, stopping will help"
+  source: nhs_asthma

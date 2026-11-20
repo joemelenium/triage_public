@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dental_abscess
+body_system: ear_nose_throat
+entry_symptoms: [toothache, ear_pain, swollen_glands, bad_breath]
+name: "Dental abscess (a pocket of pus in a tooth or gum)"
+medical_name: "Dental abscess"
+snomed: "299709002"
+acuity_needed: urgent
+level_of_care: dental
+danger: moderate
+prevalence: common
+# Common among people with toothache. Less common as the cause of earache, swollen
+# glands or bad breath (AI judgement), where it had the same starting chance.
+prevalence_when:
+  - {finding: toothache, prevalence: common}
+  - {finding: ear_pain, prevalence: uncommon}
+  - {finding: swollen_glands, prevalence: uncommon}
+  - {finding: bad_breath, prevalence: uncommon}
+findings:
+  # What tells it apart from tooth decay: an intense, throbbing pain, a swollen face or jaw, a bad
+  # taste and sometimes a high temperature.
+  toothache_throbbing: strongly_supports
+  face_or_jaw_swollen: strongly_supports
+  toothache: strongly_supports
+  bad_taste_in_mouth: supports
+  pain_when_biting: supports
+  very_high_temperature: supports
+  swollen_neck_glands: supports
+  tooth_sensitive: supports
+key_findings: [face_or_jaw_swollen, toothache_throbbing, very_high_temperature, bad_taste_in_mouth]
+source: nhs_dental_abscess
+informed_by: [nhs_dental_abscess, nhs_toothache, nhs_earache]

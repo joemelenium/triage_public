@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: perforated_eardrum
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain, hearing_loss, tinnitus]
+name: "Perforated eardrum (a hole or tear in the eardrum)"
+medical_name: "Perforation of tympanic membrane"
+snomed: "60442001"
+acuity_needed: soon
+danger: moderate
+prevalence: uncommon
+findings:
+  # What tells it apart: it starts suddenly after an ear infection, a loud noise, a blow to the ear
+  # or a flight, with hearing loss in one ear and sometimes fluid or blood from the ear.
+  after_loud_noise_blow_or_flying: strongly_supports
+  ear_discharge: supports
+  ear_pain: supports
+  hearing_loss_one_ear: supports
+  hearing_loss_sudden: supports
+  tinnitus: supports
+key_findings: [after_loud_noise_blow_or_flying, ear_discharge, hearing_loss_sudden]
+source: nhs_perforated_eardrum
+informed_by: [nhs_perforated_eardrum, nhs_earache]

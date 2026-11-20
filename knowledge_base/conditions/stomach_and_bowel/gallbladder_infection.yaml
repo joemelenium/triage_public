@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: gallbladder_infection
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache]
+name: "A swollen, infected gallbladder (cholecystitis)"
+medical_name: "Acute cholecystitis"
+snomed: "65275009"
+# The Acute cholecystitis page says see a GP as soon as possible, or 111; it
+# usually needs hospital treatment.
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: has_gallstones, prevalence: uncommon}
+findings:
+  # What tells it apart from a gallstone attack: the pain does not go away, with a
+  # high temperature, and sometimes yellow skin.
+  sa_upper_right: strongly_supports
+  very_high_temperature: strongly_supports
+  sa_severe: supports
+  tummy_painful_to_touch: supports
+  vomiting: supports
+  shoulder_tip_pain: supports            # the pain can spread towards the right shoulder
+  yellow_skin_or_eyes: supports
+  loss_of_appetite: supports
+key_findings: [sa_upper_right, very_high_temperature, yellow_skin_or_eyes, has_gallstones]
+source: nhs_acute_cholecystitis
+informed_by: [nhs_acute_cholecystitis, nhs_gallstones]

@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pattern_hair_loss
+body_system: skin_and_hair
+entry_symptoms: [hair_loss]
+name: "Male or female pattern hair loss"
+medical_name: "Androgenetic alopecia"
+snomed: "87872006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: sex_male, prevalence: very_common}
+findings:
+  # What tells it apart: hair thinning slowly over months or years at the temples or top of the head, often running in the family.
+  hair_thinning_gradually: strongly_supports
+  family_history_hair_loss: supports
+key_findings: [hair_thinning_gradually, family_history_hair_loss]
+source: nhs_hair_loss
+informed_by: [nhs_hair_loss]

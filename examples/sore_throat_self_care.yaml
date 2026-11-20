@@ -1,0 +1,7 @@
+# Example case for trying the engine. Written alongside the knowledge base,
+# so it is NOT an evaluation case. Synthetic. Not a real patient.
+description: "Adult, 25, sore throat for two days, nothing else"
+presenting: [sore_throat]
+context:
+  age: 25
+otherwise: no

@@ -1,0 +1,52 @@
+id: wz_d07
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing, cough]
+
+summary: "A 58-year-old man with a chesty cough and a slight wheeze for five days after a cold. He feels tired but is getting about, with no breathlessness and no high temperature. His record shows chronic kidney disease, which he does not think is relevant; when asked about long-term conditions he says he is not sure whether his 'kidney thing' counts."
+
+opening_statement: "I've had a wheezy, chesty cough since a cold last week. Just want to know if I need anything for it."
+
+findings:
+  present: [wheezing, cough, cough_phlegm, recent_viral_illness, very_tired]
+  absent: [short_of_breath, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, difficulty_breathing, lips_or_skin_blue_grey, sudden_confusion, chest_pain, coughing_up_blood, phlegm_yellow_or_green, cough_mucus_or_temperature, very_high_temperature, feels_very_unwell, cough_very_bad_or_worsening, cough_3_weeks_or_more, breathing_very_fast, skin_blotchy, has_asthma, has_copd, smoker, known_heart_condition, weakened_immune_system, cold_or_shivery]
+  unknown: [long_term_condition]
+
+context:
+  none: {}
+  basic: {age: 58, sex: male}
+  full:
+    age: 58
+    sex: male
+    findings: {long_term_condition: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Speak to a GP because of his kidney condition (urgent appointment or NHS 111)"
+    any_of: ["GP", "111"]
+  - point: "Rest and fluids"
+    any_of: ["rest", "fluids", "water"]
+  - point: "Get help urgently if short of breath, chest pain, or coughing up blood"
+    any_of: ["short of breath", "breathless", "999", "blood"]
+
+source:
+  expected_outcome: {page: bronchitis.txt, quote: "you have a long-term condition, such as diabetes, or a heart, lung or kidney condition"}
+  minimum_safe_acuity: {page: chest_infection.txt, quote: "you have a long-term health condition, such as a heart, lung or kidney condition"}
+
+variants: []
+
+context_test:
+  what_context_adds: "The record shows a long-term kidney condition (long_term_condition yes). The patient is not sure it counts."
+  expected_direction: more_urgent
+
+atypical: false
+notes: "Context test. Without the record, this is a mild chest infection in an adult (chest_infection.txt: self-care, usually better in 7 to 10 days). With a long-term kidney condition: SOURCE DIFFERENCE — bronchitis.txt gives 'Urgent advice: Ask for an urgent GP appointment or get help from NHS 111' for a long-term heart, lung or kidney condition; chest_infection.txt gives 'Non-urgent advice: See a GP' for the same. Judgement: expected urgent (bronchitis.txt, reviewed more recently), minimum safe routine."

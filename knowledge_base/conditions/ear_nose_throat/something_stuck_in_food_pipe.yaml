@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: something_stuck_in_food_pipe
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing]
+name: "Food or an object stuck in the throat or food pipe"
+medical_name: "Food bolus obstruction or foreign body in oesophagus"
+snomed: "47609003"
+acuity_needed: urgent   # the source page says an urgent GP appointment or 111; its 999 signs are red flags (DECISIONS 167)
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart: it started suddenly while eating or after swallowing something, and now even
+  # spit will not go down.
+  unable_to_swallow: strongly_supports
+  feels_something_stuck: strongly_supports
+  drooling: supports
+  swallowed_battery_magnet_or_sharp: supports
+  food_sticks_in_chest: supports
+key_findings: [unable_to_swallow, swallowed_battery_magnet_or_sharp, drooling]
+source: ai_judgement
+informed_by: [nhs_swallowing_problems_dysphagia]

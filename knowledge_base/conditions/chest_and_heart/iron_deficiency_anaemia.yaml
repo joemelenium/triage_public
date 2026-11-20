@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: iron_deficiency_anaemia
+body_system: chest_and_heart
+entry_symptoms: [short_of_breath, palpitations, very_tired, dizziness, heavy_periods, sore_or_white_tongue, hair_loss, nail_problem]
+name: "Iron deficiency anaemia (too few red blood cells, from a lack of iron)"
+medical_name: "Iron deficiency anaemia"
+snomed: "87522002"
+# Danger moderate: the cause, such as bleeding in the gut, needs finding.
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: pregnant_or_recently_given_birth, prevalence: common}
+  - {finding: sex_female, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: heavy_periods, prevalence: common}
+findings:
+  # What tells it apart: pale skin and tiredness that have built up over weeks.
+  paler_than_usual: strongly_supports
+  very_tired: strongly_supports
+  sob_everyday_activity: supports
+  sob_slowly_worse: supports
+  palpitations: supports
+  nail_spoon_shaped: supports           # skin and hair batch: spoon-shaped nails
+key_findings: [paler_than_usual, very_tired, heavy_periods, sob_slowly_worse]
+source: nhs_iron_deficiency_anaemia
+informed_by: [nhs_iron_deficiency_anaemia, nhs_heart_palpitations, nhs_hair_loss, nhs_nail_problems]

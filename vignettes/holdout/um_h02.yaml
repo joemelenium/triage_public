@@ -1,0 +1,73 @@
+id: um_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- painful_or_frequent_peeing
+summary: 5-year-old girl who cries when she pees, is going much more often, wet herself at school today and has a high temperature. She is alert and drinking.
+opening_statement: My daughter says it stings when she wees, she's going all the time and she's had an accident at school. She feels really hot.
+findings:
+  present:
+  - painful_or_frequent_peeing
+  - pain_when_peeing
+  - peeing_more_often
+  - very_high_temperature
+  - wets_during_day
+  absent:
+  - drowsy_hard_to_wake
+  - child_floppy_or_hard_to_wake
+  - rash_does_not_fade
+  - vomiting
+  - loin_pain
+  - blood_in_urine
+  - stiff_neck
+  - breathing_very_fast
+  - child_dehydration_signs
+  - skin_blotchy
+  - sudden_confusion
+  - difficulty_speaking
+  - constipation
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 5
+    sex: female
+  full:
+    age: 5
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Possible urine infection in a child aged 15 or younger with a high temperature
+  findings:
+  - pain_when_peeing
+  - very_high_temperature
+  minimum_acuity: urgent
+  source:
+    page: uti.txt
+    quote: your child is aged 15 or younger
+safety_netting_should_cover:
+- point: Get an urgent GP appointment or call 111 today
+  any_of:
+  - urgent GP
+  - '111'
+- point: Paracetamol and fluids can help
+  any_of:
+  - paracetamol
+  - fluids
+- point: Call 999 or go to A&E if she becomes confused, drowsy or has difficulty speaking
+  any_of:
+  - '999'
+  - A&E
+source:
+  expected_outcome:
+    page: uti.txt
+    quote: your child is aged 15 or younger
+  minimum_safe_acuity:
+    page: uti.txt
+    quote: you have a very high or low temperature, feel hot or cold, or are shivering
+atypical: false
+notes: uti.txt lists wetting themselves and a high temperature among the symptoms of a UTI in children.

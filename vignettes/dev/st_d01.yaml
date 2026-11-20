@@ -1,0 +1,70 @@
+id: st_d01
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 34-year-old woman with a sore throat that has slowly got worse over three days. Today she cannot swallow anything, including her own saliva, and is dribbling into a tissue. She is breathing and speaking normally."
+
+opening_statement: "I've had a sore throat for three days and now I can't swallow at all, not even my own spit. I'm having to dribble into a tissue."
+
+findings:
+  present: [sore_throat, unable_to_swallow, drooling, too_painful_to_eat_or_drink, worried_about_symptoms,
+      wants_help_with_sore_throat, swollen_neck_glands, symptoms_worse_or_not_better]
+  absent: [difficulty_breathing, stridor, severe_and_worsening_quickly, swelling_in_mouth_and_throat,
+      difficulty_speaking, difficulty_opening_mouth, very_high_temperature, dehydration_signs,
+      weakened_immune_system, pus_on_tonsils, sore_throat_over_a_week, frequent_sore_throats,
+      lump_in_mouth_or_neck, mouth_ulcer_over_3_weeks, cough_or_runny_nose, very_tired,
+      stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out,
+      sudden_confusion, heavy_bleeding, serious_self_harm, chest_pain, short_of_breath, cold_or_shivery]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 34, sex: female}
+  full: {age: 34, sex: female}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Unable to swallow, including her own saliva"
+    findings: [unable_to_swallow]
+    minimum_acuity: emergency
+    source: {page: sore_throat.txt, quote: "have difficulty breathing or are unable to swallow"}
+  - description: "Drooling because she cannot swallow"
+    findings: [drooling]
+    minimum_acuity: emergency
+    source: {page: sore_throat.txt, quote: "are drooling – this can be a sign of not being able to swallow"}
+  - description: "Throat so painful that it is difficult to eat or drink"
+    findings: [too_painful_to_eat_or_drink]
+    minimum_acuity: urgent
+    source: {page: tonsillitis.txt, quote: "you have a sore throat so painful it's difficult to eat or drink"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now"
+    any_of: ["999", "A&E"]
+  - point: "Not to drive themselves to A&E"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: sore_throat.txt, quote: "Immediate action required: Call 999 or go to A&E now if:"}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "have difficulty breathing or are unable to swallow"}
+
+variants:
+  - id: st_d01_v1
+    style: "brief and frightened"
+    opening_statement: "I can't swallow. Not even my own spit. Please, what do I do?"
+    volunteered: [unable_to_swallow]
+  - id: st_d01_v2
+    style: "long, gives the whole history and several negatives up front"
+    opening_statement: "It started three days ago as an ordinary sore throat and it's slowly got worse. Since this morning I can't get anything down, not water, not even my own saliva, so I'm dribbling into a tissue. My breathing is fine and I can talk all right."
+    volunteered: [sore_throat, unable_to_swallow, drooling, too_painful_to_eat_or_drink, difficulty_breathing,
+        difficulty_speaking, symptoms_worse_or_not_better]
+
+atypical: false
+notes: "Plain emergency case. The two pages agree: sore_throat.txt ('are unable to swallow', 'are drooling') and tonsillitis.txt ('you cannot swallow') both say call 999 or go to A&E. The page offers either 999 or A&E, so emergency_department is used as the level of care, together with the page's advice not to drive there. The story is of slow worsening over days, so 'severe and getting worse quickly' is recorded as absent."

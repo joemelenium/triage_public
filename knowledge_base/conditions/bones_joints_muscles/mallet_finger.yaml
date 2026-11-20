@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mallet_finger
+body_system: bones_joints_muscles
+# Needs a splint within days so the tendon heals straight.
+entry_symptoms: [hand_pain]
+name: "Mallet finger (a hurt finger tip that will not straighten)"
+medical_name: "Mallet finger"
+snomed: "64298006"
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: finger_pain, prevalence: uncommon}
+findings:
+  cannot_straighten_finger_tip: strongly_supports
+  injury_or_fall: strongly_supports
+  finger_pain: strongly_supports
+  swollen_area: supports
+key_findings: [cannot_straighten_finger_tip]
+source: nhs_mallet_finger
+informed_by: [nhs_mallet_finger]

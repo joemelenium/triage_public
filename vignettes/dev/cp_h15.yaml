@@ -1,0 +1,70 @@
+id: cp_h15
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 54-year-old woman who smokes and takes tablets for high blood pressure; her mother had a heart
+  attack at 56. For three weeks she has had an ache in the centre of her chest when carrying shopping
+  or climbing stairs, easing a minute or two after she stops. About ten episodes. No pain at rest or now.
+  She has no heart diagnosis and is worried it could be angina.
+opening_statement: For about three weeks I've been getting an ache in the middle of my chest when I carry
+  the shopping home or climb the stairs at work. It eases off a minute or two after I stop. I'm fine sitting
+  here now. I smoke, I'm on tablets for my blood pressure and my mum had a heart attack at 56, so I'm
+  worried it might be angina.
+findings:
+  present: [chest_pain, cp_comes_and_goes, cp_on_exertion, heart_risk_factors, family_heart_history, worried_about_symptoms]
+  absent: [stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+    heavy_bleeding, serious_self_harm, cp_present_now, cp_sudden_not_going_away, cp_tight_or_squeezing,
+    cp_heavy, cp_spreads, sweating, nausea_or_vomiting, light_headed, short_of_breath, heart_beating_very_fast,
+    fainted, palpitations, has_angina, angina_pain_not_settling, angina_worse_than_usual, coughing_up_blood,
+    cp_worse_breathing_in, leg_pain_or_swelling, difficulty_breathing, cp_after_eating, cp_after_injury_or_exercise,
+    cp_with_worry, cough_mucus_or_temperature, cough_or_runny_nose, sore_throat, very_high_temperature,
+    cp_lasted_15_minutes]
+  unknown: []
+context:
+  none: {}
+  basic: {age: 54, sex: female}
+  full: {age: 54, sex: female}
+expected: {acuity: urgent, level_of_care: urgent_care, timeframe: today}
+minimum_safe_acuity: soon
+red_flags:
+- description: Chest pain that comes on with effort, eases with rest and keeps coming back, in someone
+    with risk factors and no diagnosis (possible angina)
+  findings: [cp_on_exertion, cp_comes_and_goes]
+  minimum_acuity: soon
+  source: {page: angina.txt, quote: you have chest pain or other symptoms of angina that come and go}
+safety_netting_should_cover:
+- point: Get help from NHS 111 today
+  any_of: ['111']
+- point: Call 999 if the pain comes on suddenly and does not go away, spreads to the arm, neck, jaw, stomach
+    or back, or comes with feeling sweaty, sick, light-headed or short of breath
+  any_of: ['999']
+source:
+  expected_outcome: {page: angina.txt, quote: you have chest pain or other symptoms of angina that come
+      and go}
+  minimum_safe_acuity: {page: angina.txt, quote: it's important to see a GP as soon as possible if you
+      think you may have it}
+variants:
+- id: cp_h15_v1
+  style: brief, leaves out her background
+  opening_statement: I get a pain in my chest carrying shopping or going up stairs. It goes when I stop.
+    Should I see someone?
+  volunteered: [cp_on_exertion]
+- id: cp_h15_v2
+  style: leads with her background and worry
+  opening_statement: I smoke, I've got high blood pressure and my mum had a heart attack at 56, so I'm
+    worried. For three weeks I've had an ache in my chest whenever I exert myself, stairs or carrying
+    bags, and it eases once I rest. I've got no pain at the moment.
+  volunteered: [heart_risk_factors, family_heart_history, worried_about_symptoms, cp_on_exertion, cp_present_now]
+atypical: false
+notes: 'The pattern and background point to a heart problem with no emergency sign. Source difference,
+  and the reason expected and minimum safe acuity differ. For chest pain that comes and goes: chest_pain.txt
+  says non-urgent ''See a GP''; angina.txt says ''Urgent advice: Get help from NHS 111'' for ''chest pain
+  or other symptoms of angina that come and go''; and the opening of angina.txt says ''it''s important
+  to see a GP as soon as possible if you think you may have it''. Judgement: her story matches the angina
+  page''s own description (brought on by exercise, stops after resting for a few minutes), she has risk
+  factors both heart pages list, and she thinks she may have angina, so the angina page is followed. Expected
+  is its NHS 111 advice; the minimum safe acuity is ''soon'', the reading given to ''see a GP as soon
+  as possible''; routine with no fixed time is judged too slow. The sources give no different instruction
+  because of risk factors or family history: they say only that such people are more likely to have heart
+  problems, so the background supports the judgement but does not by itself raise the outcome to emergency.
+  She describes an ache, so cp_tight_or_squeezing and cp_heavy are no; there is no pain now.'

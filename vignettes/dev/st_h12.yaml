@@ -1,0 +1,70 @@
+id: st_h12
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 4-year-old girl with a sore throat, a blocked nose and a temperature for two days. Tonight she makes a small grunting noise with each breath and her lips look pale and greyish. She is hot to touch and sleepy on the sofa, but wakes and answers normally. Her father thought she was just bunged up and asks whether it can wait until morning. She will not let him look in her throat, and he cannot say whether she feels short of breath."
+
+opening_statement: "My four-year-old's had a sore throat and a temperature for two days. Tonight she's making a little grunting noise every time she breathes and her lips look a bit grey. I thought she was just bunged up. Can it wait till the morning?"
+
+findings:
+  present: [sore_throat, difficulty_breathing, lips_or_skin_blue_grey, very_high_temperature,
+      cough_or_runny_nose, very_tired, worried_about_symptoms, symptoms_worse_or_not_better]
+  absent: [unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      dehydration_signs, weakened_immune_system, too_painful_to_eat_or_drink,
+      sore_throat_over_a_week, frequent_sore_throats, lump_in_mouth_or_neck,
+      mouth_ulcer_over_3_weeks, wants_help_with_sore_throat, swollen_neck_glands, stroke_signs,
+      severe_breathing_difficulty, passed_out, sudden_confusion, heavy_bleeding,
+      serious_self_harm, chest_pain]
+  unknown: [short_of_breath, pus_on_tonsils]
+
+context:
+  none: {}
+  basic: {age: 4, sex: female}
+  full: {age: 4, sex: female}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Grunting with each breath, which the source gives as a sign of difficulty breathing in a child"
+    findings: [difficulty_breathing]
+    minimum_acuity: emergency
+    source: {page: shortness_of_breath.txt, quote: "has difficulty breathing – they may make grunting noises or suck their stomach in under their ribcage"}
+  - description: "Lips looking pale and grey"
+    findings: [lips_or_skin_blue_grey]
+    minimum_acuity: emergency
+    source: {page: shortness_of_breath.txt, quote: "has lips or skin that are turning very pale, blue or grey"}
+  - description: "Hot to touch with a temperature"
+    findings: [very_high_temperature]
+    minimum_acuity: urgent
+    source: {page: sore_throat.txt, quote: "you have a very high temperature, or you feel hot, cold or shivery"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now"
+    any_of: ["999", "A&E"]
+  - point: "Not to drive themselves to A&E"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: shortness_of_breath.txt, quote: "Immediate action required: Call 999 or go to A&E immediately if your child:"}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "have difficulty breathing or are unable to swallow"}
+
+variants:
+  - id: st_h12_v1
+    style: "plays it down and asks if it can wait"
+    opening_statement: "My four-year-old's got a sore throat and a temperature. She's making a funny little grunting noise when she breathes tonight. Can it wait till morning?"
+    volunteered: [sore_throat, very_high_temperature, difficulty_breathing]
+  - id: st_h12_v2
+    style: "mentions only the colour of her lips"
+    opening_statement: "She's four and she's had a sore throat for two days. Tonight her lips look a bit grey to me. Is that just because she's poorly?"
+    volunteered: [sore_throat, lips_or_skin_blue_grey]
+
+atypical: false
+notes: "Two emergency signs, one of them not specific to sore throat (lip colour). Easy to miss because the parent reads the grunting as a blocked nose and asks about waiting. The pages agree: sore_throat.txt says call 999 or go to A&E if 'you or your child' have difficulty breathing, and shortness_of_breath.txt says the same for a child who has difficulty breathing or whose lips are turning very pale, blue or grey. The high temperature would by itself call for urgent advice on sore_throat.txt. She is sleepy but responds normally, so passed_out is absent; the question list cannot express 'limp, floppy or not responding like they normally do' short of passing out, and the story does not claim it. The page offers either 999 or A&E, so emergency_department is used as the level of care, together with the page's advice not to drive there."

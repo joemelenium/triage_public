@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: slapped_cheek
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Slapped cheek syndrome (a common viral infection that causes bright red cheeks)"
+medical_name: "Erythema infectiosum (parvovirus B19 infection)"
+snomed: "34730008"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  # What tells it apart: a bright red rash on the cheeks after a few days of cold-like symptoms, then a lacy rash on the body. Adults may get joint pain.
+  bright_red_cheeks: strongly_supports
+  cough_or_runny_nose: supports
+  very_high_temperature: supports
+  painful_swollen_joints: supports
+key_findings: [bright_red_cheeks, cough_or_runny_nose]
+source: nhs_slapped_cheek
+informed_by: [nhs_slapped_cheek, nhs_rashes_babies_and_children]

@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: anaphylaxis
+body_system: breathing
+entry_symptoms: [short_of_breath, wheezing, swollen_arm_or_hand, sore_or_dry_lips, sore_or_white_tongue, difficulty_swallowing, raised_itchy_rash, insect_bite_or_sting]
+name: "Anaphylaxis (a severe allergic reaction)"
+medical_name: "Anaphylaxis"
+snomed: "39579001"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+# Skin and hair batch: among people with hives, anaphylaxis is uncommon rather than rare.
+# The raised, itchy rash is not evidence within the hives entry symptom, so it sets the
+# starting chance there. A severe reaction before raises it too.
+prevalence_when:
+  - {finding: previous_severe_allergic_reaction, prevalence: uncommon}
+  - {finding: raised_itchy_rash, prevalence: uncommon}
+findings:
+  # What tells it apart from an asthma attack: it starts within minutes of a food,
+  # medicine or sting, with swelling of the lips, mouth or throat, or a rash.
+  after_allergy_trigger: strongly_supports
+  lips_tongue_throat_swelling: strongly_supports
+  throat_tight: supports
+  raised_itchy_rash: supports
+  light_headed: supports
+  breathing_very_fast: supports
+  wheezing: supports
+  has_allergies: supports
+  previous_severe_allergic_reaction: supports
+key_findings: [after_allergy_trigger, lips_tongue_throat_swelling, throat_tight, raised_itchy_rash]
+source: nhs_anaphylaxis
+informed_by: [nhs_anaphylaxis, nhs_hives, nhs_insect_bites]

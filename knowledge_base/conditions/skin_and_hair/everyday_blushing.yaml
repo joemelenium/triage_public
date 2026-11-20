@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: everyday_blushing
+body_system: skin_and_hair
+entry_symptoms: [blushing]
+name: "Blushing from embarrassment, heat or anxiety"
+medical_name: "Physiological blushing"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from rosacea: blushing that comes on when embarrassed, anxious or hot, and fades afterwards.
+  blushing_when_embarrassed_or_anxious: strongly_supports
+  feeling_anxious: supports
+key_findings: [blushing_when_embarrassed_or_anxious]
+source: nhs_blushing
+informed_by: [nhs_blushing]

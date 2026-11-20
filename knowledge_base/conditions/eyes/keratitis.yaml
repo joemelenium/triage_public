@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: keratitis
+body_system: eyes
+# An infection or ulcer on the clear front of the eye. Most often linked to
+# contact lenses. Needs same-day treatment to protect the sight. The NHS
+# keratitis page could not be found.
+entry_symptoms: [red_eye, eye_pain, something_in_eye, vision_change, watering_eyes]
+name: "Keratitis or an eye ulcer (a sore on the clear front of the eye), often from contact lenses"
+medical_name: "Keratitis, including corneal ulcer"
+snomed: "5888003"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: eye_pain, prevalence: uncommon}
+findings:
+  contact_lens_wearer: strongly_supports
+  eye_front_cloudy_or_white_spot: strongly_supports
+  eye_pain: strongly_supports
+  bothered_by_light: supports
+  red_eye: supports
+  watering_eyes: supports
+  blurred_vision: supports
+  something_in_eye: supports    # feels like something in the eye
+key_findings: [contact_lens_wearer, eye_front_cloudy_or_white_spot, bothered_by_light]
+source: ai_judgement
+informed_by: [nhs_eye_pain, nhs_red_eye]

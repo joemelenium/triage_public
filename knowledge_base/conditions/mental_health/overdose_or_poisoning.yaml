@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: overdose_or_poisoning
+body_system: mental_health
+entry_symptoms: [suicidal_thoughts_or_self_harm, alcohol_or_drug_problem, agitated_or_out_of_control, hearing_or_seeing_things]
+name: "An overdose, or poisoning from a medicine or drug"
+medical_name: "Overdose"
+snomed: "1149222004"
+# Call 999 or go to A&E. Symptoms may take hours or days to start, so it needs
+# hospital even when someone feels well.
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: recent_drug_use, prevalence: rare}
+findings:
+  taken_overdose: strongly_supports
+  drug_bad_reaction: strongly_supports
+  drowsy_hard_to_wake: supports
+  breathing_slow_or_irregular: supports
+  nausea_or_vomiting: supports
+  heart_beating_very_fast: supports
+key_findings: [taken_overdose, drug_bad_reaction, drowsy_hard_to_wake, recent_drug_use]
+source: nhs_poisoning
+informed_by: [nhs_poisoning, nhs_suicidal_thoughts]

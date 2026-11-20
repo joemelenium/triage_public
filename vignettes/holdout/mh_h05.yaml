@@ -1,0 +1,61 @@
+id: mh_h05
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- feeling_anxious
+summary: A 28-year-old man has had several sudden attacks of intense fear over the last two months, with sweating
+  and a feeling he is losing control, each lasting about 15 minutes. He now worries constantly about the next one
+  and avoids the train. No chest pain or fainting.
+opening_statement: I keep getting these panic attacks out of nowhere, and now I'm scared to get on the train in
+  case it happens again.
+findings:
+  present:
+  - feeling_anxious
+  - panic_attacks_keep_happening
+  - feeling_of_panic
+  - sweating
+  - anxiety_struggling_to_cope
+  absent:
+  - chest_pain
+  - palpitations
+  - short_of_breath
+  - fainted
+  - low_mood
+  - suicidal_thoughts
+  - recent_drug_use
+  - lots_of_caffeine_or_alcohol
+  - has_thyroid_problem
+  - trauma_flashbacks
+  - drinks_a_lot_of_alcohol
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 28
+    sex: male
+  full:
+    age: 28
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Can self-refer to NHS talking therapies
+  any_of:
+  - talking therap
+source:
+  expected_outcome:
+    page: panic_disorder.txt
+    quote: See a GP if you've been experiencing symptoms of panic disorder.
+  minimum_safe_acuity:
+    page: anxiety_fear_panic.txt
+    quote: you're struggling to cope with anxiety, fear or panic
+atypical: false
+notes: Picture of panic disorder. Racing heart and breathlessness are kept out of the story on purpose; with them,
+  heart and breathing pages would apply.

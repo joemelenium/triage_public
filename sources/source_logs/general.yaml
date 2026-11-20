@@ -1,0 +1,181 @@
+
+- id: nhs_urinary_tract_infections
+  title: Urinary tract infections (UTIs)
+  url: https://www.nhs.uk/conditions/urinary-tract-infections-utis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 July 2025'
+
+- id: nhs_kidney_infection
+  title: Kidney infection
+  url: https://www.nhs.uk/conditions/kidney-infection/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 February 2025'
+
+- id: nhs_type_1_diabetes
+  title: Type 1 diabetes
+  url: https://www.nhs.uk/conditions/type-1-diabetes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_diabetic_ketoacidosis
+  title: Diabetic ketoacidosis
+  url: https://www.nhs.uk/conditions/diabetic-ketoacidosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 08 June 2023'
+
+- id: nhs_underactive_thyroid
+  title: Underactive thyroid (hypothyroidism)
+  url: https://www.nhs.uk/conditions/underactive-thyroid-hypothyroidism/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 April 2025'
+
+- id: nhs_depression
+  title: Depression in adults
+  url: https://www.nhs.uk/mental-health/conditions/depression-in-adults/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_hiv
+  title: HIV and AIDS
+  url: https://www.nhs.uk/conditions/hiv-and-aids/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 July 2025'
+
+- id: nhs_kidney_disease
+  title: Chronic kidney disease
+  url: https://www.nhs.uk/conditions/kidney-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 March 2023'
+
+- id: nhs_liver_disease
+  title: Liver disease
+  url: https://www.nhs.uk/conditions/liver-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 August 2023'
+
+- id: nhs_heat_exhaustion
+  title: Heat exhaustion and heatstroke
+  url: https://www.nhs.uk/conditions/heat-exhaustion-heatstroke/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 May 2026'
+
+- id: nhs_kawasaki_disease
+  title: Kawasaki disease
+  url: https://www.nhs.uk/conditions/kawasaki-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 February 2026'
+
+- id: nhs_menopause
+  title: Menopause
+  url: https://www.nhs.uk/conditions/menopause-and-perimenopause/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_raynauds
+  title: Raynaud's
+  url: https://www.nhs.uk/conditions/raynauds/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 20 July 2023'
+
+- id: nhs_lymphoedema
+  title: Lymphoedema
+  url: https://www.nhs.uk/conditions/lymphoedema/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 March 2023'
+
+- id: nhs_pre_eclampsia
+  title: Pre-eclampsia
+  url: https://www.nhs.uk/conditions/pre-eclampsia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 23 March 2026'
+
+- id: nhs_malaria
+  title: Malaria
+  url: https://www.nhs.uk/conditions/malaria/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 July 2025'
+
+- id: nhs_cancer_signs
+  title: Cancer symptoms
+  url: https://www.nhs.uk/conditions/cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 27 May 2025'
+
+- id: nhs_colic
+  title: Colic
+  url: https://www.nhs.uk/conditions/colic/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 26 April 2022'
+
+- id: nhs_baby_seriously_ill
+  title: Is your baby or toddler seriously ill?
+  url: https://www.nhs.uk/baby/health/when-to-get-urgent-medical-help-for-babies-and-children-under-5/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 6 August 2026'
+
+- id: nhs_angioedema
+  title: Angioedema
+  url: https://www.nhs.uk/conditions/angioedema/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 25 August 2026'
+
+- id: nhs_me_cfs
+  title: ME/CFS
+  url: https://www.nhs.uk/conditions/chronic-fatigue-syndrome-cfs/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 May 2024'
+
+- id: nhs_type_1_diabetes_symptoms
+  title: 'Type 1 diabetes: symptoms'
+  url: https://www.nhs.uk/conditions/type-1-diabetes/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 October 2024'
+
+- id: nhs_type_2_diabetes_symptoms
+  title: 'Type 2 diabetes: symptoms'
+  url: https://www.nhs.uk/conditions/type-2-diabetes/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 February 2025'

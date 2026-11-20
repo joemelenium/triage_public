@@ -1,0 +1,61 @@
+id: st_h13
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 49-year-old woman with a mild sore throat that has come and gone for some weeks; she cannot say whether it has ever lasted more than a week at a stretch. She also has an ulcer on the side of her tongue that has been there for about a month and has not healed. She has no temperature, is eating normally, is not worried, and asks what she can use for her throat."
+
+opening_statement: "My throat's been sore on and off for a while now and I'd like something for it. I've also had an ulcer on my tongue for about a month that won't clear up."
+
+findings:
+  present: [sore_throat, mouth_ulcer_over_3_weeks, wants_help_with_sore_throat]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, weakened_immune_system, pus_on_tonsils,
+      too_painful_to_eat_or_drink, worried_about_symptoms, frequent_sore_throats,
+      lump_in_mouth_or_neck, cough_or_runny_nose, swollen_neck_glands, very_tired,
+      stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out,
+      sudden_confusion, heavy_bleeding, serious_self_harm, chest_pain, short_of_breath, cold_or_shivery]
+  unknown: [sore_throat_over_a_week]
+
+context:
+  none: {}
+  basic: {age: 49, sex: female}
+  full: {age: 49, sex: female}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags:
+  - description: "A mouth ulcer that has lasted more than 3 weeks, together with a sore throat"
+    findings: [mouth_ulcer_over_3_weeks]
+    minimum_acuity: routine
+    source: {page: sore_throat.txt, quote: "you have a sore throat and symptoms like a lump in your mouth or neck, or a mouth ulcer that lasts for more than 3 weeks"}
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "When to get urgent or emergency help, such as difficulty breathing, being unable to swallow, drooling or a very high temperature"
+    any_of: ["999", "A&E", "111"]
+
+source:
+  expected_outcome: {page: sore_throat.txt, quote: "Non-urgent advice: See a GP if:"}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "you have a sore throat and symptoms like a lump in your mouth or neck, or a mouth ulcer that lasts for more than 3 weeks"}
+
+variants:
+  - id: st_h13_v1
+    style: "asks only about the throat"
+    opening_statement: "My throat's been sore on and off lately. What's good for it?"
+    volunteered: [sore_throat, wants_help_with_sore_throat]
+  - id: st_h13_v2
+    style: "mentions the ulcer as a separate question"
+    opening_statement: "Two things really. A sore throat that keeps coming and going, which I'd like something for, and an ulcer on the side of my tongue that's been there about a month."
+    volunteered: [sore_throat, wants_help_with_sore_throat, mouth_ulcer_over_3_weeks]
+
+atypical: true
+notes: "Atypical: the sore throat is minor and the feature that matters is a mouth ulcer of about a month, mentioned almost in passing. sore_throat.txt says to see a GP for a sore throat with 'a mouth ulcer that lasts for more than 3 weeks'; tonsillitis.txt does not mention ulcers. The page gives no timescale, so the acuity is routine and the red flag is recorded with a minimum of routine. She also wants help, which meets the pharmacist criterion; the GP criterion should take priority, and pharmacy or self-care advice alone would fall short. She cannot say whether the sore throat has gone a week without improving, so that finding is unknown; either answer leads to a GP. The pages do not say whether an on-and-off sore throat counts as 'often'; frequent_sore_throats is recorded as absent because she describes one spell."

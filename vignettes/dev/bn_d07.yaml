@@ -1,0 +1,48 @@
+id: bn_d07
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [had_a_fit]
+
+summary: "A 33-year-old woman with epilepsy had a seizure this morning, her first in 3 years. Her partner saw it: it looked like her usual seizures, lasted about a minute and she recovered as usual. She feels back to normal now."
+
+opening_statement: "I've got epilepsy and I had a seizure this morning. My partner says it was like my usual ones, about a minute. I hadn't had one for three years."
+
+findings:
+  present: [had_a_fit, has_epilepsy, seizure_like_usual, seizure_after_long_gap]
+  absent: [first_seizure, seizure_long, seizure_not_recovered, seizure_more_than_one_24h, seizure_one_side, sleepy_long_after_seizure, seriously_injured_in_collapse, difficulty_breathing, head_injury_last_3_months, pregnant_now, drunk_a_lot_today, very_high_temperature, headache]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 33, sex: female}
+  full:
+    age: 33
+    sex: female
+    findings: {has_epilepsy: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Seizure after a long time without any"
+    findings: [seizure_after_long_gap]
+    minimum_acuity: urgent
+    source: {page: epilepsy.txt, quote: "you've had a seizure after having no seizures for a long time"}
+
+safety_netting_should_cover:
+  - point: "Get an urgent GP appointment or contact NHS 111"
+    any_of: ["111", "urgent GP", "urgent appointment"]
+  - point: "Call 999 if a seizure lasts more than 5 minutes or she does not recover between seizures"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: epilepsy.txt, quote: "you've had a seizure after having no seizures for a long time"}
+  minimum_safe_acuity: {page: what_to_do_if_someone_has_a_seizure_fit.txt, quote: "People with epilepsy do not always need an ambulance or to go to hospital every time they have a seizure."}
+
+atypical: false
+notes: "Known epilepsy, typical seizure, full recovery: no 999 criteria on epilepsy.txt are met (not first, not long, recovered, fewer than 3 in 24 hours). The long gap triggers urgent advice."

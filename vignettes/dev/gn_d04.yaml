@@ -1,0 +1,65 @@
+id: gn_d04
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- very_high_temperature
+summary: A 7-week-old baby boy with a temperature of 38.3C measured under the arm. He is feeding a little less than usual but is awake, pink and crying normally.
+opening_statement: My son is 7 weeks old and the thermometer says 38.3. He seems OK in himself, a bit less hungry, but I wasn't sure if that temperature is too high for a baby this little.
+findings:
+  present:
+  - very_high_temperature
+  - baby_high_temperature
+  absent:
+  - rash_does_not_fade
+  - drowsy_hard_to_wake
+  - child_floppy_or_hard_to_wake
+  - baby_weak_or_high_pitched_cry
+  - child_struggling_to_breathe
+  - breathing_very_fast
+  - lips_or_skin_blue_grey
+  - skin_blotchy
+  - had_a_fit
+  - stiff_neck
+  - child_dehydration_signs
+  - vomiting
+  - cold_hands_and_feet
+  unknown:
+  - feeding_much_less
+context:
+  none: {}
+  basic:
+    age: 0.13
+    sex: male
+  full:
+    age: 0.13
+    sex: male
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: urgent
+red_flags:
+- description: Temperature of 38C or more in a baby under 3 months
+  findings:
+  - baby_high_temperature
+  minimum_acuity: urgent
+  source:
+    page: fever_in_children.txt
+    quote: is under 3 months old and has a temperature of 38C or higher, or you think they have a high temperature
+safety_netting_should_cover:
+- point: Get medical help now, by calling 999 or going to A&E
+  any_of:
+  - '999'
+  - A&E
+- point: Do not give paracetamol to a baby under 2 months without advice
+  any_of:
+  - paracetamol
+source:
+  expected_outcome:
+    page: baby_seriously_ill.txt
+    quote: has a very high temperature – 38C or higher in babies under 3 months old, or 39C or higher in babies 3 to 6 months old
+  minimum_safe_acuity:
+    page: fever_in_children.txt
+    quote: is under 3 months old and has a temperature of 38C or higher, or you think they have a high temperature
+atypical: false
+notes: 'Source pages differ. baby_seriously_ill.txt (and sepsis.txt) put a temperature of 38C or higher in a baby under 3 months under ''Call 999 or go to A&E''. fever_in_children.txt puts the same thing under ''Urgent advice: Call 111''. Expected is set to emergency because two pages list it as an emergency sign and the baby is very young; minimum safe acuity is urgent because fever_in_children.txt supports calling 111. Whether he is feeding much less is genuinely uncertain to the parent (unknown). Age 0.13 years is about 7 weeks.'

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: metatarsalgia
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "Pain in the ball of the foot from pressure or overuse (metatarsalgia)"
+medical_name: "Metatarsalgia"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: ball_of_foot_pain, prevalence: very_common}
+findings:
+  ball_of_foot_pain: strongly_supports
+  overuse: supports
+  hard_skin_or_verruca: supports
+key_findings: [ball_of_foot_pain]
+source: nhs_pain_in_the_ball_of_the_foot
+informed_by: [nhs_pain_in_the_ball_of_the_foot]

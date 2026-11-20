@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: glandular_fever
+body_system: ear_nose_throat
+entry_symptoms: [sore_throat, swollen_glands, very_high_temperature]
+name: "Glandular fever (a virus that causes a sore throat, swollen glands and tiredness)"
+medical_name: "Infectious mononucleosis"
+snomed: "271558008"
+acuity_needed: soon
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: sore_throat, prevalence: uncommon}
+  - {finding: swollen_glands, prevalence: uncommon}
+  - {finding: very_high_temperature, prevalence: rare}
+findings:
+  # What tells it apart from tonsillitis: extreme tiredness and swollen glands in
+  # the neck (and sometimes the armpits or groin), lasting more than a week, most
+  # often in people aged 15 to 24.
+  very_tired: strongly_supports
+  swollen_neck_glands: strongly_supports
+  sore_throat_over_a_week: supports
+  very_high_temperature: supports
+  lump_in_mouth_or_neck: supports
+  glands_armpit_or_groin: supports
+  aching_body: supports
+key_findings: [very_tired, swollen_neck_glands, sore_throat_over_a_week, glands_armpit_or_groin]
+source: nhs_glandular_fever
+informed_by: [nhs_glandular_fever, nhs_sore_throat, nhs_tonsillitis, nhs_swollen_glands]

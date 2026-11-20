@@ -1,0 +1,74 @@
+id: sb_d03
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- stomach_ache
+- constipation
+summary: 81-year-old woman who has had an operation on her tummy before. She has not pooed for 4 days, cannot pass wind since yesterday, has a swollen tummy with cramping pains in waves and has been sick twice.
+opening_statement: I haven't been to the toilet for days and now I can't even pass wind. My tummy's all swollen and I've been sick.
+findings:
+  present:
+  - stomach_ache
+  - sa_comes_in_waves
+  - constipation
+  - cannot_poo_or_fart
+  - tummy_swollen
+  - vomiting
+  - feeling_sick
+  - had_tummy_operation
+  absent:
+  - vomiting_blood
+  - bleeding_from_bottom
+  - black_or_dark_red_poo
+  - cannot_pee
+  - sudden_confusion
+  - difficulty_breathing
+  - rash_does_not_fade
+  - very_high_temperature
+  - sa_sudden_severe
+  - takes_constipating_medicine
+  unknown:
+  - green_vomit
+context:
+  none: {}
+  basic:
+    age: 81
+    sex: female
+  full:
+    age: 81
+    sex: female
+    findings:
+      had_tummy_operation: 'yes'
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Stomach ache and cannot poo or fart at all
+  findings:
+  - stomach_ache
+  - cannot_poo_or_fart
+  minimum_acuity: emergency
+  source:
+    page: stomach_ache.txt
+    quote: you cannot poo or fart at all
+safety_netting_should_cover:
+- point: Go to A&E or call 999 now
+  any_of:
+  - A&E
+  - '999'
+- point: Not to drive themselves to A&E
+  any_of:
+  - do not drive
+  - don't drive
+  - ask someone to drive
+source:
+  expected_outcome:
+    page: stomach_ache.txt
+    quote: you cannot poo or fart at all
+  minimum_safe_acuity:
+    page: stomach_ache.txt
+    quote: 'Immediate action required: Call 999 or go to A&E now if:'
+atypical: false
+notes: 'Source difference: bloating.txt puts ''you cannot pee, poo or fart'' under urgent advice (urgent GP or 111), but stomach_ache.txt puts ''you cannot poo or fart at all'' with a stomach ache under 999 or A&E. She has a stomach ache, a swollen tummy and vomiting, so stomach_ache.txt fits the story better and emergency was chosen. She did not look at the colour of her sick, so green_vomit is unknown. The previous tummy operation is in her record; the pages do not say it changes the advice.'

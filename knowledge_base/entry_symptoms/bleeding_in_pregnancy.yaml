@@ -1,0 +1,83 @@
+# Entry symptom: vaginal bleeding in pregnancy.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Not a Symptoms A to Z page, but a main symptom a triage service sees often.
+# The NHS Vaginal bleeding in pregnancy and Miscarriage pages say any bleeding in
+# pregnancy needs urgent help (maternity unit, early pregnancy unit or 111), so
+# the default is urgent and a floor. They say call 999 for severe pain, pain in
+# the shoulder, feeling sick, faint or dizzy, or heavy bleeding.
+
+id: bleeding_in_pregnancy
+name: "Bleeding in pregnancy"
+presenting_finding: bleeding_in_pregnancy
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bleeding_in_pregnancy_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - severe_pain
+      - shoulder_tip_pain
+      - heavy_vaginal_bleeding
+      - fainted
+      - light_headed
+      - nausea_or_vomiting
+      - had_a_fit
+
+red_flags:
+  # ---- Emergency (call 999) -------------------------------------------------
+  - id: rf_bip_severe_pain
+    description: "Pregnant and bleeding, with severe tummy pain"
+    when: severe_pain   # a "yes" to severe tummy pain also means "yes" here (also_part_of)
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_vaginal_bleeding_pregnancy
+
+  - id: rf_bip_shoulder_pain
+    description: "Pregnant and bleeding, with pain in the shoulder"
+    when: shoulder_tip_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_vaginal_bleeding_pregnancy
+
+  - id: rf_bip_heavy
+    description: "Pregnant with heavy bleeding (soaking a period pad soon after putting it on)"
+    when: heavy_vaginal_bleeding
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_vaginal_bleeding_pregnancy
+
+  - id: rf_bip_faint_or_dizzy
+    description: "Pregnant and bleeding, and feeling faint or dizzy, or passing out"
+    when: {any: [fainted, light_headed]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_vaginal_bleeding_pregnancy
+
+  - id: rf_bip_feeling_sick
+    description: "Pregnant and bleeding, and feeling sick"
+    when: nausea_or_vomiting
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_vaginal_bleeding_pregnancy
+    soft: true    # likely conditions may lower this: feeling sick is very common in early pregnancy
+    note: "Taken directly from the source ('you feel sick, faint, dizzy or lose consciousness'). Soft, because feeling sick is very common in early pregnancy whatever the cause of the bleeding. Needs clinical review."
+
+  - id: rf_bip_fit
+    description: "Pregnant and has had a fit (seizure): possible eclampsia"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_pre_eclampsia
+    note: "The Pre-eclampsia page lists fits (eclampsia) as a serious complication. Calling 999 is AI judgement."
+
+outcome_rules: []
+
+default:
+  description: "Pregnant with light bleeding or spotting, and no more than mild pain: get urgent help"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit or early pregnancy unit now. If you cannot reach them, call NHS 111."}
+  advice: advice_bleeding_pregnancy_urgent
+  source: nhs_vaginal_bleeding_pregnancy
+  # A floor: the source says any bleeding in pregnancy needs urgent help.
+  floor: true

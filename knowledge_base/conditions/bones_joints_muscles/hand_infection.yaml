@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hand_infection
+body_system: bones_joints_muscles
+# Bites, especially from a person, can spread deep along the tendons within a day.
+entry_symptoms: [hand_pain]
+name: "An infection in the hand or finger, often after a bite, cut or splinter"
+medical_name: "Hand infection (including cellulitis, paronychia and flexor tendon sheath infection)"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: has_diabetes, prevalence: uncommon}
+  - {finding: weakened_immune_system, prevalence: uncommon}
+findings:
+  cut_bite_or_puncture: strongly_supports
+  swollen_area_red_hot: strongly_supports
+  red_or_discoloured_skin: supports
+  very_high_temperature: supports
+  cannot_move_painful_part: supports
+  severe_pain: supports
+key_findings: [cut_bite_or_puncture, swollen_area_red_hot, red_or_discoloured_skin]
+source: ai_judgement
+informed_by: [nhs_cellulitis, nhs_finger_pain]

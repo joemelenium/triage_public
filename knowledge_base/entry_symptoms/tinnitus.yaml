@@ -1,0 +1,95 @@
+# Entry symptom: tinnitus (ringing or buzzing in the ears).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by the conditions that look likely.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Tinnitus page, with the Hearing loss, Labyrinthitis and
+# Meniere's disease pages.
+
+id: tinnitus
+name: "Tinnitus"
+presenting_finding: tinnitus
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: tinnitus_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - head_injury
+      - hearing_loss_sudden
+      - face_droop_one_side
+      - dizziness_spinning
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_tn_head_injury
+    description: "Tinnitus after a head injury"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_head_injury_ae
+    source: nhs_tinnitus
+
+  - id: rf_tn_facial_weakness
+    description: "Tinnitus with weakness in the muscles of the face"
+    when: face_droop_one_side
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_tinnitus_ae
+    source: nhs_tinnitus
+
+  - id: rf_tn_sudden_hearing_loss
+    description: "Tinnitus with sudden hearing loss"
+    when: hearing_loss_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_tinnitus_ae
+    source: nhs_tinnitus
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Tinnitus page says go to A&E or call 999 for tinnitus with sudden hearing loss. The Hearing loss and Labyrinthitis pages say an urgent GP appointment or 111 for sudden hearing loss. The more urgent is used, marked soft; the hearing loss rules keep it at least urgent."
+
+  - id: rf_tn_vertigo
+    description: "Tinnitus with a spinning feeling (vertigo)"
+    when: dizziness_spinning
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_tinnitus_ae
+    source: nhs_tinnitus
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Tinnitus page says go to A&E or call 999 for tinnitus with vertigo. The Meniere's disease page says see a GP for attacks of vertigo, tinnitus and hearing loss, and the Labyrinthitis page says see a GP. The more urgent is used, marked soft, so that likely Meniere's or labyrinthitis can lower it."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_tn_pulsing
+    description: "Tinnitus that beats in time with the pulse"
+    when: tinnitus_pulsing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment"}
+    advice: advice_tinnitus_urgent
+    source: nhs_tinnitus
+
+outcome_rules:
+  - id: or_tn_regular
+    description: "Tinnitus regularly or all the time"
+    when: tinnitus_regular_or_constant
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tinnitus_gp
+    source: nhs_tinnitus
+
+  - id: or_tn_worse
+    description: "Tinnitus that is getting worse"
+    when: tinnitus_getting_worse
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tinnitus_gp
+    source: nhs_tinnitus
+
+  - id: or_tn_bothering
+    description: "Tinnitus affecting sleep or concentration, or causing anxiety or low mood"
+    when: tinnitus_bothering_you
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_tinnitus_gp
+    source: nhs_tinnitus
+
+default:
+  description: "Tinnitus with nothing that needs more help: it is not usually serious and may get better by itself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Tinnitus is not usually a sign of anything serious and may get better by itself"}
+  advice: advice_tinnitus_self_care
+  source: nhs_tinnitus

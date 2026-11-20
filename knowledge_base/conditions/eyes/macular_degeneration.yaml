@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: macular_degeneration
+body_system: eyes
+# Affects the middle of the sight. The 'wet' type can get worse over weeks and
+# is treated with injections, so the level is soon.
+entry_symptoms: [vision_change]
+name: "Macular degeneration (AMD), which blurs the middle of your sight as you age"
+medical_name: "Age-related macular degeneration"
+snomed: "267718000"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: common}
+  - {finding: age_45_or_over, prevalence: uncommon}
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  distorted_vision: strongly_supports
+  blurred_vision: supports
+  vision_change_one_eye: supports
+  vision_worse_slowly: supports
+  vision_worse_over_days: supports    # the wet type
+  smoker: supports
+key_findings: [distorted_vision, vision_worse_over_days, smoker]
+source: nhs_amd
+informed_by: [nhs_amd, nhs_vision_loss]

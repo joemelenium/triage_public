@@ -1,0 +1,62 @@
+id: st_d12
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 16-year-old girl with a sore throat for two days. She looked in the mirror and saw pus-filled spots on her tonsils. She is eating soft food and drinking normally, does not feel hot or shivery and is not especially worried."
+
+opening_statement: "I've had a sore throat for two days and when I looked in the mirror there were white spots with pus on my tonsils. What should I do?"
+
+findings:
+  present: [sore_throat, pus_on_tonsils, wants_help_with_sore_throat, swollen_neck_glands]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, weakened_immune_system,
+      too_painful_to_eat_or_drink, worried_about_symptoms, sore_throat_over_a_week,
+      frequent_sore_throats, lump_in_mouth_or_neck, mouth_ulcer_over_3_weeks,
+      cough_or_runny_nose, very_tired, stroke_signs, severe_breathing_difficulty,
+      lips_or_skin_blue_grey, passed_out, sudden_confusion, heavy_bleeding, serious_self_harm,
+      chest_pain, short_of_breath, cold_or_shivery]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 16, sex: female}
+  full: {age: 16, sex: female}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Pus-filled spots on the tonsils"
+    findings: [pus_on_tonsils]
+    minimum_acuity: urgent
+    source: {page: tonsillitis.txt, quote: "you have pus-filled spots on your tonsils"}
+
+safety_netting_should_cover:
+  - point: "Get help from NHS 111"
+    any_of: ["111"]
+  - point: "Call 999 or go to A&E if there is difficulty breathing, they cannot swallow, they are drooling, or they get worse quickly"
+    any_of: ["999", "A&E"]
+
+source:
+  expected_outcome: {page: tonsillitis.txt, quote: "Urgent advice: Get help from NHS 111 now if:"}
+  minimum_safe_acuity: {page: tonsillitis.txt, quote: "you have pus-filled spots on your tonsils"}
+
+variants:
+  - id: st_d12_v1
+    style: "direct"
+    opening_statement: "There are white pus spots on my tonsils and my throat's sore."
+    volunteered: [sore_throat, pus_on_tonsils]
+  - id: st_d12_v2
+    style: "vague"
+    opening_statement: "My throat's sore and it looks a bit odd at the back."
+    volunteered: [sore_throat]
+
+atypical: false
+notes: "Source difference. tonsillitis.txt lists pus-filled spots on the tonsils under 'Urgent advice: Get help from NHS 111 now'. sore_throat.txt does not mention pus at all; on that page someone who needs help for a sore throat sees a pharmacist, and 'A pharmacist can give the same antibiotic treatment as a GP for a sore throat, if you need it.' tonsillitis.txt is followed because it is the only page that names this sign, so both the expected and the minimum safe acuity are urgent. A reviewer may prefer to accept the pharmacist route as safe. Timeframe: the page says 'now' for contacting 111 or the GP; 'today' is used because it is the timeframe that goes with the urgent level on the scale."

@@ -1,0 +1,42 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: constipation
+body_system: stomach_and_bowel
+entry_symptoms: [constipation, stomach_ache, bloating, farting_a_lot, anal_pain, child_soiling, bowel_incontinence, bedwetting, cannot_pee, urinary_incontinence, pelvic_pain, stomach_pain_in_pregnancy]
+name: "Constipation"
+medical_name: "Constipation"
+acuity_needed: self_manageable
+danger: minor
+snomed: "14760008"
+prevalence: common
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_common}
+  - {finding: bedwetting, prevalence: common}
+  - {finding: constipation, prevalence: common}
+  - {finding: stomach_ache, prevalence: common}
+  - {finding: bloating, prevalence: common}
+  - {finding: farting_a_lot, prevalence: common}
+  - {finding: anal_pain, prevalence: common}
+  - {finding: child_soiling, prevalence: common}
+  - {finding: bowel_incontinence, prevalence: common}
+  - {finding: stomach_pain_in_pregnancy, prevalence: common}
+  - {finding: cannot_pee, prevalence: uncommon}
+  - {finding: urinary_incontinence, prevalence: uncommon}
+  - {finding: pelvic_pain, prevalence: uncommon}
+findings:
+  constipation: strongly_supports
+  hard_lumpy_poo: strongly_supports
+  child_soiling: strongly_supports      # overflow: runny poo leaks around hard poo
+  pain_when_pooing: supports
+  sa_better_after_pooing: supports
+  bloating: supports
+  takes_constipating_medicine: supports
+  constipation_often: supports
+  # From the urinary_and_male card for this condition (merged):
+  stomach_ache: supports
+  wets_during_day: supports
+key_findings: [constipation, hard_lumpy_poo, takes_constipating_medicine, sa_better_after_pooing, stomach_ache]
+source: nhs_constipation
+informed_by: [nhs_constipation, nhs_constipation_in_children, nhs_soiling_child_pooing_their_pants, nhs_stomach_ache, nhs_bedwetting, nhs_urinary_tract_infections, nhs_prostate_enlargement]
+# Merged with the urinary_and_male card for this condition. Its notes: Here it stands for constipation
+# pressing on the bladder.

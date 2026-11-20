@@ -1,0 +1,140 @@
+# Entry symptom: double vision.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Levels of care: "go to an optician or see a GP" is mapped to general practice
+# (routine), the nearest level in settings.yaml; the advice names the optician.
+
+id: double_vision
+name: "Double vision"
+presenting_finding: double_vision
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: double_vision_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_painful_headache
+      - pupils_different_sizes
+      - head_injury
+      - eyelid_drooped_suddenly
+      - dizziness
+      - difficulty_speaking
+      - unable_to_swallow
+      - difficulty_breathing
+
+  - id: double_vision_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - double_vision_sudden
+      - eye_pain
+      - jaw_pain_or_scalp_tender
+      - bulging_eyes
+      - eyelid_swollen
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_dv_headache_or_pupil
+    description: "Double vision with a severe headache, or an enlarged pupil"
+    when: {any: [very_painful_headache, pupils_different_sizes]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_double_vision_ae
+    source: nhs_double_vision
+
+  - id: rf_dv_head_injury
+    description: "Double vision after a head injury"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_double_vision_ae
+    source: nhs_double_vision
+    note: "The Head injury page says call 999 for problems with vision after a head injury."
+
+  - id: rf_dv_eye_injury
+    description: "Double vision after an injury to the eye"
+    when: {any: [eye_injury, chemical_in_eye]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_eye_injuries
+    note: "The Eye injuries page says go to A&E or call 999 for any changes to your sight after an eye injury."
+
+  - id: rf_dv_eyelid_dropped
+    description: "Double vision with an eyelid that has suddenly started drooping"
+    when: eyelid_drooped_suddenly
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_double_vision_ae
+    source: nhs_cluster_headaches
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Cluster headaches page says call 999 or go to A&E for an eyelid drooping for the first time. Clinical knowledge: with double vision this can be a nerve to the eye being pressed on, for example by a brain aneurysm. Soft, because myasthenia gravis also causes this and is less urgent."
+
+  - id: rf_dv_speech_swallow_breathing
+    description: "Double vision with difficulty speaking, swallowing or breathing"
+    when: {any: [difficulty_speaking, unable_to_swallow, difficulty_breathing]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_double_vision_ae
+    source: nhs_myasthenia_gravis
+    note: "The Myasthenia gravis page says severe breathing or swallowing difficulties may need urgent hospital treatment. Slurred speech is also a stroke sign (Stroke symptoms page). Combining them is AI judgement."
+
+  - id: rf_dv_sudden_unsteady
+    description: "Double vision that started suddenly, with dizziness or being unsteady: possible stroke"
+    when: {all: [double_vision_sudden, dizziness]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_double_vision_ae
+    source: ai_judgement
+    note: "Clinical knowledge: sudden double vision with dizziness or unsteadiness can be a stroke at the back of the brain, which the face, arm and speech signs miss."
+
+  - id: rf_dv_gca
+    description: "Double vision with pain at the temples or scalp, or jaw pain when eating: possible giant cell arteritis"
+    when: jaw_pain_or_scalp_tender
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_gca_emergency
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source gives a lower urgency
+    note: "Source difference: the Cluster headaches page says an urgent GP appointment or 111 for a severe headache with jaw pain and double vision (signs of temporal arteritis). Clinical knowledge: sight symptoms in giant cell arteritis need same-day hospital care. Soft, with the firm urgent rule below as its floor."
+
+  - id: rf_dv_bulging_infection
+    description: "Double vision with a swollen eyelid or a bulging eye that has just started: possible infection or swelling behind the eye"
+    when: {any: [{all: [eyelid_swollen, {any: [eye_hard_to_move, very_high_temperature]}]}, bulging_just_started]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eye_infection_spreading
+    source: nhs_bulging_eyes
+    note: "The Bulging eyes page says call 999 or go to A&E if the eyes have started bulging with vision changes. The swollen eyelid part is AI judgement from the Cellulitis page."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_dv_sudden
+    description: "Double vision that started suddenly"
+    when: double_vision_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_double_vision_urgent
+    source: nhs_double_vision
+
+  - id: rf_dv_eye_pain
+    description: "Eye pain and double vision"
+    when: eye_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_double_vision_urgent
+    source: nhs_double_vision
+
+  - id: rf_dv_gca_urgent
+    description: "Double vision with pain at the temples or jaw pain when eating"
+    when: jaw_pain_or_scalp_tender
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get an urgent GP appointment or call 111"}
+    advice: advice_gca_urgent
+    source: nhs_cluster_headaches
+
+outcome_rules: []
+
+default:
+  description: "Double vision with nothing that needs more urgent help: get it checked, even if it comes and goes"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Go to an optician or see a GP. No fixed time is given."}
+  advice: advice_double_vision_gp
+  source: nhs_double_vision
+  # A floor: the page says it is important to get double vision checked, even if it comes and goes.
+  floor: true
+  note: "An optician has no level of its own in settings.yaml, so general practice (routine) is used, and the advice names the optician."

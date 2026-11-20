@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: achalasia
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing]
+name: "Achalasia (the food pipe cannot relax to let food into the stomach)"
+snomed: "45564002"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+findings:
+  # What tells it apart: swallowing both food and drink gets harder over months or years, with
+  # undigested food coming back up.
+  bringing_food_back_up: strongly_supports
+  swallowing_getting_worse: strongly_supports
+  food_sticks_in_chest: supports
+  weight_loss: supports
+  coughing_choking_when_eating: supports
+key_findings: [bringing_food_back_up, swallowing_getting_worse]
+source: nhs_achalasia
+informed_by: [nhs_achalasia]

@@ -1,0 +1,399 @@
+
+- id: nhs_sciatica
+  title: Sciatica
+  url: https://www.nhs.uk/conditions/sciatica/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 December 2024'
+
+- id: nhs_slipped_disc
+  title: Slipped disc
+  url: https://www.nhs.uk/conditions/slipped-disc/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 April 2024'
+
+- id: nhs_ankylosing_spondylitis
+  title: Ankylosing spondylitis
+  url: https://www.nhs.uk/conditions/ankylosing-spondylitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 05 January 2023'
+
+- id: nhs_whiplash
+  title: Whiplash
+  url: https://www.nhs.uk/conditions/whiplash/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 August 2026'
+
+- id: nhs_frozen_shoulder
+  title: Frozen shoulder
+  url: https://www.nhs.uk/conditions/frozen-shoulder/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 June 2024'
+
+- id: nhs_tennis_elbow
+  title: Tennis elbow
+  url: https://www.nhs.uk/conditions/tennis-elbow/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 May 2024'
+
+- id: nhs_carpal_tunnel_syndrome
+  title: Carpal tunnel syndrome
+  url: https://www.nhs.uk/conditions/carpal-tunnel-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 April 2024'
+
+- id: nhs_broken_arm_or_wrist
+  title: Broken arm or wrist
+  url: https://www.nhs.uk/conditions/broken-arm-or-wrist/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 October 2026'
+
+- id: nhs_broken_leg
+  title: Broken leg
+  url: https://www.nhs.uk/conditions/broken-leg/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 June 2025'
+
+- id: nhs_broken_ankle
+  title: Broken ankle
+  url: https://www.nhs.uk/conditions/broken-ankle/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 05 November 2025'
+
+- id: nhs_hip_fracture
+  title: Hip fracture
+  url: https://www.nhs.uk/conditions/broken-hip/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 July 2026'
+
+- id: nhs_sprains_and_strains
+  title: Sprains and strains
+  url: https://www.nhs.uk/conditions/sprains-and-strains/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 23 April 2024'
+
+- id: nhs_dislocated_shoulder
+  title: Dislocated shoulder
+  url: https://www.nhs.uk/conditions/dislocated-shoulder/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 September 2026'
+
+- id: nhs_dislocated_kneecap
+  title: Dislocated kneecap
+  url: https://www.nhs.uk/conditions/dislocated-kneecap/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 March 2026'
+
+- id: nhs_gout
+  title: Gout
+  url: https://www.nhs.uk/conditions/gout/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 August 2023'
+
+- id: nhs_septic_arthritis
+  title: Septic arthritis
+  url: https://www.nhs.uk/conditions/septic-arthritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 September 2026'
+
+- id: nhs_osteoarthritis
+  title: Osteoarthritis
+  url: https://www.nhs.uk/conditions/osteoarthritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 20 March 2023'
+
+- id: nhs_rheumatoid_arthritis
+  title: Rheumatoid arthritis
+  url: https://www.nhs.uk/conditions/rheumatoid-arthritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 08 March 2023'
+
+- id: nhs_reactive_arthritis
+  title: Reactive arthritis
+  url: https://www.nhs.uk/conditions/reactive-arthritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 December 2024'
+
+- id: nhs_plantar_fasciitis
+  title: Plantar fasciitis
+  url: https://www.nhs.uk/conditions/plantar-fasciitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 February 2025'
+
+- id: nhs_bursitis
+  title: Bursitis
+  url: https://www.nhs.uk/conditions/bursitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 30 October 2023'
+
+- id: nhs_deep_vein_thrombosis
+  title: Deep vein thrombosis (DVT)
+  url: https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 30 April 2026'
+
+- id: nhs_compartment_syndrome
+  title: Compartment syndrome
+  url: https://www.nhs.uk/conditions/compartment-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 04 September 2026'
+
+- id: nhs_polymyalgia_rheumatica
+  title: Polymyalgia rheumatica
+  url: https://www.nhs.uk/conditions/polymyalgia-rheumatica/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 23 April 2023'
+
+- id: nhs_osteomyelitis
+  title: Osteomyelitis
+  url: https://www.nhs.uk/conditions/osteomyelitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 August 2023'
+
+- id: nhs_meningitis
+  title: Meningitis
+  url: https://www.nhs.uk/conditions/meningitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 June 2026'
+
+- id: nhs_peripheral_arterial_disease
+  title: Peripheral arterial disease (PAD)
+  url: https://www.nhs.uk/conditions/peripheral-arterial-disease-pad/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 October 2026'
+
+- id: nhs_bunions
+  title: Bunions
+  url: https://www.nhs.uk/conditions/bunions/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 June 2023'
+
+- id: nhs_mortons_neuroma
+  title: Morton's neuroma
+  url: https://www.nhs.uk/conditions/mortons-neuroma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 June 2025'
+
+- id: nhs_trigger_finger
+  title: Trigger finger
+  url: https://www.nhs.uk/conditions/trigger-finger/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 November 2025'
+
+- id: nhs_ganglion_cyst
+  title: Ganglion cyst
+  url: https://www.nhs.uk/conditions/ganglion-cyst/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 July 2025'
+
+- id: nhs_mallet_finger
+  title: Mallet finger
+  url: https://www.nhs.uk/conditions/mallet-finger/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 August 2023'
+
+- id: nhs_falls
+  title: Falls
+  url: https://www.nhs.uk/conditions/falls/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 March 2025'
+
+- id: nhs_broken_finger
+  title: Broken finger or thumb
+  url: https://www.nhs.uk/conditions/broken-finger/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 20 November 2025'
+
+- id: nhs_broken_toe
+  title: Broken toe
+  url: https://www.nhs.uk/conditions/broken-toe/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 March 2026'
+
+- id: nhs_broken_collarbone
+  title: Broken collarbone
+  url: https://www.nhs.uk/conditions/broken-collarbone/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 August 2023'
+
+- id: nhs_osteoporosis
+  title: Osteoporosis
+  url: https://www.nhs.uk/conditions/osteoporosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 October 2026'
+
+- id: nhs_bone_cancer
+  title: Bone cancer
+  url: https://www.nhs.uk/conditions/bone-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_fibromyalgia
+  title: Fibromyalgia
+  url: https://www.nhs.uk/conditions/fibromyalgia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 October 2022'
+
+- id: nhs_psoriatic_arthritis
+  title: Psoriatic arthritis
+  url: https://www.nhs.uk/conditions/psoriatic-arthritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 September 2023'
+
+- id: nhs_cervical_spondylosis
+  title: Cervical spondylosis
+  url: https://www.nhs.uk/conditions/cervical-spondylosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 August 2023'
+
+- id: nhs_tendonitis
+  title: Tendonitis
+  url: https://www.nhs.uk/conditions/tendonitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 June 2023'
+
+- id: nhs_shin_splints
+  title: Shin splints
+  url: https://www.nhs.uk/conditions/shin-splints/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 February 2023'
+
+- id: nhs_head_injury
+  title: Head injury and concussion
+  url: https://www.nhs.uk/conditions/head-injury-and-concussion/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 May 2025'
+
+- id: nhs_dupuytrens_contracture
+  title: Dupuytren's contracture
+  url: https://www.nhs.uk/conditions/dupuytrens-contracture/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 June 2024'
+
+- id: nhs_abdominal_aortic_aneurysm
+  title: Abdominal aortic aneurysm
+  url: https://www.nhs.uk/conditions/abdominal-aortic-aneurysm/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 June 2023'
+
+- id: nhs_flat_feet
+  title: Flat feet
+  url: https://www.nhs.uk/conditions/flat-feet/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 June 2025'
+
+- id: nhs_joint_hypermobility
+  title: Joint hypermobility syndrome
+  url: https://www.nhs.uk/conditions/joint-hypermobility-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 30 August 2023'
+
+- id: nhs_cellulitis
+  title: Cellulitis
+  url: https://www.nhs.uk/conditions/cellulitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 April 2024'
+
+- id: nhs_shoulder_impingement_syndrome
+  title: Shoulder impingement syndrome
+  url: https://www.nhs.uk/conditions/shoulder-impingement-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 26 November 2024'

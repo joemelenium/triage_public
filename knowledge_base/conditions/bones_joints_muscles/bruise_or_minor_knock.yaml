@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bruise_or_minor_knock
+body_system: bones_joints_muscles
+entry_symptoms: [injury_or_fall]
+name: "A bruise or minor knock"
+medical_name: "Contusion"
+snomed: "125667009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  bruised: strongly_supports
+  swollen_area: supports
+key_findings: [bruised]
+source: ai_judgement
+informed_by: [nhs_sprains_and_strains]

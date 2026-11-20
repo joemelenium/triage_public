@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: priapism
+body_system: urinary_and_male
+entry_symptoms: [erection_will_not_go_away]
+name: "Priapism (an erection that will not go away and needs hospital treatment)"
+medical_name: "Ischaemic priapism"
+snomed: "6273006"
+# The page says call 999 or go to A&E for an erection over 3 to 4 hours, or over
+# 1 hour with sickle cell. Danger serious: it can cause permanent damage.
+acuity_needed: emergency
+danger: serious
+sex: male
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_sickle_cell, prevalence: very_common}
+findings:
+  erection_over_3_hours: strongly_supports
+  erection_painful: strongly_supports
+  erection_over_1_hour: supports
+  used_erection_medicine_or_cannabis_cocaine: supports
+key_findings: [erection_over_3_hours, erection_painful, has_sickle_cell, used_erection_medicine_or_cannabis_cocaine]
+source: nhs_priapism_painful_erections
+informed_by: [nhs_priapism_painful_erections, nhs_sickle_cell_disease]

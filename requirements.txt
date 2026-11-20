@@ -1,0 +1,8 @@
+# Kept deliberately short. Add a line only with a reason recorded in DECISIONS.md.
+PyYAML>=6.0        # reads the knowledge base files
+pydantic>=2.0      # checks the knowledge base files have the right shape
+pytest>=8.0        # runs the tests
+numpy>=1.26        # the exact likelihood calculation works on whole tables at once (DECISIONS 143)
+fastapi>=0.110     # the local API and demo page (DECISIONS 175)
+uvicorn>=0.29      # runs the local API server
+httpx>=0.27        # lets the tests call the API without starting a server

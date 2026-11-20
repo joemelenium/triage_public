@@ -1,0 +1,18 @@
+id: semigran2015_30
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Vertigo
+original_triage_label: Requires non-emergent care
+original_triage: non_emergency
+presenting_text: 'dizziness: brief spinning sensations on rolling over in bed or tilting the head back, nightly for a month'
+presenting: []
+age: 65
+sex: female
+findings:
+  present: []
+  absent:
+  - stroke_signs
+  unknown: []
+conversion_notes: '''No associated hearing loss, tinnitus, or other neurologic symptoms'', with a normal neurologic examination, is mapped to stroke_signs absent. The dizziness is described as a spinning sensation and is not mapped to light_headed. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 30 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

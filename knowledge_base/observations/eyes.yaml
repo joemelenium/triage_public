@@ -1,0 +1,899 @@
+# Observations: eyes.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# An observation is anything the engine can know about a patient: a symptom, a
+# feature of a symptom, a risk factor (history, lifestyle, an event) or context
+# such as age. Each is answered "yes", "no" or "not sure". Observations are kept
+# in one file per body system. All files together form one shared network.
+#
+# Fields: as in observations/general.yaml.
+#
+
+# ---------------------------------------------------------------------------
+# Main symptoms (one per eye entry symptom)
+# ---------------------------------------------------------------------------
+- id: red_eye
+  label: "Red or bloodshot eye"
+  question: "Is the white of your eye red or bloodshot, in 1 or both eyes?"
+  question_carer: "Is the white of your child's eye red or bloodshot, in 1 or both eyes?"
+  checklist_text: "Red or bloodshot eye"
+  kind: presenting   # the main symptom for the red eye entry symptom
+  snomed: "703630003"
+  phrases: ["red eye", "bloodshot eye", "pink eye", "my eye has gone red"]
+  source: nhs_red_eye
+
+- id: eye_pain
+  label: "Eye pain"
+  question: "Do you have pain in or around your eye? It may be felt behind, inside or around the eye."
+  question_carer: "Does your child have pain in or around their eye?"
+  checklist_text: "Pain in or around the eye"
+  kind: presenting   # the main symptom for the eye pain entry symptom
+  snomed: "41652007"
+  phrases: ["my eye hurts", "pain behind my eye", "sore eye", "aching eye"]
+  source: nhs_eye_pain
+
+- id: vision_change
+  label: "Change in sight or loss of vision"
+  question: "Has your sight changed or got worse, in a way that does not clear when you blink? For example, it is blurred, cloudy or wavy, you see flashing lights, or you cannot see part of what you usually see."
+  question_carer: "Has your child's sight changed? For example, they cannot see as well, or they squint, cover 1 eye or tilt their head to see."
+  checklist_text: "Any change to your sight, like blurring, wavy lines or loss of vision"
+  kind: presenting   # the main symptom for the vision loss entry symptom
+  snomed: "63102001"
+  seriousness: serious
+  phrases: ["blurry vision", "can't see properly", "losing my sight", "vision has gone funny"]
+  source: nhs_vision_loss
+
+- id: double_vision
+  label: "Double vision"
+  question: "Do you see 2 of things when you look at 1 object (double vision), even if it comes and goes?"
+  question_carer: "Does your child seem to see double? Signs include squinting, closing or covering 1 eye, or tilting their head to see."
+  checklist_text: "Double vision"
+  kind: presenting   # the main symptom for the double vision entry symptom
+  # Not under vision_change on purpose: that would bring in the vision loss entry
+  # symptom, whose "double vision is urgent" rule would override the Double vision
+  # page's "see a GP" for double vision on its own. Rules elsewhere that mean "any
+  # problem with sight" name double_vision as well (headache, vertigo, head injury).
+  snomed: "24982008"
+  phrases: ["seeing double", "two of everything", "double vision"]
+  source: nhs_double_vision
+
+- id: dry_eyes
+  label: "Dry eyes"
+  question: "Do your eyes feel dry?"
+  question_carer: "Does your child say their eyes feel dry?"
+  checklist_text: "Dry eyes"
+  kind: presenting   # the main symptom for the dry eyes entry symptom
+  snomed: "162290004"
+  phrases: ["dry eyes", "eyes feel dry", "tired, dry eyes"]
+  source: nhs_dry_eyes
+
+- id: watering_eyes
+  label: "Watering eyes"
+  question: "Do your eyes keep watering?"
+  question_carer: "Do your child's eyes keep watering?"
+  checklist_text: "Watering eyes"
+  kind: presenting   # the main symptom for the watering eyes entry symptom
+  phrases: ["watery eyes", "eyes keep streaming", "tears running down my face"]
+  source: nhs_watering_eyes
+
+- id: floaters_or_flashes
+  label: "Floaters or flashes in the eyes"
+  question: "Are you seeing floaters or flashes? Floaters are small dark dots, lines, rings or cobwebs that drift across your sight. Flashes are sudden flashes of light."
+  checklist_text: "Floaters (dark dots or lines) or flashes of light in your sight"
+  kind: presenting   # the main symptom for the floaters and flashes entry symptom
+  phrases: ["floaters", "flashing lights in my eye", "cobwebs in my vision", "black dots"]
+  source: nhs_floaters_and_flashes_in_the_eyes
+
+- id: eyelid_problem
+  label: "Eyelid problem"
+  question: "Do you have a problem with your eyelid? For example, a lump, swelling, drooping, or an itchy, sticky or sore eyelid."
+  question_carer: "Does your child have a problem with their eyelid? For example, a lump, swelling, or an itchy, sticky or sore eyelid."
+  checklist_text: "A problem with an eyelid, such as a lump, swelling or drooping"
+  kind: presenting   # the main symptom for the eyelid problems entry symptom
+  phrases: ["lump on my eyelid", "swollen eyelid", "droopy eyelid", "sore eyelid"]
+  source: nhs_eyelid_problems
+
+- id: bulging_eyes
+  label: "Bulging eyes"
+  question: "Do your eyes look like they are bulging or sticking out more than usual? You may see more of the whites of your eyes."
+  question_carer: "Do your child's eyes look like they are bulging or sticking out more than usual?"
+  checklist_text: "Eyes bulging or sticking out more than usual"
+  kind: presenting   # the main symptom for the bulging eyes entry symptom
+  snomed: "301919003"
+  phrases: ["eyes sticking out", "bulging eyes", "staring eyes", "eyes look wide open"]
+  source: nhs_bulging_eyes
+
+- id: something_in_eye
+  label: "Feels like something is in the eye"
+  question: "Does it feel like there is something in your eye, such as dust, an eyelash or grit?"
+  question_carer: "Does your child say it feels like there is something in their eye?"
+  checklist_text: "Feels like something is in the eye"
+  kind: presenting   # the main symptom for the something in the eye entry symptom
+  snomed: "605954641000119109"
+  phrases: ["something in my eye", "grit in my eye", "eyelash in my eye", "bit of dirt in my eye"]
+  source: nhs_eye_injuries
+
+# ---------------------------------------------------------------------------
+# Red eye: more detail
+# ---------------------------------------------------------------------------
+- id: eye_very_red
+  label: "White of the eye very red"
+  question: "Is the white of your eye very red, in part or all over?"
+  checklist_text: "The white of the eye is very red"
+  kind: symptom
+  parent: red_eye
+  relation: severity
+  seriousness: serious
+  phrases: ["really red eye", "eye is bright red all over"]
+  source: nhs_eyelid_problems
+
+- id: eye_very_dark_red
+  label: "Eye very dark red"
+  question: "Is your eye very dark red, rather than pink or bright red?"
+  checklist_text: "Eye very dark red"
+  kind: symptom
+  parent: eye_very_red
+  relation: character
+  seriousness: emergency
+  phrases: ["dark red eye", "eye is almost purple"]
+  source: nhs_red_eye
+
+- id: red_eye_lasting
+  label: "Red eye, or an eyelid or eyelash problem, for more than a few days"
+  question: "Has your eye been red, or had a problem with the eyelid or eyelashes, for more than a few days?"
+  checklist_text: "Red eye, or an eyelid or eyelash problem, for more than a few days"
+  kind: symptom
+  parent: red_eye
+  relation: duration
+  phrases: ["red for a week", "not getting better"]
+  source: nhs_red_eye
+
+- id: bright_red_patch
+  label: "Flat, bright red patch on the white of the eye"
+  question: "Is there a flat, bright red patch on the white of your eye, like a bruise, with clear edges?"
+  kind: symptom
+  parent: red_eye
+  relation: character
+  phrases: ["blood in my eye", "bright red patch", "burst blood vessel"]
+  source: nhs_red_eye
+
+- id: redness_around_coloured_part
+  label: "Redness worst in a ring around the coloured part of the eye"
+  question: "Is the redness worst in a ring around the coloured part of your eye?"
+  kind: symptom
+  parent: red_eye
+  relation: location
+  phrases: ["red ring round my iris"]
+  source: ai_judgement
+
+- id: redness_in_one_patch
+  label: "Redness in one patch of the white of the eye"
+  question: "Is the redness in one patch of the white of your eye, rather than all over?"
+  kind: symptom
+  parent: red_eye
+  relation: location
+  phrases: ["red patch on one side of my eye", "just one corner is red"]
+  source: ai_judgement
+
+- id: blisters_around_eye
+  label: "Blisters or a rash on the eyelid or skin around the eye"
+  question: "Do you have blisters or a rash on your eyelid, or on the skin around your eye?"
+  checklist_text: "Blisters or a rash on the eyelid or around the eye"
+  kind: symptom
+  phrases: ["blisters on my eyelid", "cold sore by my eye", "rash on my forehead and eyelid"]
+  source: nhs_herpes_simplex_eye
+
+# ---------------------------------------------------------------------------
+# Eye pain: more detail
+# ---------------------------------------------------------------------------
+- id: eye_pain_severe
+  label: "Severe eye pain"
+  question: "Is the pain in your eye severe?"
+  checklist_text: "Severe eye pain"
+  kind: symptom
+  parent: eye_pain
+  relation: severity
+  seriousness: serious
+  phrases: ["agony", "worst pain", "really painful eye"]
+  source: nhs_eye_pain
+
+- id: eye_pain_sudden
+  label: "Eye pain or other eye symptoms started suddenly"
+  question: "Did the pain or other eye symptoms start suddenly, over minutes or a few hours?"
+  checklist_text: "Eye symptoms that started suddenly"
+  kind: symptom
+  parent: eye_pain
+  relation: duration
+  seriousness: emergency
+  phrases: ["came on all of a sudden", "started an hour ago"]
+  source: nhs_eye_pain
+
+- id: eye_pain_keeps_awake
+  label: "Eye pain keeps them awake at night"
+  question: "Is the eye pain bad enough to keep you awake at night?"
+  checklist_text: "Eye pain that keeps you awake at night"
+  kind: symptom
+  parent: eye_pain
+  relation: severity
+  seriousness: emergency
+  phrases: ["can't sleep for the pain", "pain wakes me up"]
+  source: nhs_eye_pain
+
+- id: eye_pain_moving_eye
+  label: "Eye hurts more when moving it"
+  question: "Does it hurt more when you move your eye?"
+  checklist_text: "Hurts more when you move your eye"
+  kind: symptom
+  parent: eye_pain
+  relation: exacerbating_factor
+  phrases: ["hurts to look sideways", "pain when I move my eyes"]
+  source: ai_judgement
+
+- id: eye_pain_lasting
+  label: "Eye pain lasting more than a few days"
+  question: "Has the pain in or around your eye lasted more than a few days?"
+  checklist_text: "Eye pain that has lasted more than a few days"
+  kind: symptom
+  parent: eye_pain
+  relation: duration
+  phrases: ["sore for a week", "still hurts after days"]
+  source: ai_judgement
+
+- id: something_in_eye_24_hours
+  label: "Eye injury or something in the eye not better after 24 hours"
+  question: "Has the feeling of something in your eye, or the injury, not got better after 24 hours?"
+  checklist_text: "Not getting better after 24 hours"
+  kind: symptom
+  parent: something_in_eye
+  relation: duration
+  phrases: ["still feels like something's there since yesterday"]
+  source: nhs_eye_injuries
+
+- id: eye_pain_deep_ache
+  label: "Deep, boring ache in the eye"
+  question: "Is it a deep, boring ache in your eye, rather than a gritty or scratchy feeling?"
+  kind: symptom
+  parent: eye_pain
+  relation: character
+  phrases: ["deep ache", "boring pain inside my eye"]
+  source: ai_judgement
+
+# ---------------------------------------------------------------------------
+# Sight: more detail
+# ---------------------------------------------------------------------------
+- id: sight_lost
+  label: "Cannot see out of 1 or both eyes, or a large part of the sight is missing"
+  question: "Have you lost the sight in 1 or both eyes, or in a large part of what you see?"
+  checklist_text: "Cannot see out of 1 or both eyes, or a large part of your sight is missing"
+  kind: symptom
+  parent: vision_change
+  relation: severity
+  seriousness: emergency
+  phrases: ["can't see out of my eye", "gone blind", "everything went black"]
+  source: nhs_vision_loss
+
+- id: vision_change_sudden
+  label: "Sight changed suddenly"
+  question: "Did the change in your sight come on suddenly, over seconds, minutes or hours?"
+  checklist_text: "Sight changed suddenly"
+  kind: symptom
+  parent: vision_change
+  relation: duration
+  seriousness: serious
+  phrases: ["suddenly went blurry", "woke up and couldn't see properly"]
+  source: nhs_vision_loss
+
+- id: vision_worse_over_days
+  label: "Sight got worse over a few days"
+  question: "Has your sight got worse over a few days?"
+  checklist_text: "Sight got worse over a few days"
+  kind: symptom
+  parent: vision_change
+  relation: duration
+  phrases: ["getting worse every day", "worse since the weekend"]
+  source: nhs_uveitis
+
+- id: vision_worse_slowly
+  label: "Sight getting worse slowly, over months or years"
+  question: "Has your sight been getting worse slowly, over months or years?"
+  kind: symptom
+  parent: vision_change
+  relation: duration
+  phrases: ["gradually getting worse", "need brighter light to read"]
+  source: nhs_vision_loss
+
+- id: blurred_vision
+  label: "Blurred, cloudy or misty sight"
+  question: "Is your sight blurred, cloudy or misty?"
+  checklist_text: "Blurred, cloudy or misty sight"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  snomed: "111516008"
+  phrases: ["blurry", "misty", "like looking through fog"]
+  source: nhs_vision_loss
+
+- id: distorted_vision
+  label: "Middle of the sight distorted, straight lines look wavy"
+  question: "Is the middle of your sight blurred or distorted, so straight lines look wavy or bent?"
+  checklist_text: "Straight lines look wavy or bent"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  phrases: ["lines look wavy", "door frames look bent", "faces look distorted"]
+  source: nhs_amd
+
+- id: halos_around_lights
+  label: "Glowing rings (halos) around lights"
+  question: "Do you see glowing rings (halos) or rainbow circles around lights?"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  phrases: ["halos round lights", "rainbow rings around lights"]
+  source: nhs_glaucoma
+
+- id: night_vision_poor
+  label: "Harder to see at night or in dim light"
+  question: "Is it harder to see at night or in dim light?"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  phrases: ["can't see when driving at night", "struggle in the dark"]
+  source: nhs_cataracts
+
+- id: colours_faded
+  label: "Colours look faded or washed out"
+  question: "Do colours look faded or washed out?"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  phrases: ["colours look dull", "red looks washed out"]
+  source: nhs_cataracts
+
+- id: losing_side_vision
+  label: "Losing sight at the edges"
+  question: "Are you losing sight at the edges of what you see, so you bump into things at the side?"
+  kind: symptom
+  parent: vision_change
+  relation: location
+  phrases: ["tunnel vision", "bumping into things"]
+  source: ai_judgement
+
+- id: vision_change_one_eye
+  label: "Change in sight in 1 eye only"
+  question: "Is the change in your sight in 1 eye only? Cover each eye in turn to check."
+  kind: symptom
+  parent: vision_change
+  relation: location
+  phrases: ["only my left eye", "one eye is blurry"]
+  source: ai_judgement
+
+- id: blurred_far_or_near
+  label: "Hard to see far away or close up, clear at other distances"
+  question: "Is it mainly hard to see things far away, or close up such as when reading, but clear at other distances?"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  phrases: ["can't read the TV", "need to hold my phone further away"]
+  source: nhs_short_sightedness
+
+- id: lost_half_of_vision
+  label: "Suddenly lost the same side of the sight in both eyes"
+  question: "Have you suddenly lost the same side (left or right) of what you see, in both eyes?"
+  checklist_text: "Suddenly lost the left or right side of what you see"
+  kind: symptom
+  parent: vision_change
+  relation: location
+  seriousness: emergency_ambulance
+  phrases: ["can't see anything on my left", "half my vision has gone"]
+  source: nhs_stroke_symptoms
+
+- id: vision_loss_brief
+  label: "Lost the sight in 1 eye for a short time, then it came back"
+  question: "Did you lose the sight in 1 eye for a few seconds or minutes, like a curtain coming down, and then it came back?"
+  checklist_text: "Lost the sight in 1 eye for a short time, then it came back"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["went black for a minute", "like a blind coming down then it lifted"]
+  source: nhs_stroke_symptoms   # loss of sight is a stroke sign; the TIA page says signs that go away still need 999
+
+- id: curtain_or_shadow
+  label: "Dark curtain or shadow across the sight"
+  question: "Is there a dark curtain or shadow moving across your sight, or blocking part of it?"
+  checklist_text: "A dark curtain or shadow moving across your sight"
+  kind: symptom
+  parent: vision_change
+  relation: character
+  seriousness: serious
+  phrases: ["shadow over my eye", "like a curtain", "a dark patch in my vision"]
+  source: nhs_floaters_and_flashes_in_the_eyes
+
+- id: pupils_different_sizes
+  label: "1 pupil bigger than the other"
+  question: "Is 1 pupil (the black circle in the middle of the eye) bigger than the other?"
+  checklist_text: "1 pupil (the black circle in the middle of the eye) bigger than the other"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["one pupil is huge", "pupils different sizes"]
+  source: nhs_red_eye
+
+- id: eye_front_cloudy_or_white_spot
+  label: "Front of the eye looks cloudy, or has a white spot"
+  question: "Does the clear front part of your eye look cloudy, or is there a white or grey spot on it?"
+  kind: symptom
+  phrases: ["white spot on my eye", "eye looks cloudy"]
+  source: ai_judgement
+
+# ---------------------------------------------------------------------------
+# Double vision: more detail
+# ---------------------------------------------------------------------------
+- id: double_vision_sudden
+  label: "Double vision started suddenly"
+  question: "Did the double vision start suddenly?"
+  checklist_text: "Double vision that started suddenly"
+  kind: symptom
+  parent: double_vision
+  relation: duration
+  seriousness: serious
+  phrases: ["suddenly seeing double", "woke up seeing double"]
+  source: nhs_double_vision
+
+- id: double_vision_one_eye
+  label: "Double vision stays when 1 eye is covered"
+  question: "If you cover 1 eye, do you still see double out of the other eye?"
+  kind: symptom
+  parent: double_vision
+  relation: character
+  phrases: ["still double with one eye shut", "ghost image in one eye"]
+  source: nhs_double_vision
+
+- id: double_vision_both_eyes
+  label: "Double vision goes when either eye is covered"
+  question: "Does the double vision go away when you cover either eye?"
+  kind: symptom
+  parent: double_vision
+  relation: character
+  phrases: ["goes away with one eye closed"]
+  source: nhs_double_vision
+
+- id: symptoms_worse_when_tired
+  label: "Drooping eyelid or double vision worse when tired"
+  question: "Does a drooping eyelid or double vision get worse when you are tired, or later in the day? Does it get better after rest?"
+  kind: symptom
+  phrases: ["worse in the evening", "better after a sleep"]
+  source: nhs_myasthenia_gravis
+
+- id: eye_turns_or_squints
+  label: "1 eye turns in, out, up or down"
+  question: "Does 1 eye turn in, out, up or down, while the other looks straight ahead?"
+  question_carer: "Does 1 of your child's eyes turn in, out, up or down? Or do they often close 1 eye, or tilt their head to see?"
+  kind: symptom
+  phrases: ["lazy eye", "wandering eye", "cross-eyed", "squint"]
+  source: nhs_squint
+
+- id: eye_hard_to_move
+  label: "Hard or painful to move the eye"
+  question: "Is it hard to move your eye, or does it not move as far as the other eye?"
+  checklist_text: "Hard to move your eye"
+  kind: symptom
+  seriousness: serious
+  phrases: ["eye won't move properly", "eye is stuck"]
+  source: nhs_eye_injuries
+
+# ---------------------------------------------------------------------------
+# Dry and watering eyes, floaters: more detail
+# ---------------------------------------------------------------------------
+- id: dry_eyes_weeks
+  label: "Still dry after trying home treatment for a few weeks"
+  question: "Have your eyes still felt dry after trying home treatments, such as eye drops, for a few weeks?"
+  checklist_text: "Still dry after trying home treatments for a few weeks"
+  kind: symptom
+  parent: dry_eyes
+  relation: duration
+  phrases: ["eye drops haven't helped", "dry for months"]
+  source: nhs_dry_eyes
+
+- id: watering_affects_daily_life
+  label: "Watering stops them doing everyday things"
+  question: "Is the watering stopping you doing everyday things, such as reading or driving?"
+  checklist_text: "Watering stops you doing everyday things"
+  kind: symptom
+  parent: watering_eyes
+  relation: severity
+  phrases: ["can't see to drive", "always wiping my eyes"]
+  source: nhs_watering_eyes
+
+- id: watering_constant
+  label: "Eye waters all the time, with tears running down the cheek"
+  question: "Does your eye water all the time, with tears running down your cheek, even indoors?"
+  question_carer: "Does your child's eye water all the time, with tears running down their cheek?"
+  kind: symptom
+  parent: watering_eyes
+  relation: duration
+  phrases: ["tears all the time", "always crying out of one eye"]
+  source: nhs_watering_eyes
+
+- id: watering_baby_since_birth
+  label: "Baby with a watery or slightly sticky eye since the first weeks of life"
+  question: "Has your baby had a watery eye since they were a few weeks old? It may be a little sticky, but the white of the eye is not red."
+  question_carer: "Has your baby had a watery eye since they were a few weeks old? It may be a little sticky, but the white of the eye is not red."
+  kind: symptom
+  parent: watering_eyes
+  relation: duration
+  asked_only_if: age_under_1
+  phrases: ["sticky eye since birth", "baby's eye always watery"]
+  source: nhs_watering_eyes
+
+- id: floaters_new_or_sudden
+  label: "Floaters or flashes that are new, sudden, or suddenly more"
+  question: "Are the floaters or flashes new, did they start suddenly, or has the number of them suddenly gone up?"
+  checklist_text: "Floaters or flashes that are new, started suddenly, or suddenly got more"
+  kind: symptom
+  parent: floaters_or_flashes
+  relation: duration
+  seriousness: serious
+  phrases: ["suddenly loads of floaters", "never had them before", "shower of black dots"]
+  source: nhs_floaters_and_flashes_in_the_eyes
+
+- id: floaters_long_standing
+  label: "Same floaters for a long time, with no change"
+  question: "Have you had the same floaters or flashes for a long time, with no change?"
+  kind: symptom
+  parent: floaters_or_flashes
+  relation: duration
+  phrases: ["had them for years", "same as always"]
+  source: nhs_floaters_and_flashes_in_the_eyes
+
+# ---------------------------------------------------------------------------
+# Eyelids: more detail
+# ---------------------------------------------------------------------------
+- id: eyelid_lump
+  label: "Lump on or in the eyelid"
+  question: "Is there a lump on or inside your eyelid?"
+  checklist_text: "A lump on the eyelid"
+  kind: symptom
+  parent: eyelid_problem
+  relation: character
+  phrases: ["lump on my eyelid", "spot on my eyelid", "bump on my eyelid"]
+  source: nhs_eyelid_problems
+
+- id: eyelid_lump_painful
+  label: "Red, painful lump near the edge of the eyelid"
+  question: "Is the lump red and painful, near the edge of the eyelid, maybe with a yellow spot of pus?"
+  kind: symptom
+  parent: eyelid_lump
+  relation: character
+  phrases: ["painful spot on my eyelid", "yellow head on it"]
+  source: nhs_stye
+
+- id: eyelid_lump_painless
+  label: "Firm lump on the eyelid that is not very painful"
+  question: "Is the lump firm and not very painful?"
+  kind: symptom
+  parent: eyelid_lump
+  relation: character
+  phrases: ["hard lump", "doesn't hurt"]
+  source: nhs_stye
+
+- id: eyelid_lump_yellow
+  label: "Yellow lumps or patches around the eyes"
+  question: "Are there flat yellow lumps or patches on your eyelids or around your eyes?"
+  checklist_text: "Yellow lumps or patches around the eyes"
+  kind: symptom
+  parent: eyelid_lump
+  relation: character
+  phrases: ["yellow patches on my eyelids", "fatty lumps by my eyes"]
+  source: nhs_eyelid_problems
+
+- id: eyelid_lump_not_going
+  label: "Eyelid lump lasting weeks, or not better with pharmacy treatment"
+  question: "Has the lump lasted more than a few weeks, or not got better with treatment from a pharmacist?"
+  checklist_text: "A lump around the eye that has lasted weeks, or not got better with pharmacy treatment"
+  kind: symptom
+  parent: eyelid_lump
+  relation: duration
+  phrases: ["lump won't go away", "had it for a month"]
+  source: nhs_watering_eyes
+
+- id: eyelid_lump_growing_or_bleeding
+  label: "Eyelid lump growing, bleeding or crusting, or eyelashes falling out"
+  question: "Is the lump growing, bleeding or crusting, or are the eyelashes falling out around it?"
+  checklist_text: "A lump on the eyelid that is growing, bleeding or crusting"
+  kind: symptom
+  parent: eyelid_lump
+  relation: character
+  seriousness: serious
+  phrases: ["lump keeps bleeding", "sore that won't heal", "lashes falling out"]
+  source: ai_judgement
+
+- id: eyelid_swollen
+  label: "Swollen eyelid"
+  question: "Is your eyelid swollen?"
+  question_carer: "Is your child's eyelid swollen?"
+  checklist_text: "Swollen eyelid"
+  kind: symptom
+  parent: eyelid_problem
+  relation: character
+  phrases: ["puffy eyelid", "eye swollen up"]
+  source: nhs_eyelid_problems
+
+- id: eyelid_red_hot_painful
+  label: "Swollen eyelid that is red, hot, painful, tender or blistered"
+  question: "Is the swollen eyelid hot, painful, tender, blistered or red? Redness may be harder to see on brown or black skin."
+  checklist_text: "Swollen eyelid that is red, hot, painful, tender or blistered"
+  kind: symptom
+  parent: eyelid_swollen
+  relation: character
+  seriousness: serious
+  phrases: ["eyelid is hot and red", "really sore swollen eyelid"]
+  source: nhs_eyelid_problems
+
+- id: eyelid_itchy_crusty
+  label: "Itchy, sore or crusty eyelid edges"
+  question: "Are the edges of your eyelids itchy, sore or crusty, with flakes at the roots of the eyelashes?"
+  kind: symptom
+  parent: eyelid_problem
+  relation: character
+  phrases: ["crusty eyelids", "flaky eyelashes", "itchy eyelids"]
+  source: nhs_blepharitis
+
+- id: eyelid_drooping
+  label: "Upper eyelid droops"
+  question: "Does your upper eyelid droop?"
+  checklist_text: "Drooping eyelid"
+  kind: symptom
+  parent: eyelid_problem
+  relation: character
+  phrases: ["droopy eyelid", "eyelid hanging down"]
+  source: nhs_eyelid_problems
+
+- id: eyelid_drooped_suddenly
+  label: "Eyelid started drooping suddenly"
+  question: "Did the eyelid start drooping suddenly, in the last few days?"
+  checklist_text: "An eyelid that has started drooping suddenly"
+  kind: symptom
+  parent: eyelid_drooping_new   # a sudden droop is a new one, so the headache rule for a new droop sees it
+  relation: duration
+  seriousness: serious
+  phrases: ["eyelid dropped overnight", "suddenly can't lift my eyelid"]
+  source: nhs_eyelid_problems
+
+- id: eyelid_turning_in_or_out
+  label: "Eyelid has changed shape, turns inwards or droops away from the eye"
+  question: "Has the shape of your eyelid changed, or is it turning inwards or drooping away from the eye?"
+  checklist_text: "Eyelid has changed shape, or turns inwards or away from the eye"
+  kind: symptom
+  parent: eyelid_problem
+  relation: character
+  phrases: ["lower lid sagging", "eyelid turning in"]
+  source: nhs_watering_eyes
+
+- id: eyelashes_rubbing_eye
+  label: "Eyelashes grow inwards and rub the eye"
+  question: "Do your eyelashes grow inwards and rub against your eye?"
+  checklist_text: "Eyelashes growing inwards and rubbing your eye"
+  kind: symptom
+  phrases: ["eyelash scratching my eye", "ingrowing eyelash"]
+  source: nhs_red_eye
+
+- id: cannot_open_eye
+  label: "Cannot open the eye or keep it open"
+  question: "Is your eye so swollen or sore that you cannot open it or keep it open?"
+  checklist_text: "Cannot open your eye or keep it open"
+  kind: symptom
+  seriousness: serious
+  phrases: ["eye swollen shut", "can't keep my eye open"]
+  source: nhs_eyelid_problems
+
+- id: cannot_close_eye_fully
+  label: "Hard to close the eye fully"
+  question: "Is it hard to close your eye fully?"
+  kind: symptom
+  phrases: ["can't shut my eye", "eye stays open when I sleep"]
+  source: nhs_bulging_eyes
+
+# ---------------------------------------------------------------------------
+# Bulging eyes: more detail
+# ---------------------------------------------------------------------------
+- id: bulging_just_started
+  label: "Bulging has just started"
+  question: "Has the bulging just started, in the last few days?"
+  checklist_text: "The bulging has just started"
+  kind: symptom
+  parent: bulging_eyes
+  relation: duration
+  seriousness: serious
+  phrases: ["only started bulging this week"]
+  source: nhs_bulging_eyes
+
+- id: bulging_one_eye
+  label: "Only 1 eye bulging"
+  question: "Is only 1 eye bulging?"
+  kind: symptom
+  parent: bulging_eyes
+  relation: location
+  phrases: ["just my left eye sticks out"]
+  source: ai_judgement
+
+# ---------------------------------------------------------------------------
+# What the eye feels like, and other features
+# ---------------------------------------------------------------------------
+- id: sticky_discharge
+  label: "Sticky discharge (pus) from the eye"
+  question: "Is sticky stuff (pus) coming from your eye, or are your eyelashes stuck together, for example when you wake up?"
+  question_carer: "Is sticky stuff (pus) coming from your child's eye, or are their eyelashes stuck together?"
+  checklist_text: "Sticky discharge (pus) from the eye"
+  kind: symptom
+  phrases: ["gunky eye", "eyes glued shut in the morning", "yellow goo"]
+  source: nhs_conjunctivitis
+
+- id: gritty_or_burning
+  label: "Gritty, scratchy or burning feeling in the eye"
+  question: "Does your eye feel gritty, scratchy or burning?"
+  kind: symptom
+  phrases: ["like sand in my eye", "stinging", "burning eyes"]
+  source: nhs_conjunctivitis
+
+- id: itchy_eyes
+  label: "Itchy eyes"
+  question: "Are your eyes itchy?"
+  question_carer: "Are your child's eyes itchy, or do they keep rubbing them?"
+  kind: symptom
+  phrases: ["itchy eyes", "keep rubbing my eyes"]
+  source: nhs_conjunctivitis
+
+- id: both_eyes_affected
+  label: "Both eyes affected"
+  question: "Are both eyes affected?"
+  kind: symptom
+  phrases: ["both eyes", "started in one, now both"]
+  source: nhs_conjunctivitis
+
+# ---------------------------------------------------------------------------
+# Injuries and exposures
+# ---------------------------------------------------------------------------
+- id: eye_injury
+  label: "Injured eye, or something hit the eye"
+  question: "Have you injured your eye, or has something hit it?"
+  question_carer: "Has your child injured their eye, or has something hit it?"
+  checklist_text: "Injured your eye, or something hit it"
+  kind: history
+  seriousness: serious
+  phrases: ["poked in the eye", "hit in the eye", "scratched my eye"]
+  source: nhs_eye_injuries
+
+- id: eye_pierced
+  label: "Something sharp cut or pierced the eye"
+  question: "Has something sharp cut or pierced your eye?"
+  checklist_text: "Something sharp has cut or pierced your eye"
+  kind: history
+  parent: eye_injury
+  relation: character
+  seriousness: emergency
+  phrases: ["glass went in my eye", "stabbed in the eye"]
+  source: nhs_eye_injuries
+
+- id: high_speed_object
+  label: "Something hit the eye at high speed"
+  question: "Did something hit your eye at high speed? For example, while hammering, drilling, grinding, using power tools or mowing."
+  checklist_text: "Something hit your eye at high speed, for example from a power tool"
+  kind: history
+  parent: eye_injury
+  relation: character
+  seriousness: emergency
+  phrases: ["bit of metal flew in my eye", "while grinding", "strimmer flicked something"]
+  source: nhs_eye_injuries
+
+- id: blow_to_eye
+  label: "Hit in the eye by something blunt"
+  question: "Were you hit in the eye by something blunt, such as a ball, an elbow or a fist?"
+  kind: history
+  parent: eye_injury
+  relation: character
+  phrases: ["punched in the eye", "hit by a ball", "black eye"]
+  source: nhs_eye_injuries
+
+- id: object_stuck_in_eye
+  label: "Something stuck in the eye that rinsing has not removed"
+  question: "Is something stuck in your eye that rinsing with water has not removed, such as a piece of glass, metal or grit?"
+  checklist_text: "Something stuck in your eye that rinsing has not removed, like glass or grit"
+  kind: symptom
+  parent: something_in_eye
+  relation: severity
+  seriousness: emergency
+  phrases: ["can't get it out", "still something there after washing it"]
+  source: nhs_red_eye
+
+- id: chemical_in_eye
+  label: "Chemical or other harmful liquid in the eye"
+  question: "Has a chemical or other harmful liquid got in your eye? For example, bleach, oven cleaner, cement or plaster."
+  question_carer: "Has a chemical or other harmful liquid got in your child's eye? For example, bleach, oven cleaner or a dishwasher tablet."
+  checklist_text: "A chemical or harmful liquid in your eye, like bleach or oven cleaner"
+  kind: history
+  seriousness: emergency
+  phrases: ["bleach in my eye", "splashed with cleaner", "cement in my eye"]
+  source: nhs_eye_injuries
+
+- id: welding_or_uv
+  label: "Welding, or a sunbed, without eye protection in the last day"
+  question: "In the last day, have you been welding or near welding, or used a sunbed or sun lamp, without eye protection?"
+  kind: history
+  phrases: ["been welding", "arc eye", "on a sunbed"]
+  source: ai_judgement
+
+# ---------------------------------------------------------------------------
+# History and risk factors
+# ---------------------------------------------------------------------------
+- id: contact_lens_wearer
+  label: "Wears contact lenses"
+  question: "Do you wear contact lenses?"
+  checklist_text: "You wear contact lenses"
+  kind: history
+  phrases: ["I wear contacts", "lenses"]
+  source: nhs_red_eye
+
+- id: eye_surgery_recent
+  label: "Eye surgery or eye treatment in the last 4 weeks"
+  question: "Have you had eye surgery or eye treatment, such as an injection in the eye, in the last 4 weeks?"
+  checklist_text: "Eye surgery or treatment, such as an eye injection, in the last 4 weeks"
+  kind: history
+  phrases: ["just had my cataract done", "had an eye injection last week"]
+  source: nhs_eye_pain
+
+- id: had_iritis_before
+  label: "Has had iritis or uveitis before"
+  question: "Have you had iritis or uveitis before? These cause a painful red eye, treated with steroid eye drops."
+  kind: history
+  phrases: ["my iritis is back", "I get uveitis"]
+  source: nhs_uveitis
+
+- id: has_inflammatory_condition
+  label: "Has a condition such as ankylosing spondylitis, rheumatoid arthritis, Crohn's, lupus or MS"
+  question: "Do you have a long-term condition like rheumatoid arthritis, lupus, Crohn's or MS? Or a stiff back from ankylosing spondylitis? These can affect the eyes."
+  kind: history
+  phrases: ["I have MS", "I have rheumatoid arthritis", "ankylosing spondylitis"]
+  source: nhs_uveitis
+
+- id: had_cold_sores
+  label: "Has had cold sores or a herpes eye infection"
+  question: "Do you get cold sores, or have you had a herpes eye infection before?"
+  kind: history
+  phrases: ["I get cold sores", "had herpes in my eye before"]
+  source: nhs_herpes_simplex_eye
+
+- id: family_glaucoma
+  label: "Parent, brother or sister with glaucoma"
+  question: "Does a parent, brother or sister have glaucoma? Glaucoma is when the nerve at the back of the eye is damaged, often by high pressure in the eye."
+  kind: history
+  phrases: ["my mum has glaucoma", "glaucoma runs in the family"]
+  source: nhs_glaucoma
+
+- id: short_sighted
+  label: "Short-sighted"
+  question: "Are you short-sighted? This means you need glasses or lenses to see things far away clearly."
+  kind: history
+  phrases: ["short-sighted", "need glasses for distance"]
+  source: nhs_detached_retina
+
+- id: long_screen_time
+  label: "Long time at screens, or in dry, air-conditioned or heated rooms"
+  question: "Do you spend a long time looking at screens without a break, or in dry, air-conditioned or heated rooms?"
+  kind: history
+  phrases: ["on the computer all day", "air conditioning at work"]
+  source: nhs_dry_eyes
+
+- id: dark_patch_in_eye_growing
+  label: "A dark patch on the eye that is getting bigger"
+  question: "Is there a dark patch on the coloured part or the white of your eye that is getting bigger?"
+  kind: symptom
+  phrases: ["dark spot on my eye", "freckle on my eye getting bigger"]
+  source: nhs_eye_cancer
+
+- id: eye_painful_red_or_gritty
+  label: "Eye painful, red, gritty or sensitive to light, or blurred vision"
+  question: "Is your eye painful, red or gritty, or sensitive to light? Or is your vision blurred?"
+  checklist_text: "A painful, red or gritty eye, or blurred vision"
+  kind: symptom
+  seriousness: serious
+  phrases: ["gritty eye", "eye really sore", "blurry vision"]
+  source: nhs_rosacea

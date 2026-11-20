@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dry_eye
+body_system: eyes
+# The eyes do not make enough tears, or tears dry up too quickly. Can cause
+# blurring that clears when you blink, and a watering eye.
+entry_symptoms: [dry_eyes, red_eye, watering_eyes, eye_pain, something_in_eye, double_vision]
+name: "Dry eye (the eyes do not make enough tears, or the tears dry up too quickly)"
+medical_name: "Dry eye syndrome"
+snomed: "46152009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: dry_eyes, prevalence: very_common}
+  - {finding: red_eye, prevalence: common}
+  - {finding: watering_eyes, prevalence: common}
+findings:
+  dry_eyes: strongly_supports
+  gritty_or_burning: strongly_supports
+  both_eyes_affected: supports
+  contact_lens_wearer: supports
+  long_screen_time: supports
+  itchy_eyes: supports
+  watering_eyes: supports    # too many tears from dryness
+  eyelid_itchy_crusty: supports    # often with blepharitis
+  double_vision_one_eye: supports    # double vision in 1 eye only
+key_findings: [dry_eyes, gritty_or_burning, long_screen_time, contact_lens_wearer]
+source: nhs_dry_eyes
+informed_by: [nhs_dry_eyes, nhs_red_eye, nhs_double_vision, nhs_watering_eyes]

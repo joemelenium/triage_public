@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: compartment_syndrome
+body_system: bones_joints_muscles
+# Needs an operation within hours. What tells it apart: pain that is much worse than
+# expected and keeps getting worse, often after a broken bone or a tight cast.
+entry_symptoms: [arm_pain, hand_pain, foot_pain, injury_or_fall]
+name: "Compartment syndrome (pressure building up inside the muscles)"
+medical_name: "Acute compartment syndrome"
+snomed: "111245009"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  pain_out_of_proportion: strongly_supports
+  injury_or_fall: supports
+  cast_problem: supports
+  numb_after_injury: supports
+  swollen_area: supports
+  severe_pain: supports
+key_findings: [pain_out_of_proportion, cast_problem]
+source: nhs_compartment_syndrome
+informed_by: [nhs_compartment_syndrome]

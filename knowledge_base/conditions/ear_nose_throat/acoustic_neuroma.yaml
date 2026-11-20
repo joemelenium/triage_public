@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: acoustic_neuroma
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, tinnitus]
+name: "Acoustic neuroma (a slow-growing growth on the hearing nerve that is not cancer)"
+medical_name: "Vestibular schwannoma (acoustic neuroma)"
+snomed: "126949007"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+findings:
+  # What tells it apart from hearing loss with age: hearing loss and ringing in one ear only,
+  # building up slowly.
+  hearing_loss_one_ear: strongly_supports
+  tinnitus_one_ear: strongly_supports
+  hearing_loss_gradual: supports
+  dizziness_spinning: supports
+  tinnitus: supports
+  hearing_loss: supports
+key_findings: [hearing_loss_one_ear, tinnitus_one_ear, hearing_loss_gradual]
+source: nhs_acoustic_neuroma
+informed_by: [nhs_acoustic_neuroma]

@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pancreatitis
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache]
+name: "Pancreatitis (sudden swelling of the pancreas, behind the stomach)"
+medical_name: "Acute pancreatitis"
+snomed: "197456007"
+acuity_needed: emergency
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: has_gallstones, prevalence: uncommon}
+  - {finding: drinks_a_lot_of_alcohol, prevalence: uncommon}
+findings:
+  # What tells it apart: severe pain in the upper middle of the tummy going
+  # through to the back, with being sick, after alcohol or with gallstones.
+  sa_upper_middle: strongly_supports
+  sa_spreads_to_back: strongly_supports
+  sa_sudden_severe: strongly_supports
+  vomiting: strongly_supports
+  sa_severe: supports
+  very_high_temperature: supports
+  heart_beating_very_fast: supports
+  tummy_swollen: supports
+key_findings: [sa_spreads_to_back, sa_upper_middle, drinks_a_lot_of_alcohol, has_gallstones]
+source: nhs_acute_pancreatitis
+informed_by: [nhs_acute_pancreatitis]

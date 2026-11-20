@@ -1,0 +1,46 @@
+id: sob_h04
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 74-year-old retired metalworker whose breathlessness has slowly got worse over about a year. He has had a dry cough for months, and his wife noticed his fingertips have become rounded with the nails curving over."
+
+opening_statement: "I've been getting more and more out of breath over the last year, and I've got a dry cough that just won't shift."
+
+findings:
+  present: [short_of_breath, sob_slowly_worse, sob_everyday_activity, cough, cough_dry, cough_3_weeks_or_more, finger_clubbing, dust_or_fumes_exposure, very_tired, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, chest_pain, coughing_up_blood, weight_loss, night_sweats, hoarse_voice, very_high_temperature, frequent_chest_infections, swollen_ankles, sob_lying_flat, leg_pain_or_swelling, palpitations, smoker, has_copd, has_asthma, known_heart_condition, tb_contact_or_travel, feels_very_unwell, wheezing, cough_phlegm, sob_more_than_usual, has_heart_failure, has_bronchiectasis]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 74, sex: male}
+  full:
+    age: 74
+    sex: male
+    findings: {dust_or_fumes_exposure: "yes", smoker: "no"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "Get urgent help if breathing suddenly gets worse, chest pain, or coughing up blood"
+    any_of: ["999", "111", "suddenly"]
+
+source:
+  expected_outcome: {page: pulmonary_fibrosis.txt, quote: "you think you might have idiopathic pulmonary fibrosis (IPF)"}
+  minimum_safe_acuity: {page: pulmonary_fibrosis.txt, quote: "you've had a cough for 3 weeks or more"}
+
+variants: []
+
+atypical: false
+notes: "Idiopathic pulmonary fibrosis picture (pulmonary_fibrosis.txt: 'shortness of breath', 'a dry cough that does not go away', 'fingernails curving over rounded fingertips (clubbing)', linked to 'long-term exposure to certain types of dust, such as metal, wood or asbestos'; mainly aged 70 or over). pulmonary_fibrosis.txt, shortness_of_breath.txt and lung_cancer.txt all give 'Non-urgent advice: See a GP'. lung_cancer.txt lists clubbing and breathlessness among lung cancer symptoms but also at non-urgent GP level. Over-triage test: serious possible cause, but the sources give no urgent timeframe."

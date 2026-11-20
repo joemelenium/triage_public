@@ -1,0 +1,10 @@
+# Example case for trying the engine. Written alongside the knowledge base,
+# so it is NOT an evaluation case. Synthetic. Not a real patient.
+description: "Adult, 58, chest pain spreading to the arm, feeling sweaty"
+presenting: [chest_pain]
+context:
+  age: 58
+answers:
+  cp_spreads: yes
+  sweating: yes
+otherwise: no

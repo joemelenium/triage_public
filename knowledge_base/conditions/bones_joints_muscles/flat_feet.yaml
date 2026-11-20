@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: flat_feet
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "Flat feet (fallen arches)"
+medical_name: "Flat foot (pes planus)"
+snomed: "53226007"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+findings:
+  flat_feet: strongly_supports
+  bottom_of_foot_pain: supports
+key_findings: [flat_feet]
+source: nhs_flat_feet
+informed_by: [nhs_flat_feet]

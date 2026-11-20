@@ -1,0 +1,142 @@
+# Entry symptom: burns and scalds (including sunburn and chemical burns).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS website has no Symptoms A to Z page for this. Rules come from the
+# Burns and scalds, Acid and chemical burns, Sunburn, Cellulitis and Tetanus pages,
+# and clinical knowledge where marked ai_judgement.
+
+id: burn
+name: "Burn or scald"
+presenting_finding: burn
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: burn_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - burn_from_chemical
+      - breathed_in_smoke
+      - burn_large_or_deep
+      - burn_on_face_genitals_or_bottom
+      - burn_from_electricity
+      - stiff_jaw_or_muscle_spasms
+
+  - id: burn_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - burn_blistered
+      - burn_on_hands_feet_or_joint
+      - very_high_temperature
+      - swollen_area_red_hot
+      - feels_very_unwell
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bu_chemical
+    description: "A burn caused by an acid or chemical"
+    when: burn_from_chemical
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_burn_999
+    source: nhs_chemical_burns
+    note: "Source difference: the Burns and scalds page says call 999 or go to A&E. The Acid and chemical burns page says call 999. The more urgent is used."
+
+  - id: rf_bu_smoke
+    description: "Breathed in smoke or hot fumes, or burns or soot around the mouth or nose"
+    when: breathed_in_smoke
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_burn_999
+    source: ai_judgement
+    note: "Clinical knowledge: hot smoke can burn the airway, which can swell over the next hours and block breathing."
+
+  - id: rf_bu_large_deep_or_site
+    description: "A burn that is very large or deep, or on the face, genitals or bottom"
+    when: {any: [burn_large_or_deep, burn_on_face_genitals_or_bottom]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_burn_ae
+    source: nhs_burns
+
+  - id: rf_bu_electricity
+    description: "A burn caused by electricity"
+    when: burn_from_electricity
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_burn_ae
+    source: nhs_burns
+
+  - id: rf_bu_tetanus_signs
+    description: "A burn with a stiff jaw, painful muscle spasms or difficulty swallowing"
+    when: stiff_jaw_or_muscle_spasms
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_tetanus_emergency
+    source: nhs_tetanus
+
+  - id: rf_bu_infected_unwell
+    description: "A burn that is painful, hot and swollen, with a high temperature and a fast heartbeat or feeling dizzy, or very unwell and getting worse"
+    when: {any: [seriously_unwell_getting_worse, {all: [swollen_area_red_hot, very_high_temperature, {any: [heart_beating_very_fast, light_headed]}]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_cellulitis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bu_sunburn_blistered_or_unwell
+    description: "Sunburn that is blistered or swollen, or with a high temperature, feeling very unwell, dizzy or sick"
+    when: {all: [burn_from_sun, {any: [burn_blistered, very_high_temperature, feels_very_unwell, light_headed, nausea_or_vomiting]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_sunburn_urgent
+    source: nhs_sunburn
+
+  - id: rf_bu_child_sunburn
+    description: "A baby or young child with sunburn"
+    when: {all: [burn_from_sun, age_under_5]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_sunburn_urgent
+    source: nhs_sunburn
+
+  - id: rf_bu_young_child_blistered
+    description: "A burn or scald in a child under 5 that has blistered"
+    when: {all: [age_under_5, burn_blistered, {not: burn_from_sun}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_burn_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical judgement
+    note: "AI judgement: blistered burns in young children are often deeper than they look, and burns in children can be a sign that they need more care. The Burns and scalds page says call 111 for a child under 5 if you are not sure what to do."
+
+  - id: rf_bu_hands_feet_joint
+    description: "A blistered burn on the hands, feet or over a joint"
+    when: {all: [burn_on_hands_feet_or_joint, burn_blistered]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_burn_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical judgement
+    note: "AI judgement: blistered burns on the hands, feet or joints can scar and stop the joint moving well, so they are usually checked by a nurse or doctor."
+
+  - id: rf_bu_infection
+    description: "A burn that has become painful, hot and swollen, or with a high temperature"
+    when: {any: [swollen_area_red_hot, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_burn_urgent
+    source: nhs_tetanus
+    note: "The Tetanus page says an urgent GP appointment or 111 for a burn that is hot or swollen, or with a high temperature."
+
+  - id: rf_bu_tetanus
+    description: "A burn in someone not fully vaccinated against tetanus, or not sure"
+    when: {all: [tetanus_not_up_to_date, {not: burn_from_sun}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_burn_urgent
+    source: nhs_tetanus
+
+outcome_rules:
+  - id: or_bu_worried
+    description: "A burn or scald and not sure what to do"
+    when: worried_about_symptoms
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_burn_urgent
+    source: nhs_burns
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+default:
+  description: "A small burn or scald with nothing that needs more help: cool it and treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Small burns can often be treated at home and take around 2 weeks to heal"}
+  advice: advice_burn_self_care
+  source: nhs_burns

@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chest_wall_breast_pain
+body_system: womens_health
+entry_symptoms: [breast_pain]
+name: "Breast pain from a strained muscle, the chest wall or a badly fitting bra"
+medical_name: "Non-cyclical musculoskeletal breast pain"
+snomed: "237454007"
+# Pain in one spot, worse with movement or pressure, after a strain.
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  breast_pain_worse_moving_or_pressing: strongly_supports
+  breast_pain_after_strain_or_bra: strongly_supports
+key_findings: [breast_pain_worse_moving_or_pressing, breast_pain_after_strain_or_bra]
+source: nhs_breast_pain
+informed_by: [nhs_breast_pain]

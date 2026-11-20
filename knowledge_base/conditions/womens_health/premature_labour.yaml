@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: premature_labour
+body_system: womens_health
+entry_symptoms: [stomach_pain_in_pregnancy, bleeding_in_pregnancy]
+name: "Labour starting early (premature labour), or waters breaking early"
+medical_name: "Preterm labour"
+snomed: "6383007"
+# Regular cramps or tightenings before 37 weeks need the maternity unit straight
+# away. The NHS premature labour page was not found (404).
+acuity_needed: urgent
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnancy_20_weeks_or_more, prevalence: uncommon}
+findings:
+  regular_tightenings: strongly_supports
+  stomach_pain_in_pregnancy: strongly_supports
+  lower_back_pain: supports
+  fluid_leaking_from_vagina: supports
+  bleeding_in_pregnancy: supports
+key_findings: [regular_tightenings, fluid_leaking_from_vagina, lower_back_pain]
+source: nhs_stomach_pain_pregnancy
+informed_by: [nhs_stomach_pain_pregnancy, nhs_signs_of_labour]

@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cancer
+body_system: general
+# Any cancer that shows first as weight loss or night sweats. The pages say see a GP; a GP may
+# make an urgent referral. Danger serious: finding it early may make it easier to treat.
+# Much more common with age, set through the starting chance.
+entry_symptoms: [weight_loss, night_sweats]
+name: "Cancer"
+medical_name: "Malignant neoplastic disease"
+snomed: "363346000"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: common}
+  - {finding: age_45_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart from stress or depression: a lot of weight lost quickly, losing your
+  # appetite, a lump, or yellow skin.
+  weight_loss_a_lot: strongly_supports
+  loss_of_appetite: supports
+  very_tired: supports
+  lump_neck_armpit_or_groin: supports
+  night_sweats: supports
+  weight_loss: supports
+  yellow_skin_or_eyes: supports
+  smoker: supports
+key_findings: [weight_loss_a_lot, loss_of_appetite, lump_neck_armpit_or_groin, yellow_skin_or_eyes]
+source: nhs_cancer_signs
+informed_by: [nhs_cancer_signs, nhs_unintentional_weight_loss, nhs_night_sweats]

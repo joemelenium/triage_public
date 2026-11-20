@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: eosinophilic_oesophagitis
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing]
+name: "Allergy swelling of the food pipe (eosinophilic oesophagitis)"
+medical_name: "Eosinophilic oesophagitis"
+snomed: "235599003"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_allergies, prevalence: common}
+findings:
+  # What tells it apart: food sticking in the chest that comes and goes, in younger people with
+  # allergies or asthma.
+  food_sticks_in_chest: strongly_supports
+  feels_something_stuck: supports
+  heartburn_or_sour_taste: supports
+key_findings: [food_sticks_in_chest, has_allergies]
+source: ai_judgement
+informed_by: [nhs_swallowing_problems_dysphagia]

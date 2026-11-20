@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: jaw_joint_problem
+body_system: ear_nose_throat
+entry_symptoms: [toothache, ear_pain, teeth_grinding]
+name: "Jaw joint problem (pain and clicking in the joint just in front of the ear)"
+medical_name: "Temporomandibular disorder"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart from toothache or an ear infection: an aching jaw that clicks, pops or locks,
+  # worse when chewing or stressed.
+  jaw_clicking_or_aching: strongly_supports
+  teeth_grinding: supports
+  feeling_anxious: supports
+  jaw_locked_or_cannot_eat: supports
+  ear_pain: supports
+key_findings: [jaw_clicking_or_aching, teeth_grinding]
+source: nhs_tmd
+informed_by: [nhs_tmd, nhs_teeth_grinding]

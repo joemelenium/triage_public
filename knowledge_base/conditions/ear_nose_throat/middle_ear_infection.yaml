@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: middle_ear_infection
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain, hearing_loss, very_high_temperature]
+name: "Middle ear infection (an infection behind the eardrum)"
+medical_name: "Acute otitis media"
+snomed: "3110003"
+acuity_needed: routine
+level_of_care: community_pharmacy
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: very_high_temperature, prevalence: common}  # keep first: among people with a high temperature, whatever their age (it is one of the commonest causes in young children)
+  - {finding: age_under_5, prevalence: very_common}
+  - {finding: age_under_16, prevalence: very_common}
+  - {finding: ear_pain, prevalence: common}
+  - {finding: hearing_loss, prevalence: common}
+findings:
+  # What tells it apart: a young child with earache, a high temperature and a recent cold, who pulls
+  # at their ear.
+  ear_pain: strongly_supports
+  child_pulling_ear: strongly_supports
+  very_high_temperature: supports
+  child_irritable_or_off_food: supports
+  ear_feels_blocked: supports
+  recent_viral_illness: supports
+  ear_discharge: supports
+  hearing_loss: supports
+key_findings: [very_high_temperature, child_pulling_ear, ear_discharge, recent_viral_illness]
+source: nhs_ear_infections
+informed_by: [nhs_ear_infections, nhs_earache]

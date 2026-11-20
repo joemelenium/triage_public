@@ -1,0 +1,62 @@
+# Entry symptom: tailbone (coccyx) pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# Most tailbone pain gets better with time. Must-not-miss causes: pressure on
+# the nerves at the bottom of the spine (cauda equina syndrome), an infected
+# pocket of pus near the top of the buttocks (pilonidal abscess), and an
+# infection in the spine.
+
+id: tailbone_pain
+name: "Tailbone (coccyx) pain"
+presenting_finding: tailbone_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: tailbone_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - saddle_numbness
+      - bladder_bowel_change
+      - both_legs_symptoms
+
+red_flags:
+  - id: rf_tail_cauda_equina
+    description: "Tailbone pain with numbness around the genitals or bottom, new problems peeing or pooing, or symptoms in both legs"
+    when: {any: [saddle_numbness, bladder_bowel_change, both_legs_symptoms]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_spinal_nerve_emergency
+    source: nhs_back_pain
+    note: "The Back pain page gives these as emergency signs. Applying them to tailbone pain is AI judgement: the nerves at the bottom of the spine run close by."
+
+  - id: rf_tail_abscess
+    description: "A painful lump near the top of the crease of the bottom, with a high temperature, red skin, pus, or severe pain"
+    when: {all: [lump_near_tailbone, {any: [very_high_temperature, red_or_discoloured_skin, pus_or_blood_leaking, severe_pain]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_tailbone_lump_urgent
+    source: ai_judgement
+    note: "Could be an infected pocket of pus (pilonidal abscess), which may need draining. AI judgement, needs clinical review."
+
+outcome_rules:
+  - id: or_tail_gp
+    description: "Tailbone pain not better after a few weeks, affecting daily activities, or with a high temperature"
+    when: {any: [pain_not_improving, stopping_daily_activities, very_high_temperature]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_tailbone_gp
+    source: nhs_tailbone_coccyx_pain
+    note: "The page says see a GP for a high temperature with tailbone pain and pain in another area, such as the tummy or lower back."
+
+  - id: or_tail_lump
+    description: "A lump or small hole in the skin near the top of the crease of the bottom"
+    when: lump_near_tailbone
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP"}
+    advice: advice_tailbone_gp
+    source: ai_judgement
+
+default:
+  description: "Tailbone pain with nothing that needs more help: ease it yourself, it may take a few weeks"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Tailbone pain may improve after a few weeks"}
+  advice: advice_tailbone_self_care
+  source: nhs_tailbone_coccyx_pain

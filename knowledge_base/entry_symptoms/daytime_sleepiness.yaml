@@ -1,0 +1,97 @@
+# Entry symptom: excessive daytime sleepiness (hypersomnia).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The page describes long-standing sleepiness. Sudden, new drowsiness is a
+# different matter (a head injury, an infection, carbon monoxide or low blood
+# sugar), so a sudden change is checked the same day, and the headache, head
+# injury and confusion entry symptoms apply if those are reported.
+
+id: daytime_sleepiness
+name: "Excessive daytime sleepiness"
+presenting_finding: daytime_sleepiness
+also_covers: [nhs_excessive_daytime_sleepiness_hypersomnia]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: sleepiness_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - sleepiness_sudden_new
+      - headache
+      - head_injury_last_3_months
+      - others_in_home_unwell
+
+red_flags:
+  - id: rf_sl_sudden
+    description: "Much sleepier than usual, starting suddenly in the last few days"
+    when: sleepiness_sudden_new
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_sleepiness_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: new, sudden sleepiness can be a sign of an illness that needs checking quickly. The page gives no urgency for this. If the person is hard to wake or confused, the universal red flags apply."
+
+  - id: rf_sl_head_injury
+    description: "Sleepiness after a head injury in the last 3 months"
+    when: head_injury_last_3_months
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_head_injury_ae
+    source: nhs_head_injury
+    note: "The Head injury page says call 999 for someone who cannot stay awake after a head injury. A&E for sleepiness up to 3 months after a head injury is AI judgement."
+
+  - id: rf_sl_others_unwell
+    description: "Sleepiness, and others at home or pets unwell too: possible carbon monoxide poisoning"
+    when: others_in_home_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go outside into fresh air, then call NHS 111 now"}
+    advice: advice_carbon_monoxide
+    source: nhs_carbon_monoxide_poisoning
+
+outcome_rules:
+  - id: or_sl_driving
+    description: "Fallen asleep, or nearly, while driving"
+    when: fell_asleep_driving
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP in the next few days. Do not drive until you have been checked."}
+    advice: advice_sleepiness_gp
+    source: ai_judgement
+    note: "AI judgement: falling asleep at the wheel is dangerous to the person and others. The page says you may need to tell the DVLA if you are diagnosed with excessive sleepiness."
+
+  - id: or_sl_falls_asleep
+    description: "Falls asleep suddenly during the day"
+    when: falls_asleep_suddenly
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sleepiness_gp
+    source: nhs_excessive_daytime_sleepiness_hypersomnia
+
+  - id: or_sl_affecting_life
+    description: "Sleepiness affecting life"
+    when: sleepiness_affecting_life
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sleepiness_gp
+    source: nhs_excessive_daytime_sleepiness_hypersomnia
+
+  - id: or_sl_breathing_in_sleep
+    description: "Loud snoring, or breathing that stops and starts while asleep"
+    when: breathing_stops_in_sleep
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sleepiness_gp
+    source: nhs_sleep_apnoea
+
+  - id: or_sl_muscle_weakness
+    description: "Muscles suddenly going weak with laughter, anger or surprise"
+    when: muscles_weak_with_emotion
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sleepiness_gp
+    source: nhs_narcolepsy
+
+default:
+  description: "Often very sleepy during the day: see a GP to find the cause"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_sleepiness_gp
+  source: nhs_excessive_daytime_sleepiness_hypersomnia
+  note: "The page says see a GP if you often fall asleep during the day. Not a floor: likely conditions such as simply not getting enough sleep can lower it to self-care."

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: non_specific_back_pain
+body_system: bones_joints_muscles
+# The most common cause of back pain. It usually gets better within a few weeks.
+entry_symptoms: [back_pain]
+name: "Back strain or non-specific back pain (a pulled muscle, or pain with no single clear cause)"
+medical_name: "Non-specific low back pain"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  after_lifting_or_awkward_movement: strongly_supports
+  pain_worse_moving_better_rest: strongly_supports
+  lower_back_pain: strongly_supports
+  stopping_daily_activities: supports
+key_findings: [after_lifting_or_awkward_movement, pain_worse_moving_better_rest]
+source: nhs_back_pain
+informed_by: [nhs_back_pain]

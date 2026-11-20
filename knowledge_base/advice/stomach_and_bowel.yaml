@@ -1,0 +1,813 @@
+# Advice for the stomach and bowel body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml. Wording is adapted from the cited NHS website
+# page, aiming for a reading age of 9 to 11.
+
+# ---------------------------------------------------------------------------
+# Stomach ache
+# ---------------------------------------------------------------------------
+- id: advice_stomach_ache_999
+  what_to_do: "Call 999 now. Sudden, severe tummy pain with feeling faint or passing out can mean bleeding inside the tummy. This needs treatment in hospital straight away."
+  look_out_for:
+    - "Passing out, or not responding as usual"
+    - "Skin that looks pale, grey, cold or clammy"
+    - "Finding it hard to breathe"
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  where_to_go: "Call 999. Do not drive to A&E. Lie the person down and stay with them until help arrives."
+  self_care:
+    - "Do not eat or drink anything until a doctor has checked you"
+  source: nhs_abdominal_aortic_aneurysm
+  also_informed_by: [nhs_ectopic_pregnancy]
+
+- id: advice_stomach_ache_ae
+  what_to_do: "Call 999 or go to A&E now. Your tummy pain needs to be checked in hospital straight away."
+  look_out_for:
+    - "Pain getting worse, or spreading across your tummy"
+    - "Feeling faint, passing out, or cold, clammy, pale skin"
+    - "Being sick with blood, or green sick"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Do not eat anything until a doctor has checked you. Small sips of water are fine."
+    - "Do not take ibuprofen or aspirin. They can make some tummy problems worse."
+  source: nhs_stomach_ache
+  also_informed_by: [nhs_appendicitis, nhs_stomach_ulcer]
+
+- id: advice_stomach_ache_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your stomach ache should be checked today."
+  look_out_for:
+    - "Pain that starts suddenly and is severe, or gets much worse"
+    - "Being sick with blood, or sick that is green or looks like ground coffee"
+    - "A lot of blood from your bottom, or black, sticky poo"
+    - "Not being able to pee, or to poo or fart, at all"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+    - "Call 999 or go to A&E if you are struggling to breathe, or have a rash that does not fade when you press a glass on it"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest, and have small sips of water"
+    - "Take paracetamol for the pain if you need to. Avoid ibuprofen and aspirin until you have been checked."
+  source: nhs_stomach_ache
+
+- id: advice_stomach_ache_appendicitis
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Pain that moves to the lower right side or keeps getting worse can be appendicitis (a swollen appendix, a small pouch attached to the bowel)."
+  look_out_for:
+    - "Pain that becomes severe or spreads across your whole tummy, which can mean the appendix has burst"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Being confused, blotchy or pale skin, or trouble breathing. These can be signs of sepsis, a life-threatening reaction to an infection."
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get severe pain or any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Do not eat until you have been checked, in case you need an operation. Small sips of water are fine."
+    - "Do not use a hot water bottle on your tummy"
+  source: nhs_appendicitis
+
+- id: advice_stomach_ache_pregnant
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You can also call your midwife or maternity unit. Tummy pain in pregnancy should be checked today."
+  look_out_for:
+    - "Sharp, sudden or very bad pain in your tummy"
+    - "Feeling very dizzy or fainting, or looking very pale"
+    - "Pain in the tip of your shoulder"
+    - "Bleeding from your vagina"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above. In early pregnancy they can be signs of an ectopic pregnancy (a pregnancy growing outside the womb)."
+  where_to_go: "Ask your GP surgery for an urgent appointment, call your midwife, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_stomach_ache
+  also_informed_by: [nhs_ectopic_pregnancy]
+
+- id: advice_stomach_ache_gp
+  what_to_do: "See a GP about your stomach ache. It is not urgent, but it should be checked."
+  look_out_for:
+    - "Pain that suddenly gets much worse"
+    - "Being sick with blood, or blood in your poo"
+    - "Not being able to poo or fart at all"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the pain gets worse. Do the same if you have diarrhoea or are being sick for more than a few days."
+    - "Call 999 or go to A&E if the pain becomes sudden and severe"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep a note of when the pain comes on, and what you have eaten"
+  source: nhs_stomach_ache
+
+- id: advice_stomach_ache_pharmacy
+  what_to_do: "Speak to a pharmacist. They can help work out what might be causing your stomach ache, and suggest treatments."
+  look_out_for:
+    - "Pain that suddenly gets much worse, or becomes severe"
+    - "Being sick with blood, or blood in your poo"
+    - "A high temperature, or pain when you pee"
+  get_more_help_when:
+    - "See a GP if the pain does not go away or keeps coming back"
+    - "Ask for an urgent GP appointment or call 111 if the pain gets worse, or you are pregnant"
+    - "Call 999 or go to A&E if the pain becomes sudden and severe"
+  where_to_go: "Go to a pharmacy. You do not need an appointment. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest, and drink plenty of fluids"
+    - "A hot water bottle on your tummy can help with cramps"
+    - "Avoid alcohol and fatty or spicy food until you feel better"
+  source: nhs_stomach_ache
+
+- id: advice_child_tummy_emergency
+  what_to_do: "Call 999 or go to A&E now. Your child needs to be checked in hospital straight away."
+  look_out_for:
+    - "Your child becoming more sleepy, floppy or hard to wake"
+    - "Blue, grey, pale or blotchy skin, lips or tongue"
+    - "Green sick, or blood in their poo"
+  get_more_help_when:
+    - "Call 999 if your child gets worse or you cannot get to A&E safely"
+    - "Trust your instincts. If you think something is seriously wrong, get help straight away."
+  where_to_go: "Call 999 or go to A&E. Do not drive if you are on your own with your child. Ask someone to drive you or call 999 and ask for an ambulance."
+  self_care:
+    - "Do not give your child anything to eat until a doctor has checked them"
+  source: nhs_diarrhoea_and_vomiting
+  also_informed_by: [nhs_sepsis]
+
+- id: advice_ectopic_ae
+  what_to_do: "Call 999 or go to A&E now. You could have an ectopic pregnancy (a pregnancy growing outside the womb). It can cause bleeding inside the tummy, which needs treatment straight away."
+  look_out_for:
+    - "Sharp, sudden and very bad pain in your tummy"
+    - "Feeling very dizzy or fainting"
+    - "Looking very pale"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive. Ask someone to drive you or call 999 and ask for an ambulance."
+  source: nhs_ectopic_pregnancy
+
+- id: advice_dka_ae
+  what_to_do: "Call 999 or go to A&E now. These can be signs of diabetic ketoacidosis (DKA), a serious problem caused by a lack of insulin. It needs treatment in hospital straight away."
+  look_out_for:
+    - "Being sick, and not able to keep fluids down"
+    - "Feeling very sleepy or confused"
+    - "Breathing deeply or fast"
+  get_more_help_when:
+    - "Call 999 if the person gets worse, is hard to wake, or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive. Bring your insulin, your blood sugar meter and any other medicines you take."
+  self_care:
+    - "Keep taking your insulin. Do not stop it, even if you are not eating."
+    - "Keep having sips of water"
+  source: nhs_diabetic_ketoacidosis
+
+- id: advice_dka_urgent
+  what_to_do: "Call your diabetes care team now, or get help from NHS 111. Being unwell or being sick when you have diabetes can quickly make your blood sugar and ketones go up."
+  look_out_for:
+    - "Ketones over 3mmol/L in your blood, or over 2+ in your pee"
+    - "Feeling very thirsty and peeing a lot, or breath that smells fruity"
+    - "Feeling very sleepy or confused, or breathing fast"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your ketones are high, or you get any of the signs above"
+  where_to_go: "Call your diabetes care team, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Check your blood sugar and ketones more often, as your diabetes team has told you"
+    - "Keep taking your insulin, and drink plenty of sugar-free fluids"
+    - "Follow your sick day rules if you have them"
+  source: nhs_diabetic_ketoacidosis
+
+# ---------------------------------------------------------------------------
+# Diarrhoea and vomiting
+# ---------------------------------------------------------------------------
+- id: advice_dv_ae
+  what_to_do: "Call 999 or go to A&E now. This needs to be checked in hospital straight away."
+  look_out_for:
+    - "Being very sleepy, confused or not responding as usual"
+    - "Blue, grey, pale or blotchy skin, lips or tongue"
+    - "Finding it hard to breathe"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. If you may have swallowed something harmful, bring the packet or container."
+  self_care:
+    - "If you have swallowed something harmful, do not try to make yourself sick"
+  source: nhs_diarrhoea_and_vomiting
+
+- id: advice_dv_urgent
+  what_to_do: "Call NHS 111 now. They will tell you what to do, and can arrange a call from a nurse or doctor if you need one."
+  look_out_for:
+    - "Signs of dehydration. This means not having enough water in the body. Look for dark, smelly pee, peeing less, or fewer wet nappies."
+    - "Being sick with blood, or green sick"
+    - "A sudden, severe tummy ache or headache, or a stiff neck"
+    - "A baby or child who is very sleepy, floppy or not responding as usual"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above, other than dehydration"
+    - "Call 999 or go to A&E if a child has not had a wet nappy or a pee for 12 hours"
+  where_to_go: "Call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink lots of fluids. Take small sips if you feel sick."
+    - "Carry on breast or bottle feeding your baby. Give small feeds more often than usual."
+    - "Do not give children under 12 medicine to stop diarrhoea"
+  source: nhs_diarrhoea_and_vomiting
+  also_informed_by: [nhs_c_difficile]
+
+- id: advice_dv_pharmacy
+  what_to_do: "Speak to a pharmacist. They can give you rehydration sachets to mix with water, to replace lost fluids. This helps with dehydration (not having enough water in the body)."
+  look_out_for:
+    - "Still peeing less, or dark pee, after using the sachets"
+    - "Being sick so often you cannot keep fluids down"
+    - "Blood in your poo"
+  get_more_help_when:
+    - "Call 111 if you are still peeing less, or your pee is still dark, after using the sachets"
+    - "Call 111 if diarrhoea lasts more than 7 days, or being sick lasts more than 2 days"
+    - "Call 999 or go to A&E if you are sick with blood, or have a sudden, severe tummy ache"
+  where_to_go: "Go to a pharmacy. You do not need an appointment. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink lots of fluids, such as water or squash. Take small sips if you feel sick."
+    - "Avoid fruit juice and fizzy drinks, which can make diarrhoea worse"
+  source: nhs_diarrhoea_and_vomiting
+
+- id: advice_dv_self_care
+  what_to_do: "You can usually treat diarrhoea and being sick at home. The most important thing is to drink lots of fluids to avoid dehydration (not having enough water in the body)."
+  look_out_for:
+    - "Signs of dehydration, such as dark, smelly pee or peeing less than usual"
+    - "Being sick so often you cannot keep fluids down"
+    - "Blood in your poo, or diarrhoea for more than 7 days"
+  get_more_help_when:
+    - "Speak to a pharmacist if you have signs of dehydration"
+    - "Call 111 if you cannot keep fluids down, have blood in your poo, or diarrhoea lasts more than 7 days or being sick more than 2 days"
+    - "Call 999 or go to A&E if you are sick with blood, or have a sudden, severe tummy ache or headache"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Stay at home and get plenty of rest"
+    - "Drink lots of fluids, such as water or squash. Take small sips if you feel sick."
+    - "Eat when you feel able to"
+    - "Stay off school or work until you have not been sick or had diarrhoea for 2 days"
+    - "Wash your hands with soap and water often, and do not prepare food for others"
+  source: nhs_diarrhoea_and_vomiting
+  also_informed_by: [nhs_norovirus, nhs_food_poisoning]
+
+# ---------------------------------------------------------------------------
+# Feeling sick
+# ---------------------------------------------------------------------------
+- id: advice_feeling_sick_999
+  what_to_do: "Call 999 now. Feeling sick with chest pain, chest tightness or shortness of breath could be a heart attack."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person's condition changes"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  self_care:
+    - "Sit and rest while you wait for help"
+    - "Take aspirin (300mg) if you have any, unless you are allergic to it"
+  source: nhs_feeling_sick_nausea
+  also_informed_by: [nhs_heart_attack]
+
+- id: advice_feeling_sick_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Feeling sick with your other symptoms should be checked today."
+  look_out_for:
+    - "Being sick with blood, or green sick"
+    - "A sudden, severe tummy ache or headache"
+    - "Chest pain, or feeling short of breath"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Take regular sips of a cold drink"
+    - "Eat small meals when you feel able to"
+  source: nhs_feeling_sick_nausea
+  also_informed_by: [nhs_jaundice, nhs_gastritis]
+
+- id: advice_feeling_sick_gp
+  what_to_do: "See a GP. They can look for the cause of your sick feeling and suggest treatments. Call 111 for advice if you cannot see a GP."
+  look_out_for:
+    - "Being sick and not able to keep fluids down"
+    - "Losing weight without trying"
+    - "Yellow skin or yellow whites of the eyes"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 if you suddenly feel sick and have chest pain or shortness of breath"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Get plenty of fresh air, and take regular sips of a cold drink"
+    - "Eat smaller meals more often, and avoid hot, fried or greasy food"
+  source: nhs_feeling_sick_nausea
+
+- id: advice_feeling_sick_self_care
+  what_to_do: "Feeling sick usually goes away on its own. There are things you can try that might help."
+  look_out_for:
+    - "Being sick, and signs of dehydration (not having enough water in the body), such as peeing less"
+    - "A stomach ache, or a high temperature"
+    - "Feeling sick for more than a few days"
+  get_more_help_when:
+    - "See a GP if you do not feel better in a few days, or it keeps coming back"
+    - "Call 999 if you suddenly feel sick and have chest pain that feels tight or heavy. Do the same if pain spreads to your arms, back, neck or jaw, or you are short of breath."
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Get plenty of fresh air, and distract yourself, for example with music or a film"
+    - "Take regular sips of a cold drink, or try ginger or peppermint tea"
+    - "Eat smaller meals more often, and do not lie down soon after eating"
+    - "Do not eat or cook strong-smelling, hot, fried or greasy food"
+  source: nhs_feeling_sick_nausea
+
+# ---------------------------------------------------------------------------
+# Vomiting blood and bleeding from the bottom
+# ---------------------------------------------------------------------------
+- id: advice_vomiting_blood_ae
+  what_to_do: "Call 999 or go to A&E now. Being sick with blood can be a sign of bleeding in your stomach or food pipe. It needs to be checked in hospital straight away."
+  look_out_for:
+    - "Feeling faint or dizzy, or passing out"
+    - "Cold, clammy, pale skin, or fast or shallow breathing"
+    - "Black, sticky poo"
+  get_more_help_when:
+    - "Call 999 if you get worse, keep being sick with blood, or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Do not eat or drink anything until a doctor has checked you"
+    - "If you can, keep a sample or a photo of the sick to show the doctor"
+  source: nhs_vomiting_blood
+  also_informed_by: [nhs_diarrhoea_and_vomiting, nhs_stomach_ulcer]
+
+- id: advice_vomiting_blood_urgent
+  what_to_do: "Ask for an urgent GP appointment, call 111 or get help from 111 online today. You should always get medical help if you have been sick with blood, even if it has stopped."
+  look_out_for:
+    - "Being sick with blood again"
+    - "Feeling faint, dizzy or confused, or cold, clammy, pale skin"
+    - "Tummy pain, or black, sticky poo"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Until you have been checked, do not drink alcohol. Do not take ibuprofen or aspirin."
+  source: nhs_vomiting_blood
+
+- id: advice_rectal_bleeding_ae
+  what_to_do: "Go to A&E or call 999 now. You are losing a lot of blood from your bottom and need to be checked in hospital straight away."
+  look_out_for:
+    - "Feeling faint or dizzy, or passing out"
+    - "Cold, clammy, pale skin"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Lie down if you feel faint"
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: advice_rectal_bleeding_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Black or dark red poo, or blood with diarrhoea, should be checked today."
+  look_out_for:
+    - "Bleeding that will not stop, or a lot of blood: the toilet water turns red or you see large clots"
+    - "Feeling faint or dizzy"
+    - "Being sick with blood"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Iron tablets and dark foods like liquorice or blueberries can turn poo dark. Tell the doctor if you have had them."
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+- id: advice_rectal_bleeding_gp
+  what_to_do: "See a GP. A small amount of bleeding is not usually serious, but a GP can check what is causing it. Bleeding is sometimes a sign of bowel cancer, which is easier to treat if found early."
+  look_out_for:
+    - "Black or dark red poo, or bloody diarrhoea"
+    - "Bleeding that will not stop, or a lot of blood"
+    - "Feeling faint or dizzy"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your poo is black or dark red, or you have bloody diarrhoea"
+    - "Go to A&E or call 999 if you are bleeding non-stop or there is a lot of blood"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Eat plenty of fibre and drink lots of fluids to keep your poo soft"
+    - "Do not push too hard when you poo"
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+# ---------------------------------------------------------------------------
+# Constipation, bloating and farting
+# ---------------------------------------------------------------------------
+- id: advice_constipation_ae
+  what_to_do: "Call 999 or go to A&E now. Not being able to poo or fart, with a swollen tummy or being sick, can mean your bowel is blocked."
+  look_out_for:
+    - "Being sick, especially green sick"
+    - "The tummy pain getting worse"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Do not eat until a doctor has checked you. Do not take laxatives (medicines that help you poo) until you have been told it is safe."
+  source: nhs_stomach_ache
+  also_informed_by: [nhs_diverticulitis]
+
+- id: advice_constipation_urgent
+  what_to_do: "Ask for an urgent GP appointment or call NHS 111 today. Constipation with your other symptoms should be checked today."
+  look_out_for:
+    - "Not being able to fart at all"
+    - "A tummy that keeps swelling, or severe tummy pain"
+    - "Being sick, especially green sick"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_bloating
+  also_informed_by: [nhs_soiling_child_pooing_their_pants]
+
+- id: advice_constipation_gp
+  what_to_do: "See a GP about your constipation. They can look for the cause and may prescribe stronger laxatives (medicines that help you poo)."
+  look_out_for:
+    - "Not being able to poo or fart at all"
+    - "A swollen tummy, or being sick"
+    - "Blood in your poo"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get a swollen tummy or start being sick"
+    - "Call 999 or go to A&E if you cannot poo or fart at all and have a swollen tummy or are being sick"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink plenty of water, and slowly add more fibre to your diet"
+    - "Try to be more active, for example a daily walk"
+    - "Speak to the GP before you stop taking any prescribed medicine"
+  source: nhs_constipation
+
+- id: advice_constipation_child_gp
+  what_to_do: "Take your child to see a GP. The longer a child is constipated, the harder it can be to get back to normal, so get help early."
+  look_out_for:
+    - "A swollen tummy with being sick"
+    - "Numbness or weakness in both legs"
+    - "Blood in their poo"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your child has a swollen tummy and is being sick"
+    - "Call 999 or go to A&E if your child cannot poo or fart at all and has a swollen tummy or is being sick"
+  where_to_go: "Make an appointment with a GP. A health visitor can also give advice. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Give your child plenty to drink, and lots of fruit and vegetables"
+    - "Help them sit on the potty or toilet after meals or before bed. Praise them, even if they do not poo."
+    - "Stay calm and reassuring. Children do not get constipated on purpose."
+  source: nhs_constipation_in_children
+
+- id: advice_constipation_self_care
+  what_to_do: "You can usually treat constipation with simple changes to your diet and lifestyle. Speak to a pharmacist if these do not help."
+  look_out_for:
+    - "Constipation that is not getting better"
+    - "Blood in your poo, or losing weight without trying"
+    - "A swollen tummy, or being sick"
+  get_more_help_when:
+    - "Speak to a pharmacist if diet and lifestyle changes are not helping. They can suggest a laxative (a medicine that helps you poo)."
+    - "See a GP if it is not getting better with treatment, keeps happening, or you have tummy pain"
+    - "Call 999 or go to A&E if you cannot poo or fart at all and have a swollen tummy or are being sick"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink plenty of water and other fluids, and avoid alcohol"
+    - "Slowly add more fibre, such as fruit, vegetables, oats or wheat bran"
+    - "Keep to a regular time for the toilet, and do not ignore the urge to poo"
+    - "Rest your feet on a low stool on the toilet, so your knees are above your hips"
+    - "Try to be more active, for example a daily walk"
+  source: nhs_constipation
+
+- id: advice_bloating_urgent
+  what_to_do: "Ask for an urgent GP appointment or call NHS 111 today. Bloating with your other symptoms should be checked today."
+  look_out_for:
+    - "A stomach ache that is severe and came on very suddenly"
+    - "Being sick with blood, or sick that looks like ground coffee"
+    - "Severe difficulty breathing"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_bloating
+
+- id: advice_bloating_gp
+  what_to_do: "See a GP. They can look for the cause of your bloating, and may suggest tests or a dietitian."
+  look_out_for:
+    - "A stomach ache, being sick, diarrhoea or constipation"
+    - "A high temperature, or a lump in your tummy"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 or go to A&E if you get a severe stomach ache that comes on very suddenly"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep a diary of what you eat and when you feel bloated"
+  source: nhs_bloating
+
+- id: advice_bloating_self_care
+  what_to_do: "Bloating is very common. There are things you can do to ease it, and a pharmacist can help."
+  look_out_for:
+    - "Bloating that does not go away, or keeps coming back"
+    - "A stomach ache, being sick, diarrhoea or constipation"
+    - "Losing weight without trying, or blood in your poo"
+  get_more_help_when:
+    - "See a GP if you feel bloated regularly, or changing your diet has not helped"
+    - "Get help today if you get a stomach ache, a high temperature or a lump in your tummy. Call 111 or ask for an urgent GP appointment."
+    - "Call 999 or go to A&E if you get a severe stomach ache that comes on very suddenly"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Exercise regularly, and eat smaller meals more often"
+    - "Chew with your mouth closed, so you do not swallow air"
+    - "Cut down on fizzy drinks, alcohol, coffee and foods that cause gas, like beans or cabbage"
+    - "Massage your tummy gently from right to left to release trapped wind"
+  source: nhs_bloating
+
+- id: advice_farting_gp
+  what_to_do: "See a GP. Farting more than usual can sometimes be a sign of a health condition, such as IBS, coeliac or an intolerance to some foods."
+  look_out_for:
+    - "Blood in your poo"
+    - "A stomach ache that is getting worse"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your stomach ache gets worse or you have blood in your poo"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Do not stop or change a prescribed medicine without speaking to a GP first"
+  source: nhs_flatulence
+
+- id: advice_farting_self_care
+  what_to_do: "Farting is normal. If you fart a lot or it smells, changes to what you eat and drink can help. A pharmacist can also advise."
+  look_out_for:
+    - "A stomach ache or bloating that will not go away, or keeps coming back"
+    - "Constipation or diarrhoea that keeps happening"
+    - "Losing weight without trying, or blood in your poo"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above, or farting is affecting your life and self-help has not worked"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Eat smaller meals more often, and eat and drink slowly with your mouth closed"
+    - "Exercise regularly, and try peppermint tea"
+    - "Cut down on foods that cause gas, such as cabbage, beans, onions and dried fruit, and on fizzy drinks and beer"
+    - "Do not smoke or chew gum"
+  source: nhs_flatulence
+
+# ---------------------------------------------------------------------------
+# Indigestion and heartburn
+# ---------------------------------------------------------------------------
+- id: advice_indigestion_999
+  what_to_do: "Call 999 now. Indigestion with chest tightness, sweating or shortness of breath could be a heart attack."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person's condition changes"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  self_care:
+    - "Sit and rest while you wait for help"
+    - "Take aspirin (300mg) if you have any, unless you are allergic to it"
+  source: nhs_chest_pain
+  also_informed_by: [nhs_heart_attack]
+
+- id: advice_indigestion_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Indigestion with these symptoms should be checked quickly."
+  look_out_for:
+    - "Being sick with blood, or sick that looks like ground coffee"
+    - "Black, sticky poo"
+    - "Severe tummy or chest pain that starts suddenly"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_hiatus_hernia
+  also_informed_by: [nhs_stomach_ulcer, nhs_gastritis]
+
+- id: advice_indigestion_gp
+  what_to_do: "See a GP. They can look for the cause of your indigestion and suggest treatment."
+  look_out_for:
+    - "Losing weight without trying, or difficulty swallowing"
+    - "Being sick again and again"
+    - "Being sick with blood, or black, sticky poo"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you lose weight, find it hard to swallow or keep being sick"
+    - "Call 999 or go to A&E if you are sick with blood or have black, sticky poo"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Do not take ibuprofen or aspirin unless a doctor has told you to"
+  source: nhs_indigestion
+
+- id: advice_indigestion_self_care
+  what_to_do: "You can usually treat indigestion and heartburn yourself. A pharmacist can suggest medicines to ease the burning or pain."
+  look_out_for:
+    - "Indigestion that keeps coming back"
+    - "Losing weight without trying, or difficulty swallowing"
+    - "Being sick with blood, or black, sticky poo"
+  get_more_help_when:
+    - "See a GP if you keep getting indigestion"
+    - "Ask for an urgent GP appointment or call 111 if you lose weight, find it hard to swallow or keep being sick"
+    - "Call 999 if you get chest pain that feels tight or heavy, or spreads to your arms, neck, jaw or back"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Eat smaller meals, and do not eat 3 to 4 hours before bed"
+    - "Cut down on tea, coffee, cola, alcohol, and rich, spicy or fatty food"
+    - "Raise your head and shoulders up in bed"
+    - "Do not smoke, and lose weight if you are overweight"
+  source: nhs_indigestion
+  also_informed_by: [nhs_heartburn]
+
+# ---------------------------------------------------------------------------
+# The bottom: pain, itching and worms
+# ---------------------------------------------------------------------------
+- id: advice_anal_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Severe pain in your bottom with a high temperature can be a sign of an infection, such as an abscess (a pocket of pus)."
+  look_out_for:
+    - "Bleeding that will not stop, or a lot of blood from your bottom"
+    - "Feeling very unwell, or hot, cold and shivery"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you are bleeding non-stop or there is a lot of blood"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Take paracetamol for the pain"
+    - "A warm bath can ease the pain"
+  source: nhs_anal_pain
+
+- id: advice_anal_pain_gp
+  what_to_do: "See a GP about the pain in your bottom. Do not feel embarrassed. It is a common problem that they are used to treating."
+  look_out_for:
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Black or dark red poo"
+    - "A lot of blood from your bottom"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get severe pain with a high temperature, or black or dark red poo"
+    - "Go to A&E or call 999 if you are bleeding non-stop or there is a lot of blood"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink lots of fluids and eat more fibre to keep your poo soft"
+    - "Take paracetamol, and try a warm bath"
+  source: nhs_anal_pain
+
+- id: advice_anal_pain_self_care
+  what_to_do: "There are things you can do to ease pain in your bottom. A pharmacist can recommend creams, painkillers or medicines that help you poo."
+  look_out_for:
+    - "Severe pain, or pain that does not get better after a few days"
+    - "Blood in your poo or bleeding from your bottom"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "See a GP if the pain is severe, does not improve after a few days, or you have blood in your poo"
+    - "Ask for an urgent GP appointment or call 111 if you have severe pain and a high temperature, or black or dark red poo"
+    - "Go to A&E or call 999 if you are bleeding non-stop or there is a lot of blood"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice in a private area. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink lots of fluids and eat more fibre to keep your poo soft"
+    - "Wipe your bottom with damp toilet paper, and do not scratch"
+    - "Take paracetamol, and try a warm bath"
+    - "Put an ice pack wrapped in a towel on the area for up to 20 minutes, every 2 to 3 hours"
+    - "Do not push too hard when you poo, and do not ignore the urge to go"
+  source: nhs_anal_pain
+
+- id: advice_itchy_bottom_gp
+  what_to_do: "See a GP about your itchy bottom. They will try to find the cause and may prescribe a cream or medicine."
+  look_out_for:
+    - "Blood in your poo that is dark red or black"
+    - "Bleeding or leaking from your bottom"
+    - "Pain in your bottom"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your poo is black or dark red"
+    - "Tell the GP straight away if a cream or medicine makes the itching worse"
+  where_to_go: "Make an appointment with a GP. A sexual health clinic can also help if you think it might be from a sexually transmitted infection. For urgent help call 111."
+  self_care:
+    - "Wash gently with water or unscented soap, and pat dry"
+    - "Wear loose cotton underwear, and do not scratch"
+  source: nhs_itchy_anus
+
+- id: advice_itchy_bottom_pharmacy
+  what_to_do: "See a pharmacist. An itchy bottom that is worse at night, or tiny white worms like thread, is probably threadworms. A pharmacist can give medicine to treat them."
+  look_out_for:
+    - "Itching that does not go away after treatment"
+    - "Pain or bleeding from your bottom"
+  get_more_help_when:
+    - "See a GP if the itching does not go away, or for a child under 2 or someone pregnant or breastfeeding"
+  where_to_go: "Go to a pharmacy. You can ask for a private area to talk. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Everyone in your home should be treated, even if they do not have symptoms"
+    - "Wash your hands and scrub under your nails often, most of all after the toilet and before you eat"
+    - "Keep nails short, and wash bedding and towels on a hot wash"
+  source: nhs_threadworms
+  also_informed_by: [nhs_itchy_anus]
+
+- id: advice_itchy_bottom_self_care
+  what_to_do: "You can often ease an itchy bottom yourself. A pharmacist can suggest creams that help."
+  look_out_for:
+    - "Itching that does not go away or keeps coming back"
+    - "Pain, bleeding or leaking from your bottom"
+    - "Tiny white worms in your poo, or itching that is worse at night"
+  get_more_help_when:
+    - "See a pharmacist if you think it might be threadworms"
+    - "See a GP if the itching does not go away, or a steroid cream has not helped after 1 week"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Gently wash and dry your bottom after pooing and before bed. Pat it dry, do not rub."
+    - "Wear loose cotton underwear, and avoid scented soaps and bubble bath"
+    - "Do not scratch. Keep your nails short."
+    - "Eat plenty of fibre so you do not get constipated"
+    - "Do not use steroid creams for longer than 1 week"
+  source: nhs_itchy_anus
+
+- id: advice_worms_pharmacy
+  what_to_do: "See a pharmacist. Small white worms like pieces of thread, or itching around the bottom at night, are probably threadworms. They are common and a pharmacist can treat them."
+  look_out_for:
+    - "A large worm, a piece of worm, or worm eggs in your poo"
+    - "A red, itchy rash shaped like a worm"
+    - "Being sick, diarrhoea or a stomach ache for more than 2 weeks, or losing weight"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above, or symptoms are not better after 2 weeks of treatment"
+    - "A child under 2 should see a GP or health visitor, not a pharmacist. So should you if you are pregnant or breastfeeding."
+  where_to_go: "Go to a pharmacy. You do not need an appointment. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Everyone you live with may need treatment too"
+    - "Wash your hands after the toilet and before eating or preparing food"
+    - "Wash bedding and towels on a hot wash"
+  source: nhs_worms_in_humans
+  also_informed_by: [nhs_threadworms]
+
+- id: advice_worms_gp
+  what_to_do: "See a GP. They will check what type of worm it is and prescribe medicine to kill the worms. Tell them if you have been abroad in the last 2 years."
+  look_out_for:
+    - "Symptoms that do not get better 2 weeks after treatment"
+    - "Still passing live worms in your poo"
+  get_more_help_when:
+    - "Go back to the GP if your symptoms do not get better in 2 weeks"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Wash your hands after the toilet and before eating or preparing food"
+    - "The people you live with may also need to be treated"
+  source: nhs_worms_in_humans
+
+# ---------------------------------------------------------------------------
+# Bowel incontinence, soiling and nerve signs
+# ---------------------------------------------------------------------------
+- id: advice_nerve_emergency
+  what_to_do: "Call 999 or go to A&E now. Losing control of your bowels or bladder, with numbness around your bottom or weak legs, can mean pressure on the nerves at the base of the spine. It needs treatment within hours to prevent lasting damage."
+  look_out_for:
+    - "The numbness or weakness getting worse"
+    - "Not being able to pee"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive. Ask someone to drive you or call 999 and ask for an ambulance."
+  source: nhs_back_pain
+
+- id: advice_bowel_incontinence_gp
+  what_to_do: "See a GP. There are treatments that can help with bowel incontinence. Try not to be embarrassed. The doctor will be used to talking about it."
+  look_out_for:
+    - "Numbness around your bottom or genitals, or weakness in both legs"
+    - "Black or dark red poo, or bloody diarrhoea"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your poo is black or dark red, or you have bloody diarrhoea"
+    - "Call 999 or go to A&E if you have numbness around your bottom or genitals, weak legs, or cannot pee"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep a diary of your symptoms and what you eat and drink"
+    - "Try to poo at regular times, such as after meals, and do not strain"
+    - "Wear clothes that are easy to take off, and plan an easy route to the toilet"
+    - "NHS talking therapies can help. So can charities, such as Bladder and Bowel UK."
+  source: nhs_bowel_incontinence
+
+- id: advice_soiling_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your child should be checked today."
+  look_out_for:
+    - "Not being able to poo or fart at all"
+    - "Severe tummy pain, or green sick"
+    - "Loss of feeling around their bottom"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your child gets any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_soiling_child_pooing_their_pants
+
+- id: advice_soiling_gp
+  what_to_do: "See a GP. Soiling is usually caused by bad constipation, and treatment from a GP can help. It is important not to try to sort it out by yourself."
+  look_out_for:
+    - "A swollen tummy with being sick"
+    - "Numbness or weakness in both legs"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your child has a swollen tummy and is being sick, or numb or weak legs"
+  where_to_go: "Make an appointment with a GP. A health visitor or school nurse can also help. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Your child is not doing it on purpose and may not know it is happening. Stay positive and encouraging."
+    - "Help them sit on the toilet for 5 minutes after each meal and before bed"
+    - "Make sure they drink plenty, eat enough fibre and are active"
+    - "The charity ERIC has a helpline for families: 0808 801 0343"
+  source: nhs_soiling_child_pooing_their_pants
+  also_informed_by: [nhs_constipation_in_children]
+
+- id: advice_baby_reflux_urgent
+  what_to_do: "Ask for an urgent GP appointment or call NHS 111 today. Your baby should be checked today."
+  look_out_for:
+    - "Green or yellow sick"
+    - "Your baby becoming floppy, very sleepy or hard to wake"
+    - "A weak or high-pitched cry"
+    - "Fewer wet nappies, or no wet nappy for 12 hours"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your baby gets any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep offering breast or bottle feeds, little and often"
+  source: nhs_reflux_in_babies
+
+- id: advice_baby_reflux_gp
+  what_to_do: "See a GP about your baby's reflux. They may check for a cows' milk allergy and suggest treatments."
+  look_out_for:
+    - "Green or yellow sick, or blood in sick or poo"
+    - "Being sick with much more force than usual"
+    - "Refusing feeds, or fewer wet nappies. These can be signs of dehydration, not having enough water in the body."
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your baby gets any of the signs above"
+    - "Call 999 or go to A&E if your baby is floppy, hard to wake, or has green sick"
+  where_to_go: "Make an appointment with a GP. A health visitor can also give advice. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Hold your baby upright during feeds and for as long as you can after"
+    - "Burp your baby regularly during feeds"
+  source: nhs_reflux_in_babies
+
+- id: advice_baby_reflux_self_care
+  what_to_do: "It is very common for a baby to bring up a little milk during or after feeds. Your baby does not usually need to see a doctor, as long as they are happy, healthy and gaining weight."
+  look_out_for:
+    - "Green or yellow sick, or blood in sick or poo"
+    - "Being sick with much more force than usual, or not keeping feeds down"
+    - "Refusing feeds, not gaining weight, or crying and very distressed"
+  get_more_help_when:
+    - "See a GP if your baby is not getting better, is not gaining weight, or still has reflux after age 1"
+    - "Ask for an urgent GP appointment or call 111 if your baby gets any of the signs above"
+    - "Call 999 or go to A&E if your baby is floppy, hard to wake, or has green sick"
+  where_to_go: "You do not need an appointment now. A health visitor can give advice and support. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Hold your baby upright during feeds and for as long as you can after"
+    - "Burp your baby regularly during feeds"
+    - "Always put your baby to sleep flat on their back. Do not raise the head of the cot."
+    - "Ask a health visitor about feeding positions"
+  source: nhs_reflux_in_babies

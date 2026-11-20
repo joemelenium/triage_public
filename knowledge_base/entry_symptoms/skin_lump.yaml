@@ -1,0 +1,128 @@
+# Entry symptom: lumps and growths on or under the skin.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by likely conditions.
+
+id: skin_lump
+name: "Lump or growth on or under the skin"
+presenting_finding: skin_lump
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: skin_lump_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lump_painful_and_firm
+      - pain_much_worse_than_expected
+      - purple_black_patches_on_skin
+      - seriously_unwell_getting_worse
+
+  - id: skin_lump_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swollen_area_red_hot
+      - redness_spreading
+      - very_high_temperature
+
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: skin_lump_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - lump_getting_bigger
+      - lump_hard_and_does_not_move
+      - lump_more_than_2_weeks
+      - lump_came_back_after_removal
+      - mole_changed
+      - skin_growth_bleeds_or_crusts
+      - lump_in_breast_or_testicle
+      - swelling_neck_armpit_groin_2_weeks
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_lu_stuck_hernia
+    description: "A painful, hard lump in the groin or tummy that cannot be pushed back in (possible trapped hernia)"
+    when: lump_painful_and_firm
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_lump_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: a hernia that becomes painful, hard and cannot be pushed back can lose its blood supply and needs surgery the same day. The Lumps page lists a lump in the groin as a possible hernia. The stomach and bowel build will hold the hernia cards."
+
+  - id: rf_lu_deep_infection
+    description: "A red, swollen lump with pain much worse than expected, or black, purple or grey patches"
+    when: {any: [pain_much_worse_than_expected, purple_black_patches_on_skin]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_necrotising_fasciitis
+
+  - id: rf_lu_seriously_unwell
+    description: "A lump with feeling very unwell and getting worse"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_lu_infected_unwell
+    description: "A painful, hot, swollen lump with a high temperature and a fast heartbeat or feeling dizzy"
+    when: {all: [swollen_area_red_hot, very_high_temperature, {any: [heart_beating_very_fast, light_headed]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_cellulitis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_lu_painful_red_hot
+    description: "A lump that is painful, red or hot (possible abscess or infected cyst)"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_lump_urgent
+    source: nhs_skin_abscess
+    note: "Source difference: the Lumps and Lipoma pages say see a GP for a painful, red or hot lump. The Skin abscess and Skin cyst pages say an urgent GP appointment or 111. The more urgent is used."
+
+  - id: rf_lu_spreading_or_shivery
+    description: "A lump with redness spreading away from it, or with a high temperature or feeling shivery"
+    when: {any: [redness_spreading, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_lump_urgent
+    source: nhs_skin_abscess
+
+outcome_rules:
+  - id: or_lu_gp_signs
+    description: "A lump that is getting bigger, hard and fixed, there for more than 2 weeks, or grew back after removal"
+    when: {any: [lump_getting_bigger, lump_hard_and_does_not_move, lump_more_than_2_weeks, lump_came_back_after_removal]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lump_gp
+    source: nhs_lumps
+
+  - id: or_lu_breast_testicle_glands
+    description: "A lump in a breast or testicle, or a swelling in the neck, armpit or groin that has not gone down in 2 weeks"
+    when: {any: [lump_in_breast_or_testicle, swelling_neck_armpit_groin_2_weeks]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lump_gp
+    source: nhs_lumps
+
+  - id: or_lu_mole
+    description: "A new or changing mole, or a mole or growth that bleeds, itches, crusts or will not heal"
+    when: {any: [mole_changed, skin_growth_bleeds_or_crusts, skin_growth_not_healing_4_weeks, dark_area_under_nail]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lump_gp
+    source: nhs_melanoma_symptoms
+    note: "The Melanoma page labels this non-urgent, but a GP may make an urgent referral. A likely melanoma raises the outcome to within a few days."
+
+default:
+  description: "A lump that has not been checked: see a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_lump_gp
+  source: nhs_lipoma
+  note: "The Lipoma page says see a GP if you get a lump anywhere on your body, and the Lumps page says see a GP if you are worried. Not a floor: a skin tag or wart that is clearly recognised can be lowered to self-care. A lump already checked by a doctor is handled by the exception below."
+
+default_exceptions:
+  - id: de_lu_known_and_unchanged
+    description: "A lump a doctor has already checked, which has not changed"
+    when: {all: [lump_known_and_unchanged, {not: lump_getting_bigger}, {not: swollen_area_red_hot}]}
+    outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "No appointment needed while it stays the same"}
+    advice: advice_lump_self_care
+    source: nhs_lipoma
+    note: "AI reading of the Lipoma page: lipomas are harmless and do not usually need treatment once checked."

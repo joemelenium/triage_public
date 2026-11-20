@@ -1,0 +1,90 @@
+# Entry symptom: ovulation pain (pain on one side of the lower tummy midway between periods).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS Ovulation pain page gives urgent signs only. The emergency rules below
+# are AI judgement, from the Ectopic pregnancy and Pelvic pain pages: an ectopic
+# pregnancy, a twisted ovary or a burst cyst can feel like ovulation pain at first.
+
+id: ovulation_pain
+name: "Ovulation pain"
+presenting_finding: ovulation_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: ovulation_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - sa_sudden_severe
+      - shoulder_tip_pain
+      - fainted
+      - light_headed
+      - heavy_vaginal_bleeding
+
+  - id: ovulation_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pain_not_helped_by_painkillers
+      - may_be_pregnant
+      - pain_keeps_coming_back
+      - very_high_temperature
+      - nausea_or_vomiting
+      - vaginal_discharge
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ov_sudden_severe_or_shoulder
+    description: "One-sided tummy pain that is sharp, sudden and very bad, or with pain in the tip of the shoulder"
+    when: {any: [sa_sudden_severe, shoulder_tip_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+    note: "AI reading: the Pelvic pain and Ectopic pregnancy pages' emergency signs, applied to ovulation-type pain."
+
+  - id: rf_ov_faint_or_bleeding
+    description: "One-sided tummy pain with passing out, feeling faint or dizzy, or heavy bleeding from the vagina"
+    when: {any: [fainted, light_headed, heavy_vaginal_bleeding]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ov_severe_not_helped
+    description: "Tummy pain that is severe and painkillers have not helped"
+    when: pain_not_helped_by_painkillers
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_ovulation_pain_urgent
+    source: nhs_ovulation_pain
+
+  - id: rf_ov_may_be_pregnant
+    description: "Tummy pain and may be pregnant"
+    when: {any: [may_be_pregnant, pregnant_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_ovulation_pain
+
+  - id: rf_ov_keeps_coming_back
+    description: "Tummy pain that keeps coming back"
+    when: pain_keeps_coming_back
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_ovulation_pain_urgent
+    source: nhs_ovulation_pain
+    soft: true    # likely conditions may lower this: ovulation pain comes back every month by its nature
+    note: "Taken directly from the source, but ovulation pain comes back each month by its nature, so this would send most people to urgent care. Soft, so likely ovulation pain can lower it. Needs clinical review."
+
+  - id: rf_ov_temperature_sick_or_discharge
+    description: "One-sided tummy pain with a high temperature, feeling sick, or unusual discharge"
+    when: {any: [very_high_temperature, nausea_or_vomiting, vaginal_discharge]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+    note: "The Pelvic pain page's urgent signs, applied to ovulation-type pain. The Ovarian cyst page also says pain with feeling sick needs urgent help."
+
+outcome_rules: []
+
+default:
+  description: "Ovulation pain with nothing that needs more help: ease it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Ovulation pain usually lasts a short time and is nothing to worry about"}
+  advice: advice_ovulation_pain_self_care
+  source: nhs_ovulation_pain

@@ -1,0 +1,39 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stress_or_grief_reaction
+body_system: mental_health
+# A natural response to a loss or a difficult event, not an illness. Included so
+# the engine has a common, milder explanation, as triage services see it often.
+# No SNOMED CT concept matches this mix of grief and stress, so none is given.
+entry_symptoms: [low_mood, feeling_anxious, agitated_or_out_of_control, suicidal_thoughts_or_self_harm, memory_problems, daytime_sleepiness, trouble_sleeping]
+name: "Stress, worry or low mood, or a reaction to grief or a difficult life event"
+medical_name: "Grief or stress reaction"
+acuity_needed: routine
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: low_mood, prevalence: very_common}
+  - {finding: feeling_anxious, prevalence: common}
+  - {finding: memory_problems, prevalence: common}
+  - {finding: daytime_sleepiness, prevalence: common}
+  - {finding: trouble_sleeping, prevalence: common}
+  - {finding: suicidal_thoughts_or_self_harm, prevalence: uncommon}
+  - {finding: agitated_or_out_of_control, prevalence: uncommon}
+findings:
+  # What tells it apart from depression: it follows something upsetting, and the
+  # feelings usually get better with time. Hopelessness and guilt are less common.
+  recent_crisis_or_loss: strongly_supports
+  sleep_problems: supports
+  feeling_anxious: supports
+  low_mood: supports
+  # From the brain_and_nerves card for this condition (merged):
+  stressful_time: strongly_supports
+  very_tired: supports
+  trouble_sleeping: supports
+  memory_problems: supports
+  daytime_sleepiness: supports
+key_findings: [recent_crisis_or_loss, stressful_time]
+source: nhs_grief
+informed_by: [nhs_grief, nhs_low_mood, nhs_depression, nhs_insomnia, nhs_memory_loss_amnesia, nhs_excessive_daytime_sleepiness_hypersomnia]
+# Merged with the brain_and_nerves card for this condition. Its notes: A common,
+# treatable cause of poor sleep, poor memory and concentration, and tiredness.

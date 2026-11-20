@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: spinal_cord_compression
+body_system: bones_joints_muscles
+# Cancer that has spread to the spine, or worn bones in the neck, can press on the
+# spinal cord. What tells it apart: weakness, problems walking, and pain in the upper
+# back or at night.
+entry_symptoms: [back_pain, neck_pain]
+name: "Pressure on the spinal cord (spinal cord compression)"
+medical_name: "Spinal cord compression (including metastatic spinal cord compression and cervical myelopathy)"
+snomed: "71286001"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: has_cancer, prevalence: uncommon}
+findings:
+  leg_weakness: strongly_supports
+  new_problems_walking: strongly_supports
+  both_legs_symptoms: supports
+  bladder_bowel_change: supports
+  upper_back_pain: supports
+  pain_worse_at_night_or_rest: supports
+  arm_weakness: supports
+  pain_worse_cough_sneeze: supports
+key_findings: [leg_weakness, new_problems_walking, upper_back_pain, pain_worse_at_night_or_rest, has_cancer]
+source: ai_judgement
+informed_by: [nhs_cervical_spondylosis, nhs_back_pain]

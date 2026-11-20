@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: heavy_periods_no_cause
+body_system: womens_health
+entry_symptoms: [heavy_periods]
+name: "Heavy periods with no clear cause"
+medical_name: "Heavy menstrual bleeding without structural cause"
+# The page says heavy periods can be normal for you. Treatment can help if they
+# affect daily life (an outcome rule).
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: very_common
+findings:
+  heavy_periods_long_time: strongly_supports
+  passing_large_clots: supports
+  heavy_periods_affecting_life: supports
+key_findings: [heavy_periods_long_time]
+source: nhs_heavy_periods
+informed_by: [nhs_heavy_periods]

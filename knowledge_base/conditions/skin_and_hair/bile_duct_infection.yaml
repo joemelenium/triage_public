@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bile_duct_infection
+body_system: skin_and_hair
+entry_symptoms: [yellow_skin_or_eyes, stomach_ache]
+name: "Infection of the bile duct (cholangitis)"
+medical_name: "Acute cholangitis"
+snomed: "6215006"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: yellow_skin_or_eyes, prevalence: uncommon}
+findings:
+  # What tells it apart from a blocked bile duct without infection: a high temperature and shivering with the pain and yellowing, and feeling very unwell.
+  very_high_temperature: strongly_supports
+  sa_upper_right: strongly_supports
+  cold_or_shivery: supports
+  feels_very_unwell: supports
+  seriously_unwell_getting_worse: supports
+  yellow_skin_or_eyes: strongly_supports
+key_findings: [very_high_temperature, sa_upper_right, cold_or_shivery]
+source: nhs_gallstones
+informed_by: [nhs_gallstones]

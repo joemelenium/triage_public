@@ -1,0 +1,43 @@
+# Entry symptom: snoring.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Snoring and Sleep apnoea pages. Neither names an emergency or
+# urgent sign, so there is no red-flag checklist here beyond the one asked of
+# everyone.
+
+id: snoring
+name: "Snoring"
+presenting_finding: snoring
+status: "AI-drafted, not clinically reviewed"
+
+outcome_rules:
+  - id: or_sn_breathing_stops
+    description: "Snoring with breathing that stops and starts, or gasping or choking noises, during sleep"
+    when: breathing_stops_in_sleep
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_snoring_gp
+    source: nhs_snoring
+
+  - id: or_sn_sleepy
+    description: "Snoring and feeling very sleepy during the day"
+    when: daytime_sleepiness
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_snoring_gp
+    source: nhs_snoring
+
+  - id: or_sn_big_impact
+    description: "Snoring that has a big impact on life, or is not helped by lifestyle changes"
+    when: snoring_big_impact
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_snoring_gp
+    source: nhs_snoring
+
+default:
+  description: "Snoring with nothing that needs more help: try lifestyle changes"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Snoring is not usually caused by anything serious. Simple changes can help."}
+  advice: advice_snoring_self_care
+  source: nhs_snoring

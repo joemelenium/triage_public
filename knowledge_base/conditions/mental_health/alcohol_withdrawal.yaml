@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: alcohol_withdrawal
+body_system: mental_health
+entry_symptoms: [alcohol_or_drug_problem, feeling_anxious, agitated_or_out_of_control, hearing_or_seeing_things, tremor, had_a_fit]
+name: "Alcohol withdrawal (symptoms after stopping or cutting down drinking)"
+medical_name: "Alcohol withdrawal syndrome"
+snomed: "191480000"
+# Source difference: the Alcohol misuse page says see a GP (non-urgent) for mild
+# withdrawal, and 999 or A&E for severe withdrawal. Clinical knowledge: fits and
+# severe withdrawal usually start 1 to 3 days after stopping, so the card asks
+# for help within a few days and is serious. The rules give urgent or emergency
+# when the signs are there.
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: alcohol_or_drug_problem, prevalence: uncommon}
+  - {finding: agitated_or_out_of_control, prevalence: uncommon}
+findings:
+  alcohol_or_drug_stopped_recently: strongly_supports
+  alcohol_withdrawal_symptoms: strongly_supports
+  drinks_a_lot_of_alcohol: strongly_supports
+  severe_withdrawal_signs: supports
+  sweating: supports
+  nausea_or_vomiting: supports
+  feeling_anxious: supports
+  hearing_or_seeing_things: supports
+  tremor: supports      # shaking hands ("the shakes") is the most common sign
+  had_a_fit: supports   # withdrawal fits, usually 1 to 3 days after stopping
+key_findings: [alcohol_or_drug_stopped_recently, alcohol_withdrawal_symptoms, drinks_a_lot_of_alcohol, past_severe_withdrawal]
+source: nhs_alcohol_misuse
+informed_by: [nhs_alcohol_misuse]

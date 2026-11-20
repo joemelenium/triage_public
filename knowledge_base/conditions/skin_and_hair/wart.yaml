@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: wart
+body_system: skin_and_hair
+entry_symptoms: [skin_lump]
+name: "Wart or verruca"
+medical_name: "Viral wart"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_common}
+findings:
+  # What tells it apart: a small, rough, hard growth, often on the hands, fingers or soles of the feet.
+  rough_growth_on_skin: strongly_supports
+  lump_more_than_2_weeks: supports
+key_findings: [rough_growth_on_skin]
+source: nhs_warts
+informed_by: [nhs_warts, nhs_lumps]

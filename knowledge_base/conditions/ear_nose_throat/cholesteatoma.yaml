@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cholesteatoma
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, ear_pain]
+name: "Cholesteatoma (a growth of skin deep inside the ear that can damage hearing)"
+snomed: "363668000"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+findings:
+  # What tells it apart from an ear infection: smelly, watery discharge from one ear that keeps
+  # coming back, with hearing slowly getting worse in that ear.
+  ear_discharge_smelly_long_lasting: strongly_supports
+  hearing_loss_one_ear: supports
+  hearing_loss_gradual: supports
+  earache_keeps_coming_back: supports
+key_findings: [ear_discharge_smelly_long_lasting, hearing_loss_one_ear, earache_keeps_coming_back]
+source: nhs_cholesteatoma
+informed_by: [nhs_cholesteatoma]

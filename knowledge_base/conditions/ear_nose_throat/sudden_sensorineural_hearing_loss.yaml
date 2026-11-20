@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sudden_sensorineural_hearing_loss
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, tinnitus]
+name: "Sudden hearing loss from the inner ear or hearing nerve, which needs treatment quickly"
+medical_name: "Sudden sensorineural hearing loss"
+snomed: "715239002"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+findings:
+  # What tells it apart from earwax: hearing in one ear goes over hours or a few days, without
+  # itching or a clear cause. It can be permanent if not treated quickly.
+  hearing_loss_sudden: strongly_supports
+  hearing_loss_one_ear: strongly_supports
+  tinnitus: supports
+  ear_feels_blocked: supports
+  dizziness_spinning: supports
+key_findings: [hearing_loss_sudden, hearing_loss_one_ear, after_loud_noise_blow_or_flying]
+source: ai_judgement
+informed_by: [nhs_hearing_loss, nhs_labyrinthitis, nhs_tinnitus]

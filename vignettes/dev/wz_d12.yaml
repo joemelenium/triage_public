@@ -1,0 +1,58 @@
+id: wz_d12
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing]
+
+summary: "A 70-year-old woman with a wheezy chest infection for four days. Her husband reports that today she is breathing very fast, shivering uncontrollably and has hardly passed urine since yesterday morning. She is talking and knows where she is."
+
+opening_statement: "My wife's had a wheezy chest for a few days, but today she's shaking and shivering and breathing ever so fast."
+
+findings:
+  present: [wheezing, cough, cough_phlegm, short_of_breath, breathing_very_fast, very_high_temperature, feels_very_unwell, dehydration_signs, cold_or_shivery, symptoms_worse_or_not_better]
+  absent: [sudden_confusion, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, skin_blotchy, rash_does_not_fade, passed_out, had_a_fit, chest_pain, coughing_up_blood, sob_sudden, leg_pain_or_swelling, has_asthma, has_copd, known_heart_condition, after_allergy_trigger, lips_tongue_throat_swelling, throat_tight, sob_more_than_usual, has_heart_failure]
+  unknown: [weakened_immune_system]
+
+context:
+  none: {}
+  basic: {age: 70, sex: female}
+  full:
+    age: 70
+    sex: female
+    findings: {weakened_immune_system: "no", has_asthma: "no", has_copd: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Breathing very fast with an infection (easy to miss behind the wheeze)"
+    findings: [breathing_very_fast]
+    minimum_acuity: emergency
+    source: {page: sepsis.txt, quote: "is breathing very fast"}
+  - description: "Shivering uncontrollably with an infection"
+    findings: [very_high_temperature]
+    minimum_acuity: emergency
+    source: {page: sepsis.txt, quote: "has a very high or very low temperature, feels hot or cold to the touch, or is shivery"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now; say you are worried about sepsis"
+    any_of: ["999", "A&E", "sepsis"]
+  - point: "Not to drive"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: sepsis.txt, quote: "You need to get medical help immediately if you think you or your child might have sepsis."}
+  minimum_safe_acuity: {page: sepsis.txt, quote: "has a very high or very low temperature, feels hot or cold to the touch, or is shivery"}
+
+variants:
+  - id: wz_d12_v1
+    style: "husband focused on the chest"
+    opening_statement: "My wife's chest infection is no better, she's still wheezy."
+    volunteered: [wheezing, cough, symptoms_worse_or_not_better]
+
+atypical: false
+notes: "Possible sepsis from a chest infection (sepsis.txt lists 'chest infections (pneumonia)' among the bacterial infections that cause sepsis; adult symptoms include 'uncontrollable shivering' and 'not peeing all day or peeing very little in the past 18 hours'). sepsis.txt 999 list for an adult or child aged 5 years or over: 'is breathing very fast'; 'is shivery'. Her husband is not sure whether her immune system is weakened (unknown); it does not change the outcome. The variant leads only with the wheeze, so the engine must ask about breathing rate and shivering."

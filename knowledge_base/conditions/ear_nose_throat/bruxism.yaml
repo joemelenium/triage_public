@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bruxism
+body_system: ear_nose_throat
+entry_symptoms: [teeth_grinding, toothache]
+name: "Teeth grinding linked to stress or sleep"
+medical_name: "Bruxism"
+snomed: "191983006"
+acuity_needed: routine
+level_of_care: dental
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: grinding or clenching, often at night, linked to stress, alcohol or
+  # caffeine, with worn teeth or an aching jaw.
+  feeling_anxious: strongly_supports
+  teeth_grinding: strongly_supports
+  teeth_worn_or_sensitive: supports
+  jaw_clicking_or_aching: supports
+  drinks_a_lot_of_alcohol: supports
+key_findings: [feeling_anxious, teeth_worn_or_sensitive]
+source: nhs_teeth_grinding
+informed_by: [nhs_teeth_grinding]

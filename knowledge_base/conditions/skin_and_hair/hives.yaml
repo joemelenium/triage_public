@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hives
+body_system: skin_and_hair
+entry_symptoms: [raised_itchy_rash, rash, itchy_skin]
+name: "Hives (a raised, itchy rash, often from an allergy or a virus)"
+medical_name: "Acute urticaria"
+snomed: "402408009"
+# The raised, itchy rash itself is not evidence within the hives entry symptom, so it sets the starting chance instead.
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: raised_itchy_rash, prevalence: very_common}
+findings:
+  # What tells it apart from other rashes: raised, itchy patches that move around, each fading within a day, sometimes after a food, medicine or sting.
+  raised_itchy_rash: strongly_supports
+  welts_come_and_go: strongly_supports
+  rash_itchy: supports
+  after_allergy_trigger: supports
+  swelling_under_skin: supports
+key_findings: [welts_come_and_go, after_allergy_trigger, hives_keeps_coming_back]
+source: nhs_hives
+informed_by: [nhs_hives]

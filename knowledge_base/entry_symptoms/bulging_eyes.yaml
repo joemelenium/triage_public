@@ -1,0 +1,84 @@
+# Entry symptom: bulging eyes (exophthalmos).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: bulging_eyes
+name: "Bulging eyes"
+presenting_finding: bulging_eyes
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bulging_eyes_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - bulging_just_started
+      - vision_change
+      - floaters_or_flashes
+      - very_painful_headache
+      - nausea_or_vomiting
+      - eye_pain_severe
+      - eyelid_red_hot_painful
+      - eye_hard_to_move
+
+red_flags:
+  - id: rf_be_child_new
+    description: "A child's eye or eyes have just started bulging"
+    when: {all: [age_under_16, bulging_just_started]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_bulging_ae
+    source: nhs_bulging_eyes
+
+  - id: rf_be_new_with_vision
+    description: "Eyes have started bulging, with changes to the sight like wavy lines, flashing or loss of vision"
+    when: {all: [bulging_just_started, {any: [vision_change, floaters_or_flashes, double_vision]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_bulging_ae
+    source: nhs_bulging_eyes
+    note: "Including double vision is AI judgement: it is a change in sight."
+
+  - id: rf_be_new_with_headache
+    description: "Eyes have started bulging, with a severe headache or feeling sick"
+    when: {all: [bulging_just_started, {any: [very_painful_headache, nausea_or_vomiting]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_bulging_ae
+    source: nhs_bulging_eyes
+
+  - id: rf_be_severe_pain
+    description: "Severe eye pain, or severe eye pain that started suddenly"
+    when: eye_pain_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_bulging_ae
+    source: nhs_bulging_eyes
+
+  - id: rf_be_infection
+    description: "Bulging eye with a red, hot, swollen eyelid, or an eye that is hard to move: possible infection behind the eye"
+    when: {any: [eyelid_red_hot_painful, eye_hard_to_move]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eye_infection_spreading
+    source: nhs_bulging_eyes
+    note: "The page lists infection around or behind the eye as a cause. The Cellulitis page says cellulitis in the eye is very serious. The signs used are AI judgement."
+
+  - id: rf_be_vision_urgent
+    description: "Bulging eyes with blurred or double vision that is not new"
+    when: {any: [vision_change, double_vision]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: ai_judgement
+    note: "The page lists blurred or double vision as symptoms of bulging eyes and says vision can be affected. Clinical knowledge: changes in sight with thyroid eye problems can mean the nerve to the eye is being squeezed, which needs checking the same day."
+
+outcome_rules: []
+
+default:
+  description: "Bulging eyes with nothing that needs more urgent help: get them checked quickly"
+  outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within a few days"}
+  advice: advice_bulging_soon
+  source: nhs_bulging_eyes
+  # A floor: the page says see a GP for any bulging eye, and to get it checked quickly.
+  floor: true
+  note: "The page says 'See a GP' (non-urgent) for a bulging eye, and at the top says to get it checked quickly as your vision can be affected. 'Soon' (within a few days) is a reading of that."

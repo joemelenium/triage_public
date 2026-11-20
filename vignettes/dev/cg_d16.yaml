@@ -1,0 +1,88 @@
+id: cg_d16
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: 'A 74-year-old man with a chest infection for 4 days who today is much worse: breathing very fast, shivering, blotchy skin, and his wife thinks something is seriously wrong. His wife is answering.'
+opening_statement: My husband's had a chest infection and today he's much worse. He's breathing really fast, shivering, and his skin looks all blotchy.
+findings:
+  present:
+  - cough
+  - cough_phlegm
+  - phlegm_yellow_or_green
+  - very_high_temperature
+  - breathing_very_fast
+  - skin_blotchy
+  - feels_very_unwell
+  - seriously_unwell_getting_worse
+  - short_of_breath
+  - cold_or_shivery
+  - symptoms_worse_or_not_better
+  absent:
+  - sudden_confusion
+  - rash_does_not_fade
+  - chest_pain
+  - coughing_up_blood
+  - lips_or_skin_blue_grey
+  - passed_out
+  - too_breathless_to_talk
+  - severe_breathing_difficulty
+  - had_a_fit
+  unknown:
+  - not_peed_12_hours
+  - dehydration_signs
+context:
+  none: {}
+  basic:
+    age: 74
+    sex: male
+  full:
+    age: 74
+    sex: male
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: 'Possible sepsis: breathing very fast, blotchy skin, shivery'
+  findings:
+  - breathing_very_fast
+  - skin_blotchy
+  - very_high_temperature
+  minimum_acuity: emergency
+  source:
+    page: sepsis.txt
+    quote: has blue, pale or blotchy skin
+- description: Seems very unwell and getting worse
+  findings:
+  - seriously_unwell_getting_worse
+  minimum_acuity: emergency
+  source:
+    page: covid_19.txt
+    quote: seems very unwell, is getting worse or you think there's something seriously wrong
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of:
+  - '999'
+- point: Do not drive to A&E
+  any_of:
+  - do not drive
+  - don't drive
+  - not drive
+source:
+  expected_outcome:
+    page: sepsis.txt
+    quote: has blue, pale or blotchy skin
+  minimum_safe_acuity:
+    page: sepsis.txt
+    quote: has a very high or very low temperature, feels hot or cold to the touch, or is shivery
+variants:
+- id: cg_d16_v1
+  style: wife, focuses on the infection
+  opening_statement: He's had a chest infection all week and he's much worse today.
+  volunteered:
+  - seriously_unwell_getting_worse
+  - symptoms_worse_or_not_better
+atypical: false
+notes: Possible sepsis from a chest infection. pneumonia.txt also lists blotchy skin under 999. Wife is not sure when he last passed urine.

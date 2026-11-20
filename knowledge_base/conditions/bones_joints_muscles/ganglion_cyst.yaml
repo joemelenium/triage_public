@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ganglion_cyst
+body_system: bones_joints_muscles
+entry_symptoms: [hand_pain, foot_pain]
+name: "Ganglion cyst (a smooth, fluid-filled lump near a joint)"
+medical_name: "Ganglion cyst"
+snomed: "445008009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  smooth_lump_near_joint: strongly_supports
+  wrist_pain: supports
+  back_of_hand_pain: supports
+key_findings: [smooth_lump_near_joint]
+source: nhs_ganglion_cyst
+informed_by: [nhs_ganglion_cyst]

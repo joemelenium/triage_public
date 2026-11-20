@@ -1,0 +1,157 @@
+# Entry symptom: feeling low or depressed.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The working levels of care have no mental health crisis route. Crisis needs use
+# the emergency department (999 or A&E) or urgent care (NHS 111, choosing the
+# mental health option, or an urgent GP appointment), and the advice names crisis
+# lines. This gap is recorded for an owner decision.
+#
+# A "yes" to thoughts of suicide or self-harm brings in the "thoughts of suicide
+# or self-harm" entry symptom, with its own red flags. A "yes" to hearing or
+# seeing things brings in that entry symptom.
+
+id: feeling_low
+name: "Feeling low or depressed"
+presenting_finding: low_mood
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: feeling_low_emergency_screen
+    level: emergency
+    question: "Thank you for telling us how you feel. Do any of these apply right now? Choose all that apply."
+    findings:
+      - cannot_keep_safe
+      - taken_overdose
+      - self_harm_injury_serious
+
+  - id: feeling_low_urgent_screen
+    level: urgent
+    question: "These questions help us find the right help for you. Do any of these apply? Choose all that apply."
+    findings:
+      - suicidal_thoughts_or_self_harm
+      - thoughts_of_harming_others
+      - hearing_or_seeing_things
+      - believes_things_not_true
+      - high_mood_now
+      - stopped_eating_and_drinking
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: feeling_low_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - low_mood_over_2_weeks
+      - low_mood_struggling_to_cope
+      - had_baby_in_last_year
+      - past_high_mood_spells
+      - drinks_a_lot_of_alcohol
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_lm_cannot_keep_safe
+    description: "Feeling low and cannot keep themselves or someone else safe right now"
+    when: cannot_keep_safe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: nhs_urgent_mental_health
+
+  - id: rf_lm_overdose
+    description: "Feeling low and has taken an overdose or swallowed something harmful"
+    when: taken_overdose
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 for an ambulance or go straight to A&E"}
+    advice: advice_mh_overdose_or_injury
+    source: nhs_suicidal_thoughts
+    note: "The universal red flag for serious self-harm also asks about an overdose. This question adds 'even if you feel well', because some overdoses (for example paracetamol) cause no symptoms at first."
+
+  - id: rf_lm_serious_injury
+    description: "Feeling low and has a serious injury from self-harm"
+    when: self_harm_injury_serious
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 for an ambulance or go straight to A&E"}
+    advice: advice_mh_overdose_or_injury
+    source: nhs_urgent_mental_health
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_lm_harm_others
+    description: "Feeling low with thoughts of harming someone else, including a baby or child"
+    when: thoughts_of_harming_others
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+    advice: advice_mh_urgent
+    source: nhs_postnatal_depression
+    note: "The Postnatal depression page lists thoughts of harming your baby as a symptom and points to urgent help. Making it urgent same-day help for anyone is AI judgement. If they feel they cannot keep someone safe, the emergency rule applies."
+
+  - id: rf_lm_psychosis_signs
+    description: "Feeling low and believing things that others say are not true"
+    when: believes_things_not_true
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+    advice: advice_mh_urgent
+    source: nhs_depression
+    note: "The Depression page says a few people with severe depression have symptoms of psychosis. Making it urgent is AI judgement, in line with the urgent advice for hallucinations on the Charles Bonnet syndrome page."
+
+  - id: rf_lm_high_mood
+    description: "Feeling low, and also very high, excited or overactive now (a mixed or changing mood)"
+    when: high_mood_now
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+    advice: advice_mh_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: a high and low mood together, or a mood swinging quickly, can be a mixed state in bipolar, when the chance of acting on suicidal thoughts is higher. The Bipolar disorder page points to urgent help."
+
+  - id: rf_lm_not_eating_drinking
+    description: "Feeling low and has stopped eating or drinking, or cannot look after themselves"
+    when: stopped_eating_and_drinking
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, or call NHS 111 and choose the mental health option (option 2), today"}
+    advice: advice_mh_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: severe depression with not eating or drinking can quickly harm physical health and needs same-day assessment."
+
+outcome_rules:
+  # The postnatal rule comes first so that, when it fires, its advice (which names
+  # the midwife and health visitor) is used rather than the general GP advice.
+  - id: or_lm_postnatal
+    description: "Low mood for more than 2 weeks, or struggling to cope, after having a baby in the last year"
+    when: {all: [had_baby_in_last_year, {any: [low_mood_over_2_weeks, low_mood_struggling_to_cope]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Speak to your GP, midwife or health visitor. The source gives no fixed time."}
+    advice: advice_low_mood_postnatal_gp
+    source: nhs_postnatal_depression
+    note: "The page says feeling low for a few days after the birth (the baby blues) is very common and usually goes within 2 weeks, but to get help if it carries on, gets worse, or you are struggling to cope."
+
+  - id: or_lm_over_2_weeks
+    description: "Low mood for most of the day, nearly every day, for more than 2 weeks"
+    when: low_mood_over_2_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_mood_gp
+    source: nhs_depression
+
+  - id: or_lm_struggling
+    description: "Struggling to cope with a low mood"
+    when: low_mood_struggling_to_cope
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_mood_gp
+    source: nhs_low_mood
+
+  - id: or_lm_high_mood_spells
+    description: "Low mood in someone who has had spells of a very high mood (possible bipolar)"
+    when: past_high_mood_spells
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_mood_gp
+    source: nhs_bipolar
+
+  - id: or_lm_drinking
+    description: "Low mood and drinking a lot of alcohol most days"
+    when: drinks_a_lot_of_alcohol
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or an alcohol support service. The source gives no fixed time."}
+    advice: advice_low_mood_gp
+    source: nhs_alcohol_misuse
+
+default:
+  description: "Feeling low, with nothing that needs more help: self-help first"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A low mood often gets better after a few days or weeks. Try self-help, and see a GP if it lasts more than 2 weeks."}
+  advice: advice_low_mood_self_care
+  source: nhs_low_mood
+  note: "The Low mood page gives self-help and says to see a GP if a low mood lasts more than 2 weeks or you are struggling to cope. Self-care as the default is a reading of that."

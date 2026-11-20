@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: minor_cut_or_graze
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound]
+name: "Small cut or graze"
+medical_name: "Superficial wound or abrasion"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: small and shallow, and the bleeding has stopped or stops with pressure.
+  wound_small_and_shallow: strongly_supports
+  bleeding_stopped: supports
+key_findings: [wound_small_and_shallow]
+source: nhs_cuts_and_grazes
+informed_by: [nhs_cuts_and_grazes]

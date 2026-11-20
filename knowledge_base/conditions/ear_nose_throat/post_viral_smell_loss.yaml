@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: post_viral_smell_loss
+body_system: ear_nose_throat
+entry_symptoms: [loss_of_smell_or_taste]
+name: "Loss of smell after a cold, flu or COVID-19"
+medical_name: "Post-viral olfactory dysfunction"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: it started with or soon after a cold, flu or COVID-19. Smell often comes
+  # back over weeks or months, and things may smell strange as it does.
+  recent_viral_illness: strongly_supports
+  smell_distorted: supports
+  smell_phantom: supports
+  smell_not_back_few_weeks: supports
+key_findings: [recent_viral_illness, smell_distorted]
+source: nhs_lost_or_changed_sense_smell
+informed_by: [nhs_lost_or_changed_sense_smell, nhs_covid_19]

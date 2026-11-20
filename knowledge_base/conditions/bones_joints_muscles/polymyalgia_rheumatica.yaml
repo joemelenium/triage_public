@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: polymyalgia_rheumatica
+body_system: bones_joints_muscles
+# Very rare under 50. Up to 1 in 5 people with it get inflamed blood vessels in the head
+# (giant cell arteritis), which is caught by the rules.
+entry_symptoms: [neck_pain, shoulder_pain, hip_pain, joint_pain]
+name: "Polymyalgia rheumatica (stiff, sore shoulders and hips)"
+medical_name: "Polymyalgia rheumatica"
+snomed: "65323003"
+acuity_needed: soon
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  pain_stiff_both_shoulders_or_hips: strongly_supports
+  morning_stiffness_over_30_min: strongly_supports
+  very_tired: supports
+  weight_loss: supports
+  jaw_pain_or_scalp_tender: supports
+key_findings: [pain_stiff_both_shoulders_or_hips, morning_stiffness_over_30_min, jaw_pain_or_scalp_tender]
+source: nhs_polymyalgia_rheumatica
+informed_by: [nhs_polymyalgia_rheumatica]

@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: soft_tissue_sarcoma
+body_system: skin_and_hair
+entry_symptoms: [skin_lump]
+name: "Soft tissue sarcoma (a rare cancer that starts as a lump in muscle or fat)"
+medical_name: "Sarcoma of soft tissue"
+snomed: "424952003"
+acuity_needed: soon
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: lump_large, prevalence: rare}
+  - {finding: lump_hard_and_does_not_move, prevalence: rare}
+findings:
+  # What tells it apart from a lipoma: a lump that keeps getting bigger, is large (bigger than a golf ball), hard and fixed, and may become painful.
+  lump_getting_bigger: strongly_supports
+  lump_large: supports
+  lump_hard_and_does_not_move: supports
+key_findings: [lump_getting_bigger, lump_large, lump_hard_and_does_not_move]
+source: nhs_lumps
+informed_by: [nhs_lumps, nhs_soft_tissue_sarcoma]

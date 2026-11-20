@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ptsd
+body_system: mental_health
+entry_symptoms: [feeling_anxious, low_mood, agitated_or_out_of_control]
+name: "Post-traumatic stress (PTSD)"
+medical_name: "Post-traumatic stress disorder"
+snomed: "47505003"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: feeling_anxious, prevalence: uncommon}
+  - {finding: low_mood, prevalence: uncommon}
+  - {finding: agitated_or_out_of_control, prevalence: rare}
+findings:
+  # What tells it apart: reliving a frightening event, and avoiding reminders of it.
+  trauma_flashbacks: strongly_supports
+  avoiding_reminders: strongly_supports
+  feeling_on_edge: supports
+  sleep_problems: supports
+  feeling_anxious: supports
+key_findings: [trauma_flashbacks, avoiding_reminders, feeling_on_edge]
+source: nhs_ptsd
+informed_by: [nhs_ptsd]

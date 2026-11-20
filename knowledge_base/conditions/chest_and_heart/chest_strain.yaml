@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chest_strain
+body_system: chest_and_heart
+entry_symptoms: [chest_pain]
+# Covers a strained chest muscle and costochondritis (swelling where the ribs
+# join the breastbone). Both cause chest wall pain that hurts more when pressed
+# or moved, and both usually get better on their own.
+name: "Chest sprain or strain, or costochondritis (swelling where the ribs join the breastbone)"
+medical_name: "Musculoskeletal chest pain: chest wall strain or costochondritis"
+snomed: "281245003"
+acuity_needed: self_manageable
+danger: minor
+# "common", not "very common": the link to pain that is there now already raises
+# it among people whose chest pain is still there. Together these make it the most
+# common single cause, as it should be, without swamping a heart attack.
+prevalence: common
+findings:
+  # What tells it apart: it started after an injury or effort, and hurts more when pressed.
+  cp_after_injury_or_exercise: strongly_supports
+  cp_tender_to_press: supports           # common, but many people cannot find a sore spot themselves
+  cp_worse_breathing_in: supports
+  cp_sharp_or_stabbing: supports
+  cp_present_now: supports               # usually still aching when someone asks for help
+  # Kept for the single-cause method only; the network method ignores these.
+  sweating: argues_against
+  nausea_or_vomiting: argues_against
+  cp_spreads: argues_against
+  cp_on_exertion: argues_against
+  cp_after_eating: argues_against
+key_findings: [cp_tender_to_press, cp_after_injury_or_exercise, cp_worse_breathing_in]
+source: nhs_chest_pain
+informed_by: [nhs_chest_pain, nhs_costochondritis]

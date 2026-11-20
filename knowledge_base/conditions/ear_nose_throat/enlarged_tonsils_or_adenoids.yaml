@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: enlarged_tonsils_or_adenoids
+body_system: ear_nose_throat
+entry_symptoms: [snoring]
+name: "Large tonsils or adenoids in a child (glands at the back of the throat and nose)"
+medical_name: "Hypertrophy of tonsils and adenoids"
+snomed: "66622006"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_5, prevalence: common}
+  - {finding: age_under_16, prevalence: common}
+findings:
+  # What tells it apart: a child who breathes through their mouth, snores loudly and may have pauses
+  # in breathing at night, often with many throat infections.
+  breathes_through_mouth: strongly_supports
+  frequent_sore_throats: supports
+  breathing_stops_in_sleep: supports
+  blocked_or_runny_nose: supports
+key_findings: [breathes_through_mouth, breathing_stops_in_sleep]
+source: ai_judgement
+informed_by: [nhs_snoring, nhs_glue_ear]

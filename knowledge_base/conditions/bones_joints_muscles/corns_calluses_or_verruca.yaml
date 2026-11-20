@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: corns_calluses_or_verruca
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "Corns, calluses (hard skin) or a verruca on the foot"
+medical_name: "Corn, callus or plantar wart"
+acuity_needed: self_manageable
+level_of_care: community_pharmacy
+danger: minor
+prevalence: uncommon
+findings:
+  hard_skin_or_verruca: strongly_supports
+  bottom_of_foot_pain: supports
+  ball_of_foot_pain: supports
+key_findings: [hard_skin_or_verruca]
+source: nhs_pain_in_the_bottom_of_the_foot
+informed_by: [nhs_pain_in_the_bottom_of_the_foot]

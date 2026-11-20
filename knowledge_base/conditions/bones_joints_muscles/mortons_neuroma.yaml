@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mortons_neuroma
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "Morton's neuroma (a thickened nerve between the toes)"
+medical_name: "Morton's neuroma"
+snomed: "30085007"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: ball_of_foot_pain, prevalence: common}
+findings:
+  feels_like_stone_in_shoe: strongly_supports
+  ball_of_foot_pain: supports
+  leg_numb_or_tingling: supports
+key_findings: [feels_like_stone_in_shoe]
+source: nhs_mortons_neuroma
+informed_by: [nhs_mortons_neuroma]

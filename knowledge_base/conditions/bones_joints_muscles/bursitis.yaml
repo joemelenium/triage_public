@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bursitis
+body_system: bones_joints_muscles
+# An infected bursa (hot, red, with a high temperature) is caught by the rules.
+entry_symptoms: [shoulder_pain, arm_pain, hip_pain, knee_pain, foot_pain, joint_pain]
+name: "Bursitis (a swollen, painful fluid-filled pad near a joint)"
+medical_name: "Bursitis"
+snomed: "84017003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  pain_kneeling_or_leaning: strongly_supports
+  swollen_area: supports
+  overuse: supports
+  red_or_discoloured_skin: supports
+key_findings: [pain_kneeling_or_leaning, swollen_area]
+source: nhs_bursitis
+informed_by: [nhs_bursitis]

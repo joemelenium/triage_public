@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lip_infection
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_dry_lips]
+name: "Infected lip (a skin infection of the lip)"
+medical_name: "Infection of lip"
+snomed: "51030006"
+acuity_needed: soon
+danger: moderate
+prevalence: uncommon
+findings:
+  # What tells it apart from chapped lips: the lip is hot, painful and swollen, sometimes after a
+  # cold sore or a crack became infected.
+  lips_hot_painful_swollen: strongly_supports
+  very_high_temperature: supports
+  cold_sore_blisters: supports
+  face_or_jaw_swollen: supports
+key_findings: [lips_hot_painful_swollen, very_high_temperature]
+source: nhs_sore_or_dry_lips
+informed_by: [nhs_sore_or_dry_lips]

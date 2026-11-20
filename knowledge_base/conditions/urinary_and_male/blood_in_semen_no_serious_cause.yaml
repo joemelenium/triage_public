@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: blood_in_semen_no_serious_cause
+body_system: urinary_and_male
+entry_symptoms: [blood_in_semen]
+name: "Blood in semen with no serious cause, or after a recent procedure"
+medical_name: "Idiopathic or post-procedural haematospermia"
+# The Blood in semen page says most of the time the cause is not obvious and it
+# goes away on its own, and a recent procedure such as a prostate test or a
+# vasectomy is a common cause. The entry symptom's floor still sends everyone to a GP.
+acuity_needed: self_manageable
+danger: minor
+sex: male
+prevalence: very_common
+findings:
+  recent_procedure_on_prostate_or_bladder: strongly_supports
+  blood_in_semen_once_or_twice: strongly_supports
+key_findings: [recent_procedure_on_prostate_or_bladder, blood_in_semen_once_or_twice]
+source: nhs_blood_in_semen
+informed_by: [nhs_blood_in_semen]

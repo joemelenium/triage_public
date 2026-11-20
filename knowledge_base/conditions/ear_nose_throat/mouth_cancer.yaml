@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mouth_cancer
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_white_tongue, sore_or_dry_lips, swollen_glands, difficulty_swallowing]
+name: "Mouth cancer"
+medical_name: "Malignant neoplasm of oral cavity"
+snomed: "363505006"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: smoker, prevalence: uncommon}
+  - {finding: drinks_a_lot_of_alcohol, prevalence: uncommon}
+findings:
+  # What tells it apart from a mouth ulcer: an ulcer, red or white patch, or lump in the mouth or on
+  # the lip that has not healed after 3 weeks.
+  mouth_ulcer_over_3_weeks: strongly_supports
+  mouth_patch_or_lump_3_weeks: strongly_supports
+  lump_in_mouth_or_neck: supports
+  weight_loss: supports
+  hoarse_voice_3_weeks: supports
+key_findings: [mouth_ulcer_over_3_weeks, mouth_patch_or_lump_3_weeks, lump_in_mouth_or_neck]
+source: nhs_mouth_cancer
+informed_by: [nhs_mouth_cancer, nhs_mouth_ulcers]

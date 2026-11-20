@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: rotator_cuff_problems
+body_system: bones_joints_muscles
+entry_symptoms: [shoulder_pain]
+name: "Rotator cuff problems (sore or torn tendons in the shoulder)"
+medical_name: "Rotator cuff tendinopathy or tear, subacromial impingement"
+snomed: "359532006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  pain_lifting_arm: strongly_supports
+  pain_worse_at_night_or_rest: supports
+  overuse: supports
+  pain_kneeling_or_leaning: supports
+key_findings: [pain_lifting_arm, overuse]
+source: nhs_shoulder_impingement_syndrome
+informed_by: [nhs_shoulder_impingement_syndrome, nhs_shoulder_pain, nhs_tendonitis]

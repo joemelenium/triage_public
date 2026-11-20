@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: harmless_floaters
+body_system: eyes
+# Floaters you have had for a long time that do not change are usually harmless.
+entry_symptoms: [floaters_or_flashes]
+name: "Long-standing floaters that are harmless"
+medical_name: "Vitreous floaters"
+snomed: "15013002"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  floaters_long_standing: strongly_supports
+  floaters_or_flashes: strongly_supports
+  short_sighted: supports
+  both_eyes_affected: supports
+key_findings: [floaters_long_standing]
+source: nhs_floaters_and_flashes_in_the_eyes
+informed_by: [nhs_floaters_and_flashes_in_the_eyes]

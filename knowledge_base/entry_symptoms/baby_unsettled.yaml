@@ -1,0 +1,168 @@
+# Entry symptom: a baby who is not feeding well, or is unsettled.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# There is no NHS Symptoms A to Z page for this. The rules come from the NHS
+# page "Is your baby or toddler seriously ill?", the Sepsis, Colic and
+# Dehydration pages, and AI judgement where marked. Most unsettled babies have
+# colic or a minor illness. The must-not-miss causes are a serious infection
+# (sepsis, meningitis, a kidney infection) and a blocked bowel.
+
+id: baby_unsettled
+name: "Baby not feeding or unsettled"
+presenting_finding: baby_unsettled_or_not_feeding
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: baby_emergency_screen
+    level: emergency
+    question: "Do any of these apply to your baby right now? Choose all that apply."
+    findings:
+      - child_floppy_or_hard_to_wake
+      - child_crying_will_not_stop
+      - child_not_feeding_or_playing
+      - difficulty_breathing
+      - skin_blotchy
+      - rash_does_not_fade
+      - had_a_fit
+      - cold_hands_and_feet
+
+  - id: baby_emergency_screen_2
+    level: emergency
+    question: "Do any of these apply to your baby? Choose all that apply."
+    findings:
+      - baby_high_temperature
+      - not_peed_12_hours
+      - green_or_bloody_sick_or_poo
+      - bulging_soft_spot
+      - breathing_very_fast
+
+  - id: baby_urgent_screen
+    level: urgent
+    question: "Do any of these apply to your baby? Choose all that apply."
+    findings:
+      - feeding_much_less
+      - very_high_temperature
+      - cannot_keep_fluids_down
+      - child_dehydration_signs
+      - sunken_soft_spot
+
+red_flags:
+  - id: rf_bb_floppy_or_not_responding
+    description: "A baby who is floppy, hard to wake, or not responding as usual"
+    when: child_floppy_or_hard_to_wake
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_baby_seriously_ill
+
+  - id: rf_bb_cry
+    description: "A baby with a weak, high-pitched or continuous cry, or a cry that does not sound like their usual cry"
+    when: child_crying_will_not_stop
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_baby_seriously_ill
+    note: "The Colic page also says go to A&E or call 999 for a weak or high-pitched cry, or one that does not sound like their usual cry."
+
+  - id: rf_bb_not_feeding_at_all
+    description: "A baby who has stopped feeding, or is not interested in anything around them"
+    when: child_not_feeding_or_playing
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_sepsis
+
+  - id: rf_bb_breathing
+    description: "A baby struggling to breathe, grunting, or breathing very fast"
+    when: {any: [difficulty_breathing, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_baby_seriously_ill
+
+  - id: rf_bb_skin_or_rash
+    description: "A baby with blotchy skin, cold or clammy skin, or a rash that does not fade when pressed"
+    when: {any: [skin_blotchy, cold_hands_and_feet, rash_does_not_fade]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_baby_seriously_ill
+
+  - id: rf_bb_fit
+    description: "A baby who is having or has had a fit (seizure)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_febrile_fit_999
+    source: nhs_baby_seriously_ill
+    note: "The page says call 999 or go to A&E. An ambulance is used because the Febrile seizures page says not to take a child to A&E while they are still having a fit."
+
+  - id: rf_bb_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: baby_high_temperature
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_fever_baby_emergency
+    source: nhs_baby_seriously_ill
+
+  - id: rf_bb_not_peed
+    description: "A baby who has not had a pee (a wet nappy) for 12 hours"
+    when: not_peed_12_hours
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_baby_seriously_ill
+
+  - id: rf_bb_green_sick_or_blood_in_poo
+    description: "A baby being sick green, or with blood in their poo: possible blocked or twisted bowel"
+    when: green_or_bloody_sick_or_poo
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_baby_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: green sick (bile) or blood in the poo of a baby who is unsettled can be a blocked or twisted bowel, which needs surgery. The stomach and bowel body system owns those pages."
+
+  - id: rf_bb_bulging_soft_spot
+    description: "A baby with a bulging soft spot on top of the head"
+    when: bulging_soft_spot
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: a bulging soft spot in an unwell baby can be a sign of meningitis."
+
+  - id: rf_bb_feeding_much_less
+    description: "A baby feeding much less than usual"
+    when: feeding_much_less
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 or ask for an urgent GP appointment"}
+    advice: advice_baby_urgent
+    source: nhs_bronchiolitis
+    note: "The Bronchiolitis page says an urgent GP appointment or 111 for a baby feeding much less than usual. Applying it to every baby who is not feeding is AI judgement."
+
+  - id: rf_bb_high_temperature_any
+    description: "A baby with a high temperature, or thought to have one"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 now"}
+    advice: advice_baby_urgent
+    source: nhs_fever_in_children
+    note: "The Fever in children page says call 111 for a baby under 6 months who has, or seems to have, a high temperature. Applying it to every baby under 1 who is also unsettled or not feeding is AI judgement. The high temperature rules also apply."
+
+  - id: rf_bb_keeps_being_sick
+    description: "A baby who keeps being sick and cannot keep feeds down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 or ask for an urgent GP appointment"}
+    advice: advice_baby_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: a baby who keeps being sick can quickly lack water in the body. Forceful sick after every feed in the first weeks can also be a narrowing at the stomach outlet."
+
+  - id: rf_bb_dehydration
+    description: "A baby with dry nappies, sunken eyes, no tears or a sunken soft spot"
+    when: {any: [child_dehydration_signs, sunken_soft_spot]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 or ask for an urgent GP appointment"}
+    advice: advice_baby_urgent
+    source: nhs_dehydration
+
+outcome_rules:
+  - id: or_bb_not_gaining_weight
+    description: "A baby who is not putting on weight as expected"
+    when: baby_not_gaining_weight
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or call 111. The source gives no fixed time."}
+    advice: advice_baby_gp
+    source: nhs_colic
+
+default:
+  description: "A baby who is unsettled or not feeding well, with no sign of serious illness: see a GP or health visitor if you are worried"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or call 111 if you are worried. The source gives no fixed time."}
+  advice: advice_baby_gp
+  source: nhs_colic
+  note: "The Colic page says call 111 or see a GP (non-urgent) if you are worried about your baby's crying. Soft: likely colic lowers it to self-care with advice."

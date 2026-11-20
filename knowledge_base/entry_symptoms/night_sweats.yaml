@@ -1,0 +1,64 @@
+# Entry symptom: night sweats.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Uses the network's existing night sweats observation as its main symptom.
+# The NHS page gives only "see a GP" advice. There is no sourced emergency
+# sign, so there is no emergency checklist here: the universal red flags still
+# run, and a high temperature brings in the high temperature rules.
+
+id: night_sweats
+name: "Night sweats"
+presenting_finding: night_sweats
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_night_sweats]
+
+screens:
+  - id: night_sweats_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - weight_loss
+      - cough
+      - lump_neck_armpit_or_groin
+      - weakened_immune_system
+
+red_flags:
+  - id: rf_ns_weakened_immune_with_temperature
+    description: "Night sweats with a high temperature in someone with a weakened immune system"
+    when: {all: [weakened_immune_system, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_fever_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: an infection can become serious quickly with a weakened immune system. The high temperature rules give the same level."
+
+outcome_rules:
+  - id: or_ns_with_infection_signs
+    description: "Night sweats with a high temperature (or feeling hot, cold or shivery), a cough, or diarrhoea"
+    when: {any: [very_high_temperature, cough, diarrhoea_or_vomiting]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_night_sweats_gp
+    source: nhs_night_sweats
+
+  - id: or_ns_with_weight_loss
+    description: "Night sweats and losing weight for no reason"
+    when: weight_loss
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP as soon as possible"}
+    advice: advice_weight_loss_soon
+    source: nhs_unintentional_weight_loss
+    note: "Source difference: the Night sweats page says see a GP (non-urgent). The Unintentional weight loss page says see a GP as soon as possible with other symptoms. The more urgent is used."
+
+  - id: or_ns_lump
+    description: "Night sweats with a painless lump in the neck, armpit or groin"
+    when: lump_neck_armpit_or_groin
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP in the next few days"}
+    advice: advice_weight_loss_soon
+    source: ai_judgement
+    note: "Clinical knowledge: night sweats with a lump that has lasted more than 2 weeks can be lymphoma and should be checked soon. The Hodgkin lymphoma page says see a GP for a lump (non-urgent)."
+
+default:
+  description: "Night sweats: get it checked by a GP if it keeps happening"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP if you regularly wake up with soaking wet sheets. The source gives no fixed time."}
+  advice: advice_night_sweats_gp
+  source: nhs_night_sweats
+  note: "The page says get it checked by a GP if you regularly wake with soaking sheets. Not a floor, because the page also says sweating at night is normal when the room or bedding is too hot."

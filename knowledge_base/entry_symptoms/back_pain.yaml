@@ -1,0 +1,175 @@
+# Entry symptom: back pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+# Rules with source ai_judgement come from clinical knowledge, not a page.
+#
+# Must-not-miss causes: pressure on the nerves at the bottom of the spine
+# (cauda equina syndrome), pressure on the spinal cord, infection or cancer in
+# the spine, a broken bone in the spine, and a burst or torn main blood vessel
+# (abdominal aortic aneurysm or aortic dissection).
+
+id: back_pain
+name: "Back pain"
+presenting_finding: back_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: back_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply to you right now? Choose all that apply."
+    findings:
+      - both_legs_symptoms
+      - saddle_numbness
+      - bladder_bowel_change
+      - sexual_function_change
+      - chest_pain
+      - serious_accident
+      - cp_tearing_to_back
+      - very_bad_tummy_pain_with_back_pain
+
+  - id: back_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - feels_very_unwell
+      - severe_pain
+      - pain_getting_worse_quickly
+      - leg_weakness
+      - has_cancer
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_back_cauda_equina
+    description: "Back pain with signs of pressure on the nerves at the bottom of the spine: symptoms in both legs, numbness around the genitals or bottom, new problems peeing or pooing, or changes during sex"
+    when: {any: [both_legs_symptoms, saddle_numbness, bladder_bowel_change, sexual_function_change]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_spinal_nerve_emergency
+    source: nhs_back_pain
+    note: "Signs of cauda equina syndrome. The Sciatica and Slipped disc pages give the same advice. This needs treatment in hospital within hours to prevent lasting damage."
+
+  - id: rf_back_chest_pain
+    description: "Back pain with chest pain"
+    when: chest_pain
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_pain_999
+    source: nhs_back_pain
+    note: "A yes to chest pain also brings in the chest pain entry symptom and its red flags."
+
+  - id: rf_back_serious_accident
+    description: "Back pain that started after a serious accident, such as a car crash or a fall from a height"
+    when: serious_accident
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_spinal_injury_emergency
+    source: nhs_back_pain
+
+  - id: rf_back_tearing_pain
+    description: "Sudden, severe chest or back pain that feels like something tearing inside"
+    when: cp_tearing_to_back
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_back_pain_999
+    source: nhs_costochondritis
+    note: "A sign of a tear in the body's main blood vessel (aortic dissection). The same rule is used for chest pain."
+
+  - id: rf_back_sudden_tummy_pain
+    description: "Back pain with sudden, very bad tummy pain"
+    when: very_bad_tummy_pain_with_back_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_back_pain_999
+    source: nhs_abdominal_aortic_aneurysm
+    note: "The Abdominal aortic aneurysm page says call 999 for sudden, severe pain in the tummy or back, which could be a swollen main blood vessel bursting."
+
+  - id: rf_back_sudden_severe_older
+    description: "Severe back pain that started suddenly in someone aged 65 or over"
+    when: {all: [severe_pain, pain_started_suddenly, age_65_or_over]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_back_pain_999
+    source: nhs_abdominal_aortic_aneurysm
+    soft: true    # likely conditions may lower this: a broken bone in the spine from thin bones is more common
+    note: "Source difference: the Abdominal aortic aneurysm page says call 999 for sudden, severe back pain. The Back pain page says urgent GP or 111 for severe pain that starts suddenly. The more urgent is used for people aged 65 or over, where a burst aneurysm is a real possibility. Marked soft and limited by age: AI judgement, needs clinical review. The firm urgent rule below still applies."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_back_unwell_temperature
+    description: "Back pain with a high temperature, feeling hot, cold or shivery, or feeling generally unwell"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_back_pain_urgent
+    source: nhs_back_pain
+    note: "Could be an infection in the spine or kidney. The Slipped disc page says see a GP for back pain with a high temperature; the Back pain page says urgent. The more urgent is used."
+
+  - id: rf_back_severe_sudden_or_worsening
+    description: "Severe back pain that started suddenly, or back pain that is getting worse quickly"
+    when: {any: [{all: [severe_pain, pain_started_suddenly]}, pain_getting_worse_quickly]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_back_pain_urgent
+    source: nhs_back_pain
+
+  - id: rf_back_leg_weakness
+    description: "Back pain with weakness in a leg, or a foot that drags"
+    when: leg_weakness
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_back_pain_urgent
+    source: ai_judgement
+    note: "Weakness from a trapped nerve needs checking the same day, as it may need an urgent scan. Weakness in both legs is caught by the emergency rule. The Sciatica page says A&E for weakness in both legs that is severe or getting worse."
+
+  - id: rf_back_cancer_history
+    description: "Back pain in someone who has or has had cancer, with pain that is severe, worse at night, worse when coughing or in the upper back"
+    when: {all: [has_cancer, {any: [severe_pain, pain_worse_at_night_or_rest, pain_worse_cough_sneeze, upper_back_pain]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your cancer team or get help from NHS 111 today"}
+    advice: advice_back_pain_cancer_urgent
+    source: ai_judgement
+    note: "Cancer that has spread to the spine can press on the spinal cord. Finding it before the legs become weak gives the best outcome. AI judgement, needs clinical review."
+
+  - id: rf_back_injury_thin_bones
+    description: "Back pain after a fall or injury in someone aged 65 or over, or with thin bones or long-term steroid tablets"
+    when: {all: [injury_or_fall, {any: [age_65_or_over, has_osteoporosis_or_steroids]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_back_pain_urgent
+    source: nhs_osteoporosis
+    note: "The Osteoporosis page says get urgent help after a recent fall or injury if the pain is not getting better, as a bone in the spine may be broken. Applying it to anyone 65 or over is AI judgement."
+
+outcome_rules:
+  - id: or_back_cancer_signs
+    description: "Back pain with weight loss, or in someone who has or has had cancer"
+    when: {any: [weight_loss, has_cancer]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within a few days"}
+    advice: advice_msk_gp_soon
+    source: nhs_back_pain
+    note: "The Back pain page says see a GP for back pain with weight loss. Within a few days, not 'no fixed time', is AI judgement because it can be a sign of cancer."
+
+  - id: or_back_gp_warning_signs
+    description: "Back pain with a lump or change of shape, pain worse at night or not better with rest, pain worse when coughing, sneezing or pooing, or pain in the upper back"
+    when: {any: [back_lump_or_shape_change, pain_worse_at_night_or_rest, pain_worse_cough_sneeze, upper_back_pain]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_back_pain_gp
+    source: nhs_back_pain
+
+  - id: or_back_not_improving
+    description: "Back pain that has not improved after a few weeks, or is stopping day-to-day activities"
+    when: {any: [pain_not_improving, stopping_daily_activities]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_back_pain_gp
+    source: nhs_back_pain
+    note: "Firm: the page says see a GP for these whatever the cause, including ordinary back strain. Split from the worried rule below after the development cases."
+
+  - id: or_back_worried
+    description: "Worried about back pain, or struggling to cope"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_back_pain_gp
+    source: nhs_back_pain
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+default:
+  description: "Back pain with nothing that needs more help: it usually gets better on its own within a few weeks"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Back pain usually gets better within a few weeks"}
+  advice: advice_back_pain_self_care
+  source: nhs_back_pain

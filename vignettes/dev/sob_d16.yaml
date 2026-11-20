@@ -1,0 +1,62 @@
+id: sob_d16
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "An 84-year-old woman (her son answering) with a chesty cough for three days. Today she is breathing fast and seems breathless, feels cold to the touch rather than hot, and her son has noticed her knees and arms look blotchy. She is talking sensibly. He is not sure when she last had a wee."
+
+opening_statement: "Mum's a bit breathless today and she just doesn't seem right. She hasn't got a temperature though, she actually feels quite cold."
+
+findings:
+  present: [short_of_breath, breathing_very_fast, skin_blotchy, very_high_temperature, feels_very_unwell, cough, cough_phlegm, cold_or_shivery, symptoms_worse_or_not_better]
+  absent: [too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, passed_out, fainted, rash_does_not_fade, had_a_fit, chest_pain, coughing_up_blood, sob_sudden, leg_pain_or_swelling, stroke_signs, has_copd, has_asthma, known_heart_condition, weakened_immune_system, has_cancer, phlegm_yellow_or_green, sob_more_than_usual, has_heart_failure]
+  unknown: [not_peed_12_hours, dehydration_signs]
+
+context:
+  none: {}
+  basic: {age: 84, sex: female}
+  full:
+    age: 84
+    sex: female
+    findings: {has_copd: "no", known_heart_condition: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Blotchy skin with an infection (easy to miss)"
+    findings: [skin_blotchy]
+    minimum_acuity: emergency
+    source: {page: sepsis.txt, quote: "has blue, pale or blotchy skin"}
+  - description: "Breathing very fast with an infection"
+    findings: [breathing_very_fast]
+    minimum_acuity: emergency
+    source: {page: sepsis.txt, quote: "is breathing very fast"}
+  - description: "Feels cold to the touch rather than hot"
+    findings: [very_high_temperature]
+    minimum_acuity: emergency
+    source: {page: sepsis.txt, quote: "has a very high or very low temperature, feels hot or cold to the touch, or is shivery"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now; say you think it could be sepsis"
+    any_of: ["999", "A&E"]
+  - point: "Bring her medicines"
+    any_of: ["medicines", "medication"]
+
+source:
+  expected_outcome: {page: sepsis.txt, quote: "You need to get medical help immediately if you think you or your child might have sepsis."}
+  minimum_safe_acuity: {page: sepsis.txt, quote: "has blue, pale or blotchy skin"}
+
+variants:
+  - id: sob_d16_v1
+    style: "son, worried, gives the key details"
+    opening_statement: "My mum's 84, she's had a chesty cough, and now she's breathing really fast, her skin's gone blotchy on her legs and she feels cold. She's not herself."
+    volunteered: [cough, breathing_very_fast, skin_blotchy, feels_very_unwell, cold_or_shivery]
+
+atypical: true
+notes: "Atypical sepsis: no fever. sepsis.txt: 'a high temperature is less common in older adults'. very_high_temperature is answered yes because the question also covers 'do you feel hot, cold or shivery' and she feels cold; reviewers should check the engine does not read the patient's 'no temperature' as reassuring. Son is not sure about her peeing (unknowns)."

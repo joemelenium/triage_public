@@ -1,0 +1,234 @@
+# Entry symptom: chest pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+
+id: chest_pain
+name: "Chest pain"
+presenting_finding: chest_pain
+status: "AI-drafted, not clinically reviewed"
+
+# Screens ask about several red flags in one question, to keep the number of
+# questions down. Every red flag must be checked, so nothing is saved by asking
+# them one at a time.
+screens:
+  - id: chest_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply to you right now? Choose all that apply."
+    findings:
+      - cp_present_now
+      - cp_sudden_not_going_away
+      - cp_tight_or_squeezing
+      - cp_heavy
+      - cp_spreads
+      - sweating
+      - nausea_or_vomiting
+      - light_headed
+      - short_of_breath
+      - heart_beating_very_fast
+      - fainted
+      - cp_tearing_to_back
+      - cp_lasted_15_minutes
+
+  - id: chest_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - cp_comes_and_goes
+      - palpitations
+      - coughing_up_blood
+      - cp_worse_breathing_in
+      - leg_pain_or_swelling
+      - cp_sharp_or_stabbing
+      - cp_better_leaning_forward
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_cp_sudden_not_going_away
+    description: "Sudden pain or discomfort in the chest that does not go away"
+    when: cp_sudden_not_going_away
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 straight away"}
+    advice: advice_chest_pain_999
+    source: nhs_chest_pain
+
+  - id: rf_cp_tight_or_squeezing
+    description: "Chest pain that feels tight or like squeezing"
+    when: cp_tight_or_squeezing
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: nhs_heart_attack
+
+  - id: rf_cp_heavy
+    description: "Chest that feels heavy"
+    when: cp_heavy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_chest_pain_ae
+    source: nhs_shortness_of_breath
+    note: "The source lists a chest that feels 'tight or heavy' for people who are short of breath. Applying it to chest pain is AI judgement, needs clinical review. Added after a development test case showed the question list could not express it."
+
+  - id: rf_cp_spreads
+    description: "Chest pain that spreads to the arm, neck, jaw, shoulder, stomach or back"
+    when: cp_spreads
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 straight away"}
+    advice: advice_chest_pain_999
+    source: nhs_angina
+    note: "The Chest pain page gives the same advice without naming the shoulder."
+
+  - id: rf_cp_with_sweating_sickness_or_breathlessness
+    description: "Chest pain with feeling sweaty, sick, light-headed or short of breath"
+    when: {any: [sweating, nausea_or_vomiting, light_headed, short_of_breath]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 straight away"}
+    advice: advice_chest_pain_999
+    source: nhs_chest_pain
+    note: "Source difference: the Heart attack page says to call 111 for chest pain with feeling or being sick. The Chest pain page says 999. The more urgent is used."
+
+  - id: rf_cp_heart_beating_very_fast
+    description: "Chest pain with the heart beating very fast"
+    when: heart_beating_very_fast
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_chest_pain_ae
+    source: nhs_pulmonary_embolism
+    note: "Source difference: the Heart attack page says to call 111 for chest pain with a racing heart. The Pulmonary embolism page says 999 or A&E for a heart beating very fast. The more urgent is used."
+
+  - id: rf_cp_present_now
+    description: "Chest pain that is there now"
+    when: cp_present_now
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_chest_pain_ae
+    source: nhs_pulmonary_embolism
+    soft: true    # likely conditions may lower this: ongoing pain is not always an emergency
+    note: "Pragmatic resolution of a source difference, needs clinical review. The Pulmonary embolism page says to call 999 or go to A&E if 'you feel pain in your chest or upper back'. The Chest pain page says to see a GP for pain that comes and goes or has gone away. Both are followed: pain that is there now is an emergency, and pain that has stopped uses the Chest pain page. This will over-triage some people, for example someone with a pulled muscle that still hurts."
+
+  - id: rf_cp_fainted
+    description: "Chest pain and has passed out"
+    when: fainted
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_chest_pain_ae
+    source: nhs_pulmonary_embolism
+
+  - id: rf_cp_angina_not_settling
+    description: "Diagnosed angina, and chest pain that does not stop after resting or taking angina medicine"
+    when: {all: [has_angina, angina_pain_not_settling]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_chest_pain_999
+    source: nhs_angina
+
+  - id: rf_cp_tearing_to_back
+    description: "Sudden, severe chest or back pain that feels like something tearing inside"
+    when: cp_tearing_to_back
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: nhs_costochondritis
+    note: "Added in the chest and breathing pilot. The Costochondritis page says call 999 for sudden chest or back pain that feels like something being torn inside. Clinically this is a sign of a tear in the body's main blood vessel (aortic dissection), which can be fatal within hours."
+
+  - id: rf_cp_lasted_15_minutes
+    description: "Sudden chest pain that lasted 15 minutes or more, even if it has stopped"
+    when: cp_lasted_15_minutes
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_chest_pain_ae
+    source: nhs_pleurisy
+    note: "The Pleurisy page says call 999 or go to A&E for sudden chest pain that lasts for 15 minutes or more, which could be a heart attack or a blood clot in the lung. Asking about it even if the pain has stopped is AI judgement. Kept firm, not soft: angina that lasts this long may be a heart attack, so likely angina must not lower it. This will over-triage some chest wall pain that came on suddenly. Added in the breathing batch after test-case authors found no question for it. Needs clinical review."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_cp_angina_worse
+    description: "Diagnosed angina that is worse than before, more frequent, longer lasting or happening at rest"
+    when: {all: [has_angina, angina_worse_than_usual]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_chest_pain_angina_urgent
+    source: nhs_angina
+
+  - id: rf_cp_comes_and_goes
+    description: "Chest pain that comes and goes and looks like angina (brought on by activity, tight or squeezing, or with heart risk factors), in someone not diagnosed with angina"
+    when: {all: [cp_comes_and_goes, {not: has_angina}, {any: [cp_on_exertion, cp_tight_or_squeezing, heart_risk_factors]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_chest_pain_urgent
+    source: nhs_angina
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Chest pain page says to see a GP (non-urgent) for chest pain that comes and goes. The Angina page says to get help from 111. The more urgent is used when the pain looks like angina (AI judgement: brought on by activity, tight or squeezing, or with heart risk factors); other chest pain that comes and goes falls to the default, see a GP, as the Chest pain page says. Narrowed after development cases showed over-triage. For people already diagnosed with angina, the Angina page gives separate advice, so this rule does not apply to them."
+
+  - id: rf_cp_palpitations
+    description: "Chest pain with the heart racing, going too slowly, skipping a beat or fluttering"
+    when: palpitations
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111"}
+    advice: advice_chest_pain_urgent
+    source: nhs_heart_attack
+
+  - id: rf_cp_coughing_up_blood
+    description: "Chest pain and coughing up blood"
+    when: coughing_up_blood
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_chest_pain_urgent_gp_or_111
+    source: nhs_pulmonary_embolism
+
+  - id: rf_cp_worse_breathing_in
+    description: "Chest pain that is worse when breathing in"
+    when: cp_worse_breathing_in
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Urgent medical help"}
+    advice: advice_chest_pain_urgent_gp_or_111
+    source: nhs_pulmonary_embolism
+    soft: true    # likely conditions may lower this: it is an AI reading of the source
+    note: "AI interpretation, needs clinical review. The Pulmonary embolism page lists this as a symptom and says its symptoms need urgent medical help. That page's own action list says to call 999 or go to A&E for pain in the chest, so 'urgent' may be too low. The Chest pain page links this symptom to a chest strain or chest infection and gives no urgency, so 'urgent' may also be too high."
+
+  - id: rf_cp_leg_pain_or_swelling
+    description: "Chest pain with pain or swelling in one leg"
+    when: leg_pain_or_swelling
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_chest_pain_urgent
+    source: nhs_shortness_of_breath
+    note: "The Shortness of breath page says to contact 111 for pain or swelling in one leg. The Pulmonary embolism page lists it as a sign of a blood clot. Applying it to chest pain without breathlessness is AI interpretation, needs clinical review."
+
+  - id: rf_cp_sharp_or_stabbing
+    description: "Chest pain that is sharp or stabbing"
+    when: cp_sharp_or_stabbing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_chest_pain_urgent_gp_or_111
+    source: nhs_pericarditis
+    soft: true    # likely conditions may lower this: sharp pain is also typical of a strained chest muscle
+    note: "Added in the chest and breathing pilot. The Costochondritis page also says to get help from 111 for sharp chest pain, to rule out more serious causes."
+
+  - id: rf_cp_better_leaning_forward
+    description: "Chest pain that eases when leaning forward and is worse lying down"
+    when: cp_better_leaning_forward
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_chest_pain_urgent_gp_or_111
+    source: nhs_pericarditis
+    note: "Added in the chest and breathing pilot. A sign of swelling of the lining around the heart (pericarditis)."
+
+  - id: rf_cp_shingles_eye_or_vision
+    description: "A rash or painful patch on one side, on or near the eye or nose, or with changes to vision (possible shingles)"
+    when: {all: [rash_one_side_of_body, shingles_eye_or_vision]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shingles_urgent
+    source: nhs_shingles
+    note: "The Shingles page says an urgent GP appointment or 111 if the rash is on your eye or nose, or you have changes to your vision. Added in the breathing batch after test-case authors found no question for it."
+
+outcome_rules: []
+
+default:
+  description: "Chest pain where no rule for a more urgent outcome applies: get medical advice to make sure it is nothing serious"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_chest_pain_gp
+  source: nhs_chest_pain
+  # A floor: the source says "get medical advice just in case" for any chest pain,
+  # so likely conditions can never take the outcome below this.
+  floor: true
+  note: "Only reached when the pain is not there now and no red flag applies. The NHS website labels 'See a GP' as non-urgent, so mapping it to 'routine' and not 'soon' is AI judgement. The Angina page says to see a GP 'as soon as possible'."
+
+# Exceptions to the default: a specific, sourced situation where a different
+# outcome replaces the default. This is the only way to go below the default.
+default_exceptions:
+  - id: de_cp_stable_angina
+    description: "Diagnosed angina, with chest pain that has settled as usual and is no worse than before: follow the angina treatment instructions"
+    when: {all: [has_angina, {not: cp_present_now}, {not: angina_worse_than_usual}, {not: angina_pain_not_settling}]}
+    outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Follow the instructions you have been given for treating your angina"}
+    advice: advice_angina_self_care
+    source: nhs_angina
+    note: "Only reached when the pain is not there now and no red flag applies. Added after a development test case showed that stable, diagnosed angina was being sent for urgent help. Needs clinical review."
+

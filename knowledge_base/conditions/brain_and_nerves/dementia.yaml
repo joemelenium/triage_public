@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dementia
+body_system: brain_and_nerves
+entry_symptoms: [memory_problems]
+name: "Dementia"
+medical_name: "Dementia"
+snomed: "52448006"
+acuity_needed: routine
+danger: moderate
+diagnosed_by: has_dementia
+prevalence: common
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: very_common}
+findings:
+  # What tells it apart: memory problems that come on slowly and get worse over months or years, with everyday tasks getting harder.
+  memory_getting_worse: strongly_supports
+  struggling_everyday_tasks: strongly_supports
+  memory_affecting_daily_life: supports
+  personality_or_behaviour_change: supports
+key_findings: [memory_getting_worse, struggling_everyday_tasks, memory_affecting_daily_life]
+source: nhs_dementia_symptoms
+informed_by: [nhs_dementia_symptoms, nhs_memory_loss_amnesia]

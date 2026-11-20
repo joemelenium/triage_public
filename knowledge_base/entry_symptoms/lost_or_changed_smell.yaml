@@ -1,0 +1,98 @@
+# Entry symptom: lost or changed sense of smell.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The main symptom is the shared observation "lost or changed sense of smell or
+# taste", first written for COVID-19. Sources: the NHS Lost or changed sense of
+# smell page, with the Broken nose page, and clinical knowledge where marked
+# ai_judgement.
+
+id: lost_or_changed_smell
+name: "Lost or changed sense of smell"
+presenting_finding: loss_of_smell_or_taste
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_lost_or_changed_sense_smell]
+
+screens:
+  - id: smell_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - had_a_fit
+      - very_painful_headache
+      - stiff_neck
+      - bothered_by_light
+      - clear_fluid_from_nose
+
+  - id: smell_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - head_injury
+      - feels_very_unwell
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_sm_fit
+    description: "A changed sense of smell with a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_head_injury_ae
+    source: ai_judgement
+    note: "Clinical knowledge: the smell page says a changed sense of smell can rarely be caused by epilepsy. A new seizure needs checking in hospital."
+
+  - id: rf_sm_meningitis_signs
+    description: "A lost sense of smell with a very bad headache and a stiff neck, or bright light hurting the eyes"
+    when: {all: [very_painful_headache, {any: [stiff_neck, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a sinus infection can rarely spread to the lining of the brain (meningitis)."
+
+  - id: rf_sm_clear_fluid_after_injury
+    description: "Clear, watery fluid trickling from the nose after an injury"
+    when: {all: [nose_injury, clear_fluid_from_nose]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_head_injury_ae
+    source: nhs_broken_nose
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_sm_head_injury
+    description: "A lost sense of smell that started after a head injury"
+    when: head_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_smell_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: losing the sense of smell after a head injury can mean damage to the nerves of smell or a skull injury, and needs checking."
+
+  - id: rf_sm_very_unwell
+    description: "A lost sense of smell and feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_smell_urgent
+    source: nhs_sinusitis
+
+outcome_rules:
+  - id: or_sm_not_back
+    description: "Sense of smell not back to normal after a few weeks"
+    when: smell_not_back_few_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_smell_gp
+    source: nhs_lost_or_changed_sense_smell
+
+  - id: or_sm_phantom
+    description: "Smelling things that are not there"
+    when: smell_phantom
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_smell_gp
+    source: ai_judgement
+    note: "AI reading of the smell page, which says this can rarely be caused by conditions like epilepsy. It is often harmless after a cold, so seeing a GP with no fixed time is used."
+
+default:
+  description: "A lost or changed sense of smell with nothing that needs more help: it often gets better in a few weeks or months"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "It is not usually serious and may get better in a few weeks or months"}
+  advice: advice_smell_self_care
+  source: nhs_lost_or_changed_sense_smell

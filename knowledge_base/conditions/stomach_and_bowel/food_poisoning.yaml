@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: food_poisoning
+body_system: stomach_and_bowel
+entry_symptoms: [diarrhoea_or_vomiting, stomach_ache, feeling_sick]
+name: "Food poisoning"
+medical_name: "Food poisoning"
+snomed: "75258004"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from other stomach bugs: it started after food that may
+  # not have been safe, and others who ate it may be ill.
+  after_suspect_food: strongly_supports
+  diarrhoea: strongly_supports
+  vomiting: strongly_supports
+  others_ill_same: supports
+  sa_comes_in_waves: supports
+  very_high_temperature: supports
+key_findings: [after_suspect_food, others_ill_same]
+source: nhs_food_poisoning
+informed_by: [nhs_food_poisoning, nhs_diarrhoea_and_vomiting]

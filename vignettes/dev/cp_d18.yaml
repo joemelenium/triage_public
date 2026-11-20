@@ -1,0 +1,51 @@
+id: cp_d18
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 62-year-old man who smokes and takes tablets for high blood pressure. He spent Saturday lifting
+  furniture; since Sunday the right side of his chest has been sore when he twists, reaches up or presses
+  on it, and fine when he sits still. Walking and stairs do not bring it on. His wife wants him to check
+  because of his risk factors.
+opening_statement: I helped my daughter move house on Saturday, lots of lifting. Since Sunday the right
+  side of my chest has been sore. It hurts when I twist or reach up or press on it, and it's fine when
+  I sit still. Walking and stairs don't bring it on. I smoke and I'm on tablets for blood pressure, so
+  my wife wants me to check.
+findings:
+  present: [chest_pain, cp_comes_and_goes, cp_after_injury_or_exercise, heart_risk_factors]
+  absent: [stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+    heavy_bleeding, serious_self_harm, cp_present_now, cp_sudden_not_going_away, cp_tight_or_squeezing,
+    cp_heavy, cp_spreads, sweating, nausea_or_vomiting, light_headed, short_of_breath, heart_beating_very_fast,
+    fainted, palpitations, has_angina, angina_pain_not_settling, angina_worse_than_usual, coughing_up_blood,
+    cp_worse_breathing_in, leg_pain_or_swelling, difficulty_breathing, worried_about_symptoms, cp_on_exertion,
+    cp_after_eating, cp_with_worry, cough_mucus_or_temperature, family_heart_history, cough_or_runny_nose,
+    sore_throat, very_high_temperature, cp_lasted_15_minutes]
+  unknown: []
+context:
+  none: {}
+  basic: {age: 62, sex: male}
+  full: {age: 62, sex: male}
+expected: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time}
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of: [GP, doctor]
+- point: Call 999 if the pain comes on suddenly and does not go away, spreads to the arm, neck, jaw, stomach
+    or back, or comes with feeling sweaty, sick, light-headed or short of breath
+  any_of: ['999']
+source:
+  expected_outcome: {page: chest_pain.txt, quote: you have chest pain that comes and goes}
+  minimum_safe_acuity: {page: chest_pain.txt, quote: Most chest pain is not a sign of anything serious
+      but get medical advice just in case.}
+atypical: false
+notes: 'The pattern points to a common, minor cause in someone whose background raises concern: over-triage
+  on the background alone would be the mistake. The chest_pain.txt table gives pain that ''Starts after
+  chest injury or chest exercise ... feels better when resting the muscle'' as a chest sprain or strain,
+  adds ''Do not self-diagnose'', and puts chest pain that comes and goes under non-urgent ''See a GP''.
+  The same page says people who smoke or have high blood pressure are more likely to have heart problems,
+  but no page gives different advice because of a risk factor, so the outcome stays routine. The sources
+  give no self-care route for a chest strain, so routine is also the minimum. Source differences: angina.txt
+  puts chest pain that comes and goes under NHS 111 and pulmonary_embolism.txt lists pain in the chest
+  under ''Call 999 or go to A&E''; his pain is brought on by particular movements and pressure, not by
+  effort, and is not worse on breathing in, so it has no feature of either. cp_on_exertion is no for that
+  reason (walking and stairs do not bring it on). worried_about_symptoms is no: his wife is the one asking.'

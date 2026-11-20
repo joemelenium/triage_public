@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: corneal_abrasion
+body_system: eyes
+# A scratch on the clear front of the eye, from a fingernail, branch or contact
+# lens. Very painful and watery. Usually checked the same day to rule out
+# something left in the eye and to give antibiotic drops.
+entry_symptoms: [something_in_eye, eye_pain, red_eye, watering_eyes]
+name: "Scratch on the clear front of the eye (corneal abrasion)"
+medical_name: "Corneal abrasion"
+snomed: "85848002"
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: something_in_eye, prevalence: common}
+  - {finding: eye_pain, prevalence: uncommon}
+findings:
+  eye_injury: strongly_supports    # a scratch or poke
+  gritty_or_burning: strongly_supports
+  something_in_eye: strongly_supports
+  bothered_by_light: supports
+  watering_eyes: supports
+  red_eye: supports
+key_findings: [eye_injury, bothered_by_light]
+source: nhs_eye_pain
+informed_by: [nhs_eye_pain, nhs_eye_injuries]

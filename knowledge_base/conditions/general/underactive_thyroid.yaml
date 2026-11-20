@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: underactive_thyroid
+body_system: general
+# Common, especially in women. Builds up slowly. The page says see a GP.
+entry_symptoms: [very_tired, swollen_ankles]
+name: "Underactive thyroid (the thyroid gland in the neck makes too little hormone)"
+medical_name: "Hypothyroidism"
+snomed: "40930008"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: sex_female, prevalence: uncommon}
+findings:
+  # What tells it apart from depression or anaemia: feeling cold all the time and slowly
+  # putting on weight.
+  always_feeling_cold: strongly_supports
+  weight_gain: supports
+  low_mood: supports
+  very_tired: supports
+  swelling_elsewhere: supports
+  swollen_ankles: supports
+key_findings: [always_feeling_cold, weight_gain]
+source: nhs_underactive_thyroid
+informed_by: [nhs_underactive_thyroid, nhs_tiredness_and_fatigue, nhs_oedema]

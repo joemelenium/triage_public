@@ -1,0 +1,48 @@
+# Entry symptom: nipple discharge.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS Nipple discharge page says always get it checked by a GP, so the
+# default is a GP and a floor. A hot, red or swollen breast, or a high
+# temperature, can be a breast infection (Breast pain and Mastitis pages).
+
+id: nipple_discharge
+name: "Nipple discharge"
+presenting_finding: nipple_discharge
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: nipple_discharge_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - breast_hot_red_swollen
+      - very_high_temperature
+      - feels_very_unwell
+
+red_flags:
+  - id: rf_nd_breast_infection
+    description: "Nipple discharge with part of the breast hot, swollen or a different colour, or a very high temperature"
+    when: {any: [breast_hot_red_swollen, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_pain
+    note: "The Breast pain page's urgent signs. The Mastitis page lists nipple discharge as a symptom of a breast infection."
+
+  - id: rf_nd_very_unwell
+    description: "Nipple discharge with feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_abscess
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+
+outcome_rules: []
+
+default:
+  description: "Nipple discharge: always get it checked by a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_nipple_discharge_gp
+  source: nhs_nipple_discharge
+  # A floor: the source says always get nipple discharge checked.
+  floor: true
+  note: "Leaking milk in pregnancy or while breastfeeding is common and expected. The source still says get any nipple discharge checked, so the floor is kept. Needs clinical review."

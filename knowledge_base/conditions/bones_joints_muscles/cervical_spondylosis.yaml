@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cervical_spondylosis
+body_system: bones_joints_muscles
+entry_symptoms: [neck_pain]
+name: "Neck pain from age-related wear of the neck bones (cervical spondylosis)"
+medical_name: "Cervical spondylosis"
+snomed: "387800004"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: common}
+findings:
+  pain_over_3_months: strongly_supports
+  pain_worse_moving_better_rest: supports
+  morning_stiffness_over_30_min: supports
+  pain_getting_worse_or_recurring: supports
+key_findings: [pain_over_3_months]
+source: nhs_cervical_spondylosis
+informed_by: [nhs_cervical_spondylosis]

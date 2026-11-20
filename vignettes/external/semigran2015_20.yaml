@@ -1,0 +1,17 @@
+id: semigran2015_20
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Back pain
+original_triage_label: Requires non-emergent care
+original_triage: non_emergency
+presenting_text: low back pain for 3 weeks after shovelling snow, with a new left foot drop
+presenting: []
+age: 35
+sex: male
+findings:
+  present: []
+  absent: []
+  unknown: []
+conversion_notes: '''New left foot drop'' is not mapped to stroke_signs: it is a single examination finding in the foot, not one of the signs listed in that question. The closing remark (''In study 82% physicians recommend MRI (sciatica/sprain)'') is part of the published text (a remark by the study authors, not part of the patient''s story). No findings match the question list. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 20 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Sirovich BE et al. Variation in the tendency of primary care physicians to intervene. Arch Intern Med 2005;165:2252-2256.'

@@ -1,0 +1,54 @@
+id: gn_h05
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- blue_or_grey_skin
+summary: A 26-year-old woman whose fingers go white, then blue, then red when she is cold, for a few minutes at a time, in both hands. It is getting in the way of her outdoor job. Otherwise well.
+opening_statement: Whenever I get cold my fingers go white, then blue, then bright red when they warm up. It's making work outdoors really hard this winter.
+findings:
+  present:
+  - blue_or_grey_skin
+  - blue_fingers_or_toes_only
+  - blue_white_in_cold
+  - affecting_daily_life_or_wellbeing
+  absent:
+  - blue_lips_tongue_or_face
+  - difficulty_breathing
+  - chest_pain
+  - sudden_confusion
+  - limb_cold_pale_painful
+  - painful_swollen_joints
+  - rash
+  - arm_weakness
+  - skin_lump
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 26
+    sex: female
+  full:
+    age: 26
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Keep warm
+  any_of:
+  - warm
+source:
+  expected_outcome:
+    page: raynauds.txt
+    quote: Raynaud's is affecting your daily life
+  minimum_safe_acuity:
+    page: raynauds.txt
+    quote: Raynaud's is affecting your daily life
+atypical: false
+notes: Look-alike. blue_skin_or_lips_cyanosis.txt says to get help from 111 for blue fingers, but it also names Raynaud's as a cause, and raynauds.txt fits this story (colour change with cold, white then blue then red, both hands, lasting minutes). The Raynaud's page advice (non-urgent GP when it affects daily life) is used. Symptoms on one side only, joint pain, rashes and muscle weakness (the page's other GP triggers) are absent.

@@ -1,0 +1,45 @@
+# Entry symptom: vaginal dryness.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS page says try things yourself first, and see a GP if they do not help,
+# if it affects daily life, or with unusual discharge or bleeding. It gives no
+# urgent signs.
+
+id: vaginal_dryness
+name: "Vaginal dryness"
+presenting_finding: vaginal_dryness
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: vaginal_dryness_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vaginal_dryness_weeks_not_helped
+      - vaginal_dryness_affecting_life
+      - vaginal_discharge
+      - bleeding_between_periods_or_after_sex
+      - bleeding_after_menopause
+
+red_flags: []
+
+outcome_rules:
+  - id: or_vdry_not_helped
+    description: "Vaginal dryness for a few weeks that self-help has not helped, or that affects daily life"
+    when: {any: [vaginal_dryness_weeks_not_helped, vaginal_dryness_affecting_life]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_vaginal_dryness_gp
+    source: nhs_vaginal_dryness
+
+  - id: or_vdry_discharge_or_bleeding
+    description: "Vaginal dryness with unusual discharge, or bleeding after sex, between periods or after the menopause"
+    when: {any: [vaginal_discharge, bleeding_between_periods_or_after_sex, bleeding_after_menopause]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_vaginal_dryness_gp
+    source: nhs_vaginal_dryness
+
+default:
+  description: "Vaginal dryness with nothing that needs a GP: try things yourself first"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Try lubricants and moisturisers first. See a GP if they do not help."}
+  advice: advice_vaginal_dryness_self_care
+  source: nhs_vaginal_dryness

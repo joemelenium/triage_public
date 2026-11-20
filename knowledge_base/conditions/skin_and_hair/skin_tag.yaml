@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: skin_tag
+body_system: skin_and_hair
+entry_symptoms: [skin_lump]
+name: "Skin tag (a small, soft growth that hangs off the skin)"
+medical_name: "Skin tag"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a small, soft, fleshy growth that hangs off the skin, often on the neck, armpits or groin.
+  small_fleshy_growth_hanging: strongly_supports
+  lump_more_than_2_weeks: supports
+key_findings: [small_fleshy_growth_hanging]
+source: nhs_skin_tags
+informed_by: [nhs_skin_tags, nhs_lumps]

@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: covid_19
+body_system: breathing
+entry_symptoms: [cough, sore_throat, short_of_breath, very_high_temperature, generally_unwell, loss_of_smell_or_taste]
+name: "COVID-19"
+medical_name: "COVID-19 (disease caused by SARS-CoV-2)"
+snomed: "840539006"
+# Most people get better on their own within a few weeks. Breathlessness, getting
+# worse, and higher-chance groups are handled by the rules.
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+# A positive test raises the starting chance. It is not linked as a finding,
+# because most people no longer test, so a "no" says little.
+prevalence_when:
+  - {finding: tested_positive_covid, prevalence: very_common}
+findings:
+  # What tells it apart a little from a cold or flu: a lost or changed sense of
+  # smell or taste. Otherwise the symptoms are very similar.
+  loss_of_smell_or_taste: supports
+  very_high_temperature: supports
+  cough_dry: supports
+  aching_body: supports
+  very_tired: supports
+  blocked_or_runny_nose: supports
+key_findings: [loss_of_smell_or_taste, very_high_temperature, tested_positive_covid]
+source: nhs_covid_19
+informed_by: [nhs_covid_19, nhs_flu]

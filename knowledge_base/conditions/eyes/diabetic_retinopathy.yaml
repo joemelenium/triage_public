@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: diabetic_retinopathy
+body_system: eyes
+# Damage to the back of the eye from diabetes, including bleeding inside the
+# eye. Diabetes is linked as a finding, so a 'no' counts strongly against it.
+entry_symptoms: [vision_change, floaters_or_flashes]
+name: "Eye damage from diabetes (diabetic retinopathy)"
+medical_name: "Diabetic retinopathy"
+snomed: "4855003"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  has_diabetes: strongly_supports
+  blurred_vision: supports
+  vision_worse_slowly: supports
+  night_vision_poor: supports
+  floaters_or_flashes: supports    # bleeding inside the eye
+key_findings: [has_diabetes, blurred_vision]
+source: nhs_diabetic_retinopathy
+informed_by: [nhs_diabetic_retinopathy]

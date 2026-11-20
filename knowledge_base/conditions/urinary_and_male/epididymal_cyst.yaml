@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: epididymal_cyst
+body_system: urinary_and_male
+entry_symptoms: [testicle_lump_or_swelling]
+name: "Harmless fluid-filled lump above the testicle (epididymal cyst)"
+medical_name: "Cyst of epididymis"
+snomed: "43077002"
+# The most common testicle lump in adults. The Testicle lumps page says most lumps
+# are caused by a build-up of fluid (cyst) or swollen veins.
+acuity_needed: routine
+danger: minor
+sex: male
+prevalence: common
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  lump_separate_above_testicle: strongly_supports
+  swelling_grew_slowly: supports
+key_findings: [lump_separate_above_testicle, swelling_grew_slowly]
+source: nhs_testicle_lumps_and_swellings
+informed_by: [nhs_testicle_lumps_and_swellings]

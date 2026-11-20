@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: subconjunctival_haemorrhage
+body_system: eyes
+# A burst blood vessel on the white of the eye. Looks alarming but is harmless
+# and clears in 1 to 2 weeks. No NHS page was found.
+entry_symptoms: [red_eye]
+name: "Burst blood vessel in the eye (a bright red patch on the white of the eye)"
+medical_name: "Subconjunctival haemorrhage"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  bright_red_patch: strongly_supports    # flat, bright red, clear edges, no pain
+  takes_blood_thinners: supports
+  heart_risk_factors: supports    # high blood pressure
+  eye_injury: supports    # a minor knock or rubbing
+key_findings: [bright_red_patch, takes_blood_thinners]
+source: ai_judgement
+informed_by: [nhs_red_eye]

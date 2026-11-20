@@ -1,0 +1,175 @@
+# Entry symptom: shoulder pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# Must-not-miss causes: a heart attack felt in the shoulder, a dislocated
+# shoulder or broken bone, a loss of blood supply to the arm, an infected
+# joint, and inflamed blood vessels in the head (giant cell arteritis) with
+# pain and stiffness in both shoulders.
+
+id: shoulder_pain
+name: "Shoulder pain"
+presenting_finding: shoulder_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: shoulder_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply to you right now? Choose all that apply."
+    findings:
+      - chest_pain
+      - short_of_breath
+      - changed_shape
+      - joint_out_of_place
+      - bone_through_skin
+      - numb_after_injury
+      - limb_cold_pale_or_blue
+
+  - id: shoulder_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - severe_pain
+      - cannot_move_painful_part
+      - badly_swollen
+      - swollen_area_red_hot
+      - lost_feeling_in_hand_or_arm
+      - pins_needles_constant
+      - very_high_temperature
+      - injury_or_fall
+      - jaw_pain_or_scalp_tender
+      - vision_change
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_shoulder_chest_pain
+    description: "Shoulder pain with chest pain"
+    when: chest_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: nhs_heart_attack
+    note: "Heart attack pain can spread to the shoulder. A yes to chest pain also brings in the chest pain entry symptom."
+
+  - id: rf_shoulder_breathless
+    description: "Shoulder pain with shortness of breath"
+    when: short_of_breath
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_collarbone
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Broken collarbone page says go to A&E for difficulty breathing after a shoulder injury. Applying it to any shoulder pain with breathlessness (which could be a heart or lung problem) is AI judgement. A yes to shortness of breath also brings in the breathlessness entry symptom."
+
+  - id: rf_shoulder_injury_out_of_place
+    description: "Shoulder injury where the shoulder has changed shape, looks out of place, or a bone is sticking out"
+    when: {any: [joint_out_of_place, bone_through_skin, {all: [injury_or_fall, changed_shape]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E. Call 999 if you cannot get there yourself."}
+    advice: advice_msk_emergency_ae
+    source: nhs_dislocated_shoulder
+    note: "The Broken collarbone page gives the same advice."
+
+  - id: rf_shoulder_injury_cannot_move
+    description: "Shoulder injury and cannot move the arm"
+    when: {all: [injury_or_fall, cannot_move_painful_part]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_dislocated_shoulder
+    note: "Source difference: the Shoulder pain page says urgent GP or 111 if you cannot move your arm. The Dislocated shoulder page says A&E after an injury. The more urgent is used after an injury."
+
+  - id: rf_shoulder_numb_after_injury
+    description: "Numbness, tingling or no feeling below a shoulder or arm injury"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_sprains_and_strains
+
+  - id: rf_shoulder_cold_arm
+    description: "Arm or hand on the painful side cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_sprains_and_strains
+    note: "The Shoulder pain page says urgent GP or 111 if the arm is hot or cold to touch. The Sprains and strains page says A&E if the skin is blue or grey or cold. A cold, pale arm can mean the blood supply is blocked, so the more urgent is used."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_shoulder_severe
+    description: "Very bad shoulder pain"
+    when: severe_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shoulder_pain_urgent
+    source: nhs_shoulder_pain
+
+  - id: rf_shoulder_sudden
+    description: "Shoulder pain that came on suddenly"
+    when: pain_started_suddenly
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shoulder_pain_urgent
+    source: nhs_shoulder_pain
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The page says 'sudden or very bad shoulder pain'. Sudden pain that is not severe is marked soft: AI judgement."
+
+  - id: rf_shoulder_cannot_move_or_misshapen
+    description: "Cannot move the arm, or the shoulder has changed shape or is badly swollen"
+    when: {any: [cannot_move_painful_part, changed_shape, badly_swollen]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shoulder_pain_urgent
+    source: nhs_shoulder_pain
+
+  - id: rf_shoulder_nerves
+    description: "Pins and needles that do not go away, or no feeling in the arm or shoulder"
+    when: {any: [pins_needles_constant, lost_feeling_in_hand_or_arm]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shoulder_pain_urgent
+    source: nhs_shoulder_pain
+
+  - id: rf_shoulder_hot_or_unwell
+    description: "Shoulder hot to touch, or feeling feverish or unwell"
+    when: {any: [swollen_area_red_hot, very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_shoulder_pain
+    note: "Could be an infected joint (septic arthritis)."
+
+  - id: rf_shoulder_after_injury
+    description: "Shoulder pain that started after an injury or accident, such as a fall"
+    when: injury_or_fall
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shoulder_pain_urgent
+    source: nhs_shoulder_pain
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Shoulder pain page says urgent help after an injury. The Sprains and strains page says a mild sprain can be treated at home. Marked soft so a likely minor sprain can lower it."
+
+  - id: rf_shoulder_both_severe
+    description: "Severe pain in both shoulders"
+    when: {all: [pain_stiff_both_shoulders_or_hips, severe_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shoulder_pain_urgent
+    source: nhs_shoulder_pain
+
+  - id: rf_shoulder_giant_cell_arteritis
+    description: "Shoulder pain with a new headache, a tender scalp, jaw pain when eating or problems with sight"
+    when: {any: [jaw_pain_or_scalp_tender, vision_change, headache_unlike_usual]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact a GP now, or get help from NHS 111"}
+    advice: advice_giant_cell_arteritis_urgent
+    source: nhs_polymyalgia_rheumatica
+
+outcome_rules:
+  - id: or_shoulder_both_sides
+    description: "Pain and stiffness in both shoulders or both hips, worst in the morning"
+    when: pain_stiff_both_shoulders_or_hips
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP if it lasts more than a week"}
+    advice: advice_msk_gp
+    source: nhs_polymyalgia_rheumatica
+
+  - id: or_shoulder_gp
+    description: "Shoulder pain getting worse or not better after 2 weeks, or very difficult to move"
+    when: {any: [pain_not_improving, pain_getting_worse_or_recurring, shoulder_very_stiff]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_shoulder_pain
+
+default:
+  description: "Shoulder pain with nothing that needs more help: ease it yourself for 2 weeks, and a pharmacist can help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Shoulder pain usually starts to ease after 2 weeks of looking after it yourself"}
+  advice: advice_shoulder_pain_self_care
+  source: nhs_shoulder_pain

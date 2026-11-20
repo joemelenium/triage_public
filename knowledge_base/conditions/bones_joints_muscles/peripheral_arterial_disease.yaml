@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: peripheral_arterial_disease
+body_system: bones_joints_muscles
+# Often mistaken for cramp. What tells it apart: pain when walking that goes after a few
+# minutes of rest.
+entry_symptoms: [leg_cramps, foot_pain]
+name: "Narrowed arteries in the legs, which reduce the blood flow"
+medical_name: "Peripheral arterial disease"
+snomed: "840580004"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: smoker, prevalence: uncommon}
+  - {finding: has_diabetes, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  pain_with_exercise_eases_with_rest: strongly_supports
+  foot_wound_or_ulcer: supports
+  pain_worse_at_night_or_rest: supports
+  leg_numb_or_tingling: supports
+key_findings: [pain_with_exercise_eases_with_rest, foot_wound_or_ulcer]
+source: nhs_peripheral_arterial_disease
+informed_by: [nhs_peripheral_arterial_disease]

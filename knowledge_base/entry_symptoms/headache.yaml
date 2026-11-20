@@ -1,0 +1,303 @@
+# Entry symptom: headache.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+# Rules with source ai_judgement come from clinical knowledge, not a page.
+#
+# Must-not-miss causes covered by the rules and condition cards: bleeding on the
+# brain (subarachnoid haemorrhage), stroke, meningitis, encephalitis, bleeding
+# after a head injury, carbon monoxide poisoning, temporal arteritis, a brain
+# tumour, and pre-eclampsia in pregnancy (rule only: the card belongs to the
+# women's health batch).
+
+id: headache
+name: "Headache"
+presenting_finding: headache
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: headache_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - headache_sudden_severe
+      - had_a_fit
+      - numbness_or_weakness
+      - difficulty_speaking
+      - trouble_with_balance_or_walking
+      - memory_loss_sudden
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - sight_lost
+      - rash_does_not_fade
+      - stiff_neck
+      - very_high_temperature
+      - bothered_by_light
+      - head_injury_last_3_months
+      - eyelid_drooping_new
+
+  - id: headache_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vision_change
+      - double_vision
+      - headache_worse_coughing_bending
+      - vomiting
+      - jaw_pain_or_scalp_tender
+      - others_in_home_unwell
+      - pregnant_or_recently_given_birth
+      - aura_over_an_hour
+      - headache_on_waking
+      - headache_worse_over_time
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ha_sudden_severe
+    description: "A headache that came on suddenly and is extremely painful (a 'thunderclap' headache)"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_headache_999
+    source: nhs_subarachnoid_haemorrhage
+    note: "Source difference: the Headaches page says call 999 or go to A&E. The Subarachnoid haemorrhage and Migraine pages say call 999. The more urgent is used."
+
+  - id: rf_ha_seizure
+    description: "Headache and a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_headaches
+    note: "The seizure entry symptom also applies once a seizure is reported. It sends a first seizure to 999."
+
+  - id: rf_ha_numb_or_weak
+    description: "Headache with numbness or weakness in the body or face"
+    when: numbness_or_weakness
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_headaches
+    note: "Weakness on one side, or a drooping face, is a sign of a stroke and is sent to 999 by the universal red flag and the weakness rules."
+
+  - id: rf_ha_speech_balance_memory
+    description: "Headache with difficulty speaking, balancing, walking or remembering things"
+    when: {any: [difficulty_speaking, trouble_with_balance_or_walking, memory_loss_sudden]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_headaches
+
+  - id: rf_ha_drowsy
+    description: "Headache and drowsy or confused"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_headaches
+    note: "Sudden confusion is checked for everyone by the universal red flags."
+
+  - id: rf_ha_vision_loss
+    description: "Headache with loss of vision"
+    when: sight_lost
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_headaches
+
+  - id: rf_ha_rash
+    description: "Headache with a rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_headaches
+    note: "The Meningitis page gives the same advice."
+
+  - id: rf_ha_stiff_neck
+    description: "Headache with a stiff neck"
+    when: stiff_neck
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_headaches
+
+  - id: rf_ha_temperature_and_light
+    description: "Headache with a very high temperature and bright lights bothering you"
+    when: {all: [very_high_temperature, bothered_by_light]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+    note: "Both together are signs of meningitis. Kept firm."
+
+  - id: rf_ha_high_temperature
+    description: "Headache with a very high temperature"
+    when: very_high_temperature
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_headaches
+    soft: true    # likely conditions may lower this: flu and other common infections cause a headache with a high temperature
+    note: "The Headaches page says call 999 or go to A&E for a headache with 'a very high temperature, a stiff neck, or bright lights bothering you'. Read literally, every headache with flu would go to A&E. Marked soft so that likely flu can lower it. A stiff neck, or a high temperature with bright lights bothering you, stay firm."
+
+  - id: rf_ha_light
+    description: "Headache with bright lights bothering you"
+    when: bothered_by_light
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_headaches
+    soft: true    # likely conditions may lower this: bright lights bothering you is a main symptom of migraine
+    note: "Same reading as the high temperature rule. Being very sensitive to light is one of the main symptoms of migraine on the Migraine page, so this is soft."
+
+  - id: rf_ha_head_injury
+    description: "Headache and a head injury in the last 3 months"
+    when: head_injury_last_3_months
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_headaches
+    note: "Bleeding on the brain can build up slowly over weeks after a head injury, especially in older people and people who take blood thinners."
+
+  - id: rf_ha_eyelid_or_pupil
+    description: "An eyelid drooping, or one pupil smaller than the other, for the first time"
+    when: eyelid_drooping_new
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_headache_ae
+    source: nhs_cluster_headaches
+    note: "The Cluster headaches page says this even for people already diagnosed with cluster headaches."
+
+  - id: rf_ha_temporal_arteritis_vision
+    description: "Jaw pain when eating or a tender scalp, with changes to vision: possible temporal arteritis affecting the eyes"
+    when: {all: [jaw_pain_or_scalp_tender, {any: [vision_change, double_vision, vision_loss_brief]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or an eye emergency service now"}
+    advice: advice_headache_ae
+    source: ai_judgement
+    note: "The Temporal arteritis page says anyone with vision problems should be seen the same day by an eye specialist in a hospital eye department. Using A&E for that is AI judgement: sight can be lost within hours. Double vision, and sight lost in 1 eye for a short time that came back, are common warning signs, so they count too (the Cluster headaches page names double vision)."
+
+  - id: rf_ha_child_neuro
+    description: "A child with a headache and vision problems"
+    when: {all: [age_under_16, {any: [vision_change, double_vision]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_headache_ae
+    source: nhs_tension_headaches
+    note: "The Tension headaches page says this for a child under 12. Using under 16 is AI judgement, because the age observations available are under 5 and under 16."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ha_vision
+    description: "Headache with vision or eye problems"
+    when: {any: [vision_change, double_vision]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_headaches
+
+  - id: rf_ha_cough_or_bend
+    description: "Headache brought on or made worse by coughing, sneezing, bending down or exercise"
+    when: headache_worse_coughing_bending
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_headaches
+
+  - id: rf_ha_being_sick
+    description: "Headache and being sick"
+    when: vomiting
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_headaches
+    soft: true    # likely conditions may lower this: being sick is common in migraine
+    note: "Taken directly from the Headaches page. Marked soft because the Migraine page lists feeling or being sick as a main symptom of a migraine attack. Needs clinical review."
+
+  - id: rf_ha_child_worse_or_night
+    description: "A child whose headache is getting worse, or wakes them at night"
+    when: {all: [age_under_16, {any: [headache_worse_over_time, headache_on_waking]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_headaches
+    note: "The Tension headaches page says the same for a child under 12, and adds a headache when they wake up in the morning."
+
+  - id: rf_ha_jaw_or_scalp
+    description: "Headache with jaw pain when eating, or a sore or tender scalp: possible temporal arteritis"
+    when: jaw_pain_or_scalp_tender
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_temporal_arteritis
+    source: nhs_headaches
+    note: "The Temporal arteritis page says the same."
+
+  - id: rf_ha_others_unwell
+    description: "Headache, and other people at home or pets unwell too: possible carbon monoxide poisoning"
+    when: others_in_home_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go outside into fresh air, then call NHS 111 now"}
+    advice: advice_carbon_monoxide
+    source: nhs_carbon_monoxide_poisoning
+    note: "The Carbon monoxide poisoning page says call 111 if you think you might have it, and 999 or A&E if someone is short of breath, confused, weak, has chest or muscle pain or has passed out."
+
+  - id: rf_ha_pregnant
+    description: "Headache in someone who is pregnant or has just had a baby"
+    when: pregnant_or_recently_given_birth
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your midwife or maternity unit, or get help from NHS 111, today"}
+    advice: advice_headache_pregnancy
+    source: nhs_migraine
+    note: "The Migraine page says an urgent GP appointment or 111 for a migraine attack in someone pregnant or who has just had a baby. Applying it to any headache, because a headache can be a sign of pre-eclampsia (high blood pressure in pregnancy), is AI judgement. The pre-eclampsia condition card belongs to the women's health batch."
+
+  - id: rf_ha_aura_long
+    description: "Migraine warning signs (aura) lasting longer than 1 hour"
+    when: aura_over_an_hour
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_migraine
+
+  - id: rf_ha_migraine_72_hours
+    description: "A migraine attack that has lasted longer than 72 hours"
+    when: {all: [has_migraine, migraine_over_72_hours]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_migraine
+
+outcome_rules:
+  - id: or_ha_worried
+    description: "Headache and worried about other symptoms"
+    when: worried_about_symptoms
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_headache_urgent
+    source: nhs_headaches
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+    note: "The Headaches page says 'any other symptoms you're worried about'. Same reasoning as the sore throat rule: likely to over-triage, so soft."
+
+  - id: or_ha_regular
+    description: "Gets headaches regularly"
+    when: headaches_regular
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_headache_gp
+    source: nhs_headaches
+
+  - id: or_ha_not_getting_better
+    description: "A headache that is not getting better with self-care, or is getting worse"
+    when: headache_not_getting_better
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_headache_gp
+    source: nhs_headaches
+
+  - id: or_ha_worse_over_time
+    description: "A headache that has been getting worse over days or weeks"
+    when: headache_worse_over_time
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_headache_gp
+    source: nhs_brain_tumours
+    note: "For a child, the urgent rule above applies instead."
+
+  - id: or_ha_unlike_usual
+    description: "A headache that feels different from the usual headaches"
+    when: headache_unlike_usual
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_headache_gp
+    source: nhs_brain_tumours
+
+  - id: or_ha_painkillers
+    description: "Taking painkillers for headaches on more than 2 days a week"
+    when: painkillers_most_days
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_headache_gp
+    source: nhs_migraine
+    note: "The Migraine page warns that painkillers on more than 2 days a week can cause more headaches. The Tension headaches page says see a GP if painkillers do not help."
+
+default:
+  description: "Headache with nothing that needs more help: most headaches go away on their own"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most headaches go away on their own and are not a sign of something more serious"}
+  advice: advice_headache_self_care
+  source: nhs_headaches

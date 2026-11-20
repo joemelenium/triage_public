@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: object_in_nose
+body_system: ear_nose_throat
+entry_symptoms: [blocked_or_runny_nose, nosebleed]
+name: "Something stuck up the nose"
+medical_name: "Foreign body in nose"
+snomed: "74699008"
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_5, prevalence: uncommon}
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  # What tells it apart: one side of the nose is blocked, sometimes with a smelly discharge or
+  # bleeding, usually in a young child.
+  object_in_nose: strongly_supports
+  nose_blocked_one_side: strongly_supports
+  nosebleed: supports
+  bad_breath: supports
+key_findings: [object_in_nose, nose_blocked_one_side]
+source: ai_judgement
+informed_by: [nhs_nosebleed]

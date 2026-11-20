@@ -1,0 +1,58 @@
+id: bn_d02
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [weakness_or_paralysis]
+
+summary: "A 74-year-old man's wife noticed 40 minutes ago that the right side of his face had dropped, his right arm was weak and his speech was slurred. It all came on suddenly while he was reading."
+
+opening_statement: "It's my husband. His face has gone lopsided, he can't lift his right arm properly and his words are coming out slurred."
+
+findings:
+  present: [weakness_or_paralysis, weakness_sudden, weakness_one_side, face_droop_one_side, arm_weakness, difficulty_speaking, stroke_signs, numbness_or_weakness]
+  absent: [headache, head_injury_last_3_months, weakness_after_injury, had_a_fit, passed_out, chest_pain, has_diabetes, difficulty_breathing]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 74, sex: male}
+  full:
+    age: 74
+    sex: male
+    findings: {heart_risk_factors: "yes", has_heart_rhythm_problem: "yes"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Sudden face droop, arm weakness and slurred speech (FAST signs of a stroke)"
+    findings: [face_droop_one_side, arm_weakness, difficulty_speaking, stroke_signs]
+    minimum_acuity: emergency
+    source: {page: bells_palsy.txt, quote: "a person has difficulty speaking (speech may be slurred or garbled)"}
+  - description: "Weakness that came on suddenly"
+    findings: [weakness_sudden]
+    minimum_acuity: emergency
+    source: {page: paralysis.txt, quote: "These problems could be a sign of something serious that needs to be treated in hospital straight away."}
+
+safety_netting_should_cover:
+  - point: "Call 999 now"
+    any_of: ["999"]
+  - point: "Not to drive him to hospital"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: stroke_symptoms.txt, quote: "you think you're having, or have had a stroke"}
+  minimum_safe_acuity: {page: tia.txt, quote: "It's important to call 999 immediately and ask for an ambulance if you or someone else has symptoms of a TIA or stroke."}
+
+variants:
+  - id: bn_d02_v1
+    style: "long and rambling, mentions lots up front"
+    opening_statement: "We were just sitting reading and I looked over and his mouth had dropped on the right side, and when I asked him to lift his arms the right one just fell down, and he's talking like he's had a drink but he hasn't, and he didn't bang his head or anything."
+    volunteered: [face_droop_one_side, arm_weakness, difficulty_speaking, head_injury_last_3_months]
+
+atypical: false
+notes: "Classic FAST stroke presentation reported by a relative. Context adds known heart risk factors and an irregular heart rhythm, which does not change the outcome."

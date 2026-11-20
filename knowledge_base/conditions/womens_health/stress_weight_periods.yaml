@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stress_weight_periods
+body_system: womens_health
+entry_symptoms: [missed_or_late_period, irregular_periods]
+name: "Periods changed by stress, weight change or a lot of exercise"
+medical_name: "Functional hypothalamic amenorrhoea or oligomenorrhoea"
+# Common, and periods usually return when the cause settles.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: common
+findings:
+  stress_weight_or_exercise_change: strongly_supports
+  weight_loss: supports
+  missed_or_late_period: supports
+  irregular_periods: supports
+key_findings: [stress_weight_or_exercise_change]
+source: nhs_missed_or_late_periods
+informed_by: [nhs_missed_or_late_periods, nhs_irregular_periods]

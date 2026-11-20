@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cushings_syndrome
+body_system: skin_and_hair
+entry_symptoms: [excess_hair_growth, stretch_marks]
+name: "Cushing's syndrome (too much of a stress hormone)"
+medical_name: "Hypercortisolism (Cushing's syndrome)"
+snomed: "47270006"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: takes_steroids, prevalence: uncommon}
+findings:
+  # What tells it apart: more fat on the chest, tummy and back of the neck with thin arms and legs, a round red face, large stretch marks and easy bruising, often in someone taking steroids.
+  cushings_body_shape: strongly_supports
+  bruising_or_bleeding_easily: supports
+  takes_steroids: supports
+  periods_changed: supports
+key_findings: [cushings_body_shape, bruising_or_bleeding_easily, takes_steroids]
+source: nhs_cushings
+informed_by: [nhs_cushings, nhs_stretch_marks, nhs_hirsutism]

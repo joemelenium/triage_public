@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: self_harm
+body_system: mental_health
+entry_symptoms: [suicidal_thoughts_or_self_harm, low_mood]
+name: "Self-harm (hurting yourself on purpose)"
+medical_name: "Self-injurious behaviour"
+snomed: "248062006"
+# Speak to a GP (non-urgent). Serious: some people who self-harm are at a higher
+# chance of suicide, and injuries can become infected.
+acuity_needed: routine
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: suicidal_thoughts_or_self_harm, prevalence: very_common}
+findings:
+  self_harmed: strongly_supports
+  self_harm_getting_worse: supports
+  self_harm_wound_infected: supports
+  self_harm_injury_serious: supports
+  feeling_worthless_or_guilty: supports
+key_findings: [self_harmed, self_harm_getting_worse, self_harm_wound_infected]
+source: nhs_self_harm_help
+informed_by: [nhs_self_harm_help, nhs_self_harm]

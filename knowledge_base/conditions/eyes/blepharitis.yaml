@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: blepharitis
+body_system: eyes
+# Swollen, itchy eyelid edges. Comes and goes. Treated by cleaning the eyelids
+# every day.
+entry_symptoms: [eyelid_problem, red_eye, dry_eyes, watering_eyes]
+name: "Blepharitis (swollen, itchy, crusty eyelid edges)"
+medical_name: "Blepharitis"
+snomed: "41446000"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: eyelid_problem, prevalence: common}
+  - {finding: red_eye, prevalence: common}
+  - {finding: dry_eyes, prevalence: common}
+findings:
+  eyelid_itchy_crusty: strongly_supports
+  both_eyes_affected: supports
+  itchy_eyes: supports
+  gritty_or_burning: supports
+  sticky_discharge: supports    # eyelids stuck together in the morning
+  dry_eyes: supports
+key_findings: [eyelid_itchy_crusty, itchy_eyes]
+source: nhs_blepharitis
+informed_by: [nhs_blepharitis, nhs_eyelid_problems]

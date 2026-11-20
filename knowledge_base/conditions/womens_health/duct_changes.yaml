@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: duct_changes
+body_system: womens_health
+entry_symptoms: [nipple_discharge]
+name: "Harmless changes in the milk ducts, such as duct ectasia or a small growth (papilloma)"
+medical_name: "Mammary duct ectasia or intraductal papilloma"
+# Common causes of nipple discharge, often with age.
+acuity_needed: routine
+danger: minor
+prevalence: very_common
+findings:
+  nipple_discharge_green_or_thick: strongly_supports
+  nipple_discharge_one_side: supports
+  nipple_discharge_bloody: supports
+  nipple_changed: supports
+key_findings: [nipple_discharge_green_or_thick, nipple_discharge_one_side]
+source: nhs_nipple_discharge
+informed_by: [nhs_nipple_discharge]

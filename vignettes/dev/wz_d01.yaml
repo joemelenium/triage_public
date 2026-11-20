@@ -1,0 +1,56 @@
+id: wz_d01
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing]
+
+summary: "A 32-year-old woman, not pregnant, with asthma. For about ten days she has been wheezy on and off, worse at night and first thing, needing her reliever three or four times a day instead of once a week, and woken twice at night. She is not having an attack now and can talk normally."
+
+opening_statement: "My asthma's been playing up for a week or so. I'm wheezy at night and using my blue inhaler loads more than usual."
+
+findings:
+  present: [wheezing, wheeze_comes_and_goes, has_asthma, asthma_needing_reliever_more, cough, cough_worse_at_night, symptoms_worse_or_not_better]
+  absent: [asthma_attack_now, reliever_not_helping, no_reliever_inhaler, short_of_breath, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, difficulty_breathing, lips_or_skin_blue_grey, sudden_confusion, chest_pain, cp_tight_or_squeezing, very_high_temperature, cough_mucus_or_temperature, coughing_up_blood, lips_tongue_throat_swelling, throat_tight, after_allergy_trigger, raised_itchy_rash, pregnant_or_recently_given_birth, smoker, feels_very_unwell, asthma_attack_recovered]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 32, sex: female}
+  full:
+    age: 32
+    sex: female
+    findings: {has_asthma: "yes", pregnant_or_recently_given_birth: "no"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP or asthma nurse to review treatment and her asthma action plan"
+    any_of: ["GP", "nurse", "action plan"]
+  - point: "What to do in an asthma attack, and to call 999 if the reliever does not help"
+    any_of: ["999", "asthma attack"]
+  - point: "Always carry her inhaler"
+    any_of: ["inhaler"]
+
+source:
+  expected_outcome: {page: asthma.txt, quote: "you or your child have asthma and treatments are not helping, you're needing to use your inhaler more often"}
+  minimum_safe_acuity: {page: asthma.txt, quote: "you or your child have asthma and your symptoms are not improving or are stopping you doing your usual activities or waking you up at night"}
+
+variants:
+  - id: wz_d01_v1
+    style: "brief"
+    opening_statement: "Asthma's worse. Wheezy at night."
+    volunteered: [has_asthma, wheeze_comes_and_goes, symptoms_worse_or_not_better]
+  - id: wz_d01_v2
+    style: "detailed, organised"
+    opening_statement: "I have asthma. Normally I use my reliever maybe once a week, but for ten days it's been three or four times a day, and I've woken up wheezing and coughing twice. I'm OK right now."
+    volunteered: [has_asthma, asthma_needing_reliever_more, wheeze_comes_and_goes, cough_worse_at_night]
+
+atypical: false
+notes: "Poorly controlled asthma without an attack. asthma.txt gives 'Non-urgent advice: See a GP if' for needing the inhaler more often or being woken at night. short_of_breath is absent: she is wheezy but not breathless at present (shortness_of_breath.txt would send 'more short of breath than usual' to NHS 111). Over-triage test."

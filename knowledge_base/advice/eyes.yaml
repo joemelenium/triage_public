@@ -1,0 +1,503 @@
+# Advice for the eyes body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml.
+#
+# There is no optician level and no eye emergency department level in
+# settings.yaml. Outcomes are mapped to the nearest level, and this advice says
+# where to go: an optician (optometrist), a minor eye conditions service where
+# there is one, or eye casualty (an emergency eye department) where there is one.
+
+# ---------------------------------------------------------------------------
+# Emergency
+# ---------------------------------------------------------------------------
+- id: advice_eye_emergency
+  what_to_do: "Go to A&E or call 999 now. Your eye symptoms need to be checked in hospital straight away to protect your sight."
+  look_out_for:
+    - "Your sight getting worse"
+    - "Signs of a stroke, such as a face drooping on one side, weak arms or slurred speech"
+    - "Pain getting worse, or feeling or being sick"
+  get_more_help_when:
+    - "Call 999 if you get any signs of a stroke, or you cannot get to A&E safely"
+  where_to_go: "Go to A&E. If there is an eye casualty (an emergency eye department) near you, the 111 service or A&E may send you there. Do not drive yourself. Ask someone to drive you or call 999. Bring any medicines you take."
+  self_care:
+    - "Do not rub your eye"
+    - "If you wear contact lenses, take them out and bring them with you"
+  source: nhs_red_eye
+  also_informed_by: [nhs_eye_pain, nhs_vision_loss, nhs_dry_eyes]
+
+- id: advice_eye_injury_ae
+  what_to_do: "Go to A&E now, or call 999. An injury like this needs to be checked in hospital to protect your sight."
+  look_out_for:
+    - "Changes to your sight"
+    - "Blood or pus coming from your eye"
+    - "Feeling or being sick"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E safely, or if there is heavy bleeding"
+  where_to_go: "Go to A&E. Some areas have an eye casualty (an emergency eye department) you may be sent to. Do not drive yourself. Ask someone to drive you or call 999."
+  self_care:
+    - "Do not try to remove anything that has pierced your eye or is stuck in it"
+    - "Do not rub or press on your eye"
+    - "If you can, cover the eye loosely with something clean, such as a paper cup taped in place"
+    - "Do not wear contact lenses"
+  source: nhs_eye_injuries
+  also_informed_by: [nhs_red_eye, nhs_eye_pain]
+
+- id: advice_chemical_eye
+  what_to_do: "Rinse your eye with lots of clean water straight away, for at least 20 minutes. Then go to A&E or call 999."
+  look_out_for:
+    - "Pain or redness getting worse"
+    - "Changes to your sight"
+  get_more_help_when:
+    - "Keep rinsing your eye with water while you wait for help, or on the way to hospital"
+    - "Call 999 if you cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Take the container of the chemical with you, as the label may help with treatment. Do not drive yourself."
+  self_care:
+    - "Hold your eye open and run clean, cool water over the eyeball. The flow should not be too strong."
+    - "Take out contact lenses if you can do it easily"
+    - "Do not rub your eye"
+  source: nhs_eye_injuries
+
+- id: advice_eye_infection_spreading
+  what_to_do: "Go to A&E now, or call 999. Your answers suggest an infection that may be spreading behind the eye. This is very serious and needs treatment in hospital."
+  look_out_for:
+    - "Your eye bulging or becoming harder to move"
+    - "Changes to your sight"
+    - "Feeling very unwell, confused, dizzy or faint"
+    - "Cold, clammy or pale skin"
+  get_more_help_when:
+    - "Call 999 if you get worse quickly or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999. Bring any medicines you take."
+  source: nhs_cellulitis
+  also_informed_by: [nhs_bulging_eyes, nhs_eyelid_problems]
+
+- id: advice_gca_emergency
+  what_to_do: "Go to A&E now, or call 999. Pain at the side of the head or in the jaw with changes to your sight can be giant cell arteritis (swollen blood vessels in the head). It needs treatment today to protect your sight."
+  look_out_for:
+    - "Losing sight in 1 or both eyes, even for a short time"
+    - "Double vision"
+    - "Signs of a stroke, such as a face drooping on one side, weak arms or slurred speech"
+  get_more_help_when:
+    - "Call 999 if you lose your sight or get any signs of a stroke"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_giant_cell_arteritis]
+
+- id: advice_head_injury_eyes_999
+  what_to_do: "Call 999 now. Problems with your sight after a head injury need to be checked in hospital straight away."
+  look_out_for:
+    - "Being sick, feeling very sleepy, or being hard to wake"
+    - "A fit (seizure)"
+    - "Clear fluid coming from the ears or nose"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself to A&E. Stay with someone until help arrives."
+  source: nhs_head_injury
+
+- id: advice_double_vision_ae
+  what_to_do: "Call 999 or go to A&E now. Double vision with these symptoms can be a sign of a serious problem in the brain or nerves."
+  look_out_for:
+    - "Signs of a stroke, such as a face drooping on one side, weak arms or slurred speech"
+    - "Difficulty breathing or swallowing"
+    - "Feeling very sleepy or confused"
+  get_more_help_when:
+    - "Call 999 straight away if you get any signs of a stroke or find it hard to breathe"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to drive you or call 999. Bring any medicines you take."
+  source: nhs_double_vision
+  also_informed_by: [nhs_stroke_symptoms, nhs_myasthenia_gravis]
+
+- id: advice_bulging_ae
+  what_to_do: "Call 999 or go to A&E now. Eyes that have started bulging with these symptoms need to be checked in hospital straight away."
+  look_out_for:
+    - "Your sight getting worse"
+    - "Pain getting worse, or a very high temperature"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999. Bring any medicines you take."
+  source: nhs_bulging_eyes
+
+# ---------------------------------------------------------------------------
+# Urgent
+# ---------------------------------------------------------------------------
+- id: advice_eye_urgent
+  what_to_do: "Get your eye checked today. Ask your GP surgery for an urgent appointment, or see an optician today if they can, or call 111."
+  look_out_for:
+    - "Any changes to your sight, like wavy lines, flashing or loss of vision"
+    - "It starting to hurt to look at light"
+    - "A severe headache and feeling sick"
+    - "Pain getting worse"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you suddenly cannot see, or get sudden severe eye pain"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Many opticians can see eye problems on the same day, and some areas have a minor eye conditions service. In an emergency, go to A&E or call 999."
+  self_care:
+    - "Do not rub your eye"
+    - "Do not wear contact lenses until your eye has been checked"
+  source: nhs_eye_pain
+  also_informed_by: [nhs_red_eye, nhs_conjunctivitis]
+
+- id: advice_eye_contact_lens_urgent
+  what_to_do: "Take your contact lenses out and get your eye checked today. A red or painful eye when you wear lenses could be an infection on the clear front of the eye, which can harm your sight."
+  look_out_for:
+    - "Changes to your sight, or a white spot on the eye"
+    - "It hurting to look at light"
+    - "Pain getting worse"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you have eye pain and your sight gets worse"
+  where_to_go: "Ask your GP surgery or an optician for an urgent appointment, or call 111 or use 111 online. Take your lenses and their case with you."
+  self_care:
+    - "Do not put your lenses back in until your eye has been checked"
+    - "Wear glasses instead"
+  source: nhs_red_eye
+  also_informed_by: [nhs_eye_pain]
+
+- id: advice_baby_eye_urgent
+  what_to_do: "Get your baby's eye checked today. Ask your GP surgery for an urgent appointment or call 111. Sticky, red eyes in a baby under 1 month old need to be seen quickly."
+  look_out_for:
+    - "Your baby having a high temperature, or being floppy or hard to wake"
+    - "The eyelids getting very swollen"
+    - "Your baby not feeding well"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your baby seems very unwell, or is floppy or hard to wake"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Gently wipe away any sticky stuff with cotton wool soaked in boiled water that has cooled. Use a new piece for each eye."
+    - "Wash your hands before and after touching your baby's eyes"
+  source: nhs_red_eye
+  also_informed_by: [nhs_conjunctivitis]
+
+- id: advice_eyelid_urgent
+  what_to_do: "Get this checked today. Ask your GP surgery or an optician for an urgent appointment, or call 111."
+  look_out_for:
+    - "Your eye becoming harder or more painful to move"
+    - "Your eye starting to bulge"
+    - "Changes to your sight"
+    - "Feeling very unwell, dizzy or faint"
+  get_more_help_when:
+    - "Go to A&E or call 999 if the swelling spreads quickly, your sight changes, or it hurts to move your eye"
+  where_to_go: "Ask your GP surgery or an optician for an urgent appointment, or call 111 or use 111 online. In an emergency, go to A&E or call 999."
+  self_care:
+    - "Do not try to burst a lump on your eyelid"
+    - "Do not wear contact lenses or eye make-up until it has got better"
+  source: nhs_eyelid_problems
+  also_informed_by: [nhs_cellulitis, nhs_stye]
+
+- id: advice_gca_urgent
+  what_to_do: "Ask for an urgent GP appointment or call 111 today. Pain at the side of the head or scalp, or jaw pain when eating, can be giant cell arteritis (swollen blood vessels in the head). It needs treatment quickly."
+  look_out_for:
+    - "Any change to your sight, such as blurring, double vision or losing sight in 1 eye"
+    - "Signs of a stroke, such as a face drooping on one side, weak arms or slurred speech"
+  get_more_help_when:
+    - "Go to A&E or call 999 if your sight changes, even for a short time"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  source: nhs_giant_cell_arteritis
+
+- id: advice_vision_urgent
+  what_to_do: "Get your sight checked today. Ask your GP surgery for an urgent appointment or call 111. Many opticians can also see you the same day."
+  look_out_for:
+    - "Suddenly not being able to see out of 1 or both eyes"
+    - "Sudden severe eye pain"
+    - "Signs of a stroke, such as a face drooping on one side, weak arms or slurred speech"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you suddenly cannot see, or get sudden severe eye pain"
+    - "Call 999 if you get any signs of a stroke"
+  where_to_go: "Ask your GP surgery for an urgent appointment, call 111 or use 111 online, or ask an optician if they can see you today. Do not drive until your sight has been checked."
+  source: nhs_vision_loss
+
+- id: advice_floaters_urgent
+  what_to_do: "Get your eyes checked today. Ask an optician for an urgent appointment, or call 111. New or sudden floaters, flashes or a shadow can be a sign of a problem at the back of the eye that needs treating quickly."
+  look_out_for:
+    - "A dark curtain or shadow moving across your sight"
+    - "Your sight getting blurred, or getting worse"
+    - "Many more floaters or flashes"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you suddenly cannot see"
+  where_to_go: "Ask an optician for an urgent appointment today, or call 111 or use 111 online. They may send you to an eye department in hospital. Do not drive until your eyes have been checked."
+  source: nhs_floaters_and_flashes_in_the_eyes
+  also_informed_by: [nhs_detached_retina]
+
+- id: advice_double_vision_urgent
+  what_to_do: "Ask for an urgent GP appointment or call 111 today. Double vision that starts suddenly, or comes with eye pain, needs to be checked quickly."
+  look_out_for:
+    - "A severe headache"
+    - "1 pupil (the black circle in the middle of the eye) getting bigger than the other"
+    - "A drooping eyelid"
+    - "Signs of a stroke, such as a face drooping on one side, weak arms or slurred speech"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get a severe headache or signs of a stroke. Also if 1 pupil (the black circle in the middle of the eye) gets bigger."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Do not drive while you have double vision."
+  source: nhs_double_vision
+
+# ---------------------------------------------------------------------------
+# Soon
+# ---------------------------------------------------------------------------
+- id: advice_vision_soon
+  what_to_do: "Get your sight checked by an optician in the next few days. Wavy or bent lines in the middle of your sight can be a sign of macular degeneration, which may need treatment soon."
+  look_out_for:
+    - "Your sight getting worse quickly"
+    - "A dark patch or blank spot in the middle of your sight"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your sight gets worse quickly"
+    - "Go to A&E or call 999 if you suddenly cannot see"
+  where_to_go: "Book an appointment with an optician for the next few days, or see a GP. For urgent help call 111 or use 111 online."
+  source: ai_judgement
+  also_informed_by: [nhs_amd, nhs_vision_loss]
+
+- id: advice_eyelid_soon
+  what_to_do: "See a GP in the next few days. A lump on the eyelid that grows, bleeds or does not heal should be checked to rule out skin cancer."
+  look_out_for:
+    - "The lump growing quickly"
+    - "The lump bleeding or turning into a sore"
+  get_more_help_when:
+    - "Ask for an urgent appointment or call 111 if the area becomes hot, red and swollen"
+  where_to_go: "Make an appointment with a GP for the next few days."
+  source: ai_judgement
+  also_informed_by: [nhs_eyelid_problems]
+
+- id: advice_bulging_soon
+  what_to_do: "See a GP in the next few days. Bulging eyes can be a sign of a problem with your thyroid gland. It can be treated, but get it checked quickly as your sight can be affected."
+  look_out_for:
+    - "Any changes to your sight, like wavy lines, flashing, blurring or double vision"
+    - "Severe eye pain"
+    - "A severe headache or feeling sick"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your sight changes, or you get severe eye pain or a severe headache"
+  where_to_go: "Make an appointment with a GP for the next few days."
+  self_care:
+    - "Use pillows to keep your head raised when lying down"
+    - "Wear sunglasses if your eyes are sensitive to bright light"
+    - "If you wear contact lenses, take them out and wear glasses to rest your eyes"
+    - "Do not smoke"
+  source: nhs_bulging_eyes
+
+# ---------------------------------------------------------------------------
+# Routine (GP or optician)
+# ---------------------------------------------------------------------------
+- id: advice_red_eye_gp
+  what_to_do: "See a GP or an optician. They can find out what is causing your red eye and treat it."
+  look_out_for:
+    - "Pain in the eye, or it hurting to look at light"
+    - "Any changes to your sight"
+    - "The eye becoming very red"
+  get_more_help_when:
+    - "Ask for an urgent appointment or call 111 if your eye becomes very painful or very red"
+    - "Go to A&E or call 999 if your sight changes or it hurts to look at light"
+  where_to_go: "Make an appointment with a GP, or see an optician. A pharmacist can also give advice."
+  self_care:
+    - "Try not to touch or rub your eye"
+    - "Do not wear contact lenses until it has got better"
+    - "Wash your hands often, and do not share towels or pillows"
+  source: nhs_red_eye
+  also_informed_by: [nhs_conjunctivitis]
+
+- id: advice_eye_gp
+  what_to_do: "See a GP or an optician to find out what is causing your eye pain."
+  look_out_for:
+    - "The pain getting severe"
+    - "It hurting to look at light"
+    - "Any changes to your sight"
+  get_more_help_when:
+    - "Ask for an urgent appointment or call 111 if the pain gets worse or your sight changes"
+    - "Go to A&E or call 999 if you cannot see, or the pain keeps you awake at night"
+  where_to_go: "Make an appointment with a GP, or see an optician."
+  source: nhs_eye_pain
+
+- id: advice_cluster_headache_gp
+  what_to_do: "See a GP. Attacks of very bad pain around 1 eye may be cluster headaches, which can be treated."
+  look_out_for:
+    - "An eyelid drooping for the first time. Or 1 pupil (the black circle in the middle of the eye) becoming smaller than the other."
+    - "Changes to your sight"
+  get_more_help_when:
+    - "Call 999 or go to A&E if an eyelid droops for the first time. Also if 1 pupil (the black circle in the middle of the eye) gets smaller."
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  source: nhs_cluster_headaches
+
+- id: advice_vision_optician
+  what_to_do: "Get your sight checked by an optician. Finding a cause early may help stop your sight getting worse."
+  look_out_for:
+    - "Your sight getting worse quickly"
+    - "A dark shadow moving across your sight"
+    - "Flashing lights or new floaters"
+    - "Pain in 1 or both eyes"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your sight changes quickly, or you get eye pain or flashing lights"
+    - "Go to A&E or call 999 if you suddenly cannot see"
+  where_to_go: "Book a sight test with an optician. Some people can get free NHS sight tests. If you have diabetes, you can also contact your GP or diabetes care team."
+  source: nhs_vision_loss
+  also_informed_by: [nhs_diabetic_retinopathy, nhs_cataracts]
+
+- id: advice_double_vision_gp
+  what_to_do: "Go to an optician or see a GP to get your double vision checked, even if it comes and goes."
+  look_out_for:
+    - "Double vision that gets worse or starts suddenly"
+    - "Eye pain"
+    - "A severe headache, or 1 pupil (the black circle in the middle of the eye) bigger than the other"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the double vision gets worse or you get eye pain"
+    - "Call 999 or go to A&E if you get a severe headache or signs of a stroke"
+  where_to_go: "Book a sight test with an optician, or make an appointment with a GP. You must stop driving and tell the DVLA if you are told you have double vision."
+  self_care:
+    - "Try covering 1 eye at a time to see if the double vision goes away. Tell the optician or GP what you find."
+  source: nhs_double_vision
+
+- id: advice_dry_eyes_gp
+  what_to_do: "See an optician or GP. They can check what is causing your dry eyes and suggest treatment."
+  look_out_for:
+    - "Your eye becoming painful and red"
+    - "Any changes to your sight"
+  get_more_help_when:
+    - "Ask for an urgent appointment or call 111 if your eye becomes painful and red"
+    - "Call 999 or go to A&E if your sight changes or it hurts to look at light"
+  where_to_go: "Book an appointment with an optician or a GP."
+  self_care:
+    - "Clean your eyelids every day with a warm, damp flannel"
+    - "Take breaks from screens, and keep your screen just below eye level"
+  source: nhs_dry_eyes
+
+- id: advice_watering_gp
+  what_to_do: "See a GP. They can find out why your eyes keep watering and suggest treatment."
+  look_out_for:
+    - "Changes to your sight"
+    - "Severe eye pain"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your sight changes or you get severe eye pain"
+  where_to_go: "Make an appointment with a GP. A pharmacist can also give advice."
+  source: nhs_watering_eyes
+
+- id: advice_migraine_aura_gp
+  what_to_do: "See a GP. Zigzag or shimmering lights that spread and then go within an hour are often a migraine aura, but a first one should be checked."
+  look_out_for:
+    - "Lights or blind spots lasting longer than 1 hour"
+    - "Weakness, numbness or problems speaking"
+    - "A sudden, very bad headache"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the lights last longer than 1 hour"
+    - "Call 999 if you lose your sight, or get weakness on 1 side, problems speaking or a sudden very bad headache"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  source: nhs_migraine
+
+- id: advice_eyelid_gp
+  what_to_do: "See a GP. They can check your eyelid and suggest treatment."
+  look_out_for:
+    - "The eyelid becoming red, hot, painful or swollen"
+    - "The eyelid drooping suddenly"
+    - "Changes to your sight"
+  get_more_help_when:
+    - "Ask for an urgent appointment or call 111 if the eyelid gets red, hot and sore. Also if it droops suddenly."
+  where_to_go: "Make an appointment with a GP. A pharmacist or optician can also give advice."
+  source: nhs_eyelid_problems
+
+# ---------------------------------------------------------------------------
+# Self-care
+# ---------------------------------------------------------------------------
+- id: advice_red_eye_self_care
+  what_to_do: "A red eye that does not hurt, with your sight not affected, is probably nothing serious. It may get better on its own in a few days."
+  look_out_for:
+    - "Pain in the eye, or it hurting to look at light"
+    - "Any changes to your sight"
+    - "Sticky stuff (pus) from the eye"
+    - "The redness lasting more than a few days"
+  get_more_help_when:
+    - "See a GP or optician if it lasts more than a few days or you are worried"
+    - "Ask for an urgent appointment or call 111 if it becomes painful"
+    - "Call 999 or go to A&E if your sight changes or it hurts to look at light"
+  where_to_go: "You do not need an appointment now. A pharmacist can tell you what you can do, or if you need to see a GP or optician."
+  self_care:
+    - "Try not to touch or rub your eye"
+    - "Do not wear contact lenses until it has got better"
+    - "Wash your hands often, and do not share towels"
+  source: nhs_red_eye
+
+- id: advice_eye_pain_self_care
+  what_to_do: "Eye pain is common and usually nothing to worry about. A pharmacist can help."
+  look_out_for:
+    - "The pain getting severe"
+    - "It hurting to look at light"
+    - "Any changes to your sight"
+    - "The eye becoming very red"
+  get_more_help_when:
+    - "See a GP or optician if the pain lasts more than a few days"
+    - "Ask for an urgent appointment or call 111 if the pain becomes severe or your sight changes"
+    - "Call 999 or go to A&E if you cannot see, or the pain keeps you awake at night"
+  where_to_go: "You do not need an appointment now. A pharmacist can give advice."
+  self_care:
+    - "Take paracetamol or ibuprofen for the pain"
+    - "Do not rub your eye, and do not wear contact lenses until it is better"
+  source: nhs_eye_pain
+
+- id: advice_dry_eyes_self_care
+  what_to_do: "Dry eyes are not usually serious. There are things you can do to help, and a pharmacist can suggest eye drops."
+  look_out_for:
+    - "Your eye becoming painful and red"
+    - "Any changes to your sight"
+    - "Dry eyes that do not get better after a few weeks"
+  get_more_help_when:
+    - "See an optician or GP if your eyes are still dry after a few weeks of home treatment"
+    - "Ask for an urgent appointment or call 111 if your eye becomes painful and red"
+  where_to_go: "You do not need an appointment now. A pharmacist can help with eye drops, gels or ointments."
+  self_care:
+    - "Clean your eyelids every day. Press a warm, damp flannel on your eyes, then gently wipe your eyelids."
+    - "Take breaks from screens, and keep your screen just below eye level"
+    - "If you wear contact lenses, take them out and wear glasses to rest your eyes"
+    - "Do not smoke, and avoid smoky, dry or dusty places"
+  source: nhs_dry_eyes
+
+- id: advice_watering_self_care
+  what_to_do: "Watering eyes are common and often get better on their own. A pharmacist can help."
+  look_out_for:
+    - "Changes to your sight"
+    - "Severe eye pain"
+    - "Watering that stops you doing everyday things"
+  get_more_help_when:
+    - "See a GP if the watering stops you doing everyday things, or your eyelid turns in or droops away from the eye"
+    - "Ask for an urgent GP appointment or call 111 if your sight changes or you get severe pain"
+  where_to_go: "You do not need an appointment now. A pharmacist can tell you what you can buy to help."
+  self_care:
+    - "Eyes often water in the cold, wind or smoke. Wear glasses or sunglasses outside."
+    - "Babies often have watering eyes in the first weeks. Gently wipe them with cotton wool soaked in cooled boiled water."
+  source: nhs_watering_eyes
+
+- id: advice_floaters_self_care
+  what_to_do: "Floaters or flashes you have had for a long time, that are not getting worse, are usually harmless. You often get used to them."
+  look_out_for:
+    - "New floaters, or a sudden increase in floaters or flashes"
+    - "A dark curtain or shadow moving across your sight"
+    - "Blurred vision or eye pain"
+  get_more_help_when:
+    - "Ask an optician for an urgent appointment or call 111 if you get any of these"
+    - "Go to A&E or call 999 if you suddenly cannot see"
+  where_to_go: "You do not need an appointment now. Keep having regular sight tests with an optician."
+  source: nhs_floaters_and_flashes_in_the_eyes
+
+- id: advice_eyelid_self_care
+  what_to_do: "Most eyelid problems are harmless and get better on their own. A pharmacist can help."
+  look_out_for:
+    - "The eyelid becoming red, hot, painful or swollen"
+    - "Pain in your eye, or changes to your sight"
+    - "A lump that does not go away after a few weeks"
+  get_more_help_when:
+    - "See a GP if it is not getting better or lasts a long time"
+    - "Ask for an urgent appointment or call 111 if the eyelid becomes red, hot and painful, or you feel unwell"
+  where_to_go: "You do not need an appointment now. A pharmacist can tell you what you can do, or if you need to see a GP or optician."
+  self_care:
+    - "Hold a clean, warm flannel on the eyelid for 5 to 10 minutes, 2 to 4 times a day"
+    - "Clean the edges of your eyelids gently with cotton wool and warm water"
+    - "Do not try to burst a lump on your eyelid"
+    - "Do not wear contact lenses or eye make-up until it has got better"
+  source: nhs_eyelid_problems
+  also_informed_by: [nhs_stye, nhs_blepharitis]
+
+- id: advice_something_in_eye_self_care
+  what_to_do: "Wash your eye with clean water to get rid of dust, grit or an eyelash. Minor eye injuries often get better within a day."
+  look_out_for:
+    - "Something still in your eye after rinsing"
+    - "Changes to your sight"
+    - "Severe pain, or it hurting to look at light"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if it is not better after 24 hours. You could also see an optician."
+    - "Go to A&E or call 999 if something is stuck in your eye or your sight changes"
+  where_to_go: "You do not need an appointment now."
+  self_care:
+    - "Hold your eye open and run clean water over it. Use tap water or bottled water that is not hot."
+    - "Do not rub your eye"
+    - "Do not wear contact lenses or make-up around the eye until it is better"
+    - "Take paracetamol or ibuprofen for any pain"
+  source: nhs_eye_injuries

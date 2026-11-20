@@ -1,0 +1,189 @@
+# Entry symptom: vision loss, or a change in sight.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Levels of care: "see an optician" is mapped to general practice (routine),
+# the nearest level in settings.yaml, and the advice says to book a sight test
+# at an optician. "Go to A&E" includes eye casualty where there is one.
+
+id: sight_lost
+name: "Vision loss or a change in sight"
+presenting_finding: vision_change
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: vision_loss_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - sight_lost
+      - lost_half_of_vision
+      - vision_loss_brief
+      - very_painful_headache
+      - pupils_different_sizes
+      - eye_injury
+      - head_injury
+      - eye_surgery_recent
+      - chemical_in_eye
+
+  - id: vision_loss_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vision_change_sudden
+      - vision_worse_over_days
+      - curtain_or_shadow
+      - floaters_or_flashes
+      - eye_pain
+      - bothered_by_light
+      - jaw_pain_or_scalp_tender
+      - double_vision
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_vl_half_vision
+    description: "Suddenly lost the same side of the sight in both eyes: possible stroke"
+    when: lost_half_of_vision
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+    note: "The Stroke symptoms page lists sudden loss of sight as a stroke sign. Losing the same half in both eyes is the typical pattern of a stroke (AI judgement)."
+
+  - id: rf_vl_brief_loss
+    description: "Lost the sight in 1 eye for a short time, then it came back: possible mini-stroke (TIA)"
+    when: vision_loss_brief
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999, even if your sight has come back"}
+    advice: advice_stroke
+    source: nhs_tia
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The TIA page says call 999 for stroke signs even if they go away, and the Stroke symptoms page lists loss of sight. Applying this to sight loss in 1 eye that came back is AI reading. Soft, because a migraine aura can look like this; giant cell arteritis and stroke cards keep it at emergency if they are likely."
+
+  - id: rf_vl_sudden_loss
+    description: "Suddenly cannot see out of 1 or both eyes"
+    when: {all: [sight_lost, vision_change_sudden]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999 now"}
+    advice: advice_eye_emergency
+    source: nhs_vision_loss
+
+  - id: rf_vl_sudden_severe_pain
+    description: "Sudden severe eye pain"
+    when: {all: [eye_pain_sudden, eye_pain_severe]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999 now"}
+    advice: advice_eye_emergency
+    source: nhs_vision_loss
+
+  - id: rf_vl_headache_or_pupil
+    description: "Blurred or double vision with a severe headache, or with 1 pupil bigger than the other"
+    when: {any: [very_painful_headache, pupils_different_sizes]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_eye_emergency
+    source: nhs_double_vision
+    note: "The Migraine page says call 999 if you lose your vision or have blurred or double vision with a headache attack. The Brain aneurysm page says call 999 for a sudden extremely painful headache with blurred vision."
+
+  - id: rf_vl_head_injury
+    description: "Problems with the sight after a head injury"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_eyes_999
+    source: nhs_head_injury
+
+  - id: rf_vl_eye_injury
+    description: "Any change to the sight after an eye injury"
+    when: {any: [eye_injury, chemical_in_eye]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_eye_injuries
+
+  - id: rf_vl_after_surgery
+    description: "Changes to the sight after eye surgery or treatment in the last 4 weeks"
+    when: eye_surgery_recent
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E, or call the eye unit that treated you"}
+    advice: advice_eye_emergency
+    source: nhs_detached_retina
+    note: "The Detached retina page says go to A&E if blurriness gets worse after surgery. The Eye pain page says call 999 or go to A&E for loss of vision after eye surgery or treatment in the last 4 weeks."
+
+  - id: rf_vl_lenses_and_pain
+    description: "Wears contact lenses, with eye pain and vision loss"
+    when: {all: [contact_lens_wearer, eye_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E. Take your lenses out."}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+
+  - id: rf_vl_gca
+    description: "Changes to the sight with pain at the temples or scalp, or jaw pain when eating: possible giant cell arteritis"
+    when: jaw_pain_or_scalp_tender
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_gca_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: giant cell arteritis with sight symptoms can cause permanent blindness within hours. The Giant cell arteritis page says an urgent GP appointment, and a same-day appointment with an eye specialist at a hospital if there are vision problems. Treated as emergency; firm, because missing it can mean blindness in both eyes."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_vl_sudden_or_days
+    description: "Sight that changed suddenly, or got worse over a few days"
+    when: {any: [vision_change_sudden, vision_worse_over_days]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. An optician may also be able to see you today."}
+    advice: advice_vision_urgent
+    source: nhs_vision_loss
+    note: "The page says urgent for changes such as blurred vision. Applying it to new changes, and 'see an optician' to slow changes, is a reading of the page. The Diabetic retinopathy page says urgent if your eyesight suddenly gets worse."
+
+  - id: rf_vl_curtain_or_flashes
+    description: "A dark shadow moving across the sight, or seeing flashing lights or shapes"
+    when: {any: [curtain_or_shadow, floaters_or_flashes]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_floaters_urgent
+    source: nhs_vision_loss
+
+  - id: rf_vl_pain_or_light
+    description: "Changes in sight with pain in 1 or both eyes, or eyes painful in bright light"
+    when: {any: [eye_pain, bothered_by_light]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_vision_urgent
+    source: nhs_vision_loss
+
+  - id: rf_vl_double
+    description: "Double vision with other changes in sight"
+    when: double_vision
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_vision_urgent
+    source: nhs_vision_loss
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Vision loss page lists double vision as urgent. The Double vision page says see an optician or GP unless it started suddenly or comes with eye pain. Soft; the double vision entry symptom's own rules also apply."
+
+  - id: rf_vl_diabetes_blurred
+    description: "Diabetes and blurred vision"
+    when: {all: [has_diabetes, blurred_vision]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_vision_urgent
+    source: nhs_diabetic_retinopathy
+
+outcome_rules:
+  - id: or_vl_distorted
+    description: "The middle of the sight is distorted, so straight lines look wavy: possible macular degeneration"
+    when: distorted_vision
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See an optician within a few days"}
+    advice: advice_vision_soon
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: new distortion can be the 'wet' type of macular degeneration, which is treated with injections and should be seen within days. The AMD page says vision can get worse quickly over weeks. An optician has no level of its own, so general practice is used."
+
+  - id: or_vl_diabetes
+    description: "Diabetes and eyesight getting worse over time, or harder to see in low light"
+    when: has_diabetes
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Contact a GP, your diabetes care team or an optician"}
+    advice: advice_vision_optician
+    source: nhs_diabetic_retinopathy
+
+default:
+  description: "A change in sight with nothing that needs more urgent help: get your sight checked"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See an optician for a sight test. No fixed time is given."}
+  advice: advice_vision_optician
+  source: nhs_vision_loss
+  # A floor: the page says to get your sight checked if you have symptoms, because
+  # early treatment may help stop vision getting worse.
+  floor: true
+  note: "The page says see an optician if you think you may have vision loss. An optician has no level of its own in settings.yaml, so general practice (routine) is used, and the advice names the optician."

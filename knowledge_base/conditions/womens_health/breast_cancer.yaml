@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: breast_cancer
+body_system: womens_health
+entry_symptoms: [breast_lump, nipple_discharge, breast_pain]
+name: "Breast cancer"
+medical_name: "Malignant neoplasm of breast"
+snomed: "254837009"
+# Must not be missed. Level soon: a GP should refer to a breast clinic quickly.
+# Breast pain on its own is rarely cancer, so a "no" to a lump lowers it. Less
+# common signs (a change in shape, a lump in the armpit) are asked about but not
+# linked, so a "no" to them does not count against it too much.
+acuity_needed: soon
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: sex_male, prevalence: rare}
+  - {finding: family_history_breast_ovarian_cancer, prevalence: common}
+  - {finding: age_45_or_over, prevalence: common}
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  lump_hard_or_fixed: strongly_supports
+  breast_lump: strongly_supports
+  breast_skin_dimpled: supports
+  nipple_changed: supports
+  nipple_discharge_bloody: supports
+key_findings: [lump_hard_or_fixed, breast_skin_dimpled, nipple_changed, nipple_discharge_bloody, breast_shape_changed, lump_in_armpit]
+source: nhs_breast_cancer_symptoms
+informed_by: [nhs_breast_cancer, nhs_breast_cancer_symptoms, nhs_breast_lump, nhs_nipple_discharge]

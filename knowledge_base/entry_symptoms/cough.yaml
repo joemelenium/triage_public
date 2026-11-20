@@ -1,0 +1,500 @@
+# Entry symptom: cough.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+# Rules with source ai_judgement come from clinical knowledge, not a page.
+
+id: cough
+name: "Cough"
+presenting_finding: cough
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: cough_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - too_breathless_to_talk
+      - sob_sudden
+      - child_struggling_to_breathe
+      - child_floppy_or_hard_to_wake
+      - stridor
+      - skin_blotchy
+      - rash_does_not_fade
+      - had_a_fit
+      - seriously_unwell_getting_worse
+      - choked_on_something
+
+  - id: cough_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - cough_very_bad_or_worsening
+      - feels_very_unwell
+      - chest_pain
+      - difficulty_breathing
+      - short_of_breath
+      - coughing_up_blood
+      - cp_worse_breathing_in
+      - phlegm_yellow_or_green
+      - swollen_neck_glands
+      - symptoms_worse_or_not_better
+      - cough_whoop
+      - tested_positive_covid
+      - tested_positive_flu
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: cough_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - cough_3_weeks_or_more
+      - weight_loss
+      - night_sweats
+      - frequent_chest_infections
+      - tb_contact_or_travel
+      - weakened_immune_system
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_cough_cannot_talk
+    description: "Cough and so short of breath that cannot say a short sentence when resting"
+    when: too_breathless_to_talk
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_cough_emergency
+    source: nhs_covid_19
+    note: "The Pneumonia and Bronchitis pages say call 999 for struggling to breathe, choking, gasping and unable to speak. That more severe case is caught by the universal red flag for severe difficulty breathing."
+
+  - id: rf_cough_sudden_breathlessness
+    description: "Cough with breathing that came on suddenly or suddenly got much worse"
+    when: sob_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_cough_emergency
+    source: nhs_covid_19
+
+  - id: rf_cough_child_struggling
+    description: "A child with a cough who is struggling to breathe: grunting, or tummy sucking in under the ribs"
+    when: {all: [age_under_16, child_struggling_to_breathe]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_croup
+
+  - id: rf_cough_child_floppy
+    description: "A child with a cough who is limp, floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_croup
+    note: "The Pneumonia page gives the same advice for a baby who cannot be woken or feels floppy. The Bronchitis page says call 999 for that."
+
+  - id: rf_cough_stridor
+    description: "Cough with a high-pitched sound when breathing in"
+    when: stridor
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_sore_throat
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Sore throat page says call 999 or go to A&E for a high-pitched sound when breathing. The Croup page lists it as a croup symptom and says an urgent GP appointment or 111, unless the child is struggling to breathe. The more urgent is used, marked soft. Needs clinical review."
+
+  - id: rf_cough_blotchy_skin
+    description: "Cough with blotchy or mottled skin: possible sepsis"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_cough_rash_not_fading
+    description: "Cough with a rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_covid_19
+    note: "The Sepsis page gives the same advice."
+
+  - id: rf_cough_fit
+    description: "Cough with a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_cough_emergency
+    source: nhs_whooping_cough
+    note: "The COVID-19 page gives the same advice for a first fit."
+
+  - id: rf_cough_seriously_unwell
+    description: "Very unwell and getting worse, or feels something is seriously wrong"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_covid_19
+    soft: true    # likely conditions may lower this: it rests on the person's own judgement
+    note: "Taken from the COVID-19 page. The Sepsis and Bronchiolitis pages also say to trust your instincts. Marked soft because it depends on how worried the person is, not on a specific sign."
+
+  - id: rf_cough_choked
+    description: "Cough that started suddenly after choking on something"
+    when: choked_on_something
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_cough_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: something breathed into the airway needs to be checked and removed in hospital. No NHS symptom page in the source log covers this."
+
+  - id: rf_cough_pauses_in_breathing
+    description: "A young child with a cough and pauses in their breathing"
+    when: {all: [age_under_5, pauses_in_breathing]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_child_breathing_999
+    source: nhs_bronchiolitis
+
+  - id: rf_cough_child_restless
+    description: "A young child who is very upset or restless, struggling to breathe and cannot be calmed"
+    when: {all: [age_under_5, child_restless_cannot_be_calmed]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_croup
+
+  - id: rf_cough_sepsis_signs
+    description: "Cough with very fast breathing and a high temperature or feeling very unwell: possible sepsis"
+    when: {all: [breathing_very_fast, {any: [very_high_temperature, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Requiring a high temperature or feeling very unwell is AI judgement, so that fast breathing from a panic attack is not sent to A&E on its own."
+
+  - id: rf_cough_young_child_breathing_fast
+    description: "A child under 5 with a cough who is breathing very fast"
+    when: {all: [age_under_5, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_sepsis
+
+  - id: rf_cough_baby_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: {all: [age_under_1, baby_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the COVID-19 and Bronchiolitis pages say an urgent GP appointment or 111 for this temperature. The Sepsis page says call 999 or go to A&E. The more urgent is used."
+
+  - id: rf_cough_young_child_not_peeing
+    description: "A child under 5 with a cough who has not had a pee for 12 hours or more"
+    when: {all: [age_under_5, not_peed_12_hours]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Bronchiolitis page says an urgent GP appointment or 111 for a dry nappy for 12 hours. The more urgent Sepsis page advice is used."
+
+  - id: rf_cough_whooping_chest_pain
+    description: "Coughing fits with chest pain that is worse when breathing or coughing"
+    when: {all: [cp_worse_breathing_in, cough_whoop]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_cough_emergency
+    source: nhs_whooping_cough
+    note: "The Whooping cough page says this could be a sign of pneumonia. Limiting it to people with coughing fits is an AI reading: the Pneumonia and Bronchitis pages give an urgent GP appointment or 111 for the same pain with other coughs."
+
+  - id: rf_cough_child_sit_up_or_drooling
+    description: "A child who is drooling more than usual, or wants to sit up rather than lie down and has a high-pitched sound when breathing"
+    when: {all: [age_under_16, {any: [drooling, {all: [child_wants_to_sit_up, stridor]}]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_croup
+    note: "The Croup page says call 999 or go to A&E if a child is unwell and drooling more than usual, finding it hard to swallow, or wants to sit rather than lie down. Requiring a high-pitched sound when breathing with wanting to sit up is AI judgement, so that a child with a blocked nose who sleeps propped up is not sent to A&E. Added in the breathing batch after test-case authors found no question for it."
+
+  - id: rf_cough_sepsis_cold_or_shivery
+    description: "Feeling cold to the touch or shivery, with feeling very unwell or breathing very fast: possible sepsis, even without a high temperature"
+    when: {all: [cold_or_shivery, {any: [feels_very_unwell, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: flu also makes people shivery and very unwell
+    note: "The Sepsis page says call 999 or go to A&E for an adult who feels hot or cold to the touch or is shivery, and says a high temperature is less common in older adults with sepsis. Requiring feeling very unwell or breathing very fast is AI judgement, so that everyone with a shivery cold is not sent to A&E. Soft, so that likely flu can lower it; sepsis itself, if likely, keeps the outcome at emergency."
+
+  - id: rf_cough_young_child_cold_or_shivery
+    description: "A child under 5 who feels cold to the touch or is shivery"
+    when: {all: [age_under_5, cold_or_shivery]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Sepsis page says call 999 or go to A&E for a child under 5 who feels cold to the touch or is shivery. The Bronchiolitis page says an urgent GP appointment or 111 for a child who feels hot or cold to the touch or is shivering. The more urgent is used, marked soft, with the urgent high temperature rule as its floor."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_cough_very_bad
+    description: "A very bad cough, or one that is quickly getting worse"
+    when: cough_very_bad_or_worsening
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+    note: "The Whooping cough and Bronchiectasis pages give the same advice."
+
+  - id: rf_cough_very_unwell
+    description: "Cough and feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+
+  - id: rf_cough_chest_pain
+    description: "Cough with chest pain"
+    when: chest_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+    note: "The chest pain entry symptom also applies once chest pain is reported, with its own red flags. The Flu and COVID-19 pages say call 999 or go to A&E for sudden chest pain; that is covered by the chest pain red flag for sudden pain that does not go away."
+
+  - id: rf_cough_worse_breathing_in
+    description: "Cough with chest pain that is worse when breathing or coughing"
+    when: cp_worse_breathing_in
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_pneumonia
+    note: "The Bronchitis and Pleurisy pages give the same advice."
+
+  - id: rf_cough_short_of_breath
+    description: "Cough and short of breath"
+    when: short_of_breath
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+    soft: true    # likely conditions may lower this: mild breathlessness is common with a cold, asthma or worry; finding it hard to breathe is the firm rule below
+    note: "The Cough page says 'you find it hard to breathe'. The Pneumonia and Bronchitis pages say 'you're feeling short of breath'. The breathlessness entry symptom also applies once this is reported. Made soft after development cases showed over-triage; the firm rule below keeps difficulty breathing at urgent."
+
+  - id: rf_cough_difficulty_breathing
+    description: "Cough and finding it hard to breathe"
+    when: difficulty_breathing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+    note: "The Cough page says to get help if 'you find it hard to breathe'."
+
+  - id: rf_cough_coughing_up_blood
+    description: "Cough and coughing up blood"
+    when: coughing_up_blood
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+    note: "The coughing up blood entry symptom also applies once this is reported, with its own emergency rules."
+
+  - id: rf_cough_swollen_neck_glands
+    description: "Cough with a swollen, painful side of the neck (swollen glands)"
+    when: swollen_neck_glands
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_cough
+
+  - id: rf_cough_yellow_green_phlegm
+    description: "Cough with yellow or green phlegm, and a high temperature, breathlessness or feeling very unwell"
+    when: {all: [phlegm_yellow_or_green, {any: [very_high_temperature, short_of_breath, feels_very_unwell]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_pneumonia
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Pneumonia page says an urgent GP appointment or 111. The Chest infection page lists yellow or green phlegm as a usual symptom that gets better on its own in 7 to 10 days. The more urgent is used, marked soft. Requiring a high temperature, breathlessness or feeling very unwell (signs of a chest infection that needs checking) is AI judgement, so a cold with green phlegm is not sent for urgent care. Changed after the pilot check."
+
+  - id: rf_cough_frothy_pink_phlegm
+    description: "Coughing up frothy pink phlegm"
+    when: frothy_pink_phlegm
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_heart_failure
+
+  - id: rf_cough_lots_of_phlegm
+    description: "Coughing up a lot of phlegm every day"
+    when: phlegm_lots_every_day
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_bronchiectasis
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "AI reading: the Bronchiectasis page gives this as an example of a cough that is very bad or quickly getting worse. For someone whose usual cough is like this, it may not be urgent."
+
+  - id: rf_cough_croup
+    description: "A child with a barking cough (possible croup)"
+    when: {all: [age_under_16, cough_barking]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_croup_urgent
+    source: nhs_croup
+    note: "The Croup page says to call 111 or see a GP if you think your child may have croup, because they may need medicine."
+
+  - id: rf_cough_whooping_baby
+    description: "A baby with coughing fits (possible whooping cough)"
+    when: {all: [age_under_1, cough_whoop]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_whooping_cough_urgent
+    source: nhs_whooping_cough
+    note: "The page says babies under 6 months. Under 1 year is used because there is no finer age band yet; this is more cautious."
+
+  - id: rf_cough_whooping_contact_pregnant
+    description: "Pregnant, or recently given birth, and in contact with whooping cough"
+    when: {all: [pregnant_or_recently_given_birth, contact_whooping_cough]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_whooping_cough_urgent
+    source: nhs_whooping_cough
+    note: "The page says pregnant. Including people who gave birth in the last 6 weeks comes from how the observation is worded; it is more cautious."
+
+  - id: rf_cough_high_temp_higher_chance
+    description: "Cough with a high temperature in someone more likely to get seriously ill: 65 or over, pregnant, a long-term condition, or a weakened immune system"
+    when: {all: [very_high_temperature, {any: [age_65_or_over, pregnant_or_recently_given_birth, long_term_condition, weakened_immune_system]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_flu
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Flu and Bronchitis pages say an urgent GP appointment or 111 for these groups. The Chest infection page says see a GP (non-urgent). The more urgent is used. Requiring a high temperature, to mark flu or a chest infection, is AI judgement."
+
+  - id: rf_cough_not_peed
+    description: "Cough and no pee for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_cough_urgent
+    source: nhs_bronchiolitis
+    note: "For children under 5 the more urgent Sepsis page rule above applies."
+
+  - id: rf_cough_child_feeding_less
+    description: "A baby or young child with a cough who is feeding or eating much less than usual"
+    when: {all: [age_under_5, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_cough_urgent
+    source: nhs_bronchiolitis
+
+  - id: rf_cough_copd_flare_up
+    description: "COPD that is worse than usual"
+    when: {all: [age_16_or_over, has_copd, copd_flare_up]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_copd_flare_urgent
+    source: nhs_copd
+
+  - id: rf_cough_more_than_usual
+    description: "A long-term lung or heart condition, and more short of breath than usual"
+    when: sob_more_than_usual
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_bronchiectasis
+    note: "The Bronchiectasis and COPD pages say an urgent GP appointment or 111 for being more short of breath than usual. The Shortness of breath page says contact 111 for difficulty breathing, 'you may be more short of breath than usual'. Applying it to any long-term lung or heart condition is AI judgement. Added in the breathing batch: before this it could only be reached through a question about COPD."
+
+  - id: rf_cough_young_child_worse
+    description: "A child under 5 whose symptoms are getting worse, or not getting better"
+    when: {all: [age_under_5, symptoms_worse_or_not_better]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_cough_urgent
+    source: nhs_bronchiolitis
+    note: "The Bronchiolitis page says an urgent GP appointment or 111 if a child has had a cold and it is getting worse. The Croup page says the same for a child getting worse or not getting better."
+
+  - id: rf_cough_baby_born_early_or_heart_lung
+    description: "A baby under 1 who was born early, or has a heart or lung condition or a weak immune system"
+    when: {all: [age_under_1, baby_premature_or_heart_lung_condition]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_cough_urgent
+    source: ai_judgement
+    note: "AI judgement. The Bronchiolitis page says these babies have a higher chance of getting seriously ill, but gives no action for it on its own. A same-day check for a baby like this with breathing symptoms is a reading of that. Needs clinical review."
+
+  - id: rf_cough_bronchiectasis_infection
+    description: "Diagnosed bronchiectasis, with signs of a chest infection: a high temperature, or chest pain when breathing"
+    when: {all: [{any: [very_high_temperature, cp_worse_breathing_in]}, long_term_condition, has_bronchiectasis]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_bronchiectasis
+    note: "Someone with bronchiectasis has a long-term lung condition, so the question about one is asked first, to keep the number of questions down."
+
+  - id: rf_cough_flu_like_higher_chance
+    description: "Flu-like symptoms (a high temperature or aching all over) in someone more likely to get seriously ill: 65 or over, pregnant, a long-term condition, or a weakened immune system"
+    when: {all: [{any: [very_high_temperature, aching_body]}, {any: [age_65_or_over, pregnant_or_recently_given_birth, long_term_condition, weakened_immune_system]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_flu_higher_risk
+    source: nhs_flu
+    note: "The Flu page gives this advice for flu symptoms in these groups. A test is not needed. Added after development cases showed the rule had only fired with a positive test."
+
+  - id: rf_cough_positive_test_higher_chance
+    description: "A positive COVID-19 or flu test in someone more likely to get seriously ill: 65 or over, pregnant, a long-term condition, or a weakened immune system"
+    when: {all: [{any: [tested_positive_covid, tested_positive_flu]}, {any: [age_65_or_over, pregnant_or_recently_given_birth, long_term_condition, weakened_immune_system]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_flu
+    note: "Kept firm, not soft: likely flu must not lower it, because the Flu page gives this advice for people with flu. The Flu page says an urgent GP appointment or 111 for flu symptoms in these groups. The COVID-19 page says it is particularly important to get help if you are at higher chance of getting ill, and that people who can have COVID-19 treatment should test as soon as they get symptoms. Using a positive test to mark flu or COVID-19 is AI judgement. The page's age for COVID-19 is 60; the existing age band of 65 is used."
+
+  - id: rf_cough_symptoms_worse
+    description: "A cough of less than 3 weeks with symptoms getting worse, or not getting better"
+    when: {all: [symptoms_worse_or_not_better, {not: cough_3_weeks_or_more}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cough_urgent
+    source: nhs_covid_19
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the COVID-19 page says an urgent GP appointment or 111 if symptoms are getting worse or not getting better, and the Flu page if they do not improve after 7 days. The Common cold and Chest infection pages say see a GP (non-urgent). The more urgent is used, marked soft, with the firm GP rule below as its floor. Limited to a cough of less than 3 weeks (AI judgement): these pages describe a short illness, and a cough of 3 weeks or more has its own rule (see a GP) on the Cough page."
+
+outcome_rules:
+  - id: or_cough_asthma_attack_recovered
+    description: "Diagnosed asthma, and an asthma attack in the last few days that has now settled"
+    when: {all: [has_asthma, asthma_attack_recovered]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within 2 days, even if you feel better"}
+    advice: advice_asthma_attack_recovered
+    source: nhs_asthma
+    note: "The Asthma page says: if you've had an asthma attack and have recovered, see a GP within 2 days. Added in the breathing batch after test-case authors found no question for it."
+
+  - id: or_cough_symptoms_worse
+    description: "Cough with symptoms getting worse, or not getting better"
+    when: symptoms_worse_or_not_better
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_chest_infection
+    note: "The Chest infection page says see a GP if your symptoms get worse. The Common cold page says see a GP if cold symptoms get worse or do not get better after 10 days."
+
+  - id: or_cough_3_weeks
+    description: "A cough for 3 weeks or more"
+    when: cough_3_weeks_or_more
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_cough
+    note: "The Bronchitis page says an urgent GP appointment or 111 for a cough of more than 3 weeks that is not getting better. The Cough, Lung cancer, COPD and Tuberculosis pages say see a GP. The Cough page is used, as the page for the symptom itself."
+
+  - id: or_cough_weight_loss
+    description: "Cough and losing weight for no reason"
+    when: weight_loss
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_cough
+
+  - id: or_cough_weak_immune_system
+    description: "Cough in someone with a weakened immune system"
+    when: weakened_immune_system
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_cough
+
+  - id: or_cough_night_sweats
+    description: "Cough with night sweats"
+    when: night_sweats
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_tuberculosis
+
+  - id: or_cough_tb_contact
+    description: "Cough after a lot of time with someone who has TB, or living where TB is common"
+    when: tb_contact_or_travel
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_tuberculosis
+    note: "The page covers contact with someone who has TB. Including having lived where TB is common is AI judgement."
+
+  - id: or_cough_frequent_chest_infections
+    description: "Keeps getting chest infections, or has one that is not getting better"
+    when: frequent_chest_infections
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_cough_gp
+    source: nhs_copd
+    note: "The Lung cancer and Bronchiectasis pages also list this."
+
+  - id: or_cough_asthma_not_controlled
+    description: "Asthma needing the reliever more often, or waking at night"
+    when: {all: [has_asthma, asthma_needing_reliever_more]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_asthma_gp
+    source: nhs_asthma
+
+default:
+  description: "Cough with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A cough usually clears up on its own within 3 to 4 weeks"}
+  advice: advice_cough_self_care
+  source: nhs_cough

@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bleeding_in_upper_gut
+body_system: stomach_and_bowel
+entry_symptoms: [vomiting_blood, bleeding_from_bottom]
+name: "Bleeding from the stomach or food pipe, for example from an ulcer"
+medical_name: "Upper gastrointestinal haemorrhage"
+snomed: "37372002"
+acuity_needed: emergency
+danger: critical
+# Bleeding stomach ulcers and gastritis are the commonest causes of vomiting blood.
+# "uncommon" is used, not "common", so a few streaks of blood after being sick
+# are not always sent to A&E: black poo and feeling faint raise it quickly.
+prevalence: uncommon
+findings:
+  # What tells it apart: black, sticky poo, feeling faint or cold and clammy.
+  black_or_dark_red_poo: strongly_supports
+  vomiting_blood: strongly_supports        # evidence when it starts as bleeding from the bottom
+  vomiting_blood_large_amount: supports
+  light_headed: supports
+  fainted: supports
+  cold_clammy_skin: supports
+  stomach_ache: supports
+  feels_very_unwell: supports
+key_findings: [black_or_dark_red_poo, light_headed, cold_clammy_skin, takes_anti_inflammatory_painkillers, takes_blood_thinners]
+source: nhs_vomiting_blood
+informed_by: [nhs_vomiting_blood, nhs_stomach_ulcer, nhs_bleeding_from_the_bottom_rectal_bleeding]

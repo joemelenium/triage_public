@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pancreatic_or_bile_duct_cancer
+body_system: skin_and_hair
+entry_symptoms: [yellow_skin_or_eyes]
+name: "Cancer of the pancreas or bile duct"
+medical_name: "Carcinoma of pancreas or cholangiocarcinoma"
+snomed: "372142002"
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: age_45_or_over, prevalence: rare}
+findings:
+  # What tells it apart from hepatitis or gallstones: yellowing that comes on without much pain, with weight loss, itching, dark pee and pale poo, usually in someone over 45.
+  weight_loss: strongly_supports
+  poo_pale_pee_dark: supports
+  very_tired: supports
+  itchy_skin: supports
+key_findings: [weight_loss, poo_pale_pee_dark]
+source: nhs_pancreatic_cancer
+informed_by: [nhs_pancreatic_cancer, nhs_jaundice]

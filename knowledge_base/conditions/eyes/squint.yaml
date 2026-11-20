@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: squint
+body_system: eyes
+# The eyes point in different directions. Common in young children, where it can
+# cause a lazy eye. A new squint in an adult needs checking.
+entry_symptoms: [double_vision, vision_change]
+name: "Squint (the eyes point in different directions)"
+medical_name: "Strabismus"
+snomed: "22066006"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: common}
+findings:
+  eye_turns_or_squints: strongly_supports
+  double_vision_both_eyes: supports
+  double_vision: supports
+  blurred_far_or_near: supports    # often from long sight
+key_findings: [eye_turns_or_squints]
+source: nhs_squint
+informed_by: [nhs_squint, nhs_lazy_eye, nhs_double_vision]

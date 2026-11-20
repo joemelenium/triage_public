@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sciatica
+body_system: bones_joints_muscles
+# Covers a slipped disc pressing on a nerve, the usual cause. What tells it apart: pain
+# going down one leg, often with tingling.
+entry_symptoms: [back_pain, pins_and_needles]
+name: "Sciatica (a trapped nerve causing pain down the leg), often from a slipped disc"
+medical_name: "Sciatica (lumbar radiculopathy), including slipped (prolapsed) disc"
+snomed: "23056005"
+acuity_needed: routine
+danger: moderate
+prevalence: common
+prevalence_when:
+  - {finding: back_pain, prevalence: common}
+  - {finding: pins_and_needles, prevalence: uncommon}
+findings:
+  pain_down_leg: strongly_supports
+  leg_numb_or_tingling: strongly_supports
+  pain_worse_cough_sneeze: supports
+  lower_back_pain: supports
+  after_lifting_or_awkward_movement: supports
+  leg_weakness: supports
+key_findings: [pain_down_leg, leg_numb_or_tingling, leg_weakness]
+source: nhs_sciatica
+informed_by: [nhs_sciatica, nhs_slipped_disc, nhs_back_pain]

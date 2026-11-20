@@ -1,0 +1,44 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: testicular_torsion
+body_system: urinary_and_male
+# Must not be missed: the testicle can be lost within hours. Most common in
+# teenage boys and newborn babies. It can show as tummy pain alone in a boy;
+# the stomach ache entry symptom (another batch) should add itself here.
+entry_symptoms: [testicle_pain, testicle_lump_or_swelling, stomach_ache]
+name: "Twisted testicle (testicular torsion)"
+medical_name: "Torsion of testis"
+snomed: "81996005"
+acuity_needed: emergency
+danger: critical
+sex: male
+prevalence: uncommon
+prevalence_when:
+  # Keep first: among boys and men with a stomach ache, a twisted testicle is
+  # rare at any age. With the age band first, every boy with a tummy ache
+  # started at "common" (15%), far above the critical line. A boy with testicle
+  # pain and a tummy ache is sent to A&E by a firm rule either way.
+  - {finding: stomach_ache, prevalence: rare}
+  - {finding: age_under_16, prevalence: common}
+  - {finding: testicle_pain, prevalence: uncommon}
+  - {finding: testicle_lump_or_swelling, prevalence: rare}
+findings:
+  # What tells it apart from an infection: sudden severe pain, often with being
+  # sick or tummy pain, and a testicle sitting high or at an odd angle.
+  testicle_pain_sudden_severe: strongly_supports
+  testicle_pain_over_an_hour: strongly_supports
+  nausea_or_vomiting: supports
+  stomach_ache: supports
+  testicle_high_or_odd_angle: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  testicle_pain: strongly_supports
+  sa_low_down: supports
+  vomiting: supports
+  feeling_sick: supports
+  sa_sudden_severe: supports
+key_findings: [testicle_pain_sudden_severe, nausea_or_vomiting, testicle_high_or_odd_angle, stomach_ache, testicle_pain]
+source: nhs_testicle_pain
+informed_by: [nhs_testicle_pain, nhs_testicle_lumps_and_swellings, nhs_epididymitis]
+# Merged with the stomach_and_bowel card for this condition. Its notes:
+# Boys and young men can feel this as tummy pain and not mention the testicle.
+# It needs surgery within hours to save the testicle.

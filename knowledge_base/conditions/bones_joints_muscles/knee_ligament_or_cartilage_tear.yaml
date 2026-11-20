@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: knee_ligament_or_cartilage_tear
+body_system: bones_joints_muscles
+entry_symptoms: [knee_pain]
+name: "A torn ligament or cartilage in the knee"
+medical_name: "Knee ligament or meniscus tear"
+acuity_needed: soon
+danger: moderate
+prevalence: uncommon
+findings:
+  knee_gives_way_or_locks: strongly_supports
+  injury_or_fall: strongly_supports
+  twisted_or_overstretched: strongly_supports
+  heard_snap_at_injury: supports
+  badly_swollen: supports
+key_findings: [knee_gives_way_or_locks, twisted_or_overstretched, heard_snap_at_injury]
+source: nhs_knee_pain
+informed_by: [nhs_knee_pain]

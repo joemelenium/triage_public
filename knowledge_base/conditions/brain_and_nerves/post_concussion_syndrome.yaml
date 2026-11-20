@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: post_concussion_syndrome
+body_system: brain_and_nerves
+entry_symptoms: [head_injury]
+name: "Head injury symptoms that do not go away"
+medical_name: "Postconcussion syndrome"
+snomed: "40425004"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+findings:
+  # The Head injury page says see a GP if symptoms last more than 2 weeks.
+  head_injury_symptoms_over_2_weeks: strongly_supports
+  headache: supports
+  dizziness: supports
+  very_tired: supports
+  bothered_by_light: supports
+key_findings: [head_injury_symptoms_over_2_weeks, headache]
+source: nhs_head_injury
+informed_by: [nhs_head_injury]

@@ -1,0 +1,89 @@
+# Entry symptom: numbness or tingling in the face.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Numbness of the face is not on the NHS Symptoms A to Z list. The rules come
+# from the Paralysis, Stroke, Bell's palsy and Shingles pages, and clinical
+# knowledge. A face drooping on one side is checked for everyone by the
+# universal red flag for signs of a stroke.
+#
+# Must-not-miss causes: stroke and mini-stroke (TIA), and shingles near the eye.
+
+id: face_numbness
+name: "Numbness of the face"
+presenting_finding: face_numbness
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: face_numbness_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - face_numbness_sudden
+      - weakness_or_paralysis
+      - difficulty_speaking
+      - sight_lost
+      - trouble_with_balance_or_walking
+      - pins_needles_sudden_one_side
+      - headache_sudden_severe
+
+  - id: face_numbness_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - rash_one_side_of_body
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_fn_stroke_signs
+    description: "Face numbness with weakness, difficulty speaking, loss of vision, trouble balancing, or numbness down one side: possible stroke"
+    when: {any: [weakness_or_paralysis, difficulty_speaking, sight_lost, trouble_with_balance_or_walking, pins_needles_sudden_one_side]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+    note: "The Paralysis page also says call 999 for weakness with not being able to feel part of the face."
+
+  - id: rf_fn_headache_sudden
+    description: "Face numbness with a headache that came on suddenly and is extremely painful"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_headache_999
+    source: nhs_subarachnoid_haemorrhage
+
+  - id: rf_fn_sudden_ae
+    description: "Numbness in the face that came on suddenly"
+    when: face_numbness_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_face_numbness_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: migraine and panic attacks also cause sudden face tingling
+    note: "Clinical knowledge: sudden numbness in the face alone can be a stroke or mini-stroke. It can also come with a migraine or a panic attack, so this is soft, with the urgent rule below as its floor."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_fn_sudden
+    description: "Numbness in the face that came on suddenly"
+    when: face_numbness_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_face_numbness_urgent
+    source: ai_judgement
+    note: "AI judgement: the floor under the soft emergency rule above."
+
+  - id: rf_fn_shingles_eye
+    description: "A shingles rash on or near the eye or nose, or changes to vision"
+    when: {all: [rash_one_side_of_body, shingles_eye_or_vision]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shingles_urgent
+    source: nhs_shingles
+
+default:
+  description: "Numbness of the face with nothing that needs more urgent help: see a GP to find the cause"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_face_numbness_gp
+  source: ai_judgement
+  floor: true
+  note: "AI judgement: numbness in the face that has not gone away should be checked by a GP. The Paralysis page lists a face that is numb or tingles all the time as a sign of paralysis."

@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: viral_joint_pain
+body_system: bones_joints_muscles
+entry_symptoms: [joint_pain]
+name: "Aching joints from a viral infection"
+medical_name: "Viral arthralgia"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  recent_viral_illness: strongly_supports
+  aching_body: supports
+  several_joints: supports
+  very_high_temperature: supports
+key_findings: [recent_viral_illness]
+source: ai_judgement
+informed_by: [nhs_joint_pain]

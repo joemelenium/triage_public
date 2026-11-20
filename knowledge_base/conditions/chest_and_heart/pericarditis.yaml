@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pericarditis
+body_system: chest_and_heart
+entry_symptoms: [chest_pain]
+name: "Swelling of the lining around the heart (pericarditis)"
+medical_name: "Pericarditis"
+snomed: "3238004"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart: sharp pain that eases leaning forward and is worse lying down.
+  cp_better_leaning_forward: strongly_supports
+  cp_sharp_or_stabbing: strongly_supports
+  cp_worse_breathing_in: strongly_supports
+  cp_present_now: supports               # constant for hours or days, not coming and going
+  cp_spreads: supports                   # often to the shoulders
+  recent_viral_illness: supports
+  very_high_temperature: supports
+  # Kept for the single-cause method only; the network method ignores it.
+  cp_on_exertion: argues_against
+key_findings: [cp_better_leaning_forward, cp_sharp_or_stabbing, cp_worse_breathing_in, recent_viral_illness]
+source: nhs_pericarditis
+informed_by: [nhs_pericarditis, nhs_chest_pain]

@@ -1,0 +1,307 @@
+# Observations: general, checked for everyone, and patient context.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# An observation is anything the engine can know about a patient: a symptom, a
+# feature of a symptom, a risk factor (history, lifestyle, an event) or context
+# such as age. Each is answered "yes", "no" or "not sure". Observations are kept
+# in one file per body system. All files together form one shared network.
+#
+# Fields:
+#   id             used by rules and condition cards to refer to it
+#   label          short name used in reports
+#   question       what the patient is asked
+#   question_carer optional: the question when someone answers for another person
+#   checklist_text optional: a short form, used as one line of a checklist
+#   kind           presenting (a main symptom), symptom, history, or context
+#   parent         optional: a more general observation this one belongs to. A "yes"
+#                  here means "yes" to the parent too; a "no" to the parent means
+#                  "no" here, so it is not asked.
+#   relation       with a parent: duration, severity, character, exacerbating_factor,
+#                  diminishing_factor, location or radiation
+#   sex            optional: female or male, if it only applies to one
+#   asked_only_if  optional: only asked after a "yes" (or "not sure") to that observation
+#   seriousness    optional: serious, emergency or emergency_ambulance, where a source
+#                  names it as an alarming sign (used in the five-level output)
+#   group          related observations share a group so evidence is not counted twice
+#   age_range      the answer is worked out from the patient's age, when the age is known
+#   snomed         SNOMED CT code, only where checked and listed in sources/snomed_codes.yaml
+#   source         id in sources/source_log.yaml
+
+- id: stroke_signs
+  label: "Signs of a stroke"
+  question: "Do you think you are having a stroke, or have you had signs of a stroke in the last 24 hours, even if they have now stopped? The main signs are: one side of the face drooping, not being able to lift both arms and keep them up, or slurred or confused speech. Other signs include weakness or numbness down one side of the body, and blurred vision or loss of sight."
+  checklist_text: "Signs of a stroke now or in the last 24 hours: face drooping on one side, cannot lift both arms, or slurred speech"
+  kind: symptom
+  phrases: ["face drooping", "can't lift my arm", "slurred speech"]
+  source: nhs_stroke_symptoms
+
+- id: severe_breathing_difficulty
+  label: "Severe difficulty breathing"
+  question: "Are you having severe difficulty breathing? This means gasping, choking or not being able to get words out."
+  checklist_text: "Severe difficulty breathing. Gasping, choking or cannot get words out."
+  kind: symptom
+  parent: difficulty_breathing
+  relation: severity
+  group: breathing
+  phrases: ["can't breathe", "gasping", "choking", "can't get my words out"]
+  source: nhs_heart_attack
+
+- id: lips_or_skin_blue_grey
+  label: "Lips or skin pale, blue or grey"
+  question: "Are your lips or skin pale, blue or grey? On brown or black skin this may be easier to see on the palms of the hands."
+  checklist_text: "Lips or skin pale, blue or grey"
+  kind: symptom
+  phrases: ["blue lips", "grey skin", "gone very pale"]
+  source: nhs_heart_attack
+
+- id: passed_out
+  label: "Passed out and not responding normally"
+  question: "Has the person who is unwell passed out and is not responding as normal?"
+  checklist_text: "Passed out and not responding as usual"
+  kind: symptom
+  snomed: "422768004"
+  group: consciousness
+  phrases: ["passed out", "collapsed", "not responding", "unconscious"]
+  source: nhs_heart_attack
+
+- id: sudden_confusion
+  label: "Suddenly confused"
+  question: "Do you feel suddenly confused?"
+  checklist_text: "Suddenly confused"
+  kind: symptom
+  snomed: "130987000"
+  phrases: ["suddenly confused", "not making sense", "don't know where I am"]
+  # Source changed from nhs_shortness_of_breath to nhs_confusion in the brain and
+  # nerves batch, when this became the main symptom of the sudden confusion entry
+  # symptom. Coverage reads the main symptom's source, and the old one wrongly
+  # counted the Shortness of breath page as covered by sudden confusion.
+  source: nhs_confusion
+
+- id: heavy_bleeding
+  label: "Bleeding that cannot be stopped"
+  question: "Do you have bleeding that you cannot stop, or blood coming out in spurts?"
+  checklist_text: "Bleeding that will not stop, or blood coming out in spurts"
+  kind: symptom
+  phrases: ["won't stop bleeding", "bleeding a lot", "blood spurting"]
+  source: nhs_cuts_and_grazes
+
+- id: serious_self_harm
+  label: "Serious self-harm or about to self-harm"
+  question: "Have you seriously harmed yourself, for example by taking an overdose? Or do you feel you may be about to harm yourself?"
+  checklist_text: "Seriously harmed yourself, or about to harm yourself"
+  kind: symptom
+  phrases: ["taken an overdose", "hurt myself", "going to hurt myself"]
+  source: nhs_suicidal_thoughts
+
+- id: presenting_not_covered
+  label: "Has a main symptom this tool does not cover"
+  question: "Do you have another main symptom that is not listed?"
+  kind: context
+  source: nhs_when_to_call_999
+
+- id: age_16_or_over
+  label: "Aged 16 or over"
+  question: "Is the person who is unwell aged 16 or over?"
+  kind: context
+  age_range: {min: 16}
+  source: ai_judgement
+
+- id: age_12_or_over
+  label: "Aged 12 or over"
+  question: "Is the person who is unwell aged 12 or over?"
+  kind: context
+  age_range: {min: 12}
+  source: ai_judgement
+
+- id: age_under_12
+  label: "Under 12 years old"
+  question: "Is the person who is unwell under 12 years old?"
+  kind: context
+  age_range: {below: 12}
+  source: ai_judgement
+
+- id: age_under_5
+  label: "Under 5 years old"
+  question: "Is the person who is unwell under 5 years old?"
+  kind: context
+  age_range: {below: 5}
+  source: nhs_sore_throat
+
+- id: age_45_or_over
+  label: "Aged 45 or over"
+  question: "Is the person who is unwell aged 45 or over?"
+  kind: context
+  age_range: {min: 45}
+  source: nhs_angina
+
+- id: age_under_1
+  label: "Under 1 year old"
+  question: "Is the person who is unwell a baby under 1 year old?"
+  kind: context
+  age_range: {below: 1}
+  source: ai_judgement
+
+- id: age_under_16
+  label: "Under 16 years old"
+  question: "Is the person who is unwell under 16 years old?"
+  kind: context
+  age_range: {below: 16}
+  source: ai_judgement
+
+- id: age_65_or_over
+  label: "Aged 65 or over"
+  question: "Is the person who is unwell aged 65 or over?"
+  kind: context
+  age_range: {min: 65}
+  source: ai_judgement
+
+- id: sex_female
+  label: "Female"
+  question: "Is the person who is unwell female?"
+  kind: context
+  source: ai_judgement
+
+- id: sex_male
+  label: "Male"
+  question: "Is the person who is unwell male?"
+  kind: context
+  source: ai_judgement
+
+- id: has_diabetes
+  label: "Has diabetes"
+  question: "Do you have diabetes?"
+  question_carer: "Does the person have diabetes?"
+  checklist_text: "Diabetes"
+  kind: history
+  snomed: "73211009"
+  phrases: ["I'm diabetic", "on insulin", "type 1 diabetes", "type 2"]
+  source: nhs_oedema
+
+- id: new_medicine_recently
+  label: "Started a new medicine or changed a dose in the last few weeks"
+  question: "Have you started a new medicine, or changed the dose of one, in the last few weeks?"
+  question_carer: "Has the person started a new medicine, or changed the dose of one, in the last few weeks?"
+  checklist_text: "Started a new medicine or changed a dose in the last few weeks"
+  kind: history
+  phrases: ["new tablets", "doctor changed my pills", "since starting new tablets", "new blood pressure pills"]
+  source: nhs_oedema
+
+- id: takes_blood_thinners
+  label: "Takes medicine that thins the blood, or bleeds easily"
+  question: "Do you take medicine that thins your blood, such as warfarin, apixaban or rivaroxaban? Or do you have a condition that makes you bleed more easily?"
+  question_carer: "Does the person take medicine that thins their blood, such as warfarin, apixaban or rivaroxaban? Or do they have a condition that makes them bleed more easily?"
+  checklist_text: "Taking medicine that thins your blood, or a condition that makes you bleed easily"
+  kind: history
+  phrases: ["on warfarin", "blood thinners", "I take apixaban", "I bruise easily"]
+  source: nhs_head_injury
+
+- id: drinks_a_lot_of_alcohol
+  label: "Drinks a lot of alcohol"
+  question: "Do you usually drink more than 14 units of alcohol a week, or have you drunk a lot in the last few days? 14 units is about 6 pints of beer or 6 medium glasses of wine."
+  checklist_text: "Drinking a lot of alcohol"
+  kind: history
+  asked_only_if: age_10_or_over
+  phrases: ["drink every night", "bottle of wine a day", "big night out"]
+  source: nhs_liver_disease
+
+- id: age_10_or_over
+  label: "Aged 10 or over"
+  question: "Is the person who is unwell aged 10 or over?"
+  kind: context
+  age_range: {min: 10}
+  source: ai_judgement
+
+- id: age_5_or_over
+  label: "Aged 5 or over"
+  question: "Is the person who is unwell aged 5 or over?"
+  kind: context
+  age_range: {min: 5}
+  source: ai_judgement
+
+- id: age_under_2
+  label: "Under 2 years old"
+  question: "Is the person who is unwell under 2 years old?"
+  kind: context
+  age_range: {below: 2}
+  source: nhs_itchy_anus
+
+# ===========================================================================
+# Patient context (BELONGS ELSEWHERE: general.yaml)
+# ===========================================================================
+- id: age_under_3_months
+  label: "Baby under 3 months old"
+  question: "Is the person who is unwell a baby under 3 months old?"
+  kind: context
+  age_range: {below: 0.25}
+  source: nhs_fever_in_children
+
+- id: age_under_6_months
+  label: "Baby under 6 months old"
+  question: "Is the person who is unwell a baby under 6 months old?"
+  kind: context
+  age_range: {below: 0.5}
+  source: nhs_fever_in_children
+
+# ===========================================================================
+# Menopause
+# ===========================================================================
+- id: age_40_or_over
+  label: "Aged 40 or over"
+  question: "Is the person who is unwell aged 40 or over?"
+  kind: context
+  age_range: {min: 40}
+  source: ai_judgement
+
+- id: age_under_1_month
+  label: "Baby under 1 month old"
+  question: "Is the person who is unwell a baby under 1 month old?"
+  kind: context
+  age_range: {below: 0.08}   # about 29 days, in years
+  source: nhs_red_eye
+
+- id: swelling_front_of_neck
+  label: "Swelling at the front of the neck"
+  question: "Do you have a swelling at the front of your neck?"
+  kind: symptom
+  phrases: ["goitre", "lump at the front of my neck"]
+  source: nhs_overactive_thyroid
+
+- id: weight_gain
+  label: "Put on weight without meaning to"
+  question: "Have you put on weight over the last few months without meaning to, or are you finding it hard to lose weight?"
+  checklist_text: "Put on weight without meaning to"
+  kind: symptom
+  phrases: ["put on weight", "gaining weight"]
+  source: nhs_missed_or_late_periods
+
+- id: takes_steroids
+  label: "Takes steroid tablets, or uses strong steroid creams, for a long time"
+  question: "Have you taken steroid tablets, or used strong steroid creams, for more than a few weeks?"
+  kind: history
+  phrases: ["on prednisolone", "use steroid cream every day"]
+  source: nhs_cushings
+
+- id: has_thyroid_problem
+  label: "Has a thyroid problem, such as an overactive thyroid"
+  question: "Do you have a thyroid problem, such as an overactive thyroid?"
+  kind: history
+  phrases: ["overactive thyroid", "Graves'", "thyroid problem"]
+  source: nhs_overactive_thyroid
+
+- id: bruising_or_bleeding_easily
+  label: "Bruising or bleeding easily, or for no reason"
+  question: "Have you been bruising or bleeding easily, or for no reason?"
+  question_carer: "Has your child been bruising or bleeding easily, or for no reason?"
+  checklist_text: "Bruising or bleeding easily, or for no reason"
+  kind: symptom
+  snomed: "424131007"
+  seriousness: serious
+  phrases: ["bruises everywhere", "gums keep bleeding"]
+  source: nhs_acute_lymphoblastic_leukaemia
+
+- id: overweight
+  label: "Overweight"
+  question: "Are you overweight?"
+  kind: history
+  phrases: ["overweight", "carrying extra weight"]
+  source: nhs_snoring

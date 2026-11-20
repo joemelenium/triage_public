@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: womb_polyps_or_thickening
+body_system: womens_health
+entry_symptoms: [bleeding_after_menopause, bleeding_between_periods_or_after_sex, heavy_periods]
+name: "Polyps (small soft growths) or a thickened lining in the womb"
+medical_name: "Endometrial polyp or endometrial hyperplasia"
+# Danger moderate: a thickened lining can lead to womb cancer.
+acuity_needed: routine
+danger: moderate
+sex: female
+prevalence: uncommon
+prevalence_when:
+  - {finding: bleeding_after_menopause, prevalence: common}
+findings:
+  bleeding_between_periods: strongly_supports
+  bleeding_after_menopause: strongly_supports
+  heavy_periods: supports
+  pill_or_hrt: supports
+  periods_last_over_7_days: supports
+key_findings: [pill_or_hrt]
+source: nhs_post_menopausal_bleeding
+informed_by: [nhs_post_menopausal_bleeding, nhs_vaginal_bleeding_between_periods_or_after_sex]

@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: piles
+body_system: stomach_and_bowel
+entry_symptoms: [bleeding_from_bottom, anal_pain, itchy_bottom]
+name: "Piles (swollen blood vessels in and around the bottom)"
+medical_name: "Haemorrhoids"
+snomed: "70153002"
+# A pharmacist can help with piles.
+acuity_needed: routine
+level_of_care: community_pharmacy
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: bright red blood on the paper, with a lump or itching.
+  bright_red_blood_on_paper: strongly_supports
+  lump_at_bottom: strongly_supports
+  itchy_bottom: supports
+  anal_pain: supports
+  pain_when_pooing: supports
+  constipation: supports
+  bleeding_from_bottom: supports
+key_findings: [bright_red_blood_on_paper, lump_at_bottom]
+source: nhs_piles
+informed_by: [nhs_piles, nhs_bleeding_from_the_bottom_rectal_bleeding, nhs_anal_pain, nhs_itchy_anus]

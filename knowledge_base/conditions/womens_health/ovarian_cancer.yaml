@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ovarian_cancer
+body_system: womens_health
+entry_symptoms: [pelvic_pain, bleeding_after_menopause, bloating]
+name: "Ovarian cancer"
+medical_name: "Ovarian cancer"
+snomed: "363443007"
+# Must not be missed. Bloating and feeling full quickly most days, mostly over 50.
+acuity_needed: soon
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: family_history_breast_ovarian_cancer, prevalence: rare}
+  - {finding: age_45_or_over, prevalence: rare}
+  - {finding: bloating, prevalence: rare}
+findings:
+  bloating_regular: strongly_supports
+  feel_full_quickly: strongly_supports
+  peeing_more_often: supports
+  weight_loss: supports
+  very_tired: supports
+  bowel_habit_change_3_weeks: supports
+  pelvic_pain: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  full_quickly: supports
+  sa_low_down: supports
+key_findings: [bloating_regular, feel_full_quickly, family_history_breast_ovarian_cancer, full_quickly]
+source: nhs_ovarian_cancer_symptoms
+informed_by: [nhs_ovarian_cancer, nhs_ovarian_cancer_symptoms, nhs_pelvic_pain, nhs_bloating]

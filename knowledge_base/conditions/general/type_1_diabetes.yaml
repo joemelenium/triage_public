@@ -1,0 +1,43 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: type_1_diabetes
+body_system: general
+# Comes on over days or weeks, mostly in children and young adults. The page says an urgent
+# GP appointment or 111 if you think you or your child has it: without insulin it leads to
+# diabetic ketoacidosis.
+entry_symptoms: [very_thirsty, very_tired, weight_loss, bedwetting, painful_or_frequent_peeing, smelly_urine]
+name: "Type 1 diabetes (the body cannot make insulin, so blood sugar gets too high)"
+medical_name: "Diabetes mellitus type 1"
+snomed: "46635009"
+acuity_needed: urgent
+danger: serious
+diagnosed_by: has_diabetes
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+  - {finding: bedwetting_again_after_dry, prevalence: rare}
+  - {finding: very_thirsty, prevalence: uncommon}
+  - {finding: very_tired, prevalence: rare}
+  - {finding: weight_loss, prevalence: rare}
+  - {finding: bedwetting, prevalence: very_rare}
+  - {finding: painful_or_frequent_peeing, prevalence: very_rare}
+  - {finding: smelly_urine, prevalence: very_rare}
+findings:
+  # The 4 Ts: toilet (peeing more), thirsty, tired, thinner. Weight loss tells it apart from
+  # type 2.
+  peeing_more_often: strongly_supports
+  very_thirsty: strongly_supports
+  weight_loss: strongly_supports
+  very_tired: supports
+  # From the urinary_and_male card for this condition (merged):
+  vomiting: supports
+  breathing_deep_and_fast: supports
+  fruity_breath: supports
+key_findings: [peeing_more_often, very_thirsty, weight_loss, very_tired, vomiting, breathing_deep_and_fast, fruity_breath]
+source: nhs_type_1_diabetes_symptoms
+informed_by: [nhs_type_1_diabetes_symptoms, nhs_thirst, nhs_bedwetting]
+# Merged with the urinary_and_male card for this condition. Its notes: New type 1
+# diabetes. New bedwetting can be the first sign
+# in a child. The page asks for an urgent GP appointment or 111 if you think you or your
+# child has type 1 diabetes, and 999 or A&E for signs of diabetic ketoacidosis. What
+# tells it apart: the 4 Ts. Toilet, thirsty, tired, thinner.

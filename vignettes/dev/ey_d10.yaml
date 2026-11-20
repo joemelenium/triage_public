@@ -1,0 +1,44 @@
+id: ey_d10
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [bulging_eyes]
+
+summary: "A 41-year-old woman with an overactive thyroid has been told by friends over the last few months that her eyes look staring and stick out more. Both eyes feel gritty. Her sight is normal, there is no pain and she can move and close her eyes."
+
+opening_statement: "People keep saying my eyes look like they're popping out. It's crept up over a few months. They feel a bit gritty. I've got an overactive thyroid."
+
+findings:
+  present: [bulging_eyes, has_thyroid_problem, gritty_or_burning, both_eyes_affected]
+  absent: [bulging_just_started, bulging_one_eye, vision_change, double_vision, eye_pain, eye_pain_severe, headache, nausea_or_vomiting, eye_hard_to_move, cannot_close_eye_fully, bothered_by_light, red_eye]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 41, sex: female}
+  full:
+    age: 41
+    sex: female
+    findings: {has_thyroid_problem: "yes"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "Go to A&E or call 999 if the sight changes, or there is severe eye pain or a severe headache"
+    any_of: ["A&E", "999"]
+
+source:
+  expected_outcome: {page: bulging_eyes.txt, quote: "you have a bulging eye or bulging eyes"}
+  minimum_safe_acuity: {page: bulging_eyes.txt, quote: "A common cause of bulging eyes is an overactive thyroid gland (hyperthyroidism)."}
+
+atypical: false
+notes: "Gradual bulging of both eyes with a known overactive thyroid. bulging_eyes.txt gives non-urgent GP advice; the 999 or A&E signs (just started with vision change, severe headache or sickness, severe eye pain) are absent. The page also says to get it checked quickly; 'routine' kept as the source gives no time."

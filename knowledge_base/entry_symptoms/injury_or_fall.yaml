@@ -1,0 +1,224 @@
+# Entry symptom: an injury or a fall.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# There is no NHS Symptoms A to Z page for injuries. The rules come from the
+# NHS pages on sprains and strains, broken bones, dislocations, falls and head
+# injury. The main symptom is also asked in the other bone, joint and muscle
+# entry symptoms ("did this start after an injury?"), and a yes there brings
+# these rules in as well.
+#
+# Head injury and cuts and wounds belong to other body systems. Only the
+# head injury signs that must be checked after any fall are included here.
+#
+# Must-not-miss causes: a serious injury after a high-energy accident, a head
+# injury, a broken hip or spine (especially in older people), a broken or
+# dislocated bone, damage to nerves or blood vessels, pressure building up in
+# the muscles (compartment syndrome), shock, and a fall caused by a blackout.
+#
+# Known gap: an injury that may not have been an accident is not screened.
+# Safeguarding needs an owner decision (see red_flags.yaml).
+
+id: injury_or_fall
+name: "Injury or fall"
+presenting_finding: injury_or_fall
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: injury_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - serious_accident
+      - head_injury_serious_signs
+      - fall_could_not_get_up
+      - signs_of_shock
+      - changed_shape
+      - bone_through_skin
+      - numb_after_injury
+      - limb_cold_pale_or_blue
+      - cannot_bear_weight
+      - severe_pain
+
+  - id: injury_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - head_injury
+      - heard_snap_at_injury
+      - think_bone_broken
+      - badly_swollen
+      - cannot_move_painful_part
+      - faint_or_sick_from_pain
+      - fall_blackout_or_dizzy
+      - pain_out_of_proportion
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_inj_head_serious
+    description: "Head injury with serious signs: knocked out, a fit, very sleepy, or problems seeing, hearing, walking or speaking"
+    when: head_injury_serious_signs
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_inj_could_not_get_up
+    description: "Fallen and cannot get up, or was on the floor for a long time"
+    when: fall_could_not_get_up
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fall_999
+    source: nhs_falls
+    note: "Being on the floor for an hour or more can damage muscles and kidneys. Adding it is AI judgement."
+
+  - id: rf_inj_serious_accident
+    description: "A serious accident, such as a car crash or a fall from a height"
+    when: serious_accident
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E. Do not move if your neck or back may be hurt."}
+    advice: advice_spinal_injury_emergency
+    source: nhs_head_injury
+    note: "The Head injury page says call 999 after a fall from a height of more than 1 metre or 5 stairs, or a head injury at high speed. The Back pain page says 999 or A&E for back pain after a serious accident."
+
+  - id: rf_inj_shock
+    description: "After an injury: cold, pale, sweaty skin, fast breathing, or feeling very faint"
+    when: signs_of_shock
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_injury_999
+    source: nhs_broken_leg
+    note: "The Broken leg page says call 999 or go to A&E. These are signs of shock from bleeding, so an ambulance is AI judgement."
+
+  - id: rf_inj_older_fall_head_back_neck_hip
+    description: "A fall in someone aged 65 or over, who may have hurt their head, neck, back or hip"
+    when: {all: [had_a_fall, age_65_or_over, {any: [head_injury, neck_pain, back_pain, hip_pain]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_fall_999
+    source: nhs_falls
+    note: "The Falls page says call 999 if someone has fallen and may have injured the head, back, neck or hip. Limiting it to people aged 65 or over, and allowing A&E, is AI judgement, needs clinical review."
+
+  - id: rf_inj_misshapen_or_out_of_place
+    description: "Changed shape or pointing at an odd angle, a bone sticking out, or a joint out of place"
+    when: {any: [changed_shape, bone_through_skin, joint_out_of_place]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_sprains_and_strains
+
+  - id: rf_inj_numb
+    description: "The injured area, or the part below it, is numb, tingling or has lost feeling"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_sprains_and_strains
+
+  - id: rf_inj_cold_limb
+    description: "The skin around the injury has changed colour, such as blue or grey, or is cold to touch"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_sprains_and_strains
+
+  - id: rf_inj_compartment
+    description: "Very bad pain that keeps getting worse, even with painkillers"
+    when: pain_out_of_proportion
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_compartment_emergency
+    source: nhs_compartment_syndrome
+
+  - id: rf_inj_cannot_bear_weight
+    description: "Unable to walk or put weight on the leg after an injury"
+    when: cannot_bear_weight
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_joint_pain
+    note: "The Hip pain page gives the same advice. The Ankle pain page says contact 111 if you are not able to walk. The more urgent is used."
+
+  - id: rf_inj_severe
+    description: "Severe pain after a fall or injury"
+    when: severe_pain
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_osteoporosis
+    note: "The Joint pain and Hip pain pages give the same advice. The hand and foot pages say contact 111 for severe pain. The more urgent is used."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_inj_head_urgent
+    description: "Head injury with being sick or dizzy, or in someone who takes medicine that thins the blood"
+    when: {any: [head_injury_sick_or_dizzy, {all: [head_injury, takes_blood_thinners]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_head_injury_urgent
+    source: nhs_head_injury
+
+  - id: rf_inj_maybe_broken
+    description: "A snap, crack, pop or grinding at the time of injury, or thinks a bone may be broken"
+    when: {any: [heard_snap_at_injury, think_bone_broken]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111, or go to an urgent treatment centre"}
+    advice: advice_injury_urgent
+    source: nhs_wrist_pain
+    note: "Source difference: the Sprains and strains page says A&E if you heard a crack. The body-area pages (wrist, finger, ankle, heel) say contact 111. An urgent treatment centre can X-ray most simple breaks, so urgent is used. Needs clinical review."
+
+  - id: rf_inj_swollen_or_cannot_move
+    description: "Badly swollen, or cannot move the injured part or hold things"
+    when: {any: [badly_swollen, cannot_move_painful_part]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111, or go to an urgent treatment centre"}
+    advice: advice_injury_urgent
+    source: nhs_broken_leg
+    note: "The Broken arm or wrist page gives the same advice."
+
+  - id: rf_inj_faint_from_pain
+    description: "Feeling faint, dizzy or sick from the pain"
+    when: faint_or_sick_from_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_injury_urgent
+    source: nhs_ankle_pain
+
+  - id: rf_inj_fall_blackout
+    description: "Blacked out or felt dizzy or faint just before falling"
+    when: fall_blackout_or_dizzy
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_fall_urgent
+    source: nhs_falls
+    note: "The Falls page says get help from 111 if someone has fallen and may be unwell. A blackout before a fall can be a heart rhythm problem. Urgent is AI judgement; chest pain or palpitations bring in their own entry symptoms."
+
+  - id: rf_inj_older_fall
+    description: "A fall in someone aged 65 or over who may be in pain, injured or unwell"
+    when: {all: [had_a_fall, age_65_or_over]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_fall_urgent
+    source: nhs_falls
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Falls page says get help from 111 if someone has fallen and may be in pain, injured or unwell. Limiting it to older people and marking it soft is AI judgement. A firm GP rule below still applies."
+
+  - id: rf_inj_cast
+    description: "A plaster cast that feels too tight, or fingers or toes numb, swollen, blue or white"
+    when: cast_problem
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_injury_urgent
+    source: nhs_broken_leg
+
+  - id: rf_inj_child_arm
+    description: "A child who will not use their arm after it was pulled or injured"
+    when: {all: [age_under_16, {any: [child_not_using_arm, arm_pulled_child]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go to an urgent treatment centre today"}
+    advice: advice_injury_urgent
+    source: ai_judgement
+    note: "A pulled elbow is common in young children and is quickly put right at an urgent treatment centre. AI judgement."
+
+outcome_rules:
+  - id: or_inj_falls_gp
+    description: "Has had a fall at 65 or over, falls more than once, or is worried about balance"
+    when: {any: [falls_more_than_once, {all: [had_a_fall, age_65_or_over]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP about your fall"}
+    advice: advice_fall_gp
+    source: nhs_falls
+
+  - id: or_inj_not_improving
+    description: "An injury that is getting worse or not feeling better after treating it yourself"
+    when: {any: [pain_not_improving, pain_getting_worse_or_recurring]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_sprains_and_strains
+
+default:
+  description: "A minor injury with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most sprains and strains get better on their own"}
+  advice: advice_injury_self_care
+  source: nhs_sprains_and_strains

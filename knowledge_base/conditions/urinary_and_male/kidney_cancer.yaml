@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: kidney_cancer
+body_system: urinary_and_male
+entry_symptoms: [blood_in_urine]
+name: "Kidney cancer"
+medical_name: "Malignant neoplasm of kidney"
+snomed: "363518003"
+acuity_needed: routine
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  # What tells it apart: a lump in the side, pain under the ribs that does not go
+  # away, weight loss and night sweats.
+  lump_in_side: strongly_supports
+  loin_pain: supports
+  weight_loss: supports
+  night_sweats: supports
+  very_tired: supports
+  blood_in_urine_no_pain: supports
+key_findings: [lump_in_side, loin_pain, weight_loss, night_sweats]
+source: nhs_kidney_cancer_symptoms
+informed_by: [nhs_kidney_cancer_symptoms, nhs_blood_in_urine]

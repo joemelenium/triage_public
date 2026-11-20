@@ -1,0 +1,116 @@
+# Build plan: body systems after the chest and breathing pilot.
+# A demonstration and proof of concept only. Never for clinical use.
+#
+# Each batch is drafted by one agent in its own copy of the repository, then
+# merged. "entry_symptoms" are main symptoms a patient can start with: each
+# NHS Symptoms A to Z page must end up covered by one (directly, or listed in
+# its "also_covers"). "conditions" is a starting list: agents add any others a
+# triage service would commonly see for those symptoms, and every
+# life-threatening cause that must not be missed.
+
+ear_nose_throat:
+  entry_symptoms: [earache, hearing loss, tinnitus, catarrh, lost or changed sense of smell, swollen glands,
+                   swallowing problems, bad breath, dry mouth, sore or dry lips, sore or white tongue,
+                   metallic taste, toothache, teeth grinding, snoring, hiccups, nosebleed, blocked or runny nose]
+  existing: [sore throat (entry symptom and 5 conditions already built)]
+  conditions: [middle ear infection, outer ear infection, glue ear, earwax build-up, perforated eardrum,
+               labyrinthitis or vestibular neuritis, sudden hearing loss, sinusitis, nasal polyps, allergic rhinitis,
+               nosebleed, dental abscess, tooth decay, gum disease, wisdom tooth problems, mouth ulcers, oral thrush,
+               glandular fever, swollen glands from infection, salivary gland stones, oesophageal cancer warning signs,
+               mouth cancer warning signs, epiglottitis, peritonsillar abscess (quinsy exists), dry mouth from medicines,
+               obstructive sleep apnoea, temporomandibular joint disorder]
+
+stomach_and_bowel:
+  entry_symptoms: [stomach ache, diarrhoea and vomiting, feeling sick, vomiting blood, bleeding from the bottom,
+                   constipation, bloating, farting, indigestion, anal pain, itchy bottom, bowel incontinence,
+                   soiling in children, worms, reflux in babies, difficulty swallowing is in ear_nose_throat]
+  conditions: [appendicitis, gastroenteritis, food poisoning, irritable bowel syndrome, constipation, gallstones,
+               acute pancreatitis, stomach ulcer, bleeding stomach ulcer, gastritis, heartburn (exists), hernia,
+               strangulated hernia, bowel obstruction, diverticulitis, inflammatory bowel disease (Crohn's, ulcerative colitis),
+               coeliac disease, bowel cancer warning signs, stomach cancer warning signs, haemorrhoids, anal fissure,
+               threadworms, ectopic pregnancy (also women's health), urinary tract infection (also urinary),
+               kidney stones (also urinary), abdominal aortic aneurysm, mesenteric ischaemia, intussusception (babies),
+               pyloric stenosis (babies), reflux in babies, colic, cows' milk allergy, liver problems (jaundice),
+               diabetic ketoacidosis, sepsis (exists)]
+
+urinary_and_male:
+  entry_symptoms: [blood in urine, smelly urine, urinary incontinence, bedwetting in children, painful or frequent peeing,
+                   cannot pee, testicle pain, testicle lumps and swellings, penis lumps and spots, priapism,
+                   blood in semen, erection problems, ejaculation problems, low sex drive]
+  conditions: [urinary tract infection, kidney infection, kidney stones, prostate enlargement, prostatitis,
+               urinary retention, bladder cancer warning signs, kidney cancer warning signs, testicular torsion,
+               epididymo-orchitis, testicular cancer warning signs, varicocele, hydrocele, inguinal hernia,
+               sexually transmitted infections, genital warts, genital herpes, balanitis, priapism,
+               erectile dysfunction, overactive bladder, stress incontinence]
+
+womens_health:
+  entry_symptoms: [heavy periods, irregular periods, missed or late periods, period pain, ovulation pain, pelvic pain,
+                   bleeding between periods or after sex, bleeding after the menopause, vaginal discharge, vaginal dryness,
+                   breast lumps, breast pain, nipple discharge, bleeding in pregnancy, stomach pain in pregnancy]
+  conditions: [ectopic pregnancy, miscarriage, pregnancy, endometriosis, fibroids, polycystic ovary syndrome,
+               pelvic inflammatory disease, ovarian cyst, ovarian torsion, ovarian cancer warning signs,
+               cervical cancer warning signs, womb cancer warning signs, menopause, thrush, bacterial vaginosis,
+               sexually transmitted infections, mastitis, breast abscess, breast cancer warning signs, fibroadenoma,
+               breast cysts, pre-eclampsia, placental abruption, hyperemesis gravidarum]
+
+skin_and_hair:
+  entry_symptoms: [rash in an adult, rashes in babies and children, itchy skin, hives, lumps, hair loss,
+                   excessive hair growth, nail problems, excessive sweating, blushing, body odour, smelly feet,
+                   stretch marks, insect bite or sting, burn, cut or wound, skin changing colour (yellow skin)]
+  conditions: [meningococcal disease (non-blanching rash), cellulitis, impetigo, eczema, psoriasis, contact dermatitis,
+               urticaria (hives), chickenpox, shingles (exists), measles, scarlet fever, hand foot and mouth disease,
+               slapped cheek, scabies, fungal skin infection, insect bite reaction, anaphylaxis (exists),
+               skin abscess, lipoma, sebaceous cyst, melanoma warning signs, skin cancer warning signs,
+               Stevens-Johnson syndrome, Kawasaki disease, jaundice, alopecia, hyperhidrosis, burns, wound infection]
+
+bones_joints_muscles:
+  entry_symptoms: [back pain, neck pain, shoulder pain, elbow and arm pain, hand pain, wrist pain, finger and thumb pain,
+                   hip pain in adults, hip pain in children, knee pain, foot pain, ankle pain, heel pain, joint pain,
+                   leg cramps, tailbone pain, limping in children, injury or fall]
+  also_covers: [finger pain, thumb pain, pain in the back of the hand, pain in the palm of the hand,
+                pain in the ball of the foot, pain in the bottom of the foot, pain in the top of the foot]
+  conditions: [cauda equina syndrome, spinal cord compression, non-specific back pain, sciatica, slipped disc,
+               spinal infection or cancer warning signs, neck strain, whiplash, frozen shoulder, rotator cuff problems,
+               tennis elbow, carpal tunnel syndrome, fracture, sprain or strain, dislocation, gout, septic arthritis,
+               osteoarthritis, rheumatoid arthritis, reactive arthritis, Achilles tendon rupture, plantar fasciitis,
+               bursitis, irritable hip, perthes disease, slipped upper femoral epiphysis, deep vein thrombosis,
+               compartment syndrome, polymyalgia rheumatica, osteomyelitis]
+
+brain_and_nerves:
+  entry_symptoms: [headache, dizziness, fainting, sudden confusion, seizure or fit, paralysis or weakness, pins and needles,
+                   memory loss, tremor or shaking hands, twitching, excessive daytime sleepiness, insomnia, head injury,
+                   numbness of the face]
+  conditions: [stroke, transient ischaemic attack, subarachnoid haemorrhage, meningitis, encephalitis, migraine,
+               tension headache, cluster headache, medication overuse headache, giant cell arteritis, brain tumour warning signs,
+               concussion, bleeding on the brain after head injury, carbon monoxide poisoning, epilepsy, febrile seizure,
+               benign paroxysmal positional vertigo, labyrinthitis, low blood pressure, vasovagal faint, heart rhythm faint,
+               delirium, dementia, low blood sugar, Bell's palsy, multiple sclerosis warning signs, peripheral neuropathy,
+               essential tremor, Parkinson's disease, restless legs, sleep apnoea, insomnia]
+
+eyes:
+  entry_symptoms: [red eye, eye pain, vision loss, double vision, dry eyes, watering eyes, floaters and flashes,
+                   eyelid problems, bulging eyes, something in the eye]
+  conditions: [conjunctivitis, acute glaucoma, iritis (uveitis), scleritis, keratitis, corneal abrasion, foreign body in the eye,
+               chemical eye injury, retinal detachment, posterior vitreous detachment, central retinal artery occlusion,
+               giant cell arteritis, stroke affecting vision, optic neuritis, blepharitis, stye, chalazion, dry eye disease,
+               subconjunctival haemorrhage, orbital cellulitis, thyroid eye disease, cataracts, macular degeneration]
+
+general:
+  entry_symptoms: [high temperature in adults, high temperature in children, tiredness and fatigue, unintentional weight loss,
+                   night sweats, excessive thirst, dehydration, swollen ankles feet and legs, swollen arms and hands,
+                   blue or grey skin or lips, feeling generally unwell, baby not feeding or unsettled]
+  conditions: [sepsis (exists), viral illness, urinary tract infection, kidney infection, meningitis, pneumonia (exists),
+               flu (exists), COVID-19 (exists), diabetes, diabetic ketoacidosis, underactive thyroid, overactive thyroid,
+               anaemia (exists), depression, chronic fatigue, cancer warning signs, lymphoma warning signs, tuberculosis (exists),
+               HIV, heart failure (exists), deep vein thrombosis, kidney problems, liver problems, dehydration, heat exhaustion,
+               heatstroke, Kawasaki disease, febrile illness in a baby under 3 months]
+
+mental_health:
+  entry_symptoms: [feeling low or depressed, feeling anxious or panicky, thoughts of suicide or self-harm,
+                   hearing or seeing things others do not, feeling out of control or very agitated, problems with alcohol or drugs,
+                   eating problems]
+  conditions: [depression, generalised anxiety disorder, panic disorder (exists as anxiety or panic), post-traumatic stress disorder,
+               psychosis, bipolar disorder (mania), suicidal crisis, self-harm, alcohol withdrawal, drug overdose or poisoning,
+               eating disorders, postnatal depression, delirium]
+  note: "The working levels of care have no mental health crisis route. Use the emergency department or urgent care, with advice
+         naming crisis lines (for example Samaritans 116 123, NHS 111 option 2), and record the gap."

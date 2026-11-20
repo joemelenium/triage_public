@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cracked_tooth
+body_system: ear_nose_throat
+entry_symptoms: [toothache]
+name: "Cracked or broken tooth, or a lost filling"
+medical_name: "Cracked tooth or lost dental restoration"
+snomed: "109747007"
+acuity_needed: routine
+level_of_care: dental
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a sharp pain when biting, and a tooth that is cracked or chipped, or a
+  # filling that has come out.
+  tooth_cracked_or_filling_lost: strongly_supports
+  pain_when_biting: strongly_supports
+  tooth_sensitive: supports
+  teeth_grinding: supports
+key_findings: [tooth_cracked_or_filling_lost, pain_when_biting]
+source: nhs_toothache
+informed_by: [nhs_toothache]

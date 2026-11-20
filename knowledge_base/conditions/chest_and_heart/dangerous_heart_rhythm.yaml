@@ -1,0 +1,46 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dangerous_heart_rhythm
+body_system: chest_and_heart
+# A heart rhythm that can stop the heart pumping properly: a very fast rhythm from
+# the lower chambers, or a very slow one (heart block). Rare, but it is the cause
+# to rule out when palpitations or breathlessness come with fainting. Added after
+# the pilot check, which found no critical rhythm card.
+entry_symptoms: [palpitations, short_of_breath, fainted]
+name: "A dangerous heart rhythm (very fast or very slow) or another heart problem that can cause fainting"
+medical_name: "Ventricular arrhythmia or heart block"
+snomed: "698247007"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: heart_beating_very_slowly, prevalence: uncommon}
+  # Fainting comes before the risk factors: first match wins, and listed after them
+  # it gave an older person, or one with a heart condition, who fainted a LOWER
+  # starting chance than a younger, healthy one.
+  - {finding: fainted, prevalence: uncommon}
+  - {finding: known_heart_condition, prevalence: rare}
+  - {finding: age_65_or_over, prevalence: rare}
+findings:
+  fainted: strongly_supports
+  heart_beating_very_slowly: strongly_supports
+  heart_beating_very_fast: supports
+  palpitations_now: supports
+  light_headed: supports
+  chest_pain: supports
+  short_of_breath: supports
+  palpitations_during_exercise: supports
+  known_heart_condition: supports
+  family_heart_history: supports
+  # From the brain_and_nerves card for this condition (merged):
+  fainted_during_exercise: strongly_supports
+  palpitations: strongly_supports
+  fainted_without_warning: strongly_supports
+  fainted_lying_down: supports
+  family_sudden_death: supports
+key_findings: [fainted, heart_beating_very_slowly, palpitations_during_exercise, light_headed, known_heart_condition, fainted_during_exercise, fainted_without_warning, palpitations, family_sudden_death]
+source: ai_judgement
+informed_by: [nhs_heart_palpitations, nhs_arrhythmia, nhs_fainting, nhs_fainting]
+# Merged with the brain_and_nerves card for this condition. Its notes:
+# What tells it apart from a common faint: fainting during exercise or lying down, with no warning, or with a racing or fluttering heart.

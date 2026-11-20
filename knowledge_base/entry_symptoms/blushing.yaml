@@ -1,0 +1,57 @@
+# Entry symptom: blushing.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: blushing
+name: "Blushing"
+presenting_finding: blushing
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: blushing_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eye_painful_red_or_gritty
+      - lips_tongue_throat_swelling
+
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: blushing_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - affecting_daily_life_or_wellbeing
+      - new_medicine_recently
+      - face_red_most_of_time
+      - hot_flushes
+      - swelling_front_of_neck
+
+red_flags:
+  - id: rf_bl_allergic_swelling
+    description: "Sudden flushing with swelling of the lips, mouth, tongue or throat"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+    note: "Clinical knowledge: sudden flushing can be part of a severe allergic reaction."
+
+  - id: rf_bl_rosacea_eye
+    description: "A red face with a painful, red or gritty eye, sensitivity to light or blurred vision"
+    when: eye_painful_red_or_gritty
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_rosacea_eye_urgent
+    source: nhs_rosacea
+
+outcome_rules:
+  - id: or_blushing_gp
+    description: "Blushing affecting everyday life, or that may be caused by a medicine or a medical condition"
+    when: {any: [affecting_daily_life_or_wellbeing, new_medicine_recently, face_red_most_of_time, hot_flushes, swelling_front_of_neck]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_blushing_gp
+    source: nhs_blushing
+    note: "The Blushing page says see a GP if it affects everyday life, or might be caused by a medical condition (such as rosacea, the menopause or an overactive thyroid) or a medicine."
+
+default:
+  description: "Blushing with nothing that needs a GP: things you can do yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "No appointment needed"}
+  advice: advice_blushing_self_care
+  source: nhs_blushing

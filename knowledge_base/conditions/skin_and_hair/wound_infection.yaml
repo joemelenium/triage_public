@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: wound_infection
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound, burn]
+name: "Infected wound or burn"
+medical_name: "Local infection of wound"
+snomed: "76844004"
+acuity_needed: urgent
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: wound_dirty, prevalence: common}
+findings:
+  # What tells it apart from a healing wound: it becomes swollen, red, hot and more painful, with pus, or with a high temperature.
+  swollen_area_red_hot: strongly_supports
+  pus_or_fluid_leaking: strongly_supports
+  very_high_temperature: supports
+  wound_dirty: supports
+key_findings: [swollen_area_red_hot, pus_or_fluid_leaking]
+source: nhs_cuts_and_grazes
+informed_by: [nhs_cuts_and_grazes, nhs_animal_bites, nhs_tetanus]

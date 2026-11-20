@@ -1,0 +1,71 @@
+id: um_d06
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- painful_or_frequent_peeing
+summary: 26-year-old woman with 2 days of burning when peeing and peeing more often. Today she has pain in her right side, just under the ribs, feels hot and shivery and feels sick.
+opening_statement: It's been burning when I wee for a couple of days, and now I've got a pain in my back on the right and I'm shivery.
+findings:
+  present:
+  - painful_or_frequent_peeing
+  - pain_when_peeing
+  - peeing_more_often
+  - loin_pain
+  - very_high_temperature
+  - cold_or_shivery
+  - feeling_sick
+  absent:
+  - pregnant_now
+  - sudden_confusion
+  - drowsy_hard_to_wake
+  - difficulty_speaking
+  - vomiting
+  - blood_in_urine
+  - loin_pain_severe_in_waves
+  - has_diabetes
+  - weakened_immune_system
+  - vaginal_discharge
+  - rash_does_not_fade
+  - skin_blotchy
+  - breathing_very_fast
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 26
+    sex: female
+  full:
+    age: 26
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: 'Urine infection with pain under the ribs and a high temperature: possible kidney infection'
+  findings:
+  - loin_pain
+  - very_high_temperature
+  minimum_acuity: urgent
+  source:
+    page: uti.txt
+    quote: Some of these could be symptoms of a kidney infection, which can be serious if it's not treated as it could cause sepsis.
+safety_netting_should_cover:
+- point: Get an urgent GP appointment or call 111 today
+  any_of:
+  - urgent GP
+  - '111'
+- point: Call 999 or go to A&E if she becomes confused, drowsy or has difficulty speaking
+  any_of:
+  - '999'
+  - A&E
+source:
+  expected_outcome:
+    page: uti.txt
+    quote: you have pain in the lower tummy or in the back, just under the ribs
+  minimum_safe_acuity:
+    page: kidney_infection.txt
+    quote: have pain in the lower tummy or in the back, just under the ribs
+atypical: false
+notes: uti.txt and kidney_infection.txt both give urgent advice for this. The pharmacy route on uti.txt is not suitable because of the pain under the ribs and the high temperature.

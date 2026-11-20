@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: serious_burn
+body_system: skin_and_hair
+entry_symptoms: [burn]
+name: "Serious burn (large, deep, chemical or electrical)"
+medical_name: "Major burn injury"
+acuity_needed: emergency
+danger: critical
+prevalence: uncommon
+findings:
+  # What tells it apart: a burn bigger than the palm or that looks white, brown, black or leathery, a burn on the face, genitals or bottom, or one from a chemical, electricity or a fire with smoke.
+  burn_large_or_deep: strongly_supports
+  burn_on_face_genitals_or_bottom: supports
+  burn_from_chemical: supports
+  burn_from_electricity: supports
+  breathed_in_smoke: supports
+key_findings: [burn_large_or_deep, burn_on_face_genitals_or_bottom, breathed_in_smoke]
+source: nhs_burns
+informed_by: [nhs_burns, nhs_chemical_burns]

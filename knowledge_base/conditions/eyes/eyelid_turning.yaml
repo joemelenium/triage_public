@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: eyelid_turning
+body_system: eyes
+# Ectropion (the lower lid sags outwards), entropion (the lid turns in) and
+# ingrowing eyelashes. More common in older people. A GP can refer for a small
+# operation.
+entry_symptoms: [eyelid_problem, watering_eyes, red_eye, dry_eyes, something_in_eye]
+name: "Eyelid turning outwards or inwards, or eyelashes rubbing the eye"
+medical_name: "Ectropion, entropion or trichiasis"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  eyelid_turning_in_or_out: strongly_supports
+  eyelashes_rubbing_eye: strongly_supports
+  cannot_close_eye_fully: supports
+  gritty_or_burning: supports
+  watering_constant: supports
+  red_eye: supports
+key_findings: [eyelid_turning_in_or_out, eyelashes_rubbing_eye]
+source: nhs_ectropion
+informed_by: [nhs_ectropion, nhs_watering_eyes, nhs_red_eye]

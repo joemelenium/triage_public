@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: infected_eczema
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Infected eczema (eczema with a bacterial skin infection)"
+medical_name: "Infected atopic dermatitis"
+acuity_needed: urgent
+danger: moderate
+prevalence: very_rare
+prevalence_when:
+  - {finding: has_eczema, prevalence: uncommon}
+findings:
+  # What tells it apart from an ordinary eczema flare-up: eczema that is leaking, crusty, warm or painful, or has spots filled with pus.
+  eczema_infected_signs: strongly_supports
+  rash_crusty_golden: supports
+  pus_or_fluid_leaking: supports
+  very_high_temperature: supports
+key_findings: [eczema_infected_signs, pus_or_fluid_leaking]
+source: nhs_atopic_eczema
+informed_by: [nhs_atopic_eczema]

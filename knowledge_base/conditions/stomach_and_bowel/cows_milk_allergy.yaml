@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cows_milk_allergy
+body_system: stomach_and_bowel
+entry_symptoms: [baby_bringing_up_milk, diarrhoea_or_vomiting, bleeding_from_bottom]
+name: "Cows' milk allergy in a baby"
+medical_name: "Cow's milk protein allergy"
+snomed: "782555009"
+acuity_needed: routine
+danger: moderate
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_1, prevalence: uncommon}
+findings:
+  has_allergies: strongly_supports        # often with eczema
+  raised_itchy_rash: supports
+  diarrhoea: supports
+  bleeding_from_bottom: supports
+  baby_unsettled_feeding: supports
+  baby_not_gaining_weight: supports
+key_findings: [has_allergies, raised_itchy_rash, diarrhoea]
+source: nhs_reflux_in_babies
+informed_by: [nhs_reflux_in_babies]

@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pulled_elbow
+body_system: bones_joints_muscles
+# Common in children under 5 after the arm is pulled. Quick to put right at an urgent
+# treatment centre.
+entry_symptoms: [arm_pain]
+name: "Pulled elbow (a slipped bone in the elbow of a young child)"
+medical_name: "Radial head subluxation (pulled elbow)"
+snomed: "417109008"
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_5, prevalence: common}
+findings:
+  arm_pulled_child: strongly_supports
+  child_not_using_arm: strongly_supports
+  elbow_pain: supports
+key_findings: [arm_pulled_child, child_not_using_arm]
+source: ai_judgement
+informed_by: [nhs_elbow_and_arm_pain]

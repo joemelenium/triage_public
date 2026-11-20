@@ -1,0 +1,533 @@
+# Advice for the women's health body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml.
+
+# ---------------------------------------------------------------------------
+# Pelvic pain
+# ---------------------------------------------------------------------------
+- id: advice_pelvic_pain_emergency
+  what_to_do: "Call 999 or go to A&E now. Pelvic pain with these signs can mean something serious that needs treatment straight away."
+  look_out_for:
+    - "Feeling faint, dizzy or light-headed, or passing out"
+    - "Pain in the tip of your shoulder"
+    - "Heavy bleeding from your vagina"
+    - "Pain that gets worse very quickly"
+  get_more_help_when:
+    - "Call 999 if you pass out, feel very faint, or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_pelvic_pain
+
+- id: advice_pelvic_pain_urgent
+  what_to_do: "Get help from NHS 111 today. Your pelvic pain needs to be checked soon."
+  look_out_for:
+    - "The pain becoming severe or getting worse, or hurting when you move"
+    - "Feeling faint, dizzy or light-headed"
+    - "Pain in the tip of your shoulder"
+    - "Heavy bleeding from your vagina"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of these signs"
+    - "If you are 20 weeks pregnant or more, contact your midwife or maternity unit"
+  where_to_go: "Call 111 or use 111 online. You can also ask your GP surgery for an urgent appointment."
+  self_care:
+    - "You can take paracetamol for the pain while you wait"
+  source: nhs_pelvic_pain
+
+- id: advice_pelvic_pain_gp
+  what_to_do: "See a GP about your pelvic pain. Do not try to work out the cause yourself. Many things can cause it, and a GP can help find out what it is."
+  look_out_for:
+    - "The pain becoming severe or getting worse"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Unusual discharge or bleeding from your vagina"
+    - "Pain when you pee, or blood in your pee or poo"
+  get_more_help_when:
+    - "Get help from 111 if you get any of these signs, or you think you may be pregnant"
+    - "Call 999 or go to A&E if the pain is severe, you feel faint or dizzy, or you have pain in the tip of your shoulder"
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time. For a possible sexually transmitted infection, you can also go to a sexual health clinic."
+  self_care:
+    - "Take paracetamol or ibuprofen for the pain"
+    - "A hot water bottle or heat pad on your tummy can help"
+    - "Keep a note of when the pain happens, to share with the GP"
+  source: nhs_pelvic_pain
+
+- id: advice_possible_ectopic_urgent
+  what_to_do: "Get help today. Ask for an urgent GP appointment or call NHS 111. Tummy pain or unusual bleeding when you could be pregnant needs checking as soon as possible. It could be an ectopic pregnancy, where a pregnancy grows outside the womb."
+  look_out_for:
+    - "A sharp, sudden and very bad pain in your tummy"
+    - "Feeling very dizzy or faint, or passing out"
+    - "Pain in the tip of your shoulder"
+    - "Heavy bleeding from your vagina"
+  get_more_help_when:
+    - "Call 999 or go to A&E straight away if you get any of these signs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. If you are under the care of an early pregnancy unit or maternity unit, you can call them."
+  self_care:
+    - "Do a pregnancy test if you have not done one, but get help even if it is negative"
+  source: nhs_ectopic_pregnancy
+  also_informed_by: [nhs_vaginal_bleeding_between_periods_or_after_sex]
+
+- id: advice_possible_ectopic_emergency
+  what_to_do: "Call 999 or go to A&E now. These signs could mean an ectopic pregnancy has burst, where a pregnancy growing outside the womb splits open. This needs treatment straight away."
+  look_out_for:
+    - "Feeling very dizzy, or passing out"
+    - "Looking very pale"
+    - "Pain getting worse"
+  get_more_help_when:
+    - "Call 999 for an ambulance if you pass out, feel very faint, or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E now. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance."
+  source: nhs_ectopic_pregnancy
+
+- id: advice_pid_emergency
+  what_to_do: "Go to A&E now, or call 999. Pelvic pain with a high temperature or feeling very unwell can be a serious infection of the womb, tubes or ovaries. It needs treatment straight away."
+  look_out_for:
+    - "Feeling very unwell, or getting worse quickly"
+    - "Feeling dizzy or faint"
+    - "Being sick and not able to keep fluids down"
+  get_more_help_when:
+    - "Call 999 if you feel faint, confused or very unwell, or cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_pelvic_inflammatory_disease
+
+# ---------------------------------------------------------------------------
+# Period pain and ovulation pain
+# ---------------------------------------------------------------------------
+- id: advice_period_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Severe pain that painkillers have not helped needs checking."
+  look_out_for:
+    - "Feeling faint or dizzy, or passing out"
+    - "Pain in the tip of your shoulder"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the pain becomes very bad, or you feel faint or pass out"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Use a heat pad or hot water bottle on your tummy"
+    - "Take paracetamol or ibuprofen as the packet says"
+  source: nhs_period_pain
+
+- id: advice_period_pain_gp
+  what_to_do: "See a GP about your period pain. A GP can check for a cause, and there are treatments that can help."
+  look_out_for:
+    - "Pain that becomes severe and painkillers do not help"
+    - "Bleeding between periods or after sex"
+    - "A high temperature, or unusual discharge from your vagina"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if the pain is severe and painkillers have not helped"
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  self_care:
+    - "Have a warm bath, or use a heat pad or hot water bottle on your tummy"
+    - "Try gentle exercise, such as walking, swimming or yoga"
+    - "Take paracetamol or ibuprofen as the packet says"
+    - "Keep a diary of your periods and pain to show the GP"
+  source: nhs_period_pain
+
+- id: advice_period_pain_self_care
+  what_to_do: "Period pain is common, and you can usually ease it yourself. It usually lasts up to 3 days."
+  look_out_for:
+    - "Pain that is severe, or worse than usual, and painkillers do not help"
+    - "Periods that become more painful, heavier or irregular"
+    - "Pain that stops you doing your usual daily activities"
+    - "Pain during sex, or bleeding between periods"
+  get_more_help_when:
+    - "See a GP if your periods change, or the pain stops you doing your usual activities"
+    - "Ask for an urgent GP appointment or call 111 if the pain is severe and painkillers have not helped"
+  where_to_go: "You can look after this yourself. A pharmacist can give advice on painkillers."
+  self_care:
+    - "Have a warm bath or shower"
+    - "Use a heat pad or hot water bottle wrapped in a tea towel on your tummy"
+    - "Gently massage your tummy and back"
+    - "Try gentle exercise, such as walking, swimming or yoga"
+    - "Take paracetamol or ibuprofen as the packet says"
+  source: nhs_period_pain
+
+- id: advice_ovulation_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Tummy pain that is severe, keeps coming back, or happens when you could be pregnant needs checking."
+  look_out_for:
+    - "A sharp, sudden and very bad pain in your tummy"
+    - "Feeling faint or dizzy, or passing out"
+    - "Pain in the tip of your shoulder"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of these signs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  source: nhs_ovulation_pain
+
+- id: advice_ovulation_pain_self_care
+  what_to_do: "Ovulation pain is common and is usually nothing to worry about. It happens when an egg is released, about 2 weeks before your period, and usually lasts a short time."
+  look_out_for:
+    - "Pain that is severe and painkillers do not help"
+    - "Pain that keeps coming back or does not go away"
+    - "Pain when you could be pregnant"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of these"
+  where_to_go: "You can look after this yourself. A pharmacist can give advice on painkillers."
+  self_care:
+    - "Have a warm bath"
+    - "Take paracetamol or ibuprofen as the packet says"
+  source: nhs_ovulation_pain
+
+# ---------------------------------------------------------------------------
+# Heavy, irregular and missed periods
+# ---------------------------------------------------------------------------
+- id: advice_heavy_bleeding_emergency
+  what_to_do: "Go to A&E now, or call 999. Heavy bleeding with feeling faint or dizzy can mean you have lost a lot of blood."
+  look_out_for:
+    - "Passing out, or feeling very faint"
+    - "Lips or skin very pale, blue or grey"
+  get_more_help_when:
+    - "Call 999 if you pass out, or cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance."
+  self_care:
+    - "Lie down while you wait for help"
+  source: ai_judgement
+
+- id: advice_heavy_periods_urgent
+  what_to_do: "Get help today. Ask for an urgent GP appointment or call NHS 111."
+  look_out_for:
+    - "Feeling faint or dizzy, or passing out"
+    - "Bleeding that soaks a pad soon after putting it on"
+    - "Severe tummy pain, or pain in the tip of your shoulder"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of these signs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  source: ai_judgement
+  also_informed_by: [nhs_miscarriage, nhs_heavy_periods]
+
+- id: advice_heavy_periods_gp
+  what_to_do: "See a GP about your heavy periods. There are treatments that can help. A GP may check for a cause, such as fibroids (growths in the womb), and test your blood for a lack of iron."
+  look_out_for:
+    - "Feeling tired, short of breath or pale"
+    - "Bleeding between periods or after sex"
+    - "Severe pain during your periods"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you bleed very heavily and feel faint or dizzy"
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  self_care:
+    - "Keep a diary of your periods: how long they last and how many pads or tampons you use"
+    - "Paracetamol or ibuprofen can help with pain"
+  source: nhs_heavy_periods
+
+- id: advice_heavy_periods_self_care
+  what_to_do: "Heavy periods can be normal for you. Treatment can help if they start to affect your daily life."
+  look_out_for:
+    - "Heavy periods that affect your daily life, or go on for months"
+    - "Severe pain during your periods"
+    - "Bleeding between periods or after sex"
+    - "Feeling tired or short of breath a lot"
+  get_more_help_when:
+    - "See a GP if you get any of these"
+    - "Go to A&E or call 999 if you bleed very heavily and feel faint or dizzy"
+  where_to_go: "You can look after this yourself for now. See a GP if anything changes."
+  self_care:
+    - "Keep a diary of your periods, so you notice any change"
+    - "Eat foods with plenty of iron, such as green vegetables, beans and meat"
+  source: nhs_heavy_periods
+
+- id: advice_irregular_periods_gp
+  what_to_do: "See a GP about your irregular periods. They are not usually a sign of a problem, but a GP can check for a cause and help if needed."
+  look_out_for:
+    - "Bleeding between periods or after sex"
+    - "Periods lasting more than 7 days"
+    - "Tummy pain when you could be pregnant"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you have tummy pain and could be pregnant"
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  self_care:
+    - "Use an app or diary to keep track of your periods"
+    - "Do a pregnancy test if you could be pregnant"
+  source: nhs_irregular_periods
+
+- id: advice_missed_period_gp
+  what_to_do: "See a GP about your missed or late periods. It is often nothing to worry about, but a GP can check for a cause."
+  look_out_for:
+    - "Tummy pain, especially low down on one side"
+    - "Bleeding or brown watery discharge from your vagina"
+    - "Pain in the tip of your shoulder"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you could be pregnant and have tummy pain or unusual bleeding"
+    - "Call 999 or go to A&E if you get sudden, very bad tummy pain, or feel very dizzy or faint"
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  self_care:
+    - "Do a pregnancy test if you could be pregnant"
+    - "Keep track of your periods with an app or a diary"
+  source: nhs_missed_or_late_periods
+  also_informed_by: [nhs_ectopic_pregnancy]
+
+# ---------------------------------------------------------------------------
+# Unusual vaginal bleeding
+# ---------------------------------------------------------------------------
+- id: advice_bleeding_between_periods_gp
+  what_to_do: "See a GP or go to a sexual health clinic. Bleeding between periods or after sex is not usually serious, but always get it checked."
+  look_out_for:
+    - "Tummy pain, especially if you have missed a period"
+    - "Heavy bleeding"
+    - "Unusual discharge, or pain when you pee"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you have recently missed a period and have tummy pain"
+    - "Call 999 or go to A&E if you bleed heavily and feel faint or dizzy"
+  where_to_go: "Ask your GP surgery for an appointment, or go to a sexual health clinic. The source gives no fixed time."
+  self_care:
+    - "Use condoms until you have had a test for infections you can catch from sex"
+  source: nhs_vaginal_bleeding_between_periods_or_after_sex
+
+- id: advice_bleeding_after_menopause_gp
+  what_to_do: "See a GP about bleeding after your menopause, even if it was only a small amount or only happened once. It is not usually serious, but it needs checking. The GP should refer you to a specialist."
+  look_out_for:
+    - "Heavy bleeding"
+    - "Feeling faint or dizzy"
+    - "Pain low down in your tummy, or a swollen tummy"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you bleed heavily and feel faint or dizzy"
+  where_to_go: "Ask your GP surgery for an appointment. You should not wait more than 2 weeks to see a specialist after the GP refers you."
+  source: nhs_post_menopausal_bleeding
+
+- id: advice_bleeding_after_menopause_urgent
+  what_to_do: "Get help today. Ask for an urgent GP appointment or call NHS 111. Heavy bleeding after the menopause needs checking soon."
+  look_out_for:
+    - "Feeling faint or dizzy, or passing out"
+    - "Bleeding that soaks a pad soon after putting it on"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel faint or dizzy, or pass out"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  source: ai_judgement
+  also_informed_by: [nhs_post_menopausal_bleeding]
+
+# ---------------------------------------------------------------------------
+# Vaginal discharge and dryness
+# ---------------------------------------------------------------------------
+- id: advice_discharge_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Unusual discharge with pelvic pain can be an infection of the womb, tubes or ovaries, which needs treatment soon."
+  look_out_for:
+    - "Pain that becomes severe or gets worse"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Feeling or being sick, or feeling very unwell"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of these signs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. A sexual health clinic can also help."
+  source: nhs_pelvic_inflammatory_disease
+
+- id: advice_discharge_gp
+  what_to_do: "Get your discharge checked by a GP or a sexual health clinic. Do not try to work out the cause yourself. Changes in discharge can be a sign of an infection that is easy to treat."
+  look_out_for:
+    - "Pain low down in your tummy"
+    - "A high temperature"
+    - "Bleeding between periods or after sex"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get pelvic pain or a high temperature"
+  where_to_go: "Ask your GP surgery for an appointment, call 111, or go to a sexual health clinic. Many sexual health clinics have walk-in times. The source gives no fixed time."
+  self_care:
+    - "Wash the skin around your vagina gently with warm water and a mild soap with no perfume"
+    - "Do not use perfumed soaps, gels, deodorants or scented wipes"
+    - "Do not wash inside your vagina"
+    - "Use condoms until you have been checked"
+  source: nhs_vaginal_discharge
+
+- id: advice_discharge_pregnant_urgent
+  what_to_do: "Call your maternity unit now. If you do not have one, or cannot reach it, call NHS 111. Discharge that is unusual for you, or fluid leaking from your vagina, needs checking in pregnancy."
+  look_out_for:
+    - "Bleeding from your vagina"
+    - "Severe tummy pain"
+    - "Your baby moving less than usual"
+  get_more_help_when:
+    - "Call 999 if you have severe pain or heavy bleeding, or feel faint"
+  where_to_go: "Call your maternity unit. If you are less than 20 weeks pregnant, an early pregnancy unit may be able to help. If you cannot reach either, call 111."
+  source: nhs_miscarriage
+
+- id: advice_vaginal_dryness_gp
+  what_to_do: "See a GP about vaginal dryness. There are treatments that can help, including treatment with the hormone oestrogen."
+  look_out_for:
+    - "Unusual discharge from your vagina"
+    - "Bleeding after sex, between periods or after the menopause"
+  get_more_help_when:
+    - "See a GP sooner if you get bleeding you cannot explain"
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  self_care:
+    - "Use a water-based lubricant before sex"
+    - "Use a vaginal moisturiser"
+    - "Use soaps and washes with no perfume around your vagina"
+  source: nhs_vaginal_dryness
+
+- id: advice_vaginal_dryness_self_care
+  what_to_do: "Vaginal dryness is common, and there are things you can try yourself first. You can get most of them without a prescription."
+  look_out_for:
+    - "Dryness that lasts a few weeks even with the things you have tried"
+    - "Dryness that affects your daily life"
+    - "Unusual discharge. Or bleeding after sex, between periods or after the menopause."
+  get_more_help_when:
+    - "See a GP if you get any of these"
+  where_to_go: "You can look after this yourself. A pharmacist can advise on lubricants and moisturisers."
+  self_care:
+    - "Use a water-based lubricant before sex"
+    - "Use a vaginal moisturiser"
+    - "Use soaps and washes with no perfume around your vagina"
+    - "Do not use creams or lotions that are not made for the vagina"
+  source: nhs_vaginal_dryness
+
+# ---------------------------------------------------------------------------
+# Breasts
+# ---------------------------------------------------------------------------
+- id: advice_breast_lump_gp
+  what_to_do: "See a GP about your breast lump. Most breast lumps are harmless, but always get one checked. If a GP is not sure what is causing it, they will refer you to a breast clinic."
+  look_out_for:
+    - "Any part of your breast becoming hot, swollen or red"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "The lump getting bigger quickly"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your breast gets hot, red or swollen. Or if you get a high temperature."
+  where_to_go: "Ask your GP surgery for an appointment. Do not wait to see if it goes away."
+  source: nhs_breast_lump
+
+- id: advice_breast_infection_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A hot, swollen or red breast, or a high temperature, can be a breast infection that needs treatment."
+  look_out_for:
+    - "Feeling very unwell, or getting worse"
+    - "A painful lump that is getting bigger"
+  get_more_help_when:
+    - "Go back to the GP if you are not getting better within 2 days of starting antibiotics"
+    - "Call 999 or go to A&E if you feel very unwell, confused or faint"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "If you are breastfeeding, keep feeding your baby, including from the sore breast"
+    - "Take paracetamol or ibuprofen for pain. They also help bring a high temperature down."
+    - "Rest and drink plenty of fluids"
+  source: nhs_breast_pain
+  also_informed_by: [nhs_mastitis, nhs_breast_abscess]
+
+- id: advice_breast_pain_gp
+  what_to_do: "See a GP about your breast pain. It is not usually anything serious, but it is best to get it checked."
+  look_out_for:
+    - "A lump, swelling or change to your nipple"
+    - "Dimpled skin on your breast"
+    - "Any part of your breast becoming hot, swollen or red"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your breast gets hot, red or swollen. Or if you get a high temperature."
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  self_care:
+    - "Take paracetamol or ibuprofen. Or rub a painkilling gel on your breast."
+    - "Wear a well-fitting bra in the day and a soft bra at night"
+  source: nhs_breast_pain
+
+- id: advice_breast_pain_self_care
+  what_to_do: "Breast pain is common, and it is not usually a sign of anything serious. Pain linked to your periods often goes away when your period ends."
+  look_out_for:
+    - "A lump, swelling or change to your nipple"
+    - "Dimpled skin on your breast"
+    - "Pain that is not getting better, or painkillers are not helping"
+    - "Any part of your breast becoming hot, swollen or red"
+  get_more_help_when:
+    - "See a GP if you get any of these, or you are worried"
+    - "Ask for an urgent GP appointment or call 111 if your breast gets hot, red or swollen. Or if you get a high temperature."
+  where_to_go: "You can look after this yourself. A pharmacist can advise on painkillers."
+  self_care:
+    - "Take paracetamol or ibuprofen. Or rub a painkilling gel on your breast."
+    - "Wear a well-fitting bra in the day and a soft bra at night"
+  source: nhs_breast_pain
+
+- id: advice_nipple_discharge_gp
+  what_to_do: "See a GP about liquid coming from your nipple. It may not be anything serious, but it is important to get it checked."
+  look_out_for:
+    - "A lump in your breast or armpit"
+    - "Blood in the liquid"
+    - "Any part of your breast becoming hot, swollen or red"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your breast gets hot, red or swollen. Or if you get a high temperature."
+  where_to_go: "Ask your GP surgery for an appointment. The source gives no fixed time."
+  source: nhs_nipple_discharge
+
+# ---------------------------------------------------------------------------
+# Pregnancy: bleeding and stomach pain
+# ---------------------------------------------------------------------------
+- id: advice_pregnancy_999
+  what_to_do: "Call 999 now. You need treatment straight away."
+  look_out_for:
+    - "Passing out, or feeling very faint"
+    - "Bleeding getting heavier"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself. Bring your maternity notes if you have them."
+  self_care:
+    - "Lie down while you wait for help"
+  source: nhs_vaginal_bleeding_pregnancy
+  also_informed_by: [nhs_miscarriage, nhs_stomach_pain_pregnancy]
+
+- id: advice_bleeding_pregnancy_urgent
+  what_to_do: "Get urgent help now. Call your maternity unit if you have the number. Bleeding in pregnancy is not always serious, but it needs checking."
+  look_out_for:
+    - "Severe pain in your tummy"
+    - "Pain in your shoulder"
+    - "Feeling sick, faint or dizzy, or passing out"
+    - "Bleeding getting heavier, soaking a pad soon after putting it on"
+  get_more_help_when:
+    - "Call 999 if you get any of these"
+  where_to_go: "Call your maternity unit. If you are less than 20 weeks pregnant, an early pregnancy unit may be able to help. If you do not have a maternity unit yet, or cannot reach an early pregnancy unit, call 111."
+  self_care:
+    - "Use pads, not tampons, so you can see how much you are bleeding"
+    - "Take paracetamol for pain. Do not take ibuprofen in pregnancy unless a doctor tells you to."
+  source: nhs_vaginal_bleeding_pregnancy
+  also_informed_by: [nhs_miscarriage]
+
+- id: advice_stomach_pain_pregnancy_urgent
+  what_to_do: "Call your maternity unit now. If you cannot reach it, call NHS 111. Your symptoms need to be checked today."
+  look_out_for:
+    - "Severe tummy pain, or pain that does not go away"
+    - "Bleeding from your vagina"
+    - "Your baby moving less than usual"
+    - "Feeling faint, or pain in the tip of your shoulder"
+  get_more_help_when:
+    - "Call 999 if the pain or bleeding is severe, or you feel faint"
+  where_to_go: "Call your maternity unit. If you are less than 20 weeks pregnant, your GP or an early pregnancy unit may be able to help. If you cannot reach them, call 111."
+  source: nhs_stomach_pain_pregnancy
+  also_informed_by: [nhs_signs_of_labour, nhs_baby_movements]
+
+- id: advice_pre_eclampsia_urgent
+  what_to_do: "Get urgent medical help now. Call your maternity unit. These can be signs of pre-eclampsia, a condition that causes high blood pressure in pregnancy. It needs checking straight away."
+  look_out_for:
+    - "A fit (seizure)"
+    - "A severe headache that does not go away, or your headache getting worse"
+    - "Blurred vision, flashing lights, or your vision getting worse"
+    - "Pain just below the ribs"
+    - "Being sick, or sudden swelling of the face, hands or feet"
+  get_more_help_when:
+    - "Call 999 if you have a fit, or feel very unwell"
+  where_to_go: "Call your maternity unit. If you have recently given birth, or cannot reach your maternity unit, call 111."
+  source: nhs_pre_eclampsia
+
+- id: advice_baby_movements_urgent
+  what_to_do: "Call your midwife or maternity unit now. Do not wait until the next day, even if it is the middle of the night. They need to check your baby's movements and heartbeat."
+  look_out_for:
+    - "No movements at all"
+    - "Bleeding from your vagina, or severe tummy pain"
+  get_more_help_when:
+    - "Call 999 if you have heavy bleeding or severe pain"
+  where_to_go: "Call your midwife or maternity unit. Call 111 if you cannot reach them. Do not use a home heartbeat kit to check your baby yourself."
+  source: nhs_baby_movements
+
+- id: advice_stomach_pain_pregnancy_self_care
+  what_to_do: "Tummy pains are common in pregnancy. Mild pain that eases when you rest or move is usually nothing to worry about."
+  look_out_for:
+    - "Pain that is severe, or does not go away after resting for 30 to 60 minutes"
+    - "Bleeding or unusual discharge from your vagina"
+    - "Regular cramps or tightenings"
+    - "Pain when you pee, or needing to pee more often"
+  get_more_help_when:
+    - "Call your maternity unit straight away if you get any of these. If you cannot reach it, call 111."
+    - "Call your maternity unit if you are worried about your pains"
+  where_to_go: "You can look after this yourself. Mention it to your midwife at your next check."
+  self_care:
+    - "Rest, and change position"
+    - "Drink plenty of water and eat foods with fibre, to avoid constipation"
+    - "Take paracetamol if you need to. Do not take ibuprofen in pregnancy unless a doctor tells you to."
+  source: nhs_stomach_pain_pregnancy
+
+- id: advice_severe_sickness_pregnancy_urgent
+  what_to_do: "Contact your GP or midwife, or call NHS 111, as soon as possible today. Being sick many times a day and not keeping food or drink down can be severe sickness in pregnancy. You may need treatment to stop you losing too much water from your body."
+  look_out_for:
+    - "Peeing less than usual, or dark, strong-smelling pee"
+    - "Feeling dizzy or faint"
+    - "Blood in your sick"
+    - "Tummy pain"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you feel very faint, pass out, or cannot keep any fluids down at all"
+  where_to_go: "Contact your GP or midwife, or call 111 or use 111 online. If you have a maternity unit, you can call them."
+  self_care:
+    - "Sip fluids little and often"
+    - "Do a pregnancy test if you have not done one"
+  source: nhs_severe_vomiting_pregnancy

@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: non_melanoma_skin_cancer
+body_system: skin_and_hair
+entry_symptoms: [skin_lump]
+name: "Non-melanoma skin cancer (a growth or patch of skin that does not heal, often on sun-exposed skin)"
+medical_name: "Basal cell or squamous cell carcinoma of skin"
+snomed: "254701007"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart from a wart or cyst: a growth or patch on sun-exposed skin that grows, bleeds, crusts or does not heal for more than 4 weeks, usually in older people.
+  skin_growth_not_healing_4_weeks: strongly_supports
+  skin_growth_bleeds_or_crusts: supports
+  lump_getting_bigger: supports
+key_findings: [skin_growth_not_healing_4_weeks, skin_growth_bleeds_or_crusts]
+source: nhs_non_melanoma_symptoms
+informed_by: [nhs_non_melanoma_symptoms]

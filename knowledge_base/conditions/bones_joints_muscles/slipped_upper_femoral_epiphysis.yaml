@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: slipped_upper_femoral_epiphysis
+body_system: bones_joints_muscles
+# Usually children aged 10 to 15. Often felt only in the knee or thigh, so it is easy to
+# miss. It must be treated quickly before it slips further.
+entry_symptoms: [hip_pain, limp, knee_pain]
+name: "A slipped growth plate at the top of the thigh bone (slipped upper femoral epiphysis)"
+medical_name: "Slipped upper femoral epiphysis"
+snomed: "26460006"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  pain_in_groin_thigh_or_knee: strongly_supports
+  limp: strongly_supports
+  leg_short_or_turned_out: supports
+  pain_not_improving: supports
+  cannot_bear_weight: supports
+key_findings: [pain_in_groin_thigh_or_knee, leg_short_or_turned_out, pain_not_improving]
+source: nhs_limp_in_children
+informed_by: [nhs_limp_in_children]

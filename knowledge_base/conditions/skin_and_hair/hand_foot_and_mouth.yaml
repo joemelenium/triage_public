@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hand_foot_and_mouth
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Hand, foot and mouth (a common, mild infection in young children)"
+medical_name: "Hand, foot and mouth disease"
+snomed: "266108008"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_5, prevalence: common}
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  # What tells it apart from chickenpox: spots or blisters on the hands and feet with mouth ulcers.
+  spots_hands_feet_and_mouth_ulcers: strongly_supports
+  sore_mouth_or_mouth_ulcers: strongly_supports
+  very_high_temperature: supports
+  rash_blisters: supports
+key_findings: [spots_hands_feet_and_mouth_ulcers, sore_mouth_or_mouth_ulcers]
+source: nhs_hand_foot_mouth
+informed_by: [nhs_hand_foot_mouth, nhs_rashes_babies_and_children]

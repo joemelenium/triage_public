@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: nail_injury
+body_system: skin_and_hair
+entry_symptoms: [nail_problem]
+name: "Injured nail, with blood under it or coming loose"
+medical_name: "Subungual haematoma or nail injury"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from melanoma under a nail: it started after an injury, such as trapping or stubbing the finger or toe.
+  nail_injured_recently: strongly_supports
+  nail_changed_no_reason: supports
+key_findings: [nail_injured_recently]
+source: nhs_nail_problems
+informed_by: [nhs_nail_problems]

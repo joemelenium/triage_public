@@ -1,0 +1,75 @@
+id: pal_d10
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- palpitations
+summary: A 41-year-old woman who has had a fluttering feeling in her chest on and off for a few weeks. She is not sure whether it is irregular, how long each one lasts, or whether anything triggers it. She feels well.
+opening_statement: I keep getting this fluttering in my chest, on and off for a few weeks. I honestly can't tell you much more than that.
+findings:
+  present:
+  - palpitations
+  - palpitations_keep_coming_back
+  absent:
+  - chest_pain
+  - short_of_breath
+  - light_headed
+  - fainted
+  - passed_out
+  - sweating
+  - nausea_or_vomiting
+  - stroke_signs
+  - sudden_confusion
+  - severe_breathing_difficulty
+  - palpitations_now
+  - known_heart_condition
+  - family_heart_history
+  - heart_beating_very_fast
+  - pregnant_or_recently_given_birth
+  - heavy_periods
+  - paler_than_usual
+  - feeling_of_panic
+  - palpitations_during_exercise
+  - palpitations_came_with_symptoms
+  unknown:
+  - palpitations_irregular
+  - palpitations_last_minutes
+  - palpitations_after_triggers
+context:
+  none: {}
+  basic:
+    age: 41
+    sex: female
+  full:
+    age: 41
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Get help straight away if palpitations come with chest pain, shortness of breath or feeling faint
+  any_of:
+  - chest pain
+  - short of breath
+  - breathless
+  - faint
+source:
+  expected_outcome:
+    page: heart_palpitations.txt
+    quote: they keep coming back or they are happening more often
+  minimum_safe_acuity:
+    page: atrial_fibrillation.txt
+    quote: you have heart palpitations that keep happening or are getting worse
+variants:
+- id: pal_d10_v1
+  style: hesitant
+  opening_statement: It's probably nothing... just a flutter now and then... I'm not sure how long.
+  volunteered:
+  - palpitations_keep_coming_back
+atypical: false
+notes: Several genuine unknowns. Because the palpitations keep coming back, see a GP regardless of the unknowns.

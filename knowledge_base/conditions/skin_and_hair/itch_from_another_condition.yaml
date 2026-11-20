@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: itch_from_another_condition
+body_system: skin_and_hair
+entry_symptoms: [itchy_skin]
+name: "Itching caused by another health problem"
+medical_name: "Pruritus due to systemic illness"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart from skin causes: itching all over without a rash, with tiredness, weight loss, night sweats, or dark pee and pale poo.
+  itch_all_over_without_rash: strongly_supports
+  very_tired: supports
+  weight_loss: supports
+  night_sweats: supports
+  poo_pale_pee_dark: supports
+key_findings: [itch_all_over_without_rash, weight_loss, night_sweats]
+source: nhs_itchy_skin
+informed_by: [nhs_itchy_skin, nhs_lymphoma]

@@ -1,0 +1,46 @@
+id: sob_d02
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 34-year-old woman, not pregnant, who has felt worn out and a bit breathless on stairs for about two months. Friends say she looks pale. She has heavy periods."
+
+opening_statement: "I've been so tired lately and I get puffed out going up the stairs at work, which never used to happen."
+
+findings:
+  present: [short_of_breath, sob_everyday_activity, sob_slowly_worse, very_tired, paler_than_usual, heavy_periods, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, sob_lying_flat, severe_breathing_difficulty, lips_or_skin_blue_grey, chest_pain, cp_tight_or_squeezing, cp_heavy, palpitations, heart_beating_very_fast, fainted, light_headed, swollen_ankles, leg_pain_or_swelling, coughing_up_blood, cough, wheezing, very_high_temperature, pregnant_or_recently_given_birth, pill_or_hrt, recent_surgery_or_immobile, recent_long_journey, previous_blood_clot, weight_loss, sudden_confusion, nausea_or_vomiting, smoker, has_asthma, known_heart_condition, sob_more_than_usual]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 34, sex: female}
+  full:
+    age: 34
+    sex: female
+    findings: {heavy_periods: "yes", pregnant_or_recently_given_birth: "no"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP (a blood test may be needed)"
+    any_of: ["GP"]
+  - point: "Get urgent help if breathing gets much worse, or chest pain or palpitations start"
+    any_of: ["111", "999", "chest pain", "worse"]
+
+source:
+  expected_outcome: {page: iron_deficiency_anaemia.txt, quote: "you think you might have iron deficiency anaemia"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "your shortness of breath gets worse when you've been doing your normal activities"}
+
+variants: []
+
+atypical: false
+notes: "Iron deficiency anaemia picture (shortness_of_breath, paler than usual skin, tiredness; heavy periods as a cause). Both iron_deficiency_anaemia.txt ('Non-urgent advice: See a GP if') and shortness_of_breath.txt ('Non-urgent advice: See a GP if' breathlessness gets worse with normal activities) agree on a non-urgent GP visit. Palpitations are absent on purpose: shortness_of_breath.txt sends breathlessness with palpitations to NHS 111."

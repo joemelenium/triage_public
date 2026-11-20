@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: allergic_rhinitis
+body_system: ear_nose_throat
+entry_symptoms: [blocked_or_runny_nose, catarrh, loss_of_smell_or_taste, snoring]
+name: "Allergic rhinitis (a nose allergy, often all year)"
+medical_name: "Perennial allergic rhinitis"
+snomed: "446096008"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from hay fever: it carries on all year, set off by dust mites, pets or mould
+  # rather than pollen. From a cold: itching and sneezing, and it lasts for weeks.
+  blocked_or_runny_nose: strongly_supports
+  itchy_watery_eyes_sneezing: strongly_supports
+  nose_symptoms_all_year: strongly_supports
+  triggered_by_allergy: strongly_supports
+  has_allergies: supports
+  nose_symptoms_3_weeks: supports
+key_findings: [itchy_watery_eyes_sneezing, triggered_by_allergy, nose_symptoms_all_year]
+source: nhs_allergic_rhinitis
+informed_by: [nhs_allergic_rhinitis, nhs_catarrh]

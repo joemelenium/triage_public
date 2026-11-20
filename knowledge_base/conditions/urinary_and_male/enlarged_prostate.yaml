@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: enlarged_prostate
+body_system: urinary_and_male
+entry_symptoms: [painful_or_frequent_peeing, cannot_pee, urinary_incontinence, blood_in_urine, blood_in_semen]
+name: "Enlarged prostate"
+medical_name: "Benign prostatic hyperplasia"
+snomed: "266569009"
+# The Prostate enlargement page says see a GP for problems peeing. Danger moderate:
+# it can lead to being unable to pee. Only people with a prostate get it, and
+# mostly over 50.
+acuity_needed: routine
+danger: moderate
+sex: male
+prevalence: uncommon
+prevalence_when:
+  - {finding: sex_female, prevalence: very_rare}
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: age_45_or_over, prevalence: common}
+  - {finding: cannot_pee, prevalence: common}
+findings:
+  # What tells it apart from an infection: it builds up slowly over months, with a
+  # weak flow, straining, dribbling and getting up at night, and no pain.
+  weak_flow_or_straining: strongly_supports
+  bladder_not_emptying: strongly_supports
+  peeing_at_night_more: strongly_supports
+  peeing_problem_for_months: supports
+  peeing_more_often: supports
+key_findings: [weak_flow_or_straining, bladder_not_emptying, peeing_at_night_more, peeing_problem_for_months]
+source: nhs_prostate_enlargement
+informed_by: [nhs_prostate_enlargement, nhs_blood_in_urine, nhs_urinary_incontinence_symptoms]

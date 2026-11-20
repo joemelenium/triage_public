@@ -1,0 +1,60 @@
+# Entry symptom: metallic taste.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Metallic taste page, with the Gum disease and Anaphylaxis
+# pages. A metallic taste can be an early sign of a severe allergic reaction,
+# so those signs are checked first (AI judgement).
+
+id: metallic_taste
+name: "Metallic taste"
+presenting_finding: metallic_taste
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: metallic_taste_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+
+red_flags:
+  - id: rf_mt_allergic_swelling
+    description: "Lips, mouth, tongue or throat suddenly swollen"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_mt_throat_tight
+    description: "A metallic taste with the throat feeling tight or closed up"
+    when: throat_tight
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+    note: "Clinical knowledge: a sudden metallic taste can be an early sign of a severe allergic reaction."
+
+outcome_rules:
+  - id: or_mt_lasting
+    description: "A metallic taste that does not go away, or has no obvious cause"
+    when: metallic_taste_lasting
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_metallic_taste_gp
+    source: nhs_metallic_taste
+
+  - id: or_mt_gums
+    description: "A metallic taste with painful, swollen or bleeding gums"
+    when: gums_sore_swollen_bleeding
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_bad_breath_dentist
+    source: nhs_gum_disease
+
+default:
+  description: "A metallic taste with nothing that needs more help: it often goes away by itself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A metallic taste is not usually serious and will sometimes go away by itself"}
+  advice: advice_metallic_taste_self_care
+  source: nhs_metallic_taste

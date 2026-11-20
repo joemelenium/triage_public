@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: penile_cancer
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot]
+name: "Penile cancer"
+medical_name: "Malignant neoplasm of penis"
+snomed: "363516004"
+acuity_needed: routine
+danger: serious
+sex: male
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: rare}
+findings:
+  penis_sore_not_healing: strongly_supports
+  discharge_from_penis: supports
+  weight_loss: supports
+key_findings: [penis_sore_not_healing, discharge_from_penis]
+source: nhs_penile_cancer_symptoms
+informed_by: [nhs_penile_cancer_symptoms, nhs_penis_lumps_and_spots]

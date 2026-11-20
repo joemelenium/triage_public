@@ -1,0 +1,79 @@
+# Entry symptom: sore or dry lips.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Sore or dry lips page, with the Cold sores, Mouth cancer and
+# Anaphylaxis pages.
+
+id: sore_or_dry_lips
+name: "Sore or dry lips"
+presenting_finding: sore_or_dry_lips
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: lips_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+
+red_flags:
+  - id: rf_li_allergic_swelling
+    description: "Lips, mouth, tongue or throat suddenly swollen"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_li_throat_tight
+    description: "Sore lips with the throat feeling tight or closed up"
+    when: throat_tight
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+outcome_rules:
+  - id: or_li_hot_swollen
+    description: "Lips that are hot, painful and swollen, which could be an infection"
+    when: lips_hot_painful_swollen
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lips_gp
+    source: nhs_sore_or_dry_lips
+
+  - id: or_li_cold_sore_large
+    description: "A cold sore that is very large or painful, or not healing after 10 days"
+    when: cold_sore_large_or_not_healing
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lips_gp
+    source: nhs_cold_sores
+
+  - id: or_li_cold_sore_weak_immune
+    description: "A cold sore in someone with a weakened immune system"
+    when: {all: [cold_sore_blisters, weakened_immune_system]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lips_gp
+    source: nhs_cold_sores
+
+  - id: or_li_cold_sore_with_mouth_sores
+    description: "A cold sore with swollen, painful gums or sores inside the mouth"
+    when: {all: [cold_sore_blisters, {any: [gums_sore_swollen_bleeding, mouth_ulcer]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_lips_gp
+    source: nhs_cold_sores
+
+  - id: or_li_patch_or_lump
+    description: "A red or white patch, or a lump, on the lip or in the mouth for more than 3 weeks"
+    when: mouth_patch_or_lump_3_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or dentist. The source gives no fixed time."}
+    advice: advice_mouth_lump_gp
+    source: nhs_mouth_cancer
+
+default:
+  description: "Sore or dry lips with nothing that needs more help: treat them yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Sore or dry lips can usually be treated yourself. A pharmacist can help."}
+  advice: advice_lips_self_care
+  source: nhs_sore_or_dry_lips

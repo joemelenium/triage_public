@@ -1,0 +1,112 @@
+# Entry symptom: reflux in babies (a baby bringing up milk or being sick
+# during or after feeds).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Reflux is very common and usually gets better on its own. The must-not-miss
+# causes of a baby being sick are a twisted bowel (green sick), a narrowed
+# stomach outlet (forceful sick), infection and sepsis, and dehydration.
+
+id: reflux_in_babies
+name: "Reflux in babies"
+presenting_finding: baby_bringing_up_milk
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: baby_reflux_emergency_screen
+    level: emergency
+    question: "Do any of these apply to your baby right now? Choose all that apply."
+    findings:
+      - green_vomit
+      - child_floppy_or_hard_to_wake
+      - baby_weak_or_high_pitched_cry
+      - baby_high_temperature
+      - not_peed_12_hours
+      - skin_blotchy
+
+  - id: baby_reflux_urgent_screen
+    level: urgent
+    question: "Do any of these apply to your baby? Choose all that apply."
+    findings:
+      - vomiting_blood
+      - projectile_vomiting
+      - bleeding_from_bottom
+      - tummy_swollen
+      - very_high_temperature
+      - cannot_keep_fluids_down
+      - diarrhoea_over_7_days
+      - dehydration_signs
+      - baby_will_not_stop_crying
+      - feeding_much_less
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_br_green_vomit
+    description: "A baby being sick, with green or yellow-green sick: possible twisted or blocked bowel"
+    when: green_vomit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_diarrhoea_and_vomiting
+    note: "Source difference: the Reflux in babies page says an urgent GP appointment or 111 for green or yellow sick. The Diarrhoea and vomiting page says 999 or A&E for yellow-green or green sick in children. The more urgent is used."
+
+  - id: rf_br_floppy
+    description: "A baby who is limp, floppy, hard to wake or not responding as usual"
+    when: child_floppy_or_hard_to_wake
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_emergency
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_br_weak_cry
+    description: "A baby with a weak or high-pitched cry, or a cry not like their usual one"
+    when: baby_weak_or_high_pitched_cry
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_baby_emergency
+    source: nhs_colic
+
+  - id: rf_br_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: baby_high_temperature
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_br_no_wet_nappy
+    description: "A baby with a dry nappy for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_baby_emergency
+    source: nhs_sepsis
+
+  - id: rf_br_blotchy
+    description: "A baby with blotchy or mottled skin"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_br_urgent_signs
+    description: "A baby with blood in their sick or poo, forceful (projectile) sick, a swollen or tender tummy, a high temperature, being sick so often they cannot keep feeds down, diarrhoea for over a week, signs of dehydration, crying and very distressed, or refusing feeds"
+    when: {any: [vomiting_blood, projectile_vomiting, bleeding_from_bottom, tummy_swollen, very_high_temperature, cannot_keep_fluids_down, diarrhoea_over_7_days, dehydration_signs, baby_will_not_stop_crying, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_baby_reflux_urgent
+    source: nhs_reflux_in_babies
+
+outcome_rules:
+  - id: or_br_gp
+    description: "Reflux not improving after trying things to ease it, starting after 6 months old, still there after 1 year, or a baby not gaining weight"
+    when: {any: [reflux_not_improving, reflux_late_or_lasting, baby_not_gaining_weight]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_baby_reflux_gp
+    source: nhs_reflux_in_babies
+
+default:
+  description: "A baby bringing up a little milk who is otherwise happy, healthy and gaining weight: reflux usually gets better on its own"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A health visitor can give advice and support"}
+  advice: advice_baby_reflux_self_care
+  source: nhs_reflux_in_babies

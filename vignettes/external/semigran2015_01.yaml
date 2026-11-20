@@ -1,0 +1,18 @@
+id: semigran2015_01
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Acute liver failure
+original_triage_label: Requires emergent care
+original_triage: emergency
+presenting_text: altered mental status over several hours (acutely disoriented and increasingly drowsy)
+presenting: []
+age: 48
+sex: female
+findings:
+  present:
+  - sudden_confusion
+  absent: []
+  unknown: []
+conversion_notes: '''Acutely disoriented'', with altered mental status over the last several hours, is mapped to sudden_confusion. ''Increasingly somnolent'' is not mapped to passed_out: the text does not say she passed out or is unresponsive. The text describes taking additional acetaminophen (paracetamol) pills for back pain on top of other acetaminophen-containing medicines; it does not call this an overdose or self-harm, so serious_self_harm is left out. Examination and laboratory findings (scleral icterus, asterixis, ALT, bilirubin, INR) have no matching question. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 1 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

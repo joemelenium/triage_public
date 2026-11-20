@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: leukaemia
+body_system: ear_nose_throat
+entry_symptoms: [swollen_glands, nosebleed]
+name: "Leukaemia (a cancer of the blood)"
+medical_name: "Acute leukaemia"
+snomed: "91855006"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart from an infection: bruising or bleeding easily, looking pale and feeling very
+  # tired, building up over a few weeks.
+  bruising_or_bleeding_easily: strongly_supports
+  paler_than_usual: supports
+  very_tired: supports
+  very_high_temperature: supports
+  night_sweats: supports
+  weight_loss: supports
+key_findings: [bruising_or_bleeding_easily, paler_than_usual, very_tired]
+source: nhs_acute_lymphoblastic_leukaemia
+informed_by: [nhs_acute_lymphoblastic_leukaemia, nhs_swollen_glands]

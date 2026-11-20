@@ -1,0 +1,852 @@
+# Advice for the bones, joints and muscles body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml. Wording is adapted from the cited NHS
+# website page. Adapted text no longer carries the NHS website's clinical approval.
+
+# ---------------------------------------------------------------------------
+# Shared: emergencies
+# ---------------------------------------------------------------------------
+- id: advice_msk_emergency_ae
+  what_to_do: "Go to A&E now. You may have a broken bone, a joint out of place, or damage to the nerves or blood vessels."
+  look_out_for:
+    - "The arm, hand, leg or foot going cold, pale, blue or grey"
+    - "Numbness or pins and needles getting worse"
+    - "Pain that keeps getting worse, even with painkillers"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E, or you cannot move because of the pain"
+    - "Call 999 if a bone is sticking out, or there is heavy bleeding"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you, or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Do not try to push a bone or joint back into place"
+    - "Keep the injured part still. Support it with a cushion or a sling if you can."
+    - "Do not eat or drink in case you need an operation"
+    - "Take off any rings or watches near the injury before it swells"
+  source: nhs_sprains_and_strains
+  also_informed_by: [nhs_broken_arm_or_wrist, nhs_dislocated_shoulder, nhs_broken_ankle]
+
+- id: advice_injury_999
+  what_to_do: "Call 999 now. These can be signs of shock after a serious injury."
+  look_out_for:
+    - "Getting more pale, cold or sleepy"
+    - "Breathing getting faster, or the person stops responding"
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  where_to_go: "Call 999. Stay with the person and keep them warm."
+  self_care:
+    - "Lie the person down and raise their legs if you can, unless you think they have hurt their neck, back or legs"
+    - "Press firmly on any bleeding with a clean cloth"
+    - "Do not give them anything to eat or drink"
+  source: nhs_broken_leg
+
+- id: advice_spinal_injury_emergency
+  what_to_do: "Call 999 or go to A&E now. The spine may be injured after a serious accident."
+  look_out_for:
+    - "Numbness, tingling or weakness in the arms or legs"
+    - "Problems peeing or pooing"
+    - "Being sick, very sleepy or confused after hitting the head"
+  get_more_help_when:
+    - "Call 999 straight away if the neck or back may be hurt. Do not move the person unless they are in danger."
+  where_to_go: "Call 999 for an ambulance if the neck or back may be hurt. Otherwise go to A&E. Do not drive yourself."
+  self_care:
+    - "Keep still and keep the head and neck in line with the body"
+    - "Do not try to sit up or walk if your neck or back hurts after a serious accident"
+  source: nhs_back_pain
+  also_informed_by: [nhs_falls, nhs_head_injury]
+
+- id: advice_spinal_nerve_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs of pressure on the nerves at the bottom of the spine (cauda equina syndrome). This needs treatment in hospital as soon as possible."
+  look_out_for:
+    - "Numbness around your genitals or bottom getting worse"
+    - "Not being able to pee, or not being able to control when you pee or poo"
+    - "Weakness or numbness in both legs"
+  get_more_help_when:
+    - "Do not wait to see if it gets better. Go now, even at night."
+  where_to_go: "Go to A&E now, or call 999. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_back_pain
+  also_informed_by: [nhs_sciatica, nhs_slipped_disc]
+
+- id: advice_limb_blood_supply_emergency
+  what_to_do: "Call 999 or go to A&E now. A cold, pale, blue or grey arm or leg can mean its blood supply is blocked. It needs treatment within hours."
+  look_out_for:
+    - "The arm or leg getting colder or more pale"
+    - "Numbness or weakness getting worse"
+    - "Pain getting much worse"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E quickly"
+  where_to_go: "Go to A&E now, or call 999. Do not drive yourself."
+  self_care:
+    - "Do not rub the arm or leg or put heat on it"
+    - "Take off anything tight, such as rings or a tight bandage"
+  source: nhs_sprains_and_strains
+  also_informed_by: [nhs_peripheral_arterial_disease]
+
+- id: advice_compartment_emergency
+  what_to_do: "Call 999 or go to A&E now. Pain that keeps getting worse after an injury can be pressure building up inside the muscles (compartment syndrome). This may need an operation quickly."
+  look_out_for:
+    - "The muscle feeling very tight or hard"
+    - "Numbness or pins and needles"
+    - "A plaster cast feeling tighter"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E quickly"
+  where_to_go: "Go to A&E now, or call 999. Do not drive yourself."
+  self_care:
+    - "Do not raise the arm or leg high above your heart. Keep it level."
+    - "Loosen any tight bandage. Do not take off a plaster cast yourself."
+  source: nhs_compartment_syndrome
+  also_informed_by: [nhs_broken_leg, nhs_broken_arm_or_wrist]
+
+- id: advice_dvt_emergency
+  what_to_do: "Call 999 or go to A&E now. A blood clot in the leg may have moved to your lungs. This can be life-threatening."
+  look_out_for:
+    - "Breathing getting harder"
+    - "Chest pain getting worse"
+    - "Coughing up blood, or feeling faint"
+  get_more_help_when:
+    - "Call 999 if you collapse, or your breathing gets much worse"
+  where_to_go: "Go to A&E now, or call 999. Do not drive yourself. Bring any medicines you take."
+  source: nhs_deep_vein_thrombosis
+  also_informed_by: [nhs_pulmonary_embolism]
+
+- id: advice_back_pain_999
+  what_to_do: "Call 999 now. Back pain with chest pain, or sudden very bad pain in your back or tummy, can be a sign of a heart attack or a problem with the main blood vessel in the body."
+  look_out_for:
+    - "Feeling faint, or passing out"
+    - "Skin turning pale, grey or sweaty"
+    - "Being short of breath"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+    - "If the person stops responding and stops breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  where_to_go: "Call 999. Do not drive yourself to A&E. Stay with someone until help arrives."
+  source: nhs_abdominal_aortic_aneurysm
+  also_informed_by: [nhs_back_pain, nhs_heart_attack]
+
+- id: advice_neck_pain_999
+  what_to_do: "Call 999 now. These can be signs of pressure on the spinal cord, or bleeding on the brain."
+  look_out_for:
+    - "Weakness or numbness getting worse"
+    - "Face drooping, slurred speech or not being able to lift both arms"
+    - "Being very sleepy or confused"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself."
+  source: nhs_cervical_spondylosis
+  also_informed_by: [nhs_stroke_symptoms]
+
+- id: advice_fall_999
+  what_to_do: "Call 999 now. The person may have a serious injury, or has been on the floor too long."
+  look_out_for:
+    - "Pain in the head, neck, back or hip"
+    - "Being confused or very sleepy"
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+  where_to_go: "Call 999. Do not try to lift the person yourself."
+  self_care:
+    - "Keep the person warm and comfortable, for example with a blanket"
+    - "If they can get up safely, help them slowly onto a chair. Do not lift them yourself."
+  source: nhs_falls
+
+- id: advice_child_limp_emergency
+  what_to_do: "Call 999 or go to A&E now. Your child needs to be checked in hospital. It could be an infected joint or bone, a broken bone, or a hip problem that needs treatment quickly."
+  look_out_for:
+    - "Your child getting more unwell, sleepy or floppy"
+    - "A rash that does not fade when you press a glass against it"
+    - "Pain getting worse"
+  get_more_help_when:
+    - "Call 999 if your child is very unwell or you cannot get to A&E"
+  where_to_go: "Go to A&E now, or call 999. Do not drive if you are upset. Bring any medicines your child takes."
+  self_care:
+    - "Do not let your child walk on the painful leg"
+    - "Do not give them anything to eat until a doctor has checked them, in case they need an operation"
+  source: nhs_limp_in_children
+  also_informed_by: [nhs_hip_pain_children_irritable_hip, nhs_septic_arthritis]
+
+- id: advice_hip_pain_emergency
+  what_to_do: "Call 999 or go to A&E now. You may have a broken hip or another serious injury."
+  look_out_for:
+    - "The leg looking shorter or turned outwards"
+    - "Numbness or tingling in the leg"
+    - "Pain getting worse"
+  get_more_help_when:
+    - "Call 999 if you cannot move, or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to drive you or call 999 for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Do not try to walk on the leg"
+    - "Keep warm while you wait"
+  source: nhs_hip_pain
+  also_informed_by: [nhs_hip_fracture]
+
+# ---------------------------------------------------------------------------
+# Shared: urgent and GP
+# ---------------------------------------------------------------------------
+- id: advice_joint_infection_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A hot, swollen joint, or joint pain with a high temperature, can be an infection in the joint or bone that needs treatment quickly."
+  look_out_for:
+    - "The joint getting hotter, more swollen or harder to move"
+    - "Feeling more unwell, hot, cold or shivery"
+    - "Red skin spreading"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel very unwell, confused, or your skin goes blotchy, pale or blue"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. If you cannot get an urgent appointment, call 111."
+  self_care:
+    - "Rest the joint"
+    - "Take paracetamol for the pain while you wait"
+  source: nhs_septic_arthritis
+  also_informed_by: [nhs_joint_pain, nhs_osteomyelitis]
+
+- id: advice_injury_urgent
+  what_to_do: "Get help from NHS 111 or go to an urgent treatment centre today. You may have a broken bone or a torn ligament or tendon, and may need an X-ray."
+  look_out_for:
+    - "The injured part changing shape, or going numb, cold, pale or blue"
+    - "Pain or swelling getting much worse"
+  get_more_help_when:
+    - "Go to A&E or call 999 if the injured part changes shape, goes numb, cold, pale or blue, or a bone is sticking out"
+  where_to_go: "Call 111 or use 111 online. You can also go to an urgent treatment centre (also called a walk-in centre or minor injuries unit)."
+  self_care:
+    - "Rest the injured part and keep it still"
+    - "Put an ice pack (or frozen peas) wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Raise it on a pillow if you can"
+    - "Take off any rings or jewellery near the injury"
+  source: nhs_sprains_and_strains
+  also_informed_by: [nhs_broken_arm_or_wrist, nhs_broken_leg]
+
+- id: advice_msk_gp
+  what_to_do: "See a GP. In many areas you can also refer yourself to a physiotherapist or an NHS service for muscle and joint problems without seeing a GP first."
+  look_out_for:
+    - "The pain getting worse, or new swelling, heat or redness"
+    - "Numbness, tingling or weakness"
+    - "Feeling unwell with a high temperature"
+  get_more_help_when:
+    - "Get help from NHS 111 if the pain gets very bad, or the area gets hot and swollen. Do the same if you feel hot, cold or shivery."
+  where_to_go: "Contact your GP surgery, or look for an NHS service for back and joint problems you can refer yourself to."
+  self_care:
+    - "Keep moving gently. Do not stop using the painful part completely."
+    - "Use painkillers such as paracetamol or ibuprofen gel. Ask a pharmacist which is right for you."
+    - "Use an ice pack or heat pack wrapped in a towel"
+  source: nhs_joint_pain
+  also_informed_by: [nhs_back_pain, nhs_shoulder_pain]
+
+- id: advice_msk_gp_soon
+  what_to_do: "See a GP within a few days. Back pain with weight loss, or in someone who has had cancer, needs checking."
+  look_out_for:
+    - "Weakness or numbness in your legs"
+    - "Problems peeing or pooing"
+    - "Pain in your upper back, or pain that wakes you at night"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you go numb around your genitals or bottom. Do the same if you have problems peeing or pooing, or both legs feel weak."
+    - "Contact your cancer team or 111 if your pain gets much worse"
+  where_to_go: "Ask your GP surgery for an appointment in the next few days."
+  source: nhs_back_pain
+
+# ---------------------------------------------------------------------------
+# Back pain
+# ---------------------------------------------------------------------------
+- id: advice_back_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today."
+  look_out_for:
+    - "Numbness around your genitals or bottom"
+    - "Problems peeing or pooing"
+    - "Pain, tingling, weakness or numbness in both legs"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of these, or chest pain"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Keep moving gently if you can"
+    - "Take painkillers such as ibuprofen if they are right for you"
+  source: nhs_back_pain
+
+- id: advice_back_pain_cancer_urgent
+  what_to_do: "Contact your cancer team, or get help from NHS 111 today. New back pain in someone who has had cancer needs checking quickly, in case the cancer has spread to the spine."
+  look_out_for:
+    - "Weakness, numbness or heaviness in your legs"
+    - "Problems walking"
+    - "Problems peeing or pooing"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your legs become weak or numb, or you cannot control when you pee or poo"
+  where_to_go: "Call your cancer team's helpline if you have one. If not, call 111 or use 111 online."
+  source: ai_judgement
+  also_informed_by: [nhs_back_pain]
+
+- id: advice_back_pain_gp
+  what_to_do: "See a GP. In many areas you can also refer yourself to a physiotherapist without seeing a GP first."
+  look_out_for:
+    - "Numbness around your genitals or bottom"
+    - "Problems peeing or pooing"
+    - "Pain, tingling, weakness or numbness in both legs"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you go numb around your genitals or bottom. Do the same if you have problems peeing or pooing, or pain, tingling or weakness in both legs."
+    - "Get an urgent GP appointment or help from 111 if you feel hot, cold or shivery, or the pain gets worse quickly"
+  where_to_go: "Contact your GP surgery, or look for an NHS service for back and joint problems you can refer yourself to."
+  self_care:
+    - "Stay active and keep doing your daily activities if you can"
+    - "Take ibuprofen if it is right for you. Paracetamol on its own is not recommended for back pain."
+    - "Do not stay in bed for long periods"
+  source: nhs_back_pain
+
+- id: advice_back_pain_self_care
+  what_to_do: "Back pain usually gets better on its own within a few weeks. Stay active and ease the pain yourself."
+  look_out_for:
+    - "Numbness around your genitals or bottom"
+    - "Problems peeing or pooing"
+    - "Pain, tingling, weakness or numbness in both legs"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you go numb around your genitals or bottom. Do the same if you have problems peeing or pooing, or pain, tingling or weakness in both legs."
+    - "See a GP if it has not improved after a few weeks, or it is stopping you doing your usual activities"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help you choose a painkiller."
+  self_care:
+    - "Stay active and try to carry on with your daily activities"
+    - "Take ibuprofen if it is right for you. Paracetamol on its own is not recommended for back pain."
+    - "Use an ice pack or a heat pack wrapped in a tea towel"
+    - "Try back stretches. Walking, swimming, yoga or pilates can also help."
+    - "Do not stay in bed for long periods"
+  source: nhs_back_pain
+
+# ---------------------------------------------------------------------------
+# Neck pain
+# ---------------------------------------------------------------------------
+- id: advice_neck_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. This could be a trapped nerve or another problem in the neck."
+  look_out_for:
+    - "New problems walking, or clumsy hands"
+    - "Losing control of your bladder or bowels"
+    - "A stiff neck with a high temperature, a very bad headache or a rash"
+  get_more_help_when:
+    - "Call 999 if you get problems walking, lose control of your bladder or bowels, or have a sudden, very bad headache"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Do not drive or cycle until you have been checked"
+    - "Take paracetamol or ibuprofen for the pain"
+  source: nhs_cervical_spondylosis
+  also_informed_by: [nhs_whiplash]
+
+- id: advice_neck_pain_gp
+  what_to_do: "See a GP. In many areas you can also refer yourself to a physiotherapist without seeing a GP first."
+  look_out_for:
+    - "Pins and needles, numbness or weakness in your arms"
+    - "A stiff neck with a high temperature or a very bad headache"
+  get_more_help_when:
+    - "Get an urgent GP appointment or help from 111 if your arms or legs feel weak or heavy"
+    - "Call 999 or go to A&E if you have a stiff neck with a high temperature and cannot look at bright lights"
+  where_to_go: "Contact your GP surgery, or look for an NHS service for back and joint problems you can refer yourself to."
+  self_care:
+    - "Keep your neck moving. Do not wear a neck collar unless a doctor tells you to."
+    - "Use a low, firm pillow"
+  source: nhs_neck_pain_and_stiff_neck
+
+- id: advice_neck_pain_self_care
+  what_to_do: "Most neck pain gets better within a few weeks. You can ease it yourself."
+  look_out_for:
+    - "Pins and needles, numbness or weakness in your arms"
+    - "A stiff neck with a high temperature, a very bad headache, or bright lights hurting your eyes"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you have a stiff neck with a high temperature or a very bad headache"
+    - "See a GP if it does not go away after a few weeks, or painkillers do not help"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with painkillers."
+  self_care:
+    - "Take painkillers. Or rub a painkilling gel on your neck."
+    - "Put a pack of frozen peas wrapped in a tea towel on your neck for 5 minutes, 3 times a day. Or use a hot water bottle wrapped in a tea towel."
+    - "Use a low, firm pillow and try gentle neck exercises"
+    - "Do not wear a neck collar, and do not drive or cycle if you cannot turn your neck"
+  source: nhs_neck_pain_and_stiff_neck
+
+- id: advice_giant_cell_arteritis_urgent
+  what_to_do: "Contact a GP straight away, or get help from NHS 111 today. A new headache, a tender scalp, jaw pain when eating, or sight problems can be inflamed blood vessels in the head (giant cell arteritis). Without quick treatment it can cause blindness or a stroke."
+  look_out_for:
+    - "Any loss of sight, or double vision"
+    - "Signs of a stroke: face drooping, not being able to lift both arms, or slurred speech"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you lose any sight, or have signs of a stroke"
+  where_to_go: "Contact your GP surgery now, or call 111 or use 111 online."
+  source: nhs_polymyalgia_rheumatica
+
+# ---------------------------------------------------------------------------
+# Shoulder, arm and hand
+# ---------------------------------------------------------------------------
+- id: advice_shoulder_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. This could be a broken or dislocated bone, a torn tendon, or an infection."
+  look_out_for:
+    - "Your arm going cold, pale or blue, or losing feeling"
+    - "Chest pain, or being short of breath"
+  get_more_help_when:
+    - "Call 999 if you get chest pain"
+    - "Go to A&E if your shoulder has changed shape after an injury, or you cannot move your arm"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Rest your arm on a cushion in your lap"
+    - "Take paracetamol or ibuprofen for the pain"
+  source: nhs_shoulder_pain
+
+- id: advice_shoulder_pain_self_care
+  what_to_do: "You can usually ease shoulder pain yourself. It often takes 2 weeks to start feeling better. A pharmacist can help with painkillers."
+  look_out_for:
+    - "Not being able to move your arm"
+    - "Pins and needles that do not go away, or no feeling in your arm"
+    - "Feeling hot, cold, shivery or unwell"
+  get_more_help_when:
+    - "Get help from 111 or an urgent GP appointment if the pain gets very bad or you cannot move your arm. Do the same if you feel hot, cold or unwell."
+    - "See a GP if it gets worse or does not improve after 2 weeks"
+  where_to_go: "You do not need to see anyone now. A pharmacist can suggest the best painkiller, cream or gel."
+  self_care:
+    - "Stay active and gently move your shoulder. Do not stop using it completely."
+    - "Take painkillers so that you can keep moving"
+    - "Put a heat or cold pack wrapped in a tea towel on it for up to 20 minutes, 2 or 3 times a day"
+    - "Try shoulder exercises for 6 to 8 weeks to stop the pain coming back"
+  source: nhs_shoulder_pain
+
+- id: advice_arm_pain_urgent
+  what_to_do: "Go to an urgent treatment centre or A&E today. You may have a broken bone, an injury to the nerves, or another problem that needs checking."
+  look_out_for:
+    - "Your arm or hand going numb, cold, pale or blue"
+    - "Your arm changing shape"
+    - "Pain that keeps getting worse"
+  get_more_help_when:
+    - "Call 999 if arm pain comes on suddenly with pressure, heaviness or squeezing in your chest"
+    - "Go to A&E straight away if a bone is sticking out, or your arm goes cold, pale or blue"
+  where_to_go: "Go to an urgent treatment centre (also called a walk-in centre or minor injuries unit) or A&E. You can also call 111."
+  self_care:
+    - "Keep the arm still, and support it with a sling or cushion"
+    - "Take off any rings or watches"
+    - "Put an ice pack wrapped in a towel on it"
+  source: nhs_elbow_and_arm_pain
+  also_informed_by: [nhs_broken_arm_or_wrist]
+
+- id: advice_arm_pain_111
+  what_to_do: "Get help from NHS 111 today. Arm pain that comes on with exercise and goes with rest can be a sign of a heart problem such as angina (chest pain caused by narrowed blood vessels to the heart)."
+  look_out_for:
+    - "Pain or pressure in your chest"
+    - "Being short of breath, sweaty or feeling sick"
+  get_more_help_when:
+    - "Call 999 if arm pain comes on suddenly with pressure, heaviness or squeezing in your chest"
+  where_to_go: "Call 111 or use 111 online."
+  self_care:
+    - "Avoid the activity that brings on the pain until you have been checked"
+  source: nhs_elbow_and_arm_pain
+
+- id: advice_arm_pain_self_care
+  what_to_do: "Elbow and arm pain is not usually a sign of anything serious. Try easing it yourself for a couple of days."
+  look_out_for:
+    - "Pressure, heaviness or squeezing in your chest"
+    - "Tingling or numbness in your arm"
+    - "A swollen arm with a high temperature"
+  get_more_help_when:
+    - "Call 999 if arm pain comes on suddenly with pressure, heaviness or squeezing in your chest"
+    - "See a GP if the pain does not go away after a few weeks"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with painkillers."
+  self_care:
+    - "Put a heat pack, or frozen peas wrapped in a tea towel, on your arm for 10 to 15 minutes every few hours"
+    - "Take painkillers such as paracetamol or ibuprofen"
+    - "Raise your arm if it is swollen"
+  source: nhs_elbow_and_arm_pain
+
+- id: advice_hand_pain_urgent
+  what_to_do: "Contact NHS 111 or go to an urgent treatment centre today. You may have a broken bone, a torn tendon or an infection."
+  look_out_for:
+    - "Your hand or fingers going numb, cold, pale or blue"
+    - "Red skin spreading, or feeling hot, cold or shivery"
+    - "Pain getting worse"
+  get_more_help_when:
+    - "Go to A&E if a finger or your wrist is at an odd angle, a bone is showing, or your hand goes numb, cold or blue"
+  where_to_go: "Call 111 or use 111 online, or go to an urgent treatment centre."
+  self_care:
+    - "Take off any rings or jewellery before your hand swells"
+    - "Rest your hand, and raise it if it is swollen"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Do not use heat packs or have hot baths for the first 2 to 3 days after an injury"
+  source: nhs_wrist_pain
+  also_informed_by: [nhs_finger_pain, nhs_thumb_pain, nhs_mallet_finger]
+
+- id: advice_hand_pain_self_care
+  what_to_do: "You can often ease hand pain yourself. A pharmacist can help with painkillers and splints."
+  look_out_for:
+    - "Tingling, numbness or loss of feeling in your hand"
+    - "A hot, red, swollen joint or lump"
+    - "Feeling unwell with a high temperature"
+  get_more_help_when:
+    - "Contact 111 if the pain becomes severe, you cannot move your hand or hold things, or you feel hot, cold or shivery"
+    - "See a GP if it has not improved after 2 weeks, keeps coming back, or you have diabetes"
+  where_to_go: "You do not need to see anyone now. A pharmacist can suggest the best painkiller and a splint."
+  self_care:
+    - "Rest your hand when you can, and keep it moving gently"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Use paracetamol or ibuprofen gel"
+    - "Cut down on things that make it worse, such as typing or using tools that vibrate"
+    - "Wear a splint, especially at night"
+  source: nhs_wrist_pain
+  also_informed_by: [nhs_finger_pain, nhs_thumb_pain, nhs_pain_in_the_palm_of_the_hand, nhs_pain_in_the_back_of_the_hand]
+
+# ---------------------------------------------------------------------------
+# Hip and children
+# ---------------------------------------------------------------------------
+- id: advice_hip_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today."
+  look_out_for:
+    - "Not being able to walk or put weight on your leg"
+    - "The hip becoming hot, swollen or red"
+    - "Feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you cannot walk or put weight on your leg, or have tingling or loss of feeling in your leg"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Try not to put strain on the hip"
+    - "Take paracetamol for the pain"
+  source: nhs_hip_pain
+  also_informed_by: [nhs_osteoporosis]
+
+- id: advice_hip_pain_self_care
+  what_to_do: "You can ease hip pain yourself. See a GP if it has not improved after 2 weeks."
+  look_out_for:
+    - "The hip becoming hot, swollen or red"
+    - "Feeling hot, cold or shivery"
+    - "Stiffness for more than 30 minutes after waking up"
+  get_more_help_when:
+    - "Get help from 111 or an urgent GP appointment if the hip gets hot and swollen. Do the same if you feel unwell with a high temperature."
+    - "See a GP if the pain is stopping you doing normal things or affecting your sleep"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with painkillers."
+  self_care:
+    - "Keep moving if you can, but try not to overdo it"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Use paracetamol or ibuprofen gel"
+    - "Wear comfortable shoes with a soft sole, and try gentle hip stretches"
+    - "Do not carry heavy things or sit in low chairs"
+  source: nhs_hip_pain
+
+- id: advice_child_hip_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Hip pain or a limp in a child needs to be checked the same day, as it could be a sign of something serious."
+  look_out_for:
+    - "A high temperature, or your child feeling hot, cold or shivery"
+    - "Not being able to put any weight on the leg"
+    - "The pain getting worse"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your child gets a high temperature or seems very unwell. Do the same if they cannot put any weight on their leg."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Let your child rest their leg"
+    - "Give children's paracetamol or ibuprofen for the pain"
+  source: nhs_hip_pain_children_irritable_hip
+  also_informed_by: [nhs_limp_in_children]
+
+- id: advice_child_hip_soon
+  what_to_do: "See a GP within a few days. Hip pain in children should always be checked."
+  look_out_for:
+    - "Sudden pain in the hip, thigh or knee"
+    - "Limping, or not wanting to walk"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Get an urgent GP appointment or help from 111 if your child starts limping or has sudden pain"
+    - "Call 999 or go to A&E if your child cannot put weight on their leg or seems unwell with a high temperature"
+  where_to_go: "Ask your GP surgery for an appointment in the next few days."
+  self_care:
+    - "Give children's paracetamol or ibuprofen for the pain"
+    - "Avoid sports and activities that put strain on the hip until it has been checked"
+  source: nhs_hip_pain_children_irritable_hip
+
+- id: advice_child_limp_injury_urgent
+  what_to_do: "Get help from NHS 111 or go to an urgent treatment centre today. Your child may have a broken bone and may need an X-ray."
+  look_out_for:
+    - "The leg changing shape, or going cold, pale or blue"
+    - "Your child not being able to put any weight on the leg"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the leg changes shape or your child cannot put any weight on it"
+  where_to_go: "Call 111 or use 111 online, or go to an urgent treatment centre."
+  self_care:
+    - "Keep the leg still and raised on a pillow"
+    - "Put an ice pack wrapped in a towel on it"
+    - "Give children's paracetamol for the pain"
+  source: nhs_broken_leg
+  also_informed_by: [nhs_limp_in_children]
+
+- id: advice_child_limp_soon
+  what_to_do: "See a GP within a few days. A limp with a lump on a bone, weight loss, or pain at night needs to be checked."
+  look_out_for:
+    - "Your child getting more tired, pale or bruising easily"
+    - "A high temperature"
+    - "Not being able to put weight on the leg"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your child cannot put weight on their leg, or seems unwell with a high temperature"
+  where_to_go: "Ask your GP surgery for an appointment in the next few days."
+  source: nhs_limp_in_children
+
+- id: advice_child_limp_gp
+  what_to_do: "See a GP. A limp with no obvious cause should always be checked."
+  look_out_for:
+    - "Sudden pain in the hip, knee or thigh"
+    - "Not being able to put any weight on the leg"
+    - "A high temperature, or your child feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your child gets sudden pain or cannot put weight on their leg. Do the same if they get worse, or seem unwell with a high temperature."
+  where_to_go: "Contact your GP surgery."
+  self_care:
+    - "If your child is in pain, give them a children's painkiller"
+  source: nhs_limp_in_children
+
+- id: advice_child_limp_self_care
+  what_to_do: "A limp from a blister, small cut or bruise can be looked after at home. It should get better in a few days."
+  look_out_for:
+    - "The limp not getting better after a few days"
+    - "Pain in the hip, knee or thigh"
+    - "A high temperature"
+  get_more_help_when:
+    - "See a GP if the limp does not get better in a few days"
+    - "Call 999 or go to A&E if your child gets sudden pain, cannot put weight on their leg, or seems unwell with a high temperature"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with plasters and blister treatment."
+  self_care:
+    - "Keep cuts and blisters clean and covered"
+    - "Give children's paracetamol or ibuprofen if needed"
+  source: nhs_limp_in_children
+
+# ---------------------------------------------------------------------------
+# Knee and foot
+# ---------------------------------------------------------------------------
+- id: advice_knee_pain_urgent
+  what_to_do: "Get advice from NHS 111 now, or go to an urgent treatment centre. You may have a torn ligament or cartilage, a dislocated kneecap, or an infection."
+  look_out_for:
+    - "The knee changing shape, or swelling very quickly"
+    - "Your leg or foot going numb, cold, pale or blue"
+    - "Feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Go to A&E if your knee changes shape, swells up very quickly after an injury, or a bone is sticking out"
+  where_to_go: "Call 111 or use 111 online, or go to an urgent treatment centre. You may be seen quicker than at A&E."
+  self_care:
+    - "Put as little weight as possible on your knee"
+    - "Put an ice pack wrapped in a tea towel on it for up to 20 minutes every 2 to 3 hours"
+  source: nhs_knee_pain
+  also_informed_by: [nhs_dislocated_kneecap]
+
+- id: advice_knee_pain_self_care
+  what_to_do: "Knee pain can often be treated at home. You should start to feel better in a few days."
+  look_out_for:
+    - "The knee locking, giving way or clicking painfully"
+    - "The knee becoming hot and red, or you feeling hot, cold or shivery"
+    - "A swollen, painful calf"
+  get_more_help_when:
+    - "Get help from 111 if the pain gets very bad or you get a high temperature. Do the same if the knee swells a lot, locks or gives way."
+    - "See a GP if it does not improve within a few weeks"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with painkillers."
+  self_care:
+    - "Put as little weight as possible on your knee, for example avoid standing for a long time"
+    - "Put an ice pack or frozen peas wrapped in a tea towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Use paracetamol, or ibuprofen gel or tablets"
+  source: nhs_knee_pain
+
+- id: advice_foot_pain_urgent
+  what_to_do: "Contact NHS 111 or go to an urgent treatment centre today. You may have a broken bone or a torn tendon."
+  look_out_for:
+    - "Your foot or toes going numb, cold, pale, blue or white"
+    - "Your ankle or foot changing shape"
+    - "A swollen, painful calf"
+  get_more_help_when:
+    - "Go to A&E if your ankle or foot is at an odd angle, a bone is sticking out, or your toes go blue, white or numb"
+  where_to_go: "Call 111 or use 111 online, or go to an urgent treatment centre."
+  self_care:
+    - "Rest and raise your foot"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Do not try to treat a broken bone yourself"
+  source: nhs_ankle_pain
+  also_informed_by: [nhs_heel_pain, nhs_broken_ankle]
+
+- id: advice_foot_pain_self_care
+  what_to_do: "You can usually ease foot pain yourself. A pharmacist can help with painkillers, insoles and pads."
+  look_out_for:
+    - "Tingling or loss of feeling in your foot"
+    - "A hot, red, swollen foot or toe"
+    - "A swollen, painful calf"
+  get_more_help_when:
+    - "Contact 111 if the pain becomes severe, you cannot walk, or your foot becomes hot and swollen"
+    - "See a GP if it has not improved after 2 weeks, keeps coming back, or you have diabetes"
+  where_to_go: "You do not need to see anyone now. A pharmacist can suggest painkillers, insoles and pads."
+  self_care:
+    - "Rest and raise your foot when you can"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Wear wide, comfortable shoes with a low heel and a soft sole"
+    - "Use paracetamol or ibuprofen gel"
+    - "Try gentle foot and ankle stretches"
+    - "Do not walk or stand for long periods, or wear high heels"
+  source: nhs_ankle_pain
+  also_informed_by: [nhs_heel_pain, nhs_pain_in_the_ball_of_the_foot, nhs_pain_in_the_bottom_of_the_foot, nhs_pain_in_the_top_of_the_foot]
+
+- id: advice_diabetic_foot_urgent
+  what_to_do: "Contact your GP surgery or foot care team today, or get help from NHS 111. Foot problems can be more serious if you have diabetes, and an infection can spread quickly."
+  look_out_for:
+    - "Redness or swelling spreading"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "A bad smell or pus from a wound"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel very unwell, confused, or your foot goes cold, pale or blue"
+  where_to_go: "Contact your GP surgery or foot care team today. If they are closed, call 111 or use 111 online."
+  self_care:
+    - "Keep weight off the foot"
+    - "Keep any wound clean and covered"
+  source: ai_judgement
+  also_informed_by: [nhs_foot_pain]
+
+- id: advice_dvt_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A swollen, warm, painful leg can be a blood clot in a vein (DVT). It needs treatment to stop it moving to the lungs."
+  look_out_for:
+    - "Feeling short of breath"
+    - "Chest pain, especially when breathing in"
+    - "Coughing up blood"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get short of breath or have chest pain"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. If you are pregnant, you can also call your maternity unit."
+  self_care:
+    - "Do not rub or massage the leg"
+  source: nhs_deep_vein_thrombosis
+
+# ---------------------------------------------------------------------------
+# Joints, cramps, tailbone, injuries and falls
+# ---------------------------------------------------------------------------
+- id: advice_joint_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today."
+  look_out_for:
+    - "A joint becoming hot, red and swollen"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Sore eyes or problems with your sight"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel very unwell, or cannot walk or put weight on a joint"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Rest the painful joints"
+    - "Ask a pharmacist which painkiller is right for you"
+  source: nhs_reactive_arthritis
+
+- id: advice_joint_pain_self_care
+  what_to_do: "You can ease joint pain yourself. See a GP if it has not improved after 2 weeks."
+  look_out_for:
+    - "A joint becoming hot, swollen or red"
+    - "Feeling unwell, with a high temperature"
+    - "Stiffness for more than 30 minutes after waking up"
+  get_more_help_when:
+    - "Get help from 111 or an urgent GP appointment if a joint gets hot and swollen. Do the same if you feel unwell with a high temperature."
+    - "See a GP if the pain stops you doing normal things, keeps coming back, or your child has joint problems"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help you choose a painkiller."
+  self_care:
+    - "Rest the painful joint, but do not stop moving it completely"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Try to lose weight if you are overweight, and do not smoke"
+  source: nhs_joint_pain
+
+- id: advice_leg_cramps_gp
+  what_to_do: "See a GP. They will look for the cause of your leg cramps or leg pain."
+  look_out_for:
+    - "One leg becoming swollen, warm and painful"
+    - "Your leg or foot going cold, pale or blue"
+    - "Sores on your feet or legs that do not heal"
+  get_more_help_when:
+    - "Get an urgent GP appointment or help from 111 if one leg becomes swollen, warm and painful"
+    - "Call 999 or go to A&E if you also feel short of breath or have chest pain"
+  where_to_go: "Contact your GP surgery."
+  self_care:
+    - "Stretch your calf muscles regularly, especially before bed"
+    - "If you smoke, stopping will help the blood flow in your legs"
+  source: nhs_leg_cramps
+  also_informed_by: [nhs_peripheral_arterial_disease]
+
+- id: advice_leg_cramps_self_care
+  what_to_do: "Leg cramps are common and usually harmless. They can be eased with stretching."
+  look_out_for:
+    - "One leg becoming swollen, warm and painful"
+    - "Cramps that last longer than 10 minutes"
+    - "Numbness or swelling in your legs"
+  get_more_help_when:
+    - "Get an urgent GP appointment or help from 111 if one leg becomes swollen, warm and painful"
+    - "See a GP if cramps disturb your sleep, last longer than 10 minutes, or come with numbness or swelling"
+  where_to_go: "You do not need to see anyone now."
+  self_care:
+    - "During a cramp, stretch and rub the muscle, or stand up and put your weight on that leg"
+    - "Stretch your calf muscles against a wall for 5 minutes, 3 times a day, the last time just before bed"
+    - "Drink lots of water, most of all when you exercise or it is hot"
+    - "Paracetamol or ibuprofen can ease soreness after a cramp"
+  source: nhs_leg_cramps
+
+- id: advice_tailbone_lump_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A painful, red lump near the top of your bottom can be an abscess (a pocket of pus) that may need draining."
+  look_out_for:
+    - "Redness or swelling spreading"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel very unwell or confused"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Keep the area clean and dry"
+    - "Do not squeeze the lump"
+  source: ai_judgement
+  also_informed_by: [nhs_tailbone_coccyx_pain]
+
+- id: advice_tailbone_gp
+  what_to_do: "See a GP. In many areas you can also refer yourself to a physiotherapist without seeing a GP first."
+  look_out_for:
+    - "Numbness around your genitals or bottom"
+    - "Problems peeing or pooing"
+    - "A painful, red lump near the top of your bottom"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get numbness around your genitals or bottom, or problems peeing or pooing"
+  where_to_go: "Contact your GP surgery, or look for an NHS service for back and joint problems you can refer yourself to."
+  self_care:
+    - "Use a special coccyx cushion when sitting"
+    - "Take ibuprofen if it is right for you"
+  source: nhs_tailbone_coccyx_pain
+
+- id: advice_tailbone_self_care
+  what_to_do: "Tailbone pain may get better after a few weeks. You can ease it yourself."
+  look_out_for:
+    - "Numbness around your genitals or bottom"
+    - "Problems peeing or pooing"
+    - "A painful lump near the top of your bottom, or a high temperature"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get numbness around your genitals or bottom, or problems peeing or pooing"
+    - "See a GP if it has not improved after a few weeks, or it is affecting your daily life"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with painkillers and laxatives."
+  self_care:
+    - "Sit up straight with your lower back supported, and use a special coccyx cushion"
+    - "Lie on your side to take pressure off your tailbone"
+    - "Use ibuprofen, and an ice pack or heat pack wrapped in a towel"
+    - "Use a laxative (a medicine that helps you poo) to soften your poo if the pain is worse when pooing"
+    - "Do not sit for a long time"
+  source: nhs_tailbone_coccyx_pain
+
+- id: advice_fall_urgent
+  what_to_do: "Get help from NHS 111 today. A fall in an older person, or a fall after blacking out or feeling dizzy, needs checking."
+  look_out_for:
+    - "Pain in the hip, back or neck"
+    - "Being confused or very sleepy"
+    - "Chest pain, or your heart racing"
+  get_more_help_when:
+    - "Call 999 if the person cannot get up, hit their head and is confused or very sleepy, or has chest pain"
+  where_to_go: "Call 111 or use 111 online."
+  self_care:
+    - "Get up slowly. Sit for a while before you stand."
+  source: nhs_falls
+
+- id: advice_fall_gp
+  what_to_do: "See a GP about your fall. They can check why you fell and help stop it happening again."
+  look_out_for:
+    - "Pain that gets worse after the fall"
+    - "Feeling dizzy or faint"
+  get_more_help_when:
+    - "Get help from 111 if you fall again, are in pain, or feel unwell"
+    - "Call 999 if you fall and cannot get up, or may have hurt your head, neck, back or hip"
+  where_to_go: "Contact your GP surgery."
+  self_care:
+    - "Remove things you could trip over at home, and use good lighting"
+    - "Wear shoes that fit well and grip"
+  source: nhs_falls
+
+- id: advice_injury_self_care
+  what_to_do: "You can treat most sprains, strains and minor injuries yourself. They usually start to feel better within a few days."
+  look_out_for:
+    - "Not being able to put weight on it or use it"
+    - "Numbness, or the skin going cold, pale or blue"
+    - "Pain or swelling getting worse"
+  get_more_help_when:
+    - "Get help from 111 or an urgent treatment centre if you think a bone may be broken"
+    - "See a GP if it is not feeling better after treating it yourself"
+  where_to_go: "You do not need to see anyone now. A pharmacist can help with painkillers and supports."
+  self_care:
+    - "Rest it for the first 2 to 3 days"
+    - "Put an ice pack wrapped in a towel on it for up to 20 minutes every 2 to 3 hours"
+    - "Raise it on a pillow when you can"
+    - "Start moving it gently once the pain eases"
+    - "Do not use heat or have hot baths for the first 2 to 3 days"
+  source: nhs_sprains_and_strains

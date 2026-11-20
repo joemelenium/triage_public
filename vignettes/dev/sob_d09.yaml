@@ -1,0 +1,52 @@
+id: sob_d09
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 24-year-old woman, not pregnant, diagnosed with panic attacks last year. For the past two months she has had episodes several times a week of feeling she cannot get enough air, with tingling fingers and a feeling of dread, each lasting about 10 to 15 minutes and then passing. She feels fine now and wants help to stop them."
+
+opening_statement: "I keep getting these episodes where I feel like I can't breathe and my fingers go tingly. It passes after 10 minutes or so but it's happening a lot."
+
+findings:
+  present: [short_of_breath, feeling_of_panic, tingling_fingers, has_anxiety_or_panic]
+  absent: [sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, passed_out, fainted, chest_pain, cp_tight_or_squeezing, cp_heavy, cp_spreads, palpitations, heart_beating_very_fast, coughing_up_blood, cough, wheezing, leg_pain_or_swelling, swollen_ankles, sob_lying_flat, sob_everyday_activity, sob_slowly_worse, very_high_temperature, pregnant_or_recently_given_birth, pill_or_hrt, recent_long_journey, recent_surgery_or_immobile, previous_blood_clot, has_asthma, known_heart_condition, after_allergy_trigger, lips_tongue_throat_swelling, throat_tight, paler_than_usual, heavy_periods, serious_self_harm, worried_about_symptoms, sob_more_than_usual]
+  unknown: [sob_sudden]
+
+context:
+  none: {}
+  basic: {age: 24, sex: female}
+  full:
+    age: 24
+    sex: female
+    findings: {has_anxiety_or_panic: "yes", pregnant_or_recently_given_birth: "no"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP, or refer herself to a talking therapies service"
+    any_of: ["GP", "talking therapies", "talking therapy", "CBT"]
+  - point: "What to do during an attack (breathe slowly and deeply; it will pass)"
+    any_of: ["breathe slowly", "slowly and deeply", "will pass"]
+  - point: "Get urgent help if an episode is different: chest pain, blue lips, not settling"
+    any_of: ["999", "111"]
+
+source:
+  expected_outcome: {page: panic_disorder.txt, quote: "See a GP if you've been experiencing symptoms of panic disorder."}
+  minimum_safe_acuity: {page: panic_disorder.txt, quote: "Although panic attacks are frightening, they're not dangerous."}
+
+variants:
+  - id: sob_d09_v1
+    style: "embarrassed, minimises"
+    opening_statement: "It's probably just my anxiety again. I get these breathless panicky turns."
+    volunteered: [short_of_breath, has_anxiety_or_panic, feeling_of_panic]
+
+atypical: false
+notes: "Over-triage test with an unknown. Each episode starts suddenly, but she is not breathless now and does not know how to answer 'did it come on suddenly?' for a recurring problem, so sob_sudden is unknown. pulmonary_embolism.txt gives 999 for 'difficulty breathing which comes on suddenly'; that advice is about a new event, not a recurring diagnosed pattern that has passed, but an engine that escalates on 'not sure' is being cautious. panic_disorder.txt also warns 'most of these symptoms can also be symptoms of other conditions or problems'. Palpitations are deliberately absent: shortness_of_breath.txt sends breathlessness with palpitations to NHS 111. worried_about_symptoms is absent: she knows these are panic attacks and is fed up rather than worried that something is seriously wrong (pulmonary_embolism.txt and covid_19.txt send 'symptoms you're worried about' to NHS 111)."

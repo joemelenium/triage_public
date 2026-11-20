@@ -1,0 +1,17 @@
+id: semigran2015_40
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Constipation
+original_triage_label: Self-care appropriate
+original_triage: self_care
+presenting_text: difficulty and delay in passing hard stools, in a baby
+presenting: []
+age: 0.42
+sex: male
+findings:
+  present: []
+  absent: []
+  unknown: []
+conversion_notes: 'Age is published as ''5-month-old'' and recorded here as 0.42 years. ''No history of excessive vomiting'' does not clearly rule out all vomiting, so nausea_or_vomiting is left out. ''Occasional spots of fresh blood on the stool or diaper'' is not mapped to heavy_bleeding. The history is given by the mother. No findings match the question list. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 40 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

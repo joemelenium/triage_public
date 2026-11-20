@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sprain_or_strain
+body_system: bones_joints_muscles
+entry_symptoms: [shoulder_pain, arm_pain, hand_pain, hip_pain, knee_pain, foot_pain, joint_pain, injury_or_fall, limp]
+name: "A sprain or strain (a stretched or torn ligament or muscle)"
+medical_name: "Sprain or strain"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  twisted_or_overstretched: strongly_supports
+  injury_or_fall: strongly_supports
+  swollen_area: supports
+  bruised: supports
+  overuse: supports
+  pain_worse_moving_better_rest: supports
+  ankle_pain: supports
+key_findings: [twisted_or_overstretched, injury_or_fall]
+source: nhs_sprains_and_strains
+informed_by: [nhs_sprains_and_strains]

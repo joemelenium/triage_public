@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: coccydynia
+body_system: bones_joints_muscles
+entry_symptoms: [tailbone_pain]
+name: "Tailbone pain from a bruise, strain or childbirth (coccydynia)"
+medical_name: "Coccydynia"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  pain_worse_sitting: strongly_supports
+  injury_or_fall: supports
+  pregnant_or_recently_given_birth: supports
+key_findings: [pain_worse_sitting]
+source: nhs_tailbone_coccyx_pain
+informed_by: [nhs_tailbone_coccyx_pain]

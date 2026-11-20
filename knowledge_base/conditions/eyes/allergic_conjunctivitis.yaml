@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: allergic_conjunctivitis
+body_system: eyes
+# Eye allergy, for example from hay fever, pets or dust. Not catching. A
+# pharmacist can suggest drops or antihistamines.
+entry_symptoms: [red_eye, watering_eyes, eyelid_problem]
+name: "Eye allergy, for example from hay fever (allergic conjunctivitis)"
+medical_name: "Allergic conjunctivitis"
+snomed: "473460002"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: red_eye, prevalence: common}
+  - {finding: watering_eyes, prevalence: common}
+findings:
+  itchy_eyes: strongly_supports    # itching is the main feature
+  itchy_watery_eyes_sneezing: strongly_supports
+  triggered_by_allergy: strongly_supports
+  both_eyes_affected: supports
+  has_allergies: supports
+  watering_eyes: supports
+  eyelid_swollen: supports
+  red_eye: supports
+key_findings: [itchy_eyes, triggered_by_allergy, itchy_watery_eyes_sneezing]
+source: nhs_conjunctivitis
+informed_by: [nhs_conjunctivitis, nhs_hay_fever]

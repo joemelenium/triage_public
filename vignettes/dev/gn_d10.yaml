@@ -1,0 +1,60 @@
+id: gn_d10
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- very_tired
+summary: A 41-year-old woman who has felt exhausted for about 6 weeks with no obvious reason. She sleeps normally, and it is making it hard to get through her working day. No weight loss and no other symptoms.
+opening_statement: I've just been so tired for the last month and a half. I'm sleeping fine, nothing's changed, but I'm dragging myself through every day at work.
+findings:
+  present:
+  - very_tired
+  - tired_for_weeks
+  - tiredness_affects_daily_life
+  absent:
+  - weight_loss
+  - low_mood
+  - very_thirsty
+  - peeing_more_often
+  - snoring
+  - breathing_stops_in_sleep
+  - short_of_breath
+  - palpitations
+  - heavy_periods
+  - night_sweats
+  - trouble_sleeping
+  - restless_shaky_hot
+  - always_feeling_cold
+  - paler_than_usual
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 41
+    sex: female
+  full:
+    age: 41
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Sleep and lifestyle measures in the meantime
+  any_of:
+  - sleep
+  - exercise
+  - diet
+source:
+  expected_outcome:
+    page: tiredness_and_fatigue.txt
+    quote: you've been feeling tired for a few weeks and you're not sure why
+  minimum_safe_acuity:
+    page: tiredness_and_fatigue.txt
+    quote: you've been feeling tired for a few weeks and you're not sure why
+atypical: false
+notes: Unexplained tiredness for weeks that affects daily life. The specific causes listed on the page (sleep apnoea, anaemia, diabetes, overactive thyroid) are each answered absent through their key symptoms.

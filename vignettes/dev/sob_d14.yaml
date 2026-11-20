@@ -1,0 +1,46 @@
+id: sob_d14
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 40-year-old man who has put on a lot of weight since changing to a desk job. Over the last few months he has noticed he gets out of breath on two flights of stairs and playing with his kids. Fine at rest, no other symptoms. He wants to know if he should worry."
+
+opening_statement: "I've let myself go a bit and I get out of breath on the stairs now. Is it just my weight or should I get it looked at?"
+
+findings:
+  present: [short_of_breath, sob_everyday_activity, sob_slowly_worse]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, sob_lying_flat, swollen_ankles, sudden_weight_gain, chest_pain, cp_tight_or_squeezing, cp_heavy, cp_on_exertion, cp_spreads, palpitations, heart_beating_very_fast, light_headed, fainted, coughing_up_blood, cough, wheezing, leg_pain_or_swelling, very_high_temperature, paler_than_usual, very_tired, weight_loss, smoker, has_asthma, has_copd, known_heart_condition, heart_risk_factors, family_heart_history, dust_or_fumes_exposure, nausea_or_vomiting, sweating, feeling_of_panic, sob_more_than_usual, has_heart_failure]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 40, sex: male}
+  full:
+    age: 40
+    sex: male
+    findings: {known_heart_condition: "no", has_asthma: "no"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP rather than self-diagnosing"
+    any_of: ["GP"]
+  - point: "Get urgent help if chest pain or tightness, or breathing suddenly worse"
+    any_of: ["999", "111", "chest"]
+
+source:
+  expected_outcome: {page: shortness_of_breath.txt, quote: "Do not try to self-diagnose the cause of shortness of breath – always see a GP."}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "your shortness of breath gets worse when you've been doing your normal activities"}
+
+variants: []
+
+atypical: false
+notes: "Over-triage test. shortness_of_breath.txt lists 'being overweight' among common causes but also says to see a GP and not self-diagnose ('Non-urgent advice: See a GP if' breathlessness gets worse with normal activities). No red flags: no chest pain on exertion, no ankle swelling, no lying-flat breathlessness, no palpitations. Self-care alone would be under-triage according to the source; anything above routine would be over-triage."

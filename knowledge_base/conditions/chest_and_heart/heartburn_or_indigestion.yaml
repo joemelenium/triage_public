@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: heartburn_or_indigestion
+body_system: chest_and_heart
+entry_symptoms: [chest_pain, cough, indigestion, stomach_ache, feeling_sick, bloating, difficulty_swallowing, hiccups, metallic_taste, bad_breath]
+name: "Heartburn or indigestion"
+medical_name: "Indigestion or acid reflux (dyspepsia or gastro-oesophageal reflux)"
+snomed: "162031009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: rare}
+  - {finding: indigestion, prevalence: very_common}   # the usual cause among people who come with indigestion
+  - {finding: chest_pain, prevalence: common}   # common among people with chest pain, less so with a cough
+findings:
+  # What tells it apart: a burning feeling or sour taste, linked to eating.
+  heartburn_or_sour_taste: strongly_supports
+  cp_after_eating: strongly_supports
+  cp_comes_and_goes: supports
+  cough_worse_at_night: supports         # worse lying down
+  nausea_or_vomiting: supports           # bloating and feeling sick
+  # Kept for the single-cause method only; the network method ignores these.
+  cp_spreads: argues_against
+  cp_on_exertion: argues_against
+  sweating: argues_against
+key_findings: [heartburn_or_sour_taste, cp_after_eating, cp_comes_and_goes]
+source: nhs_heartburn
+informed_by: [nhs_heartburn, nhs_chest_pain]

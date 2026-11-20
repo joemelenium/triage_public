@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: plantar_fasciitis
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "Plantar fasciitis (pain under the heel and arch)"
+medical_name: "Plantar fasciitis"
+snomed: "202882003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: heel_pain, prevalence: very_common}
+  - {finding: bottom_of_foot_pain, prevalence: common}
+findings:
+  pain_first_steps_morning: strongly_supports
+  heel_pain: strongly_supports
+  bottom_of_foot_pain: supports
+  overuse: supports
+key_findings: [pain_first_steps_morning, heel_pain]
+source: nhs_plantar_fasciitis
+informed_by: [nhs_plantar_fasciitis, nhs_heel_pain]

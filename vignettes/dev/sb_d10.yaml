@@ -1,0 +1,82 @@
+id: sb_d10
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- bleeding_from_bottom
+summary: 67-year-old man with red blood mixed in his poo on and off for 4 weeks. His poo has been looser than usual for about 5 weeks, he has lost weight without trying and he is more tired than usual.
+opening_statement: I've been seeing blood in my poo on and off for about a month, and my bowels haven't been right.
+findings:
+  present:
+  - bleeding_from_bottom
+  - blood_in_poo_3_weeks
+  - bowel_habit_change_3_weeks
+  - weight_loss
+  - very_tired
+  - tired_for_weeks
+  absent:
+  - heavy_bleeding_from_bottom
+  - black_or_dark_red_poo
+  - bright_red_blood_on_paper
+  - stomach_ache
+  - lump_in_tummy_or_groin
+  - vomiting
+  - anal_pain
+  - diarrhoea
+  - diarrhoea_over_7_days
+  - takes_blood_thinners
+  - light_headed
+  unknown:
+  - mucus_in_poo
+context:
+  none: {}
+  basic:
+    age: 67
+    sex: male
+  full:
+    age: 67
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags:
+- description: 'Blood in poo for 3 weeks, with a change in pooing and weight loss: possible bowel cancer'
+  findings:
+  - blood_in_poo_3_weeks
+  - bowel_habit_change_3_weeks
+  - weight_loss
+  minimum_acuity: routine
+  source:
+    page: bleeding_from_the_bottom_rectal_bleeding.txt
+    quote: Bleeding from the bottom is sometimes a sign of bowel cancer.
+safety_netting_should_cover:
+- point: See a GP so it can be checked; bowel cancer is easier to treat if found early
+  any_of:
+  - GP
+- point: Get urgent help if poo turns black or dark red
+  any_of:
+  - black
+  - dark red
+- point: Go to A&E or call 999 if there is a lot of blood
+  any_of:
+  - A&E
+  - '999'
+source:
+  expected_outcome:
+    page: bleeding_from_the_bottom_rectal_bleeding.txt
+    quote: you've had blood in your poo for 3 weeks
+  minimum_safe_acuity:
+    page: bleeding_from_the_bottom_rectal_bleeding.txt
+    quote: you've lost weight for no reason
+variants:
+- id: sb_d10_v1
+  style: volunteers everything up front
+  opening_statement: For about a month there's been blood in my poo, my poo's been looser for longer than that, I've lost half a stone without trying and I'm shattered all the time.
+  volunteered:
+  - blood_in_poo_3_weeks
+  - bowel_habit_change_3_weeks
+  - weight_loss
+  - very_tired
+atypical: false
+notes: Red flag case where the source supports only a non-urgent GP visit; the pages give no faster timeframe for possible bowel cancer, so expected and minimum are routine. Missing this is the danger, not under-dating it. His poo is looser than usual but he does not call it diarrhoea, so diarrhoea is absent; otherwise the diarrhoea_and_vomiting.txt rule for diarrhoea over 7 days would apply. He is not sure whether there has been slime.

@@ -1,0 +1,211 @@
+# Entry symptom: pain when peeing, or peeing more often (the usual signs of a
+# urinary tract infection). There is no Symptoms A to Z page for this; the
+# Urinary tract infections page is used.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: painful_or_frequent_peeing
+name: "Pain when peeing, or peeing more often"
+presenting_finding: painful_or_frequent_peeing
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: painful_peeing_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - skin_blotchy
+      - rash_does_not_fade
+      - breathing_very_fast
+      - vomiting
+      - breathing_deep_and_fast
+      - fruity_breath
+
+  - id: painful_peeing_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - temperature_very_low
+      - loin_pain
+      - sa_low_down
+      - blood_in_urine
+      - cannot_pee
+      - uti_not_getting_better
+
+  - id: painful_peeing_higher_chance_screen
+    level: urgent
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - pregnant_or_recently_given_birth
+      - has_diabetes
+      - has_urinary_catheter
+      - keeps_getting_utis
+      - weakened_immune_system
+
+  # Not a red-flag screen: signs that each lead to a GP or sexual health clinic.
+  # Asked as one checklist after the red flags, and only if the outcome so far is
+  # lower than this.
+  - id: painful_peeing_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - weak_flow_or_straining
+      - bladder_not_emptying
+      - peeing_at_night_more
+      - very_thirsty
+      - discharge_from_penis
+      - new_or_unprotected_sex
+      - partner_has_sti
+      - peeing_problem_for_months
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_pp_drowsy
+    description: "Signs of a urine infection and very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_urinary_tract_infections
+    note: "Sudden confusion is in the universal red flags."
+
+  - id: rf_pp_sepsis_skin
+    description: "Blotchy skin, or a rash that does not fade when pressed: possible sepsis"
+    when: {any: [skin_blotchy, rash_does_not_fade]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_prostatitis
+    note: "The Prostatitis page lists these as 999 signs of sepsis. The Sepsis page gives the same advice."
+
+  - id: rf_pp_sepsis_breathing
+    description: "Breathing very fast, with a high or very low temperature or shivering: possible sepsis"
+    when: {all: [breathing_very_fast, {any: [very_high_temperature, temperature_very_low]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Requiring a high or very low temperature is AI judgement, so that fast breathing from worry is not sent to A&E on its own."
+
+  - id: rf_pp_diabetes_emergency
+    description: "Peeing more and very thirsty, with being sick, fast deep breathing or fruity-smelling breath: possible diabetic ketoacidosis"
+    when: {all: [very_thirsty, {any: [vomiting, breathing_deep_and_fast, fruity_breath]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_diabetes_emergency
+    source: nhs_type_1_diabetes_symptoms
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_pp_temperature
+    description: "A very high or very low temperature, or feeling hot, cold or shivery: possible kidney infection"
+    when: {any: [very_high_temperature, temperature_very_low]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+
+  - id: rf_pp_loin_pain
+    description: "Pain in the back, just under the ribs: possible kidney infection or kidney stone"
+    when: loin_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+    note: "The Kidney infection and Kidney stones pages give the same advice."
+
+  - id: rf_pp_lower_tummy_pain
+    description: "Pain in the lower tummy"
+    when: sa_low_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The UTI page lists lower tummy pain as a reason for an urgent appointment, as a possible sign of kidney infection. It is also a common sign of a simple bladder infection, so it is marked soft: a likely bladder infection with nothing else can lower it."
+
+  - id: rf_pp_blood_in_pee
+    description: "Blood in the pee"
+    when: blood_in_urine
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+    note: "The blood in urine entry symptom also applies once this is reported."
+
+  - id: rf_pp_cannot_pee
+    description: "Unable to pee"
+    when: cannot_pee
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cannot_pee_urgent
+    source: nhs_prostate_enlargement
+    note: "The unable to pee entry symptom also applies once this is reported, with its own emergency rules."
+
+  - id: rf_pp_not_better
+    description: "Symptoms getting worse quickly, or not better within 2 days of starting treatment"
+    when: uti_not_getting_better
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+
+  - id: rf_pp_higher_chance
+    description: "Signs of a urine infection in someone more likely to get seriously ill: pregnant, diabetes, a catheter, repeated urine infections, or a weakened immune system"
+    when: {any: [pregnant_or_recently_given_birth, has_diabetes, has_urinary_catheter, keeps_getting_utis, weakened_immune_system]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+    note: "The page says pregnant. The existing question also covers giving birth in the last 6 weeks, which is more cautious."
+
+  - id: rf_pp_age_or_sex
+    description: "Signs of a urine infection in a child aged 15 or under, someone aged 65 or over, or a man"
+    when: {any: [age_under_16, age_65_or_over, sex_male]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+    note: "The page also includes trans and non-binary people assigned male at birth, which the male question is meant to cover."
+
+  - id: rf_pp_thirsty_weight_loss
+    description: "Peeing more and very thirsty, with weight loss or feeling very tired: possible diabetes"
+    when: {all: [very_thirsty, {any: [weight_loss, very_tired]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    soft: true    # likely conditions may lower this: type 2 diabetes needs only a GP
+    note: "The Type 1 diabetes page says urgent; the Type 2 diabetes page says see a GP. The more urgent is used, marked soft."
+
+outcome_rules:
+  - id: or_pp_prostate_signs
+    description: "Difficulty peeing, a weak flow, not emptying the bladder, or getting up at night to pee"
+    when: {any: [weak_flow_or_straining, bladder_not_emptying, peeing_at_night_more]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_peeing_gp
+    source: nhs_prostate_enlargement
+
+  - id: or_pp_long_term
+    description: "Peeing problems that have gone on for months"
+    when: peeing_problem_for_months
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_peeing_gp
+    source: nhs_urinary_incontinence_symptoms
+    note: "The page says it is a good idea to see a GP about bladder problems such as needing to pee urgently or often."
+
+  - id: or_pp_thirsty
+    description: "Peeing more and very thirsty all the time: possible diabetes"
+    when: very_thirsty
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_diabetes_gp
+    source: nhs_type_2_diabetes_symptoms
+
+  - id: or_pp_sti
+    description: "Possible sexually transmitted infection: discharge from the penis, sex without a condom with a new partner, or a partner with an STI"
+    when: {any: [discharge_from_penis, new_or_unprotected_sex, partner_has_sti]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Go to a sexual health clinic or see a GP. The source gives no fixed time."}
+    advice: advice_sexual_health_clinic
+    source: nhs_urethritis
+    note: "There is no sexual health clinic level of care; general practice is used, and the advice names sexual health clinics."
+
+default:
+  description: "Signs of a urine infection with nothing that needs more help: see a pharmacist"
+  outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "See a pharmacist. They can give the same medicines as a GP for a UTI."}
+  advice: advice_uti_pharmacy
+  source: nhs_urinary_tract_infections
+  note: "The page sends women and girls aged 16 to 64 who are not pregnant to a pharmacist. Everyone else is caught by the urgent rules above (men, children, 65 or over, pregnant)."

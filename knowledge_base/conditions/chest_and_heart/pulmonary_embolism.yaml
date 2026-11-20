@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pulmonary_embolism
+body_system: chest_and_heart
+entry_symptoms: [chest_pain, short_of_breath, coughing_up_blood, swollen_ankles, blue_or_grey_skin, fainted]
+name: "Blood clot in the lung (pulmonary embolism)"
+medical_name: "Pulmonary embolism"
+snomed: "59282003"
+acuity_needed: emergency
+danger: critical
+# Things that make a clot more likely raise the starting chance. They are not
+# linked as findings, because most people with a clot have none of them, and a
+# "no" to each would wrongly count against it.
+prevalence: rare
+prevalence_when:
+  - {finding: previous_blood_clot, prevalence: uncommon}
+  - {finding: recent_surgery_or_immobile, prevalence: uncommon}
+  - {finding: has_cancer, prevalence: uncommon}
+  - {finding: pregnant_or_recently_given_birth, prevalence: uncommon}
+  - {finding: recent_long_journey, prevalence: uncommon}
+  - {finding: pill_or_hrt, prevalence: uncommon}
+findings:
+  short_of_breath: strongly_supports
+  sob_sudden: strongly_supports          # breathlessness that came on suddenly: tells it apart from a strain or infection
+  cp_worse_breathing_in: strongly_supports
+  breathing_very_fast: supports
+  heart_beating_very_fast: supports
+  leg_pain_or_swelling: supports         # a clot in the leg (DVT): tells it apart from a heart attack
+  coughing_up_blood: supports
+  cp_present_now: strongly_supports      # pain from a clot in the lung usually lasts for days, not minutes
+key_findings: [sob_sudden, leg_pain_or_swelling, heart_beating_very_fast, coughing_up_blood, recent_surgery_or_immobile, previous_blood_clot]
+source: nhs_pulmonary_embolism
+informed_by: [nhs_pulmonary_embolism, nhs_shortness_of_breath, nhs_coughing_up_blood]

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pityriasis_rosea
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Pityriasis rosea (a harmless rash that starts with one large patch)"
+medical_name: "Pityriasis rosea"
+snomed: "77252004"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+findings:
+  # What tells it apart from ringworm or psoriasis: one larger oval scaly patch first, then many smaller patches on the body days later.
+  one_patch_then_many_smaller: strongly_supports
+  rash_itchy: supports
+  aching_body: supports
+key_findings: [one_patch_then_many_smaller]
+source: nhs_pityriasis_rosea
+informed_by: [nhs_pityriasis_rosea]

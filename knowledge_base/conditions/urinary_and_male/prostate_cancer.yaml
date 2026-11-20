@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: prostate_cancer
+body_system: urinary_and_male
+entry_symptoms: [blood_in_semen, cannot_pee, painful_or_frequent_peeing, erection_problems, blood_in_urine]
+name: "Prostate cancer"
+medical_name: "Malignant neoplasm of prostate"
+snomed: "399068003"
+# The page says see a GP (non-urgent) for trouble peeing or other symptoms. Danger
+# serious. Very rare under 45; it often causes the same symptoms as an enlarged
+# prostate, so it is hard to tell apart without tests.
+acuity_needed: routine
+danger: serious
+sex: male
+prevalence: very_rare
+prevalence_when:
+  - {finding: sex_female, prevalence: very_rare}
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: age_45_or_over, prevalence: rare}
+findings:
+  weak_flow_or_straining: supports
+  peeing_at_night_more: supports
+  # What points to it more than an enlarged prostate: weight loss, back pain and
+  # blood in the semen or pee.
+  weight_loss: strongly_supports
+  back_pain: supports
+  blood_in_semen: supports
+  blood_in_urine: supports
+key_findings: [weight_loss, back_pain, weak_flow_or_straining, peeing_at_night_more]
+source: nhs_prostate_cancer_symptoms
+informed_by: [nhs_prostate_cancer_symptoms, nhs_blood_in_semen]

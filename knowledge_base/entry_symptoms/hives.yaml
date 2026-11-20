@@ -1,0 +1,125 @@
+# Entry symptom: hives (a raised, itchy rash).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The main symptom is the shared observation raised_itchy_rash, which the
+# breathing pilot uses as a sign of anaphylaxis. A "yes" to it in any session now
+# brings these rules in too.
+
+id: hives
+name: "Hives (a raised, itchy rash)"
+presenting_finding: raised_itchy_rash
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_hives]
+
+screens:
+  - id: hives_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+      - unable_to_swallow
+      - difficulty_breathing
+      - breathing_very_fast
+      - light_headed
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+
+  - id: hives_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swelling_under_skin
+      - rash_spreading
+      - hives_not_better_after_2_days
+      - hives_keeps_coming_back
+      - very_high_temperature
+      - after_allergy_trigger
+
+red_flags:
+  # ---- Emergency: a severe allergic reaction --------------------------------
+  - id: rf_hv_swelling_or_tight_throat
+    description: "Hives with lips, mouth, tongue or throat suddenly swollen, the throat feeling tight, or struggling to swallow"
+    when: {any: [lips_tongue_throat_swelling, throat_tight, unable_to_swallow]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_hives
+
+  - id: rf_hv_breathing
+    description: "Hives with breathing very fast, or struggling to breathe"
+    when: {any: [difficulty_breathing, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_hives
+
+  - id: rf_hv_child_floppy
+    description: "A child with hives who is limp, floppy or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_hives
+
+  - id: rf_hv_confused_or_drowsy
+    description: "Feeling very confused or drowsy, which can be a serious allergic reaction"
+    when: {any: [sudden_confusion, drowsy_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_hives
+    note: "The page says call 999 if you suddenly become very confused, drowsy or dizzy. Confusion is also checked for everyone, but that check gives A&E, not an ambulance."
+
+  - id: rf_hv_dizzy
+    description: "Hives with feeling suddenly dizzy or light-headed"
+    when: light_headed
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_hives
+    soft: true    # likely conditions may lower this: light-headed is milder than the source's wording
+    note: "The Hives page says call 999 if you suddenly become very confused, drowsy or dizzy. The question asks about feeling light-headed, which is milder, so the rule is soft. Sudden confusion is checked for everyone."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_hv_swelling_under_skin
+    description: "Hives with swelling under the skin, such as the eyelids, hands, feet or genitals (possible angioedema)"
+    when: swelling_under_skin
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hives_urgent
+    source: nhs_hives
+
+  - id: rf_hv_not_better
+    description: "Hives not better after 2 days, spreading, or keeps coming back"
+    when: {any: [hives_not_better_after_2_days, rash_spreading, hives_keeps_coming_back]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hives_urgent
+    source: nhs_hives
+    soft: true    # likely conditions may lower this: the source labels this advice "non-urgent"
+    note: "The Hives page labels this box 'non-urgent advice' but says to ask for an urgent GP appointment or get help from 111. The urgent wording is used, marked soft because of the label."
+
+  - id: rf_hv_temperature_unwell
+    description: "Hives with a high temperature and feeling unwell"
+    when: {all: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hives_urgent
+    source: nhs_hives
+
+  - id: rf_hv_after_trigger
+    description: "Hives that came on soon after a food, medicine or insect sting, with no signs of a severe reaction"
+    when: after_allergy_trigger
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_hives_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical judgement
+    note: "AI judgement: a reaction to a new trigger can get worse over the next hours, and the person may need advice on avoiding it. Soft, so a mild reaction that looks like ordinary hives can be lowered."
+
+outcome_rules:
+  - id: or_hv_worried_child
+    description: "Worried about a child's hives"
+    when: {all: [age_under_16, worried_about_symptoms]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hives_urgent
+    source: nhs_hives
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+default:
+  description: "Hives with nothing that needs more help: a pharmacist can advise on antihistamines"
+  outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "Speak to a pharmacist. Hives usually get better within a few days."}
+  advice: advice_hives_pharmacy
+  source: nhs_hives

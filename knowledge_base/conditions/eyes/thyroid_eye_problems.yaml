@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: thyroid_eye_problems
+body_system: eyes
+# The most common cause of bulging eyes, with an overactive thyroid. Changes in
+# sight can mean the nerve to the eye is squeezed (rules make that urgent or
+# emergency).
+entry_symptoms: [bulging_eyes, double_vision, dry_eyes, eyelid_problem]
+name: "Thyroid eye problems (swelling behind the eyes linked to a thyroid condition)"
+medical_name: "Thyroid eye disease (Graves' orbitopathy)"
+snomed: "276177000"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: bulging_eyes, prevalence: very_common}
+findings:
+  has_thyroid_problem: strongly_supports
+  bulging_eyes: strongly_supports
+  both_eyes_affected: supports
+  cannot_close_eye_fully: supports
+  gritty_or_burning: supports
+  double_vision: supports
+  eyelid_swollen: supports
+  smoker: supports
+key_findings: [has_thyroid_problem, both_eyes_affected, double_vision]
+source: nhs_bulging_eyes
+informed_by: [nhs_bulging_eyes, nhs_overactive_thyroid]

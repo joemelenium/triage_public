@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stomach_cancer_warning_signs
+body_system: stomach_and_bowel
+entry_symptoms: [indigestion, vomiting_blood, stomach_ache]
+name: "Stomach or food pipe cancer warning signs"
+medical_name: "Possible gastric or oesophageal cancer"
+snomed: "363349007"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  weight_loss: strongly_supports
+  indigestion_keeps_happening: strongly_supports
+  difficulty_swallowing: supports
+  full_quickly: supports
+  loss_of_appetite: supports
+  black_or_dark_red_poo: supports
+  keeps_being_sick: supports
+  lump_in_tummy_or_groin: supports
+key_findings: [weight_loss, difficulty_swallowing, full_quickly, indigestion_keeps_happening]
+source: nhs_stomach_cancer
+informed_by: [nhs_stomach_cancer, nhs_indigestion, nhs_stomach_ulcer]

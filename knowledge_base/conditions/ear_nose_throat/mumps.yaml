@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mumps
+body_system: ear_nose_throat
+entry_symptoms: [swollen_glands, ear_pain]
+name: "Mumps (a virus that causes painful swelling at the side of the face)"
+snomed: "36989005"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+findings:
+  # What tells it apart: painful swelling at the side of the face, in front of and below the ear,
+  # with a high temperature and aches, in someone who has not had 2 doses of the MMR vaccine.
+  swelling_in_front_of_ears: strongly_supports
+  very_high_temperature: supports
+  aching_body: supports
+  very_tired: supports
+  ear_pain: supports
+key_findings: [swelling_in_front_of_ears, very_high_temperature]
+source: nhs_mumps
+informed_by: [nhs_mumps, nhs_swollen_glands]

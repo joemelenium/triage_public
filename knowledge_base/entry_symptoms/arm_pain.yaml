@@ -1,0 +1,163 @@
+# Entry symptom: elbow and arm pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# "Go to an urgent treatment centre or A&E" on the NHS page is mapped to urgent
+# care today, the level of an urgent treatment centre. AI judgement.
+#
+# Must-not-miss causes: a heart attack or angina felt in the arm, a broken or
+# dislocated bone, pressure building up in the arm muscles (compartment
+# syndrome), a loss of blood supply, and an infected joint or bone.
+
+id: arm_pain
+name: "Elbow and arm pain"
+presenting_finding: arm_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: arm_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - chest_pain
+      - cp_tight_or_squeezing
+      - cp_heavy
+      - changed_shape
+      - bone_through_skin
+      - numb_after_injury
+      - limb_cold_pale_or_blue
+      - pain_out_of_proportion
+
+  - id: arm_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - severe_pain
+      - cannot_move_painful_part
+      - heard_snap_at_injury
+      - arm_hand_tingling
+      - pain_with_exercise_eases_with_rest
+      - swollen_area_red_hot
+      - very_high_temperature
+      - think_bone_broken
+      - cast_problem
+      - child_not_using_arm
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_arm_heart
+    description: "Arm pain with pressure, heaviness, tightness or squeezing in the chest, or chest pain"
+    when: {any: [chest_pain, cp_tight_or_squeezing, cp_heavy]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: nhs_elbow_and_arm_pain
+    note: "This could be a heart attack. A yes to chest pain also brings in the chest pain entry symptom."
+
+  - id: rf_arm_injury_misshapen
+    description: "Arm injury where the arm has changed shape or is at an odd angle, or a bone is sticking out"
+    when: {any: [bone_through_skin, {all: [injury_or_fall, changed_shape]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_arm_or_wrist
+    note: "The Elbow and arm pain page says go to an urgent treatment centre or A&E. The Broken arm or wrist page says A&E or 999. The more urgent is used."
+
+  - id: rf_arm_numb_after_injury
+    description: "Arm injury and the arm or hand is numb, tingling or has pins and needles"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_arm_or_wrist
+
+  - id: rf_arm_cold
+    description: "Arm or hand cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_sprains_and_strains
+    note: "Can mean the blood supply to the arm is blocked. Applying the Sprains and strains rule without an injury is AI judgement."
+
+  - id: rf_arm_compartment
+    description: "Very bad arm pain that keeps getting worse, even with painkillers"
+    when: pain_out_of_proportion
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_compartment_emergency
+    source: nhs_compartment_syndrome
+    note: "Could be pressure building up inside the muscles (compartment syndrome), which needs an operation quickly."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_arm_severe_cannot_move
+    description: "Severe arm pain and the arm is difficult to move"
+    when: {all: [severe_pain, cannot_move_painful_part]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go to an urgent treatment centre or A&E"}
+    advice: advice_arm_pain_urgent
+    source: nhs_elbow_and_arm_pain
+
+  - id: rf_arm_snap_or_misshapen
+    description: "Arm injury with a snapping noise, or an arm that has changed shape"
+    when: {any: [heard_snap_at_injury, changed_shape]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go to an urgent treatment centre or A&E"}
+    advice: advice_arm_pain_urgent
+    source: nhs_elbow_and_arm_pain
+    note: "The Sprains and strains page says A&E if you heard a crack. The Elbow and arm pain page says an urgent treatment centre or A&E. The arm page is used because it is more specific; needs clinical review."
+
+  - id: rf_arm_tingling
+    description: "Arm that tingles or feels numb"
+    when: arm_hand_tingling
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go to an urgent treatment centre or A&E"}
+    advice: advice_arm_pain_urgent
+    source: nhs_elbow_and_arm_pain
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Carpal tunnel syndrome and Neck pain pages say see a GP for tingling in the hand or arm. Marked soft so a likely trapped nerve can lower it."
+
+  - id: rf_arm_exercise_pain
+    description: "Arm pain that comes on with exercise and goes away with rest"
+    when: pain_with_exercise_eases_with_rest
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_arm_pain_111
+    source: nhs_elbow_and_arm_pain
+    note: "Can be a sign of angina (chest pain caused by narrowed blood vessels to the heart) felt in the arm."
+
+  - id: rf_arm_hot_or_fever
+    description: "Arm swollen with a high temperature, or feeling hot, cold or shivery, or a joint that is hot and swollen"
+    when: {any: [swollen_area_red_hot, {all: [swollen_area, very_high_temperature]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_elbow_and_arm_pain
+    note: "Could be a joint or skin infection. A hot, swollen joint is from the Joint pain page."
+
+  - id: rf_arm_injury_111
+    description: "Arm injury that is very painful, badly swollen, hard to move, or may be broken"
+    when: {all: [injury_or_fall, {any: [severe_pain, badly_swollen, cannot_move_painful_part, think_bone_broken]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111, or go to an urgent treatment centre"}
+    advice: advice_arm_pain_urgent
+    source: nhs_broken_arm_or_wrist
+
+  - id: rf_arm_cast
+    description: "A plaster cast that feels too tight, or fingers numb, swollen, blue or white"
+    when: cast_problem
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_arm_pain_urgent
+    source: nhs_broken_arm_or_wrist
+
+  - id: rf_arm_child_not_using
+    description: "A child who is not using their arm, or whose arm was pulled and now will not use it"
+    when: {all: [age_under_16, {any: [child_not_using_arm, arm_pulled_child]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Go to an urgent treatment centre today"}
+    advice: advice_arm_pain_urgent
+    source: ai_judgement
+    note: "A young child who will not use an arm may have a pulled elbow, a broken bone or an infection. The Osteomyelitis page says take a child to a GP if they do not want to use an arm or leg. Urgent is AI judgement, needs clinical review."
+
+outcome_rules:
+  - id: or_arm_gp
+    description: "Elbow or arm pain that has not gone away after a few weeks"
+    when: {any: [pain_not_improving, pain_getting_worse_or_recurring]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_elbow_and_arm_pain
+
+default:
+  description: "Elbow or arm pain with nothing that needs more help: ease it yourself for a couple of days"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most elbow and arm pain is not serious and can be eased at home"}
+  advice: advice_arm_pain_self_care
+  source: nhs_elbow_and_arm_pain

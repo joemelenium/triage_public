@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chapped_lips
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_dry_lips]
+name: "Chapped lips (dry, cracked lips from the weather or licking them)"
+medical_name: "Cheilitis due to exposure"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: dry, cracked lips after cold, wind or sun, or from licking them, with no
+  # blisters.
+  lips_weather_or_licking: strongly_supports
+  dehydration_signs: supports
+  breathes_through_mouth: supports
+key_findings: [lips_weather_or_licking]
+source: nhs_sore_or_dry_lips
+informed_by: [nhs_sore_or_dry_lips]

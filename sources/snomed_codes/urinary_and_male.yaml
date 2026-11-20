@@ -1,0 +1,153 @@
+- code: '278017001'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '165232002'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '8009008'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '162116003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '139394000'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '7766007'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '162053006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '7093002'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '102835006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '162128006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '249288007'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '53929009'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '34615008'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '860914002'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '9957009'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '430968008'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '50818007'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '9713002'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '236648008'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '399326009'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '363518003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '399068003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '197983000'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '363449006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '51070004'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '43077002'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '396232000'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '236024003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '262921003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '398318005'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '8098009'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '266113007'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '33839006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '266127002'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '44882003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '13758004'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '363516004'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '373596001'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '6273006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '48723006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '289903006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '44001008'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '50112006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '786457000'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '22220005'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '36171008'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '14669001'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '450845009'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '34436003'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '266569009'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'
+- code: '308006'
+  checked_against: NHS SNOMED CT Browser, UK Edition v20260923 (termbrowser.nhs.uk)
+  checked_on: '2026-11-19'

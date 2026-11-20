@@ -1,0 +1,186 @@
+# Entry symptom: head injury.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Head injury is not on the NHS Symptoms A to Z list. The Head injury and
+# concussion page is used. Questions are worded so a parent or someone who saw
+# the injury can answer.
+#
+# Must-not-miss causes: bleeding in or around the brain and a broken skull,
+# especially in older people and anyone who takes blood thinners. A neck injury
+# belongs to the bones, joints and muscles batch.
+
+id: head_injury
+name: "Head injury"
+presenting_finding: head_injury
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: head_injury_emergency_screen
+    level: emergency
+    question: "Since the head injury, do any of these apply? Choose all that apply."
+    findings:
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - had_a_fit
+      - head_injury_high_force
+      - vision_change
+      - double_vision
+      - hearing_loss
+      - tinnitus
+      - skull_injury_signs
+      - numbness_or_weakness
+      - trouble_with_balance_or_walking
+      - difficulty_speaking
+      - behaviour_changed_since_injury
+      - head_bruise_swelling_or_cut
+      - knocked_out
+      - takes_blood_thinners
+
+  - id: head_injury_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vomiting
+      - dizziness
+      - alcohol_or_substances_at_injury
+
+red_flags:
+  # ---- Emergency: call 999 -----------------------------------------------
+  - id: rf_hi_drowsy
+    description: "Cannot stay awake or keep their eyes open after a head injury"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_fit
+    description: "A fit (seizure) after a head injury"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_high_force
+    description: "Fell from more than 1 metre or 5 stairs, or hit the head at high speed"
+    when: head_injury_high_force
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999. Do not move the person if they may have hurt their neck, unless they are in danger."}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_vision_or_hearing
+    description: "Problems with vision or hearing after a head injury"
+    when: {any: [vision_change, double_vision, {any: [hearing_loss, tinnitus]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+    note: "Double vision is a separate observation from other changes in sight, so it is named too. The Double vision page also says 999 or A&E for double vision after a head injury."
+
+  - id: rf_hi_skull
+    description: "Signs of a broken skull: fluid or blood from the ears or nose, bruising behind the ears, a black eye without hitting the eye, a dent, or something in a wound"
+    when: skull_injury_signs
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_numb_or_weak
+    description: "New numbness or weakness in any part of the body after a head injury"
+    when: numbness_or_weakness
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_walk_speak_understand
+    description: "Problems with walking, balance, understanding or speaking after a head injury"
+    when: {any: [trouble_with_balance_or_walking, difficulty_speaking, sudden_confusion]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_behaviour
+    description: "Behaviour has changed since the head injury"
+    when: behaviour_changed_since_injury
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  - id: rf_hi_baby
+    description: "A baby under 1 with a bruise, swelling or large cut on the head"
+    when: {all: [age_under_1, head_bruise_swelling_or_cut]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_999
+    source: nhs_head_injury
+
+  # ---- Emergency: A&E -------------------------------------------------------
+  - id: rf_hi_knocked_out
+    description: "Knocked out by the head injury, even for a short time"
+    when: knocked_out
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now. Do not drive yourself."}
+    advice: advice_head_injury_ae
+    source: ai_judgement
+    note: "The Head injury page says call 999 if the person was knocked out and has not woken up (the universal red flag for passing out covers that). It does not mention someone who was knocked out briefly and has woken. Clinical knowledge: being knocked out at all is a reason to be checked in hospital for bleeding. Needs clinical review."
+
+  - id: rf_hi_blood_thinners_ae
+    description: "A head injury in someone who takes blood thinners or bleeds easily"
+    when: takes_blood_thinners
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E today. Do not drive yourself."}
+    advice: advice_head_injury_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source page gives a lower urgency
+    note: "Source difference: the Head injury page says get help from 111. Clinical knowledge: people on blood thinners are much more likely to bleed inside the head, even after a minor knock, and usually need a scan. Soft, with the urgent rule below as its floor. Needs clinical review."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_hi_being_sick
+    description: "Being sick after a head injury"
+    when: vomiting
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_head_injury_urgent
+    source: nhs_head_injury
+
+  - id: rf_hi_dizzy
+    description: "Feeling dizzy after a head injury"
+    when: dizziness
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_head_injury_urgent
+    source: nhs_head_injury
+
+  - id: rf_hi_blood_thinners
+    description: "A head injury in someone who takes blood thinners or has a condition that thins the blood"
+    when: takes_blood_thinners
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_head_injury_urgent
+    source: nhs_head_injury
+
+  - id: rf_hi_alcohol
+    description: "Drinking alcohol or taking other substances at the time of the head injury"
+    when: alcohol_or_substances_at_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_head_injury_urgent
+    source: nhs_head_injury
+
+outcome_rules:
+  - id: or_hi_worried
+    description: "A head injury and worried about other symptoms"
+    when: worried_about_symptoms
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_head_injury_urgent
+    source: nhs_head_injury
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+  - id: or_hi_over_2_weeks
+    description: "Symptoms of a head injury lasting more than 2 weeks"
+    when: head_injury_symptoms_over_2_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_head_injury_gp
+    source: nhs_head_injury
+
+default:
+  description: "A minor head injury with nothing that needs more help: look after yourself at home"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "You can usually look after a minor head injury at home. Make sure an adult stays with you for the first 24 hours."}
+  advice: advice_head_injury_self_care
+  source: nhs_head_injury

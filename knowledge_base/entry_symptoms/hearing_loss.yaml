@@ -1,0 +1,120 @@
+# Entry symptom: hearing loss.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by the conditions that look likely.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Hearing loss page, with the Tinnitus, Earache and
+# Labyrinthitis pages, and clinical knowledge where marked ai_judgement.
+
+id: hearing_loss
+name: "Hearing loss"
+presenting_finding: hearing_loss
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: hearing_loss_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - head_injury
+      - face_droop_one_side
+      - very_painful_headache
+      - stiff_neck
+      - bothered_by_light
+
+  - id: hearing_loss_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - hearing_loss_sudden
+      - hearing_worse_days_weeks
+      - ear_pain
+      - ear_discharge
+      - object_in_ear
+      - rash_blisters_on_ear
+      - dizziness_spinning
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_hl_head_injury
+    description: "Hearing loss that started after a head injury"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_head_injury_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: AI judgement, and a head injury brings in the head injury rules, which are the firm floor
+    note: "AI reading of the Tinnitus page, which says go to A&E or call 999 for tinnitus after a head injury. Hearing loss after a head injury is treated the same way."
+
+  - id: rf_hl_facial_weakness
+    description: "Hearing loss with weakness or drooping of one side of the face"
+    when: face_droop_one_side
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_hearing_ae
+    source: nhs_tinnitus
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "The Tinnitus page says go to A&E for tinnitus with weakness in the face. The Bell's palsy page says an urgent GP appointment or 111 for weakness of one side of the face. The more urgent is used, marked soft, so that likely shingles of the ear can lower it to same-day care."
+
+  - id: rf_hl_meningitis_signs
+    description: "Hearing loss with a very bad headache and a stiff neck, or bright light hurting the eyes"
+    when: {all: [very_painful_headache, {any: [stiff_neck, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_hearing_ae
+    source: ai_judgement
+    note: "Clinical knowledge: an ear infection can rarely spread to the lining of the brain (meningitis), which can cause hearing loss. The Mumps page says go to A&E or call 999 for a very bad headache with a stiff neck."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_hl_sudden
+    description: "Sudden hearing loss in one or both ears"
+    when: hearing_loss_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hearing_urgent
+    source: nhs_hearing_loss
+
+  - id: rf_hl_worse_days_weeks
+    description: "Hearing getting worse over the last few days or weeks"
+    when: hearing_worse_days_weeks
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hearing_urgent
+    source: nhs_hearing_loss
+
+  - id: rf_hl_with_earache_or_discharge
+    description: "Hearing loss with earache or fluid coming out of the ear"
+    when: {any: [ear_pain, ear_discharge]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_hearing_urgent
+    source: nhs_hearing_loss
+
+  - id: rf_hl_object
+    description: "Hearing loss with something stuck in the ear"
+    when: object_in_ear
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_object_stuck_urgent
+    source: nhs_earache
+
+  - id: rf_hl_rash_on_ear
+    description: "Hearing loss with a painful rash or blisters in or around the ear"
+    when: rash_blisters_on_ear
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_hearing_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: blisters in the ear with hearing loss can be shingles of the ear, which needs treatment early."
+
+outcome_rules:
+  - id: or_hl_not_back_after_treatment
+    description: "Hearing not back after treatment for an ear infection or earwax"
+    when: hearing_not_back_after_treatment
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_hearing_gp
+    source: nhs_hearing_loss
+
+default:
+  description: "Hearing loss with nothing that needs more urgent help: see a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_hearing_gp
+  source: nhs_hearing_loss
+  # A floor: the Hearing loss page says see a GP if you have problems with your hearing.
+  floor: true
+  note: "The page also says a free hearing test is sometimes available at pharmacies and opticians."

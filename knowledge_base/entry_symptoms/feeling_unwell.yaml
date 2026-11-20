@@ -1,0 +1,134 @@
+# Entry symptom: feeling generally unwell, without one main symptom.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# There is no NHS Symptoms A to Z page for this. It is the way sepsis, a urine
+# infection in an older person, diabetes and many other illnesses can first
+# show. The rules come from the Sepsis and Meningitis pages, and AI judgement
+# where marked.
+
+id: feeling_unwell
+name: "Feeling generally unwell"
+presenting_finding: generally_unwell
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: unwell_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - seriously_unwell_getting_worse
+      - breathing_very_fast
+      - skin_blotchy
+      - rash_does_not_fade
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - cold_hands_and_feet
+      - stiff_neck
+
+  - id: unwell_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - feels_very_unwell
+      - not_peed_12_hours
+      - cannot_keep_fluids_down
+      - very_thirsty
+      - pain_when_peeing
+
+red_flags:
+  - id: rf_gu_sepsis_skin_or_rash
+    description: "Unwell with blotchy skin, or a rash that does not fade when pressed: possible sepsis or meningitis"
+    when: {any: [skin_blotchy, rash_does_not_fade]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_gu_drowsy
+    description: "Unwell and so drowsy they are hard to wake or cannot stay awake, or a child who is floppy or not responding as usual"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_gu_stiff_neck
+    description: "Unwell with a stiff neck: possible meningitis"
+    when: stiff_neck
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+
+  - id: rf_gu_fast_breathing_with_infection
+    description: "Unwell and breathing very fast, with a high temperature or feeling very unwell: possible sepsis"
+    when: {all: [breathing_very_fast, {any: [very_high_temperature, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "As in the breathlessness rule, requiring a high temperature or feeling very unwell is AI judgement, so that fast breathing from a panic attack is not sent to A&E on its own."
+
+  - id: rf_gu_cold_skin
+    description: "Unwell, with hands and feet or skin unusually cold or clammy"
+    when: cold_hands_and_feet
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Sepsis page says call 999 or go to A&E for feeling cold to the touch. Soft, as in the breathlessness rule."
+
+  - id: rf_gu_seriously_unwell
+    description: "Very unwell and getting worse, or feels something is seriously wrong"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: it rests on the person's own judgement
+    note: "The Sepsis page says trust your instincts. Soft, as in the cough and breathlessness rules."
+
+  - id: rf_gu_fast_breathing
+    description: "Unwell and breathing very fast"
+    when: breathing_very_fast
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_unwell_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: fast breathing is also common in a panic attack
+    note: "AI judgement, as in the breathlessness rule. With a high temperature or feeling very unwell the emergency rule above applies."
+
+  - id: rf_gu_not_peed
+    description: "Unwell and no pee for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_unwell_urgent
+    source: nhs_kidney_infection
+    note: "For children under 5 the dehydration and high temperature rules send this to A&E, as the Sepsis page says."
+
+  - id: rf_gu_cannot_keep_fluids_down
+    description: "Unwell and cannot keep fluids down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_unwell_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: someone who cannot keep fluids down will soon lack water in the body, and it can be a sign of diabetic ketoacidosis."
+
+outcome_rules:
+  - id: or_gu_feels_very_unwell
+    description: "Feels very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today"}
+    advice: advice_unwell_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: flu makes people feel very unwell
+    note: "AI judgement: feeling very unwell without a clear cause should be checked the same day. Soft, so that likely flu or a viral illness can lower it."
+
+  - id: or_gu_not_getting_better
+    description: "Unwell and getting worse, or not getting better after about a week"
+    when: symptoms_worse_or_not_better
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_unwell_gp
+    source: ai_judgement
+
+default:
+  description: "Feeling generally unwell with nothing that needs more help: see a GP if it does not settle"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP if you are not getting better. The source gives no fixed time."}
+  advice: advice_unwell_gp
+  source: ai_judgement
+  note: "AI judgement. Soft: a likely viral illness lowers it to self-care."

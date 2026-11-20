@@ -1,0 +1,58 @@
+id: mix_d06
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [cough, short_of_breath, chest_pain]
+
+summary: "A 52-year-old man has had flu-like symptoms for four days, then a cough bringing up green phlegm, a high temperature, aching all over, feeling short of breath walking around the house, and a sharp pain on the right side of his chest when he breathes in or coughs. He can talk normally and is not confused."
+
+opening_statement: "I've had this chest bug for a few days. I'm coughing up green stuff, I'm burning up, and it really hurts on the right side when I breathe in. I'm a bit short of breath too."
+
+findings:
+  present: [cough, cough_phlegm, phlegm_yellow_or_green, cough_mucus_or_temperature, very_high_temperature, short_of_breath, chest_pain, cp_worse_breathing_in, cp_sharp_or_stabbing, cp_present_now, cp_comes_and_goes, aching_body, very_tired, symptoms_worse_or_not_better]
+  absent: [coughing_up_blood, sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, skin_blotchy, sudden_confusion, cp_spreads, cp_tight_or_squeezing, cp_heavy, cp_sudden_not_going_away, cp_tender_to_press, sweating, nausea_or_vomiting, light_headed, leg_pain_or_swelling, heart_beating_very_fast, breathing_very_fast, palpitations, has_copd, has_asthma, long_term_condition, weakened_immune_system, cough_3_weeks_or_more, recent_surgery_or_immobile, recent_long_journey, wheezing, feels_very_unwell, smoker, upper_back_pain, sob_more_than_usual, cp_lasted_15_minutes]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 52, sex: male}
+  full:
+    age: 52
+    sex: male
+    findings: {}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Chest pain on breathing in or coughing, with green phlegm and breathlessness (possible pneumonia)"
+    findings: [cp_worse_breathing_in, phlegm_yellow_or_green, short_of_breath]
+    minimum_acuity: urgent
+    source: {page: pneumonia.txt, quote: "you have chest pain that comes and goes, or happens when breathing or coughing"}
+
+safety_netting_should_cover:
+  - point: "Ask for an urgent GP appointment or contact NHS 111"
+    any_of: ["111", "urgent"]
+  - point: "Call 999 if struggling to breathe, lips or skin turn blue or blotchy, coughing up blood, or suddenly confused"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: pneumonia.txt, quote: "you're coughing up yellow or green mucus (phlegm)"}
+  minimum_safe_acuity: {page: pneumonia.txt, quote: "you have chest pain that comes and goes, or happens when breathing or coughing"}
+
+variants:
+  - id: mix_d06_v1
+    style: "brief"
+    opening_statement: "Chesty cough, fever, hurts to breathe in."
+    volunteered: [cough, very_high_temperature, cp_worse_breathing_in]
+  - id: mix_d06_v2
+    style: "wife speaking, worried"
+    opening_statement: "My husband's had flu and now he's coughing up green phlegm, he's red hot, and he says his chest hurts on the right every time he breathes."
+    volunteered: [phlegm_yellow_or_green, very_high_temperature, chest_pain, cp_worse_breathing_in]
+
+atypical: false
+notes: "Sources differ. pneumonia.txt gives an urgent GP appointment or 111 for green phlegm, chest pain on breathing or coughing and feeling short of breath, and 999 only for struggling to breathe, blue or blotchy skin, coughing up blood or sudden confusion (all absent). chest_pain.txt says 999 for chest pain with shortness of breath, which read literally would make this an emergency; its own table links pain worse on breathing in with yellow or green mucus and a high temperature to a chest infection, pneumonia or pleurisy. The pneumonia page was followed. An emergency outcome would be over-triage but not unsafe. cp_comes_and_goes is present because the pain comes with each breath or cough."

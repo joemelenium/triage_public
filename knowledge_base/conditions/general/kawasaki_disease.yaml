@@ -1,0 +1,34 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: kawasaki_disease
+body_system: general
+# Rare, mainly in children under 5. Needs treatment quickly to protect the heart. The
+# page says an urgent GP appointment or 111.
+entry_symptoms: [very_high_temperature, rash]
+name: "Kawasaki (a rare illness in young children, with a high temperature for 5 days or more)"
+medical_name: "Kawasaki disease"
+snomed: "75053002"
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_16_or_over, prevalence: very_rare}
+  - {finding: temperature_5_days_or_more, prevalence: uncommon}
+  - {finding: age_under_5, prevalence: rare}
+findings:
+  # Age is linked so that it is all but ruled out in adults. What tells it apart from a viral
+  # rash: a temperature for 5 days or more with red eyes, red cracked lips, and red swollen
+  # hands or feet.
+  temperature_5_days_or_more: strongly_supports
+  red_eye: supports
+  red_cracked_lips: supports
+  rash: supports
+  red_swollen_hands_or_feet: supports
+  swollen_neck_glands: supports
+  # From the skin_and_hair card for this condition (merged):
+key_findings: [temperature_5_days_or_more, red_eye, red_cracked_lips, red_swollen_hands_or_feet]
+source: nhs_kawasaki_disease
+informed_by: [nhs_kawasaki_disease, nhs_fever_in_children]
+# Merged with the skin_and_hair card for this condition. Its notes:
+# Urgent, as the source says. It needs treatment in hospital within days to protect the heart. Danger serious: damage to the heart's blood vessels if missed.
+# What tells it apart from a viral rash or scarlet fever: a high temperature for 5 days or more, red eyes, red cracked lips or a strawberry tongue, and red or swollen hands and feet.

@@ -1,0 +1,89 @@
+# Entry symptom: bad breath.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by the conditions that look likely.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Bad breath page, with the Gum disease and Dental abscess
+# pages, and clinical knowledge where marked ai_judgement. Tooth and gum
+# problems go to a dentist.
+
+id: bad_breath
+name: "Bad breath"
+presenting_finding: bad_breath
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bad_breath_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - fruity_breath
+      - gums_very_sore_or_teeth_loose
+      - face_or_jaw_swollen
+      - very_thirsty
+      - peeing_more_often
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bb_high_blood_sugar
+    description: "Breath that smells fruity, with being very thirsty, feeling sick or being sick, or feeling very unwell"
+    when: {all: [fruity_breath, {any: [{all: [very_thirsty, peeing_more_often]}, nausea_or_vomiting, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_high_blood_sugar_ae
+    source: ai_judgement
+    note: "Clinical knowledge: fruity breath with thirst, being sick or feeling very unwell can be a sign of diabetic ketoacidosis, a life-threatening problem caused by very high blood sugar."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bb_fruity_breath
+    description: "Breath that smells fruity, like pear drops"
+    when: fruity_breath
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 today. If you have diabetes, check your blood sugar and ketones if you can."}
+    advice: advice_possible_high_blood_sugar_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical knowledge, not a source page
+    note: "Clinical knowledge: fruity breath can be an early sign of high blood sugar with ketones. It can also come from dieting or fasting."
+
+  - id: rf_bb_gums_very_sore
+    description: "Very sore and swollen gums, or teeth becoming loose or falling out"
+    when: gums_very_sore_or_teeth_loose
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment. If you cannot get one, call 111."}
+    advice: advice_dentist_urgent
+    source: nhs_gum_disease
+
+  - id: rf_bb_face_swollen
+    description: "Bad breath with a swollen face, cheek or jaw"
+    when: face_or_jaw_swollen
+    outcome: {acuity: urgent, level_of_care: dental, timeframe: today, timeframe_detail: "Ask for an urgent dentist appointment. If you cannot get one, call 111."}
+    advice: advice_dentist_urgent
+    source: nhs_dental_abscess
+
+outcome_rules:
+  - id: or_bb_few_weeks
+    description: "Bad breath that has not gone after a few weeks of cleaning the teeth, tongue and gums well"
+    when: bad_breath_few_weeks
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_bad_breath_dentist
+    source: nhs_bad_breath
+
+  - id: or_bb_gums
+    description: "Bad breath with painful, bleeding or swollen gums"
+    when: gums_sore_swollen_bleeding
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_bad_breath_dentist
+    source: nhs_bad_breath
+
+  - id: or_bb_toothache
+    description: "Bad breath with toothache or wobbly adult teeth"
+    when: toothache
+    outcome: {acuity: routine, level_of_care: dental, timeframe: no_fixed_time, timeframe_detail: "See a dentist. The source gives no fixed time."}
+    advice: advice_bad_breath_dentist
+    source: nhs_bad_breath
+
+default:
+  description: "Bad breath with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Bad breath can usually be treated by keeping your teeth, tongue and mouth clean"}
+  advice: advice_bad_breath_self_care
+  source: nhs_bad_breath

@@ -1,0 +1,62 @@
+id: st_d03
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 31-year-old woman who is 20 weeks pregnant has had a sore throat with a cold for three days. She has no temperature and is eating and drinking normally. She wants to know what she can safely take."
+
+opening_statement: "I'm pregnant and I've had a sore throat for three days. What can I safely take for it?"
+
+findings:
+  present: [sore_throat, wants_help_with_sore_throat, cough_or_runny_nose]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, weakened_immune_system, pus_on_tonsils,
+      too_painful_to_eat_or_drink, worried_about_symptoms, sore_throat_over_a_week,
+      frequent_sore_throats, lump_in_mouth_or_neck, mouth_ulcer_over_3_weeks,
+      swollen_neck_glands, very_tired, stroke_signs, severe_breathing_difficulty,
+      lips_or_skin_blue_grey, passed_out, sudden_confusion, heavy_bleeding, serious_self_harm,
+      chest_pain, short_of_breath, cold_or_shivery]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 31, sex: female}
+  full: {age: 31, sex: female}
+
+expected:
+  acuity: routine
+  level_of_care: community_pharmacy
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: self_manageable
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See or speak to a pharmacist"
+    any_of: ["pharmacist", "pharmacy"]
+  - point: "Check that a medicine is safe in pregnancy before taking it"
+    any_of: ["pregnan", "leaflet", "not safe for everyone"]
+  - point: "See a GP if the sore throat does not improve after a week"
+    any_of: ["a week", "1 week", "one week", "7 days"]
+  - point: "When to get urgent or emergency help, such as difficulty breathing, being unable to swallow, drooling or a very high temperature"
+    any_of: ["999", "A&E", "111"]
+
+source:
+  expected_outcome: {page: sore_throat.txt, quote: "Some medicines are not safe for everyone (for example, if you're pregnant). Always check the leaflet or speak to a pharmacist before taking them."}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "They normally get better by themselves within a week."}
+
+variants:
+  - id: st_d03_v1
+    style: "focused on medicine safety"
+    opening_statement: "I don't want to take anything that might not be safe in pregnancy. Is there anything I can have for a sore throat?"
+    volunteered: [sore_throat, wants_help_with_sore_throat]
+  - id: st_d03_v2
+    style: "detailed"
+    opening_statement: "I'm 20 weeks pregnant. I've had a cold and a sore throat for three days, no temperature, and I'm eating and drinking as normal. I'd like something to ease it but I'm not sure what's allowed."
+    volunteered: [sore_throat, wants_help_with_sore_throat, very_high_temperature, too_painful_to_eat_or_drink]
+
+atypical: false
+notes: "The outcome also rests on 'Non-urgent advice: See a pharmacist if: you need help for a sore throat' on sore_throat.txt. Pregnancy cannot be expressed with any question on the list, so it appears only in the summary and opening statement. Self-care would be safe provided the advice says to check medicines with a pharmacist or the leaflet, so the minimum safe acuity is self_manageable. She is asking about medicines, not saying she is worried about her symptoms."

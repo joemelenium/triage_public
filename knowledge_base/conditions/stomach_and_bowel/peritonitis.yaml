@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: peritonitis
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache]
+name: "Peritonitis (infection of the lining of the tummy)"
+medical_name: "Peritonitis, including a perforated ulcer or appendix"
+snomed: "48661000"
+acuity_needed: urgent   # the source page says an urgent GP appointment or 111; its 999 signs are red flags (DECISIONS 167)
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: has_stomach_ulcer, prevalence: uncommon}
+findings:
+  # What tells it apart: severe pain, a tummy that is very painful to touch or
+  # hard, worse on moving, with a high temperature and a fast heartbeat.
+  tummy_painful_to_touch: strongly_supports
+  sa_severe: strongly_supports
+  sa_worse_moving_or_coughing: strongly_supports
+  very_high_temperature: supports
+  heart_beating_very_fast: supports
+  feels_very_unwell: supports
+  vomiting: supports
+  not_peed_12_hours: supports
+key_findings: [tummy_painful_to_touch, sa_severe, sa_worse_moving_or_coughing, very_high_temperature]
+source: nhs_peritonitis
+informed_by: [nhs_peritonitis, nhs_stomach_ulcer]

@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: epiglottitis
+body_system: ear_nose_throat
+entry_symptoms: [sore_throat, difficulty_swallowing]
+name: "Epiglottitis (swelling of the flap at the back of the throat that covers the windpipe)"
+snomed: "80384002"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart from quinsy: a high-pitched sound when breathing in and drooling, coming on
+  # quickly, with leaning forward to breathe, rather than trouble opening the mouth.
+  stridor: strongly_supports
+  drooling: strongly_supports
+  unable_to_swallow: supports
+  difficulty_breathing: supports
+  very_high_temperature: supports
+  hoarse_voice: supports
+  child_wants_to_sit_up: supports
+key_findings: [stridor, drooling, difficulty_breathing]
+source: nhs_epiglottitis
+informed_by: [nhs_epiglottitis, nhs_sore_throat]

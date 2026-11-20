@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: foreign_body_in_eye
+body_system: eyes
+# Dust, grit or an eyelash on the surface of the eye. Usually washes out.
+# Something that will not wash out needs A&E (a rule).
+entry_symptoms: [something_in_eye, eye_pain, red_eye, watering_eyes]
+name: "Something on the surface of the eye, such as dust, grit or an eyelash"
+medical_name: "Foreign body on the surface of the eye"
+snomed: "450671000124109"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: something_in_eye, prevalence: very_common}
+findings:
+  something_in_eye: strongly_supports
+  watering_eyes: supports
+  gritty_or_burning: supports
+  red_eye: supports
+key_findings: [something_in_eye]
+source: nhs_eye_injuries
+informed_by: [nhs_eye_injuries, nhs_watering_eyes]

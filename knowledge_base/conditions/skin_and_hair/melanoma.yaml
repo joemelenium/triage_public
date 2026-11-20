@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: melanoma
+body_system: skin_and_hair
+entry_symptoms: [skin_lump, nail_problem]
+name: "Melanoma (a type of skin cancer that often starts as a new or changing mole)"
+medical_name: "Malignant melanoma of skin"
+snomed: "93655004"
+# Acuity soon: the source gives no fixed time, but a GP may make an urgent referral, so it should be seen within days.
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: mole_changed, prevalence: common}
+  - {finding: dark_area_under_nail, prevalence: uncommon}
+findings:
+  # What tells it apart from a normal mole: a new mole, or one that changes size, shape or colour, with uneven edges or a mix of colours, or that bleeds, itches or crusts. Rarely a dark streak under a nail.
+  mole_changed: strongly_supports
+  mole_uneven_or_mixed_colours: supports
+  skin_growth_bleeds_or_crusts: supports
+  lump_getting_bigger: supports
+  dark_area_under_nail: supports
+key_findings: [mole_changed, mole_uneven_or_mixed_colours, skin_growth_bleeds_or_crusts]
+source: nhs_melanoma_symptoms
+informed_by: [nhs_melanoma_symptoms]

@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: eye_stroke
+body_system: eyes
+# A blocked artery at the back of the eye: sudden, painless loss of sight in 1
+# eye. It is a kind of stroke and needs hospital care straight away.
+entry_symptoms: [vision_change]
+name: "Eye stroke (a blocked blood vessel at the back of the eye)"
+medical_name: "Central retinal artery occlusion"
+snomed: "38742007"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: rare}
+findings:
+  sight_lost: strongly_supports
+  vision_change_sudden: strongly_supports
+  vision_change_one_eye: strongly_supports
+  heart_risk_factors: supports
+  vision_loss_brief: supports    # warning episodes before
+key_findings: [sight_lost, vision_change_sudden, vision_change_one_eye, vision_loss_brief]
+source: ai_judgement
+informed_by: [nhs_vision_loss, nhs_stroke_symptoms]

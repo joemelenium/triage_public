@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: necrotising_fasciitis
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound, rash, insect_bite_or_sting, burn]
+name: "Necrotising fasciitis (a rare, very serious deep skin infection)"
+medical_name: "Necrotising fasciitis"
+snomed: "52486002"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: pain_much_worse_than_expected, prevalence: rare}
+  - {finding: purple_black_patches_on_skin, prevalence: rare}
+findings:
+  # What tells it apart from cellulitis: pain much worse than expected for what can be seen, black, purple or grey patches or blisters, and becoming unwell quickly.
+  pain_much_worse_than_expected: strongly_supports
+  swollen_area_red_hot: strongly_supports
+  purple_black_patches_on_skin: supports
+  very_high_temperature: supports
+  feels_very_unwell: supports
+  seriously_unwell_getting_worse: supports
+  heart_beating_very_fast: supports
+  nausea_or_vomiting: supports
+key_findings: [pain_much_worse_than_expected, purple_black_patches_on_skin, seriously_unwell_getting_worse]
+source: nhs_necrotising_fasciitis
+informed_by: [nhs_necrotising_fasciitis]

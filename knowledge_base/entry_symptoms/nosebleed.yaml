@@ -1,0 +1,142 @@
+# Entry symptom: nosebleed.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The NHS website has no Symptoms A to Z page for nosebleeds. The rules come
+# from the Nosebleed, Broken nose and Acute lymphoblastic leukaemia pages.
+# Bleeding that cannot be stopped is checked for everyone first.
+
+id: nosebleed
+name: "Nosebleed"
+presenting_finding: nosebleed
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: nosebleed_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - nosebleed_over_15_minutes
+      - nosebleed_heavy
+      - swallowing_blood_and_sick
+      - head_injury
+      - light_headed
+      - difficulty_breathing
+
+  - id: nosebleed_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - nose_injury
+      - bruising_or_bleeding_easily
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_nb_over_15_minutes
+    description: "A nosebleed lasting longer than 10 to 15 minutes"
+    when: nosebleed_over_15_minutes
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_nosebleed_ae
+    source: nhs_nosebleed
+
+  - id: rf_nb_heavy
+    description: "A nosebleed where the bleeding seems very heavy"
+    when: nosebleed_heavy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_nosebleed_ae
+    source: nhs_nosebleed
+
+  - id: rf_nb_swallowing_blood
+    description: "Swallowing a large amount of blood that has made you sick"
+    when: swallowing_blood_and_sick
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_nosebleed_ae
+    source: nhs_nosebleed
+
+  - id: rf_nb_head_injury
+    description: "A nosebleed that started after a blow to the head"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_nosebleed_ae
+    source: nhs_nosebleed
+
+  - id: rf_nb_weak_or_dizzy
+    description: "A nosebleed with feeling weak or dizzy"
+    when: light_headed
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_nosebleed_ae
+    source: nhs_nosebleed
+
+  - id: rf_nb_breathing
+    description: "A nosebleed with difficulty breathing"
+    when: difficulty_breathing
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_nosebleed_ae
+    source: nhs_nosebleed
+
+  - id: rf_nb_clear_fluid_after_injury
+    description: "Clear, watery fluid trickling from the nose after an injury"
+    when: {all: [nose_injury, clear_fluid_from_nose]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_head_injury_ae
+    source: nhs_broken_nose
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_nb_broken_nose
+    description: "After an injury, the nose is crooked, the swelling has not gone down after 3 days, or it is hard to breathe through"
+    when: {all: [nose_injury, nose_crooked_or_not_healing]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_broken_nose_urgent
+    source: nhs_broken_nose
+
+  - id: rf_nb_child_bruising
+    description: "A child with nosebleeds who is bruising or bleeding easily, or for no reason"
+    when: {all: [age_under_16, bruising_or_bleeding_easily]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_nosebleed_urgent
+    source: nhs_acute_lymphoblastic_leukaemia
+
+outcome_rules:
+  - id: or_nb_child_under_2
+    description: "A child under 2 who has had a nosebleed"
+    when: age_under_2
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nosebleed_gp
+    source: nhs_nosebleed
+
+  - id: or_nb_regular
+    description: "Regular nosebleeds"
+    when: nosebleeds_regular
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nosebleed_gp
+    source: nhs_nosebleed
+
+  - id: or_nb_anaemia
+    description: "Nosebleeds with signs of anaemia, such as skin paler than usual"
+    when: paler_than_usual
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nosebleed_gp
+    source: nhs_nosebleed
+
+  - id: or_nb_blood_thinners
+    description: "A nosebleed in someone taking medicine to prevent blood clots, or with a blood clotting condition"
+    when: takes_blood_thinners
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nosebleed_gp
+    source: nhs_nosebleed
+
+  - id: or_nb_bruising
+    description: "Nosebleeds with bruising or bleeding easily"
+    when: bruising_or_bleeding_easily
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nosebleed_gp
+    source: nhs_acute_lymphoblastic_leukaemia
+
+default:
+  description: "A nosebleed with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most nosebleeds can be treated at home and stop within 10 to 15 minutes"}
+  advice: advice_nosebleed_self_care
+  source: nhs_nosebleed

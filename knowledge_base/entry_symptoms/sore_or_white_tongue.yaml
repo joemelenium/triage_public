@@ -1,0 +1,72 @@
+# Entry symptom: sore or white tongue.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Sources: the NHS Sore or white tongue page, with the Mouth ulcers, Mouth
+# cancer, Oral thrush and Anaphylaxis pages.
+
+id: sore_or_white_tongue
+name: "Sore or white tongue"
+presenting_finding: sore_or_white_tongue
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: tongue_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+
+red_flags:
+  - id: rf_to_allergic_swelling
+    description: "Lips, mouth, tongue or throat suddenly swollen"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_to_throat_tight
+    description: "Sore tongue with the throat feeling tight or closed up"
+    when: throat_tight
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+outcome_rules:
+  - id: or_to_pain_not_going
+    description: "Tongue pain or itching that does not go away or gets worse"
+    when: tongue_pain_not_going
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or dentist. The source gives no fixed time."}
+    advice: advice_tongue_gp_or_dentist
+    source: nhs_sore_or_white_tongue
+
+  - id: or_to_white_patches
+    description: "White patches on the tongue"
+    when: white_patches_in_mouth
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or dentist. The source gives no fixed time."}
+    advice: advice_tongue_gp_or_dentist
+    source: nhs_sore_or_white_tongue
+
+  - id: or_to_ulcer_unusual
+    description: "A mouth ulcer that is unusual, bleeding, or getting more painful and red"
+    when: mouth_ulcer_unusual
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a dentist or GP. The source gives no fixed time."}
+    advice: advice_tongue_gp_or_dentist
+    source: nhs_mouth_ulcers
+
+  - id: or_to_ulcer_or_patch_3_weeks
+    description: "A mouth ulcer, red or white patch, or lump that has lasted more than 3 weeks"
+    when: {any: [mouth_ulcer_over_3_weeks, mouth_patch_or_lump_3_weeks]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or dentist. The source gives no fixed time."}
+    advice: advice_mouth_lump_gp
+    source: nhs_mouth_cancer
+
+default:
+  description: "Sore or white tongue with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A sore or white tongue is not usually serious. A pharmacist can help."}
+  advice: advice_tongue_self_care
+  source: nhs_sore_or_white_tongue

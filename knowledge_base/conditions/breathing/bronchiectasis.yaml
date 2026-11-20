@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bronchiectasis
+body_system: breathing
+# The long-term condition. A chest infection or more breathlessness in someone
+# already diagnosed is sent for help the same day by the rules.
+entry_symptoms: [cough, coughing_up_blood, short_of_breath]
+name: "Bronchiectasis (damaged airways in the lungs that make a lot of phlegm)"
+medical_name: "Bronchiectasis"
+snomed: "12295008"
+acuity_needed: routine
+danger: moderate
+diagnosed_by: has_bronchiectasis
+prevalence: very_rare
+prevalence_when:
+  - {finding: has_bronchiectasis, prevalence: very_common}
+  - {finding: cough_3_weeks_or_more, prevalence: rare}
+  - {finding: phlegm_lots_every_day, prevalence: rare}
+  - {finding: coughing_up_blood, prevalence: rare}
+findings:
+  # What tells it apart from COPD or a chest infection: a lot of phlegm every day
+  # for a long time, and chest infections that keep coming back.
+  phlegm_lots_every_day: strongly_supports
+  cough_phlegm: strongly_supports
+  cough_3_weeks_or_more: strongly_supports
+  frequent_chest_infections: strongly_supports
+  wheezing: supports
+  very_tired: supports
+  coughing_up_blood: supports
+  sob_more_than_usual: supports
+key_findings: [phlegm_lots_every_day, frequent_chest_infections, cough_3_weeks_or_more]
+source: nhs_bronchiectasis
+informed_by: [nhs_bronchiectasis, nhs_cough]

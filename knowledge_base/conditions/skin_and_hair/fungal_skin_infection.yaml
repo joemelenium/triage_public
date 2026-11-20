@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: fungal_skin_infection
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin, smelly_feet, hair_loss, nail_problem]
+name: "Fungal skin infection (such as ringworm or athlete's foot)"
+medical_name: "Dermatophytosis (tinea)"
+snomed: "47382004"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: common
+findings:
+  # What tells it apart from eczema or psoriasis: an itchy, ring-shaped, scaly patch, or itchy, flaky skin between the toes. On the scalp it can cause patchy hair loss.
+  rash_ring_shaped_scaly: strongly_supports
+  itchy_flaky_skin_between_toes: strongly_supports
+  scalp_scaly_or_itchy: supports
+  hair_loss_patches: supports
+  rash_itchy: supports
+key_findings: [rash_ring_shaped_scaly, itchy_flaky_skin_between_toes, scalp_scaly_or_itchy]
+source: nhs_ringworm
+informed_by: [nhs_ringworm, nhs_athletes_foot, nhs_smelly_feet]

@@ -1,0 +1,76 @@
+id: cg_d06
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: A 14-year-old boy with asthma who had an asthma attack last night that settled with his reliever inhaler. Today he is breathing normally but has a cough and has been using his reliever more than usual. His mother is answering.
+opening_statement: My son had a bad asthma attack last night. His blue inhaler sorted it and he's alright now, just coughing a bit.
+findings:
+  present:
+  - cough
+  - has_asthma
+  - wheezing
+  - wheeze_comes_and_goes
+  - cough_worse_at_night
+  - asthma_needing_reliever_more
+  - asthma_attack_recovered
+  absent:
+  - asthma_attack_now
+  - short_of_breath
+  - difficulty_breathing
+  - severe_breathing_difficulty
+  - chest_pain
+  - lips_or_skin_blue_grey
+  - very_high_temperature
+  - child_floppy_or_hard_to_wake
+  - feels_very_unwell
+  - coughing_up_blood
+  - breathing_very_fast
+  - sudden_confusion
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 14
+    sex: male
+  full:
+    age: 14
+    sex: male
+expected:
+  acuity: soon
+  level_of_care: general_practice
+  timeframe: few_days
+minimum_safe_acuity: soon
+red_flags:
+- description: Asthma attack in the last day, now recovered
+  findings:
+  - asthma_attack_recovered
+  minimum_acuity: soon
+  source:
+    page: asthma.txt
+    quote: you've had an asthma attack and have recovered
+safety_netting_should_cover:
+- point: See a GP within 2 days to review asthma treatment
+  any_of:
+  - 2 days
+  - two days
+  - 48 hours
+- point: Call 999 if another attack does not settle with the maximum reliever dose or gets worse
+  any_of:
+  - '999'
+source:
+  expected_outcome:
+    page: asthma.txt
+    quote: it's important to see a GP within 2 days
+  minimum_safe_acuity:
+    page: asthma.txt
+    quote: you've had an asthma attack and have recovered
+variants:
+- id: cg_d06_v1
+  style: brief
+  opening_statement: He had an asthma attack last night but he's fine now, just a cough.
+  volunteered:
+  - has_asthma
+  - asthma_attack_recovered
+atypical: false
+notes: 'asthma.txt puts this under ''Urgent advice: Ask for an urgent GP appointment'', but then says to see a GP within 2 days, so ''soon'' (within a few days) is chosen. A reviewer could argue for ''urgent''. When this case was written the question list had no question for ''had an asthma attack recently and has recovered'' (asthma_attack_now only covers an attack happening now), so the red flag had no findings; it is now expressed with asthma_attack_recovered.'

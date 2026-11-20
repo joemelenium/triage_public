@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: herpes_simplex_eye_infection
+body_system: eyes
+# An eye infection caused by the cold sore virus. Usually one eye. The page says
+# you will usually see an eye specialist the same day.
+entry_symptoms: [red_eye, eye_pain, eyelid_problem, watering_eyes]
+name: "Herpes simplex eye infection (an eye infection caused by the cold sore virus)"
+medical_name: "Herpes simplex keratitis"
+snomed: "9389005"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  had_cold_sores: strongly_supports
+  blisters_around_eye: strongly_supports
+  red_eye: strongly_supports
+  eye_pain: supports
+  bothered_by_light: supports
+  watering_eyes: supports
+  weakened_immune_system: supports
+  eyelid_swollen: supports
+key_findings: [had_cold_sores, blisters_around_eye, bothered_by_light]
+source: nhs_herpes_simplex_eye
+informed_by: [nhs_herpes_simplex_eye]

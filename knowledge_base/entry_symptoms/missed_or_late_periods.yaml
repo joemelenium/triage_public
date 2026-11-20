@@ -1,0 +1,125 @@
+# Entry symptom: missed or late periods.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# A missed period is often an early sign of pregnancy. The must-not-miss cause
+# is an ectopic pregnancy (a pregnancy growing outside the womb), so the red
+# flags come from the Ectopic pregnancy page and the Vaginal bleeding between
+# periods page.
+
+id: missed_or_late_periods
+name: "Missed or late periods"
+presenting_finding: missed_or_late_period
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: missed_period_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - sa_sudden_severe
+      - shoulder_tip_pain
+      - fainted
+      - light_headed
+      - heavy_vaginal_bleeding
+
+  - id: missed_period_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pelvic_pain
+      - one_sided_lower_tummy_pain
+      - bleeding_between_periods_or_after_sex
+      - pain_when_peeing
+      - pain_when_pooing
+      - cannot_keep_fluids_down
+
+  - id: missed_period_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - missed_3_periods
+      - periods_not_started_by_15
+      - excess_hair_growth
+      - weight_gain
+      - weight_loss
+      - acne_or_oily_skin
+      - irregular_periods
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_mp_ectopic_burst_signs
+    description: "Missed period with a sharp, sudden and very bad tummy pain, pain in the tip of the shoulder, or passing out"
+    when: {any: [sa_sudden_severe, shoulder_tip_pain, fainted]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_ectopic_pregnancy
+
+  - id: rf_mp_dizzy_with_pain
+    description: "Missed period with tummy pain and feeling very dizzy or light-headed"
+    when: {all: [light_headed, {any: [pelvic_pain, one_sided_lower_tummy_pain]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_ectopic_pregnancy
+
+  - id: rf_mp_heavy_bleeding
+    description: "Missed period, then very heavy bleeding: possible miscarriage"
+    when: heavy_vaginal_bleeding
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_miscarriage
+    soft: true    # likely conditions may lower this: a late, heavy period is common and usually harmless
+    note: "The Miscarriage page says call 999 for heavy bleeding in pregnancy. Applying it to a missed period is AI judgement."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_mp_pain_or_bleeding
+    description: "Missed period with tummy pain, or with unusual bleeding: possible ectopic pregnancy"
+    when: {any: [pelvic_pain, one_sided_lower_tummy_pain, bleeding_between_periods_or_after_sex, heavy_vaginal_bleeding]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your GP or call NHS 111 now"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_ectopic_pregnancy
+    note: "The Ectopic pregnancy page: a missed period with tummy pain low down on one side, or vaginal bleeding, needs advice right away, even with a negative pregnancy test. The Vaginal bleeding between periods page gives the same advice. Heavy bleeding is included because it is vaginal bleeding too: the 999 rule for it is soft, and this keeps urgent as the floor."
+
+  - id: rf_mp_pain_peeing_or_pooing
+    description: "Missed period with discomfort when peeing or pooing"
+    when: {any: [pain_when_peeing, pain_when_pooing]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your GP or call NHS 111"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_ectopic_pregnancy
+    soft: true    # likely conditions may lower this: a urine infection is a more common cause
+    note: "The Ectopic pregnancy page lists discomfort when peeing or pooing as a symptom in combination with a missed period. Soft, as a urine infection is a more common cause."
+
+  - id: rf_mp_cannot_keep_food_down
+    description: "Being sick many times a day and cannot keep food or drink down: possible severe sickness in pregnancy"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your GP or midwife, or call NHS 111, as soon as possible"}
+    advice: advice_severe_sickness_pregnancy_urgent
+    source: nhs_severe_vomiting_pregnancy
+
+outcome_rules:
+  - id: or_mp_three_in_a_row
+    description: "Missed 3 periods in a row, or periods not started by 15"
+    when: {any: [missed_3_periods, periods_not_started_by_15]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_missed_period_gp
+    source: nhs_missed_or_late_periods
+
+  - id: or_mp_other_symptoms
+    description: "Missed period with weight change, more hair on the face or body, or oily skin"
+    when: {any: [excess_hair_growth, weight_gain, weight_loss, acne_or_oily_skin]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_missed_period_gp
+    source: nhs_missed_or_late_periods
+
+  - id: or_mp_irregular
+    description: "Periods have become irregular"
+    when: irregular_periods
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_missed_period_gp
+    source: nhs_missed_or_late_periods
+
+default:
+  description: "A missed or late period with nothing that needs more help: see a doctor just in case"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_missed_period_gp
+  source: nhs_missed_or_late_periods
+  note: "The page says most of the time it is nothing to worry about, but see a doctor just in case. Not a floor, so a clearly likely harmless cause can lower it."

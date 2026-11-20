@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tetanus
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound, burn]
+name: "Tetanus (a rare, serious infection from a dirty wound)"
+medical_name: "Tetanus"
+snomed: "76902006"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+findings:
+  # What tells it apart: a stiff jaw and painful muscle spasms days after a dirty wound, in someone not fully vaccinated.
+  stiff_jaw_or_muscle_spasms: strongly_supports
+  wound_dirty: supports
+  tetanus_not_up_to_date: supports
+  unable_to_swallow: supports
+key_findings: [stiff_jaw_or_muscle_spasms, tetanus_not_up_to_date]
+source: nhs_tetanus
+informed_by: [nhs_tetanus]

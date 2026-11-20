@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hiv
+body_system: general
+# Untreated HIV can show years later as weight loss, night sweats and infections. The page says
+# a sexual health clinic or GP for a test. Danger serious: treatment works well.
+entry_symptoms: [weight_loss, night_sweats]
+name: "HIV (a virus that makes it harder to fight infection)"
+medical_name: "Human immunodeficiency virus infection"
+snomed: "86406008"
+acuity_needed: routine
+danger: serious
+prevalence: rare
+findings:
+  # Possible exposure is linked as a finding: almost everyone with HIV has had one.
+  possible_hiv_exposure: strongly_supports
+  weight_loss: supports
+  night_sweats: supports
+  very_high_temperature: supports
+  lump_neck_armpit_or_groin: supports
+  rash: supports
+key_findings: [possible_hiv_exposure, lump_neck_armpit_or_groin]
+source: nhs_hiv
+informed_by: [nhs_hiv]

@@ -1,0 +1,39 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pre_eclampsia
+body_system: womens_health
+entry_symptoms: [stomach_pain_in_pregnancy, swollen_ankles, swollen_arm_or_hand, headache]
+name: "Pre-eclampsia (high blood pressure in pregnancy that can cause serious problems)"
+medical_name: "Pre-eclampsia"
+snomed: "398254007"
+# Pain just below the ribs, especially on the right, from 20 weeks. Level urgent
+# (the Pre-eclampsia page says get urgent help). Danger critical: it can lead to
+# fits, stroke and HELLP syndrome.
+acuity_needed: urgent
+danger: critical
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnancy_20_weeks_or_more, prevalence: uncommon}
+  - {finding: swollen_ankles, prevalence: rare}
+  - {finding: swollen_arm_or_hand, prevalence: rare}
+findings:
+  pain_below_ribs: strongly_supports
+  severe_headache_not_helped: strongly_supports
+  vision_change: strongly_supports
+  sudden_swelling_face_hands_feet: supports
+  nausea_or_vomiting: supports
+  feels_very_unwell: supports
+  # From the general card for this condition (merged):
+  pregnant_or_recently_given_birth: strongly_supports
+  swelling_elsewhere: supports
+  swelling_severe_painful_or_sudden: supports
+key_findings: [pain_below_ribs, severe_headache_not_helped, vision_change, sudden_swelling_face_hands_feet, swelling_elsewhere]
+source: nhs_pre_eclampsia
+informed_by: [nhs_pre_eclampsia, nhs_stomach_pain_pregnancy, nhs_oedema]
+# Merged with the general card for this condition. Its notes: Must not be missed in
+# pregnancy or soon after birth. The page says get urgent medical help. Danger critical
+# with an urgent level: it can lead to fits. Pregnancy is linked as a finding, so a "no"
+# (or being male) all but rules it out. What tells it apart from ordinary swelling in
+# pregnancy: a severe headache, vision problems, pain below the ribs, or sudden swelling
+# of the face and hands.

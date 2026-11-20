@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pneumonia
+body_system: breathing
+# Not a candidate for chest pain: chest_infection and pleurisy stand for it there,
+# and a cough with chest pain brings in the cough entry symptom with this card.
+# An infection deep in the lung. Babies, older people and people with heart or
+# lung conditions can get seriously ill. The NHS page asks for an urgent GP
+# appointment or 111 for its main symptoms, and 999 for the severe signs, which
+# the red flags catch.
+entry_symptoms: [cough, short_of_breath, coughing_up_blood, very_high_temperature, generally_unwell, blue_or_grey_skin]
+name: "Pneumonia (an infection deep in the lungs)"
+medical_name: "Pneumonia"
+snomed: "233604007"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+findings:
+  cough: strongly_supports
+  short_of_breath: strongly_supports
+  very_high_temperature: strongly_supports
+  cough_mucus_or_temperature: strongly_supports    # the chest pain question for a chest infection
+  # What tells it apart from bronchitis or a cold: feeling very unwell, breathing
+  # fast, and chest pain when breathing in.
+  feels_very_unwell: supports
+  breathing_very_fast: supports
+  cp_worse_breathing_in: supports
+  phlegm_yellow_or_green: supports
+  aching_body: supports
+key_findings: [very_high_temperature, feels_very_unwell, breathing_very_fast, cp_worse_breathing_in, phlegm_yellow_or_green]
+source: nhs_pneumonia
+informed_by: [nhs_pneumonia, nhs_chest_infection, nhs_cough]

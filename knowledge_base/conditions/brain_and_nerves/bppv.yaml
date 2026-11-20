@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bppv
+body_system: brain_and_nerves
+entry_symptoms: [dizziness]
+name: "Short spells of spinning when you move your head (BPPV)"
+medical_name: "Benign paroxysmal positional vertigo"
+snomed: "111541001"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # No NHS condition page for BPPV was found (the address returned 'not found'). The Vertigo page describes it. What tells it apart: short spells of spinning set off by moving the head.
+  dizziness_with_head_movement: strongly_supports
+  dizziness_spinning: strongly_supports
+  dizziness_keeps_coming_back: supports
+  nausea_or_vomiting: supports
+key_findings: [dizziness_with_head_movement, dizziness_spinning]
+source: nhs_vertigo
+informed_by: [nhs_vertigo, nhs_dizziness]

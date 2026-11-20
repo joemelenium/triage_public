@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: postpartum_psychosis
+body_system: mental_health
+entry_symptoms: [hearing_or_seeing_things, agitated_or_out_of_control]
+name: "Postpartum psychosis (losing touch with what is real, soon after giving birth)"
+medical_name: "Postpartum psychosis"
+snomed: "18260003"
+# The page says it is a medical emergency: see a GP immediately and get an
+# assessment the same day; 999 or A&E if anyone is in danger. Critical, because it
+# can get worse quickly and risk the safety of mother and baby.
+acuity_needed: urgent
+danger: critical
+# About 1 in 1,000 births, usually in the first 2 weeks. Only plausible soon after
+# giving birth, so "rare" here is among people seeing or hearing things, or very
+# agitated, before anything is known about a birth. A recent birth is linked as a
+# finding rather than a starting chance, because nearly everyone with the
+# condition has it: a "no" then rules the card out, and a "yes" raises it.
+# Not a candidate for low mood: a recent birth would make it "possible" for every
+# new mother feeling low, and the low mood rules catch hearing or seeing things
+# and a very high mood, which bring in the entry symptoms below.
+prevalence: rare
+findings:
+  pregnant_or_recently_given_birth: strongly_supports
+  hearing_or_seeing_things: strongly_supports
+  high_mood_now: strongly_supports
+  believes_things_not_true: supports
+  not_slept_for_nights: supports
+  muddled_thinking: supports
+  sudden_confusion: supports
+key_findings: [pregnant_or_recently_given_birth, high_mood_now, believes_things_not_true, not_slept_for_nights]
+source: nhs_postpartum_psychosis
+informed_by: [nhs_postpartum_psychosis, nhs_psychosis]

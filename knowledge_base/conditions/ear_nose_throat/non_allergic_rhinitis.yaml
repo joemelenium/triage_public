@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: non_allergic_rhinitis
+body_system: ear_nose_throat
+entry_symptoms: [blocked_or_runny_nose, catarrh]
+name: "Non-allergic rhinitis (a blocked or runny nose that is not from an allergy or a cold)"
+medical_name: "Non-allergic rhinitis, including rhinitis from overusing nose sprays"
+snomed: "8229003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart from an allergy: it is set off by smoke, perfume, weather changes, alcohol or
+  # spicy food, or by using a spray to unblock the nose for too long.
+  blocked_or_runny_nose: strongly_supports
+  nose_set_off_by_irritants: strongly_supports
+  nose_spray_over_a_week: strongly_supports
+  nose_symptoms_3_weeks: supports
+  mucus_dripping_down_throat: supports
+key_findings: [nose_set_off_by_irritants, nose_spray_over_a_week]
+source: nhs_non_allergic_rhinitis
+informed_by: [nhs_non_allergic_rhinitis, nhs_catarrh]

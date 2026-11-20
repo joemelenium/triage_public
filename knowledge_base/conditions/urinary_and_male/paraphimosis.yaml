@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: paraphimosis
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot]
+name: "Foreskin stuck behind the head of the penis (paraphimosis)"
+medical_name: "Paraphimosis"
+snomed: "13758004"
+# The Tight foreskin page says call 999 or go to A&E. Danger serious: the swelling
+# can cut off the blood supply.
+acuity_needed: emergency
+danger: serious
+sex: male
+prevalence: rare
+findings:
+  foreskin_stuck_back: strongly_supports
+  tip_of_penis_red_swollen_sore: supports
+key_findings: [foreskin_stuck_back]
+source: nhs_phimosis
+informed_by: [nhs_phimosis]

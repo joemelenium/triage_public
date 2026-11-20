@@ -1,0 +1,430 @@
+# Advice for the mental health body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml.
+#
+# The working levels of care have no mental health crisis route, so crisis needs
+# use 999 or A&E, or NHS 111 (choosing option 2, the mental health option) and an
+# urgent GP appointment. Every entry names crisis lines and says when to call 999
+# or go to A&E.
+
+# ---------------------------------------------------------------------------
+# Immediate danger
+# ---------------------------------------------------------------------------
+- id: advice_mh_cannot_keep_safe
+  what_to_do: "Call 999 or go to A&E now. A mental health emergency is as serious as a physical one. You will not be wasting anyone's time."
+  look_out_for:
+    - "Feeling that you may act on thoughts of ending your life or harming yourself"
+    - "Feeling that you cannot keep yourself or someone else safe"
+  get_more_help_when:
+    - "Call 999 now if you have seriously hurt yourself or taken an overdose"
+    - "While you wait, call Samaritans free on 116 123, day or night. Or text SHOUT to 85258."
+    - "If you have a crisis team, you can also call them"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to take you, or call 999 for an ambulance. If you can, stay with other people and move away from anything you could use to harm yourself."
+  self_care:
+    - "Try to get to a safe place, like a friend's house, and be around other people"
+    - "Stay away from alcohol and drug use, and from anything you could use to harm yourself"
+    - "Focus on getting through the next few minutes and hours, not the future"
+  source: nhs_urgent_mental_health
+  also_informed_by: [nhs_suicidal_thoughts]
+
+- id: advice_mh_overdose_or_injury
+  what_to_do: "Call 999 for an ambulance or go straight to A&E now, even if you feel well. Some overdoses do not cause symptoms for hours or days, but can still be very harmful."
+  look_out_for:
+    - "Feeling very sleepy, being sick, or breathing slowly"
+    - "Bleeding that will not stop, or blood coming out in spurts"
+  get_more_help_when:
+    - "Call 999 now if the person stops responding or stops breathing"
+    - "If you need someone to talk to, call Samaritans free on 116 123, day or night. Or text SHOUT to 85258."
+  where_to_go: "Call 999 or go straight to A&E. Do not drive yourself. Take any medicine packets or containers with you, so staff know what was taken."
+  self_care:
+    - "Do not try to make yourself sick"
+    - "For a wound that is bleeding, press firmly on it with a clean cloth"
+    - "Do not eat or drink anything until you have been checked, unless a doctor says you can"
+  source: nhs_suicidal_thoughts
+  also_informed_by: [nhs_poisoning, nhs_urgent_mental_health]
+
+# ---------------------------------------------------------------------------
+# Urgent help today
+# ---------------------------------------------------------------------------
+- id: advice_suicidal_thoughts_urgent
+  what_to_do: "Thank you for telling us. You do not have to cope with these feelings alone. Get help today: call NHS 111 and choose option 2 for mental health, or ask your GP surgery for an emergency appointment."
+  look_out_for:
+    - "Making a plan to end your life, or feeling you may act on your thoughts soon"
+    - "The thoughts getting stronger, or coming more often"
+    - "Feeling you cannot keep yourself safe"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if your life is in danger. This includes if you have badly hurt yourself, taken an overdose, or feel you cannot keep yourself safe."
+    - "Call Samaritans free on 116 123, day or night, if you need to talk. Or text SHOUT to 85258."
+    - "If you are under 19, you can call Childline on 0800 1111"
+  where_to_go: "Call NHS 111 and choose option 2, use 111 online, or ask your GP surgery for an emergency appointment today. If you have a crisis team, call them."
+  self_care:
+    - "Tell someone you trust how you are feeling. Family or friends can help keep you safe."
+    - "Try to focus on getting through today, not the future"
+    - "Stay away from alcohol and drug use, and be around other people if you can"
+    - "Do something you usually enjoy, such as spending time with a pet"
+    - "It may help to make a safety plan, for example with the Staying Safe website"
+  source: nhs_suicidal_thoughts
+  also_informed_by: [nhs_urgent_mental_health]
+
+- id: advice_mh_urgent
+  what_to_do: "Get urgent help for your mental health today. Call NHS 111 and choose option 2 for mental health, or ask your GP surgery for an urgent appointment."
+  look_out_for:
+    - "Thoughts of ending your life or harming yourself"
+    - "Feeling you cannot keep yourself or someone else safe"
+    - "Hearing voices that tell you to harm yourself or others"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if a life is in danger. This includes if someone has badly hurt themselves or taken an overdose. Or if you cannot keep yourself or others safe."
+    - "Call Samaritans free on 116 123, day or night, if you need to talk. Or text SHOUT to 85258."
+  where_to_go: "Call NHS 111 and choose option 2, use 111 online, or ask your GP surgery for an urgent appointment today. If you have a crisis team, call them."
+  self_care:
+    - "Tell someone you trust how you are feeling, and try to be around other people"
+    - "Stay away from alcohol and drug use"
+  source: nhs_urgent_mental_health
+
+- id: advice_self_harm_wound_urgent
+  what_to_do: "Ask your GP surgery for an urgent appointment, or call NHS 111, today. A wound that may be infected needs checking."
+  look_out_for:
+    - "Redness or swelling spreading from the wound"
+    - "Feeling hot and shivery, or very unwell"
+    - "Thoughts of ending your life"
+  get_more_help_when:
+    - "Call 999 or go to A&E if a wound is bleeding a lot, or you have taken an overdose. Do the same if you feel you cannot keep yourself safe."
+    - "Call Samaritans free on 116 123, day or night, if you need to talk. Or call NHS 111 and choose option 2 for mental health."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online, today."
+  self_care:
+    - "Keep the wound clean and covered with a clean dressing"
+    - "Wash your hands before touching the wound"
+  source: nhs_self_harm_help
+
+- id: advice_hallucinations_urgent
+  what_to_do: "Ask your GP surgery for an urgent appointment, or call NHS 111 and choose option 2 for mental health, today. Seeing or hearing things that others do not needs checking to rule out serious causes."
+  look_out_for:
+    - "Suddenly becoming confused, very sleepy or hard to wake"
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Voices telling you to harm yourself or someone else"
+    - "Believing that people are trying to harm you"
+  get_more_help_when:
+    - "Call 999 or go to A&E if someone suddenly becomes confused, has a fit, or cannot be kept safe"
+    - "Call 999 or go to A&E if someone has seriously hurt themselves or taken an overdose"
+    - "Call Samaritans free on 116 123, day or night, if you need to talk"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 and choose option 2, or use 111 online, today."
+  self_care:
+    - "Try to stay with someone you trust"
+    - "Stay away from alcohol and drug use, as they can make this worse"
+    - "Make a list of any medicines you take, to show the doctor"
+  source: nhs_charles_bonnet
+  also_informed_by: [nhs_psychosis, nhs_confusion]
+
+- id: advice_postpartum_psychosis_urgent
+  what_to_do: "See a GP straight away and ask for an urgent assessment today. This can be a serious illness after having a baby, called postpartum psychosis, where you lose touch with what is real. It can get worse quickly, but most people recover fully with treatment."
+  look_out_for:
+    - "Hearing or seeing things that are not there"
+    - "Believing things that are not true"
+    - "Feeling very high, very low, or very confused"
+    - "Thoughts of harming yourself or your baby"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you think anyone may be in danger of harm, including the baby"
+    - "Call 999 or go to A&E if someone has seriously hurt themselves or taken an overdose"
+    - "Call NHS 111 and choose option 2 for mental health if you cannot speak to a GP. Call Samaritans free on 116 123 if you need to talk."
+  where_to_go: "Contact your GP straight away. If you cannot, call 111. Your midwife or health visitor can also help. If you have a crisis team, call them."
+  self_care:
+    - "Do not stay alone with the baby. Ask a partner, family member or friend to stay with you."
+    - "The person may not realise they are ill. Family and friends may need to get help for them."
+  source: nhs_postpartum_psychosis
+
+- id: advice_agitation_urgent
+  what_to_do: "Get urgent help for your mental health today. Call NHS 111 and choose option 2 for mental health, or ask your GP surgery for an urgent appointment."
+  look_out_for:
+    - "Suddenly becoming confused, very sleepy or hard to wake"
+    - "A very high temperature, a racing heart or chest pain"
+    - "Feeling you cannot keep yourself or someone else safe"
+  get_more_help_when:
+    - "Call 999 or go to A&E now if anyone is in danger. Do the same if someone has badly hurt themselves, taken an overdose or had a fit."
+    - "Call Samaritans free on 116 123, day or night, if you need to talk. Or text SHOUT to 85258."
+  where_to_go: "Call NHS 111 and choose option 2, use 111 online, or ask your GP surgery for an urgent appointment today. If you have a crisis team, call them."
+  self_care:
+    - "Try to go somewhere quiet and calm, with someone you trust"
+    - "Stay away from alcohol, caffeine and drug use"
+    - "If you are with someone who is agitated, speak calmly, use short sentences and give them space"
+  source: nhs_urgent_mental_health
+  also_informed_by: [nhs_confusion]
+
+- id: advice_withdrawal_urgent
+  what_to_do: "Ask your GP surgery for an urgent appointment, or call NHS 111, today. Stopping alcohol (or some medicines) suddenly can be dangerous if your body has got used to it. A doctor can help you stop safely."
+  look_out_for:
+    - "Shaking so much that others can see it"
+    - "Feeling very restless, upset or confused"
+    - "Seeing, hearing or feeling things that are not there"
+    - "A fit (seizure)"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+    - "If you feel low or have thoughts of harming yourself, call Samaritans free on 116 123, or call NHS 111 and choose option 2 for mental health"
+    - "Call 999 or go to A&E if someone has seriously hurt themselves or taken an overdose"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online, today. Do not stay alone if you can avoid it."
+  self_care:
+    - "Get medical help before you stop drinking completely"
+    - "Drink plenty of water or other soft drinks"
+    - "Ask someone to stay with you"
+  source: nhs_alcohol_misuse
+
+- id: advice_eating_urgent
+  what_to_do: "Ask your GP surgery for an urgent appointment, or call NHS 111, today. Being sick a lot, or not drinking enough, can upset the salts in your blood and affect your heart."
+  look_out_for:
+    - "Fainting, or feeling very dizzy or weak"
+    - "Your heart racing, beating unevenly, or beating very slowly"
+    - "Chest pain, or muscle cramps or twitching"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you faint, have chest pain, have a fit, or are too weak to stand"
+    - "If you have thoughts of harming yourself, call Samaritans free on 116 123, or call NHS 111 and choose option 2 for mental health. Call 999 if your life is in danger."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online, today."
+  self_care:
+    - "Sip water or other drinks often"
+    - "You can talk in confidence to the eating problems charity Beat on 0808 801 0677"
+  source: nhs_eating_disorders
+  also_informed_by: [nhs_anorexia]
+
+# ---------------------------------------------------------------------------
+# A physical cause needs checking now
+# ---------------------------------------------------------------------------
+- id: advice_mh_physical_cause_ae
+  what_to_do: "Call 999 or go to A&E now. This could be caused by a physical illness that needs checking straight away, such as an infection, a reaction to a medicine or drug, or a problem with the heart."
+  look_out_for:
+    - "Keep checking that the person is still responding and breathing"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 if things get worse, or you cannot get to A&E safely"
+    - "If you are struggling with your mental health, call Samaritans free on 116 123, or call NHS 111 and choose option 2"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "If you are with someone who is confused, stay with them, tell them who you are and where they are, and keep reassuring them"
+    - "Use simple words and short sentences"
+  source: nhs_confusion
+  also_informed_by: [nhs_poisoning]
+
+- id: advice_poisoning_ae
+  what_to_do: "Call 999 or go to A&E now. A bad reaction to a drug can be very serious, and can get worse quickly."
+  look_out_for:
+    - "Very high temperature, a racing heart or chest pain"
+    - "Very sleepy, hard to wake, or breathing slowly"
+    - "A fit (seizure)"
+  get_more_help_when:
+    - "Call 999 now if the person stops responding or stops breathing. Start CPR: press hard and fast in the middle of their chest."
+    - "If you are struggling, call Samaritans free on 116 123, or call NHS 111 and choose option 2 for mental health"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Take some of the drug or its packaging with you if you can, so staff know what was taken."
+  self_care:
+    - "Do not try to make yourself sick"
+    - "If the person is very hot, move them somewhere cool and give small sips of water if they are awake"
+    - "If they pass out but are breathing, put them on their side (the recovery position)"
+  source: nhs_poisoning
+
+- id: advice_withdrawal_ae
+  what_to_do: "Call 999 or go to A&E now. These are signs of severe withdrawal after stopping drinking, which can be life-threatening."
+  look_out_for:
+    - "A fit (seizure)"
+    - "Becoming very confused, very sleepy or hard to wake"
+  get_more_help_when:
+    - "Call 999 if the person has a fit, stops responding, or you cannot get to A&E safely"
+    - "If you are struggling with your mental health, call Samaritans free on 116 123, or call NHS 111 and choose option 2"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Stay with the person. Do not leave them alone."
+  source: nhs_alcohol_misuse
+
+- id: advice_alcohol_poisoning_999
+  what_to_do: "Call 999 now. This could be alcohol poisoning or an overdose, which can stop someone breathing."
+  look_out_for:
+    - "Keep checking the person is breathing properly"
+    - "If they stop responding and stop breathing, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+    - "Later, for support with drinking or drug use, see a GP. If you are struggling, call Samaritans free on 116 123, or NHS 111 and choose option 2."
+  where_to_go: "Call 999. Do not drive them to A&E yourself. Stay with them until help arrives."
+  self_care:
+    - "Stay with them, because they could choke on their own sick or stop breathing"
+    - "Sit them up if they are awake. If they have passed out, put them on their side (the recovery position) and check they are breathing."
+    - "Keep them warm. Do not give them more alcohol, food, coffee or a cold shower, and do not try to make them sick."
+  source: nhs_alcohol_poisoning
+
+- id: advice_eating_ae
+  what_to_do: "Go to A&E now, or call 999. Fainting, a fit, a very slow heartbeat or severe weakness with an eating problem can mean your body is in danger and needs checking straight away."
+  look_out_for:
+    - "Chest pain, or a heartbeat that is very slow, racing or uneven"
+    - "Becoming confused or very sleepy"
+  get_more_help_when:
+    - "Call 999 if the person stops responding, has a fit, or you cannot get to A&E safely"
+    - "If you have thoughts of harming yourself, call Samaritans free on 116 123, or call NHS 111 and choose option 2 for mental health"
+  where_to_go: "Go to A&E or call 999. Do not drive yourself. Ask someone to take you. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_eating_disorders, nhs_anorexia]
+
+# ---------------------------------------------------------------------------
+# GP and self-care
+# ---------------------------------------------------------------------------
+- id: advice_self_harm_gp
+  what_to_do: "Speak to a GP about self-harm. They will listen, and can help with treatment and support. It is best to get support as soon as you can."
+  look_out_for:
+    - "Thoughts of ending your life"
+    - "Self-harm happening more often, or injuries getting more serious"
+    - "A wound that gets more painful, red, hot or swollen"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you have badly hurt yourself or taken an overdose. Do the same if you feel you cannot keep yourself safe."
+    - "If you need help today, call NHS 111 and choose option 2 for mental health"
+    - "Call Samaritans free on 116 123, day or night, if you need to talk. Or text SHOUT to 85258. If you are under 19, you can call Childline on 0800 1111."
+  where_to_go: "Make an appointment with a GP. You can bring someone you trust with you."
+  self_care:
+    - "Keep any wound clean and covered"
+    - "When you feel the urge to self-harm, try to wait, distract yourself, or talk to someone"
+    - "Tell someone you trust what is going on for you"
+  source: nhs_self_harm_help
+  also_informed_by: [nhs_suicidal_thoughts]
+
+- id: advice_low_mood_postnatal_gp
+  what_to_do: "Speak to your GP, midwife or health visitor. You may have postnatal depression, which is common after having a baby. It usually gets better with treatment."
+  look_out_for:
+    - "Thoughts of ending your life, or of harming yourself or your baby"
+    - "Hearing or seeing things that are not there, or feeling very confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel you cannot keep yourself or your baby safe. Do the same if you have badly hurt yourself or taken an overdose."
+    - "If you need help today, call NHS 111 and choose option 2 for mental health. Call Samaritans free on 116 123, day or night."
+  where_to_go: "Contact your GP, midwife or health visitor. If you are 18 or over, you can also refer yourself to an NHS talking therapies service."
+  self_care:
+    - "Talk to your partner, family or friends about how you feel, and accept help"
+    - "Rest when you can, eat regular meals and get some exercise"
+    - "Asking for help does not mean your baby will be taken away. Your care team will support you."
+  source: nhs_postnatal_depression
+
+- id: advice_low_mood_gp
+  what_to_do: "See a GP. Depression and low mood can get better with the right treatment, such as talking therapies."
+  look_out_for:
+    - "Thoughts of ending your life or harming yourself"
+    - "Not being able to eat, drink or look after yourself"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you have badly hurt yourself or taken an overdose. Do the same if you feel you cannot keep yourself safe."
+    - "If you need help today, call NHS 111 and choose option 2 for mental health"
+    - "Call Samaritans free on 116 123, day or night, if you need to talk. Or text SHOUT to 85258."
+  where_to_go: "Make an appointment with a GP. If you are 18 or over, you can also refer yourself to an NHS talking therapies service."
+  self_care:
+    - "Talk to someone you trust about how you feel"
+    - "Try to keep active and spend time outside"
+    - "Try to keep to a regular sleep pattern and eat regular meals"
+    - "Cut down on alcohol, as it can make a low mood worse"
+  source: nhs_low_mood
+  also_informed_by: [nhs_depression]
+
+- id: advice_low_mood_self_care
+  what_to_do: "A low mood often gets better after a few days or weeks. There are things you can try yourself to help."
+  look_out_for:
+    - "Feeling low for most of the day, nearly every day, for more than 2 weeks"
+    - "Struggling to cope with day-to-day life"
+    - "Thoughts of ending your life or harming yourself"
+  get_more_help_when:
+    - "See a GP if your low mood lasts more than 2 weeks, or things you try are not helping"
+    - "Call 999 or go to A&E if you have badly hurt yourself or taken an overdose. Do the same if you feel you cannot keep yourself safe."
+    - "If you need to talk, call Samaritans free on 116 123, day or night, or call NHS 111 and choose option 2 for mental health"
+  where_to_go: "No appointment needed now. If you are 18 or over, you can refer yourself to an NHS talking therapies service."
+  self_care:
+    - "Talk to someone you trust about how you feel"
+    - "Try to keep active, and do things you usually enjoy"
+    - "Try to keep to a regular sleep pattern and eat regular meals"
+    - "Cut down on alcohol, as it can make a low mood worse"
+  source: nhs_low_mood
+
+- id: advice_anxiety_gp
+  what_to_do: "See a GP. Anxiety and panic can get better with treatment, such as talking therapies."
+  look_out_for:
+    - "Chest pain, or difficulty breathing that does not settle"
+    - "Thoughts of ending your life or harming yourself"
+  get_more_help_when:
+    - "Call 999 if you have chest pain that does not go away, or you pass out"
+    - "Call 999 or go to A&E if you have badly hurt yourself or taken an overdose. Do the same if you feel you cannot keep yourself safe."
+    - "If you need help today, call NHS 111 and choose option 2. Call Samaritans free on 116 123 if you need to talk."
+  where_to_go: "Make an appointment with a GP. If you are 18 or over, you can also refer yourself to an NHS talking therapies service."
+  self_care:
+    - "During a panic attack, stay where you are, breathe slowly and deeply, and remind yourself it will pass"
+    - "Cut down on caffeine and alcohol, and stop smoking"
+    - "Try to be active most days, and try slow breathing to help you calm down"
+  source: nhs_anxiety_fear_panic
+  also_informed_by: [nhs_panic_disorder, nhs_gad, nhs_ptsd]
+
+- id: advice_anxiety_self_care
+  what_to_do: "Anxiety and panic are common, and often get better with self-help. A panic attack is frightening, but it is not dangerous."
+  look_out_for:
+    - "Struggling to cope, or anxiety stopping you doing everyday things"
+    - "Panic attacks that keep happening"
+    - "Chest pain, or passing out"
+  get_more_help_when:
+    - "See a GP if you are struggling to cope, or self-help is not working"
+    - "Call 999 if you have chest pain that does not go away, or you pass out"
+    - "If you have thoughts of harming yourself, call Samaritans free on 116 123, or call NHS 111 and choose option 2. Call 999 if your life is in danger."
+  where_to_go: "No appointment needed now. If you are 18 or over, you can refer yourself to an NHS talking therapies service."
+  self_care:
+    - "During a panic attack, stay where you are, breathe slowly and deeply, and remind yourself it will pass"
+    - "Cut down on caffeine and alcohol, and stop smoking"
+    - "Try to be active most days, and try slow breathing to help you calm down"
+    - "Talk to someone you trust about what is worrying you"
+  source: nhs_anxiety_fear_panic
+  also_informed_by: [nhs_panic_disorder]
+
+- id: advice_hallucinations_routine
+  what_to_do: "Speak to your GP or mental health team about any worries. Experiences that are long-standing and unchanged do not need help today on their own."
+  look_out_for:
+    - "The experiences changing, getting worse, or becoming more upsetting"
+    - "Voices telling you to harm yourself or someone else"
+    - "Suddenly becoming confused, or a high temperature"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment, or call NHS 111 and choose option 2, if things change or get worse"
+    - "Call 999 or go to A&E if you cannot keep yourself or others safe. Do the same if you have badly hurt yourself or taken an overdose."
+    - "Call Samaritans free on 116 123, day or night, if you need to talk"
+  where_to_go: "Contact your GP or mental health team. If you have a crisis plan, follow it."
+  self_care:
+    - "Keep taking any medicines as prescribed"
+    - "Stay away from alcohol and drug use, as they can make this worse"
+  source: ai_judgement
+  also_informed_by: [nhs_charles_bonnet]
+
+- id: advice_alcohol_drugs_gp
+  what_to_do: "See a GP or a local alcohol or drug support service. You are entitled to help, the same as for any other health problem."
+  look_out_for:
+    - "Shaking, sweating, anxiety or feeling sick when you stop or cut down"
+    - "Seeing or hearing things that are not there, or a fit, after stopping"
+  get_more_help_when:
+    - "Get medical help before you stop drinking if you get withdrawal symptoms. Stopping suddenly can be dangerous."
+    - "Call 999 or go to A&E for severe withdrawal: shaking badly, confusion, seeing things, or a fit"
+    - "If you have thoughts of harming yourself, call Samaritans free on 116 123, or NHS 111 and choose option 2. Call 999 if your life is in danger."
+  where_to_go: "Make an appointment with a GP, or contact a local alcohol or drug service yourself. The Frank helpline (0300 123 6600) can help you find support."
+  self_care:
+    - "Keep a diary of how much you drink or use"
+    - "Tell people you trust that you want to cut down, so they can help"
+    - "Do not stop drinking suddenly if you drink heavily every day. Get advice first."
+  source: nhs_alcohol_misuse
+  also_informed_by: [nhs_drug_addiction]
+
+- id: advice_eating_soon
+  what_to_do: "See a GP as soon as you can, within the next few days. Getting help early gives you the best chance of recovering."
+  look_out_for:
+    - "Fainting, feeling dizzy, or being too weak to stand"
+    - "Your heart racing, beating unevenly, or beating very slowly"
+    - "Being sick several times a day"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you faint, have chest pain, have a fit, or are too weak to stand"
+    - "If you have thoughts of harming yourself, call Samaritans free on 116 123, or NHS 111 and choose option 2. Call 999 if your life is in danger."
+  where_to_go: "Make an appointment with a GP in the next few days. It may help to bring someone you trust."
+  self_care:
+    - "You can talk in confidence to the eating problems charity Beat on 0808 801 0677"
+  source: nhs_anorexia
+  also_informed_by: [nhs_eating_disorders]
+
+- id: advice_eating_gp
+  what_to_do: "See a GP as soon as you can. They will ask about your eating and how you feel, and can refer you to specialist help. Most people recover with treatment."
+  look_out_for:
+    - "Losing a lot of weight quickly"
+    - "Fainting, feeling dizzy, or being very weak"
+    - "Being sick several times a day"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you faint, have chest pain, have a fit, or are too weak to stand"
+    - "If you have thoughts of harming yourself, call Samaritans free on 116 123, or NHS 111 and choose option 2. Call 999 if your life is in danger."
+  where_to_go: "Make an appointment with a GP. It may help to bring someone you trust."
+  self_care:
+    - "You can talk in confidence to the eating problems charity Beat on 0808 801 0677"
+    - "If you are worried about someone else, tell them gently that you are worried, and offer to go to the GP with them"
+  source: nhs_eating_disorders

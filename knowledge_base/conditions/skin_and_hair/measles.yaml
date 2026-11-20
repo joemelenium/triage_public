@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: measles
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Measles (a high temperature and a blotchy rash)"
+medical_name: "Measles"
+snomed: "14189004"
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: contact_with_measles, prevalence: common}
+  - {finding: not_had_mmr_vaccine, prevalence: rare}
+findings:
+  # What tells it apart from other viral rashes: cold-like symptoms and red, watery eyes first, then a rash that starts on the face or behind the ears and spreads down, in someone not vaccinated or in contact with measles.
+  rash_started_on_face_spread_down: strongly_supports
+  very_high_temperature: strongly_supports
+  red_eye: supports
+  cough_or_runny_nose: supports
+  contact_with_measles: supports
+  not_had_mmr_vaccine: supports
+  feels_very_unwell: supports
+key_findings: [rash_started_on_face_spread_down, contact_with_measles, not_had_mmr_vaccine, red_eye]
+source: nhs_measles
+informed_by: [nhs_measles, nhs_rashes_babies_and_children]

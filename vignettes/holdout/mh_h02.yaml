@@ -1,0 +1,74 @@
+id: mh_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- hearing_or_seeing_things
+summary: A 31-year-old man who has had psychosis before has hardly slept for three nights. His brother says he is
+  hearing voices telling him to hurt his neighbour, believes the neighbour is poisoning him, is very agitated and
+  says he cannot promise he won't act on it. He has not hurt anyone yet.
+opening_statement: It's my brother. He's hearing voices again and they're telling him to hurt the man next door.
+  He's pacing about and says he can't promise he won't do it.
+findings:
+  present:
+  - hearing_or_seeing_things
+  - voices_telling_to_harm
+  - thoughts_of_harming_others
+  - cannot_keep_safe
+  - believes_things_not_true
+  - agitated_or_out_of_control
+  - not_slept_for_nights
+  - has_psychosis_history
+  absent:
+  - aggressive_or_violent
+  - suicidal_thoughts
+  - self_harmed
+  - recent_drug_use
+  - drunk_a_lot_today
+  - drug_bad_reaction
+  - knows_not_real
+  - very_high_temperature
+  - sudden_confusion
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 31
+    sex: male
+  full:
+    age: 31
+    sex: male
+    findings:
+      has_psychosis_history: 'yes'
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Voices telling him to harm someone, and he cannot keep them safe
+  findings:
+  - voices_telling_to_harm
+  - thoughts_of_harming_others
+  - cannot_keep_safe
+  minimum_acuity: emergency
+  source:
+    page: urgent_mental_health.txt
+    quote: you do not feel you can keep yourself or someone else safe
+safety_netting_should_cover:
+- point: Call 999
+  any_of:
+  - '999'
+- point: Keep yourself and others safe while waiting
+  any_of:
+  - safe
+source:
+  expected_outcome:
+    page: urgent_mental_health.txt
+    quote: you do not feel you can keep yourself or someone else safe
+  minimum_safe_acuity:
+    page: psychosis.txt
+    quote: harm, call 999 and ask for an ambulance.
+atypical: false
+notes: 'The 999 line in psychosis.txt is written in the postnatal psychosis section, but its wording (''imminent
+  danger of harm'') applies here; urgent_mental_health.txt gives the general rule. Sudden confusion is not present:
+  his thinking is disturbed but he knows where he is.'

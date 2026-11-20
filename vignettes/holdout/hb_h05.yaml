@@ -1,0 +1,81 @@
+id: hb_h05
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- coughing_up_blood
+summary: An 80-year-old man in a care home with a cough, high temperature, and blood-stained tissues. Today he is confused, breathing very fast, and his lips look blue. A carer is answering.
+opening_statement: I'm calling about one of our residents. He's been coughing up blood-stained phlegm, he's very confused today, breathing fast, and his lips look blue.
+findings:
+  present:
+  - coughing_up_blood
+  - cough
+  - sudden_confusion
+  - breathing_very_fast
+  - lips_or_skin_blue_grey
+  - difficulty_breathing
+  - very_high_temperature
+  absent:
+  - passed_out
+  - had_a_fit
+  - rash_does_not_fade
+  - stroke_signs
+  - choked_on_something
+  unknown:
+  - blood_more_than_streaks
+  - chest_pain
+context:
+  none: {}
+  basic:
+    age: 80
+    sex: male
+  full:
+    age: 80
+    sex: male
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Blue lips
+  findings:
+  - lips_or_skin_blue_grey
+  minimum_acuity: emergency
+  source:
+    page: pneumonia.txt
+    quote: you have pale, blue or blotchy skin, lips or tongue
+- description: Sudden confusion
+  findings:
+  - sudden_confusion
+  minimum_acuity: emergency
+  source:
+    page: pneumonia.txt
+    quote: you suddenly feel confused – for example, you do not know where you are
+- description: Coughing up blood and finding it hard to breathe
+  findings:
+  - coughing_up_blood
+  - difficulty_breathing
+  minimum_acuity: emergency
+  source:
+    page: coughing_up_blood.txt
+    quote: you're coughing up blood and finding it hard to breathe, have a very fast heartbeat or have pain in your chest or upper back
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of:
+  - '999'
+source:
+  expected_outcome:
+    page: bronchitis.txt
+    quote: your lips or skin are turning very pale, blue or grey
+  minimum_safe_acuity:
+    page: pneumonia.txt
+    quote: you suddenly feel confused – for example, you do not know where you are
+variants:
+- id: hb_h05_v1
+  style: carer, leads with confusion
+  opening_statement: One of our residents has gone very confused and his lips are a bit blue.
+  volunteered:
+  - sudden_confusion
+  - lips_or_skin_blue_grey
+atypical: false
+notes: Universal emergency signs (blue lips, sudden confusion). The carer does not know how much blood or whether he has chest pain (he cannot say).

@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: acute_bronchitis
+body_system: breathing
+# A short-term infection of the main airways, usually from a virus, often after a
+# cold. It gets better on its own in about 3 weeks. Not a candidate for chest
+# pain: its chest pain comes with coughing, which brings in the cough entry
+# symptom. Kept apart from
+# chest_infection (a chest infection that may need a GP) and pneumonia.
+entry_symptoms: [cough, wheezing]
+name: "Bronchitis (a short-term infection of the airways in the lungs)"
+medical_name: "Acute bronchitis"
+snomed: "10509002"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_under_5, prevalence: rare}   # in young children a chest cold is usually bronchiolitis or croup
+findings:
+  cough: strongly_supports
+  cough_phlegm: supports
+  # What tells it apart from pneumonia or a chest infection that needs a GP: cold
+  # symptoms with it (a runny nose), without feeling very unwell.
+  blocked_or_runny_nose: supports
+  recent_viral_illness: supports
+  wheezing: supports
+  cp_worse_breathing_in: supports       # chest pain when coughing
+key_findings: [blocked_or_runny_nose, cough_phlegm, recent_viral_illness]
+source: nhs_bronchitis
+informed_by: [nhs_bronchitis, nhs_chest_infection, nhs_cough]

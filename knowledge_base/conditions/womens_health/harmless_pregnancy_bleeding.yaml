@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: harmless_pregnancy_bleeding
+body_system: womens_health
+entry_symptoms: [bleeding_in_pregnancy]
+name: "Harmless bleeding in pregnancy, such as from the cervix (the entrance to the womb)"
+medical_name: "Implantation bleeding or cervical bleeding in pregnancy"
+# Light bleeding or spotting with no serious cause. The entry symptom's floor
+# still sends everyone for urgent checking, as the source says.
+acuity_needed: routine
+danger: minor
+sex: female
+prevalence: common
+prevalence_when:
+  - {finding: pregnancy_under_12_weeks, prevalence: very_common}
+findings:
+  bleeding_light_spotting: strongly_supports
+  bleeding_after_sex: supports   # the cervix bleeds more easily in pregnancy
+key_findings: [bleeding_light_spotting]
+source: nhs_vaginal_bleeding_pregnancy
+informed_by: [nhs_vaginal_bleeding_pregnancy]

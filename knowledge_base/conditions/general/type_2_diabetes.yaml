@@ -1,0 +1,40 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: type_2_diabetes
+body_system: general
+# Usually builds up slowly in adults, often with no symptoms. The page says see a GP.
+entry_symptoms: [very_thirsty, very_tired, painful_or_frequent_peeing, smelly_urine, erection_problems, dry_mouth]
+name: "Type 2 diabetes (high blood sugar that builds up slowly)"
+medical_name: "Diabetes mellitus type 2"
+snomed: "44054006"
+acuity_needed: soon
+danger: moderate
+diagnosed_by: has_diabetes
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: common}
+  - {finding: has_diabetes, prevalence: very_common}
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: very_thirsty, prevalence: common}
+  - {finding: very_tired, prevalence: uncommon}
+  - {finding: dry_mouth, prevalence: uncommon}
+  - {finding: painful_or_frequent_peeing, prevalence: rare}
+  - {finding: smelly_urine, prevalence: rare}
+  - {finding: erection_problems, prevalence: rare}
+findings:
+  # What tells it apart from type 1: older, slower, and usually no weight loss or being sick.
+  very_thirsty: strongly_supports
+  peeing_more_often: strongly_supports
+  very_tired: supports
+  thirst_not_better_with_drinking: supports
+  # From the urinary_and_male card for this condition (merged):
+  peeing_at_night_more: supports
+  weight_loss: supports
+  # From the ear_nose_throat card for this condition (merged):
+  fruity_breath: supports
+key_findings: [peeing_more_often, very_thirsty, thirst_not_better_with_drinking, very_tired, peeing_at_night_more, weight_loss]
+source: nhs_type_2_diabetes_symptoms
+informed_by: [nhs_type_2_diabetes_symptoms, nhs_thirst, nhs_tiredness_and_fatigue, nhs_smelly_urine, nhs_erection_problems_erectile_dysfunction, nhs_type_2_diabetes, nhs_dry_mouth, nhs_type_2_diabetes]
+# Merged with the urinary_and_male card for this condition. Its notes: Merged with the ear_nose_throat card for this condition. Its
+# notes: What tells it apart from dehydration: very thirsty while peeing more than
+# usual, with tiredness and sometimes weight loss.

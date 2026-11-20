@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tension_headache
+body_system: brain_and_nerves
+entry_symptoms: [headache]
+name: "Tension headache"
+medical_name: "Tension-type headache"
+snomed: "398057008"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # The commonest headache. What tells it apart: pressing or tightness on both sides of the head, often with stress or poor sleep.
+  headache_band_pressing: strongly_supports
+  stressful_time: supports
+  headaches_regular: supports
+  not_enough_sleep: supports
+  lots_of_caffeine_or_alcohol: supports
+key_findings: [headache_band_pressing, stressful_time]
+source: nhs_tension_headaches
+informed_by: [nhs_tension_headaches, nhs_headaches]

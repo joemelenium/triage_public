@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: breast_abscess
+body_system: womens_health
+entry_symptoms: [breast_lump, breast_pain]
+name: "Breast abscess (a pocket of pus in the breast)"
+medical_name: "Breast abscess"
+snomed: "28432003"
+# A painful lump after mastitis. Needs draining in hospital.
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+findings:
+  breast_hot_red_swollen: strongly_supports
+  breast_lump: strongly_supports
+  breast_pain: strongly_supports
+  had_mastitis_recently: strongly_supports
+  very_high_temperature: supports
+  feels_very_unwell: supports
+  breastfeeding: supports
+key_findings: [had_mastitis_recently, breast_hot_red_swollen]
+source: nhs_breast_abscess
+informed_by: [nhs_breast_abscess]

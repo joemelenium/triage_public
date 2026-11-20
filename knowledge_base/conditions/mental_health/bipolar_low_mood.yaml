@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bipolar_low_mood
+body_system: mental_health
+# A low spell in bipolar. A high spell is the mania card.
+entry_symptoms: [low_mood]
+name: "Bipolar (mood swings between very high and very low), in a low spell"
+medical_name: "Bipolar disorder, depressive episode"
+snomed: "13746004"
+acuity_needed: routine
+danger: moderate
+diagnosed_by: has_bipolar
+prevalence: rare
+findings:
+  # What tells it apart from depression: spells of a very high mood in the past.
+  past_high_mood_spells: strongly_supports
+  lost_interest_or_enjoyment: supports
+  feeling_hopeless: supports
+  sleep_problems: supports
+key_findings: [past_high_mood_spells, has_bipolar]
+source: nhs_bipolar
+informed_by: [nhs_bipolar, nhs_depression]

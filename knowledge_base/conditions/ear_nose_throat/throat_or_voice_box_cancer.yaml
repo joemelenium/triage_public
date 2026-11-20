@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: throat_or_voice_box_cancer
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing, swollen_glands, sore_throat]
+name: "Cancer of the throat or voice box"
+medical_name: "Laryngeal or pharyngeal cancer"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: smoker, prevalence: uncommon}
+findings:
+  # What tells it apart from a throat infection: a hoarse voice that lasts more than 3 weeks, or a
+  # lump in the neck, with pain or difficulty swallowing.
+  hoarse_voice_3_weeks: strongly_supports
+  lump_in_mouth_or_neck: strongly_supports
+  sore_throat_over_a_week: supports
+  ear_pain: supports
+  weight_loss: supports
+key_findings: [hoarse_voice_3_weeks, lump_in_mouth_or_neck, smoker]
+source: nhs_laryngeal_cancer
+informed_by: [nhs_laryngeal_cancer, nhs_mouth_cancer]

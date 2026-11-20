@@ -1,0 +1,34 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: strangulated_hernia
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, testicle_lump_or_swelling, testicle_pain, skin_lump]
+name: "A trapped hernia (part of the gut stuck in a weak spot in the tummy wall, losing its blood supply)"
+medical_name: "Strangulated or obstructed hernia"
+acuity_needed: emergency
+danger: critical
+snomed: "236024003"
+prevalence: rare
+prevalence_when:
+  - {finding: stomach_ache, prevalence: rare}
+  - {finding: testicle_lump_or_swelling, prevalence: rare}
+  - {finding: testicle_pain, prevalence: rare}
+  - {finding: skin_lump, prevalence: very_rare}
+findings:
+  lump_in_tummy_or_groin: strongly_supports
+  lump_painful_and_firm: strongly_supports
+  vomiting: strongly_supports
+  cannot_poo_or_fart: supports
+  sa_severe: supports
+  tummy_swollen: supports
+  # From the urinary_and_male card for this condition (merged):
+  groin_bulge: strongly_supports
+  nausea_or_vomiting: supports
+  stomach_ache: supports
+  constipation: supports
+key_findings: [lump_in_tummy_or_groin, lump_painful_and_firm, vomiting, nausea_or_vomiting, stomach_ache]
+source: ai_judgement
+informed_by: [nhs_hernia, nhs_inguinal_hernia]
+# Merged with the urinary_and_male card for this condition. The Hernia page says get
+# help from 111 for pain in a hernia, or being sick. A trapped, painful hernia needs
+# surgery within hours: an emergency (AI judgement).

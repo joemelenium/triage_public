@@ -1,0 +1,186 @@
+# Entry symptom: foot pain, including the ankle, heel, toes, and the ball, bottom and top of the foot.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# One entry symptom covers all the NHS foot pain pages. Where it hurts is asked
+# as a child of foot pain (ankle, heel, ball, bottom, top, toes), so questions
+# that only make sense for one place are only asked there.
+#
+# Must-not-miss causes: a broken bone (ankle, heel or foot), a torn Achilles
+# tendon, an infected joint, gout, a blood clot in the leg (DVT), a foot
+# infection or ulcer in someone with diabetes, a loss of blood supply, and
+# pressure building up in the lower leg muscles (compartment syndrome).
+
+id: foot_pain
+name: "Foot pain"
+presenting_finding: foot_pain
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_ankle_pain, nhs_heel_pain, nhs_pain_in_the_ball_of_the_foot, nhs_pain_in_the_bottom_of_the_foot, nhs_pain_in_the_top_of_the_foot]
+
+screens:
+  - id: foot_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - changed_shape
+      - bone_through_skin
+      - numb_after_injury
+      - limb_cold_pale_or_blue
+      - pain_out_of_proportion
+
+  - id: foot_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - severe_pain
+      - faint_or_sick_from_pain
+      - heard_snap_at_injury
+      - cannot_bear_weight
+      - cannot_stand_on_tiptoe
+      - swollen_area_red_hot
+      - very_high_temperature
+      - dvt_signs
+      - think_bone_broken
+      - foot_wound_or_ulcer
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_foot_injury_misshapen
+    description: "Ankle or foot injury where it is at an odd angle, or a bone is sticking out"
+    when: {any: [bone_through_skin, {all: [injury_or_fall, changed_shape]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_ankle
+    note: "The foot pain pages say contact 111 if the foot has changed shape. The Broken ankle and Broken toe pages say A&E after an injury. The more urgent is used after an injury."
+
+  - id: rf_foot_numb_after_injury
+    description: "Toes or foot numb, tingling, blue or white after an injury"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_ankle
+
+  - id: rf_foot_cold
+    description: "Foot or leg cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_broken_ankle
+    note: "Without an injury this can mean the blood supply to the leg is suddenly blocked. Applying it without an injury is AI judgement."
+
+  - id: rf_foot_compartment
+    description: "Very bad foot or lower leg pain that keeps getting worse, even with painkillers"
+    when: pain_out_of_proportion
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_compartment_emergency
+    source: nhs_compartment_syndrome
+
+  - id: rf_foot_severe_after_injury
+    description: "Severe ankle or foot pain after an injury"
+    when: {all: [injury_or_fall, severe_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_ankle
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Broken ankle page says A&E for severe pain after an injury. The Ankle pain and Heel pain pages say contact 111. The more urgent is used, marked soft so a likely sprain can lower it to urgent."
+
+  - id: rf_foot_dvt_breathless
+    description: "Signs of a blood clot in the leg with shortness of breath or chest pain"
+    when: {all: [dvt_signs, {any: [short_of_breath, chest_pain]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dvt_emergency
+    source: nhs_deep_vein_thrombosis
+
+  - id: rf_foot_child_toe_injury
+    description: "A child who has hurt or may have broken a toe"
+    when: {all: [age_under_16, injury_or_fall, toe_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_toe
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Broken toe page says go to A&E if your child has hurt or broken their toe. Marked soft: a minor stubbed toe is common. AI judgement, needs clinical review."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_foot_severe_or_faint
+    description: "Severe foot pain, or feeling faint, dizzy or sick from the pain"
+    when: {any: [severe_pain, faint_or_sick_from_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111, or go to an urgent treatment centre"}
+    advice: advice_foot_pain_urgent
+    source: nhs_ankle_pain
+    note: "The Heel, Ball, Bottom and Top of the foot pages give the same signs."
+
+  - id: rf_foot_injury_signs
+    description: "A snap, grinding or popping noise at the time of injury, a foot that has changed shape, or not able to walk"
+    when: {any: [heard_snap_at_injury, changed_shape, cannot_bear_weight]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111, or go to an urgent treatment centre"}
+    advice: advice_foot_pain_urgent
+    source: nhs_ankle_pain
+    note: "The Sprains and strains page says A&E if you heard a crack. The foot pages say 111. The foot pages are used because they are more specific; needs clinical review."
+
+  - id: rf_foot_achilles
+    description: "Cannot walk on tiptoes or up stairs, a snap or kick felt in the back of the heel, or swelling and bruising in the calf and ankle"
+    when: {any: [cannot_stand_on_tiptoe, snap_back_of_heel, calf_ankle_swelling_bruising]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_foot_pain_urgent
+    source: nhs_heel_pain
+    note: "Signs of a broken heel bone or a torn Achilles tendon, which needs treatment within days."
+
+  - id: rf_foot_hot_or_unwell
+    description: "Foot hot, swollen and painful, or feeling hot, cold or shivery"
+    when: {any: [swollen_area_red_hot, very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_pain_in_the_top_of_the_foot
+    note: "Could be gout or an infection. The Ball of the foot page gives the same signs."
+
+  - id: rf_foot_dvt
+    description: "Signs of a blood clot in the leg: one leg swollen, warm and painful, usually in the calf"
+    when: dvt_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dvt_urgent
+    source: nhs_deep_vein_thrombosis
+
+  - id: rf_foot_think_broken
+    description: "Thinks a bone in the ankle, foot or toes may be broken"
+    when: think_bone_broken
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111 to find out what to do"}
+    advice: advice_foot_pain_urgent
+    source: nhs_ankle_pain
+
+  - id: rf_foot_diabetes_infection
+    description: "Foot pain in someone with diabetes, with a wound or ulcer, or a hot, red or swollen foot"
+    when: {all: [has_diabetes, {any: [foot_wound_or_ulcer, swollen_area_red_hot, red_or_discoloured_skin]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your GP surgery or foot care team today, or get help from NHS 111"}
+    advice: advice_diabetic_foot_urgent
+    source: ai_judgement
+    note: "The foot pages say foot problems can be more serious with diabetes. A wound or a hot, red foot in diabetes can be a fast-spreading infection or damage to the foot bones. Urgent is AI judgement, needs clinical review."
+
+  - id: rf_foot_cast
+    description: "A plaster cast that feels too tight, or toes numb, swollen, blue or white"
+    when: cast_problem
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_foot_pain_urgent
+    source: nhs_broken_ankle
+
+outcome_rules:
+  - id: or_foot_gp
+    description: "Foot pain stopping usual activities, getting worse or coming back, not better after 2 weeks, with tingling or loss of feeling, or a sore that is not healing"
+    when: {any: [stopping_daily_activities, pain_getting_worse_or_recurring, pain_not_improving, leg_numb_or_tingling, foot_wound_or_ulcer]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_ankle_pain
+    note: "A sore that is not healing is from the Peripheral arterial disease page."
+
+  - id: or_foot_diabetes
+    description: "Foot pain in someone with diabetes"
+    when: has_diabetes
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Foot problems can be more serious if you have diabetes."}
+    advice: advice_msk_gp
+    source: nhs_ankle_pain
+
+default:
+  description: "Foot pain with nothing that needs more help: ease it yourself, and a pharmacist can advise on painkillers, insoles and pads"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if it has not improved after 2 weeks"}
+  advice: advice_foot_pain_self_care
+  source: nhs_ankle_pain

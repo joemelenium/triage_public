@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: motion_sickness
+body_system: stomach_and_bowel
+entry_symptoms: [feeling_sick, diarrhoea_or_vomiting]
+name: "Motion sickness (travel sickness)"
+medical_name: "Motion sickness"
+snomed: "37031009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  travel_sickness_trigger: strongly_supports
+  light_headed: supports
+  vomiting: supports
+key_findings: [travel_sickness_trigger]
+source: nhs_motion_sickness
+informed_by: [nhs_motion_sickness, nhs_feeling_sick_nausea]

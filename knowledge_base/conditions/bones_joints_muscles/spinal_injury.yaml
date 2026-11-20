@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: spinal_injury
+body_system: bones_joints_muscles
+# What tells it apart: a serious accident, such as a car crash or a fall from a height.
+entry_symptoms: [back_pain, neck_pain, injury_or_fall]
+name: "A serious injury to the spine or spinal cord, such as a broken neck or back"
+medical_name: "Traumatic spinal fracture or spinal cord injury"
+acuity_needed: emergency
+danger: critical
+# Starting chance: very rare among people with back or neck pain and no injury, rare
+# among people who have had an injury or fall (AI judgement). It was rare for all,
+# which with the other critical spine cards put every plain back pain near the
+# "likely" line for an emergency before any question was asked.
+prevalence: very_rare
+prevalence_when:
+  - {finding: injury_or_fall, prevalence: rare}
+findings:
+  serious_accident: strongly_supports
+  injury_or_fall: strongly_supports
+  numb_after_injury: supports
+  both_legs_symptoms: supports
+  severe_pain: supports
+  electric_shock_feeling: supports
+key_findings: [serious_accident, numb_after_injury, both_legs_symptoms]
+source: nhs_back_pain
+informed_by: [nhs_back_pain, nhs_whiplash, nhs_head_injury, nhs_falls]

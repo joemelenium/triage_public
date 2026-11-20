@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: swallowing_problem_from_brain_or_nerves
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing]
+name: "Swallowing problems from a condition that affects the brain or nerves, such as a past stroke"
+medical_name: "Neurogenic oropharyngeal dysphagia"
+acuity_needed: urgent
+danger: serious
+prevalence: common
+prevalence_when:
+  - {finding: has_brain_or_nerve_condition, prevalence: very_common}
+  - {finding: age_65_or_over, prevalence: common}
+findings:
+  # What tells it apart: coughing or choking as soon as food or drink is swallowed, and a wet, gurgly
+  # voice, in someone with a condition such as a past stroke or Parkinson's. Food going into the
+  # lungs can cause chest infections.
+  coughing_choking_when_eating: strongly_supports
+  wet_gurgly_voice: strongly_supports
+  frequent_chest_infections: supports
+  drooling: supports
+key_findings: [coughing_choking_when_eating, wet_gurgly_voice, has_brain_or_nerve_condition]
+source: nhs_swallowing_problems_dysphagia
+informed_by: [nhs_swallowing_problems_dysphagia]

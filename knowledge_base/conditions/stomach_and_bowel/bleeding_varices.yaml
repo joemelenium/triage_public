@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bleeding_varices
+body_system: stomach_and_bowel
+entry_symptoms: [vomiting_blood]
+name: "Bleeding from swollen veins in the food pipe, caused by liver problems (varices)"
+medical_name: "Bleeding oesophageal varices"
+snomed: "17709002"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: has_liver_problems, prevalence: common}
+findings:
+  drinks_a_lot_of_alcohol: strongly_supports
+  vomiting_blood_large_amount: strongly_supports
+  yellow_skin_or_eyes: supports
+  black_or_dark_red_poo: supports
+  light_headed: supports
+  tummy_swollen: supports
+key_findings: [has_liver_problems, drinks_a_lot_of_alcohol, vomiting_blood_large_amount]
+source: nhs_alcohol_related_liver_disease
+informed_by: [nhs_alcohol_related_liver_disease, nhs_vomiting_blood]

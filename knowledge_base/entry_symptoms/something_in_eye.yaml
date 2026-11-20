@@ -1,0 +1,121 @@
+# Entry symptom: something in the eye (dust, grit, an eyelash, a chemical or an object).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# There is no Symptoms A to Z page for this. The rules come from the Eye
+# injuries condition page, with the Red eye and Eye pain pages.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: something_in_eye
+name: "Something in the eye"
+presenting_finding: something_in_eye
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: something_in_eye_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - chemical_in_eye
+      - eye_pierced
+      - high_speed_object
+      - object_stuck_in_eye
+      - vision_change
+      - eye_pain_severe
+      - bothered_by_light
+      - cannot_open_eye
+
+  - id: something_in_eye_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - something_in_eye_24_hours
+      - contact_lens_wearer
+      - welding_or_uv
+      - eye_injury
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_sie_chemical
+    description: "A strong chemical, such as oven cleaner or bleach, in the eye"
+    when: chemical_in_eye
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Keep rinsing the eye with water, and go to A&E or call 999"}
+    advice: advice_chemical_eye
+    source: nhs_eye_injuries
+
+  - id: rf_sie_pierced_or_fast
+    description: "A sharp object has pierced the eye, or something hit it at high speed"
+    when: {any: [eye_pierced, high_speed_object]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999. Do not try to remove anything stuck in the eye."}
+    advice: advice_eye_injury_ae
+    source: nhs_eye_injuries
+
+  - id: rf_sie_stuck
+    description: "Something stuck in the eye that rinsing has not removed, such as glass or grit"
+    when: object_stuck_in_eye
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_red_eye
+    note: "The Eye pain and Dry eyes pages say the same. Reading 'stuck' as not removed by rinsing is AI judgement; the Eye injuries page says to wash the eye with clean water first."
+
+  - id: rf_sie_after_injury
+    description: "Changes to the sight, severe pain, sensitivity to light, being sick, or cannot move the eye or keep it open, after something got in the eye"
+    when: {any: [vision_change, eye_pain_severe, bothered_by_light, nausea_or_vomiting, eye_hard_to_move, cannot_open_eye]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_eye_injuries
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Eye injuries page lists each of these as a reason to go to A&E after an eye injury. Applying it to grit or an eyelash is AI reading. Soft, because a scratch on the surface of the eye or arc eye can cause pain and light sensitivity and are usually treated the same day outside A&E; the firm urgent rule below is its floor."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_sie_after_injury_urgent
+    description: "Severe pain, sensitivity to light, changes to the sight, or cannot keep the eye open, after something got in the eye"
+    when: {any: [vision_change, eye_pain_severe, bothered_by_light, eye_hard_to_move, cannot_open_eye]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. You could also visit an optician."}
+    advice: advice_eye_urgent
+    source: nhs_eye_injuries
+    note: "The firm floor under the soft emergency rule above. The page says urgent if an eye injury is very painful."
+
+  - id: rf_sie_not_better
+    description: "An eye injury, or something in the eye, not getting better after 24 hours"
+    when: something_in_eye_24_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. You could also visit an optician."}
+    advice: advice_eye_urgent
+    source: nhs_eye_injuries
+
+  - id: rf_sie_injury
+    description: "Something in the eye after an injury, or something hit the eye"
+    when: eye_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. You could also visit an optician."}
+    advice: advice_eye_urgent
+    source: nhs_eye_injuries
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The page says get urgent help if you are worried about an eye injury, particularly in a child, and that minor injuries often get better within a day. Soft, so that a likely bit of dust can lower it."
+
+  - id: rf_sie_lenses
+    description: "Feels like something in the eye in someone who wears contact lenses"
+    when: {all: [contact_lens_wearer, {any: [red_eye, eye_pain]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Take your lenses out. Ask for an urgent GP or optician appointment, or get help from NHS 111."}
+    advice: advice_eye_contact_lens_urgent
+    source: nhs_red_eye
+    note: "The Red eye page says a red eye in someone who wears contact lenses could be an eye infection. Applying it to a painful eye is AI judgement."
+
+  - id: rf_sie_welding
+    description: "Painful, gritty eyes after welding or a sunbed without eye protection: possible arc eye"
+    when: {all: [welding_or_uv, {any: [eye_pain, red_eye, watering_eyes]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: arc eye is a burn to the surface of the eye. It is very painful, usually heals in a day or two, and should be checked the same day to rule out a metal fragment."
+
+outcome_rules: []
+
+default:
+  description: "Something in the eye, such as dust or an eyelash, with nothing that needs more help: wash it out"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Wash your eye with clean water. Minor eye injuries often get better within a day."}
+  advice: advice_something_in_eye_self_care
+  source: nhs_eye_injuries

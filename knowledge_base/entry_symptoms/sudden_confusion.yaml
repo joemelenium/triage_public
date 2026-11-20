@@ -1,0 +1,111 @@
+# Entry symptom: sudden confusion (delirium).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The main symptom reuses "sudden_confusion", which is already one of the
+# universal red flags (call 999 or go to A&E). So everyone with sudden confusion
+# gets at least that. The rules here only look for reasons to send an ambulance,
+# and give advice for causes that can be helped while waiting.
+#
+# Gradual forgetfulness or confusion over months is covered by the memory loss
+# entry symptom instead.
+#
+# Must-not-miss causes: stroke, sepsis and other infections, low blood sugar,
+# a head injury, bleeding on the brain, meningitis, encephalitis, carbon
+# monoxide poisoning, seizures. Alcohol and drug poisoning or withdrawal belong
+# to the mental health batch and are not covered here.
+
+id: sudden_confusion
+name: "Sudden confusion"
+presenting_finding: sudden_confusion
+also_covers: [nhs_confusion]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: confusion_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - numbness_or_weakness
+      - difficulty_speaking
+      - headache_sudden_severe
+      - rash_does_not_fade
+      - stiff_neck
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - had_a_fit
+      - head_injury_last_3_months
+      - others_in_home_unwell
+      - very_high_temperature
+
+red_flags:
+  - id: rf_cf_stroke
+    description: "Sudden confusion with numbness or weakness, or difficulty speaking: possible stroke"
+    when: {any: [numbness_or_weakness, difficulty_speaking]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+
+  - id: rf_cf_headache_sudden
+    description: "Sudden confusion with a headache that came on suddenly and is extremely painful"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_headache_999
+    source: nhs_subarachnoid_haemorrhage
+
+  - id: rf_cf_rash
+    description: "Sudden confusion with a rash that does not fade when pressed: possible meningitis or sepsis"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_meningitis_emergency
+    source: ai_judgement
+    note: "The Meningitis and Sepsis pages say call 999 or go to A&E for each sign. Sending an ambulance when both are present, rather than going to A&E, is AI judgement: the person may get worse quickly and should not travel without help."
+
+  - id: rf_cf_stiff_neck
+    description: "Sudden confusion with a stiff neck: possible meningitis"
+    when: stiff_neck
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+
+  - id: rf_cf_drowsy
+    description: "Sudden confusion and very drowsy or hard to keep awake"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_confusion_999
+    source: ai_judgement
+    note: "Clinical knowledge: confusion with drowsiness means the brain is not working normally and the person may stop responding. The Head injury page says call 999 for someone who cannot stay awake."
+
+  - id: rf_cf_head_injury
+    description: "Sudden confusion after a head injury in the last 3 months"
+    when: head_injury_last_3_months
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_confusion_999
+    source: nhs_head_injury
+    note: "The Head injury page says call 999 for problems with understanding after a head injury. Applying it to a head injury in the last 3 months, not only a recent one, is AI judgement: bleeding can build up slowly, especially in older people."
+
+  - id: rf_cf_others_unwell
+    description: "Sudden confusion, and others at home or pets unwell too: possible carbon monoxide poisoning"
+    when: others_in_home_unwell
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Get into fresh air, then call 999 or go to A&E"}
+    advice: advice_carbon_monoxide_emergency
+    source: nhs_carbon_monoxide_poisoning
+
+  - id: rf_cf_low_sugar
+    description: "Sudden confusion in someone with diabetes who has signs of low blood sugar"
+    when: {all: [has_diabetes, diabetes_low_sugar_signs]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Give something sugary if they can swallow safely. Call 999 if they do not get better quickly or stop responding normally."}
+    advice: advice_low_blood_sugar_emergency
+    source: nhs_low_blood_sugar
+    note: "The Low blood sugar page says call 999 if someone with a very low blood sugar is not responding normally and a glucagon injection is not available or has not worked."
+
+default:
+  description: "Sudden confusion: get medical help immediately"
+  outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+  advice: advice_confusion_ae
+  source: nhs_confusion
+  # A floor: the source says get medical help immediately if someone suddenly becomes confused.
+  floor: true

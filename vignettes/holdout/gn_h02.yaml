@@ -1,0 +1,63 @@
+id: gn_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- blue_or_grey_skin
+summary: A 67-year-old man whose toes on the right foot have looked blue-grey for 2 days, indoors and in the warm. His lips and face are a normal colour, he is breathing normally and he is not confused.
+opening_statement: The toes on my right foot have gone a bluey-grey colour the last couple of days. They feel a bit cold. I'm fine otherwise.
+findings:
+  present:
+  - blue_or_grey_skin
+  - blue_fingers_or_toes_only
+  absent:
+  - blue_lips_tongue_or_face
+  - lips_or_skin_blue_grey
+  - difficulty_breathing
+  - short_of_breath
+  - chest_pain
+  - sudden_confusion
+  - dizziness
+  - limb_cold_pale_painful
+  - blue_white_in_cold
+  - leg_pain_or_swelling
+  - injury_or_fall
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 67
+    sex: male
+  full:
+    age: 67
+    sex: male
+    findings:
+      heart_risk_factors: 'yes'
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Blue or grey toes (possible circulation problem)
+  findings:
+  - blue_fingers_or_toes_only
+  minimum_acuity: urgent
+  source:
+    page: blue_skin_or_lips_cyanosis.txt
+    quote: you or your child's fingers, toes, hands and feet are blue or grey
+safety_netting_should_cover:
+- point: Get help from NHS 111 today
+  any_of:
+  - '111'
+- point: Call 999 if the lips, tongue or face turn blue, or breathing becomes difficult
+  any_of:
+  - '999'
+source:
+  expected_outcome:
+    page: blue_skin_or_lips_cyanosis.txt
+    quote: you or your child's fingers, toes, hands and feet are blue or grey
+  minimum_safe_acuity:
+    page: blue_skin_or_lips_cyanosis.txt
+    quote: you or your child's fingers, toes, hands and feet are blue or grey
+atypical: false
+notes: Blue toes only, not lips or face, so 111 rather than 999. The sudden painful pale limb picture (limb_cold_pale_painful) is absent. The colour does not come and go with cold, which separates it from Raynaud's.

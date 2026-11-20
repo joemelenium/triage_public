@@ -1,0 +1,58 @@
+id: st_h11
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "An 84-year-old man living in a care home has had a sore throat and a runny nose since yesterday. He is eating and drinking normally, has no temperature and is as chatty as usual. A care assistant who is new to the home is answering; she would like to know what she can give him and does not know his medical history. His record shows he is having chemotherapy and flags a weakened immune system; it shows no history of repeated sore throats."
+
+opening_statement: "I'm a care assistant and one of our residents, he's 84, has had a sore throat and a runny nose since yesterday. He seems fine in himself. What can I give him?"
+
+findings:
+  present: [sore_throat, cough_or_runny_nose, wants_help_with_sore_throat]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, pus_on_tonsils, too_painful_to_eat_or_drink,
+      worried_about_symptoms, sore_throat_over_a_week, lump_in_mouth_or_neck,
+      mouth_ulcer_over_3_weeks, swollen_neck_glands, very_tired, stroke_signs,
+      severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+      heavy_bleeding, serious_self_harm, chest_pain, short_of_breath, cold_or_shivery]
+  unknown: [weakened_immune_system, frequent_sore_throats]
+
+context:
+  none: {}
+  basic: {age: 84, sex: male}
+  full:
+    age: 84
+    sex: male
+    findings: {weakened_immune_system: "yes", frequent_sore_throats: "no"}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Weakened immune system (chemotherapy), known from the record"
+    findings: [weakened_immune_system]
+    minimum_acuity: urgent
+    source: {page: sore_throat.txt, quote: "you have a weakened immune system – for example, because of diabetes or chemotherapy"}
+
+safety_netting_should_cover:
+  - point: "Ask for an urgent GP appointment or get advice from 111"
+    any_of: ["111", "urgent GP"]
+  - point: "Call 999 or go to A&E if there is difficulty breathing, they cannot swallow, they are drooling, or they get worse quickly"
+    any_of: ["999", "A&E"]
+
+source:
+  expected_outcome: {page: sore_throat.txt, quote: "Urgent advice: Ask for an urgent GP appointment or get advice from 111 now if:"}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "you have a weakened immune system – for example, because of diabetes or chemotherapy"}
+
+context_test:
+  what_context_adds: "The record shows current chemotherapy and flags a weakened immune system; it also shows he does not often get sore throats. The care assistant answering knows neither and says she is not sure."
+  expected_direction: more_urgent
+
+atypical: false
+notes: "Context test. On the answers alone this is an ordinary cold-type sore throat in someone who wants help, which leads to a pharmacist (routine). With the record, sore_throat.txt gives urgent advice for a sore throat in someone with a weakened immune system and names chemotherapy as an example. The record's 'no' for frequent sore throats removes a possible GP reason and should not change the result. Both findings are under unknown because the person answering cannot confirm them. Timeframe: the page says 'now' for contacting 111 or the GP; 'today' is used because it is the timeframe that goes with the urgent level on the scale."

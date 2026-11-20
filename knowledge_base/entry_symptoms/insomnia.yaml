@@ -1,0 +1,59 @@
+# Entry symptom: insomnia (trouble sleeping).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Insomnia page has no urgent advice. Thoughts of suicide or self-harm are
+# checked for everyone by the universal red flags. Low mood that needs more help
+# belongs to the mental health batch.
+
+id: insomnia
+name: "Insomnia"
+presenting_finding: trouble_sleeping
+also_covers: [nhs_insomnia]
+status: "AI-drafted, not clinically reviewed"
+
+outcome_rules:
+  - id: or_in_months
+    description: "Trouble sleeping for months"
+    when: trouble_sleeping_3_months
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_insomnia_gp
+    source: nhs_insomnia
+
+  - id: or_in_hard_to_cope
+    description: "Insomnia making it hard to cope with daily life"
+    when: trouble_sleeping_hard_to_cope
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_insomnia_gp
+    source: nhs_insomnia
+
+  - id: or_in_habits_not_helped
+    description: "Changing sleeping habits has not helped"
+    when: sleep_habits_not_helped
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_insomnia_gp
+    source: nhs_insomnia
+
+  - id: or_in_breathing_in_sleep
+    description: "Loud snoring, or breathing that stops and starts while asleep"
+    when: breathing_stops_in_sleep
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_insomnia_gp
+    source: nhs_sleep_apnoea
+
+  - id: or_in_restless_legs
+    description: "Restless legs stopping you sleeping"
+    when: urge_to_move_legs
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_insomnia_gp
+    source: nhs_restless_legs_syndrome
+    note: "The Restless legs syndrome page says see a GP if it is stopping you sleeping."
+
+default:
+  description: "Trouble sleeping with nothing that needs more help: it usually gets better by changing sleeping habits"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Insomnia usually gets better by changing your sleeping habits. A pharmacist can also help."}
+  advice: advice_insomnia_self_care
+  source: nhs_insomnia

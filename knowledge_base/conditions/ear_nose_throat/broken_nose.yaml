@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: broken_nose
+body_system: ear_nose_throat
+entry_symptoms: [nosebleed, blocked_or_runny_nose]
+name: "Broken nose"
+medical_name: "Fracture of nasal bones"
+snomed: "263171005"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart: it follows a blow to the nose, with pain, swelling, bruising and sometimes a
+  # crooked nose.
+  nose_injury: strongly_supports
+  nose_crooked_or_not_healing: supports
+  face_or_jaw_swollen: supports
+  nosebleed: supports
+  blocked_or_runny_nose: supports
+key_findings: [nose_injury, nose_crooked_or_not_healing, clear_fluid_from_nose]
+source: nhs_broken_nose
+informed_by: [nhs_broken_nose, nhs_nosebleed]

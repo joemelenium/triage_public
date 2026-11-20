@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: eczema_herpeticum
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Eczema herpeticum (eczema infected with the cold sore virus)"
+medical_name: "Eczema herpeticum"
+snomed: "186535001"
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: has_eczema, prevalence: rare}
+findings:
+  # What tells it apart from infected eczema: eczema that suddenly gets much worse and painful, with clusters of small blisters or open sores, a high temperature and feeling unwell.
+  eczema_painful_blisters_sudden: strongly_supports
+  very_high_temperature: supports
+  feels_very_unwell: supports
+  rash_blisters: supports
+  rash_sore_or_painful: supports
+key_findings: [eczema_painful_blisters_sudden, very_high_temperature, feels_very_unwell]
+source: nhs_atopic_eczema
+informed_by: [nhs_atopic_eczema, nhs_cold_sores]

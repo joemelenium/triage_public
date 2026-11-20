@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: xanthelasma
+body_system: eyes
+# Yellow patches near the eyes, sometimes caused by high cholesterol, so a GP
+# may check it.
+entry_symptoms: [eyelid_problem]
+name: "Yellow patches on the eyelids (xanthelasma)"
+medical_name: "Xanthelasma"
+snomed: "238951005"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  eyelid_lump_yellow: strongly_supports
+  eyelid_lump: supports
+  both_eyes_affected: supports
+  heart_risk_factors: supports    # high cholesterol
+key_findings: [eyelid_lump_yellow]
+source: nhs_eyelid_problems
+informed_by: [nhs_eyelid_problems]

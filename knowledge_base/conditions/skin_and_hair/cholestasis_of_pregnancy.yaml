@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cholestasis_of_pregnancy
+body_system: skin_and_hair
+entry_symptoms: [itchy_skin, yellow_skin_or_eyes]
+name: "A liver problem in pregnancy that causes itching (ICP)"
+medical_name: "Intrahepatic cholestasis of pregnancy"
+snomed: "235888006"
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnant_or_recently_given_birth, prevalence: uncommon}
+findings:
+  # What tells it apart from ordinary itching in pregnancy: itchy palms and soles, itching worse at night, with no rash, and sometimes dark pee or pale poo.
+  itchy_palms_and_soles: strongly_supports
+  itch_worse_at_night: supports
+  itch_all_over_without_rash: supports
+  poo_pale_pee_dark: supports
+  itch_severe: supports
+key_findings: [itchy_palms_and_soles, itch_worse_at_night, poo_pale_pee_dark]
+source: nhs_cholestasis_pregnancy
+informed_by: [nhs_cholestasis_pregnancy, nhs_itchy_skin]

@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: myasthenia_gravis
+body_system: eyes
+# Muscles get weak and tired, often the eyelids and eye muscles first. Worse
+# later in the day. Breathing or swallowing problems need hospital care (a
+# rule).
+entry_symptoms: [double_vision, eyelid_problem]
+name: "Myasthenia gravis (muscles that get weak and tired, often in the eyelids and eyes first)"
+medical_name: "Myasthenia gravis"
+snomed: "91637004"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  symptoms_worse_when_tired: strongly_supports
+  eyelid_drooping: strongly_supports
+  difficulty_speaking: supports
+  double_vision: supports
+  double_vision_both_eyes: supports
+key_findings: [symptoms_worse_when_tired, eyelid_drooping]
+source: nhs_myasthenia_gravis
+informed_by: [nhs_myasthenia_gravis]

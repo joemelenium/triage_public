@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: harmless_hallucinations
+body_system: mental_health
+# Harmless causes of seeing or hearing things: when falling asleep or waking up,
+# after losing someone close, or with long-term sight loss (Charles Bonnet
+# syndrome). Included so the engine has a common, milder explanation. Grouped,
+# so no single SNOMED CT concept matches and none is given.
+entry_symptoms: [hearing_or_seeing_things]
+name: "Seeing or hearing things for a harmless reason, such as when falling asleep, after a loss, or with poor sight"
+medical_name: "Hypnagogic hallucinations, bereavement hallucinations or Charles Bonnet syndrome"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  hallucinations_falling_asleep: strongly_supports
+  knows_not_real: strongly_supports
+  sight_loss_long_term: supports
+  recent_crisis_or_loss: supports
+key_findings: [hallucinations_falling_asleep, knows_not_real, sight_loss_long_term]
+source: nhs_charles_bonnet
+informed_by: [nhs_charles_bonnet, nhs_grief]

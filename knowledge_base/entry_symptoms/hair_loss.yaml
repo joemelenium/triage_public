@@ -1,0 +1,58 @@
+# Entry symptom: hair loss.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: hair_loss
+name: "Hair loss"
+presenting_finding: hair_loss
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: hair_loss_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - worried_about_symptoms
+      - affecting_daily_life_or_wellbeing
+      - hair_loss_patches
+      - scalp_scaly_or_itchy
+      - paler_than_usual
+
+red_flags:
+  - id: rf_hl_scalp_infection
+    description: "Hair loss with a painful, hot, swollen patch of scalp"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: nhs_cellulitis
+    note: "AI reading: a painful, swollen, pus-filled patch on the scalp can be a severe ringworm or skin infection, and the Cellulitis page says urgent help for painful, hot, swollen skin."
+
+outcome_rules:
+  - id: or_hl_worried
+    description: "Worried about hair loss, or it is affecting your wellbeing"
+    when: {any: [worried_about_symptoms, affecting_daily_life_or_wellbeing]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_hair_loss_gp
+    source: nhs_hair_loss
+
+  - id: or_hl_patches_or_scalp
+    description: "Bald patches, or an itchy, flaky or scaly scalp (possible alopecia areata or ringworm of the scalp)"
+    when: {any: [hair_loss_patches, scalp_scaly_or_itchy]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_hair_loss_gp
+    source: nhs_ringworm
+    note: "The Ringworm page says see a GP for ringworm on the scalp, which needs prescription treatment. A GP visit for bald patches is AI judgement."
+
+  - id: or_hl_anaemia_signs
+    description: "Hair loss with skin paler than usual for weeks, or very tired (possible lack of iron)"
+    when: {any: [paler_than_usual, nail_spoon_shaped]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_hair_loss_gp
+    source: nhs_iron_deficiency_anaemia
+
+default:
+  description: "Hair loss that is not worrying you: often temporary or part of getting older"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP if you want to find out the cause. The source gives no fixed time."}
+  advice: advice_hair_loss_gp
+  source: nhs_hair_loss
+  note: "The Hair loss page says hair loss is not usually anything to worry about, and to see a GP before going to a commercial hair clinic. Not a floor: likely pattern hair loss or shedding after an illness can lower this to self-care."

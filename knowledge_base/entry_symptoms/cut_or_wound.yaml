@@ -1,0 +1,165 @@
+# Entry symptom: cuts, grazes, bites from animals or people, and other wounds.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS website has no Symptoms A to Z page for this. Rules come from the
+# Cuts and grazes, Animal and human bites, Tetanus, Cellulitis and Necrotising
+# fasciitis pages. Bleeding that cannot be stopped is a universal red flag.
+
+id: cut_or_wound
+name: "Cut, graze or wound"
+presenting_finding: cut_or_wound
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: wound_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - wound_large_or_deep
+      - wound_numb_or_cannot_move
+      - wound_on_face_or_palm
+      - object_stuck_in_wound
+      - pain_much_worse_than_expected
+      - purple_black_patches_on_skin
+      - stiff_jaw_or_muscle_spasms
+      - bitten_by_snake
+
+  - id: wound_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - wound_dirty
+      - wound_over_5cm
+      - swollen_area_red_hot
+      - pus_or_fluid_leaking
+      - very_high_temperature
+      - feels_very_unwell
+      - bitten_by_animal_or_person
+      - tetanus_not_up_to_date
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_wo_large_deep_or_stuck
+    description: "A very large or deep wound, or something stuck in it"
+    when: {any: [wound_large_or_deep, object_stuck_in_wound]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_wound_ae
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_numb_or_cannot_move
+    description: "Lost feeling near the wound, or trouble moving it"
+    when: wound_numb_or_cannot_move
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_wound_ae
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_face_or_palm
+    description: "A bad cut on the face or the palm of the hand"
+    when: wound_on_face_or_palm
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_wound_ae
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_deep_infection
+    description: "A wound much more painful than expected, or black, purple or grey patches or blisters near it"
+    when: {any: [pain_much_worse_than_expected, purple_black_patches_on_skin]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_necrotising_fasciitis
+
+  - id: rf_wo_unwell_after_wound
+    description: "A wound or red, swollen skin with a high temperature and muscle aches, a fast heartbeat or feeling dizzy, or very unwell and getting worse"
+    when: {any: [seriously_unwell_getting_worse, {all: [very_high_temperature, {any: [aching_body, heart_beating_very_fast, light_headed]}]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_necrotising_fasciitis
+    note: "The Necrotising fasciitis page says call 999 or go to A&E for a wound with a high temperature, headache, tiredness and muscle aches, or a fast or pounding heartbeat or dizziness."
+
+  - id: rf_wo_tetanus_signs
+    description: "A wound with a stiff jaw, painful muscle spasms or stiffness"
+    when: stiff_jaw_or_muscle_spasms
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_tetanus_emergency
+    source: nhs_tetanus
+
+  - id: rf_wo_snake
+    description: "Bitten by a snake"
+    when: bitten_by_snake
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_snake_bite_emergency
+    source: nhs_snake_bites
+
+  - id: rf_wo_large_bite
+    description: "A large or deep bite"
+    when: {all: [bitten_by_animal_or_person, wound_over_5cm]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_wound_ae
+    source: nhs_animal_bites
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_wo_dirty
+    description: "A wound with soil, pus or body fluids in it, or still dirty after cleaning"
+    when: wound_dirty
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wound_urgent
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_over_5cm
+    description: "A cut larger than around 5cm (2 inches)"
+    when: wound_over_5cm
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wound_urgent
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_infected
+    description: "A cut that is swollen, red and getting more painful, or with pus coming out"
+    when: {any: [swollen_area_red_hot, pus_or_fluid_leaking]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wound_urgent
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_unwell
+    description: "A cut and feeling generally unwell or a high temperature"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wound_urgent
+    source: nhs_cuts_and_grazes
+
+  - id: rf_wo_bite_person_or_wild
+    description: "Bitten by a person, or a wild or stray animal, or any animal abroad"
+    when: bitten_by_person_or_wild_animal
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_bite_wound_urgent
+    source: nhs_cuts_and_grazes
+    note: "The Cuts and grazes page names a person or a wild or stray animal. Including any animal bite abroad is AI judgement, because of rabies in some countries."
+
+  - id: rf_wo_bite_site
+    description: "A bite on the hands, feet, face or head"
+    when: bite_on_hand_foot_face_head
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_bite_wound_urgent
+    source: nhs_animal_bites
+
+  - id: rf_wo_tetanus
+    description: "A wound in someone not fully vaccinated against tetanus, or not sure"
+    when: tetanus_not_up_to_date
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wound_urgent
+    source: nhs_tetanus
+
+  - id: rf_wo_gaping
+    description: "A cut whose edges gape apart and may need closing"
+    when: wound_edges_gaping
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111, or go to an urgent treatment centre"}
+    advice: advice_wound_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical judgement
+    note: "AI judgement: a cut that gapes may need stitches, strips or glue, which work best within a few hours."
+
+outcome_rules: []
+
+default:
+  description: "A small cut or graze with nothing that needs more help: clean it, cover it and treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most cuts and grazes can be treated at home and start to heal in a few days"}
+  advice: advice_wound_self_care
+  source: nhs_cuts_and_grazes

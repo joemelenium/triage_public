@@ -1,0 +1,87 @@
+id: mh_d06
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- agitated_or_out_of_control
+summary: A 29-year-old woman gave birth 12 days ago. Her partner says that for three days she has been very high
+  and restless, talking fast, has hardly slept, and believes the baby is sending her special messages. She has no
+  thoughts of harming herself or the baby.
+opening_statement: I'm calling about my partner. She had our baby 12 days ago and the last few days she's been really
+  hyper, she won't sleep, and she's saying the baby is sending her messages. It's not like her at all.
+findings:
+  present:
+  - agitated_or_out_of_control
+  - high_mood_now
+  - believes_things_not_true
+  - not_slept_for_nights
+  - muddled_thinking
+  - had_baby_in_last_year
+  - pregnant_or_recently_given_birth
+  absent:
+  - thoughts_of_harming_others
+  - suicidal_thoughts
+  - voices_telling_to_harm
+  - cannot_keep_safe
+  - aggressive_or_violent
+  - very_high_temperature
+  - recent_drug_use
+  - drunk_a_lot_today
+  - has_bipolar
+  - sudden_confusion
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 29
+    sex: female
+  full:
+    age: 29
+    sex: female
+    findings:
+      pregnant_or_recently_given_birth: 'yes'
+      had_baby_in_last_year: 'yes'
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: 'Possible postpartum psychosis: high mood, little sleep and false beliefs soon after birth'
+  findings:
+  - had_baby_in_last_year
+  - high_mood_now
+  - believes_things_not_true
+  minimum_acuity: urgent
+  source:
+    page: psychosis.txt
+    quote: Contact a GP immediately if you think you or someone you know may have developed postnatal psychosis
+      as it is a medical emergency.
+safety_netting_should_cover:
+- point: See a GP the same day, or 111 if not possible
+  any_of:
+  - GP
+  - '111'
+  - same day
+- point: Call 999 or go to A&E if there is a risk of harm to her or the baby
+  any_of:
+  - '999'
+  - A&E
+source:
+  expected_outcome:
+    page: postpartum_psychosis.txt
+    quote: See a GP immediately if you think you, or someone you know, may have developed symptoms of postpartum
+      psychosis.
+  minimum_safe_acuity:
+    page: postpartum_psychosis.txt
+    quote: You should request an urgent assessment on the same day.
+variants:
+- id: mh_d06_v1
+  style: the woman herself, upbeat, does not see a problem
+  opening_statement: I feel amazing actually, I don't need sleep, my partner just made me call.
+  volunteered:
+  - high_mood_now
+atypical: true
+notes: 'Both pages call postpartum psychosis a medical emergency, but the action they give is a GP immediately with
+  a same-day urgent assessment (or 111), and 999 only if there is imminent danger of harm. So expected urgent, level
+  general practice, today. The variant is atypical: postpartum_psychosis.txt says ''you may not realise you''re
+  ill''.'

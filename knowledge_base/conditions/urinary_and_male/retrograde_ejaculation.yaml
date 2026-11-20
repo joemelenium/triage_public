@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: retrograde_ejaculation
+body_system: urinary_and_male
+entry_symptoms: [ejaculation_problems]
+name: "Semen going back into the bladder (retrograde ejaculation)"
+medical_name: "Retrograde ejaculation"
+snomed: "50112006"
+# The page says it is not a danger to health but can affect having children.
+acuity_needed: routine
+danger: minor
+sex: male
+prevalence: uncommon
+findings:
+  little_or_no_semen: strongly_supports
+  had_prostate_or_bladder_operation: strongly_supports
+  has_diabetes: supports
+key_findings: [little_or_no_semen, had_prostate_or_bladder_operation]
+source: nhs_ejaculation_problems
+informed_by: [nhs_ejaculation_problems]

@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: menieres
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, tinnitus, dizziness]
+name: "Meniere's (a condition deep in the ear that causes bouts of spinning, hearing loss and ringing)"
+medical_name: "Meniere's disease"
+snomed: "13445001"
+acuity_needed: routine
+danger: minor
+prevalence: rare
+findings:
+  # What tells it apart from labyrinthitis: attacks of spinning that last minutes to hours and keep
+  # coming back, with a full feeling in the ear.
+  symptoms_come_in_attacks: strongly_supports
+  dizziness_spinning: strongly_supports
+  ear_feels_blocked: supports
+  hearing_loss: strongly_supports
+  tinnitus: strongly_supports
+  nausea_or_vomiting: supports
+  # From the brain_and_nerves card for this condition (merged):
+  dizziness_keeps_coming_back: strongly_supports
+key_findings: [symptoms_come_in_attacks, dizziness_spinning, ear_feels_blocked, hearing_loss, tinnitus, dizziness_keeps_coming_back]
+source: nhs_menieres_disease
+informed_by: [nhs_menieres_disease, nhs_hearing_loss, nhs_tinnitus, nhs_dizziness]
+# Merged with the brain_and_nerves card for this condition. Its notes:
+# What tells it apart: attacks of spinning that keep coming back, with hearing loss, ringing or pressure in the ear.

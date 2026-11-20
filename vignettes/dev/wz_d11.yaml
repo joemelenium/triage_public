@@ -1,0 +1,52 @@
+id: wz_d11
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing, cough]
+
+summary: "A 23-year-old man with hay fever every summer. This June, as well as sneezing and itchy eyes, he has had a dry cough and a wheeze in the evenings and at night for three weeks, worse on high-pollen days. Antihistamines help his eyes but not his chest. No asthma diagnosis."
+
+opening_statement: "My hay fever's bad this year and now I'm wheezing and coughing at night too. The antihistamines aren't touching my chest."
+
+findings:
+  present: [wheezing, wheeze_comes_and_goes, cough, cough_dry, cough_worse_at_night, cough_3_weeks_or_more, itchy_watery_eyes_sneezing, blocked_or_runny_nose, triggered_by_allergy, has_allergies, symptoms_worse_or_not_better]
+  absent: [has_asthma, short_of_breath, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, difficulty_breathing, lips_or_skin_blue_grey, sudden_confusion, chest_pain, coughing_up_blood, very_high_temperature, cough_mucus_or_temperature, lips_tongue_throat_swelling, throat_tight, after_allergy_trigger, raised_itchy_rash, weight_loss, night_sweats, smoker, recent_viral_illness, feels_very_unwell, face_pain_around_nose_and_eyes]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 23, sex: male}
+  full:
+    age: 23
+    sex: male
+    findings: {has_allergies: "yes", has_asthma: "no"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP (possible asthma triggered by pollen)"
+    any_of: ["GP", "asthma"]
+  - point: "Reduce pollen exposure"
+    any_of: ["pollen", "windows", "shower"]
+  - point: "Get urgent help if breathing becomes difficult"
+    any_of: ["999", "111"]
+
+source:
+  expected_outcome: {page: asthma.txt, quote: "you or your child have asthma symptoms"}
+  minimum_safe_acuity: {page: hay_fever.txt, quote: "your symptoms do not improve after taking medicines from the pharmacy"}
+
+variants:
+  - id: wz_d11_v1
+    style: "focuses on hay fever, mentions chest late"
+    opening_statement: "Can I get something stronger for hay fever? Sneezing, itchy eyes... oh and I've been a bit wheezy at night."
+    volunteered: [itchy_watery_eyes_sneezing, wheezing]
+
+atypical: false
+notes: "Possible pollen-triggered asthma alongside hay fever. hay_fever.txt does not list wheeze as a hay fever symptom; asthma.txt lists pollen as a trigger and gives 'Non-urgent advice: See a GP if you or your child have asthma symptoms'. hay_fever.txt also gives a non-urgent GP visit if pharmacy medicines do not help. cough_3_weeks_or_more is present (shortness_of_breath.txt and cough.txt: non-urgent GP). Over-triage test: pharmacy-only advice would be under-triage because of the new wheeze."

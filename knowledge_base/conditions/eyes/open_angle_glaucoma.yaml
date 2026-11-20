@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: open_angle_glaucoma
+body_system: eyes
+# The common kind of glaucoma. Develops slowly and is usually found at a routine
+# eye test.
+entry_symptoms: [vision_change]
+name: "Glaucoma that comes on slowly (damage to the nerve at the back of the eye)"
+medical_name: "Primary open-angle glaucoma"
+snomed: "77075001"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  losing_side_vision: strongly_supports
+  vision_worse_slowly: strongly_supports
+  family_glaucoma: supports
+  has_diabetes: supports
+  short_sighted: supports
+key_findings: [losing_side_vision, family_glaucoma]
+source: nhs_glaucoma
+informed_by: [nhs_glaucoma]

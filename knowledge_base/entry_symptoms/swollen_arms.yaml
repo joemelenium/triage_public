@@ -1,0 +1,132 @@
+# Entry symptom: swollen arms and hands (oedema).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS page says get urgent help for swelling with no obvious cause, so the
+# default is urgent and a floor. A sourced exception lowers it when the person
+# knows the cause (a small injury, an insect bite, hot weather, staying in one
+# position) and nothing else applies.
+
+id: swollen_arms
+name: "Swollen arms or hands"
+presenting_finding: swollen_arm_or_hand
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: swollen_arms_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+      - short_of_breath
+      - chest_pain
+      - cp_tight_or_squeezing
+      - cp_heavy
+
+  - id: swollen_arms_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swelling_severe_painful_or_sudden
+      - swollen_area_red_hot
+      - swelling_elsewhere
+      - very_high_temperature
+      - has_diabetes
+      - pregnant_or_recently_given_birth
+
+red_flags:
+  - id: rf_sa_allergic_swelling
+    description: "A swollen arm or hand with lips, mouth, tongue or throat suddenly swollen, or the throat feeling tight: possible anaphylaxis"
+    when: {any: [lips_tongue_throat_swelling, throat_tight]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_angioedema
+
+  - id: rf_sa_breathless_or_chest
+    description: "A swollen arm or hand with breathlessness, or a tight, heavy or painful chest"
+    when: {any: [short_of_breath, difficulty_breathing, chest_pain, cp_tight_or_squeezing, cp_heavy]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_swelling_999
+    source: nhs_swollen_arms_and_hands_oedema
+
+  - id: rf_sa_cellulitis_spreading
+    description: "A red, hot swollen arm or hand with a fast heartbeat, fast breathing, feeling faint, or cold, clammy or blotchy skin"
+    when: {all: [swollen_area_red_hot, {any: [heart_beating_very_fast, breathing_very_fast, light_headed, cold_hands_and_feet, skin_blotchy]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_cellulitis
+
+  - id: rf_sa_cellulitis_temperature
+    description: "A red, hot swollen arm or hand with a high temperature, or feeling hot, cold or shivery"
+    when: {all: [swollen_area_red_hot, very_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_cellulitis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference, as for the swollen legs rule: the Cellulitis page says 999 or A&E, the Swollen arms page says urgent. The more urgent is used, marked soft."
+
+  - id: rf_sa_severe_or_sudden
+    description: "Swelling that is severe, painful or came on suddenly"
+    when: swelling_severe_painful_or_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_swollen_arms_and_hands_oedema
+
+  - id: rf_sa_red_hot
+    description: "The swollen area is red or feels hot"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_swollen_arms_and_hands_oedema
+
+  - id: rf_swollen_arms_high_temperature
+    description: "A swollen arm or hand with a high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_swollen_arms_and_hands_oedema
+
+  - id: rf_sa_swelling_elsewhere
+    description: "Swelling in the arms or hands and other parts of the body"
+    when: swelling_elsewhere
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_swollen_arms_and_hands_oedema
+
+  - id: rf_sa_diabetes
+    description: "A swollen arm or hand in someone with diabetes"
+    when: has_diabetes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_swollen_arms_and_hands_oedema
+
+  - id: rf_sa_pregnancy
+    description: "Pregnant or recently given birth, with swollen hands and a severe headache, vision problems or pain below the ribs"
+    when: {all: [pregnant_or_recently_given_birth, {any: [{any: [severe_headache_not_helped, vision_change, pain_below_ribs]}, swelling_elsewhere, swelling_severe_painful_or_sudden]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit now, or call 111 if you cannot"}
+    advice: advice_pre_eclampsia_urgent
+    source: nhs_pre_eclampsia
+
+outcome_rules:
+  - id: or_sa_not_improving
+    description: "Swelling that does not go away"
+    when: swelling_not_improving
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_swelling_gp
+    source: nhs_swollen_arms_and_hands_oedema
+
+default:
+  description: "Swelling in an arm or hand with no obvious cause: get it checked today"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+  advice: advice_swelling_urgent
+  source: nhs_swollen_arms_and_hands_oedema
+  floor: true
+
+default_exceptions:
+  - id: ex_sa_obvious_cause
+    description: "Swelling with an obvious cause, such as a small injury, an insect bite, hot weather or staying in one position, and nothing else of concern"
+    when: swelling_has_obvious_cause
+    outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Try the self-help advice. See a GP if it does not go away."}
+    advice: advice_swelling_self_care
+    source: nhs_swollen_arms_and_hands_oedema
+    note: "The page says urgent help for swelling with no obvious cause, such as an injury, and gives self-help for swelling with a known cause."

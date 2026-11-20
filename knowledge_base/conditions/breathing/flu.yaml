@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: flu
+body_system: breathing
+entry_symptoms: [cough, sore_throat, very_high_temperature, generally_unwell, headache]
+name: "Flu"
+medical_name: "Influenza"
+snomed: "6142004"
+# Usually gets better on its own. People more likely to get seriously ill (65 or
+# over, pregnant, a long-term condition, a weak immune system) are sent for help
+# the same day by the cough rules, not by this card.
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+# A positive test raises the starting chance. It is not linked as a finding,
+# because most people with flu do not test, so a "no" says little.
+prevalence_when:
+  - {finding: tested_positive_flu, prevalence: very_common}
+findings:
+  # What tells it apart from a cold: it comes on within hours, with a high
+  # temperature, aching all over, and feeling exhausted.
+  very_high_temperature: strongly_supports
+  aching_body: strongly_supports
+  very_tired: supports
+  cough_dry: supports
+  feels_very_unwell: supports
+key_findings: [very_high_temperature, aching_body, very_tired, tested_positive_flu]
+source: nhs_flu
+informed_by: [nhs_flu, nhs_common_cold]

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lactation_discharge
+body_system: womens_health
+entry_symptoms: [nipple_discharge]
+name: "Leaking milk from pregnancy or breastfeeding"
+medical_name: "Lactation"
+# Common and expected. The entry symptom still has a GP floor, as the source says.
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  breastfeeding: strongly_supports
+  nipple_discharge_milky: strongly_supports
+  nipple_discharge_both_sides: supports
+  pregnant_now: supports
+key_findings: [breastfeeding, pregnant_now]
+source: nhs_nipple_discharge
+informed_by: [nhs_nipple_discharge]

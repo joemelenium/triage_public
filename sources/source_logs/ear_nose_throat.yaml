@@ -1,0 +1,296 @@
+# Sources for the ear, nose, mouth and throat body system.
+
+- id: nhs_ear_infections
+  title: Ear infections
+  url: https://www.nhs.uk/conditions/ear-infections/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 16 January 2025'
+
+- id: nhs_glue_ear
+  title: Glue ear
+  url: https://www.nhs.uk/conditions/glue-ear/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 05 June 2023'
+
+- id: nhs_earwax_build_up
+  title: Earwax build-up
+  url: https://www.nhs.uk/conditions/earwax-build-up/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 05 January 2024'
+
+- id: nhs_perforated_eardrum
+  title: Perforated eardrum
+  url: https://www.nhs.uk/conditions/perforated-eardrum/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 19 April 2023'
+
+- id: nhs_mastoiditis
+  title: Mastoiditis
+  url: https://www.nhs.uk/conditions/mastoiditis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 17 August 2026'
+
+- id: nhs_acoustic_neuroma
+  title: Acoustic neuroma (vestibular schwannoma)
+  url: https://www.nhs.uk/conditions/acoustic-neuroma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 29 November 2022'
+
+- id: nhs_nasal_polyps
+  title: Nasal polyps
+  url: https://www.nhs.uk/conditions/nasal-polyps/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 29 June 2023'
+
+- id: nhs_allergic_rhinitis
+  title: Allergic rhinitis
+  url: https://www.nhs.uk/conditions/allergic-rhinitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 08 January 2026'
+
+- id: nhs_nosebleed
+  title: Nosebleed
+  url: https://www.nhs.uk/conditions/nosebleed/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 05 December 2023'
+
+- id: nhs_broken_nose
+  title: Broken nose
+  url: https://www.nhs.uk/conditions/broken-nose/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 17 August 2023'
+
+- id: nhs_dental_abscess
+  title: Dental abscess
+  url: https://www.nhs.uk/conditions/dental-abscess/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 18 March 2026'
+
+- id: nhs_tooth_decay
+  title: Tooth decay
+  url: https://www.nhs.uk/conditions/tooth-decay/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 13 August 2025'
+
+- id: nhs_gum_disease
+  title: Gum disease
+  url: https://www.nhs.uk/conditions/gum-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 20 April 2026'
+
+- id: nhs_wisdom_tooth_removal
+  title: Wisdom tooth removal
+  url: https://www.nhs.uk/tests-and-treatments/wisdom-tooth-removal/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 12 June 2024'
+
+- id: nhs_mouth_ulcers
+  title: Mouth ulcers
+  url: https://www.nhs.uk/conditions/mouth-ulcers/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 11 March 2024'
+
+- id: nhs_oral_thrush
+  title: Oral thrush (mouth thrush)
+  url: https://www.nhs.uk/conditions/oral-thrush-mouth-thrush/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 09 October 2026'
+
+- id: nhs_glandular_fever
+  title: Glandular fever
+  url: https://www.nhs.uk/conditions/glandular-fever/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 20 December 2023'
+
+- id: nhs_salivary_gland_stones
+  title: Salivary gland stones
+  url: https://www.nhs.uk/conditions/salivary-gland-stones/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 14 August 2023'
+
+- id: nhs_oesophageal_cancer
+  title: 'Oesophageal cancer: symptoms'
+  url: https://www.nhs.uk/conditions/oesophageal-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 29 June 2023'
+
+- id: nhs_mouth_cancer
+  title: 'Mouth cancer: symptoms'
+  url: https://www.nhs.uk/conditions/mouth-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 10 November 2026'
+
+- id: nhs_epiglottitis
+  title: Epiglottitis
+  url: https://www.nhs.uk/conditions/epiglottitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 27 March 2025'
+
+- id: nhs_tmd
+  title: Temporomandibular disorder (TMD)
+  url: https://www.nhs.uk/conditions/temporomandibular-disorder-tmd/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 20 June 2023'
+
+- id: nhs_cold_sores
+  title: Cold sores
+  url: https://www.nhs.uk/conditions/cold-sores/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 19 February 2024'
+
+- id: nhs_mumps
+  title: Mumps
+  url: https://www.nhs.uk/conditions/mumps/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 09 July 2025'
+
+- id: nhs_sjogrens_syndrome
+  title: Sjögren's syndrome
+  url: https://www.nhs.uk/conditions/sjogrens-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 27 November 2024'
+
+- id: nhs_laryngeal_cancer
+  title: 'Laryngeal (larynx) cancer: symptoms'
+  url: https://www.nhs.uk/conditions/laryngeal-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 1 September 2025'
+
+- id: nhs_hodgkin_lymphoma
+  title: 'Hodgkin lymphoma: symptoms'
+  url: https://www.nhs.uk/conditions/hodgkin-lymphoma/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 14 October 2025'
+
+- id: nhs_non_hodgkin_lymphoma
+  title: 'Non-Hodgkin lymphoma: symptoms'
+  url: https://www.nhs.uk/conditions/non-hodgkin-lymphoma/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 10 March 2026'
+
+- id: nhs_leukoplakia
+  title: Leukoplakia
+  url: https://www.nhs.uk/conditions/leukoplakia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 15 May 2024'
+
+- id: nhs_achalasia
+  title: Achalasia
+  url: https://www.nhs.uk/conditions/achalasia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 05 December 2023'
+
+- id: nhs_cholesteatoma
+  title: Cholesteatoma
+  url: https://www.nhs.uk/conditions/cholesteatoma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 20 February 2025'
+
+- id: nhs_non_allergic_rhinitis
+  title: Non-allergic rhinitis
+  url: https://www.nhs.uk/conditions/non-allergic-rhinitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 04 March 2026'
+
+- id: nhs_teething
+  title: Baby teething symptoms
+  url: https://www.nhs.uk/baby/babys-development/teething/baby-teething-symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 14 May 2026'
+
+- id: nhs_type_2_diabetes
+  title: Type 2 diabetes
+  url: https://www.nhs.uk/conditions/type-2-diabetes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+
+- id: nhs_knocked_out_tooth
+  title: Knocked-out tooth
+  url: https://www.nhs.uk/conditions/knocked-out-tooth/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 06 February 2025'
+
+- id: nhs_nasal_and_sinus_cancer
+  title: 'Nasal and sinus cancer: symptoms'
+  url: https://www.nhs.uk/conditions/nasal-and-sinus-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 17 September 2025'
+
+- id: nhs_acute_lymphoblastic_leukaemia
+  title: 'Acute lymphoblastic leukaemia: symptoms'
+  url: https://www.nhs.uk/conditions/acute-lymphoblastic-leukaemia/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: 'Ear, nose, mouth and throat body system: rules, condition cards and advice'
+  note: 'Page last reviewed: 13 July 2023'

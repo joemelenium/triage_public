@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: croup
+body_system: breathing
+# Mainly babies and young children. "rare" is the band for older children and
+# adults, where it is in truth even rarer.
+entry_symptoms: [cough, short_of_breath]
+name: "Croup (an infection of the airways in young children that causes a barking cough)"
+medical_name: "Croup (laryngotracheobronchitis)"
+snomed: "71186008"
+# The Croup page says to call 111 or see a GP if you think your child has croup,
+# because they may need medicine.
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_5, prevalence: common}
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  # What tells it apart from bronchiolitis or whooping cough: a barking cough, a
+  # hoarse voice and a high-pitched sound when breathing in, worse at night.
+  cough_barking: strongly_supports
+  stridor: strongly_supports
+  hoarse_voice: supports
+  cough_worse_at_night: supports
+  blocked_or_runny_nose: supports
+  very_high_temperature: supports
+key_findings: [cough_barking, stridor, hoarse_voice, child_wants_to_sit_up]
+source: nhs_croup
+informed_by: [nhs_croup]

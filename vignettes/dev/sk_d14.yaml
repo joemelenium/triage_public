@@ -1,0 +1,63 @@
+id: sk_d14
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- yellow_skin_or_eyes
+summary: 20-year-old man whose eyes have looked slightly yellow since yesterday, during a cold. It has happened before when he was ill and went away. No itch, normal pee and poo. His GP record shows Gilbert's syndrome, but he is not sure whether he was told that.
+opening_statement: My eyes look a bit yellow again. It happened before when I had flu and went away. I've got a cold at the moment.
+findings:
+  present:
+  - yellow_skin_or_eyes
+  - jaundice_comes_and_goes
+  - recent_viral_illness
+  absent:
+  - gilberts_jaundice_worse_than_usual
+  - poo_pale_pee_dark
+  - itchy_skin
+  - stomach_ache
+  - very_high_temperature
+  - feels_very_unwell
+  - drinks_a_lot_of_alcohol
+  - yellow_skin_but_eyes_white
+  unknown:
+  - has_gilberts_syndrome
+context:
+  none: {}
+  basic:
+    age: 20
+    sex: male
+  full:
+    age: 20
+    sex: male
+    findings:
+      has_gilberts_syndrome: 'yes'
+expected:
+  acuity: self_manageable
+  level_of_care: self_care
+  timeframe: not_needed
+minimum_safe_acuity: self_manageable
+red_flags: []
+safety_netting_should_cover:
+- point: Urgent GP or 111 if the yellowing is worse than usual or does not go within a few days
+  any_of:
+  - '111'
+  - few days
+  - worse than usual
+  - urgent GP
+- point: 'Avoid triggers: rest, fluids, avoid alcohol'
+  any_of:
+  - fluids
+  - alcohol
+  - sleep
+source:
+  expected_outcome:
+    page: gilberts.txt
+    quote: You will not need any medical treatment for Gilbert's syndrome as it does not usually cause any serious health problems.
+  minimum_safe_acuity:
+    page: gilberts.txt
+    quote: mild jaundice (yellowing of the skin and whites of the eyes) that comes and goes
+context_test:
+  what_context_adds: The record shows a diagnosis of Gilbert's syndrome that the patient is not sure about. Without it, new yellow eyes means 'you think you have jaundice and you have not been diagnosed with Gilbert's syndrome' (urgent); with it, a mild usual episode during a cold needs no treatment.
+  expected_direction: less_urgent
+atypical: false
+notes: 'Look-alike: yellow eyes, which normally means urgent, in a person with known Gilbert''s syndrome having a typical mild episode during a cold. Without the record the expected outcome would be urgent (gilberts.txt and jaundice.txt).'

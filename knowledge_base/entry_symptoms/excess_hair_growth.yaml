@@ -1,0 +1,57 @@
+# Entry symptom: too much hair growth (hirsutism).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: excess_hair_growth
+name: "Too much hair growth (hirsutism)"
+presenting_finding: excess_hair_growth
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: excess_hair_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - hair_growth_sudden
+      - voice_getting_deeper
+      - muscles_getting_bigger
+
+red_flags:
+  - id: rf_eh_sudden_change
+    description: "A woman with new thick, dark hair growing suddenly, a voice getting lower, or muscles getting bigger"
+    when: {all: [sex_female, {any: [hair_growth_sudden, voice_getting_deeper, muscles_getting_bigger]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment"}
+    advice: advice_hair_growth_urgent
+    source: nhs_hirsutism
+
+  - id: rf_eh_sudden_change_sex_unknown
+    description: "New thick, dark hair growing suddenly, a voice getting lower, or muscles getting bigger, when sex is not known"
+    when: {all: [{not: sex_male}, {not: sex_female}, {any: [hair_growth_sudden, voice_getting_deeper, muscles_getting_bigger]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment"}
+    advice: advice_hair_growth_urgent
+    source: nhs_hirsutism
+    note: "The same rule for when the session does not know the patient's sex, so it is never missed."
+
+outcome_rules:
+  - id: or_eh_cushings_signs
+    description: "Too much hair growth with more fat on the chest, tummy and neck, thin arms and legs, or a round, red face"
+    when: cushings_body_shape
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_hair_growth_gp
+    source: nhs_cushings
+
+default:
+  description: "Thick, dark hair on the face or body: see a GP to check the cause"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_hair_growth_gp
+  source: nhs_hirsutism
+  floor: true
+  note: "A floor: the Hirsutism page says see a GP if you are a woman with thick, dark hair on the face or body, as it may be caused by a condition that can be treated. Light, fine hair is handled by the exception below."
+
+default_exceptions:
+  - id: de_eh_fine_light_hair
+    description: "Light, fine hair rather than thick, dark hair: probably not hirsutism"
+    when: {all: [hair_fine_and_light, {not: hair_growth_sudden}, {not: periods_changed}]}
+    outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "No appointment needed"}
+    advice: advice_hair_growth_self_care
+    source: nhs_hirsutism
+    note: "The Hirsutism page says lighter, finer hair is probably not hirsutism, and most women get more of it as they get older."

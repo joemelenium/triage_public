@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: psoriasis
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin, nail_problem]
+name: "Psoriasis (flaky patches of skin with silvery scales)"
+medical_name: "Psoriasis"
+snomed: "9014002"
+acuity_needed: routine
+danger: minor
+diagnosed_by: has_psoriasis
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_psoriasis, prevalence: very_common}
+  - {finding: age_under_16, prevalence: rare}
+findings:
+  # What tells it apart from eczema: raised patches with silvery-white scales on the outside of the elbows and knees, scalp or lower back, and pitted nails.
+  rash_silvery_scaly_patches: strongly_supports
+  rash_on_elbows_knees_scalp: strongly_supports
+  nail_pits: supports
+  rash_itchy: supports
+  painful_swollen_joints: supports
+key_findings: [rash_silvery_scaly_patches, rash_on_elbows_knees_scalp, nail_pits]
+source: nhs_psoriasis
+informed_by: [nhs_psoriasis, nhs_nail_problems]

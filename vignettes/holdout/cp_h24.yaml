@@ -1,0 +1,44 @@
+id: cp_h24
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [chest_pain]
+
+summary: "A 56-year-old man has had a burning, tingling patch of skin on the right side of his chest below the nipple for three days. Since this morning a band of red blotches with small blisters has appeared there, on the right side only. He is otherwise well."
+
+opening_statement: "I've had a burning, tingly pain on the right side of my chest for a few days, and today a rash with little blisters has come up in the same spot."
+
+findings:
+  present: [chest_pain, cp_present_now, cp_tender_to_press, rash_one_side_of_body]
+  absent: [cp_sudden_not_going_away, cp_spreads, upper_back_pain, cp_tight_or_squeezing, cp_heavy, sweating, nausea_or_vomiting, light_headed, short_of_breath, cp_worse_breathing_in, cp_on_exertion, cp_after_eating, cp_after_injury_or_exercise, cp_comes_and_goes, palpitations, fainted, weakened_immune_system, has_cancer, very_high_temperature, cough, cough_mucus_or_temperature, leg_pain_or_swelling, coughing_up_blood, heart_risk_factors, feels_very_unwell, cp_lasted_15_minutes, shingles_eye_or_vision]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 56, sex: male}
+  full:
+    age: 56
+    sex: male
+    findings: {}
+
+expected:
+  acuity: soon
+  level_of_care: community_pharmacy
+  timeframe: few_days
+
+minimum_safe_acuity: soon
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a pharmacist within 3 days of the rash appearing"
+    any_of: ["pharmacist", "pharmacy"]
+  - point: "Get urgent help if the rash spreads to the eye or nose or vision changes"
+    any_of: ["eye", "vision"]
+
+source:
+  expected_outcome: {page: shingles.txt, quote: "Try to see a pharmacist within 3 days of the rash appearing."}
+  minimum_safe_acuity: {page: shingles.txt, quote: "you have symptoms of shingles and you're 18 years old or older"}
+
+atypical: false
+notes: "Chest pain from shingles. chest_pain.txt lists tingling skin and a rash that turns into blisters as shingles and says to get medical advice just in case; shingles.txt says see a pharmacist (18 or over) within 3 days of the rash. Pharmacist within 3 days mapped to soon / community_pharmacy / few_days. The skin over the patch is sore to touch, so cp_tender_to_press is present. A rash on or near the eye or nose, or changes to vision (shingles.txt urgent signs), are now expressed with shingles_eye_or_vision, a question added after this case was written; it is absent in this patient."

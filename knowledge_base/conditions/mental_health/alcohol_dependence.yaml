@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: alcohol_dependence
+body_system: mental_health
+entry_symptoms: [alcohol_or_drug_problem, low_mood, feeling_anxious]
+name: "Alcohol dependence (finding it hard to control drinking)"
+medical_name: "Alcohol dependence"
+snomed: "66590003"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: alcohol_or_drug_problem, prevalence: very_common}
+findings:
+  # Withdrawal symptoms after stopping are linked to the withdrawal card only, so
+  # that this long-term card does not explain away an acute withdrawal.
+  drinks_a_lot_of_alcohol: strongly_supports
+  cannot_cut_down: strongly_supports
+  low_mood: supports
+  feeling_anxious: supports
+  sleep_problems: supports
+key_findings: [drinks_a_lot_of_alcohol, cannot_cut_down]
+source: nhs_alcohol_misuse
+informed_by: [nhs_alcohol_misuse]

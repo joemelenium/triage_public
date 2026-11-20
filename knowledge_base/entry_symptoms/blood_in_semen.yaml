@@ -1,0 +1,77 @@
+# Entry symptom: blood in semen.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: blood_in_semen
+name: "Blood in semen"
+presenting_finding: blood_in_semen
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: blood_in_semen_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - skin_blotchy
+      - rash_does_not_fade
+
+  - id: blood_in_semen_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - cannot_pee
+      - blood_in_urine
+      - pain_when_peeing
+      - testicle_pain
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bs_drowsy
+    description: "Very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_prostatitis
+    note: "The Prostatitis page gives 999 signs of sepsis, including suddenly feeling confused or slurred speech."
+
+  - id: rf_bs_sepsis_skin
+    description: "Blotchy skin, or a rash that does not fade when pressed: possible sepsis"
+    when: {any: [skin_blotchy, rash_does_not_fade]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_prostatitis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bs_temperature
+    description: "Blood in semen with a high temperature: possible prostatitis"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_prostatitis_urgent
+    source: nhs_prostatitis
+    note: "The Prostatitis page says it can be serious and needs urgent medical help, and lists a high temperature as a symptom. Using the temperature to mark it is AI judgement."
+
+  - id: rf_bs_cannot_pee
+    description: "Blood in semen and unable to pee"
+    when: cannot_pee
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cannot_pee_urgent
+    source: nhs_prostatitis
+
+outcome_rules: []
+
+default:
+  description: "Blood in semen: see a GP to get it checked"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_blood_in_semen_gp
+  source: nhs_blood_in_semen
+  # A floor: the source says get it checked by a GP just in case.
+  floor: true
+  note: "Blood in the pee, pain when peeing and testicle pain bring in their own entry symptoms, with urgent rules."

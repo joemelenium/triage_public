@@ -1,0 +1,56 @@
+id: cp_h16
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 48-year-old man who most evenings for a fortnight has had a burning ache in his chest about half
+  an hour after dinner, with bloating and sometimes sour fluid coming up. It wears off within an hour.
+  No pain now. He does not smoke; he had a health check last year and never collected the results, so
+  cannot say whether his blood pressure or cholesterol is high. His record shows high cholesterol.
+opening_statement: Most evenings for the past fortnight, about half an hour after dinner, I get a burning
+  ache in my chest and feel bloated. Sometimes sour fluid comes up. It wears off within the hour. I've
+  got nothing at the moment.
+findings:
+  present: [chest_pain, cp_comes_and_goes, cp_after_eating]
+  absent: [stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+    heavy_bleeding, serious_self_harm, cp_present_now, cp_sudden_not_going_away, cp_tight_or_squeezing,
+    cp_heavy, cp_spreads, sweating, nausea_or_vomiting, light_headed, short_of_breath, heart_beating_very_fast,
+    fainted, palpitations, has_angina, angina_pain_not_settling, angina_worse_than_usual, coughing_up_blood,
+    cp_worse_breathing_in, leg_pain_or_swelling, difficulty_breathing, worried_about_symptoms, cp_on_exertion,
+    cp_after_injury_or_exercise, cp_with_worry, cough_mucus_or_temperature, family_heart_history, cough_or_runny_nose,
+    sore_throat, very_high_temperature, cp_lasted_15_minutes]
+  unknown: [heart_risk_factors]
+context:
+  none: {}
+  basic: {age: 48, sex: male}
+  full:
+    age: 48
+    sex: male
+    findings: {heart_risk_factors: 'yes'}
+expected: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time}
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of: [GP, doctor]
+- point: Call 999 if the pain comes on suddenly and does not go away, spreads to the arm, neck, jaw, stomach
+    or back, or comes with feeling sweaty, sick, light-headed or short of breath
+  any_of: ['999']
+source:
+  expected_outcome: {page: chest_pain.txt, quote: you have chest pain that comes and goes}
+  minimum_safe_acuity: {page: chest_pain.txt, quote: Most chest pain is not a sign of anything serious
+      but get medical advice just in case.}
+context_test: {what_context_adds: 'The record shows high cholesterol, found at a health check. The patient
+    never collected the results and cannot say whether he has any of the listed risk factors.', expected_direction: same}
+atypical: false
+notes: 'Context test where the record should make no difference, and a low-urgency case. He cannot answer
+  heart_risk_factors (he does not smoke, but never collected the results of a health check), so it is
+  ''not sure''; the record shows high cholesterol. chest_pain.txt says people at risk of coronary heart
+  disease, for example with high cholesterol, are ''more likely to have heart problems'', but neither
+  it nor the other pages give different advice because of a risk factor. His pain starts after eating,
+  with bloating and fluid coming up, which is the heartburn or indigestion row of the chest_pain.txt table,
+  and chest pain that comes and goes is non-urgent ''See a GP''. Hence ''same''. An engine that becomes
+  somewhat more cautious once it knows about the cholesterol is not unsafe, but the sources do not ask
+  for it. Source differences: angina.txt puts chest pain that comes and goes under NHS 111, and heart_attack_symptoms.txt
+  lists an indigestion-like burning and feeling full or bloated among heart attack symptoms. Judgement:
+  his pain is tied to meals, comes and goes, and is not the sudden discomfort that does not go away for
+  which the pages say 999, so chest_pain.txt is followed. worried_about_symptoms is no.'

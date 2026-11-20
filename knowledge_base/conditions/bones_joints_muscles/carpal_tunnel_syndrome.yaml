@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: carpal_tunnel_syndrome
+body_system: bones_joints_muscles
+entry_symptoms: [hand_pain, arm_pain, pins_and_needles]
+name: "Carpal tunnel syndrome (a squashed nerve in the wrist)"
+medical_name: "Carpal tunnel syndrome"
+snomed: "57406009"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: wrist_pain, prevalence: common}
+  - {finding: palm_pain, prevalence: common}
+  - {finding: pregnant_or_recently_given_birth, prevalence: common}
+  - {finding: pins_and_needles, prevalence: common}
+findings:
+  arm_hand_tingling: strongly_supports
+  hand_tingling_worse_at_night: strongly_supports
+  arm_weakness: supports
+  wrist_pain: supports
+  palm_pain: supports
+  overuse: supports
+key_findings: [hand_tingling_worse_at_night, arm_hand_tingling, arm_weakness]
+source: nhs_carpal_tunnel_syndrome
+informed_by: [nhs_carpal_tunnel_syndrome, nhs_wrist_pain]

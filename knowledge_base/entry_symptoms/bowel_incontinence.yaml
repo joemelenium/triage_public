@@ -1,0 +1,66 @@
+# Entry symptom: bowel incontinence (cannot control when you poo).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# New loss of bowel control with numbness around the bottom or weak legs can be
+# pressure on the nerves at the base of the spine (cauda equina syndrome), which
+# needs emergency surgery. The Back pain page gives these signs.
+
+id: bowel_incontinence
+name: "Bowel incontinence"
+presenting_finding: bowel_incontinence
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bowel_incontinence_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - saddle_numbness
+      - legs_weak_or_numb
+      - cannot_pee_at_all
+
+  - id: bowel_incontinence_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - black_or_dark_red_poo
+      - bleeding_from_bottom
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bi_nerve_signs
+    description: "Loss of bowel control with loss of feeling around the bottom or genitals, weakness or numbness in both legs, or not able to pee"
+    when: {any: [saddle_numbness, legs_weak_or_numb, cannot_pee_at_all]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_nerve_emergency
+    source: nhs_back_pain
+    note: "The Back pain page says 999 or A&E for back pain with these signs, or with pooing yourself. Applying them without back pain is AI judgement."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bi_black_poo
+    description: "Black or dark red poo"
+    when: black_or_dark_red_poo
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_bowel_incontinence
+
+  - id: rf_bi_bloody_diarrhoea
+    description: "Bloody diarrhoea"
+    when: {all: [bleeding_from_bottom, diarrhoea]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_bowel_incontinence
+
+outcome_rules: []
+
+default:
+  description: "Cannot control when you poo: see a GP, as there are treatments that can help"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_bowel_incontinence_gp
+  source: nhs_bowel_incontinence
+  # A floor: the source says see a GP if you think you have bowel incontinence.
+  floor: true

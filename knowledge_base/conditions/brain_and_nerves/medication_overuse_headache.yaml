@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: medication_overuse_headache
+body_system: brain_and_nerves
+entry_symptoms: [headache]
+name: "Headache from taking painkillers too often"
+medical_name: "Medication overuse headache"
+snomed: "698803006"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  # No NHS page was found for this condition (the address returned 'not found'). The Migraine and Tension headaches pages describe it.
+  painkillers_most_days: strongly_supports
+  headaches_regular: strongly_supports
+  headache_on_waking: supports
+key_findings: [painkillers_most_days, headaches_regular]
+source: nhs_tension_headaches
+informed_by: [nhs_tension_headaches, nhs_migraine, nhs_headaches]

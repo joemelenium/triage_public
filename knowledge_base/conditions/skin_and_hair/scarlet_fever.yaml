@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: scarlet_fever
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Scarlet fever (a rough rash that feels like sandpaper)"
+medical_name: "Scarlet fever"
+acuity_needed: soon
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: uncommon}
+findings:
+  # What tells it apart from other childhood rashes: a rash that feels rough like sandpaper, starting on the chest and tummy, with a sore throat, a high temperature and a strawberry tongue.
+  rash_sandpaper: strongly_supports
+  very_high_temperature: supports
+  red_cracked_lips: supports
+  swollen_neck_glands: supports
+key_findings: [rash_sandpaper, red_cracked_lips, swollen_neck_glands]
+source: nhs_scarlet_fever
+informed_by: [nhs_scarlet_fever, nhs_rashes_babies_and_children]

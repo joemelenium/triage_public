@@ -1,0 +1,29 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cluster_headache
+body_system: brain_and_nerves
+entry_symptoms: [headache, eye_pain]
+name: "Cluster headaches"
+medical_name: "Cluster headache syndrome"
+snomed: "193031009"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: sex_male, prevalence: uncommon}
+findings:
+  # What tells it apart: very severe pain around one eye, with that eye red or watering, coming in bouts. More common in men.
+  headache_around_one_eye: strongly_supports
+  headaches_regular: supports
+  eyelid_drooping_new: supports   # a new droop; it sits under a drooping eyelid, so that is not listed again
+  smoker: supports
+  # From the eyes card for this condition (merged):
+  headache: strongly_supports
+  watering_eyes: supports
+  red_eye: supports
+key_findings: [headache_around_one_eye, headaches_regular]
+source: nhs_cluster_headaches
+informed_by: [nhs_cluster_headaches, nhs_eye_pain]
+# Merged with the eyes card for this condition. Its notes:
+# May also be built by the brain and nerves agent. Built here because the Eye
+# pain page names it as a cause.

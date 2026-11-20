@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: contraception_bleeding
+body_system: womens_health
+entry_symptoms: [bleeding_between_periods_or_after_sex, irregular_periods, missed_or_late_period]
+name: "Bleeding or period changes caused by hormonal contraception"
+medical_name: "Breakthrough bleeding or amenorrhoea from hormonal contraception"
+# Very common, especially in the first months of a new method. Using hormonal
+# contraception is linked as a finding so it is asked when it matters.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: uncommon
+findings:
+  hormonal_contraception: strongly_supports
+  hormone_medicine_started_recently: strongly_supports
+  bleeding_between_periods: supports
+  irregular_periods: supports
+  missed_or_late_period: supports
+key_findings: [hormonal_contraception, hormone_medicine_started_recently]
+source: nhs_irregular_periods
+informed_by: [nhs_irregular_periods, nhs_vaginal_bleeding_between_periods_or_after_sex, nhs_missed_or_late_periods]

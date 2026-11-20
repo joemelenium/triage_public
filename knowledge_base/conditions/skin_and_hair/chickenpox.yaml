@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chickenpox
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Chickenpox (itchy spots that turn into blisters)"
+medical_name: "Varicella"
+snomed: "38907003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: common}
+findings:
+  # What tells it apart from other childhood rashes: itchy spots that turn into blisters and then scabs, with new spots appearing, often after contact with chickenpox.
+  spots_blisters_and_scabs: strongly_supports
+  rash_blisters: strongly_supports
+  rash_itchy: strongly_supports
+  very_high_temperature: supports
+  contact_with_chickenpox: supports
+  aching_body: supports
+key_findings: [spots_blisters_and_scabs, contact_with_chickenpox, rash_itchy]
+source: nhs_chickenpox
+informed_by: [nhs_chickenpox, nhs_rashes_babies_and_children]

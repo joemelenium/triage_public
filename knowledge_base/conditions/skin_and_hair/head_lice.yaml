@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: head_lice
+body_system: skin_and_hair
+entry_symptoms: [itchy_skin]
+name: "Head lice"
+medical_name: "Pediculosis capitis"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: common}
+findings:
+  # What tells it apart: an itchy scalp, with lice or eggs (nits) seen in the hair.
+  lice_or_nits_seen: strongly_supports
+  scalp_scaly_or_itchy: strongly_supports
+  others_at_home_itchy: supports
+key_findings: [lice_or_nits_seen, scalp_scaly_or_itchy]
+source: nhs_head_lice
+informed_by: [nhs_head_lice, nhs_itchy_skin]

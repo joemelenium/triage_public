@@ -1,0 +1,102 @@
+# Entry symptom: breast pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS Breast pain page says breast pain is usually linked to periods and not
+# serious, but it is best to get it checked. The default is a GP, not a floor, so
+# pain that is clearly linked to periods can be lowered to self-care. Breast pain
+# on its own is unlikely to be a sign of cancer.
+
+id: breast_pain
+name: "Breast pain"
+presenting_finding: breast_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: breast_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - breast_hot_red_swollen
+      - very_high_temperature
+      - feels_very_unwell
+
+  - id: breast_pain_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - breast_lump
+      - breast_skin_dimpled
+      - nipple_changed
+      - breast_pain_not_improving
+      - family_history_breast_ovarian_cancer
+      - breast_pain_new_or_different
+      - worried_about_symptoms
+
+red_flags:
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bp_high_temperature
+    description: "Breast pain with a very high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_pain
+
+  - id: rf_bp_hot_red_swollen
+    description: "Any part of the breast hot, swollen or a different colour"
+    when: breast_hot_red_swollen
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_pain
+
+  - id: rf_bp_very_unwell
+    description: "Breast pain with feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_abscess
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+
+outcome_rules:
+  - id: or_bp_breast_changes
+    description: "Breast pain with a lump, swelling, nipple changes or dimpled skin"
+    when: {any: [breast_lump, breast_skin_dimpled, nipple_changed]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breast_pain_gp
+    source: nhs_breast_pain
+
+  - id: or_bp_not_improving
+    description: "Breast pain that is not improving, or painkillers are not helping"
+    when: breast_pain_not_improving
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breast_pain_gp
+    source: nhs_breast_pain
+
+  - id: or_bp_family_history
+    description: "Breast pain with a family history of breast cancer"
+    when: family_history_breast_ovarian_cancer
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breast_pain_gp
+    source: nhs_breast_pain
+    note: "The Breast cancer symptoms page also says see a GP for breast pain when relatives have had breast or ovarian cancer."
+
+  - id: or_bp_new_or_different
+    description: "Breast pain that is new or different"
+    when: breast_pain_new_or_different
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breast_pain_gp
+    source: nhs_breast_pain
+
+  - id: or_bp_worried
+    description: "Breast pain and worried about it"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_breast_pain_gp
+    source: nhs_breast_pain
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+default:
+  description: "Breast pain: it is best to get it checked, but pain clearly linked to periods can be eased at home"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_breast_pain_gp
+  source: nhs_breast_pain
+  note: "The page says breast pain is not usually serious, but it is best to get it checked. Not a floor: pain clearly linked to periods, or to a strain, can lower this to self-care."

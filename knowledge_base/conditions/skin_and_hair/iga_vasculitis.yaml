@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: iga_vasculitis
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Henoch-Schonlein purpura (a bruise-like rash from swollen blood vessels)"
+medical_name: "IgA vasculitis (Henoch-Schonlein purpura)"
+snomed: "191306005"
+acuity_needed: urgent
+danger: moderate
+prevalence: very_rare
+prevalence_when:
+  - {finding: rash_on_legs_and_bottom, prevalence: uncommon}
+  - {finding: rash_does_not_fade, prevalence: uncommon}
+findings:
+  # What tells it apart from meningococcal infection: a child who seems well, with a rash like small bruises on the legs and bottom, and joint or tummy pain.
+  rash_on_legs_and_bottom: strongly_supports
+  rash_does_not_fade: supports
+  painful_swollen_joints: supports
+  stomach_ache: supports
+key_findings: [rash_on_legs_and_bottom, painful_swollen_joints, stomach_ache]
+source: nhs_hsp
+informed_by: [nhs_hsp]

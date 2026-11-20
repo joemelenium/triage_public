@@ -1,0 +1,180 @@
+# Entry symptom: hand pain, including the wrist, fingers, thumb, palm and back of the hand.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# One entry symptom covers all the NHS hand pain pages. Where it hurts is asked
+# as a child of hand pain (wrist, finger, thumb, palm, back of the hand), so
+# questions that only make sense for one place are only asked there.
+#
+# The Thumb pain page says "go to an urgent treatment centre or A&E" for the
+# same signs the other hand pages send to NHS 111. Both are mapped to urgent
+# care today. AI judgement.
+#
+# Must-not-miss causes: a broken or dislocated bone (including a broken wrist
+# bone that is easy to miss), an infected hand or finger (often after a bite
+# or a cut), an infected joint, a loss of blood supply, and pressure building
+# up in the muscles (compartment syndrome).
+
+id: hand_pain
+name: "Hand pain"
+presenting_finding: hand_pain
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_wrist_pain, nhs_finger_pain, nhs_thumb_pain, nhs_pain_in_the_palm_of_the_hand, nhs_pain_in_the_back_of_the_hand]
+
+screens:
+  - id: hand_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - changed_shape
+      - bone_through_skin
+      - numb_after_injury
+      - limb_cold_pale_or_blue
+      - pain_out_of_proportion
+
+  - id: hand_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - severe_pain
+      - faint_or_sick_from_pain
+      - heard_snap_at_injury
+      - cannot_move_painful_part
+      - lost_feeling_in_hand_or_arm
+      - very_high_temperature
+      - swollen_area_red_hot
+      - red_or_discoloured_skin
+      - think_bone_broken
+      - cut_bite_or_puncture
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_hand_injury_misshapen
+    description: "Hand, wrist or finger injury pointing at an odd angle, or with a bone sticking out or showing"
+    when: {any: [bone_through_skin, {all: [injury_or_fall, changed_shape]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_finger
+    note: "The Wrist pain page says contact 111 if the wrist has changed shape. The Broken finger or thumb and Broken arm or wrist pages say A&E. The more urgent is used after an injury."
+
+  - id: rf_hand_numb_after_injury
+    description: "Hand injury and the hand or finger has gone numb or lost feeling"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E"}
+    advice: advice_msk_emergency_ae
+    source: nhs_broken_finger
+    note: "The hand pages say contact 111 if you have lost feeling after an injury. The Broken finger or thumb page says A&E if it feels numb. The more urgent is used."
+
+  - id: rf_hand_cold
+    description: "Hand or fingers cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_broken_finger
+    note: "The Broken finger or thumb page says A&E if it looks blue. Applying it without an injury is AI judgement: it can mean the blood supply is blocked."
+
+  - id: rf_hand_compartment
+    description: "Very bad hand or forearm pain that keeps getting worse, even with painkillers"
+    when: pain_out_of_proportion
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_compartment_emergency
+    source: nhs_compartment_syndrome
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_hand_severe_or_faint
+    description: "Severe hand pain, or feeling faint, dizzy or sick from the pain"
+    when: {any: [severe_pain, faint_or_sick_from_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111, or go to an urgent treatment centre"}
+    advice: advice_hand_pain_urgent
+    source: nhs_wrist_pain
+    note: "The Finger pain, Thumb pain, Palm and Back of the hand pages give the same signs."
+
+  - id: rf_hand_injury_signs
+    description: "A snap, grinding or popping noise at the time of injury, or not able to move the hand, wrist, finger or thumb, or hold things"
+    when: {any: [heard_snap_at_injury, cannot_move_painful_part]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111, or go to an urgent treatment centre"}
+    advice: advice_hand_pain_urgent
+    source: nhs_wrist_pain
+    note: "The Sprains and strains page says A&E if you heard a crack. The hand pages say 111. The hand pages are used because they are more specific; needs clinical review."
+
+  - id: rf_hand_changed_shape_or_colour
+    description: "Hand, wrist, finger or thumb has changed shape or colour"
+    when: {any: [changed_shape, red_or_discoloured_skin]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_hand_pain_urgent
+    source: nhs_wrist_pain
+
+  - id: rf_hand_lost_feeling
+    description: "Lost the feeling in part or all of the hand"
+    when: lost_feeling_in_hand_or_arm
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_hand_pain_urgent
+    source: nhs_wrist_pain
+
+  - id: rf_hand_unwell
+    description: "Hand pain and feeling unwell, with a high temperature or feeling hot, cold or shivery"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_wrist_pain
+    note: "Could be an infection. The Finger pain page also lists feeling sick or not able to eat."
+
+  - id: rf_hand_hot_swelling
+    description: "A hand, wrist or finger joint or lump that is hot and swollen"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_wrist_pain
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Wrist pain page says contact 111 for a very painful, hot or red lump, but see a GP for a wrist that is painful, warm, swollen and stiff. The Joint pain page says urgent help for a swollen joint that feels hot. The more urgent is used, marked soft."
+
+  - id: rf_hand_bite_or_wound
+    description: "Hand or finger pain after a bite, cut or puncture wound, with swelling or a change in skin colour"
+    when: {all: [cut_bite_or_puncture, {any: [swollen_area, red_or_discoloured_skin]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent treatment centre today"}
+    advice: advice_hand_pain_urgent
+    source: ai_judgement
+    note: "Bites and puncture wounds in the hand can cause a deep infection that spreads along the tendons quickly. AI judgement, needs clinical review."
+
+  - id: rf_hand_mallet_finger
+    description: "Injured finger that cannot be straightened at the end"
+    when: cannot_straighten_finger_tip
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_hand_pain_urgent
+    source: nhs_mallet_finger
+
+  - id: rf_hand_think_broken
+    description: "Thinks a bone in the hand, wrist, finger or thumb may be broken"
+    when: think_bone_broken
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111 to find out what to do"}
+    advice: advice_hand_pain_urgent
+    source: nhs_wrist_pain
+
+  - id: rf_hand_cast
+    description: "A plaster cast that feels too tight, or fingers numb, swollen, blue or white"
+    when: cast_problem
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_hand_pain_urgent
+    source: nhs_broken_arm_or_wrist
+
+outcome_rules:
+  - id: or_hand_gp
+    description: "Hand pain stopping usual activities, getting worse or coming back, not better after 2 weeks, with tingling or loss of feeling, or a warm, swollen, stiff joint"
+    when: {any: [stopping_daily_activities, pain_getting_worse_or_recurring, pain_not_improving, arm_hand_tingling, swollen_area]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_wrist_pain
+
+  - id: or_hand_diabetes
+    description: "Hand pain in someone with diabetes"
+    when: has_diabetes
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Hand problems can be more serious if you have diabetes."}
+    advice: advice_msk_gp
+    source: nhs_wrist_pain
+
+default:
+  description: "Hand pain with nothing that needs more help: ease it yourself, and a pharmacist can advise on painkillers and splints"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if it has not improved after 2 weeks"}
+  advice: advice_hand_pain_self_care
+  source: nhs_wrist_pain

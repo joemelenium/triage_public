@@ -1,0 +1,327 @@
+# Entry symptom: high temperature (fever), in adults and children.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# One entry symptom covers both NHS pages (adults and children). The patient's
+# age decides which rules apply: the children's "traffic light" signs are gated
+# on age_under_16, and the baby rules on age bands. A patient does not have to
+# say "adult" or "child" to start, and one high temperature observation is used
+# across the whole network (it is also asked in cough, sore throat and
+# breathlessness sessions, which now bring these rules in too).
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by likely conditions, if something
+# the patient said points to a milder cause. The most urgent rule that fires
+# wins. If none fires, the default at the bottom is used.
+#
+# Where two NHS pages give different urgency, the more urgent is used and the
+# difference is written in the rule's note.
+
+id: high_temperature
+name: "High temperature"
+presenting_finding: very_high_temperature
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_fever_in_adults, nhs_fever_in_children]
+
+screens:
+  - id: high_temperature_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - rash_does_not_fade
+      - stiff_neck
+      - bothered_by_light
+      - had_a_fit
+      - child_floppy_or_hard_to_wake
+      - drowsy_hard_to_wake
+      - breathing_very_fast
+      - skin_blotchy
+      - cold_hands_and_feet
+      - child_crying_will_not_stop
+
+  - id: high_temperature_emergency_screen_2
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - difficulty_breathing
+      - child_not_feeding_or_playing
+      - baby_high_temperature
+      - bulging_soft_spot
+      - very_painful_headache
+      - seriously_unwell_getting_worse
+      - having_chemotherapy
+
+  - id: high_temperature_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - temperature_5_days_or_more
+      - temperature_not_getting_better
+      - child_not_usual_self
+      - rash
+      - child_dehydration_signs
+      - weakened_immune_system
+      - travelled_to_malaria_area
+
+red_flags:
+  # ---- Emergency: children (the NHS "call 999" list) -----------------------
+  - id: rf_ht_child_meningitis_signs
+    description: "A child with a high temperature and a stiff neck, a rash that does not fade when pressed, or bothered by light"
+    when: {all: [age_under_16, {any: [stiff_neck, rash_does_not_fade, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+
+  - id: rf_ht_child_fit
+    description: "A child with a high temperature who has had a fit (seizure)"
+    when: {all: [age_under_16, had_a_fit]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_febrile_fit_999
+    source: nhs_fever_in_children
+    note: "The Fever in children page says call 999 for a first fit. The Febrile seizures page says 999 or A&E for a first fit, a fit lasting more than 5 minutes, or more than one in 24 hours. Applying it to every fit, not only the first, is AI judgement: the engine cannot tell a first fit from a repeat with confidence, and a carer is rarely sure it was a simple febrile fit."
+
+  - id: rf_ht_child_floppy
+    description: "A child with a high temperature who is floppy, drowsy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+
+  - id: rf_ht_child_not_feeding_or_playing
+    description: "A child with a high temperature who is not interested in feeding or anything around them"
+    when: {all: [age_under_16, child_not_feeding_or_playing]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+
+  - id: rf_ht_child_crying
+    description: "A child with a high temperature who is extremely agitated, will not stop crying, or has a weak, high-pitched cry"
+    when: {all: [age_under_16, child_crying_will_not_stop]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+    note: "The Fever in children page lists extreme agitation or crying that will not stop. The Sepsis and Meningitis pages add a weak, high-pitched or continuous cry."
+
+  - id: rf_ht_child_cold_hands
+    description: "A child with a high temperature and unusually cold hands and feet"
+    when: {all: [age_under_16, cold_hands_and_feet]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+
+  - id: rf_ht_child_skin_colour
+    description: "A child with a high temperature and blotchy or mottled skin"
+    when: {all: [age_under_16, skin_blotchy]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+    note: "Blue, grey or pale skin, lips or tongue is caught for everyone by the universal red flag."
+
+  - id: rf_ht_child_breathing
+    description: "A child with a high temperature who is struggling to breathe, grunting, or breathing very fast"
+    when: {all: [age_under_16, {any: [difficulty_breathing, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_fever_child_999
+    source: nhs_fever_in_children
+    note: "The page says difficulty breathing (grunting, or the stomach sucking in under the ribs), breathlessness or breathing very fast. Uses the general difficulty breathing question, which covers a child struggling to breathe, so a yes to either fires it."
+
+  - id: rf_ht_baby_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: baby_high_temperature
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_fever_baby_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Fever in children page says call 111 for these temperatures. The Sepsis, Meningitis and 'Is your baby seriously ill' pages say call 999 or go to A&E. The more urgent is used. Any baby under 3 months with a high temperature, measured or not, gets at least urgent from the rule below."
+
+  - id: rf_ht_bulging_soft_spot
+    description: "A baby with a high temperature and a bulging soft spot on top of the head"
+    when: bulging_soft_spot
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_fever_baby_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: a bulging soft spot with a high temperature can be a sign of meningitis in a baby. No NHS page in the source log lists it with an action."
+
+  - id: rf_ht_young_child_not_peed
+    description: "A child under 5 with a high temperature who has not had a pee for 12 hours"
+    when: {all: [age_under_5, not_peed_12_hours]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  # ---- Emergency: any age --------------------------------------------------
+  - id: rf_ht_meningitis_signs
+    description: "A high temperature with a stiff neck, a rash that does not fade when pressed, or bothered by bright light"
+    when: {any: [stiff_neck, rash_does_not_fade, bothered_by_light]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+    note: "For children the rule above sends an ambulance, as the Fever in children page says call 999."
+
+  - id: rf_ht_fit
+    description: "A high temperature and a fit (seizure)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+
+  - id: rf_ht_drowsy
+    description: "A high temperature and so drowsy they are hard to wake or cannot stay awake"
+    when: drowsy_hard_to_wake
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_ht_breathing_very_fast
+    description: "A high temperature and breathing very fast: possible sepsis"
+    when: breathing_very_fast
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_ht_skin_blotchy
+    description: "A high temperature and blotchy or mottled skin: possible sepsis"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_ht_cold_hands
+    description: "A high temperature with hands and feet, or skin, unusually cold or clammy"
+    when: cold_hands_and_feet
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: cold hands are common early in flu
+    note: "The Sepsis and Meningitis pages say call 999 or go to A&E for an adult who feels hot or cold to the touch. Marked soft for adults, as in the breathlessness rules, so that likely flu with aching can lower it. The rule for children above is firm."
+
+  - id: rf_ht_very_painful_headache
+    description: "A high temperature and a very painful headache"
+    when: very_painful_headache
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+    soft: true    # likely conditions may lower this: flu can also cause a bad headache
+    note: "Taken from the Meningitis page. Marked soft because a bad headache is common with flu; meningitis itself, if likely, keeps the outcome at emergency."
+
+  - id: rf_ht_seriously_unwell
+    description: "Very unwell and getting worse, or feels something is seriously wrong"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: it rests on the person's own judgement
+    note: "The Sepsis page says get help immediately if you think something is seriously wrong. Soft, as in the cough and breathlessness rules."
+
+  - id: rf_ht_chemotherapy
+    description: "A high temperature during or soon after chemotherapy"
+    when: having_chemotherapy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call your cancer care team's 24-hour line now, or go to A&E"}
+    advice: advice_fever_chemo_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: a high temperature during chemotherapy can be sepsis with a very weak immune system, which needs antibiotics within the hour. No NHS page in the source log gives the action."
+
+  - id: rf_ht_heatstroke
+    description: "Hot skin that is not sweating, or still unwell after 30 minutes of cooling down: possible heatstroke"
+    when: {any: [hot_skin_not_sweating, still_unwell_after_cooling]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_heatstroke_999
+    source: nhs_heat_exhaustion
+
+  # ---- Urgent ----------------------------------------------------------------
+  - id: rf_ht_under_3_months
+    description: "A baby under 3 months with a high temperature, or thought to have one"
+    when: age_under_3_months
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 now"}
+    advice: advice_fever_child_urgent
+    source: nhs_fever_in_children
+    note: "The Fever in children page says call 111 for a baby under 3 months with 38C or more, or if you think they have a high temperature. A measured 38C or more gives emergency through the rule above. The 'serious infection in a young baby' card can also raise this."
+
+  - id: rf_ht_under_6_months
+    description: "A baby 3 to 6 months old with a high temperature, or thought to have one"
+    when: age_under_6_months
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 now"}
+    advice: advice_fever_child_urgent
+    source: nhs_fever_in_children
+
+  - id: rf_ht_5_days
+    description: "A high temperature that has lasted 5 days or more"
+    when: temperature_5_days_or_more
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_fever_urgent
+    source: nhs_fever_in_children
+    note: "The Fever in children page says call 111. Applying it to adults is AI judgement; the Fever in adults page says get urgent help when a high temperature is not getting better, which a temperature for 5 days usually is."
+
+  - id: rf_ht_not_getting_better
+    description: "A high temperature that is not getting better with treatment at home, or is getting worse"
+    when: temperature_not_getting_better
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_fever_urgent
+    source: nhs_fever_in_adults
+
+  - id: rf_ht_child_not_usual_self
+    description: "A child with a high temperature who is not their usual self or not wanting to eat or feed, and the carer is worried"
+    when: {all: [age_under_16, {any: [child_not_usual_self, feeding_much_less]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 now"}
+    advice: advice_fever_child_urgent
+    source: nhs_fever_in_children
+
+  - id: rf_ht_child_rash
+    description: "A child with a high temperature and another sign of illness, such as a rash"
+    when: {all: [age_under_16, rash]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 now"}
+    advice: advice_fever_child_urgent
+    source: nhs_fever_in_children
+    note: "A rash that does not fade when pressed is an emergency (rules above)."
+
+  - id: rf_ht_dehydrated
+    description: "A high temperature with signs of not having enough water in the body"
+    when: {any: [dehydration_signs, child_dehydration_signs]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 or ask for an urgent GP appointment"}
+    advice: advice_fever_urgent
+    source: nhs_fever_in_children
+    note: "The Fever in children page says call 111 for a dehydrated child. The Dehydration page gives the same level for adults with dark pee or peeing less."
+
+  - id: rf_ht_not_peed
+    description: "A high temperature and no pee for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_fever_urgent
+    source: nhs_kidney_infection
+    note: "The Kidney infection page says an urgent GP appointment or 111 for not having a pee all day. For children under 5 the more urgent sepsis rule above applies."
+
+  - id: rf_ht_weakened_immune_system
+    description: "A high temperature in someone with a weakened immune system"
+    when: weakened_immune_system
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_fever_urgent
+    source: nhs_urinary_tract_infections
+    note: "The UTI and Sore throat pages say urgent help for a weakened immune system. Chemotherapy, the most dangerous case, is an emergency above."
+
+  - id: rf_ht_malaria_area
+    description: "A high temperature after being somewhere malaria is found in the last 12 months"
+    when: travelled_to_malaria_area
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today. Say where you have been."}
+    advice: advice_malaria_urgent
+    source: nhs_malaria
+
+outcome_rules:
+  - id: or_ht_pain_peeing
+    description: "A high temperature with pain or burning when peeing: possible kidney or urine infection"
+    when: pain_when_peeing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_fever_urgent
+    source: nhs_urinary_tract_infections
+    note: "The UTI page says an urgent GP appointment or 111 for a UTI with a very high temperature or feeling hot, cold or shivering, or in a child."
+
+  - id: or_ht_pain_back_or_side
+    description: "A high temperature with pain in the lower tummy or the back just under the ribs"
+    when: {any: [loin_pain, sa_low_down]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_fever_urgent
+    source: nhs_kidney_infection
+
+default:
+  description: "A high temperature with nothing that needs more help: look after it at home"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most high temperatures get better on their own within 1 to 4 days"}
+  advice: advice_fever_self_care
+  source: nhs_fever_in_children
+  note: "Both NHS pages say a high temperature can usually be looked after at home. Not a floor: likely conditions (for example a urine infection or pneumonia) can raise it."

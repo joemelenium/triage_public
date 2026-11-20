@@ -1,0 +1,223 @@
+
+- id: nhs_tia
+  title: Transient ischaemic attack (TIA)
+  url: https://www.nhs.uk/conditions/transient-ischaemic-attack-tia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 June 2023'
+
+- id: nhs_subarachnoid_haemorrhage
+  title: Subarachnoid haemorrhage
+  url: https://www.nhs.uk/conditions/subarachnoid-haemorrhage/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 04 September 2025'
+
+- id: nhs_encephalitis
+  title: Encephalitis
+  url: https://www.nhs.uk/conditions/encephalitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 15 May 2023'
+
+- id: nhs_migraine
+  title: Migraine
+  url: https://www.nhs.uk/conditions/migraine/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 March 2026'
+
+- id: nhs_tension_headaches
+  title: Tension headaches
+  url: https://www.nhs.uk/conditions/tension-headaches/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 01 August 2025'
+
+- id: nhs_cluster_headaches
+  title: Cluster headaches
+  url: https://www.nhs.uk/conditions/cluster-headaches/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 August 2023'
+
+- id: nhs_giant_cell_arteritis
+  title: Giant cell arteritis
+  url: https://www.nhs.uk/conditions/temporal-arteritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 August 2023'
+
+- id: nhs_brain_tumours
+  title: Brain tumours
+  url: https://www.nhs.uk/conditions/brain-tumours/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 June 2023'
+
+- id: nhs_carbon_monoxide_poisoning
+  title: Carbon monoxide poisoning
+  url: https://www.nhs.uk/conditions/carbon-monoxide-poisoning/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 December 2025'
+
+- id: nhs_epilepsy
+  title: Epilepsy
+  url: https://www.nhs.uk/conditions/epilepsy/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 March 2025'
+
+- id: nhs_febrile_seizures
+  title: Febrile seizures
+  url: https://www.nhs.uk/conditions/febrile-seizures/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 21 June 2023'
+
+- id: nhs_labyrinthitis
+  title: Labyrinthitis and vestibular neuritis
+  url: https://www.nhs.uk/conditions/labyrinthitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 August 2026'
+
+- id: nhs_menieres_disease
+  title: Meniere's disease
+  url: https://www.nhs.uk/conditions/menieres-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 September 2026'
+
+- id: nhs_low_blood_pressure
+  title: Low blood pressure (hypotension)
+  url: https://www.nhs.uk/conditions/low-blood-pressure-hypotension/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 July 2023'
+
+- id: nhs_dementia_symptoms
+  title: Symptoms of dementia
+  url: https://www.nhs.uk/conditions/dementia/symptoms-and-diagnosis/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 July 2023'
+
+- id: nhs_low_blood_sugar
+  title: Low blood sugar (hypoglycaemia)
+  url: https://www.nhs.uk/conditions/low-blood-sugar-hypoglycaemia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 August 2023'
+
+- id: nhs_bells_palsy
+  title: Bell's palsy
+  url: https://www.nhs.uk/conditions/bells-palsy/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 04 July 2023'
+
+- id: nhs_multiple_sclerosis
+  title: Multiple sclerosis
+  url: https://www.nhs.uk/conditions/multiple-sclerosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 August 2024'
+
+- id: nhs_peripheral_neuropathy
+  title: Peripheral neuropathy
+  url: https://www.nhs.uk/conditions/peripheral-neuropathy/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 October 2022'
+
+- id: nhs_parkinsons_disease
+  title: Parkinson's disease
+  url: https://www.nhs.uk/conditions/parkinsons-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 November 2022'
+
+- id: nhs_restless_legs_syndrome
+  title: Restless legs syndrome
+  url: https://www.nhs.uk/conditions/restless-legs-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 September 2025'
+
+- id: nhs_sleep_apnoea
+  title: Sleep apnoea
+  url: https://www.nhs.uk/conditions/sleep-apnoea/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 May 2026'
+
+- id: nhs_narcolepsy
+  title: Narcolepsy
+  url: https://www.nhs.uk/conditions/narcolepsy/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 9 September 2026'
+
+- id: nhs_vertigo
+  title: Vertigo
+  url: https://www.nhs.uk/conditions/vertigo/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 May 2023'
+
+- id: nhs_vitamin_b12_deficiency
+  title: Vitamin B12 or folate deficiency anaemia
+  url: https://www.nhs.uk/conditions/vitamin-b12-or-folate-deficiency-anaemia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 20 February 2023'
+
+- id: nhs_motor_neurone_disease
+  title: Motor neurone disease
+  url: https://www.nhs.uk/conditions/motor-neurone-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 February 2025'
+
+- id: nhs_guillain_barre_syndrome
+  title: Guillain-Barre syndrome
+  url: https://www.nhs.uk/conditions/guillain-barre-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 August 2024'
+
+- id: nhs_stroke
+  title: Stroke
+  url: https://www.nhs.uk/conditions/stroke/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting

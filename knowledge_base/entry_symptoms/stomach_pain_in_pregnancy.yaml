@@ -1,0 +1,156 @@
+# Entry symptom: stomach (tummy) pain in pregnancy.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Not a Symptoms A to Z page, but a main symptom a triage service sees often.
+# The NHS Stomach pain in pregnancy page says mild pain that goes away with
+# rest or a change of position is probably nothing to worry about. It lists signs
+# that need a call to the maternity unit straight away, and says call 999 if the
+# pain or bleeding is severe (placental abruption). Pre-eclampsia signs come
+# from the Pre-eclampsia page, and baby movements and labour from their pages.
+
+id: stomach_pain_in_pregnancy
+name: "Stomach pain in pregnancy"
+presenting_finding: stomach_pain_in_pregnancy
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: stomach_pain_pregnancy_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - severe_pain
+      - heavy_vaginal_bleeding
+      - shoulder_tip_pain
+      - fainted
+      - light_headed
+      - had_a_fit
+
+  - id: stomach_pain_pregnancy_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - bleeding_in_pregnancy
+      - regular_tightenings
+      - lower_back_pain
+      - fluid_leaking_from_vagina
+      - vaginal_discharge
+      - pain_when_peeing
+      - peeing_more_often
+      - cloudy_pee
+      - blood_in_urine
+      - pain_not_eased_by_rest
+      - baby_moving_less
+
+  - id: stomach_pain_pregnancy_pre_eclampsia_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pain_below_ribs
+      - severe_headache_not_helped
+      - vision_change
+      - sudden_swelling_face_hands_feet
+      - cannot_keep_fluids_down
+      - feels_very_unwell
+
+red_flags:
+  # ---- Emergency -------------------------------------------------------------
+  - id: rf_spp_severe_with_bleeding
+    description: "Pregnant with severe tummy pain and bleeding, or heavy bleeding: possible placental abruption"
+    when: {any: [heavy_vaginal_bleeding, {all: [severe_pain, bleeding_in_pregnancy]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_pregnancy_999
+    source: nhs_stomach_pain_pregnancy
+
+  - id: rf_spp_severe_pain
+    description: "Pregnant with severe tummy pain"
+    when: severe_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 and ask for an ambulance"}
+    advice: advice_pregnancy_999
+    source: nhs_stomach_pain_pregnancy
+    soft: true    # likely conditions may lower this: the source page gives two urgencies for severe pain
+    note: "Source difference: the page says call the maternity unit straight away for severe pain, and call 999 if the pain is severe with a placental abruption. The more urgent is used, marked soft."
+
+  - id: rf_spp_shoulder_or_faint
+    description: "Pregnant with tummy pain and pain in the tip of the shoulder, or feeling faint, dizzy, or passing out: possible burst ectopic pregnancy or bleeding inside"
+    when: {any: [shoulder_tip_pain, fainted, light_headed]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_pregnancy_999
+    source: nhs_ectopic_pregnancy
+    note: "The Ectopic pregnancy page lists shoulder tip pain, feeling very dizzy and fainting. The Vaginal bleeding in pregnancy page says 999 for these with bleeding."
+
+  - id: rf_spp_fit
+    description: "Pregnant and has had a fit (seizure): possible eclampsia"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_pregnancy_999
+    source: nhs_pre_eclampsia
+
+  # ---- Urgent (call the maternity unit straight away) --------------------------
+  - id: rf_spp_bleeding
+    description: "Pregnant with tummy pain and vaginal bleeding or spotting"
+    when: bleeding_in_pregnancy
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit straight away, or NHS 111"}
+    advice: advice_stomach_pain_pregnancy_urgent
+    source: nhs_stomach_pain_pregnancy
+
+  - id: rf_spp_labour_signs
+    description: "Pregnant with tummy pain and regular cramps or tightenings, lower back pain, or fluid leaking from the vagina"
+    when: {any: [regular_tightenings, lower_back_pain, fluid_leaking_from_vagina]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit straight away, or NHS 111"}
+    advice: advice_stomach_pain_pregnancy_urgent
+    source: nhs_stomach_pain_pregnancy
+    note: "The Signs that labour has begun page says call urgently if your waters break, or you are less than 37 weeks pregnant and think you are in labour."
+
+  - id: rf_spp_discharge
+    description: "Pregnant with tummy pain and unusual discharge"
+    when: vaginal_discharge
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit straight away, or NHS 111"}
+    advice: advice_stomach_pain_pregnancy_urgent
+    source: nhs_stomach_pain_pregnancy
+
+  - id: rf_spp_urine
+    description: "Pregnant with tummy pain and pain when peeing, needing to pee more often, or pee that looks cloudy, pink, red or brown"
+    when: {any: [pain_when_peeing, peeing_more_often, cloudy_pee, blood_in_urine]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit straight away, or NHS 111"}
+    advice: advice_stomach_pain_pregnancy_urgent
+    source: nhs_stomach_pain_pregnancy
+
+  - id: rf_spp_not_eased_by_rest
+    description: "Pregnant with tummy pain that is severe, or has not gone after resting for 30 to 60 minutes"
+    when: {any: [pain_not_eased_by_rest, severe_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit straight away, or NHS 111"}
+    advice: advice_stomach_pain_pregnancy_urgent
+    source: nhs_stomach_pain_pregnancy
+    note: "Severe pain (severe_pain, which a 'yes' to severe tummy pain also means) is included because it is the same sign asked another way. The 999 rule for severe pain is soft, and without this a likely mild cause could take severe pain below the page's 'call your maternity unit straight away'."
+
+  - id: rf_spp_baby_moving_less
+    description: "Baby moving less than usual"
+    when: baby_moving_less
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your midwife or maternity unit now. Do not wait until the next day."}
+    advice: advice_baby_movements_urgent
+    source: nhs_baby_movements
+
+  - id: rf_spp_pre_eclampsia
+    description: "Pregnant with signs of pre-eclampsia: pain below the ribs, severe headache, vision problems, sudden swelling, being sick or feeling very unwell"
+    when: {any: [pain_below_ribs, severe_headache_not_helped, vision_change, sudden_swelling_face_hands_feet, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit now. If you cannot, call 111."}
+    advice: advice_pre_eclampsia_urgent
+    source: nhs_pre_eclampsia
+
+  - id: rf_spp_cannot_keep_food_down
+    description: "Pregnant and being sick many times a day, unable to keep food or drink down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact your midwife, GP or hospital as soon as possible"}
+    advice: advice_severe_sickness_pregnancy_urgent
+    source: nhs_severe_vomiting_pregnancy
+
+outcome_rules: []
+
+default_exceptions: []
+
+default:
+  description: "Pregnant with mild tummy pain that goes away with rest or a change of position, and none of the warning signs"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Probably nothing to worry about. Call your maternity unit if you are worried."}
+  advice: advice_stomach_pain_pregnancy_self_care
+  source: nhs_stomach_pain_pregnancy
+  note: "The page says mild pain that goes away with rest is probably nothing to worry about. Only reached after every warning sign, including pain not eased by rest, has been checked. Likely conditions can raise it."

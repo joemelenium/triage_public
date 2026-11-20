@@ -1,0 +1,36 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: copd_flare_up
+body_system: breathing
+# A flare-up of COPD, or a first flare in someone not yet diagnosed. has_copd is
+# deliberately NOT diagnosed_by (as with heart failure): a flare needs help the
+# same day, so it must still count for people already diagnosed. It raises the
+# starting chance instead.
+entry_symptoms: [short_of_breath, cough, wheezing]
+name: "A flare-up of COPD (a long-term lung condition that makes it hard to breathe)"
+medical_name: "Acute exacerbation of chronic obstructive pulmonary disease"
+snomed: "195951007"
+acuity_needed: urgent
+danger: serious
+# Smoking and dust or fumes raise the starting chance rather than being linked as
+# findings: almost everyone with COPD has one of them, so as findings they would
+# make every stable COPD patient look like a flare. The findings are the signs of
+# a flare itself.
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: has_copd, prevalence: very_common}
+  - {finding: smoker, prevalence: uncommon}
+  - {finding: dust_or_fumes_exposure, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  # What tells a flare apart from someone's usual COPD: more short of breath than
+  # usual, more or darker phlegm, and a cough that is getting worse.
+  copd_flare_up: strongly_supports
+  sob_more_than_usual: strongly_supports
+  phlegm_yellow_or_green: supports       # a flare is often set off by a chest infection
+  cough_very_bad_or_worsening: supports
+  sob_at_rest: supports
+key_findings: [copd_flare_up, sob_more_than_usual, phlegm_yellow_or_green, smoker, has_copd]
+source: nhs_copd
+informed_by: [nhs_copd, nhs_shortness_of_breath]

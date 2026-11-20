@@ -1,0 +1,33 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ovarian_torsion
+body_system: womens_health
+entry_symptoms: [pelvic_pain, ovulation_pain, stomach_ache]
+name: "Twisted ovary (ovarian torsion), or a burst ovarian cyst"
+medical_name: "Ovarian torsion or ruptured ovarian cyst"
+snomed: "13595002"
+# Sudden, severe one-sided pain with being sick. Needs surgery quickly to save
+# the ovary, so level emergency and danger serious. No NHS page on ovarian
+# torsion; the Ovarian cyst page names a twisted cyst blocking the blood supply.
+acuity_needed: emergency
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pelvic_pain, prevalence: rare}
+  - {finding: stomach_ache, prevalence: rare}
+findings:
+  sa_sudden_severe: strongly_supports
+  one_sided_lower_tummy_pain: strongly_supports
+  nausea_or_vomiting: strongly_supports
+  pelvic_pain_severe_or_worsening: supports
+  light_headed: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  sa_low_down: strongly_supports
+  vomiting: supports
+  feeling_sick: supports
+key_findings: [sa_sudden_severe, nausea_or_vomiting, sa_low_down]
+source: ai_judgement
+informed_by: [nhs_ovarian_cyst, nhs_pelvic_pain]
+# Merged with the stomach_and_bowel card for this condition. Its notes:
+# Being female is linked as a finding so that, for a male, it is very unlikely.

@@ -1,0 +1,58 @@
+id: wh_d14
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- vaginal_dryness
+summary: A 51-year-old woman going through the perimenopause has noticed vaginal dryness and discomfort during sex
+  for the past couple of weeks. She has not tried a lubricant yet. No bleeding, no unusual discharge.
+opening_statement: Since my periods started getting erratic I've noticed I'm quite dry down there, and sex has been
+  uncomfortable. It's only been a couple of weeks.
+findings:
+  present:
+  - vaginal_dryness
+  - perimenopause
+  absent:
+  - vaginal_dryness_weeks_not_helped
+  - vaginal_dryness_affecting_life
+  - bleeding_after_sex
+  - bleeding_between_periods
+  - bleeding_after_menopause
+  - vaginal_discharge
+  - pain_during_sex
+  - pain_when_peeing
+  - peeing_more_often
+  - has_diabetes
+  - vagina_itchy_or_sore
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 51
+    sex: female
+  full:
+    age: 51
+    sex: female
+expected:
+  acuity: self_manageable
+  level_of_care: self_care
+  timeframe: not_needed
+minimum_safe_acuity: self_manageable
+red_flags: []
+safety_netting_should_cover:
+- point: Water-based lubricant or vaginal moisturiser
+  any_of:
+  - lubricant
+  - moisturiser
+- point: See a GP if not better after a few weeks, or bleeding or unusual discharge
+  any_of:
+  - GP
+source:
+  expected_outcome:
+    page: vaginal_dryness.txt
+    quote: You can try these things to treat vaginal dryness before you see a GP.
+  minimum_safe_acuity:
+    page: vaginal_dryness.txt
+    quote: use water-based lubricants before sex
+atypical: false
+notes: pain_during_sex is 'pain deep inside', which she does not have; her discomfort is from dryness. Perimenopause,
+  so bleeding_after_menopause does not apply.

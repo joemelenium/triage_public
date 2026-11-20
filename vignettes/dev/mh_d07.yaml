@@ -1,0 +1,74 @@
+id: mh_d07
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- eating_problem
+summary: A 15-year-old girl's father says she has lost a lot of weight over four months, skips meals, is very afraid
+  of putting on weight, runs for hours most days and her periods have stopped for three months. She feels cold all
+  the time. She has not fainted and is not making herself sick.
+opening_statement: I'm really worried about my daughter. She's lost loads of weight, she hardly eats, and she's
+  always out running. She gets upset if we mention food.
+findings:
+  present:
+  - eating_problem
+  - eating_very_little
+  - fear_of_weight_gain
+  - very_low_weight_or_fast_loss
+  - exercising_too_much
+  - missed_3_periods
+  - always_feeling_cold
+  absent:
+  - making_self_sick
+  - binge_eating
+  - fainted
+  - palpitations
+  - dizziness
+  - stopped_eating_and_drinking
+  - suicidal_thoughts
+  - self_harmed
+  - may_be_pregnant
+  - diarrhoea_or_vomiting
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 15
+    sex: female
+  full:
+    age: 15
+    sex: female
+expected:
+  acuity: soon
+  level_of_care: general_practice
+  timeframe: few_days
+minimum_safe_acuity: soon
+red_flags:
+- description: Rapid, large weight loss
+  findings:
+  - very_low_weight_or_fast_loss
+  minimum_acuity: soon
+  source:
+    page: anorexia.txt
+    quote: Getting help and support as soon as possible gives you the best chance of recovering from anorexia.
+safety_netting_should_cover:
+- point: See a GP as soon as possible
+  any_of:
+  - GP
+- point: Beat helpline
+  any_of:
+  - Beat
+  - 0808 801 0677
+- point: Call 111 if she needs urgent medical help
+  any_of:
+  - '111'
+source:
+  expected_outcome:
+    page: anorexia.txt
+    quote: If you think you may have anorexia, even if you're not sure, see a GP as soon as you can.
+  minimum_safe_acuity:
+    page: eating_disorders.txt
+    quote: If you think you may have an eating disorder, see a GP as soon as you can.
+atypical: false
+notes: Periods have stopped, which anorexia.txt lists. 'As soon as you can' is mapped to soon. No fainting, heart
+  racing or dizziness; anorexia.txt says to call 111 'if someone needs urgent medical help', which would apply if
+  those appeared. Her low weight for age and height has no exact id; very_low_weight_or_fast_loss covers it.

@@ -1,0 +1,183 @@
+# Entry symptom: insect bites and stings (and tick bites).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS website has no Symptoms A to Z page for this. Rules come from the
+# Insect bites and stings, Anaphylaxis, Lyme disease, Cellulitis and Snake bites pages.
+
+id: insect_bite_or_sting
+name: "Insect bite or sting"
+presenting_finding: insect_bite_or_sting
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bite_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+      - unable_to_swallow
+      - difficulty_breathing
+      - breathing_very_fast
+      - light_headed
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - bitten_by_snake
+      - pain_much_worse_than_expected
+
+  - id: bite_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - bitten_in_mouth_throat_or_near_eye
+      - stung_many_times
+      - previous_severe_allergic_reaction
+      - very_high_temperature
+      - swollen_area_red_hot
+      - symptoms_worse_or_not_better
+      - tick_bite_or_tick_area
+      - raised_itchy_rash
+
+  # Not a red-flag screen: signs that each lead to a GP or pharmacist.
+  - id: bite_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pus_or_fluid_leaking
+      - bite_swelling_large
+      - rash_bullseye
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bi_allergic_swelling
+    description: "Bite or sting with lips, mouth, throat or tongue suddenly swollen, throat tight or struggling to swallow"
+    when: {any: [lips_tongue_throat_swelling, throat_tight, unable_to_swallow]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_insect_bites
+
+  - id: rf_bi_breathing
+    description: "Bite or sting with breathing very fast or struggling to breathe"
+    when: {any: [difficulty_breathing, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_insect_bites
+
+  - id: rf_bi_child_floppy
+    description: "A child who is limp, floppy or not responding as usual after a bite or sting"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_insect_bites
+
+  - id: rf_bi_confused_or_drowsy
+    description: "Feeling very confused or drowsy, which can be a serious allergic reaction"
+    when: {any: [sudden_confusion, drowsy_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_insect_bites
+    note: "The page says call 999 if you suddenly become very confused, drowsy or dizzy. Confusion is also checked for everyone, but that check gives A&E, not an ambulance."
+
+  - id: rf_bi_dizzy_with_rash
+    description: "Bite or sting with feeling dizzy or light-headed and a raised, itchy rash"
+    when: {all: [light_headed, raised_itchy_rash]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_insect_bites
+    note: "The page says call 999 if you feel very confused, drowsy or dizzy, and may also have a raised, itchy rash. Feeling dizzy alone after a sting is an urgent rule below."
+
+  - id: rf_bi_snake
+    description: "Bitten by a snake"
+    when: bitten_by_snake
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_snake_bite_emergency
+    source: nhs_snake_bites
+
+  - id: rf_bi_deep_infection
+    description: "Bite with pain much worse than expected, or black, purple or grey patches nearby"
+    when: {any: [pain_much_worse_than_expected, purple_black_patches_on_skin]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_necrotising_fasciitis
+
+  - id: rf_bi_cellulitis_unwell
+    description: "A painful, hot, swollen bite with a high temperature and a fast heartbeat or feeling dizzy"
+    when: {all: [swollen_area_red_hot, very_high_temperature, {any: [heart_beating_very_fast, light_headed]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_cellulitis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bi_urgent_signs
+    description: "Stung in the mouth, throat or near the eyes, stung more than once, or had a serious allergic reaction to a sting before"
+    when: {any: [bitten_in_mouth_throat_or_near_eye, stung_many_times, previous_severe_allergic_reaction]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get an urgent GP appointment or help from NHS 111"}
+    advice: advice_bite_urgent
+    source: nhs_insect_bites
+
+  - id: rf_bi_dizzy_or_sick
+    description: "Bite or sting with feeling dizzy or light-headed, or tummy pain and being sick"
+    when: {any: [light_headed, {all: [stomach_ache, nausea_or_vomiting]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get an urgent GP appointment or help from NHS 111"}
+    advice: advice_bite_urgent
+    source: nhs_insect_bites
+
+  - id: rf_bi_high_temperature
+    description: "Bite or sting with a high temperature"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get an urgent GP appointment or help from NHS 111"}
+    advice: advice_bite_urgent
+    source: nhs_insect_bites
+    note: "The page says a high temperature and swollen glands. Using a high temperature alone is AI judgement, to be cautious."
+
+  - id: rf_bi_worse
+    description: "Bite or sting symptoms getting worse or not getting better"
+    when: symptoms_worse_or_not_better
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get an urgent GP appointment or help from NHS 111"}
+    advice: advice_bite_urgent
+    source: nhs_insect_bites
+
+  - id: rf_bi_cellulitis
+    description: "A bite that has become painful, hot and swollen, with the redness spreading"
+    when: {all: [swollen_area_red_hot, redness_spreading]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: nhs_cellulitis
+
+  - id: rf_bi_tick_unwell_or_rash
+    description: "A tick bite, or time where ticks live, with flu-like symptoms or a round or oval rash"
+    when: {all: [tick_bite_or_tick_area, {any: [rash_bullseye, very_high_temperature, aching_body]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_tick_bite_urgent
+    source: nhs_lyme_disease
+    note: "Source difference: the Insect bites page says see a GP. The Lyme disease page says an urgent GP appointment or 111. The more urgent is used."
+
+  - id: rf_bi_raised_rash
+    description: "A raised, itchy rash spreading away from the bite or sting (a wider allergic reaction)"
+    when: raised_itchy_rash
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_bite_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical judgement
+    note: "AI judgement: hives away from the sting is a wider allergic reaction that can get worse. A 'yes' also brings in the hives entry symptom's own rules."
+
+outcome_rules:
+  - id: or_bi_baby
+    description: "A baby under 1 with an insect bite or sting"
+    when: age_under_1
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_bite_gp
+    source: nhs_insect_bites
+
+  - id: or_bi_pharmacy
+    description: "A bite or sting that is red, hot, painful, swollen or leaking pus (possibly infected)"
+    when: {any: [swollen_area_red_hot, pus_or_fluid_leaking, bite_swelling_large]}
+    outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "See a pharmacist. They can give antibiotics if it is infected."}
+    advice: advice_bite_pharmacy
+    source: nhs_insect_bites
+
+default:
+  description: "An insect bite or sting with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Bites and stings usually get better in a few days"}
+  advice: advice_bite_self_care
+  source: nhs_insect_bites

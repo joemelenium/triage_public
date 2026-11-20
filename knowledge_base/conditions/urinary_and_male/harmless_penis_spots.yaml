@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: harmless_penis_spots
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot]
+name: "Harmless spots on the penis, such as pearly penile papules"
+medical_name: "Pearly penile papules or Fordyce spots"
+snomed: "308006"
+# The Penis lumps page says some lumps and spots are normal and do not need
+# treatment, but still to get them checked; the entry symptom's default keeps that.
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  tiny_pearly_bumps: strongly_supports
+  penis_spots_unchanged_for_months: strongly_supports
+key_findings: [tiny_pearly_bumps, penis_spots_unchanged_for_months]
+source: nhs_penis_lumps_and_spots
+informed_by: [nhs_penis_lumps_and_spots]

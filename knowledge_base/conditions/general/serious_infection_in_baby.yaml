@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: serious_infection_in_baby
+body_system: general
+# A serious bacterial infection (of the blood, kidneys, brain or lungs) in a baby. Young babies
+# often show no other sign than a high temperature, poor feeding or being unsettled, which
+# is why every baby under 3 months with 38C or more needs checking in hospital.
+# Age is linked as a finding, not only as a starting chance: being under 1 raises it
+# sharply and being older all but rules it out (a card cannot say "babies only" otherwise).
+entry_symptoms: [very_high_temperature, baby_unsettled_or_not_feeding]
+name: "Serious infection in a young baby (such as a blood, kidney or brain infection)"
+medical_name: "Serious bacterial infection in infancy"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_3_months, prevalence: uncommon}
+  - {finding: age_under_1, prevalence: rare}
+findings:
+  # Being under 3 months (the starting chance) and feeding poorly matter most. Kept to a few
+  # links on purpose: the clearest danger signs (fast breathing, no pee) are firm rules, and
+  # every extra link answered "no" would hide the quiet young baby this card is for.
+  very_high_temperature: strongly_supports
+  feeding_much_less: strongly_supports
+  child_crying_will_not_stop: supports
+  child_floppy_or_hard_to_wake: supports
+  child_not_usual_self: supports
+  skin_blotchy: supports
+key_findings: [feeding_much_less, child_floppy_or_hard_to_wake, child_crying_will_not_stop, baby_high_temperature]
+source: ai_judgement
+informed_by: [nhs_fever_in_children, nhs_sepsis, nhs_baby_seriously_ill]

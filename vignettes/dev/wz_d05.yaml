@@ -1,0 +1,52 @@
+id: wz_d05
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing, cough]
+
+summary: "A 68-year-old man who smoked for 40 years. For four days his chest has been wheezier and he has been coughing up more white phlegm than normal. He says he is no more breathless than his usual. His record shows COPD, but he says only that the doctor 'mentioned something about my lungs' and is not sure if he has a lung condition."
+
+opening_statement: "My chest has been wheezier this week and I'm coughing up more phlegm. Nothing dramatic, I'm not more puffed than normal."
+
+findings:
+  present: [wheezing, cough, cough_phlegm, smoker, copd_flare_up, symptoms_worse_or_not_better]
+  absent: [short_of_breath, sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, difficulty_breathing, lips_or_skin_blue_grey, sudden_confusion, chest_pain, cp_tight_or_squeezing, cp_heavy, coughing_up_blood, phlegm_yellow_or_green, cough_mucus_or_temperature, very_high_temperature, feels_very_unwell, breathing_very_fast, weight_loss, swollen_ankles, has_asthma, known_heart_condition, weakened_immune_system, after_allergy_trigger, sob_more_than_usual]
+  unknown: [has_copd, long_term_condition]
+
+context:
+  none: {}
+  basic: {age: 68, sex: male}
+  full:
+    age: 68
+    sex: male
+    findings: {has_copd: "yes", long_term_condition: "yes", smoker: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Contact GP (urgent appointment or NHS 111); use a rescue pack if he has one"
+    any_of: ["GP", "111", "rescue pack"]
+  - point: "Get help urgently if more short of breath than usual"
+    any_of: ["short of breath", "breathless"]
+  - point: "Call 999 if severe difficulty breathing, blue or grey lips, or confusion"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: bronchitis.txt, quote: "you have a long-term condition, such as diabetes, or a heart, lung or kidney condition"}
+  minimum_safe_acuity: {page: chest_infection.txt, quote: "you have a long-term health condition, such as a heart, lung or kidney condition"}
+
+variants: []
+
+context_test:
+  what_context_adds: "The record shows COPD (has_copd yes, long_term_condition yes). The patient is not sure he has a lung condition."
+  expected_direction: more_urgent
+
+atypical: false
+notes: "Context test. Without the record this looks like a mild chest infection in an adult, which chest_infection.txt treats as self-care. With COPD known, this is a flare-up (copd.txt: 'You may have times when your symptoms get worse. These are known as COPD flare-ups.'). copd.txt's urgent advice is specifically 'more short of breath than usual', which he denies. SOURCE DIFFERENCE for chest infections with a long-term lung condition: bronchitis.txt gives 'Urgent advice', chest_infection.txt gives 'Non-urgent advice: See a GP'. Judgement: expected urgent, minimum safe routine. copd_flare_up is present (more phlegm than usual) but is only asked if has_copd is yes."

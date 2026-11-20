@@ -1,0 +1,50 @@
+id: ey_d06
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [double_vision]
+
+summary: "A 55-year-old man with diabetes woke up this morning seeing two images side by side. The double vision goes away when he covers either eye. He has no headache, eye pain, drooping eyelid, weakness or speech problems, and has not hit his head."
+
+opening_statement: "I've been seeing double since I woke up. If I shut one eye it goes back to normal. It's never happened before."
+
+findings:
+  present: [double_vision, double_vision_sudden, double_vision_both_eyes, has_diabetes]
+  absent: [double_vision_one_eye, headache, pupils_different_sizes, head_injury_last_3_months, eye_pain, sight_lost, blurred_vision, numbness_or_weakness, difficulty_speaking, face_droop_one_side, eyelid_drooping, dizziness, trouble_with_balance_or_walking, bulging_eyes, symptoms_worse_when_tired, nausea_or_vomiting]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 55, sex: male}
+  full:
+    age: 55
+    sex: male
+    findings: {has_diabetes: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Double vision that started suddenly"
+    findings: [double_vision_sudden]
+    minimum_acuity: urgent
+    source: {page: double_vision.txt, quote: "you have double vision that has started suddenly"}
+
+safety_netting_should_cover:
+  - point: "Get an urgent GP appointment or contact NHS 111 today"
+    any_of: ["111", "urgent GP", "urgent appointment"]
+  - point: "Call 999 or go to A&E if he gets a severe headache, a bigger pupil, or weakness or speech problems"
+    any_of: ["999", "A&E"]
+  - point: "Not to drive"
+    any_of: ["drive", "driving", "DVLA"]
+
+source:
+  expected_outcome: {page: double_vision.txt, quote: "you have double vision that has started suddenly"}
+  minimum_safe_acuity: {page: double_vision.txt, quote: "Squints or binocular double vision in adults can be a sign of a more serious condition."}
+
+atypical: false
+notes: "Sudden binocular double vision. double_vision.txt makes a severe headache, an enlarged pupil or a recent head injury 999 or A&E; all are absent. Stroke signs and vertigo are also absent (vertigo.txt makes vertigo with double vision 999)."

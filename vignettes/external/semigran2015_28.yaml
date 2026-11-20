@@ -1,0 +1,18 @@
+id: semigran2015_28
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Shingles
+original_triage_label: Requires non-emergent care
+original_triage: non_emergency
+presenting_text: burning and aching pain on the right side of the chest for 5 days, followed by a blistering rash in the same area
+presenting:
+- chest_pain
+age: 77
+sex: male
+findings:
+  present: []
+  absent: []
+  unknown: []
+conversion_notes: 'The main complaint is pain on the right side of the chest, so chest_pain is listed as presenting, although the published diagnosis is a skin condition and the pain comes with a rash in the same area. The text gives a ''5-day history'' but does not say in so many words whether the pain is there now, whether it spreads or whether breathing changes it, so the follow-up chest pain questions are left out. Rash, headache and malaise have no matching question. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 28 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

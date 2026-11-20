@@ -1,0 +1,55 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: meningitis
+body_system: brain_and_nerves
+entry_symptoms: [headache, sudden_confusion, had_a_fit, very_high_temperature, generally_unwell, baby_unsettled_or_not_feeding, neck_pain, rash]
+name: "Meningitis (an infection of the layers around the brain)"
+medical_name: "Meningitis or meningococcal disease"
+snomed: "7180009"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: rash_does_not_fade, prevalence: common}
+  - {finding: very_high_temperature, prevalence: rare}
+  - {finding: headache, prevalence: rare}
+  - {finding: sudden_confusion, prevalence: rare}
+  - {finding: had_a_fit, prevalence: rare}
+  - {finding: generally_unwell, prevalence: rare}
+  - {finding: baby_unsettled_or_not_feeding, prevalence: rare}
+  - {finding: neck_pain, prevalence: very_rare}   # neck pain alone; a high temperature or headache above sets rare
+  - {finding: rash, prevalence: very_rare}
+findings:
+  # What tells it apart: a high temperature with a stiff neck, bright lights hurting, a rash that does not fade, or being very sleepy. Only features that most people with meningitis have are linked, because a no to a linked feature counts against it.
+  very_high_temperature: strongly_supports
+  stiff_neck: strongly_supports
+  headache: strongly_supports
+  rash_does_not_fade: strongly_supports
+  bothered_by_light: strongly_supports
+  drowsy_hard_to_wake: supports
+  vomiting: supports
+  # From the general card for this condition (merged):
+  very_painful_headache: supports
+  child_floppy_or_hard_to_wake: supports
+  nausea_or_vomiting: supports
+  cold_hands_and_feet: supports
+  had_a_fit: supports
+  child_crying_will_not_stop: supports
+  bulging_soft_spot: supports
+  # From the skin_and_hair card for this condition (merged):
+  feels_very_unwell: strongly_supports
+  seriously_unwell_getting_worse: supports
+  skin_blotchy: supports
+key_findings: [stiff_neck, rash_does_not_fade, bothered_by_light, drowsy_hard_to_wake, very_high_temperature, very_painful_headache, cold_hands_and_feet, skin_blotchy]
+source: nhs_meningitis
+informed_by: [nhs_meningitis, nhs_headaches, nhs_sepsis, nhs_fever_in_children, nhs_baby_seriously_ill, nhs_rashes_babies_and_children]
+# Merged with the general card for this condition. Its notes: Must not be missed. Can
+# kill within hours. What tells it apart from flu: a stiff neck, bright light hurting, a
+# rash that does not fade, being very sleepy, and in babies a high-pitched cry or
+# bulging soft spot. Merged with the skin_and_hair card for this condition. Its notes:
+# Very rare among people with a rash, and only plausible with a rash that does not fade
+# or a high temperature, so it starts very rare and is raised by those signs. What tells
+# it apart from Henoch-Schonlein purpura or a viral rash: feeling very unwell, a high
+# temperature, cold hands and feet, a stiff neck or bright light hurting, and getting
+# worse quickly.

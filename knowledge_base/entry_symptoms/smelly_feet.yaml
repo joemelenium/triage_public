@@ -1,0 +1,63 @@
+# Entry symptom: smelly feet.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: smelly_feet
+name: "Smelly feet"
+presenting_finding: smelly_feet
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: smelly_feet_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swollen_area_red_hot
+      - pus_or_fluid_leaking
+
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: smelly_feet_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - not_better_with_self_care
+      - affecting_daily_life_or_wellbeing
+      - weakened_immune_system
+
+red_flags:
+  - id: rf_sf_foot_infection
+    description: "Smelly feet with a foot or leg that is painful, hot and swollen"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: nhs_cellulitis
+    note: "The Athlete's foot page says see a GP if your foot or leg is hot, painful and red, as this could be a more serious infection. The Cellulitis page says urgent help."
+
+  - id: rf_sf_wound_pus
+    description: "Smelly feet with pus or fluid leaking from a sore or wound on the foot"
+    when: pus_or_fluid_leaking
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: athlete's foot blisters can weep
+    note: "AI judgement: a smelly foot with pus can be an infected sore or ulcer, especially with diabetes."
+
+outcome_rules:
+  - id: or_sf_gp
+    description: "Smelly feet not better after self-care, or affecting daily life"
+    when: {any: [not_better_with_self_care, affecting_daily_life_or_wellbeing]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_smelly_feet_gp
+    source: nhs_smelly_feet
+
+  - id: or_sf_diabetes_athletes_foot
+    description: "Athlete's foot in someone with diabetes or a weakened immune system"
+    when: {all: [weakened_immune_system, itchy_flaky_skin_between_toes]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_smelly_feet_gp
+    source: nhs_athletes_foot
+
+default:
+  description: "Smelly feet you can treat yourself, and a pharmacist can help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "You can usually treat smelly feet yourself"}
+  advice: advice_smelly_feet_self_care
+  source: nhs_smelly_feet

@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: persistent_hiccups
+body_system: ear_nose_throat
+entry_symptoms: [hiccups]
+name: "Hiccups that last for days, caused by another health problem or a medicine"
+medical_name: "Persistent hiccups"
+snomed: "716771000"
+acuity_needed: routine
+danger: moderate
+prevalence: common
+findings:
+  # What tells it apart: hiccups lasting longer than 48 hours, or coming back often, sometimes after
+  # starting a medicine or with reflux.
+  hiccups_over_48_hours: strongly_supports
+  hiccups_keep_coming_back: supports
+  new_medicine_recently: supports
+  heartburn_or_sour_taste: supports
+  weight_loss: supports
+key_findings: [hiccups_over_48_hours, new_medicine_recently]
+source: nhs_hiccups
+informed_by: [nhs_hiccups]

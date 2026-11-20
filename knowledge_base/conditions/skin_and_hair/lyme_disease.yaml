@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lyme_disease
+body_system: skin_and_hair
+entry_symptoms: [rash, insect_bite_or_sting]
+name: "Infection from a tick bite (Lyme), which can cause a bullseye rash"
+medical_name: "Lyme disease"
+snomed: "23502006"
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: tick_bite_or_tick_area, prevalence: uncommon}
+findings:
+  # What tells it apart from an ordinary bite reaction: a round or oval rash that spreads, often like a bullseye, days or weeks after a tick bite, sometimes with flu-like symptoms.
+  rash_bullseye: strongly_supports
+  tick_bite_or_tick_area: strongly_supports
+  aching_body: supports
+  very_high_temperature: supports
+  very_tired: supports
+key_findings: [rash_bullseye, tick_bite_or_tick_area, aching_body]
+source: nhs_lyme_disease
+informed_by: [nhs_lyme_disease, nhs_insect_bites]

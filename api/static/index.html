@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triage engine demo</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1d2330; --muted: #5b6475; --line: #d9dde5;
+    --accent: #2f5bd3; --accent-text: #ffffff; --warn-bg: #fff4d6; --warn-line: #e0b64a;
+    --emergency: #b3261e; --urgent: #c25e00; --soon: #8a6d00; --routine: #2f5bd3; --self: #2e7d32;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171d; --card: #1d2129; --text: #e7eaf0; --muted: #a2aabb; --line: #343a46;
+      --accent: #7d9cff; --accent-text: #0d1020; --warn-bg: #3a3017; --warn-line: #8a7230;
+      --emergency: #ff8a80; --urgent: #ffb366; --soon: #e6cc5c; --routine: #9db4ff; --self: #81c784;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 1.4rem; margin: 8px 0 4px; }
+  h2 { font-size: 1.15rem; margin: 0 0 12px; }
+  h3 { font-size: 1rem; margin: 16px 0 6px; }
+  .muted { color: var(--muted); font-size: 0.9rem; }
+  .warning { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 8px;
+             padding: 10px 14px; margin: 12px 0 16px; font-size: 0.92rem; }
+  .layout { display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start; }
+  @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+  label { display: block; font-weight: 600; margin: 12px 0 4px; }
+  input[type=number], input[type=text], select {
+    width: 100%; max-width: 360px; padding: 9px 10px; font: inherit; color: var(--text);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
+  button { font: inherit; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--line);
+           background: var(--bg); color: var(--text); cursor: pointer; margin: 4px 6px 4px 0; }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  button:disabled { opacity: 0.5; cursor: default; }
+  .suggestions button { display: block; width: 100%; max-width: 360px; text-align: left; margin: 4px 0; }
+  .chip { display: inline-block; background: var(--bg); border: 1px solid var(--line); border-radius: 999px;
+          padding: 3px 10px; margin: 4px 6px 0 0; font-size: 0.92rem; }
+  .chip button { border: 0; padding: 0 0 0 6px; margin: 0; background: none; }
+  .items label { font-weight: 400; display: flex; gap: 10px; align-items: flex-start; margin: 8px 0; }
+  .items input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  details { margin-top: 12px; } summary { cursor: pointer; color: var(--muted); font-size: 0.9rem; }
+  .bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; margin: 2px 0 8px; }
+  .bar span { display: block; height: 100%; background: var(--accent); }
+  .cond { font-size: 0.92rem; }
+  .level { display: inline-block; font-weight: 700; padding: 4px 12px; border-radius: 6px; color: #fff; }
+  .emergency { background: var(--emergency); } .urgent { background: var(--urgent); }
+  .soon { background: var(--soon); } .routine { background: var(--routine); } .self_manageable { background: var(--self); }
+  @media (prefers-color-scheme: dark) { .level { color: #111; } }
+  ul { margin: 4px 0; padding-left: 22px; }
+  .error { color: var(--emergency); font-weight: 600; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Triage engine demo</h1>
+  <p class="muted">A mock of a condition-based triage engine, for testing an evaluation design.</p>
+  <div class="warning"><strong>Demonstration only.</strong> Not for clinical use and not medical advice.
+    The content is AI-drafted and has not been clinically reviewed. For a real concern, call 999 in an
+    emergency or use 111. Do not enter real patient details.</div>
+
+  <div class="layout">
+    <div>
+      <!-- Step 1: who and what -->
+      <section id="start" class="card">
+        <h2>About the person</h2>
+        <label for="age">Age in years</label>
+        <input id="age" type="number" min="0" max="120" step="1" value="30">
+        <label for="sex">Sex</label>
+        <select id="sex"><option value="female">Female</option><option value="male">Male</option></select>
+        <label style="font-weight:400"><input id="carer" type="checkbox"> I am answering for someone else</label>
+
+        <label for="find">Main symptom</label>
+        <input id="find" type="text" placeholder="For example: chest pain, headache, rash" autocomplete="off">
+        <div id="suggestions" class="suggestions"></div>
+        <div id="chosen"></div>
+        <p><button id="begin" class="primary" disabled>Start</button></p>
+        <p id="start-error" class="error"></p>
+      </section>
+
+      <!-- Step 2: questions -->
+      <section id="asking" class="card" hidden>
+        <p class="muted" id="progress"></p>
+        <h2 id="q-text"></h2>
+        <div id="q-body"></div>
+        <details><summary>Why am I asked this?</summary><p class="muted" id="q-reason"></p></details>
+        <p><button id="back">Back</button> <button id="restart1">Start again</button></p>
+        <p id="ask-error" class="error"></p>
+      </section>
+
+      <!-- Step 3: result -->
+      <section id="result" class="card" hidden>
+        <h2>Result</h2>
+        <p><span id="r-level" class="level"></span></p>
+        <p id="r-summary"></p>
+        <div id="r-advice"></div>
+        <details><summary>Why this result</summary><p class="muted" id="r-why"></p></details>
+        <p><button id="back2">Back</button> <button id="restart2" class="primary">Start again</button></p>
+      </section>
+    </div>
+
+    <aside class="card">
+      <h2>Possible causes</h2>
+      <p class="muted">Updated after each answer. Likelihoods are AI estimates, not a diagnosis.</p>
+      <div id="conditions"><p class="muted">Start to see them.</p></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+// Like the API, the page keeps only the evidence so far, and sends all of it each time.
+const state = { entry: [], evidence: [], steps: [] };   // steps: how many evidence items each answer added
+const $ = id => document.getElementById(id);
+
+function request() {
+  return {
+    sex: $("sex").value,
+    age: { value: Number($("age").value) },
+    evidence: [...state.entry.map(e => ({ id: e.id, choice_id: "present", source: "initial" })), ...state.evidence],
+    extras: $("carer").checked ? { respondent: "carer" } : {},
+  };
+}
+
+async function post(path) {
+  const response = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" },
+                                       body: JSON.stringify(request()) });
+  const body = await response.json();
+  if (!response.ok) throw new Error(typeof body.detail === "string" ? body.detail : "The request was not accepted.");
+  return body;
+}
+
+function show(section) {
+  for (const id of ["start", "asking", "result"]) $(id).hidden = id !== section;
+}
+
+// ---- Choosing the main symptom ----
+let searchTimer;
+$("find").addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(async () => {
+    const phrase = $("find").value.trim();
+    $("suggestions").innerHTML = "";
+    if (phrase.length < 2) return;
+    const found = await (await fetch("/search?phrase=" + encodeURIComponent(phrase))).json();
+    for (const item of found) {
+      const button = document.createElement("button");
+      button.textContent = item.label;
+      button.onclick = () => { addEntry(item); $("find").value = ""; $("suggestions").innerHTML = ""; };
+      $("suggestions").append(button);
+    }
+    if (!found.length) $("suggestions").innerHTML = '<p class="muted">No match. Try other words.</p>';
+  }, 200);
+});
+
+function addEntry(item) {
+  if (!state.entry.some(e => e.id === item.id)) state.entry.push(item);
+  drawChosen();
+}
+
+function drawChosen() {
+  $("chosen").innerHTML = "";
+  for (const item of state.entry) {
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.textContent = item.label;
+    const remove = document.createElement("button");
+    remove.textContent = "×";
+    remove.setAttribute("aria-label", "Remove " + item.label);
+    remove.onclick = () => { state.entry = state.entry.filter(e => e.id !== item.id); drawChosen(); };
+    chip.append(remove);
+    $("chosen").append(chip);
+  }
+  $("begin").disabled = state.entry.length === 0;
+}
+
+$("begin").onclick = async () => {
+  $("start-error").textContent = "";
+  state.evidence = []; state.steps = [];
+  try { await next(); } catch (problem) { $("start-error").textContent = problem.message; show("start"); }
+};
+
+// ---- Questions ----
+async function next() {
+  const reply = await post("/diagnosis");
+  drawConditions(reply.conditions);
+  if (reply.should_stop) return finish();
+  show("asking");
+  const q = reply.question;
+  $("progress").textContent = "Question " + (state.steps.length + 1);
+  $("q-text").textContent = q.text;
+  $("q-reason").textContent = q.extras.reason;
+  $("back").disabled = state.steps.length === 0;
+  const body = $("q-body");
+  body.innerHTML = "";
+  if (q.type === "single") {
+    for (const choice of q.items[0].choices) {
+      const button = document.createElement("button");
+      button.textContent = choice.label;
+      button.onclick = () => answer([{ id: q.items[0].id, choice_id: choice.id }]);
+      body.append(button);
+    }
+  } else {
+    const list = document.createElement("div");
+    list.className = "items";
+    for (const item of q.items) {
+      const label = document.createElement("label");
+      label.innerHTML = '<input type="checkbox"> <span></span>';
+      label.querySelector("input").value = item.id;
+      label.querySelector("span").textContent = item.name;
+      list.append(label);
+    }
+    body.append(list);
+    const done = document.createElement("button");
+    done.className = "primary";
+    done.textContent = "Continue (anything not ticked is a no)";
+    done.onclick = () => answer([...list.querySelectorAll("input")].map(box =>
+      ({ id: box.value, choice_id: box.checked ? "present" : "absent" })));
+    const unsure = document.createElement("button");
+    unsure.textContent = "I'm not sure";
+    unsure.onclick = () => answer(q.items.map(item => ({ id: item.id, choice_id: "unknown" })));
+    body.append(done, unsure);
+  }
+}
+
+async function answer(items) {
+  $("ask-error").textContent = "";
+  state.evidence.push(...items);
+  state.steps.push(items.length);
+  try { await next(); } catch (problem) { goBack(); $("ask-error").textContent = problem.message; }
+}
+
+function goBack() {
+  const count = state.steps.pop() || 0;
+  state.evidence.splice(state.evidence.length - count, count);
+}
+
+$("back").onclick = async () => { goBack(); await next(); };
+$("back2").onclick = async () => { goBack(); await next(); };
+for (const id of ["restart1", "restart2"]) $(id).onclick = () => {
+  state.entry = []; state.evidence = []; state.steps = [];
+  drawChosen(); $("conditions").innerHTML = '<p class="muted">Start to see them.</p>'; show("start");
+};
+
+// ---- Result ----
+async function finish() {
+  const reply = await post("/triage");
+  const outcome = reply.extras.outcome, advice = reply.extras.advice;
+  show("result");
+  $("r-level").textContent = outcome.acuity_label;
+  $("r-level").className = "level " + outcome.acuity;
+  $("r-summary").textContent = outcome.level_of_care_label + ". " + (outcome.timeframe_detail || outcome.timeframe_label);
+  const box = $("r-advice");
+  box.innerHTML = "";
+  addText(box, "What to do", advice.what_to_do);
+  addText(box, "Where to go", advice.where_to_go);
+  addList(box, "Look out for", advice.look_out_for);
+  addList(box, "Get more help if", advice.get_more_help_when);
+  addList(box, "Things you can do", advice.self_care);
+  $("r-why").textContent = reply.extras.rationale + " Five-level triage: " + reply.triage_level + ".";
+  drawConditions(reply.extras.conditions);
+}
+
+function addText(box, title, text) {
+  if (!text) return;
+  const h = document.createElement("h3"); h.textContent = title;
+  const p = document.createElement("p"); p.textContent = text;
+  box.append(h, p);
+}
+
+function addList(box, title, items) {
+  if (!items || !items.length) return;
+  const h = document.createElement("h3"); h.textContent = title;
+  const ul = document.createElement("ul");
+  for (const text of items) { const li = document.createElement("li"); li.textContent = text; ul.append(li); }
+  box.append(h, ul);
+}
+
+function drawConditions(conditions) {
+  const box = $("conditions");
+  box.innerHTML = "";
+  const top = conditions.filter(c => c.probability >= 0.01).slice(0, 6);
+  if (!top.length) { box.innerHTML = '<p class="muted">None yet.</p>'; return; }
+  for (const c of top) {
+    const row = document.createElement("div");
+    row.className = "cond";
+    row.innerHTML = '<div></div><div class="bar"><span></span></div>';
+    row.firstChild.textContent = c.common_name + " (about " + Math.round(c.probability * 100) + "%)";
+    row.querySelector(".bar span").style.width = Math.round(c.probability * 100) + "%";
+    box.append(row);
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: gilberts_syndrome
+body_system: skin_and_hair
+entry_symptoms: [yellow_skin_or_eyes]
+name: "Gilbert's syndrome (a harmless cause of yellow skin)"
+medical_name: "Gilbert's syndrome"
+snomed: "27503000"
+acuity_needed: self_manageable
+danger: minor
+diagnosed_by: has_gilberts_syndrome
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_gilberts_syndrome, prevalence: very_common}
+findings:
+  # What tells it apart: mild yellowing that comes and goes, for example when ill, tired or not eating, without itching, dark pee or pale poo.
+  jaundice_comes_and_goes: strongly_supports
+  very_tired: supports
+key_findings: [jaundice_comes_and_goes]
+source: nhs_gilberts
+informed_by: [nhs_gilberts]

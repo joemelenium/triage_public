@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: strep_throat
+body_system: ear_nose_throat
+entry_symptoms: [sore_throat]
+name: "Strep throat (a bacterial throat infection)"
+medical_name: "Streptococcal sore throat"
+snomed: "43878008"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: common}
+findings:
+  # What tells it apart from a sore throat with a cold: pus on the tonsils, a
+  # high temperature and tender neck glands, without a cough. More common in
+  # children aged 5 to 15.
+  pus_on_tonsils: strongly_supports
+  very_high_temperature: supports
+  too_painful_to_eat_or_drink: supports
+  swollen_neck_glands: supports
+  # Kept for the single-cause method only; the network method ignores this.
+  cough_or_runny_nose: argues_against
+key_findings: [pus_on_tonsils, very_high_temperature, swollen_neck_glands]
+source: ai_judgement
+informed_by: [nhs_sore_throat, nhs_tonsillitis]

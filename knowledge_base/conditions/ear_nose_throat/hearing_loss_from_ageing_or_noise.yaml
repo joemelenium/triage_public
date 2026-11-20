@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hearing_loss_from_ageing_or_noise
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, tinnitus]
+name: "Hearing loss from getting older or from loud noise over many years"
+medical_name: "Presbycusis or noise-induced hearing loss"
+acuity_needed: routine
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: very_common}
+findings:
+  # What tells it apart: hearing in both ears fades slowly over years, often with ringing, in older
+  # people or people who have been around loud noise.
+  hearing_loss_gradual: strongly_supports
+  hearing_loss: strongly_supports
+  loud_noise_exposure: supports
+  tinnitus: supports
+key_findings: [hearing_loss_gradual, loud_noise_exposure]
+source: nhs_hearing_loss
+informed_by: [nhs_hearing_loss, nhs_tinnitus]

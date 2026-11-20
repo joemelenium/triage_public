@@ -1,0 +1,59 @@
+# Entry symptom: priapism (an erection that will not go away, or is painful).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: priapism
+name: "Priapism (painful erections)"
+presenting_finding: erection_will_not_go_away
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: priapism_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - erection_over_3_hours
+      - has_sickle_cell
+      - erection_over_1_hour
+      - erection_painful
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_pr_sickle_cell
+    description: "An erection that is painful or will not go away, in someone with sickle cell or another inherited blood condition"
+    when: has_sickle_cell
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_priapism_999
+    source: nhs_sickle_cell_disease
+    note: "Source difference: the Sickle cell page says call 999 for an erection that is painful or does not go away. The Priapism page says call 999 or go to A&E for a painful erection lasting more than 1 hour with sickle cell. The more urgent is used. Including other inherited blood conditions such as thalassaemia comes from the Priapism page's list of causes; it is AI judgement."
+
+  - id: rf_pr_over_3_hours
+    description: "An erection that has lasted more than 3 hours"
+    when: erection_over_3_hours
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_priapism_ae
+    source: nhs_priapism_painful_erections
+    note: "The page says more than 3 to 4 hours. The lower figure is used, to be cautious."
+
+  - id: rf_pr_painful_over_1_hour
+    description: "A painful erection that has lasted more than 1 hour"
+    when: {all: [erection_painful, erection_over_1_hour]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_priapism_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: a painful erection usually means blood is trapped in the penis, which causes damage within hours. The page gives 3 to 4 hours for any erection; earlier help for a painful one is AI judgement."
+
+outcome_rules: []
+
+default:
+  description: "An erection that will not go away, for less than 3 hours: try things to make it go down, and get help now"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now. Go to A&E if it lasts 3 hours."}
+  advice: advice_priapism_urgent
+  source: ai_judgement
+  note: "The Priapism page gives things to try at home and says go to A&E after 3 to 4 hours. Getting advice from 111 before then is AI judgement."

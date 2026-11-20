@@ -1,0 +1,460 @@
+# Entry symptom: stomach ache (tummy pain).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Stomach ache is one of the commonest and highest-risk presentations. The
+# must-not-miss causes have their own condition cards (appendicitis, ectopic
+# pregnancy, a burst or leaking aortic aneurysm, a blocked bowel, peritonitis or a
+# burst organ, pancreatitis, a twisted testicle, sepsis, diabetic ketoacidosis,
+# intussusception and a twisted bowel in a baby). The emergency checklists ask
+# about the signs that point to them, so a "no" makes them less likely quickly.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+
+id: stomach_ache
+name: "Stomach ache"
+presenting_finding: stomach_ache
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: stomach_ache_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - sa_sudden_severe
+      - sa_severe
+      - tummy_painful_to_touch
+      - vomiting_blood
+      - green_vomit
+      - heavy_bleeding_from_bottom
+      - black_or_dark_red_poo
+      - cannot_poo_or_fart
+      - cannot_pee_at_all
+      - difficulty_breathing
+      - rash_does_not_fade
+      - skin_blotchy
+      - testicle_pain
+      - cp_tight_or_squeezing
+      - cp_heavy
+
+  - id: stomach_ache_child_emergency_screen
+    level: emergency
+    question: "For a baby or young child, do any of these apply? Choose all that apply."
+    findings:
+      - child_floppy_or_hard_to_wake
+      - screaming_bouts_pale_between
+      - baby_weak_or_high_pitched_cry
+      - baby_high_temperature
+
+  - id: stomach_ache_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - sa_much_worse_suddenly
+      - sa_moved_to_lower_right
+      - may_be_pregnant
+      - bleeding_from_bottom
+      - unusual_vaginal_bleeding_or_discharge
+      - very_high_temperature
+      - yellow_skin_or_eyes
+      - vomiting_over_2_days
+      - diarrhoea_over_7_days
+      - pain_when_peeing
+      - very_thirsty
+      - peeing_more_often
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_sa_sudden_severe_and_faint
+    description: "Sudden, severe tummy pain with feeling faint, passing out, or cold, clammy skin"
+    when: {all: [sa_sudden_severe, {any: [light_headed, fainted, cold_clammy_skin]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_stomach_ache_999
+    source: nhs_abdominal_aortic_aneurysm
+    note: "The Abdominal aortic aneurysm page says call 999 for sudden, severe pain in the tummy or back with pale skin or losing consciousness: a burst aneurysm. The Ectopic pregnancy page says call 999 for sudden, intense tummy pain with feeling very dizzy or fainting: a burst tube. Including feeling light-headed is AI judgement."
+
+  - id: rf_sa_sudden_severe
+    description: "Stomach ache that started suddenly and is severe"
+    when: sa_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+
+  - id: rf_sa_severe
+    description: "Severe tummy pain: there all the time, and so bad it is hard to think, talk, sleep or move"
+    when: sa_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_stomach_ache_ae
+    source: nhs_appendicitis
+    note: "The Appendicitis and Stomach ulcer pages say call 999 or go to A&E for severe tummy pain. The meaning of severe is from the Diarrhoea and vomiting page."
+
+  - id: rf_sa_painful_to_touch
+    description: "Tummy very painful to touch, or hard"
+    when: tummy_painful_to_touch
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ulcer
+    note: "The Stomach ulcer page lists 'it's painful to touch your tummy' as a reason to call 999 or go to A&E. Applying it to every stomach ache is AI judgement: a tummy that is very tender or hard can be a sign of a burst organ or peritonitis."
+
+  - id: rf_sa_vomiting_blood
+    description: "Stomach ache with being sick with blood, or sick that looks like ground coffee"
+    when: vomiting_blood
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+    note: "The Vomiting blood page also says 999 or A&E for vomiting blood with tummy pain."
+
+  - id: rf_sa_green_vomit
+    description: "Stomach ache with green or yellow-green sick"
+    when: green_vomit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+    note: "Green sick can be a sign of a blocked or twisted bowel."
+
+  - id: rf_sa_heavy_bleeding
+    description: "Stomach ache with a lot of blood from the bottom"
+    when: heavy_bleeding_from_bottom
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+
+  - id: rf_sa_black_poo
+    description: "Stomach ache with black, sticky poo or dark red poo"
+    when: black_or_dark_red_poo
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+    note: "Source difference: the Stomach ache page says 999 or A&E for black and sticky poo with a stomach ache. The Bleeding from the bottom page says an urgent GP appointment or 111 for black or dark red poo. With a stomach ache the more urgent is used."
+
+  - id: rf_sa_cannot_pee
+    description: "Stomach ache and cannot pee at all"
+    when: cannot_pee_at_all
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+
+  - id: rf_sa_cannot_poo_or_fart
+    description: "Stomach ache and cannot poo or fart at all"
+    when: cannot_poo_or_fart
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+    note: "A sign of a blocked bowel."
+
+  - id: rf_sa_rash_not_fading
+    description: "Stomach ache with spots or a rash that does not fade when pressed"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_stomach_ache
+
+  - id: rf_sa_struggling_to_breathe
+    description: "Stomach ache and struggling to breathe"
+    when: difficulty_breathing
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+
+  - id: rf_sa_sepsis_skin
+    description: "Stomach ache with blotchy or paler than usual skin: possible sepsis"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_appendicitis
+    note: "The Appendicitis page lists confusion, blotchy or paler than usual skin and difficulty breathing as signs of sepsis. Confusion is in the universal checks."
+
+  - id: rf_sa_testicle_pain
+    description: "Stomach ache with pain or swelling in a testicle: possible twisted testicle"
+    when: testicle_pain
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_pain
+    note: "The Testicle pain page says go to A&E or call 999 for testicle pain with pain in the tummy, or with feeling or being sick. Boys may only mention tummy pain, so the question asks carers to check."
+
+  - id: rf_sa_ectopic_signs
+    description: "Could be pregnant, with tummy pain and feeling faint, passing out or pain in the tip of the shoulder: possible ectopic pregnancy"
+    when: {all: [may_be_pregnant, {any: [light_headed, fainted, shoulder_tip_pain]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_ectopic_ae
+    source: nhs_ectopic_pregnancy
+    note: "The Ectopic pregnancy page says call 999 or go to A&E for sudden, intense tummy pain with feeling very dizzy or fainting, and lists shoulder tip pain as a symptom. Raising shoulder tip pain or feeling light-headed alone to an emergency, in someone who could be pregnant, is AI judgement: it can mean bleeding inside the tummy."
+
+  - id: rf_sa_known_aaa
+    description: "Has been told they have a swelling in the main blood vessel in the tummy, and now has tummy pain"
+    when: has_aaa
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: ai_judgement
+    note: "Clinical knowledge: new tummy or back pain in someone with a known abdominal aortic aneurysm may mean it is leaking. The Abdominal aortic aneurysm page says call 999 for sudden, severe pain."
+
+  - id: rf_sa_dka_ketones
+    description: "Diabetes, with high ketones or a high blood sugar that insulin is not bringing down"
+    when: {all: [has_diabetes, high_ketones]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_dka_ae
+    source: nhs_diabetic_ketoacidosis
+    note: "The page says 999 or A&E for ketones over 3mmol/L in blood or over 2+ in pee. Including a high blood sugar that insulin is not bringing down (which the page sends to the diabetes team or 111) in the same question is AI judgement, to keep one question, and over-triages it."
+
+  - id: rf_sa_dka_signs
+    description: "Very thirsty and peeing a lot, with being sick, fruity breath or very fast breathing: possible diabetic ketoacidosis"
+    when: {all: [{all: [very_thirsty, peeing_more_often]}, {any: [vomiting, fruity_breath, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_dka_ae
+    source: nhs_diabetic_ketoacidosis
+    note: "The page says 999 or A&E for symptoms of diabetic ketoacidosis, including in someone not diagnosed with diabetes. Its symptoms include tummy pain, being sick, thirst, peeing more, fruity breath and deep or fast breathing. Which combination counts is AI judgement."
+
+  - id: rf_sa_child_floppy
+    description: "A child with tummy pain who is limp, floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_child_tummy_emergency
+    source: nhs_diarrhoea_and_vomiting
+    note: "The page says 999 or A&E for a child who is not responding as usual."
+
+  - id: rf_sa_child_screaming_bouts
+    description: "A young child with bouts of screaming and knees pulled up, pale or floppy in between: possible intussusception"
+    when: {all: [age_under_5, screaming_bouts_pale_between]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_child_tummy_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: the classic sign of part of the bowel sliding into itself (intussusception), which needs hospital treatment within hours. The NHS website has no page on it."
+
+  - id: rf_sa_baby_weak_cry
+    description: "A baby with a weak or high-pitched cry, or a cry not like their usual one"
+    when: {all: [age_under_1, baby_weak_or_high_pitched_cry]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_child_tummy_emergency
+    source: nhs_colic
+
+  - id: rf_sa_baby_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: {all: [age_under_1, baby_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_sa_trapped_hernia
+    description: "A painful or firm lump in the tummy or groin that cannot be pushed back, with being sick, a swollen tummy or not able to poo or fart: possible trapped hernia"
+    when: {all: [lump_painful_and_firm, {any: [vomiting, tummy_swollen, cannot_poo_or_fart]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_stomach_ache_ae
+    source: ai_judgement
+    note: "Clinical knowledge: signs of a trapped (strangulated) hernia, which needs surgery within hours. The Hernia page says get help from 111 for a hernia with pain, being sick, a bloated tummy or constipation. The more urgent is used because together these suggest a trapped bowel."
+
+  - id: rf_sa_back_and_being_sick
+    description: "Tummy pain that spreads to the back, with being sick"
+    when: {all: [sa_spreads_to_back, vomiting]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_stomach_ache_ae
+    source: nhs_gallstones
+    soft: true    # likely conditions may lower this: it is from a page about one condition
+    note: "The Gallstones page says 999 or A&E for pain that spreads from the tummy to the back, with being sick. The Acute pancreatitis page gives the same advice for sudden, severe pain spreading to the back."
+
+  - id: rf_sa_chest_tight_or_heavy
+    description: "Stomach ache with the chest feeling tight, squeezed or heavy: possible heart attack"
+    when: {any: [cp_tight_or_squeezing, cp_heavy]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_feeling_sick_999
+    source: nhs_feeling_sick_nausea
+    note: "The Feeling sick page says call 999 for feeling sick with chest pain that feels tight or heavy: this could be a heart attack. A heart attack can be felt in the upper tummy. Applying it to stomach ache is AI judgement."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_sa_suddenly_much_worse
+    description: "Stomach ache that has suddenly got much worse"
+    when: sa_much_worse_suddenly
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_stomach_ache
+
+  - id: rf_sa_pregnant
+    description: "Stomach ache in someone who is pregnant, could be pregnant, or gave birth in the last 6 weeks"
+    when: {any: [may_be_pregnant, {all: [age_10_or_over, pregnant_or_recently_given_birth]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. You can also call your midwife."}
+    advice: advice_stomach_ache_pregnant
+    source: nhs_stomach_ache
+    note: "The Stomach ache page says this for someone who is pregnant. The Ectopic pregnancy page says contact a GP or 111 for tummy pain in someone who might be pregnant, even without a positive test. Including the 6 weeks after giving birth is AI judgement."
+
+  - id: rf_sa_blood_in_poo
+    description: "Stomach ache with blood in the poo"
+    when: bleeding_from_bottom
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_stomach_ache
+
+  - id: rf_sa_vaginal_bleeding
+    description: "Stomach ache with unusual bleeding or discharge from the vagina"
+    when: unusual_vaginal_bleeding_or_discharge
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_stomach_ache
+
+  - id: rf_sa_d_and_v_not_going
+    description: "Stomach ache with diarrhoea or being sick that has not gone away after a few days"
+    when: {any: [vomiting_over_2_days, diarrhoea_over_7_days]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_stomach_ache
+    note: "The Stomach ache page says 'after a few days'. The Diarrhoea and vomiting page gives more than 2 days for being sick and more than 7 days for diarrhoea, which are used here."
+
+  - id: rf_sa_moved_to_lower_right
+    description: "Pain that started around the belly button and moved to the lower right: possible appendicitis"
+    when: sa_moved_to_lower_right
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_appendicitis
+    source: nhs_appendicitis
+
+  - id: rf_sa_getting_worse
+    description: "Stomach ache that is gradually getting worse"
+    when: sa_getting_worse
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_appendicitis
+    source: nhs_appendicitis
+    soft: true    # likely conditions may lower this: it is from a page about one condition
+    note: "The Appendicitis page says an urgent GP appointment or 111 for tummy pain that is gradually getting worse or does not go away. 'Does not go away' is left out, because almost every stomach ache that is still there would count."
+
+  - id: rf_sa_lower_right
+    description: "Pain in the lower right side of the tummy"
+    when: sa_lower_right
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_appendicitis
+    source: nhs_appendicitis
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Appendicitis page says this for pain that moves to the lower right side. The Stomach ache page lists pain in the lower right as a sign of appendicitis. Applying it to all lower right pain is a reading of the source."
+
+  - id: rf_sa_high_temperature
+    description: "Stomach ache with a high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_acute_pancreatitis
+    soft: true    # likely conditions may lower this: a stomach bug often comes with a temperature
+    note: "The Acute pancreatitis, Bloating, Kidney stones and Diverticulitis pages each give an urgent GP appointment or 111 for tummy pain with a high temperature. Applying it to every stomach ache is AI judgement."
+
+  - id: rf_sa_yellow_skin
+    description: "Stomach ache with yellow skin or yellow whites of the eyes"
+    when: yellow_skin_or_eyes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_jaundice
+
+  - id: rf_sa_painful_lump
+    description: "A painful or firm lump in the tummy or groin, or one that cannot be pushed back in"
+    when: lump_painful_and_firm
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_hernia
+
+  - id: rf_sa_peeing_symptoms
+    description: "Stomach ache with pain when peeing, or needing to pee more often: possible urine or kidney infection"
+    when: {any: [pain_when_peeing, peeing_more_often]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_urinary_tract_infections
+    soft: true    # likely conditions may lower this: a pharmacist can treat most UTIs in women
+    note: "The UTI page says an urgent GP appointment or 111 for UTI symptoms with pain in the lower tummy or in the back. It says a pharmacist for women aged 16 to 64 with UTI symptoms, so this rule is soft."
+
+  - id: rf_sa_side_or_back
+    description: "Pain in the side or back, just under the ribs: possible kidney stones or kidney infection"
+    when: loin_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_kidney_infection
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Kidney infection page says an urgent GP appointment or 111 for pain in the back, just under the ribs, with symptoms of a kidney infection. The Kidney stones page says the same for severe pain."
+
+  - id: rf_sa_cannot_keep_fluids
+    description: "Stomach ache and being sick so often that cannot keep drinks down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_sa_young_child_dehydrated
+    description: "A child under 5 with tummy pain and signs of dehydration, such as fewer wet nappies"
+    when: {all: [age_under_5, dehydration_signs]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_sa_young_child_not_feeding
+    description: "A baby or young child with tummy pain who is feeding or eating much less than usual"
+    when: {all: [age_under_5, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_sa_baby_distressed
+    description: "A baby who will not stop crying and is very distressed"
+    when: {all: [age_under_1, baby_will_not_stop_crying]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_baby_reflux_urgent
+    source: nhs_reflux_in_babies
+
+  - id: rf_sa_diabetes_being_sick
+    description: "Diabetes, with tummy pain and being sick"
+    when: {all: [has_diabetes, vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your diabetes care team now or get help from NHS 111"}
+    advice: advice_dka_urgent
+    source: nhs_diabetic_ketoacidosis
+    note: "The page says call the diabetes team or 111 if you have diabetes and feel unwell with slightly high ketones. Being sick can quickly lead to diabetic ketoacidosis. Using being sick as the trigger is AI judgement."
+
+  - id: rf_sa_thirsty_peeing
+    description: "Very thirsty and peeing much more than usual: possible diabetes"
+    when: {all: [very_thirsty, peeing_more_often]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_stomach_ache_urgent
+    source: nhs_diabetic_ketoacidosis
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: thirst and peeing more, with tummy pain, can be the first sign of type 1 diabetes, especially in children. It needs a blood sugar test the same day."
+
+outcome_rules:
+  - id: or_sa_keeps_coming_back
+    description: "Stomach ache that does not go away or keeps coming back"
+    when: sa_keeps_coming_back
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stomach_ache_gp
+    source: nhs_stomach_ache
+
+  - id: or_sa_lump
+    description: "A lump in the tummy or groin"
+    when: lump_in_tummy_or_groin
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stomach_ache_gp
+    source: nhs_stomach_ache
+    note: "The Hernia page also says see a GP if you think you have a hernia."
+
+  - id: or_sa_worried
+    description: "Stomach ache and worried about the symptoms"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stomach_ache_gp
+    source: nhs_stomach_ache
+
+  - id: or_sa_weight_loss
+    description: "Stomach ache and losing weight without trying"
+    when: weight_loss
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stomach_ache_gp
+    source: nhs_indigestion
+    note: "The Stomach ulcer and Gastritis pages say an urgent GP appointment or 111 for weight loss with their symptoms. The Indigestion, Flatulence and Bloating pages say see a GP. The likely conditions can raise it."
+
+  - id: or_sa_bowel_change
+    description: "Stomach ache with changes in pooing for 3 weeks or more"
+    when: bowel_habit_change_3_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_stomach_ache_gp
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+default:
+  description: "Stomach ache with nothing that needs more urgent help: a pharmacist can help"
+  outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "Speak to a pharmacist. The source gives no fixed time."}
+  advice: advice_stomach_ache_pharmacy
+  source: nhs_stomach_ache
+  note: "The page says a pharmacist can help with what might be causing a stomach ache and with treatments. Not a floor: likely mild causes (trapped wind, a stomach bug) can lower it to self-care, and likely serious ones raise it."

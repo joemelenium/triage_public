@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stye
+body_system: eyes
+# A small, painful lump on the eyelid. Should go away within a week.
+entry_symptoms: [eyelid_problem, eye_pain]
+name: "Stye (a small, painful lump on the eyelid)"
+medical_name: "Hordeolum"
+snomed: "397513003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: eyelid_problem, prevalence: common}
+  - {finding: eye_pain, prevalence: uncommon}
+findings:
+  eyelid_lump_painful: strongly_supports
+  eyelid_lump: strongly_supports
+  eyelid_swollen: supports
+  watering_eyes: supports
+key_findings: [eyelid_lump_painful]
+source: nhs_stye
+informed_by: [nhs_stye, nhs_eyelid_problems]

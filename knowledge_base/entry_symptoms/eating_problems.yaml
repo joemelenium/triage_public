@@ -1,0 +1,134 @@
+# Entry symptom: eating problems (worried about eating, weight or body shape).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The NHS pages say to see a GP as soon as you can if you may have an eating
+# problem, so the default is a GP and a floor. The physical danger signs below
+# (fainting, severe weakness, a fit, a very slow heartbeat, being sick many
+# times a day) are not on the NHS pages as red flags. They come from clinical
+# knowledge of the physical harm eating problems can cause, and are AI judgement.
+
+id: eating_problems
+name: "Eating problems"
+presenting_finding: eating_problem
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: eating_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - fainted
+      - weak_or_cannot_stand
+      - had_a_fit
+      - heart_beating_very_slowly
+      - chest_pain
+      - cannot_keep_safe
+
+  - id: eating_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - cannot_keep_fluids_down
+      - dehydration_signs
+      - suicidal_thoughts_or_self_harm
+
+  # Not a red-flag screen: signs that need a GP within a few days. Asked as one
+  # checklist after the red flags, and only if the outcome so far is lower than this.
+  - id: eating_soon_checklist
+    level: soon
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_low_weight_or_fast_loss
+      - eating_very_little
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ep_fainted
+    description: "An eating problem and has passed out (fainted)"
+    when: fainted
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eating_ae
+    source: ai_judgement
+    note: "The Eating disorders page lists fainting or feeling faint as a physical sign. Clinical knowledge: fainting with an eating problem can mean a dangerous heart rhythm or very low blood sugar or salts, and needs checking the same day in hospital."
+
+  - id: rf_ep_weak
+    description: "An eating problem and so weak it is hard to stand up, climb stairs or get up from sitting"
+    when: weak_or_cannot_stand
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eating_ae
+    source: ai_judgement
+    note: "Clinical knowledge: muscle weakness this severe is a sign of dangerous starvation."
+
+  - id: rf_ep_fit
+    description: "An eating problem and has had a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_eating_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a fit can be caused by very low blood sugar or salts from not eating, being sick or taking laxatives."
+
+  - id: rf_ep_slow_heartbeat
+    description: "An eating problem and the heart beating very slowly"
+    when: heart_beating_very_slowly
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eating_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a very slow heartbeat is a sign of dangerous starvation."
+
+  - id: rf_ep_cannot_keep_safe
+    description: "Cannot keep themselves or someone else safe right now"
+    when: cannot_keep_safe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: nhs_urgent_mental_health
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ep_being_sick
+    description: "Being sick several times a day, or cannot keep drinks down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, or call NHS 111, today"}
+    advice: advice_eating_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: being sick many times a day can make salts in the blood (such as potassium) dangerously low, which can affect the heart."
+
+  - id: rf_ep_dehydration
+    description: "An eating problem with signs of dehydration"
+    when: dehydration_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, or call NHS 111, today"}
+    advice: advice_eating_urgent
+    source: ai_judgement
+    note: "Clinical knowledge. The Anorexia page says call 111 if someone needs urgent medical help."
+
+outcome_rules:
+  - id: or_ep_weight_loss
+    description: "Lost a lot of weight quickly, or very thin"
+    when: {any: [very_low_weight_or_fast_loss, weight_loss_a_lot]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP as soon as you can, within a few days"}
+    advice: advice_eating_soon
+    source: nhs_anorexia
+    note: "The page says see a GP as soon as you can if you think you may have anorexia. Mapping 'as soon as you can' to within a few days for someone who has lost a lot of weight is AI judgement."
+
+  - id: or_ep_child_restricting
+    description: "A child or young person under 16 eating very little to control their weight"
+    when: {all: [age_under_16, eating_very_little]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP as soon as you can, within a few days"}
+    advice: advice_eating_soon
+    source: nhs_anorexia
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The page says children with anorexia may not grow as expected, and to see a GP as soon as you can. Within a few days is AI judgement."
+
+default:
+  description: "Worried about eating, weight or body shape, with no danger signs: see a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP as soon as you can. The source gives no fixed time."}
+  advice: advice_eating_gp
+  source: nhs_eating_disorders
+  # A floor: the source says anyone who may have an eating problem should see a GP
+  # as soon as they can. Likely conditions can never take it lower.
+  floor: true

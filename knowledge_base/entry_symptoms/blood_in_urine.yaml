@@ -1,0 +1,96 @@
+# Entry symptom: blood in urine (pee).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The source says everyone who thinks they have blood in their pee needs an urgent
+# GP appointment or help from 111, even for a small amount or if they are not sure.
+# So the default is urgent and a floor, and there is no urgent-level checklist:
+# only the emergency signs can raise the outcome.
+
+id: blood_in_urine
+name: "Blood in urine"
+presenting_finding: blood_in_urine
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: blood_in_urine_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - skin_blotchy
+      - rash_does_not_fade
+      - injury_to_back_side_or_groin
+      - bladder_full_and_painful
+      - blood_clots_in_pee
+      - loin_pain_severe_in_waves
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_biu_drowsy
+    description: "Blood in pee and very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_urinary_tract_infections
+    note: "The UTI and Kidney infection pages say call 999 or go to A&E for being confused, drowsy or having difficulty speaking. Sudden confusion is in the universal red flags."
+
+  - id: rf_biu_sepsis_skin
+    description: "Blood in pee with blotchy skin, or a rash that does not fade when pressed: possible sepsis"
+    when: {any: [skin_blotchy, rash_does_not_fade]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_prostatitis
+    note: "The Prostatitis page lists these as 999 signs of a serious infection or sepsis. The Sepsis page gives the same advice."
+
+  - id: rf_biu_injury
+    description: "Blood in pee after an injury or hard blow to the back, side, tummy or groin"
+    when: injury_to_back_side_or_groin
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_blood_in_urine_ae
+    source: ai_judgement
+    note: "Clinical knowledge: blood in the pee after an injury can mean the kidney or bladder is damaged, which needs checking in hospital. No NHS page in the source log covers this."
+
+  - id: rf_biu_cannot_pee
+    description: "Blood in pee, and a painful or swollen lower tummy with a strong need to pee but unable to"
+    when: bladder_full_and_painful
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_cannot_pee_ae
+    source: ai_judgement
+    note: "Clinical knowledge: blood clots can block the bladder. A full, painful bladder needs a tube (catheter) put in at hospital. The unable to pee entry symptom also applies."
+
+  - id: rf_biu_clots_on_blood_thinners
+    description: "Blood clots or a lot of blood in the pee in someone taking medicine to thin the blood"
+    when: {all: [blood_clots_in_pee, takes_blood_thinners]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_blood_in_urine_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: heavy bleeding while on blood thinners may need the blood checked and treated the same day in hospital. Needs clinical review."
+
+  - id: rf_biu_stone_with_temperature
+    description: "Severe pain in the side that comes in waves, with a high temperature or shivering: possible blocked, infected kidney"
+    when: {all: [loin_pain_severe_in_waves, very_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_kidney_pain_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source pages give urgent
+    note: "Source difference: the Kidney stones page says an urgent GP appointment or 111 for severe pain or a high temperature. Clinical knowledge: a stone blocking an infected kidney needs hospital treatment the same day. The more urgent is used, marked soft."
+
+outcome_rules: []
+
+default:
+  description: "Blood in pee, or thinks there may be: get it checked today"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+  advice: advice_blood_in_urine_urgent
+  source: nhs_blood_in_urine
+  # A floor: the source says you need to get it checked, even if there is only a small
+  # amount or you are not sure it is blood. Likely conditions can never take it lower.
+  floor: true
+  note: "The Bladder cancer page gives the same advice: an urgent GP appointment even if it is the first time, a small amount, or you are not sure."

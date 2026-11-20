@@ -1,0 +1,75 @@
+id: bj_d05
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- hand_pain
+- injury_or_fall
+summary: 34-year-old woman who fell off her bike onto an outstretched hand 2 hours ago and heard a pop. The wrist is swollen and sore but looks normal in shape, she can move her fingers and has full feeling.
+opening_statement: I came off my bike and landed on my hand. I heard a pop in my wrist and it's swollen.
+findings:
+  present:
+  - hand_pain
+  - injury_or_fall
+  - wrist_pain
+  - had_a_fall
+  - heard_snap_at_injury
+  - swollen_area
+  - think_bone_broken
+  absent:
+  - changed_shape
+  - numb_after_injury
+  - bone_through_skin
+  - limb_cold_pale_or_blue
+  - cannot_move_painful_part
+  - serious_accident
+  - head_injury
+  - faint_or_sick_from_pain
+  - severe_pain
+  - heavy_bleeding
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 34
+    sex: female
+  full:
+    age: 34
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Heard a pop at the time of the wrist injury
+  findings:
+  - heard_snap_at_injury
+  minimum_acuity: urgent
+  source:
+    page: wrist_pain.txt
+    quote: you heard a snap, grinding or popping noise at the time of the injury
+safety_netting_should_cover:
+- point: Contact NHS 111 today
+  any_of:
+  - '111'
+- point: Go to A&E if the fingers go numb or the wrist changes shape or colour
+  any_of:
+  - A&E
+  - '999'
+source:
+  expected_outcome:
+    page: wrist_pain.txt
+    quote: you heard a snap, grinding or popping noise at the time of the injury
+  minimum_safe_acuity:
+    page: wrist_pain.txt
+    quote: If you think you might have broken your wrist, do not try to treat it yourself. Contact 111 to find out what to do.
+variants:
+- id: bj_d05_v1
+  style: anxious, brief
+  opening_statement: I think I've broken my wrist. I heard it go when I fell.
+  volunteered:
+  - wrist_pain
+  - had_a_fall
+  - heard_snap_at_injury
+atypical: false
+notes: 'Source difference: sprains_and_strains.txt lists ''you heard a crack when you had your injury'' under ''Call 999 or go to A&E''. wrist_pain.txt lists a snap or popping noise under ''Contact NHS 111'', and broken_arm_or_wrist.txt keeps A&E for numbness, a bone through the skin, heavy bleeding or a change in shape or colour, none of which she has. The wrist pages fit better, so urgent. Low-speed fall from a bike: not a serious accident and no head injury.'

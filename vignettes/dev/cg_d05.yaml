@@ -1,0 +1,79 @@
+id: cg_d05
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: 'A 70-year-old woman with flu symptoms that came on within hours yesterday: high temperature, aching body, dry cough, sore throat and tiredness. She is managing at home and has no breathing problems.'
+opening_statement: I think I've got the flu that's going round. I've got a temperature, I ache all over and I've got a dry cough.
+findings:
+  present:
+  - cough
+  - cough_dry
+  - very_high_temperature
+  - aching_body
+  - very_tired
+  - sore_throat
+  absent:
+  - short_of_breath
+  - difficulty_breathing
+  - severe_breathing_difficulty
+  - chest_pain
+  - coughing_up_blood
+  - sudden_confusion
+  - lips_or_skin_blue_grey
+  - breathing_very_fast
+  - skin_blotchy
+  - rash_does_not_fade
+  - feels_very_unwell
+  - seriously_unwell_getting_worse
+  - long_term_condition
+  - weakened_immune_system
+  - has_copd
+  - has_asthma
+  - not_peed_12_hours
+  - dehydration_signs
+  - cough_phlegm
+  - passed_out
+  - tested_positive_flu
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 70
+    sex: female
+  full:
+    age: 70
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags: []
+safety_netting_should_cover:
+- point: Get an urgent GP appointment or contact NHS 111 today
+  any_of:
+  - '111'
+  - urgent GP
+  - urgent appointment
+- point: Call 999 for sudden chest pain, severe difficulty breathing or coughing up blood
+  any_of:
+  - '999'
+- point: Rest and drink plenty of fluids
+  any_of:
+  - rest
+  - fluids
+source:
+  expected_outcome:
+    page: flu.txt
+    quote: you're 65 or over
+  minimum_safe_acuity:
+    page: flu.txt
+    quote: 'Ask for an urgent GP appointment or get help from NHS 111 if:'
+variants:
+- id: cg_d05_v1
+  style: stoic, does not want to bother anyone
+  opening_statement: I don't like to make a fuss, it's only the flu, but my son told me to ask.
+  volunteered: []
+atypical: false
+notes: 'Urgency comes from age alone (flu.txt: 65 or over). The patient feels she is coping, so the engine must use age from context. With no context, a flu-like illness would be self-care.'

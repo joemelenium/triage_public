@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: minor_burn
+body_system: skin_and_hair
+entry_symptoms: [burn]
+name: "Small burn or scald"
+medical_name: "Superficial burn"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from a serious burn: small (smaller than the palm), red or pink, and not on the face, genitals or bottom.
+  burn_small: strongly_supports
+  burn_blistered: supports
+key_findings: [burn_small]
+source: nhs_burns
+informed_by: [nhs_burns]

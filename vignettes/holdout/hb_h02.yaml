@@ -1,0 +1,80 @@
+id: hb_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- coughing_up_blood
+summary: A 63-year-old woman calling mainly about a new pain in her upper back since yesterday. Only when asked does she mention she coughed up a little blood this morning.
+opening_statement: I've got this nagging pain between my shoulder blades since yesterday. Oh, and I did cough up a bit of blood this morning, but it was only a little.
+findings:
+  present:
+  - coughing_up_blood
+  - upper_back_pain
+  - cough
+  absent:
+  - blood_more_than_streaks
+  - short_of_breath
+  - difficulty_breathing
+  - chest_pain
+  - heart_beating_very_fast
+  - cp_tearing_to_back
+  - fainted
+  - passed_out
+  - very_high_temperature
+  - leg_pain_or_swelling
+  - recent_surgery_or_immobile
+  - recent_long_journey
+  - sweating
+  - rash_one_side_of_body
+  - nausea_or_vomiting
+  - has_cancer
+  - previous_blood_clot
+  - severe_breathing_difficulty
+  - lips_or_skin_blue_grey
+  - pill_or_hrt
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 63
+    sex: female
+  full:
+    age: 63
+    sex: female
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Coughing up blood with upper back pain
+  findings:
+  - coughing_up_blood
+  - upper_back_pain
+  minimum_acuity: emergency
+  source:
+    page: coughing_up_blood.txt
+    quote: you're coughing up blood and finding it hard to breathe, have a very fast heartbeat or have pain in your chest or upper back
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of:
+  - '999'
+- point: Do not drive to A&E
+  any_of:
+  - do not drive
+  - don't drive
+  - not drive
+source:
+  expected_outcome:
+    page: coughing_up_blood.txt
+    quote: you're coughing up blood and finding it hard to breathe, have a very fast heartbeat or have pain in your chest or upper back
+  minimum_safe_acuity:
+    page: pulmonary_embolism.txt
+    quote: you feel pain in your chest or upper back
+variants:
+- id: hb_h02_v1
+  style: only mentions the back pain
+  opening_statement: I've got a pain in my upper back, between my shoulder blades.
+  volunteered:
+  - upper_back_pain
+atypical: true
+notes: 'Easy to miss: the blood is mentioned in passing, and not at all in v1. Back pain is not tearing, and there is no rash.'

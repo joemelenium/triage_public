@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: gallstones
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, indigestion, feeling_sick]
+name: "Gallstones (small stones in the gallbladder that can cause attacks of pain)"
+medical_name: "Biliary colic (gallstones)"
+snomed: "235919008"
+# The Gallstones page says an urgent GP appointment or 111 for tummy pain that
+# lasts longer than 30 minutes.
+acuity_needed: urgent
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_gallstones, prevalence: common}
+  - {finding: age_under_16, prevalence: rare}
+findings:
+  # What tells it apart: pain in the upper right, under the ribs, after fatty food.
+  sa_upper_right: strongly_supports
+  sa_after_eating: strongly_supports
+  sa_severe: supports
+  sa_spreads_to_back: supports
+  feeling_sick: supports
+  vomiting: supports
+key_findings: [sa_upper_right, sa_after_eating, has_gallstones]
+source: nhs_gallstones
+informed_by: [nhs_gallstones, nhs_stomach_ache]

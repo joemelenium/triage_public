@@ -1,0 +1,147 @@
+# Entry symptom: dehydration (signs of not having enough water in the body).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Uses the network's existing "signs of dehydration" observation (peeing less,
+# dark pee) as its main symptom, so a "yes" to it in a sore throat or high
+# temperature session brings these rules in too.
+#
+# The NHS page lists dark yellow pee and peeing less than usual among its
+# urgent signs, so the default is urgent. It is soft: likely mild dehydration
+# from an obvious cause (heat, exercise, a tummy bug) lowers it.
+
+id: dehydration
+name: "Dehydration"
+presenting_finding: dehydration_signs
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_dehydration]
+
+screens:
+  - id: dehydration_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - skin_blotchy
+      - cold_hands_and_feet
+      - breathing_very_fast
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - hot_skin_not_sweating
+      - still_unwell_after_cooling
+
+  - id: dehydration_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - dizzy_when_standing
+      - heart_beating_very_fast
+      - not_peed_12_hours
+      - child_dehydration_signs
+      - sunken_soft_spot
+      - cannot_keep_fluids_down
+
+red_flags:
+  # ---- Emergency: signs of shock -------------------------------------------
+  - id: rf_dh_shock_skin
+    description: "Signs of dehydration with blotchy skin, or skin that feels cold: possible shock"
+    when: {any: [skin_blotchy, cold_hands_and_feet]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dehydration_emergency
+    source: nhs_dehydration
+
+  - id: rf_dh_fast_breathing
+    description: "Signs of dehydration with difficulty breathing or lots of quick breaths"
+    when: breathing_very_fast
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dehydration_emergency
+    source: nhs_dehydration
+
+  - id: rf_dh_drowsy
+    description: "Signs of dehydration and so drowsy they are hard to wake or cannot stay awake"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dehydration_emergency
+    source: nhs_dehydration
+
+  - id: rf_dh_heatstroke
+    description: "Hot skin that is not sweating, or still unwell after 30 minutes of cooling down: possible heatstroke"
+    when: {any: [hot_skin_not_sweating, still_unwell_after_cooling]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_heatstroke_999
+    source: nhs_heat_exhaustion
+
+  - id: rf_dh_young_child_not_peed
+    description: "A child under 5 who has not had a pee for 12 hours"
+    when: {all: [age_under_5, not_peed_12_hours]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Dehydration page says urgent for fewer wet nappies. The Sepsis page says 999 or A&E for no pee in 12 hours in a child under 5. The more urgent is used."
+
+  # ---- Urgent: serious dehydration ----------------------------------------
+  - id: rf_dh_dizzy_standing
+    description: "Dizzy when standing up, and it does not go away"
+    when: dizzy_when_standing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+
+  - id: rf_dh_fast_heart
+    description: "Signs of dehydration with a fast heartbeat"
+    when: heart_beating_very_fast
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+
+  - id: rf_dh_not_peed
+    description: "No pee for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+
+  - id: rf_dh_child_signs
+    description: "A child with dry nappies, sunken eyes or no tears, or a baby with a sunken soft spot"
+    when: {any: [child_dehydration_signs, sunken_soft_spot]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 or ask for an urgent GP appointment"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+
+  - id: rf_dh_cannot_keep_fluids_down
+    description: "Signs of dehydration and cannot keep fluids down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dehydration_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: someone who cannot keep any fluids down cannot rehydrate at home. The Dehydration page says to start with small sips."
+
+  - id: rf_dh_baby
+    description: "A baby under 1 with signs of dehydration"
+    when: age_under_1
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call 111 now"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+    note: "The page says babies are more at risk of dehydration and to call 111 for advice for a child under 5. Making every baby under 1 urgent is AI judgement."
+
+outcome_rules:
+  - id: or_dh_unusually_tired
+    description: "Signs of dehydration and feeling unusually tired"
+    when: very_tired
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dehydration_urgent
+    source: nhs_dehydration
+    soft: true    # likely conditions may lower this: mild dehydration often makes people a bit tired
+    note: "The page lists feeling unusually tired as a sign of serious dehydration, and also lists feeling tired as an ordinary symptom of dehydration. Soft for that reason."
+
+  - id: or_dh_after_sickness_or_diarrhoea
+    description: "Signs of dehydration after diarrhoea or being sick: a pharmacist can recommend rehydration drinks"
+    when: diarrhoea_or_vomiting
+    outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "See a pharmacist. The source gives no fixed time."}
+    advice: advice_dehydration_pharmacy
+    source: nhs_dehydration
+
+default:
+  description: "Signs of dehydration: peeing less or dark pee is listed by the source as a reason for urgent help"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+  advice: advice_dehydration_urgent
+  source: nhs_dehydration
+  note: "Soft: likely mild dehydration with a clear cause (heat, exercise, a tummy bug) lowers it to drinking more fluids at home. That reading of the page is AI judgement."

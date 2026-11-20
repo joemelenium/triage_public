@@ -1,0 +1,177 @@
+# Entry symptom: pelvic pain (pain low down in the tummy, between the hips).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by the conditions that look likely,
+# if something the patient said points to a milder cause. The engine takes the
+# most urgent rule that fires. If none fires, it uses the default at the bottom.
+#
+# Pelvic pain can affect anyone. The condition cards here are mostly women's health
+# causes.
+
+id: pelvic_pain
+name: "Pelvic pain"
+presenting_finding: pelvic_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: pelvic_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - pelvic_pain_severe_or_worsening
+      - sa_sudden_severe
+      - light_headed
+      - fainted
+      - shoulder_tip_pain
+      - difficulty_breathing
+      - heavy_vaginal_bleeding
+
+  - id: pelvic_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - may_be_pregnant
+      - very_high_temperature
+      - nausea_or_vomiting
+      - weak_flow_or_straining
+      - constipation
+      - blood_in_urine
+      - bleeding_from_bottom
+      - pain_when_peeing
+      - peeing_more_often
+      - vaginal_discharge
+      - bleeding_between_periods_or_after_sex
+
+  - id: pelvic_pain_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pain_keeps_coming_back
+      - bloating_regular
+      - weight_loss
+      - feel_full_quickly
+      - bowel_habit_change_3_weeks
+      - pain_during_sex
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_pp_severe_or_worsening
+    description: "Pelvic pain that is severe, getting worse, or hurts when moving or touching the area"
+    when: {any: [pelvic_pain_severe_or_worsening, sa_sudden_severe]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+    note: "A sharp, sudden and very bad pain is included from the Ectopic pregnancy and Pelvic inflammatory disease pages, which give the same advice."
+
+  - id: rf_pp_faint_or_dizzy
+    description: "Pelvic pain with feeling faint, dizzy or light-headed, or passing out"
+    when: {any: [light_headed, fainted]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_shoulder_tip
+    description: "Pelvic pain with pain in the tip of the shoulder"
+    when: shoulder_tip_pain
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_difficulty_breathing
+    description: "Pelvic pain with difficulty breathing"
+    when: difficulty_breathing
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_heavy_bleeding
+    description: "Pelvic pain with heavy bleeding from the vagina"
+    when: heavy_vaginal_bleeding
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_infection_signs
+    description: "Pelvic pain with a very high temperature and unusual discharge, or feeling very unwell: possible pelvic infection"
+    when: {all: [very_high_temperature, {any: [vaginal_discharge, feels_very_unwell, nausea_or_vomiting]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_pid_emergency
+    source: nhs_pelvic_inflammatory_disease
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Pelvic inflammatory disease page says call 999 or go to A&E for symptoms of PID with a very high temperature or feeling sick. The Pelvic pain page says get help from 111 for pelvic pain with a high temperature. The more urgent is used for pain with unusual discharge or feeling unwell, marked soft."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_pp_may_be_pregnant
+    description: "Pelvic pain in someone who is or may be pregnant"
+    when: {any: [may_be_pregnant, pregnant_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111. If you are 20 weeks pregnant or more, contact your midwife or maternity unit."}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_pelvic_pain
+    note: "The Ectopic pregnancy page gives the same advice for tummy pain in someone who might be pregnant, even with a negative test."
+
+  - id: rf_pp_high_temperature
+    description: "Pelvic pain with a very high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_sick
+    description: "Pelvic pain with feeling sick or being sick, or diarrhoea and vomiting"
+    when: nausea_or_vomiting
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_peeing_or_pooing
+    description: "Pelvic pain with difficulty peeing or pooing, blood in pee or poo, or pain when peeing"
+    when: {any: [{any: [weak_flow_or_straining, constipation]}, {any: [blood_in_urine, bleeding_from_bottom]}, pain_when_peeing]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_discharge_or_bleeding
+    description: "Pelvic pain with unusual discharge, fluid or bleeding from the vagina"
+    when: {any: [vaginal_discharge, bleeding_between_periods_or_after_sex, fluid_leaking_from_vagina]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+
+  - id: rf_pp_peeing_more
+    description: "Pelvic pain and needing to pee more than usual"
+    when: peeing_more_often
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+    soft: true    # likely conditions may lower this: needing to pee more is common with a cyst or fibroids
+    note: "Taken from the Pelvic pain page ('pain when peeing or need to pee more than usual'). Soft, because needing to pee more often on its own is also a symptom of slow-growing causes such as fibroids, which need a GP, not urgent care. AI reading."
+
+outcome_rules:
+  - id: or_pp_keeps_coming_back
+    description: "Pelvic pain that comes and goes or does not go away"
+    when: pain_keeps_coming_back
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pelvic_pain_gp
+    source: nhs_pelvic_pain
+
+  - id: or_pp_ovarian_cancer_signs
+    description: "Pelvic pain with bloating, feeling full quickly, weight loss, or bowel changes that do not go away"
+    when: {any: [bloating_regular, feel_full_quickly, weight_loss, bowel_habit_change_3_weeks]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pelvic_pain_gp
+    source: nhs_pelvic_pain
+
+  - id: or_pp_pain_during_sex
+    description: "Pelvic pain with pain during or after sex"
+    when: pain_during_sex
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pelvic_pain_gp
+    source: nhs_period_pain
+
+default:
+  description: "Pelvic pain with nothing that needs more urgent help: see a GP if worried, and do not self-diagnose"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_pelvic_pain_gp
+  source: nhs_pelvic_pain
+  note: "Not a floor: the page says see a GP if worried. Period pain or ovulation pain that is clearly likely may lower this to self-care."

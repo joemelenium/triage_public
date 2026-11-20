@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: nosebleeds_from_a_bleeding_problem
+body_system: ear_nose_throat
+entry_symptoms: [nosebleed]
+name: "Nosebleeds made worse by blood-thinning medicine or a blood clotting condition"
+medical_name: "Epistaxis due to anticoagulant or coagulation disorder"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: takes_blood_thinners, prevalence: very_common}
+findings:
+  # What tells it apart: regular nosebleeds and easy bruising in someone taking medicine to prevent
+  # blood clots, or with a clotting condition.
+  nosebleeds_regular: strongly_supports
+  bruising_or_bleeding_easily: strongly_supports
+  nosebleed_over_15_minutes: supports
+  gums_sore_swollen_bleeding: supports
+key_findings: [takes_blood_thinners, nosebleeds_regular, bruising_or_bleeding_easily]
+source: nhs_nosebleed
+informed_by: [nhs_nosebleed]

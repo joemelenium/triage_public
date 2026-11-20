@@ -1,0 +1,42 @@
+# Entry symptom: body odour.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: body_odour
+name: "Body odour"
+presenting_finding: body_odour
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: body_odour_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - smell_changed
+      - sweating_suddenly_much_more
+      - affecting_daily_life_or_wellbeing
+      - not_better_with_self_care
+
+red_flags: []
+
+outcome_rules:
+  - id: or_bo_change
+    description: "A change in how your body usually smells, or suddenly sweating much more than usual"
+    when: {any: [smell_changed, sweating_suddenly_much_more]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_body_odour_gp
+    source: nhs_body_odour_bo
+    note: "The source says see a GP for these if body odour has not got better after treating it yourself. Not requiring that is AI judgement, because a change in smell can be a sign of another condition, such as diabetes or a kidney or liver problem."
+
+  - id: or_bo_self_esteem
+    description: "Body odour not better after self-care and affecting your self-esteem"
+    when: {all: [not_better_with_self_care, affecting_daily_life_or_wellbeing]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_body_odour_gp
+    source: nhs_body_odour_bo
+
+default:
+  description: "Body odour that you can treat yourself, and a pharmacist can help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "You can usually treat body odour yourself"}
+  advice: advice_body_odour_self_care
+  source: nhs_body_odour_bo

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: penile_fracture
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot]
+name: "Broken penis (penile fracture)"
+medical_name: "Fracture of erect penis"
+snomed: "373596001"
+# AI judgement: a tear in the erect penis, usually during sex, needs surgery soon.
+acuity_needed: emergency
+danger: serious
+sex: male
+prevalence: rare
+findings:
+  penis_injury_during_sex: strongly_supports
+  cannot_pee: supports
+key_findings: [penis_injury_during_sex]
+source: ai_judgement
+informed_by: [nhs_penis_lumps_and_spots]

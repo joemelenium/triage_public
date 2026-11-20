@@ -1,0 +1,78 @@
+id: sk_h01
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- rash
+summary: 34-year-old woman who started a new medicine 2 weeks ago, had flu-like symptoms for 3 days, and now has a spreading rash of round patches darker in the middle, with blisters, and sore mouth and eyes.
+opening_statement: I've come out in a rash that's spreading all over and blistering, and my mouth and eyes are really sore. I started a new tablet a couple of weeks ago.
+findings:
+  present:
+  - rash
+  - rash_circles_darker_middle
+  - rash_spreading
+  - rash_blisters
+  - rash_sore_or_painful
+  - sores_mouth_eyes_or_genitals
+  - new_medicine_recently
+  - very_high_temperature
+  - skin_peeling_or_blistering_widely
+  absent:
+  - lips_tongue_throat_swelling
+  - difficulty_breathing
+  - wheezing
+  - tick_bite_or_tick_area
+  - rash_does_not_fade
+  - sudden_confusion
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 34
+    sex: female
+  full:
+    age: 34
+    sex: female
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Spreading target-like rash after starting a new medicine
+  findings:
+  - rash_circles_darker_middle
+  - rash_spreading
+  - new_medicine_recently
+  minimum_acuity: emergency
+  source:
+    page: stevens_johnson.txt
+    quote: have a rash spreading across the body, or a circular rash that's darker in the middle and lighter around the outside, after having an infection or starting a new medicine
+- description: Blistering rash with sore mouth and eyes
+  findings:
+  - rash_blisters
+  - sores_mouth_eyes_or_genitals
+  minimum_acuity: emergency
+  source:
+    page: stevens_johnson.txt
+    quote: have a swollen or sore mouth, face, lips, tongue, throat or eyes
+safety_netting_should_cover:
+- point: Call 999 or go to A&E now
+  any_of:
+  - '999'
+  - A&E
+- point: Not to drive themselves to A&E
+  any_of:
+  - do not drive
+  - don't drive
+- point: Take the medicine packet with her
+  any_of:
+  - medicine
+source:
+  expected_outcome:
+    page: stevens_johnson.txt
+    quote: have a rash spreading across the body, or a circular rash that's darker in the middle and lighter around the outside, after having an infection or starting a new medicine
+  minimum_safe_acuity:
+    page: stevens_johnson.txt
+    quote: have a rash and the skin is itchy or painful, red, swollen, blistered or peeling
+atypical: false
+notes: Possible Stevens-Johnson syndrome.

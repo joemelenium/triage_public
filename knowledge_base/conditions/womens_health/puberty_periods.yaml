@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: puberty_periods
+body_system: womens_health
+entry_symptoms: [irregular_periods, missed_or_late_period, heavy_periods]
+name: "Periods not settled yet after starting (puberty)"
+medical_name: "Irregular menstruation in puberty"
+# Periods are often irregular, heavy or missed for the first year or two.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_common}
+findings:
+  periods_started_recently: strongly_supports
+  irregular_periods: supports
+  missed_or_late_period: supports
+  heavy_periods: supports
+key_findings: [periods_started_recently]
+source: nhs_irregular_periods
+informed_by: [nhs_irregular_periods, nhs_heavy_periods]

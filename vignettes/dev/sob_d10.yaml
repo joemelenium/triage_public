@@ -1,0 +1,48 @@
+id: sob_d10
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 58-year-old woman, not pregnant, with no known heart problem. Over about six weeks she has become breathless getting dressed and climbing stairs, wakes at night needing to sit up to breathe, has a night-time cough and swollen ankles by the evening."
+
+opening_statement: "I'm getting out of breath doing silly things like getting dressed, and my ankles are swollen by the end of the day."
+
+findings:
+  present: [short_of_breath, sob_everyday_activity, sob_lying_flat, sob_slowly_worse, swollen_ankles, cough, cough_worse_at_night, very_tired, heart_risk_factors, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, passed_out, fainted, chest_pain, cp_tight_or_squeezing, cp_heavy, frothy_pink_phlegm, cough_phlegm, coughing_up_blood, sudden_weight_gain, palpitations, heart_beating_very_fast, leg_pain_or_swelling, very_high_temperature, pregnant_or_recently_given_birth, known_heart_condition, has_angina, has_asthma, has_copd, recent_surgery_or_immobile, recent_long_journey, previous_blood_clot, paler_than_usual, wheezing, sob_more_than_usual, has_heart_failure]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 58, sex: female}
+  full:
+    age: 58
+    sex: female
+    findings: {heart_risk_factors: "yes", known_heart_condition: "no"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or NHS 111 (heart failure symptoms need checking)"
+    any_of: ["111", "GP"]
+  - point: "Call 999 if severe difficulty breathing, or lips or skin turn pale, blue or grey"
+    any_of: ["999"]
+  - point: "Get help sooner if coughing up frothy pink phlegm or sudden weight gain"
+    any_of: ["pink", "weight"]
+
+source:
+  expected_outcome: {page: heart_failure.txt, quote: "you feel breathless when lying down or from everyday activity"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "you feel short of breath and have swollen ankles"}
+
+variants: []
+
+atypical: false
+notes: "Possible new heart failure (heart_failure.txt symptoms: 'feeling out of breath when doing everyday activities or lying down', 'swelling in your feet, ankles, legs', 'coughing at night'). SOURCE DIFFERENCE: heart_failure.txt has 'Non-urgent advice: See a GP if you have symptoms of heart failure' but also 'Urgent advice' for 'you feel breathless when lying down or from everyday activity'; shortness_of_breath.txt gives only 'Non-urgent advice: See a GP if' for breathlessness lying down or with swollen ankles. Judgement: expected urgent (the more specific urgent list on heart_failure.txt matches her exactly), with routine as the minimum safe acuity because shortness_of_breath.txt supports a non-urgent GP visit. heart_risk_factors is present (high blood pressure)."

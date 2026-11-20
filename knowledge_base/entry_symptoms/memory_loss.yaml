@@ -1,0 +1,85 @@
+# Entry symptom: memory loss (problems remembering things).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Memory loss page has no emergency advice. Memory problems that start
+# suddenly are a different matter: they can be a stroke, a head injury or
+# sudden confusion (delirium). Those rules come from the Stroke and Headaches
+# pages and clinical knowledge.
+
+id: memory_loss
+name: "Memory loss"
+presenting_finding: memory_problems
+also_covers: [nhs_memory_loss_amnesia]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: memory_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - memory_loss_sudden
+      - numbness_or_weakness
+      - difficulty_speaking
+      - head_injury_last_3_months
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+
+red_flags:
+  - id: rf_mem_stroke
+    description: "Memory problems with numbness or weakness, or difficulty speaking: possible stroke"
+    when: {any: [numbness_or_weakness, difficulty_speaking]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+
+  - id: rf_mem_sudden
+    description: "Problems remembering things that started suddenly"
+    when: memory_loss_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_memory_ae
+    source: nhs_stroke_symptoms
+    note: "The Stroke page lists confusion and memory loss as signs of a stroke, and the Confusion page says get help immediately for sudden confusion. A&E rather than 999 for sudden memory loss alone is AI judgement."
+
+  - id: rf_mem_head_injury
+    description: "Memory problems after a head injury in the last 3 months"
+    when: head_injury_last_3_months
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_memory_ae
+    source: nhs_head_injury
+    note: "The Head injury page says call 999 for problems with understanding, speaking or writing after a recent head injury. For a head injury up to 3 months ago, A&E is AI judgement: bleeding on the brain can build up slowly, especially in older people."
+
+  - id: rf_mem_drowsy
+    description: "Memory problems and very drowsy or hard to keep awake"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_memory_ae
+    source: ai_judgement
+    note: "Clinical knowledge: drowsiness with memory problems may be sudden confusion (delirium) or pressure on the brain."
+
+outcome_rules:
+  - id: or_mem_daily_life
+    description: "Memory problems that are affecting day-to-day life"
+    when: memory_affecting_daily_life
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_memory_gp
+    source: nhs_memory_loss_amnesia
+
+  - id: or_mem_getting_worse
+    description: "Memory problems slowly getting worse over months or years"
+    when: memory_getting_worse
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_memory_gp
+    source: nhs_confusion
+    note: "The Confusion page says see a GP if you or a relative have gradually become more forgetful or confused."
+
+default:
+  description: "Memory problems: see a GP to find the cause"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_memory_gp
+  source: nhs_memory_loss_amnesia
+  # A floor: the source says do not try to self-diagnose the cause - always see a GP.
+  floor: true

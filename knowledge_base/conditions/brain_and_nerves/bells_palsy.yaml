@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bells_palsy
+body_system: brain_and_nerves
+entry_symptoms: [weakness_or_paralysis, face_numbness]
+name: "Bell's palsy (weakness on one side of the face)"
+medical_name: "Bell's palsy"
+snomed: "193093009"
+acuity_needed: urgent
+danger: moderate
+prevalence: uncommon
+findings:
+  # Treatment works best if started within 72 hours. It can look like a stroke, so a drooping face is still sent to 999 by the rules. What tells it apart: only the face is weak, often with pain behind the ear or a change in taste.
+  face_droop_one_side: strongly_supports
+  pain_behind_ear_or_taste_change: strongly_supports
+  stroke_signs: supports
+  weakness_one_side: supports
+  face_numbness: supports
+key_findings: [face_droop_one_side, pain_behind_ear_or_taste_change]
+source: nhs_bells_palsy
+informed_by: [nhs_bells_palsy, nhs_paralysis]

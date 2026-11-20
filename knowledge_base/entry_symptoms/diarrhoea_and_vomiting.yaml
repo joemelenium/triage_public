@@ -1,0 +1,262 @@
+# Entry symptom: diarrhoea and being sick (vomiting), together or on their own.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Diarrhoea and vomiting page says the advice is the same for diarrhoea and
+# being sick together or on their own. The Norovirus and Food poisoning pages
+# give the same advice word for word.
+
+id: diarrhoea_and_vomiting
+name: "Diarrhoea and vomiting"
+presenting_finding: diarrhoea_or_vomiting
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: dv_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - vomiting_blood
+      - green_vomit
+      - swallowed_something_harmful
+      - stiff_neck
+      - bothered_by_light
+      - headache_sudden_severe
+      - sa_sudden_severe
+      - skin_blotchy
+      - breathing_very_fast
+      - child_floppy_or_hard_to_wake
+      - rash_does_not_fade
+
+  - id: dv_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - cannot_keep_fluids_down
+      - bleeding_from_bottom
+      - vomiting_over_2_days
+      - diarrhoea_over_7_days
+      - dehydration_signs
+      - feeding_much_less
+      - recent_antibiotics
+      - stomach_ache
+      - very_thirsty
+      - peeing_more_often
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_dv_vomiting_blood
+    description: "Being sick with blood, or sick that looks like ground coffee"
+    when: vomiting_blood
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_diarrhoea_and_vomiting
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Diarrhoea and vomiting page says 999 or A&E. The Vomiting blood page says an urgent GP appointment or 111 if the bleeding has stopped and there are no other symptoms. The more urgent is used, marked soft."
+
+  - id: rf_dv_green_vomit
+    description: "Green sick (adults), or yellow-green or green sick (children)"
+    when: green_vomit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+    note: "For a baby, the Reflux in babies page says an urgent GP appointment or 111 for green or yellow sick. The Diarrhoea and vomiting page says 999 or A&E for children. The more urgent is used: in a baby it can mean a twisted bowel."
+
+  - id: rf_dv_swallowed_poison
+    description: "May have swallowed something poisonous or harmful"
+    when: swallowed_something_harmful
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E. Take the packet or container with you."}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+    note: "Adding button batteries and magnets to the question is AI judgement: both can cause serious harm inside the gut within hours."
+
+  - id: rf_dv_meningitis_signs
+    description: "A stiff neck, or pain when looking at bright lights"
+    when: {any: [stiff_neck, bothered_by_light]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_sudden_headache
+    description: "A sudden, severe headache"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_sudden_tummy_ache
+    description: "A sudden, severe tummy ache"
+    when: sa_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_stomach_ache_ae
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_skin
+    description: "Blue, grey, pale or blotchy skin, lips or tongue"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_diarrhoea_and_vomiting
+    note: "Blue, grey or pale skin is in the universal checks."
+
+  - id: rf_dv_fast_breathing
+    description: "Taking lots of quick, short breaths"
+    when: breathing_very_fast
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_child_not_responding
+    description: "A child who is limp, floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_tummy_emergency
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_rash_not_fading
+    description: "A rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_dv_baby_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: {all: [age_under_1, baby_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_dv_young_child_no_pee
+    description: "A child under 5 who has not had a pee (or a wet nappy) for 12 hours or more"
+    when: {all: [age_under_5, not_peed_12_hours]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_tummy_emergency
+    source: nhs_sepsis
+    note: "The Sepsis page lists not peeing for 12 hours in a child as a sign of sepsis. The Diarrhoea and vomiting page says 111 for fewer wet nappies (see the urgent rule). No pee at all for 12 hours is taken as the more serious sign, as in the cough rules."
+
+  - id: rf_dv_dka_ketones
+    description: "Diabetes, with high ketones or a high blood sugar that insulin is not bringing down"
+    when: {all: [has_diabetes, high_ketones]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_dka_ae
+    source: nhs_diabetic_ketoacidosis
+
+  - id: rf_dv_dka_signs
+    description: "Very thirsty and peeing a lot, with being sick, fruity breath or very fast breathing: possible diabetic ketoacidosis"
+    when: {all: [{all: [very_thirsty, peeing_more_often]}, {any: [vomiting, fruity_breath, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_dka_ae
+    source: nhs_diabetic_ketoacidosis
+    note: "Being sick with diarrhoea usually means peeing less, not more. Thirst with peeing more than usual points to high blood sugar."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_dv_cannot_keep_fluids
+    description: "Keeps being sick and cannot keep fluids down"
+    when: cannot_keep_fluids_down
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_blood
+    description: "Bloody diarrhoea or bleeding from the bottom"
+    when: bleeding_from_bottom
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_long_lasting
+    description: "Diarrhoea for more than 7 days, or being sick for more than 2 days"
+    when: {any: [diarrhoea_over_7_days, vomiting_over_2_days]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_young_child_dehydrated
+    description: "A child under 5 with signs of dehydration, such as fewer wet nappies"
+    when: {all: [age_under_5, dehydration_signs]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_child_stopped_feeding
+    description: "A baby or young child who has stopped feeding, or is eating much less, while ill"
+    when: {all: [age_under_5, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_dv_baby
+    description: "A baby under 12 months with diarrhoea or being sick"
+    when: age_under_1
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+    soft: true    # likely conditions may lower this: the source says "if you're worried"
+    note: "The page says call 111 if you're worried about a baby under 12 months. Applying it to every baby is a reading of the source, so it is soft: likely reflux or a mild cause can lower it."
+
+  - id: rf_dv_baby_diarrhoea
+    description: "A baby under 12 months with diarrhoea"
+    when: {all: [age_under_1, diarrhoea]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+    note: "Kept firm, not soft: babies can become dehydrated quickly, so a likely stomach bug must not lower it. Bringing up milk alone is left to the soft rule above, so a baby with reflux is not always sent for urgent help. Where to draw this line is AI judgement."
+
+  - id: rf_dv_antibiotics
+    description: "Diarrhoea while taking, or soon after taking, antibiotics"
+    when: {all: [diarrhoea, recent_antibiotics]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dv_urgent
+    source: nhs_c_difficile
+
+  - id: rf_dv_older_child_adult_no_pee
+    description: "Aged 5 or over and no pee for 12 hours or more"
+    when: {all: [{not: age_under_5}, not_peed_12_hours]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 now"}
+    advice: advice_dv_urgent
+    source: nhs_diarrhoea_and_vomiting
+    note: "The page says call 111 if signs of dehydration carry on after rehydration sachets. Not peeing for 12 hours is taken as dehydration that needs more than a pharmacy. AI judgement."
+
+  - id: rf_dv_diabetes
+    description: "Diabetes, and being sick"
+    when: {all: [has_diabetes, vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your diabetes care team now or get help from NHS 111"}
+    advice: advice_dka_urgent
+    source: nhs_diabetic_ketoacidosis
+    note: "Being sick when you have diabetes can quickly lead to diabetic ketoacidosis. Using being sick as the trigger is AI judgement."
+
+  - id: rf_dv_thirsty_peeing
+    description: "Very thirsty and peeing much more than usual: possible diabetes"
+    when: {all: [very_thirsty, peeing_more_often]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dv_urgent
+    source: nhs_diabetic_ketoacidosis
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: being sick with thirst and peeing more can be the first sign of type 1 diabetes."
+
+outcome_rules:
+  - id: or_dv_dehydrated_pharmacy
+    description: "Aged 5 or over with signs of dehydration: a pharmacist can help with rehydration sachets"
+    when: {all: [{not: age_under_5}, dehydration_signs]}
+    outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "Speak to a pharmacist today. Call 111 if signs of dehydration carry on after rehydration sachets."}
+    advice: advice_dv_pharmacy
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: or_dv_higher_chance_dehydration
+    description: "An older person, or someone with a weakened immune system or other health condition: more likely to get dehydrated"
+    when: {any: [age_65_or_over, weakened_immune_system, long_term_condition]}
+    outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "Speak to a pharmacist. The source gives no fixed time."}
+    advice: advice_dv_pharmacy
+    source: nhs_diarrhoea_and_vomiting
+
+default:
+  description: "Diarrhoea or being sick with nothing that needs more help: treat it at home"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Diarrhoea usually stops within 5 to 7 days, and being sick within 1 or 2 days"}
+  advice: advice_dv_self_care
+  source: nhs_diarrhoea_and_vomiting

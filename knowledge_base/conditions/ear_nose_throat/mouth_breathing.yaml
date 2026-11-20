@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mouth_breathing
+body_system: ear_nose_throat
+entry_symptoms: [dry_mouth]
+name: "Dry mouth from breathing through the mouth, for example because of a blocked nose"
+medical_name: "Mouth breathing"
+snomed: "77329001"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: the mouth is driest on waking, after sleeping with the mouth open or with a
+  # blocked nose.
+  breathes_through_mouth: strongly_supports
+  blocked_or_runny_nose: supports
+  snoring: supports
+key_findings: [breathes_through_mouth, blocked_or_runny_nose]
+source: nhs_dry_mouth
+informed_by: [nhs_dry_mouth]

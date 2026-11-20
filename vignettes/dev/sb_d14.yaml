@@ -1,0 +1,65 @@
+id: sb_d14
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- indigestion
+summary: 41-year-old man who gets a burning feeling in his chest and a sour taste now and then after big, spicy meals or a few pints. He has no trouble swallowing, no weight loss and is not being sick.
+opening_statement: I get heartburn sometimes after a curry or a few beers. Burning in my chest and a sour taste in my mouth.
+findings:
+  present:
+  - indigestion
+  - heartburn_or_sour_taste
+  absent:
+  - indigestion_keeps_happening
+  - difficulty_swallowing
+  - food_sticks_in_chest
+  - weight_loss
+  - vomiting
+  - vomiting_blood
+  - black_or_dark_red_poo
+  - chest_pain
+  - cp_tight_or_squeezing
+  - cp_heavy
+  - cp_spreads
+  - short_of_breath
+  - sweating
+  - takes_anti_inflammatory_painkillers
+  - stomach_ache
+  - lump_in_tummy_or_groin
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 41
+    sex: male
+  full:
+    age: 41
+    sex: male
+expected:
+  acuity: self_manageable
+  level_of_care: community_pharmacy
+  timeframe: not_needed
+minimum_safe_acuity: self_manageable
+red_flags: []
+safety_netting_should_cover:
+- point: A pharmacist can recommend antacids or alginates
+  any_of:
+  - pharmacist
+  - antacid
+- point: Avoid trigger foods and do not eat 3 to 4 hours before bed
+  any_of:
+  - bed
+  - trigger
+  - spicy
+- point: See a GP if it keeps happening, swallowing becomes difficult or he loses weight
+  any_of:
+  - GP
+source:
+  expected_outcome:
+    page: indigestion.txt
+    quote: There's usually no need to see a GP about indigestion.
+  minimum_safe_acuity:
+    page: indigestion.txt
+    quote: Usually, it's not a sign of anything more serious and you can treat it yourself.
+atypical: false
+notes: chest_pain is listed as absent because he describes a burning feeling linked to meals, not pain; the cardiac features (tight, heavy, spreading, breathless, sweaty) are absent. If a stress test answers 'not sure' to chest pain, a cautious engine may reasonably ask more.

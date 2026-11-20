@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: animal_or_human_bite
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound]
+name: "Bite from an animal or person"
+medical_name: "Bite wound of skin"
+# Bites often get infected, and a bite abroad can carry rabies. Most need checking the same day.
+acuity_needed: urgent
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: bitten_by_animal_or_person, prevalence: very_common}
+findings:
+  # What tells it apart from other wounds: it was caused by a bite. Bites on the hands, feet, face or head, and bites from people or stray or wild animals, are the most likely to need treatment.
+  bitten_by_animal_or_person: strongly_supports
+  bite_on_hand_foot_face_head: supports
+  bitten_by_person_or_wild_animal: supports
+  swollen_area_red_hot: supports
+key_findings: [bite_on_hand_foot_face_head, bitten_by_person_or_wild_animal]
+source: nhs_animal_bites
+informed_by: [nhs_animal_bites, nhs_cuts_and_grazes]

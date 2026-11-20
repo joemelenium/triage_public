@@ -1,0 +1,141 @@
+# Entry symptom: limping in children.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# A limp with no obvious cause should always be checked by a GP. Must-not-miss
+# causes: an infected hip or other joint (septic arthritis) or bone
+# (osteomyelitis), a broken bone, a slipped growth plate at the top of the
+# thigh bone (slipped upper femoral epiphysis), Perthes, and rarely a cancer
+# such as leukaemia. Irritable hip is the most common cause in young children
+# and must be told apart from an infected hip. A twisted testicle can show as a
+# limp with tummy pain.
+#
+# Known gap: an injury that may not have been an accident is not screened.
+# Safeguarding needs an owner decision (see red_flags.yaml).
+
+id: limp
+name: "Limping in children"
+presenting_finding: limp
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: limp_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - cannot_bear_weight
+      - changed_shape
+      - very_high_temperature
+      - feels_very_unwell
+      - severe_lower_tummy_pain
+      - pain_started_suddenly
+      - pain_getting_worse_quickly
+
+  - id: limp_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - hip_pain
+      - pain_in_groin_thigh_or_knee
+      - swollen_area_red_hot
+      - badly_swollen
+      - think_bone_broken
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_limp_cannot_bear_weight
+    description: "A child who cannot put any weight on their leg"
+    when: cannot_bear_weight
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    note: "The Irritable hip page says urgent GP or 111 for this. The more urgent is used."
+
+  - id: rf_limp_misshapen
+    description: "The leg has changed shape or is pointing at an odd angle"
+    when: changed_shape
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+
+  - id: rf_limp_unwell_fever
+    description: "A child with a limp who feels generally unwell, with a high temperature or feeling hot, cold or shivery"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    note: "Could be an infected joint or bone, which needs treatment within hours."
+
+  - id: rf_limp_tummy_pain
+    description: "A child with a limp and severe pain in the lower part of the tummy"
+    when: severe_lower_tummy_pain
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    note: "Could be appendicitis, or in boys a twisted testicle."
+
+  - id: rf_limp_worse
+    description: "A child whose limp or pain is getting worse"
+    when: pain_getting_worse_quickly
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+
+  - id: rf_limp_sudden_pain
+    description: "A child with sudden pain in the hip, knee or thigh"
+    when: pain_started_suddenly
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_limp_emergency
+    source: nhs_limp_in_children
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Limping in children page says 999 or A&E. The Irritable hip page says urgent GP or 111 for sudden pain in the hip, thigh or knee. The more urgent is used, marked soft so a likely irritable hip in a well child can lower it to urgent."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_limp_hip_thigh_knee_pain
+    description: "A limping child with pain in the hip, groin, thigh or knee"
+    when: {any: [hip_pain, pain_in_groin_thigh_or_knee]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_child_hip_urgent
+    source: nhs_hip_pain_children_irritable_hip
+    note: "A yes to hip pain also brings in the hip pain entry symptom."
+
+  - id: rf_limp_hot_swelling
+    description: "Pain, swelling and warmth over a bone or joint"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_child_hip_urgent
+    source: nhs_osteomyelitis
+    note: "Could be an infected bone or joint."
+
+  - id: rf_limp_injury
+    description: "A leg injury that is badly swollen, or may be broken"
+    when: {any: [think_bone_broken, {all: [injury_or_fall, badly_swollen]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111, or go to an urgent treatment centre"}
+    advice: advice_child_limp_injury_urgent
+    source: nhs_broken_leg
+
+outcome_rules:
+  - id: or_limp_serious_signs
+    description: "A limping child with a lump on a bone, weight loss, or pain at night or at rest"
+    when: {any: [lump_on_bone, weight_loss, pain_worse_at_night_or_rest]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within a few days"}
+    advice: advice_child_limp_soon
+    source: nhs_limp_in_children
+    note: "The page lists these as possible signs of cancer, such as leukaemia. Within a few days is AI judgement."
+
+default:
+  description: "A child with a limp and no obvious cause: see a GP to find out what is causing it"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_child_limp_gp
+  source: nhs_limp_in_children
+  note: "The page says a limp with no obvious cause should always be checked by a GP. Not a floor: a limp from a small injury or a blister can be looked after at home."
+
+default_exceptions:
+  - id: de_limp_minor_cause
+    description: "A limp from an obvious minor cause, such as a blister, a small cut or a bruise, in a child who is otherwise well"
+    when: limp_obvious_minor_cause
+    outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Look after it at home. See a GP if the limp does not get better in a few days."}
+    advice: advice_child_limp_self_care
+    source: nhs_limp_in_children
+    note: "The page says limping is often caused by something minor like a blister, cut or bruise. Only reached when no other rule applies."

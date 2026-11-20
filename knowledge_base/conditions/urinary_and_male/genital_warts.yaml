@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: genital_warts
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot]
+name: "Genital warts"
+medical_name: "Anogenital warts"
+snomed: "266113007"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  warts_on_genitals: strongly_supports
+  new_or_unprotected_sex: supports
+  partner_has_sti: supports
+key_findings: [warts_on_genitals, new_or_unprotected_sex]
+source: nhs_genital_warts
+informed_by: [nhs_genital_warts, nhs_penis_lumps_and_spots]

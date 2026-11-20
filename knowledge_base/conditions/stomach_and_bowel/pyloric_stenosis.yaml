@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pyloric_stenosis
+body_system: stomach_and_bowel
+entry_symptoms: [baby_bringing_up_milk, diarrhoea_or_vomiting]
+name: "A narrowed stomach outlet in a baby (pyloric stenosis)"
+medical_name: "Infantile hypertrophic pyloric stenosis"
+snomed: "48644003"
+# Usually starts between 2 and 8 weeks old. Needs an operation; a baby can quickly
+# become dehydrated.
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_6_months, prevalence: uncommon}
+  - {finding: age_under_1, prevalence: rare}
+findings:
+  projectile_vomiting: strongly_supports
+  baby_hungry_after_being_sick: strongly_supports
+  baby_not_gaining_weight: supports
+  dehydration_signs: supports
+key_findings: [projectile_vomiting, baby_hungry_after_being_sick, baby_not_gaining_weight]
+source: ai_judgement
+informed_by: [nhs_reflux_in_babies]

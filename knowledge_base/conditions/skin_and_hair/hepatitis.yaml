@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hepatitis
+body_system: skin_and_hair
+entry_symptoms: [yellow_skin_or_eyes]
+name: "Hepatitis (a swollen liver, from a virus or alcohol)"
+medical_name: "Acute hepatitis (viral or alcohol-related)"
+snomed: "37871000"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_1, prevalence: very_rare}
+findings:
+  # What tells it apart from a blocked bile duct: flu-like symptoms, tiredness and feeling sick first, a dull ache under the right ribs, and often heavy drinking or a recent infection.
+  very_tired: supports
+  nausea_or_vomiting: supports
+  poo_pale_pee_dark: supports
+  aching_body: supports
+  very_high_temperature: supports
+  sa_upper_right: supports
+  drinks_a_lot_of_alcohol: supports
+key_findings: [drinks_a_lot_of_alcohol, very_tired, aching_body]
+source: nhs_hepatitis
+informed_by: [nhs_hepatitis, nhs_jaundice]

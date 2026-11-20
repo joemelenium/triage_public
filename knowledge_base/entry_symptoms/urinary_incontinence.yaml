@@ -1,0 +1,98 @@
+# Entry symptom: urinary incontinence (leaking pee).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: urinary_incontinence
+name: "Urinary incontinence"
+presenting_finding: urinary_incontinence
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: incontinence_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - saddle_numbness
+      - legs_weak_or_numb
+      - back_pain
+      - bowel_incontinence
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+
+  - id: incontinence_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - leaking_started_suddenly
+      - pain_when_peeing
+      - very_high_temperature
+      - blood_in_urine
+      - cannot_pee
+      - leaks_all_the_time
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ui_nerve_signs
+    description: "Leaking pee with numbness around the genitals or bottom, or new weakness or numbness in both legs: possible cauda equina syndrome"
+    when: {any: [saddle_numbness, legs_weak_or_numb]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    note: "The Back pain page gives these with back pain. Applying them without back pain is AI judgement."
+
+  - id: rf_ui_back_pain_new
+    description: "Back pain, and leaking pee that started suddenly or pooing without meaning to"
+    when: {all: [back_pain, {any: [leaking_started_suddenly, bowel_incontinence]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    note: "The Back pain page says call 999 or go to A&E for back pain with peeing or pooing yourself. Requiring the leaking to be new is AI judgement, so that long-standing leaking in someone with back ache is not sent to A&E."
+
+  - id: rf_ui_drowsy
+    description: "Leaking pee and very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_urinary_tract_infections
+    note: "The UTI page says leaking that is worse than usual can be a sign of infection in older or frail people."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ui_temperature
+    description: "Leaking pee with a very high temperature, or feeling hot, cold or shivery: possible urine or kidney infection"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+
+  - id: rf_ui_sudden
+    description: "Leaking pee that started suddenly in the last few days"
+    when: leaking_started_suddenly
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_incontinence_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: leaking that starts suddenly can be from an infection, a bladder that is not emptying, or a nerve problem, and should be checked the same day. The UTI page says leaking that is worse than usual can be a sign of a UTI in older people."
+
+  - id: rf_ui_leaks_all_the_time
+    description: "Leaking or dribbling all the time, or without feeling the need to go: possible bladder not emptying"
+    when: {all: [leaks_all_the_time, bladder_not_emptying]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_incontinence_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: constant dribbling with a bladder that does not empty (overflow incontinence) can mean the bladder is blocked, which can damage the kidneys. The Incontinence page says see a GP for any type. Needs clinical review."
+
+outcome_rules: []
+
+default:
+  description: "Leaking pee: see a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_incontinence_gp
+  source: nhs_urinary_incontinence
+  # A floor: the source says see a GP if you have any type of urinary incontinence.
+  floor: true

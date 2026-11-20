@@ -1,0 +1,72 @@
+id: um_d11
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- erection_problems
+- low_sex_drive
+summary: 59-year-old man who smokes and takes blood pressure tablets. For 6 months he has had problems getting and keeping an erection, and his sex drive is lower. He has not noticed whether he still gets erections on waking.
+opening_statement: I've been having trouble in the bedroom for months now, can't get an erection or keep it, and to be honest I've not been that interested either.
+findings:
+  present:
+  - erection_problems
+  - erection_problems_keep_happening
+  - low_sex_drive
+  - worried_about_sex_drive
+  - heart_risk_factors
+  - takes_antidepressants_or_blood_pressure_medicine
+  absent:
+  - erection_problems_sudden
+  - chest_pain
+  - short_of_breath
+  - very_thirsty
+  - has_diabetes
+  - peeing_more_often
+  - weak_flow_or_straining
+  - low_mood
+  - relationship_problems
+  - drinks_a_lot_of_alcohol
+  - low_testosterone_signs
+  - penis_injury_during_sex
+  unknown:
+  - still_get_morning_erections
+context:
+  none: {}
+  basic:
+    age: 59
+    sex: male
+  full:
+    age: 59
+    sex: male
+    findings:
+      takes_antidepressants_or_blood_pressure_medicine: 'yes'
+      heart_risk_factors: 'yes'
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP or a sexual health clinic; it may be a sign of a treatable health condition
+  any_of:
+  - GP
+  - sexual health clinic
+- point: Do not stop prescribed medicine without speaking to a doctor
+  any_of:
+  - stop
+  - speak
+source:
+  expected_outcome:
+    page: erection_problems_erectile_dysfunction.txt
+    quote: erection problems keep happening
+  minimum_safe_acuity:
+    page: loss_of_libido.txt
+    quote: you're taking a medicine or using hormonal contraception and you think it may be affecting your sex drive
+variants:
+- id: um_d11_v1
+  style: embarrassed, vague
+  opening_statement: It's a bit awkward... things haven't been working downstairs.
+  volunteered:
+  - erection_problems
+atypical: false
+notes: erection_problems_erectile_dysfunction.txt lists high blood pressure and some medicines among causes, and loss_of_libido.txt lists blood pressure medicine. Both pages give non-urgent advice.

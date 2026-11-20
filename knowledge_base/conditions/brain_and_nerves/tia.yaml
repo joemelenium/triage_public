@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tia
+body_system: brain_and_nerves
+entry_symptoms: [dizziness, weakness_or_paralysis, face_numbness, pins_and_needles]
+name: "Mini-stroke (transient ischaemic attack, TIA)"
+medical_name: "Transient ischaemic attack"
+snomed: "266257000"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: heart_risk_factors, prevalence: uncommon}
+findings:
+  # What tells it apart from a stroke: the signs come on suddenly but go away within minutes or hours.
+  stroke_signs: strongly_supports
+  weakness_comes_and_goes: strongly_supports
+  weakness_sudden: supports
+  weakness_one_side: supports
+  pins_needles_sudden_one_side: supports
+  face_numbness_sudden: supports
+  difficulty_speaking: supports
+  sight_lost: supports
+key_findings: [stroke_signs, weakness_comes_and_goes, difficulty_speaking, sight_lost]
+source: nhs_tia
+informed_by: [nhs_tia, nhs_stroke_symptoms]

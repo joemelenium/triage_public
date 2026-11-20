@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: episcleritis
+body_system: eyes
+# Harmless swelling of the thin layer over the white of the eye, in one patch.
+# Usually clears by itself, but an optician or GP should tell it apart from
+# scleritis. No NHS page was found.
+entry_symptoms: [red_eye, eye_pain]
+name: "Episcleritis (a red patch on the white of the eye, with mild soreness)"
+medical_name: "Episcleritis"
+snomed: "815008"
+acuity_needed: routine
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: red_eye, prevalence: uncommon}
+findings:
+  redness_in_one_patch: strongly_supports
+  red_eye: strongly_supports
+  eye_pain: supports    # mild soreness only
+  has_inflammatory_condition: supports
+key_findings: [redness_in_one_patch, has_inflammatory_condition]
+source: ai_judgement
+informed_by: [nhs_red_eye]

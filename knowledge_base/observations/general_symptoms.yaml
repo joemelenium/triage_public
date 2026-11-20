@@ -1,0 +1,526 @@
+# Observations: general symptoms (high temperature, tiredness, weight loss,
+# night sweats, thirst, dehydration, swelling, blue or grey skin, feeling
+# unwell, and an unsettled baby).
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# The universal red flags and patient context are in general.yaml. This file
+# holds what the general body system added. Fields are described in general.yaml.
+#
+
+# ===========================================================================
+# Main symptoms (entry symptoms) added by this body system
+# ===========================================================================
+- id: very_thirsty
+  label: "Feeling very thirsty all the time"
+  question: "Do you feel very thirsty all the time, even when you are drinking a lot?"
+  question_carer: "Is your child very thirsty all the time, even when they are drinking a lot?"
+  checklist_text: "Feeling very thirsty all the time, even when drinking a lot"
+  kind: presenting
+  snomed: "17173007"
+  phrases: ["always thirsty", "can't stop drinking", "mouth always dry and thirsty"]
+  source: nhs_thirst
+
+- id: swollen_arm_or_hand
+  label: "Swollen arm or hand"
+  question: "Is one or both of your arms or hands swollen or puffy?"
+  question_carer: "Is one or both of your child's arms or hands swollen or puffy?"
+  checklist_text: "A swollen arm or hand"
+  kind: presenting
+  phrases: ["swollen hand", "puffy arm", "fingers swollen", "rings too tight"]
+  source: nhs_swollen_arms_and_hands_oedema
+
+- id: blue_or_grey_skin
+  label: "Skin, lips, fingers or toes look blue or grey"
+  question: "Has your skin, lips, tongue, fingers or toes turned blue or grey? On brown or black skin this may be easier to see on the palms, soles of the feet, lips, gums or inside the eyelids."
+  question_carer: "Has your child's skin, lips, tongue, fingers or toes turned blue or grey? On brown or black skin this may be easier to see on the palms, soles of the feet, lips, gums or inside the eyelids."
+  kind: presenting
+  snomed: "3415004"
+  phrases: ["going blue", "blue fingers", "grey lips", "blue toes"]
+  source: nhs_blue_skin_or_lips_cyanosis
+
+- id: generally_unwell
+  label: "Feeling generally unwell"
+  question: "Do you feel generally unwell, without one main symptom?"
+  question_carer: "Does your child seem generally unwell, without one main symptom?"
+  kind: presenting
+  phrases: ["feel rubbish", "just not right", "under the weather", "feel off"]
+  source: ai_judgement
+
+- id: baby_unsettled_or_not_feeding
+  label: "Baby not feeding well, or unsettled"
+  question: "Is your baby not feeding well, or more unsettled or crying more than usual?"
+  checklist_text: "A baby not feeding well, or more unsettled than usual"
+  kind: presenting
+  asked_only_if: age_under_1
+  phrases: ["won't settle", "baby crying all the time", "not taking feeds", "baby off their milk"]
+  source: nhs_baby_seriously_ill
+
+# ===========================================================================
+# High temperature: how long, and what comes with it
+# ===========================================================================
+- id: temperature_5_days_or_more
+  label: "High temperature for 5 days or more"
+  question: "Has the high temperature lasted for 5 days or more?"
+  checklist_text: "A high temperature for 5 days or more"
+  kind: symptom
+  parent: very_high_temperature
+  relation: duration
+  seriousness: serious
+  phrases: ["temperature all week", "fever for 5 days"]
+  source: nhs_fever_in_children
+
+- id: temperature_not_getting_better
+  label: "High temperature not getting better with treatment at home"
+  question: "Have you been treating the high temperature at home, but it is not getting better or is getting worse?"
+  question_carer: "Have you been treating your child's high temperature at home, but it is not getting better or is getting worse?"
+  checklist_text: "A high temperature that is not getting better with treatment at home, or is getting worse"
+  kind: symptom
+  parent: very_high_temperature
+  relation: duration
+  seriousness: serious
+  phrases: ["paracetamol isn't helping", "temperature won't come down"]
+  source: nhs_fever_in_adults
+
+- id: cold_hands_and_feet
+  label: "Hands and feet, or skin, unusually cold to touch"
+  question: "Are your hands and feet, or your skin, unusually cold to touch, or cold and damp (clammy)?"
+  question_carer: "Are your child's hands and feet, or their skin, unusually cold to touch, or cold and damp (clammy)?"
+  checklist_text: "Hands and feet, or skin, unusually cold or clammy"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["hands like ice", "cold and clammy", "feet freezing"]
+  source: nhs_fever_in_children
+
+- id: child_crying_will_not_stop
+  label: "Child extremely agitated, crying and will not stop, or a weak or high-pitched cry"
+  question: "Is the child extremely agitated or crying and will not stop? Or do they have a weak, high-pitched cry that does not sound like their usual cry?"
+  question_carer: "Is your child extremely agitated or crying and will not stop? Or do they have a weak, high-pitched cry that does not sound like their usual cry?"
+  checklist_text: "Extremely agitated or crying and will not stop, or a weak, high-pitched cry"
+  kind: symptom
+  asked_only_if: age_under_16
+  seriousness: emergency
+  phrases: ["screaming and won't stop", "high-pitched cry", "weak cry"]
+  source: nhs_fever_in_children
+
+- id: child_not_feeding_or_playing
+  label: "Child not interested in feeding or anything around them"
+  question: "Has the child stopped feeding? Or have they lost all interest in what is going on around them?"
+  question_carer: "Has your child stopped feeding? Or have they lost all interest in what is going on around them?"
+  checklist_text: "Stopped feeding, or not interested in anything around them"
+  kind: symptom
+  asked_only_if: age_under_16
+  seriousness: emergency
+  phrases: ["not interested in anything", "won't feed at all", "just lying there"]
+  source: nhs_fever_in_children
+
+- id: child_not_usual_self
+  label: "Child not their usual self, or not wanting to eat, and the carer is worried"
+  question: "Is the child not their usual self, or not wanting to eat, and are you worried about them?"
+  question_carer: "Is your child not their usual self, or not wanting to eat, and are you worried about them?"
+  checklist_text: "Not their usual self, or not wanting to eat, and you are worried"
+  kind: symptom
+  asked_only_if: age_under_16
+  seriousness: serious
+  phrases: ["not himself", "not herself", "off their food"]
+  source: nhs_fever_in_children
+
+- id: drowsy_hard_to_wake
+  label: "So drowsy they are hard to wake or cannot stay awake"
+  question: "Is the person who is unwell so drowsy that they are hard to wake, or cannot stay awake?"
+  checklist_text: "So drowsy they are hard to wake, or cannot stay awake"
+  kind: symptom
+  asked_only_if: age_16_or_over   # children are asked child_floppy_or_hard_to_wake
+  seriousness: emergency
+  phrases: ["can't keep awake", "keeps dropping off", "hard to wake"]
+  source: nhs_sepsis
+
+- id: child_dehydration_signs
+  label: "Child with dry nappies, sunken eyes or no tears"
+  question: "Does the child have signs of not having enough water in their body? For example, dry nappies, sunken eyes, or no tears when crying."
+  question_carer: "Does your child have signs of not having enough water in their body? For example, dry nappies, sunken eyes, or no tears when they cry."
+  checklist_text: "Nappies not very wet, sunken eyes, or no tears when crying"
+  kind: symptom
+  parent: dehydration_signs
+  relation: character
+  asked_only_if: age_under_16
+  seriousness: serious
+  phrases: ["dry nappies", "no tears", "eyes look sunken"]
+  source: nhs_fever_in_children
+
+- id: sunken_soft_spot
+  label: "Baby's soft spot on top of the head sinks inwards"
+  question: "Has the soft spot on top of your baby's head (fontanelle) sunk inwards?"
+  checklist_text: "The soft spot on top of the baby's head has sunk inwards"
+  kind: symptom
+  parent: dehydration_signs
+  relation: severity
+  asked_only_if: age_under_1
+  seriousness: serious
+  snomed: "8381001"
+  phrases: ["soft spot is sunken", "dip on top of the head"]
+  source: nhs_dehydration
+
+- id: bulging_soft_spot
+  label: "Baby's soft spot on top of the head bulging"
+  question: "Is the soft spot on top of your baby's head (fontanelle) bulging or tight?"
+  checklist_text: "The soft spot on top of the baby's head is bulging"
+  kind: symptom
+  asked_only_if: age_under_1
+  seriousness: emergency
+  phrases: ["soft spot is bulging", "lump on top of the head"]
+  source: ai_judgement
+
+- id: having_chemotherapy
+  label: "Having chemotherapy now or in the last 6 weeks"
+  question: "Are you having chemotherapy (a treatment for cancer), or have you had it in the last 6 weeks?"
+  question_carer: "Is your child having chemotherapy (a treatment for cancer), or have they had it in the last 6 weeks?"
+  checklist_text: "Having chemotherapy (a cancer treatment) now or in the last 6 weeks"
+  kind: history
+  parent: weakened_immune_system
+  relation: character
+  phrases: ["on chemo", "having cancer treatment"]
+  source: ai_judgement
+
+- id: travelled_to_malaria_area
+  label: "Been to a country where malaria is found in the last year"
+  question: "In the last 12 months, have you been to a country where malaria (an infection spread by mosquito bites) is found?"
+  question_carer: "In the last 12 months, has your child been to a country where malaria (an infection spread by mosquito bites) is found?"
+  checklist_text: "Been to a country with malaria (spread by mosquito bites) in the last 12 months"
+  kind: history
+  phrases: ["just back from Africa", "been travelling", "holiday abroad"]
+  source: nhs_malaria
+
+- id: in_heat_or_exercise
+  label: "Unwell after being in the heat or exercising hard"
+  question: "Did this start after being in the sun or a hot place, or after exercising hard?"
+  question_carer: "Did this start after your child was in the sun or a hot place, or after they exercised hard?"
+  kind: history
+  phrases: ["out in the sun all day", "after a run", "heatwave"]
+  source: nhs_heat_exhaustion
+
+- id: hot_skin_not_sweating
+  label: "Hot skin that is not sweating"
+  question: "Is the skin very hot but not sweating, and maybe red?"
+  checklist_text: "Very hot skin that is not sweating"
+  kind: symptom
+  asked_only_if: in_heat_or_exercise
+  seriousness: emergency_ambulance
+  phrases: ["hot and dry", "stopped sweating"]
+  source: nhs_heat_exhaustion
+
+- id: still_unwell_after_cooling
+  label: "Still unwell after 30 minutes of cooling down"
+  question: "Is the person still unwell after 30 minutes of resting in a cool place, being cooled and drinking fluids?"
+  checklist_text: "Still unwell after 30 minutes of cooling down and drinking fluids"
+  kind: symptom
+  asked_only_if: in_heat_or_exercise
+  seriousness: emergency_ambulance
+  phrases: ["not getting better in the shade", "still hot after cooling"]
+  source: nhs_heat_exhaustion
+
+- id: fruity_breath
+  label: "Breath smells fruity"
+  question: "Does your breath smell fruity, like pear drop sweets or nail polish remover?"
+  question_carer: "Does your child's breath smell fruity, like pear drop sweets or nail polish remover?"
+  checklist_text: "Breath that smells fruity, like pear drops or nail polish remover"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["breath smells of pear drops", "smells like nail varnish"]
+  source: nhs_diabetic_ketoacidosis
+
+- id: breathing_deep_and_fast
+  label: "Breathing faster and more deeply than usual"
+  question: "Are you breathing faster and more deeply than usual?"
+  question_carer: "Is your child breathing faster and more deeply than usual?"
+  checklist_text: "Breathing faster and more deeply than usual"
+  kind: symptom
+  parent: breathing_very_fast
+  relation: character
+  seriousness: emergency
+  phrases: ["big deep breaths", "panting"]
+  source: nhs_type_1_diabetes_symptoms
+
+- id: high_blood_sugar_or_ketones
+  label: "Blood sugar high and not coming down, or ketones raised"
+  question: "Is your blood sugar high and not coming down with your usual treatment, or are your ketones raised?"
+  question_carer: "Is your child's blood sugar high and not coming down with their usual treatment, or are their ketones raised?"
+  checklist_text: "Blood sugar high and not coming down, or ketones raised"
+  kind: symptom
+  asked_only_if: has_diabetes
+  seriousness: serious
+  phrases: ["sugars are sky high", "ketones are up"]
+  source: nhs_diabetic_ketoacidosis
+
+- id: red_cracked_lips
+  label: "Red, dry or cracked lips, or a red, swollen tongue"
+  question: "Are the lips red, dry or cracked, or is the tongue red and swollen?"
+  question_carer: "Are your child's lips red, dry or cracked, or is their tongue red and swollen?"
+  kind: symptom
+  phrases: ["strawberry tongue", "cracked lips"]
+  source: nhs_kawasaki_disease
+
+- id: red_swollen_hands_or_feet
+  label: "Red, swollen hands or feet, or peeling skin on fingers or toes"
+  question: "Are the hands or feet red and swollen, or is the skin on the fingers or toes peeling?"
+  question_carer: "Are your child's hands or feet red and swollen, or is the skin on their fingers or toes peeling?"
+  kind: symptom
+  phrases: ["peeling fingers", "puffy red feet"]
+  source: nhs_kawasaki_disease
+
+- id: dizzy_when_standing
+  label: "Dizzy when standing up, and it does not go away"
+  question: "Do you feel dizzy when you stand up, and it does not go away?"
+  question_carer: "Does your child seem dizzy when they stand up, and it does not go away?"
+  checklist_text: "Dizzy when standing up, and it does not go away"
+  kind: symptom
+  parent: dizziness_on_standing
+  relation: duration
+  seriousness: serious
+  phrases: ["head spins when I stand", "nearly fall over when I get up"]
+  source: nhs_dehydration
+
+- id: thirst_not_better_with_drinking
+  label: "Still very thirsty after drinking more for several days"
+  question: "Have you been drinking more fluids for several days, but you are still very thirsty?"
+  question_carer: "Has your child been drinking more fluids for several days, but they are still very thirsty?"
+  checklist_text: "Still very thirsty after drinking more for several days"
+  kind: symptom
+  parent: very_thirsty
+  relation: duration
+  phrases: ["drinking loads and still thirsty"]
+  source: nhs_thirst
+
+# ===========================================================================
+# Tiredness, weight and mood
+# ===========================================================================
+- id: tired_for_weeks
+  label: "Tired for a few weeks or more, without knowing why"
+  question: "Have you felt tired for a few weeks or more, and you are not sure why?"
+  question_carer: "Has your child been tired for a few weeks or more, and you are not sure why?"
+  checklist_text: "Tired for a few weeks or more, without knowing why"
+  kind: symptom
+  parent: very_tired
+  relation: duration
+  phrases: ["tired all the time", "exhausted for weeks"]
+  source: nhs_tiredness_and_fatigue
+
+- id: tiredness_affects_daily_life
+  label: "Tiredness affects daily life"
+  question: "Is the tiredness stopping you doing your usual things, such as work, school or looking after yourself?"
+  question_carer: "Is the tiredness stopping your child doing their usual things, such as school or playing?"
+  checklist_text: "Tiredness stops you doing your usual daily activities"
+  kind: symptom
+  parent: very_tired
+  relation: severity
+  phrases: ["can't get through the day", "had to stop work"]
+  source: nhs_tiredness_and_fatigue
+
+- id: tired_worse_after_activity
+  label: "Extreme tiredness for months, worse after activity"
+  question: "Have you been very tired for 3 months or more? Does it get much worse after you do things, and make it hard to think or remember?"
+  checklist_text: "Extreme tiredness for 3 months or more that gets worse after activity"
+  kind: symptom
+  parent: very_tired
+  relation: duration
+  phrases: ["wiped out for days after", "brain fog"]
+  source: nhs_me_cfs
+
+- id: weight_loss_a_lot
+  label: "Lost a lot of weight quickly"
+  question: "Have you lost a lot of weight in the last few months, such as a stone (6kg) or more, or your clothes no longer fit?"
+  checklist_text: "Lost a lot of weight in a few months"
+  kind: symptom
+  parent: weight_loss
+  relation: severity
+  seriousness: serious
+  phrases: ["lost a stone", "clothes hanging off me"]
+  source: ai_judgement
+
+- id: loss_of_appetite
+  label: "Not feeling hungry, or eating much less than usual"
+  question: "Have you lost your appetite, or are you eating much less than usual?"
+  checklist_text: "Lost your appetite, or eating much less than usual"
+  kind: symptom
+  snomed: "79890006"
+  phrases: ["off my food", "not hungry"]
+  source: nhs_unintentional_weight_loss
+
+- id: always_feeling_cold
+  label: "Feeling cold all the time"
+  question: "Do you feel cold all the time, when other people feel fine?"
+  kind: symptom
+  phrases: ["always freezing", "always need a jumper"]
+  source: nhs_underactive_thyroid
+
+- id: restless_shaky_hot
+  label: "Feeling restless, shaky or too hot all the time"
+  question: "Do you feel nervous, restless or shaky, find it hard to keep still, or feel too hot when others do not?"
+  kind: symptom
+  phrases: ["can't sit still", "always too hot", "hands shaking"]
+  source: nhs_overactive_thyroid
+
+- id: lump_neck_armpit_or_groin
+  label: "A painless lump or swelling in the neck, armpit or groin"   # overlaps ear, nose and throat (swollen glands)
+  question: "Do you have a painless lump or swelling in your neck, armpit or groin that has lasted more than 2 weeks?"
+  checklist_text: "A painless lump in the neck, armpit or groin for more than 2 weeks"
+  kind: symptom
+  parent: swollen_glands
+  relation: character
+  phrases: ["lump in my armpit", "gland up for weeks"]
+  source: nhs_hodgkin_lymphoma
+
+- id: possible_hiv_exposure
+  label: "Might have been exposed to HIV"
+  question: "Have you had sex without a condom with a new partner, or shared needles, at any time in the past?"
+  kind: history
+  asked_only_if: age_16_or_over
+  phrases: ["unprotected sex", "shared needles"]
+  source: nhs_hiv
+
+# ===========================================================================
+# Swelling (oedema)
+# ===========================================================================
+- id: swelling_severe_painful_or_sudden
+  label: "Swelling is severe, painful or came on suddenly"
+  question: "Is the swelling severe or painful, or did it come on suddenly?"
+  checklist_text: "The swelling is severe or painful, or came on suddenly"
+  kind: symptom
+  seriousness: serious
+  phrases: ["really swollen", "came up overnight", "swelling hurts"]
+  source: nhs_oedema
+
+- id: swollen_area_red_hot
+  label: "Swollen area is red or hot to touch"
+  question: "Is the swollen area red, or does it feel hot to touch? Redness may be harder to see on brown or black skin."
+  checklist_text: "The swollen area is red or feels hot"
+  kind: symptom
+  seriousness: serious
+  phrases: ["hot and red", "skin is burning hot"]
+  source: nhs_oedema
+
+- id: swelling_after_injury
+  label: "A lot of swelling after an injury"
+  question: "Did the swelling start after an injury, and is there a lot of swelling or is it getting worse?"
+  checklist_text: "A lot of swelling after an injury, or swelling getting worse"
+  kind: symptom
+  seriousness: serious
+  phrases: ["twisted my ankle", "fell on my wrist"]
+  source: nhs_oedema
+
+- id: swelling_elsewhere
+  label: "Swelling in other parts of the body too, such as the face or tummy"
+  question: "Do you also have swelling in other parts of your body, such as your face, around your eyes, or your tummy?"
+  question_carer: "Does your child also have swelling in other parts of their body, such as their face, around their eyes, or their tummy?"
+  checklist_text: "Swelling in other parts of the body, such as the face or tummy"
+  kind: symptom
+  seriousness: serious
+  phrases: ["puffy face", "tummy swollen", "puffy eyes"]
+  source: nhs_oedema
+
+- id: swelling_not_improving
+  label: "Swelling not better after a few days of home treatment"
+  question: "Has the swelling not improved after a few days of treating it at home, or is it getting worse?"
+  checklist_text: "Swelling not better after a few days of home treatment, or getting worse"
+  kind: symptom
+  phrases: ["still swollen", "not going down"]
+  source: nhs_oedema
+
+- id: swelling_from_heat_or_position
+  label: "Swelling comes on with heat or staying in one position, and goes down with rest"
+  question: "Does the swelling come on in hot weather, or after standing or sitting for a long time? Does it go down overnight or when you raise it?"
+  kind: symptom
+  phrases: ["swollen after a long flight", "worse at the end of the day", "fine in the morning"]
+  source: nhs_oedema
+
+- id: swelling_has_obvious_cause
+  label: "Knows what caused the swelling"
+  question: "Do you know what caused the swelling? For example, a small injury, an insect bite, hot weather or staying in one position for a long time."
+  kind: history
+  phrases: ["bee sting", "knocked it", "it was really hot"]
+  source: nhs_swollen_arms_and_hands_oedema
+
+- id: swelling_for_months
+  label: "Swelling there for 3 months or more"
+  question: "Has the swelling been there for 3 months or more?"
+  kind: symptom
+  phrases: ["swollen for months", "always been puffy"]
+  source: nhs_lymphoedema
+
+- id: has_kidney_or_liver_condition
+  label: "Has a kidney or liver condition"
+  question: "Do you have a kidney or liver condition?"
+  kind: history
+  phrases: ["kidney problems", "liver problems", "on dialysis"]
+  source: nhs_oedema
+
+- id: skin_broken_near_swelling
+  label: "A cut, bite, graze or broken skin near the swelling"
+  question: "Is there a cut, bite, graze, sore or crack in the skin near the swelling?"
+  kind: symptom
+  phrases: ["cut on my leg", "insect bite", "cracked skin between my toes"]
+  source: nhs_cellulitis
+
+# ===========================================================================
+# Blue or grey skin
+# ===========================================================================
+- id: blue_lips_tongue_or_face
+  label: "Lips, tongue or face suddenly turned blue or grey"
+  question: "Has the blue or grey colour come on suddenly on the lips, tongue or face? On brown or black skin this may be easier to see on the lips, gums or inside the eyelids."
+  checklist_text: "Lips, tongue or face suddenly blue or grey"
+  kind: symptom
+  parent: blue_or_grey_skin
+  relation: location
+  seriousness: emergency_ambulance
+  phrases: ["lips have gone blue", "face is grey"]
+  source: nhs_blue_skin_or_lips_cyanosis
+
+- id: blue_fingers_or_toes_only
+  label: "Only the fingers, toes, hands or feet are blue or grey"
+  question: "Is the blue or grey colour only on the fingers, toes, hands or feet?"
+  checklist_text: "Only the fingers, toes, hands or feet are blue or grey"
+  kind: symptom
+  parent: blue_or_grey_skin
+  relation: location
+  seriousness: serious
+  phrases: ["blue fingers", "toes have gone blue"]
+  source: nhs_blue_skin_or_lips_cyanosis
+
+- id: blue_white_in_cold
+  label: "Fingers or toes turn white or blue in the cold, then red as they warm"
+  question: "Do your fingers or toes turn white, then blue, when you are cold or stressed, and then red when they warm up again?"
+  question_carer: "Do your child's fingers or toes turn white, then blue, when they are cold or stressed, and then red when they warm up again?"
+  kind: symptom
+  phrases: ["fingers go white in the cold", "white fingers"]
+  source: nhs_raynauds
+
+- id: limb_cold_pale_painful
+  label: "An arm or leg suddenly cold, pale or blue and painful"
+  question: "Has one arm or leg suddenly become cold, pale or blue, and painful or numb?"
+  checklist_text: "An arm or leg suddenly cold, pale or blue, and painful or numb"
+  kind: symptom
+  parent: limb_cold_pale_or_blue
+  relation: character
+  seriousness: emergency_ambulance
+  phrases: ["leg has gone cold and white", "arm is cold and numb"]
+  source: nhs_blue_skin_or_lips_cyanosis
+
+# ===========================================================================
+# A baby who is unsettled or not feeding
+# ===========================================================================
+- id: green_or_bloody_sick_or_poo
+  label: "Baby being sick green, or blood in their poo"
+  question: "Is your baby being sick green (bright green or dark green), or is there blood in their poo?"
+  checklist_text: "Being sick green, or blood in their poo"
+  kind: symptom
+  asked_only_if: age_under_5
+  seriousness: emergency
+  phrases: ["green sick", "blood in nappy", "redcurrant jelly poo"]
+  source: ai_judgement
+
+- id: baby_crying_evenings_otherwise_well
+  label: "Baby cries a lot, often in the evening, but feeds and grows well"
+  question: "Does your baby cry a lot, often in the evening, and pull their knees up to their tummy? But otherwise feed well and put on weight?"
+  kind: symptom
+  asked_only_if: age_under_1
+  phrases: ["cries every evening", "draws knees up", "colicky"]
+  source: nhs_colic

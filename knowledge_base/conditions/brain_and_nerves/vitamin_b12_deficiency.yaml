@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: vitamin_b12_deficiency
+body_system: brain_and_nerves
+entry_symptoms: [pins_and_needles, memory_problems]
+name: "Lack of vitamin B12 or folate"
+medical_name: "Vitamin B12 or folate deficiency"
+snomed: "190634004"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: vegan_or_stomach_condition, prevalence: common}
+  - {finding: age_65_or_over, prevalence: common}
+findings:
+  # More common in older people. What tells it apart: tiredness and pale skin with pins and needles, in someone with a vegan diet or a stomach or bowel condition.
+  very_tired: strongly_supports
+  paler_than_usual: supports
+  pins_needles_both_feet_or_hands: supports
+  vegan_or_stomach_condition: supports
+  pins_and_needles: supports
+  memory_problems: supports
+key_findings: [very_tired, paler_than_usual, vegan_or_stomach_condition]
+source: nhs_vitamin_b12_deficiency
+informed_by: [nhs_vitamin_b12_deficiency, nhs_pins_and_needles]

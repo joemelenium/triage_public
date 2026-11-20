@@ -1,0 +1,128 @@
+# Entry symptom: pins and needles (tingling or numbness).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Pins and needles page has no emergency advice. The emergency rules here
+# come from the Stroke, Guillain-Barre syndrome and Paralysis pages, and from
+# clinical knowledge.
+#
+# Common causes from other body systems are not carded here: carpal tunnel
+# syndrome, sciatica and a trapped nerve in the neck (bones, joints and muscles),
+# and Raynaud's. Those cards should add pins_and_needles to their entry symptoms.
+
+id: pins_and_needles
+name: "Pins and needles"
+presenting_finding: pins_and_needles
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: pins_needles_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pins_needles_sudden_one_side
+      - weakness_or_paralysis
+      - difficulty_speaking
+      - face_numbness_sudden
+      - weakness_spreading_up
+      - legs_weak_or_numb
+      - bladder_bowel_change
+      - saddle_numbness
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_pn_sudden_one_side
+    description: "Numbness or tingling that came on suddenly on one side of the body: possible stroke"
+    when: pins_needles_sudden_one_side
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+    note: "The Stroke page lists weakness or numbness down one side of the body as a sign of a stroke."
+
+  - id: rf_pn_speech_or_face
+    description: "Pins and needles with difficulty speaking, or sudden numbness in the face: possible stroke"
+    when: {any: [difficulty_speaking, face_numbness_sudden]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+
+  - id: rf_pn_weakness
+    description: "Pins and needles or numbness with weakness"
+    when: weakness_or_paralysis
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_weakness_999
+    source: nhs_paralysis
+    soft: true    # likely conditions may lower this: slow nerve conditions also cause numbness with weakness
+    note: "Same as the weakness rule: the Paralysis page says call 999 for weakness with numbness and tingling. Soft because slowly worsening numbness and weakness from nerve damage is common and needs a GP, not an ambulance. The weakness entry symptom also applies once weakness is reported."
+
+  - id: rf_pn_legs_bladder_bowel
+    description: "Numbness or weakness in both legs with problems controlling pee or poo, or numbness around the bottom"
+    when: {all: [legs_weak_or_numb, {any: [bladder_bowel_change, saddle_numbness]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_weakness_ae
+    source: ai_judgement
+    note: "Clinical knowledge: signs of cauda equina syndrome or spinal cord pressure. See the weakness entry symptom."
+
+  - id: rf_pn_spreading_ae
+    description: "Tingling or weakness that started in the feet or hands and is spreading up the body: possible Guillain-Barre syndrome"
+    when: weakness_spreading_up
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_weakness_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source page gives a lower urgency
+    note: "Same as the weakness rule. The Guillain-Barre syndrome page says an urgent GP appointment or 111."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_pn_spreading
+    description: "Tingling or weakness spreading up from the feet or hands"
+    when: weakness_spreading_up
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_weakness_urgent
+    source: nhs_guillain_barre_syndrome
+
+  - id: rf_pn_low_sugar
+    description: "Diabetes and signs of low blood sugar (a hypo), which can cause tingling lips"
+    when: {all: [has_diabetes, diabetes_low_sugar_signs]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Treat the low blood sugar now. If it does not improve, get help from NHS 111, or call 999 if the person becomes drowsy or confused."}
+    advice: advice_low_blood_sugar
+    source: nhs_low_blood_sugar
+
+outcome_rules:
+  - id: or_pn_constant
+    description: "Pins and needles all the time"
+    when: pins_needles_constant
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pins_needles_gp
+    source: nhs_pins_and_needles
+
+  - id: or_pn_keeps_coming_back
+    description: "Pins and needles that keep coming back"
+    when: pins_needles_keeps_coming_back
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pins_needles_gp
+    source: nhs_pins_and_needles
+
+  - id: or_pn_both_feet_or_hands
+    description: "Numbness or tingling in both feet or both hands (possible nerve damage)"
+    when: pins_needles_both_feet_or_hands
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pins_needles_gp
+    source: nhs_peripheral_neuropathy
+
+  - id: or_pn_different_places
+    description: "Pins and needles in different parts of the body"
+    when: pins_needles_different_places
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_pins_needles_gp
+    source: nhs_pins_and_needles
+
+default:
+  description: "Pins and needles with nothing that needs more help: usually from pressure, and goes in a few minutes"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Pins and needles usually stop within a few minutes"}
+  advice: advice_pins_needles_self_care
+  source: nhs_pins_and_needles

@@ -1,0 +1,50 @@
+id: bn_d04
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sudden_confusion]
+
+summary: "An 84-year-old woman, normally sharp and living independently, became suddenly muddled since last night, does not know where she is and is talking nonsense at times. She has had burning when peeing for 2 days. Her daughter is not sure if she has a temperature."
+
+opening_statement: "My mum's suddenly gone really confused since last night. She didn't know who I was at first and she keeps asking where she is. She's usually completely with it."
+
+findings:
+  present: [sudden_confusion, came_on_over_hours_or_days, muddled_thinking, painful_or_frequent_peeing]
+  absent: [numbness_or_weakness, face_droop_one_side, headache, head_injury_last_3_months, had_a_fit, has_diabetes, has_dementia, drinks_a_lot_of_alcohol, new_medicine_recently, others_in_home_unwell, difficulty_breathing, passed_out]
+  unknown: [very_high_temperature]
+
+context:
+  none: {}
+  basic: {age: 84, sex: female}
+  full:
+    age: 84
+    sex: female
+    findings: {has_dementia: "no", has_diabetes: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Sudden confusion (delirium)"
+    findings: [sudden_confusion]
+    minimum_acuity: emergency
+    source: {page: confusion.txt, quote: "Many causes of sudden confusion need to be assessed and treated as soon as possible."}
+
+safety_netting_should_cover:
+  - point: "Go to A&E now or call 999"
+    any_of: ["A&E", "999"]
+  - point: "Stay with her and reassure her"
+    any_of: ["stay with"]
+  - point: "Take a note or list of her medicines"
+    any_of: ["medicine"]
+
+source:
+  expected_outcome: {page: confusion.txt, quote: "someone suddenly becomes confused"}
+  minimum_safe_acuity: {page: confusion.txt, quote: "Sometimes it may be life threatening."}
+
+atypical: false
+notes: "Sudden confusion in an older adult, possibly from a urine infection (confusion.txt lists UTIs as a common cause in older people). The page says 'Go to A&E or call 999'; A&E chosen as she is awake, breathing normally and her daughter can take her. She must not be the driver. The temperature is genuinely unknown (no thermometer)."

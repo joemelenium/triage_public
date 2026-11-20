@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: simple_snoring
+body_system: ear_nose_throat
+entry_symptoms: [snoring]
+name: "Snoring that is not caused by a health problem"
+medical_name: "Primary snoring"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from sleep apnoea: the breathing does not stop, and the person is not very
+  # sleepy in the day. It is worse after alcohol or sleeping on the back.
+  snoring_worse_alcohol_or_on_back: strongly_supports
+  blocked_or_runny_nose: supports
+  breathes_through_mouth: supports
+key_findings: [snoring_worse_alcohol_or_on_back, breathing_stops_in_sleep]
+source: nhs_snoring
+informed_by: [nhs_snoring]

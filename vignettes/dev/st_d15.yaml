@@ -1,0 +1,52 @@
+id: st_d15
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 58-year-old man who smokes has had a mild sore throat on the left side for nearly three weeks that is not getting better. He has also noticed a firm, painless lump on the left side of his neck. He feels well, is eating normally and is not worried; he asks whether lozenges would help."
+
+opening_statement: "I've had a bit of a sore throat on one side for nearly three weeks. It's not bad, it just won't shift. Would lozenges do the trick? There's a small lump on my neck as well, probably a gland."
+
+findings:
+  present: [sore_throat, sore_throat_over_a_week, lump_in_mouth_or_neck, wants_help_with_sore_throat,
+      heart_risk_factors, symptoms_worse_or_not_better]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, weakened_immune_system, pus_on_tonsils,
+      too_painful_to_eat_or_drink, worried_about_symptoms, frequent_sore_throats,
+      mouth_ulcer_over_3_weeks, cough_or_runny_nose, very_tired, stroke_signs,
+      severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+      heavy_bleeding, serious_self_harm, chest_pain, short_of_breath, cold_or_shivery]
+  unknown: [swollen_neck_glands]
+
+context:
+  none: {}
+  basic: {age: 58, sex: male}
+  full: {age: 58, sex: male}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags:
+  - description: "A lump in the neck together with a sore throat"
+    findings: [lump_in_mouth_or_neck]
+    minimum_acuity: routine
+    source: {page: sore_throat.txt, quote: "you have a sore throat and symptoms like a lump in your mouth or neck, or a mouth ulcer that lasts for more than 3 weeks"}
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "When to get urgent or emergency help, such as difficulty breathing, being unable to swallow, drooling or a very high temperature"
+    any_of: ["999", "A&E", "111"]
+
+source:
+  expected_outcome: {page: sore_throat.txt, quote: "Non-urgent advice: See a GP if:"}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "you or your child's sore throat does not improve after a week"}
+
+atypical: true
+notes: "Atypical for a sore throat: mild, one-sided and long-lasting, with a painless neck lump, in a patient who is not worried and asks only about lozenges. Two 'See a GP' criteria on sore_throat.txt are met (not improved after a week; a lump in the neck), and tonsillitis.txt agrees on the one-week rule. The pages give no timescale for the GP visit, so the acuity is routine and the red flag is recorded with a minimum of routine. Because he also wants help, the pharmacist criterion is met too; the GP criteria should take priority. Pharmacy or self-care advice alone would fall short even though pharmacy carries the same acuity label. He says the neck lump is 'probably a gland' but cannot tell, so swollen_neck_glands is unknown while lump_in_mouth_or_neck is present. He smokes, so heart_risk_factors (a chest pain history question) is recorded as present to keep his answers truthful; neither page ties smoking to any sore throat advice beyond naming it as a cause."

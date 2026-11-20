@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: joint_hypermobility
+body_system: bones_joints_muscles
+entry_symptoms: [joint_pain]
+name: "Joint hypermobility (very bendy joints that can hurt)"
+medical_name: "Joint hypermobility syndrome"
+snomed: "85551004"
+acuity_needed: routine
+danger: minor
+prevalence: rare
+findings:
+  joints_very_bendy: strongly_supports
+  several_joints: supports
+  pain_getting_worse_or_recurring: supports
+key_findings: [joints_very_bendy]
+source: nhs_joint_hypermobility
+informed_by: [nhs_joint_hypermobility]

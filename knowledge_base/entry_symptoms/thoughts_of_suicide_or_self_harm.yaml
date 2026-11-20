@@ -1,0 +1,146 @@
+# Entry symptom: thoughts of suicide or self-harm, or has self-harmed.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Questions are asked plainly and kindly. "Not sure" to any of them is treated as
+# "yes" for the rule it belongs to, so uncertainty always leads to more help.
+#
+# The working levels of care have no mental health crisis route. Immediate danger
+# uses 999 or A&E. Thoughts of suicide without immediate danger use urgent care:
+# NHS 111 (choosing the mental health option, option 2), an emergency GP
+# appointment or the person's crisis team. Every advice text names crisis lines
+# (Samaritans 116 123, Shout 85258, NHS 111 option 2). The gap is recorded for an
+# owner decision.
+
+id: thoughts_of_suicide_or_self_harm
+name: "Thoughts of suicide or self-harm"
+presenting_finding: suicidal_thoughts_or_self_harm
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: suicide_self_harm_emergency_screen
+    level: emergency
+    question: "Thank you for telling us. You are not alone, and help is available. Do any of these apply right now? Choose all that apply."
+    findings:
+      - suicide_plan
+      - preparing_for_suicide
+      - cannot_keep_safe
+      - taken_overdose
+      - self_harm_injury_serious
+      - voices_telling_to_harm
+
+  - id: suicide_self_harm_urgent_screen
+    level: urgent
+    question: "These questions help us find the right help for you. Do any of these apply? Choose all that apply."
+    findings:
+      - suicidal_thoughts
+      - thoughts_of_harming_others
+      - hearing_or_seeing_things
+      - self_harm_getting_worse
+      - self_harm_wound_infected
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_sh_plan
+    description: "Has a plan to end their life, or feels they may act on thoughts of suicide soon"
+    when: suicide_plan
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: nhs_suicidal_thoughts
+    note: "The page says call 999 or go to A&E if you feel you may be about to harm yourself. Reading a plan, or feeling you may act soon, as that is AI judgement."
+
+  - id: rf_sh_preparing
+    description: "Has done something to prepare to end their life"
+    when: preparing_for_suicide
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: ai_judgement
+    note: "Clinical knowledge: preparing (a note, giving things away, gathering the means) is a sign of high immediate danger. Treated like the source's 'about to harm yourself'."
+
+  - id: rf_sh_cannot_keep_safe
+    description: "Cannot keep themselves or someone else safe right now"
+    when: cannot_keep_safe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: nhs_urgent_mental_health
+
+  - id: rf_sh_overdose
+    description: "Has taken an overdose or swallowed something harmful, even if they feel well"
+    when: taken_overdose
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 for an ambulance or go straight to A&E"}
+    advice: advice_mh_overdose_or_injury
+    source: nhs_suicidal_thoughts
+    note: "The Poisoning page says the same, and that symptoms may take hours or days to start."
+
+  - id: rf_sh_serious_injury
+    description: "A serious injury from self-harm: deep, gaping, bleeding a lot, or a bad burn"
+    when: self_harm_injury_serious
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 for an ambulance or go straight to A&E"}
+    advice: advice_mh_overdose_or_injury
+    source: nhs_urgent_mental_health
+
+  - id: rf_sh_voices_harm
+    description: "Hearing voices telling them to harm themselves or someone else"
+    when: voices_telling_to_harm
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_mh_cannot_keep_safe
+    source: ai_judgement
+    note: "Clinical knowledge: voices telling someone to harm themselves or others, together with thoughts of suicide or self-harm, need assessment now."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_sh_suicidal_thoughts
+    description: "Thoughts of ending their life, without immediate danger"
+    when: suicidal_thoughts
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), ask your GP surgery for an emergency appointment, or contact your crisis team if you have one, today"}
+    advice: advice_suicidal_thoughts_urgent
+    source: nhs_suicidal_thoughts
+    note: "The page lists a GP emergency appointment, NHS 111 and the crisis team for help that is not an immediate danger. The Where to get urgent help for mental health page says 111 or an urgent GP appointment."
+
+  - id: rf_sh_harm_others
+    description: "Thoughts of harming someone else, including a baby or child"
+    when: thoughts_of_harming_others
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+    advice: advice_mh_urgent
+    source: ai_judgement
+    note: "Clinical knowledge. If they feel they cannot keep someone safe, the emergency rule applies."
+
+  - id: rf_sh_getting_worse
+    description: "Self-harm happening more often, or injuries getting more serious"
+    when: self_harm_getting_worse
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call NHS 111 and choose the mental health option (option 2), or ask your GP surgery for an urgent appointment today"}
+    advice: advice_suicidal_thoughts_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: self-harm that is getting worse raises the chance of serious harm or suicide. The Self-harm page says some people who self-harm are at a higher chance of suicide, and to get support as soon as possible."
+
+  - id: rf_sh_wound_infected
+    description: "A wound from self-harm that may be infected"
+    when: self_harm_wound_infected
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, or call NHS 111, today"}
+    advice: advice_self_harm_wound_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "The Self-harm page says speak to a GP about minor injuries because of the chance of infection. Making an infected-looking wound same-day is AI judgement."
+
+outcome_rules:
+  - id: or_sh_self_harmed
+    description: "Has harmed themselves on purpose, with no sign of immediate danger"
+    when: self_harmed
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Speak to a GP. The source gives no fixed time, but it is important to get support as soon as possible."}
+    advice: advice_self_harm_gp
+    source: nhs_self_harm_help
+
+default:
+  description: "Thoughts of self-harm, or has self-harmed, with no thoughts of suicide and no sign of immediate danger"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "Speak to a GP. The source gives no fixed time, but it is important to get support as soon as possible."}
+  advice: advice_self_harm_gp
+  source: nhs_self_harm_help
+  # A floor: the source says to speak to a GP if you are harming yourself or
+  # having thoughts about harming yourself. Likely conditions can never take it lower.
+  floor: true
+  note: "Thoughts of ending your life are handled by the urgent rule above. A 'not sure' to that question keeps the outcome urgent."

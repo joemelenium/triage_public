@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: labyrinthitis
+body_system: ear_nose_throat
+entry_symptoms: [hearing_loss, tinnitus, dizziness]
+name: "Labyrinthitis (an ear infection that affects balance)"
+medical_name: "Labyrinthitis or vestibular neuritis"
+snomed: "23919004"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: dizziness, prevalence: common}
+findings:
+  # What tells it apart from Meniere's: one long bout of spinning and feeling sick lasting days,
+  # often after a cold or flu, rather than repeated short attacks.
+  dizziness_spinning: strongly_supports
+  nausea_or_vomiting: supports
+  recent_viral_illness: supports
+  hearing_loss_sudden: supports
+  tinnitus: supports
+  hearing_loss: supports
+  # From the brain_and_nerves card for this condition (merged):
+  dizziness_constant: strongly_supports
+  vomiting: supports
+  trouble_with_balance_or_walking: supports
+key_findings: [dizziness_spinning, recent_viral_illness, symptoms_come_in_attacks, dizziness_constant, hearing_loss, tinnitus]
+source: nhs_labyrinthitis
+informed_by: [nhs_labyrinthitis, nhs_hearing_loss, nhs_vertigo]
+# Merged with the brain_and_nerves card for this condition. Its notes:
+# Danger moderate because it can look like a stroke affecting balance. What tells it apart: spinning that started suddenly and is there all the time, often after a cold, with feeling sick.

@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: needs_glasses
+body_system: eyes
+# Short sight, long sight or astigmatism. Found at a sight test at an optician.
+entry_symptoms: [vision_change, double_vision]
+name: "Needing glasses or a new prescription (short sight, long sight or astigmatism)"
+medical_name: "Refractive error"
+snomed: "39021009"
+acuity_needed: routine
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_common}
+  - {finding: vision_change, prevalence: common}
+  - {finding: double_vision, prevalence: uncommon}
+findings:
+  blurred_far_or_near: strongly_supports
+  vision_worse_slowly: strongly_supports
+  headache: supports    # from straining to see
+  double_vision_one_eye: supports    # astigmatism
+  eye_turns_or_squints: supports    # in children
+key_findings: [blurred_far_or_near, vision_worse_slowly]
+source: nhs_short_sightedness
+informed_by: [nhs_short_sightedness, nhs_astigmatism, nhs_double_vision]

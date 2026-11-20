@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pleurisy
+body_system: breathing
+entry_symptoms: [chest_pain]
+name: "Pleurisy (swelling of the lining around the lungs)"
+medical_name: "Pleurisy"
+snomed: "196075003"
+# The Pleurisy page asks for an urgent GP appointment or 111, to check for a more
+# serious cause such as pneumonia or a blood clot in the lung.
+acuity_needed: urgent
+danger: moderate
+# "rare": pleurisy on its own, without pneumonia or a clot behind it, is an
+# uncommon cause of chest pain. Sharp pain on breathing in lifts it quickly.
+prevalence: rare
+findings:
+  # What tells it apart from a heart problem: sharp pain when breathing in,
+  # coughing or moving, often after a virus.
+  cp_worse_breathing_in: strongly_supports
+  cp_sharp_or_stabbing: strongly_supports
+  cp_present_now: supports
+  recent_viral_illness: supports
+  cough: supports
+  very_high_temperature: supports
+  upper_back_pain: supports             # the pain can spread to the shoulders and back
+key_findings: [cp_worse_breathing_in, cp_sharp_or_stabbing, recent_viral_illness, cough]
+source: nhs_pleurisy
+informed_by: [nhs_pleurisy, nhs_chest_pain]

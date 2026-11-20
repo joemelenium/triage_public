@@ -1,0 +1,70 @@
+# Entry symptom: bleeding after the menopause (postmenopausal bleeding).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS page says always get it checked by a GP, even if it is a small amount
+# or happened once, so the default is a GP and a floor. The GP should refer to a
+# specialist within 2 weeks, because it can be a sign of cancer. The urgent and
+# emergency rules for heavy bleeding are AI judgement.
+#
+# Age gate: the main symptom is only asked of people aged 40 or over, unless
+# they raise it themselves.
+
+id: bleeding_after_menopause
+name: "Bleeding after the menopause"
+presenting_finding: bleeding_after_menopause
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bleeding_after_menopause_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - heavy_vaginal_bleeding
+      - fainted
+      - light_headed
+      - sa_severe
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_pmb_heavy_and_faint
+    description: "Heavy bleeding with feeling faint or dizzy, or passing out"
+    when: {all: [heavy_vaginal_bleeding, {any: [light_headed, fainted]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_heavy_bleeding_emergency
+    source: ai_judgement
+
+  - id: rf_pmb_severe_pain_or_fainted
+    description: "Bleeding after the menopause with severe tummy pain, or passing out"
+    when: {any: [sa_severe, fainted]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+    note: "The Pelvic pain page: severe pelvic pain, or passing out, needs 999 or A&E."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_pmb_heavy
+    description: "Heavy bleeding after the menopause"
+    when: heavy_vaginal_bleeding
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_bleeding_after_menopause_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: bleeding heavy enough to soak a pad soon after putting it on needs checking the same day, whatever the cause. Split from feeling light-headed (below), which is the weak part, so a likely mild cause cannot lower heavy bleeding."
+
+  - id: rf_pmb_light_headed
+    description: "Bleeding after the menopause, and feeling light-headed"
+    when: light_headed
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_bleeding_after_menopause_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: feeling light-headed has many harmless causes
+
+outcome_rules: []
+
+default:
+  description: "Any bleeding after the menopause: see a GP, even if it was a small amount or happened once"
+  outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within a few days. The GP should refer you to a specialist, who you should see within 2 weeks."}
+  advice: advice_bleeding_after_menopause_gp
+  source: nhs_post_menopausal_bleeding
+  # A floor: the source says it always needs checking by a GP.
+  floor: true
+  note: "The page says see a GP and that the specialist should be seen within 2 weeks. 'Within a few days' for the GP visit is AI judgement, so the 2-week referral can happen in time: bleeding after the menopause is the main early sign of womb cancer. Changed after the self-tests."

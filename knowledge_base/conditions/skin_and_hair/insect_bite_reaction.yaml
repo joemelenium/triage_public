@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: insect_bite_reaction
+body_system: skin_and_hair
+entry_symptoms: [insect_bite_or_sting]
+name: "Reaction to an insect bite or sting"
+medical_name: "Insect bite reaction (including a large local reaction)"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from an infected bite: a small itchy or painful lump where bitten, sometimes a large swelling that spreads over a day or two, without a high temperature.
+  bite_lump_itchy_or_painful: strongly_supports
+  bite_swelling_large: supports
+key_findings: [bite_lump_itchy_or_painful, bite_swelling_large]
+source: nhs_insect_bites
+informed_by: [nhs_insect_bites]

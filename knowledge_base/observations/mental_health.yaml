@@ -1,0 +1,691 @@
+# Observations: mental health.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Fields are described in observations/general.yaml.
+#
+# Questions about suicide and self-harm are asked plainly and kindly. Asking
+# about suicide does not put the idea in someone's head, and plain words make it
+# easier to answer honestly.
+#
+
+# ===========================================================================
+# Main symptoms (one per entry symptom)
+# ===========================================================================
+- id: low_mood
+  label: "Feeling low, sad or depressed"
+  question: "Have you been feeling low, sad, hopeless or depressed?"
+  question_carer: "Has the person been feeling low, sad or hopeless, or seemed depressed?"
+  checklist_text: "Feeling low, sad, hopeless or depressed"
+  kind: presenting
+  snomed: "366979004"
+  phrases: ["feeling down", "depressed", "really low", "can't stop crying"]
+  source: nhs_low_mood
+
+- id: feeling_anxious
+  label: "Feeling anxious, worried or panicky"
+  question: "Have you been feeling anxious, worried, frightened or panicky?"
+  question_carer: "Has the person been feeling anxious, worried, scared or panicky?"
+  checklist_text: "Feeling anxious, worried or panicky"
+  kind: presenting
+  phrases: ["anxious", "panicky", "on edge", "can't stop worrying"]
+  source: nhs_anxiety_fear_panic
+
+- id: suicidal_thoughts_or_self_harm
+  label: "Thoughts of suicide or self-harm, or has self-harmed"
+  question: "Have you had thoughts of ending your life, or of harming yourself? Or have you harmed yourself on purpose?"
+  question_carer: "Has the person talked about ending their life or harming themselves? Or have they harmed themselves on purpose?"
+  checklist_text: "Thoughts of ending your life or harming yourself, or harmed yourself on purpose"
+  kind: presenting
+  phrases: ["want to die", "suicidal", "want to end it all", "cutting myself", "hurting myself"]
+  source: nhs_suicidal_thoughts
+
+- id: hearing_or_seeing_things
+  label: "Hearing, seeing or feeling things that other people do not"
+  question: "Have you been hearing, seeing or feeling things that other people do not? For example, hearing voices when no one is there."
+  question_carer: "Has the person been hearing, seeing or feeling things that other people do not? For example, hearing voices when no one is there."
+  checklist_text: "Hearing, seeing or feeling things that other people do not"
+  kind: presenting
+  snomed: "7011001"
+  phrases: ["hearing voices", "seeing things", "seeing people who aren't there"]
+  source: nhs_psychosis
+
+- id: agitated_or_out_of_control
+  label: "Feeling out of control, or very agitated or restless"
+  question: "Have you been feeling out of control, or very agitated or restless? Or have you been acting in a way that is not like you?"
+  question_carer: "Has the person been very agitated, restless or out of control? Or have they been acting in a way that is not like them?"
+  checklist_text: "Feeling out of control, very agitated or restless"
+  kind: presenting
+  snomed: "24199005"
+  phrases: ["can't calm down", "out of control", "losing it", "not acting like himself"]
+  source: nhs_urgent_mental_health
+
+- id: alcohol_or_drug_problem
+  label: "Worried about alcohol or drug use"
+  question: "Are you worried about how much alcohol you drink, or about drug use? Or have you had problems after drinking or taking a drug?"
+  question_carer: "Are you worried about how much alcohol the person drinks, or about their drug use? Or have they had problems after drinking or taking a drug?"
+  checklist_text: "Worried about alcohol or drug use"
+  kind: presenting
+  phrases: ["drinking too much", "can't stop drinking", "using again", "addicted"]
+  source: nhs_alcohol_misuse
+
+- id: eating_problem
+  label: "Worried about eating, weight or body shape"
+  question: "Are you worried about your eating, or about your weight or body shape? For example, eating very little, making yourself sick, or eating large amounts and feeling out of control."
+  question_carer: "Are you worried about the person's eating, or how they feel about their weight or body shape?"
+  checklist_text: "Worried about eating, weight or body shape"
+  kind: presenting
+  phrases: ["not eating", "making myself sick", "binge eating", "obsessed with my weight"]
+  source: nhs_eating_disorders
+
+# ===========================================================================
+# Suicide and self-harm
+# ===========================================================================
+- id: suicidal_thoughts
+  label: "Thoughts of ending their life"
+  question: "Have you been having thoughts of ending your life?"
+  question_carer: "Has the person been having thoughts of ending their life, or talked about it?"
+  checklist_text: "Thoughts of ending your life"
+  kind: symptom
+  parent: suicidal_thoughts_or_self_harm
+  relation: character
+  snomed: "6471006"
+  phrases: ["want to die", "better off dead", "don't want to be here"]
+  source: nhs_suicidal_thoughts
+
+- id: suicide_plan
+  label: "Has a plan to end their life, or may act on the thoughts soon"
+  question: "Have you made a plan to end your life? Or do you feel you might act on these thoughts soon?"
+  question_carer: "Has the person made a plan to end their life? Or do you think they might act on these thoughts soon?"
+  checklist_text: "A plan to end your life, or feeling you might act on these thoughts soon"
+  kind: symptom
+  parent: suicidal_thoughts
+  relation: severity
+  seriousness: emergency
+  phrases: ["I know how I'd do it", "I've decided", "tonight"]
+  source: nhs_suicidal_thoughts
+
+- id: preparing_for_suicide
+  label: "Has done something to prepare to end their life"
+  question: "Have you done anything to prepare to end your life? For example, writing a note, giving things away, or getting hold of pills or something else to harm yourself with."
+  question_carer: "Has the person done anything to prepare to end their life? For example, writing a note, giving things away, or getting hold of pills."
+  checklist_text: "Done something to prepare, such as writing a note or getting hold of pills"
+  kind: symptom
+  parent: suicidal_thoughts
+  relation: severity
+  seriousness: emergency
+  phrases: ["wrote a letter", "saved up my tablets", "gave my things away"]
+  source: ai_judgement
+
+- id: suicidal_thoughts_getting_worse
+  label: "Thoughts of suicide getting stronger or more frequent"
+  question: "Are these thoughts getting stronger, or coming more often?"
+  question_carer: "Do these thoughts seem to be getting stronger, or coming more often?"
+  checklist_text: "Thoughts of ending your life getting stronger or coming more often"
+  kind: symptom
+  parent: suicidal_thoughts
+  relation: severity
+  seriousness: serious
+  phrases: ["it's getting worse", "thinking about it all the time"]
+  source: ai_judgement
+
+- id: cannot_keep_safe
+  label: "Cannot keep themselves or someone else safe"
+  question: "Do you feel that you cannot keep yourself, or someone else, safe right now?"
+  question_carer: "Do you feel that you cannot keep the person, or someone else, safe right now?"
+  checklist_text: "Cannot keep yourself or someone else safe right now"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["I can't keep myself safe", "I'm scared of what I'll do"]
+  source: nhs_urgent_mental_health
+
+- id: taken_overdose
+  label: "Taken an overdose, or swallowed something harmful"
+  question: "In the last few days, have you taken an overdose of a medicine or a drug, or swallowed something harmful? Answer yes even if you feel well."
+  question_carer: "In the last few days, has the person taken an overdose of a medicine or a drug, or swallowed something harmful? Answer yes even if they seem well."
+  checklist_text: "Taken an overdose or swallowed something harmful. Even if you feel well."
+  kind: symptom
+  seriousness: emergency
+  phrases: ["took all my tablets", "taken too many paracetamol", "swallowed bleach"]
+  source: nhs_suicidal_thoughts
+
+- id: self_harm_injury_serious
+  label: "Serious injury from self-harm: deep, bleeding a lot, or a bad burn"
+  question: "Have you hurt yourself and the injury is deep, gaping open or bleeding a lot? Or have you burned yourself badly?"
+  question_carer: "Has the person hurt themselves and the injury is deep, gaping open or bleeding a lot? Or have they burned themselves badly?"
+  checklist_text: "An injury that is deep, gaping or bleeding a lot, or a bad burn"
+  kind: symptom
+  parent: serious_self_harm
+  relation: severity
+  seriousness: emergency
+  phrases: ["cut too deep", "won't stop bleeding", "burned myself badly"]
+  source: nhs_urgent_mental_health
+
+- id: self_harmed
+  label: "Has harmed themselves on purpose"
+  question: "Have you harmed yourself on purpose? For example, by cutting, burning or hitting yourself."
+  question_carer: "Has the person harmed themselves on purpose? For example, by cutting, burning or hitting themselves."
+  checklist_text: "Harmed yourself on purpose"
+  kind: symptom
+  parent: suicidal_thoughts_or_self_harm
+  relation: character
+  phrases: ["I cut myself", "I burn myself", "I hurt myself"]
+  source: nhs_self_harm_help
+
+- id: self_harm_getting_worse
+  label: "Self-harm happening more often or getting more serious"
+  question: "Is the self-harm happening more often, or are the injuries getting more serious?"
+  question_carer: "Is the person harming themselves more often? Or are the injuries getting worse?"
+  checklist_text: "Self-harm happening more often, or injuries getting more serious"
+  kind: symptom
+  asked_only_if: self_harmed
+  seriousness: serious
+  phrases: ["doing it more and more", "cutting deeper"]
+  source: ai_judgement
+
+- id: self_harm_wound_infected
+  label: "Self-harm wound may be infected"
+  question: "Is a wound from harming yourself getting more painful, red, hot or swollen, or leaking pus?"
+  question_carer: "Is a wound from harming themselves getting more painful, red, hot or swollen, or leaking pus?"
+  checklist_text: "A wound getting more painful, hot or swollen, or leaking pus"
+  kind: symptom
+  asked_only_if: self_harmed
+  phrases: ["cut looks infected", "wound is oozing"]
+  source: nhs_self_harm_help
+
+- id: thoughts_of_harming_others
+  label: "Thoughts of harming someone else"
+  question: "Have you had thoughts of harming someone else? This includes thoughts of harming a baby or child."
+  question_carer: "Has the person talked about harming someone else, including a baby or child?"
+  checklist_text: "Thoughts of harming someone else, including a baby or child"
+  kind: symptom
+  seriousness: serious
+  phrases: ["scared I'll hurt my baby", "want to hurt someone"]
+  source: nhs_postnatal_depression
+
+- id: previous_suicide_attempt
+  label: "Has tried to end their life before"
+  question: "Have you ever tried to end your life before?"
+  question_carer: "Has the person ever tried to end their life before?"
+  kind: history
+  phrases: ["tried before", "took an overdose last year"]
+  source: ai_judgement
+
+- id: feeling_hopeless
+  label: "Feels hopeless, or that things will never get better"
+  question: "Do you feel hopeless, or that things will never get better?"
+  question_carer: "Does the person seem hopeless, or say that things will never get better?"
+  checklist_text: "Feeling hopeless, or that things will never get better"
+  kind: symptom
+  phrases: ["no point", "nothing will ever change", "hopeless"]
+  source: nhs_depression
+
+- id: recent_crisis_or_loss
+  label: "Something very upsetting happened recently"
+  question: "Has something very upsetting happened lately? For example, someone died, you split up with a partner, you lost your job, you have money worries, or someone hurt you."
+  question_carer: "Has something very upsetting happened to the person lately? For example, someone died, they split up with a partner, they lost a job, or someone hurt them."
+  checklist_text: "Something very upsetting happened lately, such as a death or a break-up. Or someone hurt you."
+  kind: history
+  phrases: ["my mum died", "split up", "lost my job", "money problems"]
+  source: nhs_grief
+
+# ===========================================================================
+# Low mood
+# ===========================================================================
+- id: low_mood_over_2_weeks
+  label: "Low mood most of the day, nearly every day, for more than 2 weeks"
+  question: "Have you felt low for most of the day, nearly every day, for more than 2 weeks?"
+  question_carer: "Has the person seemed low for most of the day, nearly every day, for more than 2 weeks?"
+  checklist_text: "Feeling low most of the day, nearly every day, for more than 2 weeks"
+  kind: symptom
+  parent: low_mood
+  relation: duration
+  phrases: ["for weeks now", "every day for a month"]
+  source: nhs_depression
+
+- id: low_mood_struggling_to_cope
+  label: "Struggling to cope with the low mood"
+  question: "Are you struggling to cope with day-to-day life? For example, work, school, family, or looking after yourself."
+  question_carer: "Is the person struggling to cope with day-to-day life? For example, work, school, family, or looking after themselves."
+  checklist_text: "Struggling to cope with day-to-day life"
+  kind: symptom
+  parent: low_mood
+  relation: severity
+  phrases: ["can't cope", "can't get out of bed", "can't go to work"]
+  source: nhs_low_mood
+
+- id: lost_interest_or_enjoyment
+  label: "Lost interest or enjoyment in things"
+  question: "Have you lost interest in things, or stopped enjoying things you used to enjoy?"
+  question_carer: "Has the person lost interest in things, or stopped enjoying things they used to enjoy?"
+  checklist_text: "Lost interest or enjoyment in things"
+  kind: symptom
+  snomed: "28669007"
+  phrases: ["can't enjoy anything", "nothing interests me"]
+  source: nhs_depression
+
+- id: feeling_worthless_or_guilty
+  label: "Feels worthless or very guilty"
+  question: "Do you feel worthless, or very guilty, or that you are letting people down?"
+  question_carer: "Does the person say they feel worthless or very guilty, or that they are letting people down?"
+  checklist_text: "Feeling worthless or very guilty"
+  kind: symptom
+  phrases: ["I'm useless", "it's all my fault", "I'm a bad mum"]
+  source: nhs_depression
+
+- id: appetite_or_weight_change
+  label: "Eating much more or less than usual"
+  question: "Are you eating much more or much less than usual?"
+  question_carer: "Is the person eating much more or much less than usual?"
+  kind: symptom
+  phrases: ["not hungry", "comfort eating", "off my food"]
+  source: nhs_depression
+
+- id: stopped_eating_and_drinking
+  label: "Stopped eating or drinking, or stopped looking after themselves"
+  question: "Have you stopped eating or drinking, or stopped being able to look after yourself?"
+  question_carer: "Has the person stopped eating or drinking? Or can they no longer look after themselves?"
+  checklist_text: "Stopped eating or drinking, or cannot look after yourself"
+  kind: symptom
+  seriousness: serious
+  phrases: ["not eaten for days", "not washing", "stays in bed all day"]
+  source: ai_judgement
+
+- id: had_baby_in_last_year
+  label: "Had a baby in the last 12 months"
+  question: "Have you had a baby in the last 12 months? Answer yes if you gave birth, or your partner did."
+  checklist_text: "Had a baby in the last 12 months (you or your partner)"
+  kind: history
+  phrases: ["new baby", "just had a baby", "my wife just gave birth"]
+  source: nhs_postnatal_depression
+
+- id: difficulty_bonding_with_baby
+  label: "Difficult feelings about the baby, or finding it hard to bond"
+  question: "Are you finding it hard to bond with your baby, or having difficult feelings about them?"
+  kind: symptom
+  asked_only_if: had_baby_in_last_year
+  phrases: ["don't feel anything for my baby", "can't bond"]
+  source: nhs_postnatal_depression
+
+- id: has_depression
+  label: "Diagnosed with depression"
+  question: "Has a doctor told you that you have depression?"
+  question_carer: "Has a doctor told you that the person has depression?"
+  kind: history
+  phrases: ["I have depression", "on antidepressants"]
+  source: nhs_depression
+
+# ===========================================================================
+# High mood, bipolar and psychosis
+# ===========================================================================
+- id: high_mood_now
+  label: "Feeling very high or full of energy, with racing thoughts or little sleep"
+  question: "Do you feel very high, excited or full of energy? For example, your thoughts race, you talk fast, or you need much less sleep."
+  question_carer: "Does the person seem very high, excited or overactive? For example, talking fast, with racing thoughts, or hardly sleeping."
+  checklist_text: "Feeling very high or full of energy, with racing thoughts or little sleep"
+  kind: symptom
+  seriousness: serious
+  phrases: ["buzzing", "on top of the world", "can't stop talking", "don't need sleep"]
+  source: nhs_bipolar
+
+- id: past_high_mood_spells
+  label: "Has had spells of a very high mood for days at a time"
+  question: "Have you ever had spells of feeling very high, excited or full of energy for days at a time? For example, needing little sleep or doing risky things."
+  question_carer: "Has the person ever had spells of seeming very high, excited or full of energy for days at a time?"
+  checklist_text: "Spells of feeling very high or full of energy for days at a time"
+  kind: history
+  phrases: ["mood swings", "highs and lows"]
+  source: nhs_bipolar
+
+- id: risky_out_of_character_behaviour
+  label: "Doing risky things that are not like them"
+  question: "Have you been doing risky things that are not like you? For example, spending lots of money, risky sex, or driving dangerously."
+  question_carer: "Has the person been doing risky things that are not like them? For example, spending lots of money, risky sex, or driving dangerously."
+  checklist_text: "Doing risky things that are not like you, such as spending lots of money"
+  kind: symptom
+  phrases: ["spent all my savings", "doing crazy things"]
+  source: nhs_bipolar
+
+- id: has_bipolar
+  label: "Diagnosed with bipolar"
+  question: "Has a doctor told you that you have bipolar? This is a condition where your mood swings between very high and very low."
+  question_carer: "Has a doctor told you that the person has bipolar? This is a condition where mood swings between very high and very low."
+  kind: history
+  phrases: ["I'm bipolar", "I have bipolar"]
+  source: nhs_bipolar
+
+- id: believes_things_not_true
+  label: "Believes things that others say are not true"
+  question: "Do you believe things that other people say are not true? For example, that someone is watching you or trying to harm you, or that you have special powers."
+  question_carer: "Does the person believe things that are not true? For example, that someone is watching them or trying to harm them, or that they have special powers."
+  checklist_text: "Believing things others say are not true, such as being watched or followed"
+  kind: symptom
+  snomed: "2073000"
+  seriousness: serious
+  phrases: ["they're out to get me", "being followed", "the TV is sending me messages"]
+  source: nhs_psychosis
+
+- id: muddled_thinking
+  label: "Muddled thoughts or speech that is hard to follow"
+  question: "Are your thoughts muddled or racing? Or do others say your speech is hard to follow, jumping from one topic to another?"
+  question_carer: "Are the person's thoughts muddled or racing? Or is their speech hard to follow, jumping from one topic to another?"
+  checklist_text: "Muddled or racing thoughts, or speech that is hard to follow"
+  kind: symptom
+  phrases: ["not making sense", "thoughts all over the place"]
+  source: nhs_psychosis
+
+- id: withdrawn_from_others
+  label: "Withdrawn from friends and family"
+  question: "Have you been keeping away from friends and family, or staying alone much more than usual?"
+  question_carer: "Has the person been keeping away from friends and family, or staying alone much more than usual?"
+  kind: symptom
+  phrases: ["shut myself away", "won't leave the room"]
+  source: nhs_depression
+
+- id: voices_telling_to_harm
+  label: "Voices telling them to harm themselves or someone else"
+  question: "Are the voices telling you to harm yourself or someone else?"
+  question_carer: "Does the person say voices are telling them to harm themselves or someone else?"
+  checklist_text: "Voices telling you to harm yourself or someone else"
+  kind: symptom
+  parent: hearing_or_seeing_things
+  relation: character
+  seriousness: emergency
+  phrases: ["voices tell me to kill myself", "told to hurt someone"]
+  source: ai_judgement
+
+- id: hallucinations_falling_asleep
+  label: "Only sees or hears things when falling asleep or waking up"
+  question: "Does this only happen when you are falling asleep or waking up?"
+  question_carer: "Does this only happen when they are falling asleep or waking up?"
+  kind: symptom
+  parent: hearing_or_seeing_things
+  relation: character
+  snomed: "44780000"
+  phrases: ["only when I'm dropping off", "just as I wake up"]
+  source: ai_judgement
+
+- id: knows_not_real
+  label: "Knows that what they see or hear is not real"
+  question: "Do you know that what you see or hear is not real?"
+  question_carer: "Does the person know that what they see or hear is not real?"
+  kind: symptom
+  parent: hearing_or_seeing_things
+  relation: character
+  phrases: ["I know it's not real", "I know it's my mind playing tricks"]
+  source: nhs_charles_bonnet
+
+- id: hallucinations_usual_and_managed
+  label: "Long-standing experiences a doctor knows about, with no change"
+  question: "Have you had this for a long time? Does a doctor or mental health team know about it? And is it the same as usual, not worse?"
+  question_carer: "Has the person had this for a long time? Does a doctor or mental health team know about it? And is it the same as usual, not worse?"
+  kind: symptom
+  parent: hearing_or_seeing_things
+  relation: duration
+  phrases: ["I've always heard voices", "my team knows", "same as usual"]
+  source: ai_judgement
+
+- id: sight_loss_long_term
+  label: "Poor sight for a long time"
+  question: "Have you had poor sight for a long time, for example from an eye condition?"
+  question_carer: "Has the person had poor sight for a long time, for example from an eye condition?"
+  kind: history
+  phrases: ["my eyesight is bad", "registered blind", "partially sighted"]
+  source: nhs_charles_bonnet
+
+- id: has_psychosis_history
+  label: "Has had psychosis before"
+  question: "Have you had psychosis before, or been told you have schizophrenia? Psychosis is when you lose touch with what is real."
+  question_carer: "Has the person had psychosis before, or been told they have schizophrenia? Psychosis is when someone loses touch with what is real."
+  kind: history
+  phrases: ["I have schizophrenia", "had a breakdown before", "been sectioned"]
+  source: nhs_psychosis
+
+- id: not_slept_for_nights
+  label: "Hardly slept for 2 nights or more"
+  question: "Have you hardly slept for 2 nights or more, without feeling tired?"
+  question_carer: "Has the person hardly slept for 2 nights or more?"
+  checklist_text: "Hardly slept for 2 nights or more"
+  kind: symptom
+  phrases: ["not slept for days", "up all night"]
+  source: nhs_bipolar
+
+- id: aggressive_or_violent
+  label: "Aggressive, violent or threatening"
+  question: "Have you been aggressive or violent, or threatened to hurt someone?"
+  question_carer: "Has the person been aggressive or violent, or threatened to hurt someone?"
+  checklist_text: "Aggressive, violent or threatening to hurt someone"
+  kind: symptom
+  seriousness: serious
+  phrases: ["lashing out", "smashing things", "threatening people"]
+  source: nhs_bipolar
+
+- id: drunk_a_lot_today
+  label: "Has drunk a lot of alcohol in the last few hours"
+  question: "Have you drunk a lot of alcohol in the last few hours?"
+  question_carer: "Has the person drunk a lot of alcohol in the last few hours?"
+  kind: history
+  phrases: ["been drinking all day", "very drunk"]
+  source: nhs_alcohol_poisoning
+
+- id: cannot_cut_down
+  label: "Finds it hard to stop or cut down"
+  question: "Do you find it hard to stop or cut down, even when you want to?"
+  question_carer: "Does the person find it hard to stop or cut down, even when they want to?"
+  checklist_text: "Finding it hard to stop or cut down"
+  kind: symptom
+  phrases: ["can't stop", "tried to quit and failed"]
+  source: nhs_alcohol_misuse
+
+- id: regular_drug_use
+  label: "Takes a drug most days"
+  question: "Do you take a drug most days? For example, heroin, cocaine, cannabis, or a painkiller or sleeping tablet that was not prescribed for you."
+  question_carer: "Does the person take a drug most days? For example, heroin, cocaine, cannabis, or tablets not prescribed for them."
+  checklist_text: "Taking a drug most days"
+  kind: history
+  phrases: ["using every day", "on heroin", "smoke weed every day"]
+  source: nhs_drug_addiction
+
+- id: recent_drug_use
+  label: "Has taken a drug in the last few days"
+  question: "In the last few days, have you taken a drug such as cannabis, cocaine, ecstasy, ketamine or speed?"
+  question_carer: "Has the person taken a drug in the last few days? For example, cannabis, cocaine, ecstasy, ketamine or speed."
+  checklist_text: "Taken a drug such as cannabis, cocaine or ecstasy in the last few days"
+  kind: history
+  phrases: ["took some pills at a party", "smoked weed", "did some coke"]
+  source: nhs_poisoning
+
+- id: drug_bad_reaction
+  label: "Very unwell after taking a drug"
+  question: "Since taking a drug, do you feel very unwell? For example, very hot, a racing heart, chest pain, being sick a lot, or very confused."
+  question_carer: "Since taking a drug, does the person seem very unwell? For example, very hot, a racing heart, chest pain, being sick a lot, or very confused."
+  checklist_text: "Very unwell since taking a drug: very hot, racing heart, chest pain or being sick a lot"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["bad trip", "overheating after pills", "heart racing after coke"]
+  source: nhs_poisoning
+
+- id: alcohol_or_drug_stopped_recently
+  label: "Stopped or cut down alcohol, or a drug or medicine they rely on, in the last few days"
+  question: "In the last few days, have you stopped or cut down drinking alcohol? Or stopped a drug or medicine you rely on?"
+  question_carer: "In the last few days, has the person stopped or cut down drinking alcohol? Or stopped a drug or medicine they rely on?"
+  checklist_text: "Stopped or cut down alcohol, or a drug or medicine you rely on, in the last few days"
+  kind: history
+  phrases: ["stopped drinking on Monday", "coming off", "ran out of my tablets"]
+  source: nhs_alcohol_misuse
+
+- id: alcohol_withdrawal_symptoms
+  label: "Withdrawal symptoms: shaking, sweating, anxiety, feeling sick or poor sleep"
+  question: "Since you stopped or cut down, have you been shaking, sweating, anxious, feeling sick or not able to sleep?"
+  question_carer: "Since they stopped or cut down, has the person been shaking, sweating, anxious, feeling sick or not able to sleep?"
+  checklist_text: "Shaking, sweating, anxiety, feeling sick or poor sleep since stopping"
+  kind: symptom
+  asked_only_if: alcohol_or_drug_stopped_recently
+  phrases: ["the shakes", "sweating since I stopped"]
+  source: nhs_alcohol_misuse
+
+- id: severe_withdrawal_signs
+  label: "Severe withdrawal: shaking that others can see, very restless or upset, confused, or seeing or hearing things"
+  question: "After stopping or cutting down drinking, are you shaking so much that others can see it? Or very restless, upset or confused, or seeing or hearing things that are not there?"
+  question_carer: "After stopping or cutting down drinking, is the person shaking so much that you can see it? Or very restless, upset or confused, or seeing or hearing things that are not there?"
+  checklist_text: "Since you stopped drinking: bad shaking, very restless, confused, or seeing or hearing things"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["the DTs", "seeing insects", "shaking all over"]
+  source: nhs_alcohol_misuse
+
+- id: past_severe_withdrawal
+  label: "Has had a fit or seen or heard things when stopping drinking before"
+  question: "When you stopped drinking in the past, did you have a fit, or see or hear things that were not there?"
+  question_carer: "When the person stopped drinking in the past, did they have a fit, or see or hear things that were not there?"
+  checklist_text: "A fit, or seeing or hearing things, when you stopped drinking before"
+  kind: history
+  phrases: ["had a fit last time I stopped", "had the DTs before"]
+  source: ai_judgement
+
+- id: alcohol_poisoning_signs
+  label: "Signs of alcohol poisoning"
+  question: "Has the person had a lot to drink? Are they now very confused, sleepy or being sick? Or can they not stand up, or have they wet or soiled themselves?"
+  checklist_text: "After a lot to drink: very confused or sleepy, being sick, or cannot stand"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["paralytic", "can't stand up", "passed out drunk"]
+  source: nhs_alcohol_poisoning
+
+# ===========================================================================
+# Anxiety and trauma
+# ===========================================================================
+- id: anxiety_most_days_6_months
+  label: "Worried or anxious about lots of things, most days, for 6 months or more"
+  question: "Have you felt worried or anxious about lots of different things, on most days, for 6 months or more?"
+  question_carer: "Has the person seemed worried or anxious about lots of different things, on most days, for 6 months or more?"
+  checklist_text: "Worried or anxious about lots of things, most days, for 6 months or more"
+  kind: symptom
+  parent: feeling_anxious
+  relation: duration
+  phrases: ["always worrying", "worry about everything"]
+  source: nhs_gad
+
+- id: worry_hard_to_control
+  label: "Worry that is hard to control"
+  question: "Do you find your worrying hard to control or stop?"
+  question_carer: "Does the person find their worrying hard to control or stop?"
+  kind: symptom
+  phrases: ["can't switch off", "mind won't stop"]
+  source: nhs_gad
+
+- id: anxiety_struggling_to_cope
+  label: "Struggling to cope with anxiety, fear or panic"
+  question: "Are you struggling to cope with the anxiety, or is it stopping you doing everyday things?"
+  question_carer: "Is the person struggling to cope with the anxiety, or is it stopping them doing everyday things?"
+  checklist_text: "Struggling to cope with anxiety, or it stops you doing everyday things"
+  kind: symptom
+  parent: feeling_anxious
+  relation: severity
+  phrases: ["can't leave the house", "it's taking over my life"]
+  source: nhs_anxiety_fear_panic
+
+- id: panic_attacks_keep_happening
+  label: "Keeps having sudden attacks of panic"
+  question: "Do you keep having sudden attacks of panic or fear, for no clear reason?"
+  question_carer: "Does the person keep having sudden attacks of panic or fear, for no clear reason?"
+  checklist_text: "Sudden attacks of panic or fear that keep happening"
+  kind: symptom
+  parent: feeling_anxious
+  relation: character
+  phrases: ["panic attacks every week", "keep having attacks"]
+  source: nhs_panic_disorder
+
+- id: feeling_on_edge
+  label: "On edge, irritable or easily startled"
+  question: "Do you feel on edge, irritable or easily startled?"
+  question_carer: "Does the person seem on edge, irritable or easily startled?"
+  kind: symptom
+  phrases: ["jumpy", "snapping at everyone", "can't relax"]
+  source: nhs_ptsd
+
+- id: trauma_flashbacks
+  label: "Reliving a frightening event in flashbacks or nightmares"
+  question: "Did something very frightening or upsetting happen to you? Do you keep living it again in flashbacks or bad dreams?"
+  question_carer: "Did something very frightening or upsetting happen to the person? Do they keep living it again in flashbacks or bad dreams?"
+  checklist_text: "Reliving a frightening event in flashbacks or nightmares"
+  kind: symptom
+  phrases: ["flashbacks", "nightmares about the crash", "keep reliving it"]
+  source: nhs_ptsd
+
+- id: avoiding_reminders
+  label: "Avoids people, places or things that bring back memories of an event"
+  question: "Do you avoid people, places or things that remind you of something that happened to you?"
+  question_carer: "Does the person stay away from people or places that remind them of a bad thing that happened?"
+  kind: symptom
+  phrases: ["can't go near the road where it happened", "avoid anything that reminds me"]
+  source: nhs_ptsd
+
+# ===========================================================================
+# Eating problems
+# ===========================================================================
+- id: eating_very_little
+  label: "Eating very little or skipping meals to control weight"
+  question: "Are you eating very little, or skipping meals, to control your weight?"
+  question_carer: "Is the person eating very little, or skipping meals, to control their weight?"
+  checklist_text: "Eating very little or skipping meals to control your weight"
+  kind: symptom
+  phrases: ["barely eating", "skip meals", "counting every calorie"]
+  source: nhs_anorexia
+
+- id: fear_of_weight_gain
+  label: "Very afraid of putting on weight"
+  question: "Are you very afraid of putting on weight, or do you think you are fat when others say you are not?"
+  question_carer: "Is the person very afraid of putting on weight, or do they think they are fat when others say they are not?"
+  kind: symptom
+  phrases: ["terrified of getting fat", "feel huge"]
+  source: nhs_anorexia
+
+- id: very_low_weight_or_fast_loss
+  label: "Lost a lot of weight quickly, or very underweight"
+  question: "Have you lost a lot of weight quickly, or do people say you are very thin?"
+  question_carer: "Has the person lost a lot of weight quickly, or are they very thin?"
+  checklist_text: "Lost a lot of weight quickly, or very thin"
+  kind: symptom
+  seriousness: serious
+  phrases: ["lost loads of weight", "skin and bone"]
+  source: nhs_anorexia
+
+- id: exercising_too_much
+  label: "Exercising too much to control weight"
+  question: "Do you exercise a lot to control your weight, even when you are tired, unwell or hurt?"
+  question_carer: "Does the person exercise a lot to control their weight, even when tired, unwell or hurt?"
+  kind: symptom
+  phrases: ["run every day no matter what", "exercise to burn it off"]
+  source: nhs_anorexia
+
+- id: making_self_sick
+  label: "Makes themselves sick, or takes laxatives, to control weight"
+  question: "Do you make yourself sick, or take laxatives (medicines to help you poo), to control your weight?"
+  question_carer: "Does the person make themselves sick to control their weight? Or take laxatives (medicines to help you poo)?"
+  checklist_text: "Making yourself sick to control your weight. Or taking laxatives (medicines to help you poo)."
+  kind: symptom
+  phrases: ["throw up after eating", "purging", "taking laxatives"]
+  source: nhs_bulimia
+
+- id: binge_eating
+  label: "Eats large amounts very quickly and feels out of control"
+  question: "Do you eat very large amounts of food in a short time, and feel you cannot stop?"
+  question_carer: "Does the person eat very large amounts of food in a short time, and seem unable to stop?"
+  kind: symptom
+  phrases: ["binge", "can't stop eating", "eat until I feel sick"]
+  source: nhs_binge_eating
+
+- id: eating_in_secret
+  label: "Eats in secret, or feels ashamed after eating"
+  question: "Do you eat in secret, or feel ashamed or disgusted with yourself after eating?"
+  question_carer: "Does the person eat in secret, or seem ashamed after eating?"
+  kind: symptom
+  phrases: ["hide food", "eat when no one's around", "hate myself after eating"]
+  source: nhs_binge_eating
+
+- id: stressful_time
+  label: "Going through a stressful time or big life change"
+  question: "Are you going through a stressful time, or a big change such as a new baby, a bereavement or losing a job?"
+  kind: history
+  phrases: ["new baby", "lost my job", "lot going on"]
+  source: nhs_tiredness_and_fatigue

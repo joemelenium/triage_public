@@ -1,0 +1,48 @@
+id: ey_d14
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [red_eye]
+
+summary: "A 29-year-old man has had red, gritty eyes for 2 days, both eyes, with yellow sticky crusts on his lashes in the morning. His partner had the same last week. No pain, light sensitivity or change in sight. He does not wear contact lenses."
+
+opening_statement: "Both my eyes are red and gritty and they're glued shut with gunk when I wake up. My girlfriend had the same thing last week."
+
+findings:
+  present: [red_eye, sticky_discharge, gritty_or_burning, both_eyes_affected]
+  absent: [eye_pain, vision_change, bothered_by_light, eye_very_red, contact_lens_wearer, headache, nausea_or_vomiting, eye_injury, very_high_temperature, red_eye_lasting, eyelid_swollen, pupils_different_sizes]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 29, sex: male}
+  full:
+    age: 29
+    sex: male
+    findings: {}
+
+expected:
+  acuity: self_manageable
+  level_of_care: community_pharmacy
+  timeframe: not_needed
+
+minimum_safe_acuity: self_manageable
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "A pharmacist can advise and suggest treatment"
+    any_of: ["pharmacist", "pharmacy"]
+  - point: "Wash hands and do not share towels or pillows"
+    any_of: ["towel", "hands", "pillow"]
+  - point: "See a GP if not cleared up within 7 days"
+    any_of: ["7 days", "seven days", "a week"]
+  - point: "Get urgent help if eyes become painful, very red, sensitive to light or sight changes"
+    any_of: ["111", "urgent"]
+
+source:
+  expected_outcome: {page: conjunctivitis.txt, quote: "Speak to a pharmacist about conjunctivitis."}
+  minimum_safe_acuity: {page: conjunctivitis.txt, quote: "It usually gets better in a couple of weeks without treatment."}
+
+atypical: false
+notes: "Infective conjunctivitis in an adult. Pages differ: red_eye.txt gives non-urgent 'See a GP or optician if you have red eyes with a sticky discharge', while conjunctivitis.txt says to speak to a pharmacist and only see a GP if not cleared within 7 days. conjunctivitis.txt fits the story better, so self-manageable with pharmacy advice is chosen; a routine GP outcome would be a mild over-triage."

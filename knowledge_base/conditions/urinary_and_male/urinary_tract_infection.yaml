@@ -1,0 +1,53 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: urinary_tract_infection
+body_system: urinary_and_male
+# A urine infection with a high temperature, in a child, or in an older person, needs an
+# urgent GP appointment (UTI page). In older people it can show only as feeling unwell
+# or confused.
+entry_symptoms: [very_high_temperature, generally_unwell, baby_unsettled_or_not_feeding, stomach_ache, diarrhoea_or_vomiting, feeling_sick, painful_or_frequent_peeing, smelly_urine, blood_in_urine, urinary_incontinence, bedwetting, blood_in_semen, pelvic_pain, stomach_pain_in_pregnancy]
+name: "Urine infection (urinary tract infection, UTI)"
+medical_name: "Urinary tract infection"
+snomed: "68566005"
+acuity_needed: urgent
+danger: serious
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: common}
+  - {finding: painful_or_frequent_peeing, prevalence: very_common}
+  - {finding: blood_in_urine, prevalence: very_common}
+  - {finding: smelly_urine, prevalence: common}
+  - {finding: pelvic_pain, prevalence: common}
+  - {finding: bedwetting, prevalence: uncommon}
+  - {finding: urinary_incontinence, prevalence: uncommon}
+  - {finding: blood_in_semen, prevalence: uncommon}
+findings:
+  # What tells it apart: pain or burning when peeing, peeing more often, pain low in the tummy
+  # or back.
+  pain_when_peeing: strongly_supports
+  peeing_more_often: strongly_supports
+  very_high_temperature: supports
+  nausea_or_vomiting: supports
+  sudden_confusion: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  sa_low_down: supports
+  blood_in_urine: supports
+  # From the urinary_and_male card for this condition (merged):
+  cloudy_pee: supports
+  smelly_urine: supports
+  wets_during_day: supports
+key_findings: [pain_when_peeing, peeing_more_often, sa_low_down, cloudy_pee]
+source: nhs_urinary_tract_infections
+informed_by: [nhs_urinary_tract_infections, nhs_kidney_infection, nhs_diarrhoea_and_vomiting, nhs_smelly_urine, nhs_blood_in_urine, nhs_bedwetting]
+# Merged with the stomach_and_bowel card for this condition. Its notes: A pharmacist can
+# treat most UTIs in women aged 16 to 64. The rules send children, men, older people and
+# those with a high temperature for urgent help. Merged with the urinary_and_male card
+# for this condition. Its notes: A bladder infection (cystitis) or infection of the tube
+# that carries pee out of the body. The UTI page sends women aged 16 to 64 who are not pregnant to a pharmacist,
+# and everyone else (men, children, people 65 or over, pregnant) for an urgent GP
+# appointment or 111. The entry-symptom rules give the urgent cases; the card itself
+# needs a pharmacist. Danger moderate: it can spread to the kidneys. What tells it apart
+# from a kidney infection: no high temperature or pain in the side. From an STI: no
+# discharge. From an overactive bladder: pain, cloudy pee, and it started in the last
+# few days.

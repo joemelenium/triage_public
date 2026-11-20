@@ -1,0 +1,54 @@
+id: bn_h01
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [face_numbness]
+
+summary: "A 66-year-old woman had sudden numbness of the left side of her face and left arm at breakfast, and for about 20 minutes her words came out jumbled. It has now completely gone and she feels normal. She could lift both arms throughout."
+
+opening_statement: "Something odd happened at breakfast. The left side of my face and my left arm went numb and I couldn't get my words out properly. It went after about twenty minutes and I feel fine now."
+
+findings:
+  present: [face_numbness, face_numbness_sudden, pins_needles_sudden_one_side, arm_hand_tingling, difficulty_speaking, stroke_signs, numbness_or_weakness]
+  absent: [headache, arm_weakness, face_droop_one_side, weakness_one_side, vision_change, had_a_fit, head_injury_last_3_months, has_migraine, migraine_aura, has_diabetes]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 66, sex: female}
+  full:
+    age: 66
+    sex: female
+    findings: {heart_risk_factors: "yes"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Sudden one-sided numbness and speech problems that have now stopped (possible TIA)"
+    findings: [face_numbness_sudden, pins_needles_sudden_one_side, difficulty_speaking]
+    minimum_acuity: emergency
+    source: {page: tia.txt, quote: "Even if the symptoms disappear while you're waiting for an ambulance to arrive, you still need to be assessed in hospital."}
+
+safety_netting_should_cover:
+  - point: "Call 999 now, even though the symptoms have stopped"
+    any_of: ["999"]
+  - point: "Not to drive herself"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: stroke_symptoms.txt, quote: "you've had signs of a stroke within the last 24 hours even if they've now stopped"}
+  minimum_safe_acuity: {page: stroke_symptoms.txt, quote: "Symptoms of a stroke can sometimes stop after a short time, so you may think you're OK. Even if this happens, get medical help straight away."}
+
+variants:
+  - id: bn_h01_v1
+    style: "minimising"
+    opening_statement: "I'm probably wasting your time, I had a funny turn this morning but I'm completely fine now."
+    volunteered: []
+
+atypical: true
+notes: "Resolved symptoms are easy to miss. tia.txt says a TIA that happened previously and was not checked needs an urgent GP appointment, but this was today (within 24 hours), so stroke_symptoms.txt and tia.txt both say 999. The minimising variant tests whether the engine asks about resolved symptoms."

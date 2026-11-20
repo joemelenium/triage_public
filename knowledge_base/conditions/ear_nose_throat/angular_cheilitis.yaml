@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: angular_cheilitis
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_dry_lips]
+name: "Angular cheilitis (sore cracks at the corners of the mouth)"
+snomed: "266429005"
+acuity_needed: routine
+level_of_care: community_pharmacy
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart: red, sore cracks at the corners of the mouth, often with dentures, mouth
+  # thrush or a lack of iron.
+  cracks_at_mouth_corners: strongly_supports
+  thrush_risk: supports
+  lips_weather_or_licking: supports
+  paler_than_usual: supports
+key_findings: [cracks_at_mouth_corners]
+source: ai_judgement
+informed_by: [nhs_oral_thrush, nhs_sore_or_dry_lips]

@@ -1,0 +1,73 @@
+# Entry symptom: nail problems.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: nail_problem
+name: "Nail problems"
+presenting_finding: nail_problem
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: nail_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swollen_area_red_hot
+      - redness_spreading
+      - very_high_temperature
+
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: nail_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - nail_changed_no_reason
+      - skin_around_nail_red_swollen
+      - dark_area_under_nail
+      - finger_clubbing
+      - not_better_with_self_care
+      - weakened_immune_system
+
+red_flags:
+  - id: rf_na_spreading_infection
+    description: "Skin around a nail that is painful, hot and swollen, with redness spreading or a high temperature"
+    when: {all: [swollen_area_red_hot, {any: [redness_spreading, very_high_temperature]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: nhs_cellulitis
+    note: "The Nail problems and Ingrown toenail pages say see a GP for an infected nail, and a high temperature or feeling shivery. Spreading redness or a high temperature can mean cellulitis, which the Cellulitis page says needs urgent help."
+
+outcome_rules:
+  - id: or_na_gp
+    description: "A nail that changed or fell off for no known reason, or sore, red, swollen skin around a nail"
+    when: {any: [nail_changed_no_reason, skin_around_nail_red_swollen]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nail_gp
+    source: nhs_nail_problems
+
+  - id: or_na_dark_streak
+    description: "A dark area under a nail not caused by an injury"
+    when: dark_area_under_nail
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nail_gp
+    source: nhs_melanoma_symptoms
+
+  - id: or_na_clubbing
+    description: "Fingertips wider or rounder, with nails curving over them (clubbing)"
+    when: finger_clubbing
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nail_gp
+    source: nhs_nail_problems
+
+  - id: or_na_not_better_or_diabetes
+    description: "A nail problem not better with pharmacy treatment, or in someone with diabetes or a weakened immune system"
+    when: {any: [not_better_with_self_care, {all: [weakened_immune_system, {any: [nail_thick_discoloured_crumbly, nail_growing_into_skin, itchy_flaky_skin_between_toes]}]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nail_gp
+    source: nhs_fungal_nail
+    note: "The Fungal nail infection, Ingrown toenail and Athlete's foot pages say see a GP if treatment has not worked, or if you have diabetes or a weakened immune system."
+
+default:
+  description: "A nail problem with nothing that needs a GP: look after it yourself, or ask a pharmacist"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Nail problems are not usually serious. A pharmacist can advise on fungal nail treatment."}
+  advice: advice_nail_self_care
+  source: nhs_nail_problems

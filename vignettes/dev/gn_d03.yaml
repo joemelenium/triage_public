@@ -1,0 +1,80 @@
+id: gn_d03
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- baby_unsettled_or_not_feeding
+summary: A 3-week-old baby girl who has not fed for most of the day, is very sleepy and hard to wake, and has a weak, whimpering cry. The parent is not sure when the last wet nappy was.
+opening_statement: My baby won't feed, she's barely taken anything since this morning, and she's so sleepy I can hardly wake her. Her cry sounds weak, not like normal.
+findings:
+  present:
+  - baby_unsettled_or_not_feeding
+  - feeding_much_less
+  - child_not_feeding_or_playing
+  - drowsy_hard_to_wake
+  - child_floppy_or_hard_to_wake
+  - baby_weak_or_high_pitched_cry
+  absent:
+  - very_high_temperature
+  - rash_does_not_fade
+  - child_struggling_to_breathe
+  - breathing_very_fast
+  - lips_or_skin_blue_grey
+  - had_a_fit
+  - green_vomit
+  - vomiting
+  unknown:
+  - not_peed_12_hours
+context:
+  none: {}
+  basic:
+    age: 0.06
+    sex: female
+  full:
+    age: 0.06
+    sex: female
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Baby difficult to wake
+  findings:
+  - drowsy_hard_to_wake
+  - child_floppy_or_hard_to_wake
+  minimum_acuity: emergency
+  source:
+    page: baby_seriously_ill.txt
+    quote: has fainted, is difficult to wake, or cannot be woken
+- description: Weak or high-pitched cry
+  findings:
+  - baby_weak_or_high_pitched_cry
+  minimum_acuity: emergency
+  source:
+    page: baby_seriously_ill.txt
+    quote: has a weak, high-pitched or continuous cry
+- description: Baby not feeding
+  findings:
+  - feeding_much_less
+  - child_not_feeding_or_playing
+  minimum_acuity: emergency
+  source:
+    page: sepsis.txt
+    quote: is not responding like they normally do, is not feeding, is difficult to wake or is more sleepy than usual
+safety_netting_should_cover:
+- point: Call 999 or go to A&E now
+  any_of:
+  - '999'
+  - A&E
+- point: Trust your instincts
+  any_of:
+  - instinct
+source:
+  expected_outcome:
+    page: baby_seriously_ill.txt
+    quote: 'Immediate action required: Call 999 or go to A&E if:'
+  minimum_safe_acuity:
+    page: baby_seriously_ill.txt
+    quote: has fainted, is difficult to wake, or cannot be woken
+atypical: false
+notes: 'Baby with no fever: the danger signs are not feeding, hard to wake and a weak cry. Age is entered as 0.06 years (about 3 weeks). The parent genuinely does not know whether there has been a pee in the last 12 hours (unknown). A low temperature has no specific id answered here (temperature_very_low exists but the parent has not measured), so it is left out.'

@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: shingles
+body_system: chest_and_heart
+entry_symptoms: [chest_pain, face_numbness, rash, itchy_skin]
+# The pain, tingling or burning of shingles can start a few days before the rash,
+# often in a band on one side of the chest, and can be mistaken for a heart problem.
+name: "Shingles (an infection that causes a painful rash on one side of the body)"
+medical_name: "Herpes zoster"
+snomed: "4740000"
+# Antiviral medicine works best when started within 3 days of the rash.
+acuity_needed: soon
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart: tingling, pain or blisters on one side only, in the skin.
+  rash_one_side_of_body: strongly_supports
+  cp_present_now: supports
+  cp_sharp_or_stabbing: supports        # often burning or stabbing
+  upper_back_pain: supports             # the band often runs round from the back
+  rash_blisters: supports               # skin and hair batch: the rash forms blisters
+  shingles_eye_or_vision: supports      # skin and hair batch
+  # Kept for the single-cause method only; the network method ignores these.
+  cp_on_exertion: argues_against
+  sweating: argues_against
+key_findings: [rash_one_side_of_body, upper_back_pain, cp_present_now]
+source: nhs_shingles
+informed_by: [nhs_shingles, nhs_chest_pain, nhs_chickenpox]

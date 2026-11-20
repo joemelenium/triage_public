@@ -1,0 +1,44 @@
+id: ey_h04
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [eyelid_problem]
+
+summary: "A 30-year-old woman has had a firm, pea-sized, painless lump in her upper eyelid for 6 weeks. Warm compresses have not helped. It is not growing or bleeding, the eye is not red and her sight is fine."
+
+opening_statement: "I've had a little hard lump in my top eyelid for about six weeks. It doesn't hurt, I've tried warm flannels but it just won't go."
+
+findings:
+  present: [eyelid_problem, eyelid_lump, eyelid_lump_painless, eyelid_lump_not_going]
+  absent: [eyelid_lump_painful, eyelid_lump_growing_or_bleeding, eyelid_red_hot_painful, eyelid_swollen, vision_change, red_eye, eye_pain, sticky_discharge, very_high_temperature, eyelid_lump_yellow]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 30, sex: female}
+  full:
+    age: 30
+    sex: female
+    findings: {}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "Get urgent help if the eyelid becomes red, hot and painful, or sight is affected"
+    any_of: ["111", "urgent"]
+
+source:
+  expected_outcome: {page: eyelid_problems.txt, quote: "your eyelid symptoms are not improving or they're lasting a long time"}
+  minimum_safe_acuity: {page: stye.txt, quote: "a stye does not get better within a few weeks"}
+
+atypical: false
+notes: "Likely chalazion (stye.txt: 'the lump is hard but not very painful – this is more likely to be a chalazion'). Non-urgent GP advice on eyelid_problems.txt and stye.txt."

@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: spreading_ear_canal_infection
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain]
+name: "Serious infection in the tube of the ear that spreads to the bone. It mostly affects older people or people with diabetes."
+medical_name: "Necrotising (malignant) otitis externa"
+snomed: "94146005"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: long_term_condition, prevalence: uncommon}
+findings:
+  # What tells it apart from a simple outer ear infection: severe pain and discharge that go on for
+  # days, sometimes with weakness of the face, in someone with diabetes or a weak immune system.
+  earache_2_to_3_days: strongly_supports
+  ear_discharge: strongly_supports
+  ear_pain_worse_touching: supports
+  face_droop_one_side: supports
+  swelling_around_ear: supports
+key_findings: [ear_discharge, earache_2_to_3_days, face_droop_one_side, long_term_condition]
+source: ai_judgement
+informed_by: [nhs_ear_infections]

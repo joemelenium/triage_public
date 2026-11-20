@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: spreading_dental_infection
+body_system: ear_nose_throat
+entry_symptoms: [toothache, swollen_glands, difficulty_swallowing]
+name: "A serious infection spreading from a tooth into the face or neck"
+medical_name: "Odontogenic cellulitis, including Ludwig's angina"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart from a dental abscess: swelling spreading into the neck, under the tongue or
+  # around the eye, with trouble opening the mouth, swallowing or breathing.
+  swelling_in_neck_or_under_tongue: strongly_supports
+  face_or_jaw_swollen: strongly_supports
+  swelling_around_eye: supports
+  difficulty_opening_mouth: supports
+  very_high_temperature: supports
+  difficulty_swallowing: supports
+  difficulty_breathing: supports
+key_findings: [swelling_in_neck_or_under_tongue, swelling_around_eye, difficulty_opening_mouth]
+source: nhs_dental_abscess
+informed_by: [nhs_dental_abscess, nhs_toothache]

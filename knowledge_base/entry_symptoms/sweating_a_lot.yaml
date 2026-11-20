@@ -1,0 +1,83 @@
+# Entry symptom: sweating too much (hyperhidrosis).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+
+id: sweating_a_lot
+name: "Sweating too much"
+presenting_finding: sweating_a_lot
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: sweating_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - chest_pain
+      - seriously_unwell_getting_worse
+
+  - id: sweating_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - feels_very_unwell
+
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: sweating_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - not_better_with_self_care
+      - sweating_6_months_or_more
+      - affecting_daily_life_or_wellbeing
+      - sweating_at_least_weekly
+      - night_sweats
+      - sweating_runs_in_family
+      - new_medicine_recently
+
+red_flags:
+  - id: rf_sw_chest_pain
+    description: "Sweating with chest pain"
+    when: chest_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: nhs_chest_pain
+    note: "The Chest pain page says call 999 for chest pain with sweating. A 'yes' to chest pain also brings in the chest pain entry symptom's own rules."
+
+  - id: rf_sw_seriously_unwell
+    description: "Sweating with feeling very unwell and getting worse"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+
+  - id: rf_sw_temperature_unwell
+    description: "Sweating with a high temperature and feeling very unwell"
+    when: {all: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_condition_urgent
+    source: ai_judgement
+    note: "AI judgement: sweating with a high temperature and feeling very unwell suggests an infection rather than ordinary heavy sweating."
+
+outcome_rules:
+  - id: or_sw_weight_loss
+    description: "Sweating with losing weight without trying, a fast heartbeat or a swelling in the front of the neck"
+    when: {any: [weight_loss, swelling_front_of_neck, heart_beating_very_fast]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP in the next few days"}
+    advice: advice_sweating_gp_soon
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on clinical judgement
+    note: "AI judgement: these can be signs of an overactive thyroid, an infection or, rarely, cancer. The Excessive sweating page says see a GP if another condition may be the cause."
+
+  - id: or_sw_gp
+    description: "Sweating that is not helped by self-care, has lasted 6 months, affects daily life, happens weekly or at night, runs in the family, or may be caused by a medicine"
+    when: {any: [not_better_with_self_care, sweating_6_months_or_more, affecting_daily_life_or_wellbeing, sweating_at_least_weekly, night_sweats, sweating_runs_in_family, new_medicine_recently]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_sweating_gp
+    source: nhs_excessive_sweating_hyperhidrosis
+    note: "The source says see a GP if you are sweating too much and any of these apply."
+
+default:
+  description: "Sweating too much with nothing that needs a GP: try self-care, and a pharmacist can help"
+  outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "Speak to a pharmacist. The source gives no fixed time."}
+  advice: advice_sweating_pharmacy
+  source: nhs_excessive_sweating_hyperhidrosis

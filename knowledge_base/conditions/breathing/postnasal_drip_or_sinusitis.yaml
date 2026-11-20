@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: postnasal_drip_or_sinusitis
+body_system: breathing
+# One card for both, because they cause the same cough: mucus dripping down the
+# back of the throat from the nose, often from sinusitis, a cold or an allergy.
+# No SNOMED CT code covers both, so none is given.
+entry_symptoms: [cough, sore_throat, headache, blocked_or_runny_nose, catarrh, loss_of_smell_or_taste, bad_breath, metallic_taste, toothache]
+name: "Phlegm (mucus) from the nose dripping down the throat, or sinusitis (swollen sinuses in the face)"
+medical_name: "Postnasal drip (upper airway cough syndrome) or rhinosinusitis"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart: feeling mucus drip down the throat, a blocked nose, and
+  # pain around the cheeks, eyes or forehead.
+  mucus_dripping_down_throat: strongly_supports
+  blocked_or_runny_nose: strongly_supports
+  face_pain_around_nose_and_eyes: supports
+  cough_worse_at_night: supports        # worse lying down
+  cough_3_weeks_or_more: supports       # a common cause of a cough that will not go away
+  green_yellow_nasal_mucus: supports
+  loss_of_smell_or_taste: supports
+key_findings: [mucus_dripping_down_throat, face_pain_around_nose_and_eyes, blocked_or_runny_nose]
+source: nhs_sinusitis
+informed_by: [nhs_sinusitis, nhs_cough, nhs_catarrh]

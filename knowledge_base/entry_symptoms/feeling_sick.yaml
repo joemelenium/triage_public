@@ -1,0 +1,176 @@
+# Entry symptom: feeling sick (nausea).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Being sick as well brings in the diarrhoea and vomiting rules. A stomach ache
+# brings in the stomach ache rules.
+
+id: feeling_sick
+name: "Feeling sick (nausea)"
+presenting_finding: feeling_sick
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: feeling_sick_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - cp_tight_or_squeezing
+      - cp_heavy
+      - chest_pain
+      - short_of_breath
+      - stiff_neck
+      - bothered_by_light
+      - headache_sudden_severe
+      - sa_sudden_severe
+      - swallowed_something_harmful
+
+  - id: feeling_sick_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vomiting
+      - stomach_ache
+      - yellow_skin_or_eyes
+      - very_thirsty
+      - peeing_more_often
+      - loin_pain
+      - has_diabetes
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_fs_heart_attack_signs
+    description: "Suddenly feeling sick with chest pain that feels tight or heavy, pain spreading to the arms, back, neck or jaw, or shortness of breath: possible heart attack"
+    when: {any: [cp_tight_or_squeezing, cp_heavy, cp_spreads, short_of_breath]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_feeling_sick_999
+    source: nhs_feeling_sick_nausea
+    note: "Any chest pain also brings in the chest pain rules."
+
+  - id: rf_fs_meningitis_signs
+    description: "Feeling sick with a stiff neck, or pain when looking at bright lights"
+    when: {any: [stiff_neck, bothered_by_light]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+    note: "The Diarrhoea and vomiting page gives this for being sick. Applying it to feeling sick without being sick is AI judgement."
+
+  - id: rf_fs_sudden_headache
+    description: "Feeling sick with a sudden, severe headache"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+    note: "As above: applying it to feeling sick is AI judgement."
+
+  - id: rf_fs_sudden_tummy_ache
+    description: "Feeling sick with a sudden, severe tummy ache"
+    when: sa_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_stomach_ache_ae
+    source: nhs_stomach_ache
+
+  - id: rf_fs_swallowed_poison
+    description: "Feeling sick after possibly swallowing something poisonous or harmful"
+    when: swallowed_something_harmful
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E. Take the packet or container with you."}
+    advice: advice_dv_ae
+    source: nhs_diarrhoea_and_vomiting
+
+  - id: rf_fs_dka_ketones
+    description: "Diabetes, with high ketones or a high blood sugar that insulin is not bringing down"
+    when: {all: [has_diabetes, high_ketones]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_dka_ae
+    source: nhs_diabetic_ketoacidosis
+
+  - id: rf_fs_dka_signs
+    description: "Very thirsty and peeing a lot, with fruity breath or very fast breathing: possible diabetic ketoacidosis"
+    when: {all: [{all: [very_thirsty, peeing_more_often]}, {any: [fruity_breath, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_dka_ae
+    source: nhs_diabetic_ketoacidosis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_fs_yellow_skin
+    description: "Feeling sick with yellow skin or yellow whites of the eyes"
+    when: yellow_skin_or_eyes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_feeling_sick_urgent
+    source: nhs_jaundice
+
+  - id: rf_fs_kidney_infection
+    description: "Feeling sick with pain in the side or back under the ribs, and a high temperature: possible kidney infection"
+    when: {all: [loin_pain, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_feeling_sick_urgent
+    source: nhs_kidney_infection
+
+  - id: rf_fs_thirsty_peeing
+    description: "Very thirsty and peeing much more than usual: possible diabetes"
+    when: {all: [very_thirsty, peeing_more_often]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_feeling_sick_urgent
+    source: nhs_diabetic_ketoacidosis
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: feeling sick with thirst and peeing more can be a sign of high blood sugar. It needs a blood sugar test the same day."
+
+  - id: rf_fs_diabetes
+    description: "Diabetes, and feeling sick"
+    when: has_diabetes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Check your blood sugar and ketones if you can. Call your diabetes care team now or get help from NHS 111."}
+    advice: advice_dka_urgent
+    source: nhs_diabetic_ketoacidosis
+    soft: true    # likely conditions may lower this: it is a reading of the source
+    note: "The page says call the diabetes team or 111 if you have diabetes, feel unwell and your ketones are slightly high. Without a ketone reading, feeling sick is taken as a reason to check. A reading of the source, so soft."
+
+  - id: rf_fs_full_quickly
+    description: "Feeling sick and full after eating only a little"
+    when: full_quickly
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_feeling_sick_urgent
+    source: nhs_gastritis
+    soft: true    # likely conditions may lower this: it is from pages about other conditions
+    note: "The Gastritis and Stomach ulcer pages say an urgent GP appointment or 111 for feeling full after a small meal with their symptoms. These can be signs of something more serious."
+
+  - id: rf_fs_swallowing
+    description: "Feeling sick, and it is hard or painful to swallow"
+    when: difficulty_swallowing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_feeling_sick_urgent
+    source: nhs_gastritis
+    soft: true    # likely conditions may lower this: it is from pages about other conditions
+
+outcome_rules:
+  - id: or_fs_few_days
+    description: "Feeling sick for more than a few days without getting better"
+    when: feeling_sick_few_days
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Call 111 for advice if you cannot see a GP."}
+    advice: advice_feeling_sick_gp
+    source: nhs_feeling_sick_nausea
+
+  - id: or_fs_often
+    description: "Often feels sick (it keeps coming back)"
+    when: often_feel_sick
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Call 111 for advice if you cannot see a GP."}
+    advice: advice_feeling_sick_gp
+    source: nhs_feeling_sick_nausea
+
+  - id: or_fs_weight_loss
+    description: "Feeling sick and losing weight without trying"
+    when: weight_loss
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_feeling_sick_gp
+    source: nhs_indigestion
+    note: "The Gastritis page says an urgent GP appointment or 111 for weight loss with its symptoms. Likely conditions can raise it."
+
+default:
+  description: "Feeling sick with nothing that needs more help: try things that may help at home"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Feeling sick usually goes away on its own"}
+  advice: advice_feeling_sick_self_care
+  source: nhs_feeling_sick_nausea

@@ -1,0 +1,89 @@
+id: wh_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- breast_pain
+summary: A 30-year-old woman who is breastfeeding her 5-week-old baby has a painful, hot, red, swollen area on her
+  left breast since yesterday, with a very high temperature and shivers.
+opening_statement: My left boob is really sore, there's a hot red patch and it's swollen, and I've got a temperature
+  and the shivers. I'm breastfeeding.
+findings:
+  present:
+  - breast_pain
+  - breast_hot_red_swollen
+  - breastfeeding
+  - very_high_temperature
+  - cold_or_shivery
+  - breast_lump
+  - pregnant_or_recently_given_birth
+  - had_baby_in_last_year
+  absent:
+  - pregnant_now
+  - lump_hard_or_fixed
+  - lump_smooth_moves
+  - nipple_discharge_bloody
+  - breast_skin_dimpled
+  - nipple_changed
+  - drowsy_hard_to_wake
+  - sudden_confusion
+  - breathing_very_fast
+  - rash
+  - had_mastitis_recently
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 30
+    sex: female
+  full:
+    age: 30
+    sex: female
+    findings:
+      breastfeeding: 'yes'
+      pregnant_or_recently_given_birth: 'yes'
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Breast pain with a very high temperature
+  findings:
+  - very_high_temperature
+  minimum_acuity: urgent
+  source:
+    page: breast_pain.txt
+    quote: you have breast pain and have a very high temperature, or feel hot, cold or shivery
+- description: Part of the breast hot, swollen or red
+  findings:
+  - breast_hot_red_swollen
+  minimum_acuity: urgent
+  source:
+    page: breast_pain.txt
+    quote: any part of your breast is hot, swollen or has a change in colour
+safety_netting_should_cover:
+- point: Urgent GP appointment or NHS 111
+  any_of:
+  - '111'
+  - urgent GP
+  - GP
+- point: Keep breastfeeding
+  any_of:
+  - breastfeed
+- point: Paracetamol or ibuprofen
+  any_of:
+  - paracetamol
+  - ibuprofen
+source:
+  expected_outcome:
+    page: breast_pain.txt
+    quote: you have breast pain and have a very high temperature, or feel hot, cold or shivery
+  minimum_safe_acuity:
+    page: breast_pain.txt
+    quote: any part of your breast is hot, swollen or has a change in colour
+atypical: false
+notes: 'Picture of mastitis. Source difference: mastitis.txt treats mastitis at home first and says see a GP if
+  not better after 12 to 24 hours. breast_pain.txt says urgent GP or 111 for breast pain with a high temperature
+  or a hot, swollen, red area, and breast_abscess.txt says the same for a painful, warm or red breast. Urgent chosen
+  because of the fever. The swollen area counts as ''lump or swelling'', so breast_lump is yes; it is not hard,
+  fixed, smooth or mobile.'

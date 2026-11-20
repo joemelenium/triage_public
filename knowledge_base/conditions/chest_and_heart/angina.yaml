@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: angina
+body_system: chest_and_heart
+entry_symptoms: [chest_pain]
+name: "Angina (chest pain caused by narrowed blood vessels to the heart)"
+snomed: "194828000"
+acuity_needed: urgent
+danger: serious
+diagnosed_by: has_angina
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_angina, prevalence: very_common}
+  - {finding: age_under_16, prevalence: rare}
+  - {finding: age_45_or_over, prevalence: common}
+findings:
+  # What tells it apart from a heart attack: brought on by effort, and it settles.
+  cp_on_exertion: strongly_supports
+  cp_comes_and_goes: strongly_supports
+  cp_tight_or_squeezing: supports
+  cp_heavy: supports
+  cp_spreads: supports
+  short_of_breath: supports
+  angina_worse_than_usual: supports
+  heart_risk_factors: supports
+  family_heart_history: supports
+  # Kept for the single-cause method only; the network method ignores these.
+  cp_worse_breathing_in: argues_against
+  cp_tender_to_press: argues_against
+key_findings: [cp_on_exertion, cp_comes_and_goes, cp_tight_or_squeezing, cp_spreads, heart_risk_factors]
+source: nhs_angina
+informed_by: [nhs_angina, nhs_chest_pain, nhs_coronary_heart_disease]

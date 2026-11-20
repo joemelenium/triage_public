@@ -1,0 +1,48 @@
+id: wz_h03
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing]
+
+summary: "A 9-year-old boy with asthma (his mother answering) who had an asthma attack yesterday evening. It settled after his reliever with a spacer, and he slept well. Today he has a slight wheeze when he runs about but is otherwise back to normal and wants to go to school."
+
+opening_statement: "My son had an asthma attack last night. It calmed down with his inhaler and he seems fine today, just a tiny bit wheezy. Does he need to see anyone?"
+
+findings:
+  present: [wheezing, has_asthma, asthma_needing_reliever_more, wheeze_with_exercise_or_cold_air, asthma_attack_recovered]
+  absent: [asthma_attack_now, reliever_not_helping, no_reliever_inhaler, short_of_breath, sob_at_rest, child_struggling_to_breathe, difficulty_breathing, breathing_very_fast, lips_or_skin_blue_grey, child_floppy_or_hard_to_wake, sudden_confusion, very_high_temperature, cough_mucus_or_temperature, lips_tongue_throat_swelling, throat_tight, after_allergy_trigger, chest_pain, feels_very_unwell]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 9, sex: male}
+  full:
+    age: 9
+    sex: male
+    findings: {has_asthma: "yes"}
+
+expected:
+  acuity: soon
+  level_of_care: general_practice
+  timeframe: few_days
+
+minimum_safe_acuity: soon
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP within 2 days even though he is better"
+    any_of: ["2 days", "two days", "48 hours", "GP"]
+  - point: "Call 999 if another attack does not settle with the maximum reliever dose, or he gets worse"
+    any_of: ["999"]
+  - point: "Keep his inhaler with him at school"
+    any_of: ["inhaler"]
+
+source:
+  expected_outcome: {page: asthma.txt, quote: "Even if you feel better, it's important to see a GP within 2 days to discuss your treatment"}
+  minimum_safe_acuity: {page: asthma.txt, quote: "you've had an asthma attack and have recovered"}
+
+variants: []
+
+atypical: false
+notes: "Recovered asthma attack in a child. asthma.txt: 'Urgent advice: Ask for an urgent GP appointment if you've had an asthma attack and have recovered ... see a GP within 2 days'. Mapped to 'soon' (help within a few days) because of the 2-day window; the page's 'Urgent advice' label means 'urgent' from an engine is acceptable. Not self-care. Slight wheeze on exertion only."

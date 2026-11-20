@@ -1,0 +1,52 @@
+id: cp_h21
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [chest_pain]
+
+summary: "A 67-year-old man gets a dull ache in his chest walking uphill that goes off within a minute or two of stopping. It has been happening more often over the last fortnight. A heart specialist gave him a spray some months ago but he is not sure what he was told he has. No pain now."
+
+opening_statement: "I keep getting this dull ache in my chest when I walk up the hill to the shops. It goes off if I stop for a minute. It's been happening a lot more the last couple of weeks."
+
+findings:
+  present: [chest_pain, cp_on_exertion, cp_comes_and_goes, angina_worse_than_usual, heart_risk_factors]
+  absent: [cp_present_now, cp_sudden_not_going_away, cp_spreads, sweating, nausea_or_vomiting, light_headed, short_of_breath, cp_tight_or_squeezing, cp_heavy, angina_pain_not_settling, cp_worse_breathing_in, cp_tender_to_press, cp_after_eating, cp_after_injury_or_exercise, cp_sharp_or_stabbing, palpitations, fainted, leg_pain_or_swelling, cough, coughing_up_blood, upper_back_pain, heartburn_or_sour_taste, cp_lasted_15_minutes]
+  unknown: [has_angina]
+
+context:
+  none: {}
+  basic: {age: 67, sex: male}
+  full:
+    age: 67
+    sex: male
+    findings: {has_angina: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Known angina that is happening more often than before"
+    findings: [angina_worse_than_usual]
+    minimum_acuity: urgent
+    source: {page: angina.txt, quote: "you've been diagnosed with angina and it feels worse than before, is happening more often, lasts longer or happens when you're resting"}
+
+safety_netting_should_cover:
+  - point: "Get help from NHS 111 or an urgent GP appointment today"
+    any_of: ["111", "urgent"]
+  - point: "Call 999 if the pain does not stop after resting for a few minutes or after the spray"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: angina.txt, quote: "you've been diagnosed with angina and it feels worse than before, is happening more often, lasts longer or happens when you're resting"}
+  minimum_safe_acuity: {page: angina.txt, quote: "you have chest pain or other symptoms of angina that come and go"}
+
+context_test:
+  what_context_adds: "The record shows a diagnosis of angina. The patient is not sure what he was diagnosed with, so says 'not sure' when asked."
+  expected_direction: more_urgent
+
+atypical: false
+notes: "Without the diagnosis, chest_pain.txt says see a GP for chest pain that comes and goes (routine), while angina.txt says get help from 111 for chest pain or other symptoms of angina that come and go (urgent). With the diagnosis known, angina.txt clearly gives 111 for angina that is happening more often. Direction is set to more_urgent on the basis of the chest_pain.txt reading without context; an engine that already uses the angina page without context may show 'same'. The ache is described as dull, not tight or squeezing, which keeps it off the 999 list on heart_attack_symptoms.txt."

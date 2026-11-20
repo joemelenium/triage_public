@@ -1,0 +1,54 @@
+id: mix_d08
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing, cough]
+
+summary: "A 23-year-old woman with hay fever has noticed for a couple of months that she wheezes and coughs when she runs, especially on cold mornings, and has a dry cough at night. It settles within minutes of stopping. She has never been diagnosed with asthma and feels well."
+
+opening_statement: "I've started getting wheezy and coughing when I go running, mainly when it's cold. It goes off after a few minutes. I've also got a bit of a cough at night."
+
+findings:
+  present: [wheezing, wheeze_with_exercise_or_cold_air, wheeze_comes_and_goes, cough, cough_dry, cough_worse_at_night, cough_3_weeks_or_more, has_allergies]
+  absent: [short_of_breath, sob_at_rest, has_asthma, chest_pain, cp_tight_or_squeezing, coughing_up_blood, cough_mucus_or_temperature, very_high_temperature, smoker, choked_on_something, after_allergy_trigger, lips_tongue_throat_swelling, weight_loss, night_sweats, palpitations, recent_viral_illness, feels_very_unwell, breathing_very_fast, hoarse_voice, frequent_chest_infections]
+  unknown: [triggered_by_allergy]
+
+context:
+  none: {}
+  basic: {age: 23, sex: female}
+  full:
+    age: 23
+    sex: female
+    findings: {has_allergies: "yes"}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP about possible asthma"
+    any_of: ["GP"]
+  - point: "Call 999 if severe difficulty breathing or the chest feels tight or heavy"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: asthma.txt, quote: "you or your child have asthma symptoms"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "you've been coughing for 3 weeks or more"}
+
+variants:
+  - id: mix_d08_v1
+    style: "brief"
+    opening_statement: "Wheezy when I run. Could it be asthma?"
+    volunteered: [wheeze_with_exercise_or_cold_air]
+  - id: mix_d08_v2
+    style: "detailed, mentions hay fever and negatives"
+    opening_statement: "I've had hay fever for years and now when I run in the cold I start wheezing and coughing, then it settles. I don't get breathless sitting still and I've no chest pain. There's a dry cough at night too, for a couple of months now."
+    volunteered: [has_allergies, wheeze_with_exercise_or_cold_air, cough, sob_at_rest, chest_pain, cough_worse_at_night, cough_3_weeks_or_more]
+
+atypical: false
+notes: "Possible undiagnosed asthma, not an attack: asthma.txt says see a GP for asthma symptoms. Over-triage to urgent or emergency would be the mistake. She is not short of breath at the time of asking, so short_of_breath is absent. She cannot say whether pollen or animals affect it (unknown)."

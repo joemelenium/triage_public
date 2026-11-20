@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: syphilis
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot]
+name: "Syphilis"
+medical_name: "Primary syphilis"
+snomed: "266127002"
+# The page says go to a sexual health clinic or see a GP. Danger serious: it can
+# cause serious problems later if not treated, and is easy to miss because the
+# first sore does not hurt.
+acuity_needed: routine
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: partner_has_sti, prevalence: uncommon}
+findings:
+  painless_genital_sore: strongly_supports
+  new_or_unprotected_sex: strongly_supports
+  rash_on_palms_and_soles: supports
+  swollen_neck_glands: supports
+key_findings: [painless_genital_sore, new_or_unprotected_sex, rash_on_palms_and_soles]
+source: nhs_syphilis
+informed_by: [nhs_syphilis, nhs_penis_lumps_and_spots]

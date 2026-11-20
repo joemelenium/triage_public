@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: postnatal_depression
+body_system: mental_health
+entry_symptoms: [low_mood, feeling_anxious]
+name: "Postnatal depression (depression after having a baby)"
+medical_name: "Postpartum depression"
+snomed: "58703003"
+acuity_needed: routine
+danger: moderate
+# Only plausible in the year after a baby is born (for the parent who gave birth,
+# or their partner). Very rare otherwise.
+prevalence: very_rare
+prevalence_when:
+  - {finding: had_baby_in_last_year, prevalence: very_common}
+findings:
+  # What tells it apart from the baby blues: it lasts more than 2 weeks, with
+  # guilt about being a bad parent and difficulty bonding with the baby.
+  difficulty_bonding_with_baby: strongly_supports
+  feeling_worthless_or_guilty: strongly_supports
+  low_mood_over_2_weeks: supports
+  lost_interest_or_enjoyment: supports
+  sleep_problems: supports
+  feeling_anxious: supports
+  low_mood: supports
+key_findings: [had_baby_in_last_year, difficulty_bonding_with_baby, low_mood_over_2_weeks, feeling_worthless_or_guilty]
+source: nhs_postnatal_depression
+informed_by: [nhs_postnatal_depression]

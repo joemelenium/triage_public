@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stress_or_relationship_problems
+body_system: urinary_and_male
+entry_symptoms: [erection_problems, low_sex_drive, ejaculation_problems]
+name: "Stress, tiredness, alcohol or relationship problems"
+medical_name: "Psychogenic sexual dysfunction"
+# The Erectile dysfunction page says occasional problems are usually from stress,
+# tiredness or too much alcohol. The Low sex drive page lists relationship
+# problems and stress first.
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: low_sex_drive, prevalence: very_common}
+  - {finding: erection_problems, prevalence: very_common}
+findings:
+  stressful_time: strongly_supports
+  relationship_problems: supports
+  still_get_morning_erections: supports
+  drinks_a_lot_of_alcohol: supports
+key_findings: [stressful_time, relationship_problems, still_get_morning_erections, drinks_a_lot_of_alcohol]
+source: nhs_erection_problems_erectile_dysfunction
+informed_by: [nhs_erection_problems_erectile_dysfunction, nhs_loss_of_libido, nhs_ejaculation_problems]

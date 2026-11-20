@@ -1,0 +1,155 @@
+# Entry symptom: period pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by the conditions that look likely.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The NHS Period pain page gives no emergency signs. The emergency rules below
+# come from the Ectopic pregnancy and Pelvic pain pages: pain that seems like a
+# period can be an ectopic pregnancy in someone who does not know they are pregnant.
+
+id: period_pain
+name: "Period pain"
+presenting_finding: period_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: period_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - sa_sudden_severe
+      - shoulder_tip_pain
+      - fainted
+      - light_headed
+      - heavy_vaginal_bleeding
+
+  - id: period_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pain_not_helped_by_painkillers
+      - may_be_pregnant
+      - very_high_temperature
+      - vaginal_discharge
+
+  - id: period_pain_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - periods_changed
+      - period_pain_stops_daily_life
+      - pain_during_sex
+      - pain_when_peeing
+      - pain_when_pooing
+      - bleeding_between_periods_or_after_sex
+      - bloating_regular
+      - weight_loss
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_perp_sudden_severe_or_shoulder
+    description: "Period-type pain with a sharp, sudden and very bad tummy pain, or pain in the tip of the shoulder"
+    when: {any: [sa_sudden_severe, shoulder_tip_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+    note: "Applying the Pelvic pain and Ectopic pregnancy pages' emergency signs to period pain is AI judgement: a burst ectopic pregnancy can be mistaken for a bad period."
+
+  - id: rf_perp_fainted
+    description: "Period pain with passing out (fainting)"
+    when: fainted
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_pelvic_pain_emergency
+    source: nhs_pelvic_pain
+    soft: true    # likely conditions may lower this: fainting from a bad period is common and usually harmless
+    note: "AI reading of the Pelvic pain page. Soft, because fainting with very painful periods is common and usually harmless, but it can also be a burst ectopic pregnancy."
+
+  - id: rf_perp_faint_and_pregnant
+    description: "Period-type pain with feeling faint, dizzy or light-headed, in someone who may be pregnant"
+    when: {all: [{any: [light_headed, fainted]}, {any: [may_be_pregnant, pregnant_now]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_ectopic_pregnancy
+
+  - id: rf_perp_heavy_bleeding_faint
+    description: "Period pain with very heavy bleeding and feeling faint or dizzy"
+    when: {all: [heavy_vaginal_bleeding, {any: [light_headed, fainted]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_heavy_bleeding_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: very heavy bleeding with feeling faint can mean a lot of blood has been lost."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_perp_painkillers_not_helping
+    description: "Period pain that is severe or worse than usual, and painkillers have not helped"
+    when: pain_not_helped_by_painkillers
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_period_pain_urgent
+    source: nhs_period_pain
+
+  - id: rf_perp_may_be_pregnant
+    description: "Period-type pain in someone who may be pregnant"
+    when: {any: [may_be_pregnant, pregnant_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_vaginal_bleeding_between_periods_or_after_sex
+    note: "The source says a recently missed period with unusual bleeding and tummy pain needs urgent checking, as it could be an ectopic pregnancy. The Pelvic pain page says the same for anyone with pelvic pain who may be pregnant."
+
+  - id: rf_perp_high_temperature
+    description: "Period-type pain with a very high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_pelvic_pain_urgent
+    source: nhs_pelvic_pain
+
+  - id: rf_perp_discharge
+    description: "Period-type pain with unusual vaginal discharge: possible pelvic infection"
+    when: vaginal_discharge
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_discharge_urgent
+    source: nhs_pelvic_pain
+
+outcome_rules:
+  - id: or_perp_changed
+    description: "Periods that have become more painful, heavier or irregular"
+    when: periods_changed
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_period_pain_gp
+    source: nhs_period_pain
+
+  - id: or_perp_stops_daily_life
+    description: "Period pain that stops usual daily activities"
+    when: period_pain_stops_daily_life
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_period_pain_gp
+    source: nhs_period_pain
+
+  - id: or_perp_pain_sex_pee_poo
+    description: "Pain during sex, or when peeing or pooing"
+    when: {any: [pain_during_sex, pain_when_peeing, pain_when_pooing]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_period_pain_gp
+    source: nhs_period_pain
+
+  - id: or_perp_bleeding_between
+    description: "Bleeding between periods"
+    when: bleeding_between_periods_or_after_sex
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_period_pain_gp
+    source: nhs_period_pain
+
+  - id: or_perp_swollen_tummy_or_weight_loss
+    description: "A swollen tummy, loss of appetite or losing weight without trying"
+    when: {any: [bloating_regular, feel_full_quickly, weight_loss]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_period_pain_gp
+    source: nhs_period_pain
+
+default:
+  description: "Period pain with nothing that needs more help: ease it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Period pain usually lasts up to 3 days. You can ease it yourself."}
+  advice: advice_period_pain_self_care
+  source: nhs_period_pain

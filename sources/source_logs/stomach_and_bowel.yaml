@@ -1,0 +1,253 @@
+
+- id: nhs_appendicitis
+  title: Appendicitis
+  url: https://www.nhs.uk/conditions/appendicitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 August 2024'
+
+- id: nhs_norovirus
+  title: Norovirus
+  url: https://www.nhs.uk/conditions/norovirus/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 December 2024'
+
+- id: nhs_food_poisoning
+  title: Food poisoning
+  url: https://www.nhs.uk/conditions/food-poisoning/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 December 2024'
+
+- id: nhs_ibs
+  title: Irritable bowel syndrome (IBS)
+  url: https://www.nhs.uk/conditions/irritable-bowel-syndrome-ibs/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_acute_cholecystitis
+  title: Acute cholecystitis
+  url: https://www.nhs.uk/conditions/acute-cholecystitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 21 February 2023'
+
+- id: nhs_acute_pancreatitis
+  title: Acute pancreatitis
+  url: https://www.nhs.uk/conditions/acute-pancreatitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 March 2026'
+
+- id: nhs_stomach_ulcer
+  title: Stomach ulcer
+  url: https://www.nhs.uk/conditions/stomach-ulcer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 August 2025'
+
+- id: nhs_gastritis
+  title: Gastritis
+  url: https://www.nhs.uk/conditions/gastritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 05 August 2026'
+
+- id: nhs_hernia
+  title: Hernia
+  url: https://www.nhs.uk/conditions/hernia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 May 2026'
+
+- id: nhs_diverticulitis
+  title: Diverticular disease and diverticulitis
+  url: https://www.nhs.uk/conditions/diverticular-disease-and-diverticulitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 07 September 2023'
+
+- id: nhs_crohns_disease
+  title: Crohn's disease
+  url: https://www.nhs.uk/conditions/crohns-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 April 2025'
+
+- id: nhs_ulcerative_colitis
+  title: Ulcerative colitis
+  url: https://www.nhs.uk/conditions/ulcerative-colitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 20 August 2026'
+
+- id: nhs_coeliac_disease
+  title: Coeliac disease
+  url: https://www.nhs.uk/conditions/coeliac-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 March 2023'
+
+- id: nhs_bowel_cancer
+  title: Bowel cancer
+  url: https://www.nhs.uk/conditions/bowel-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_stomach_cancer
+  title: Stomach cancer
+  url: https://www.nhs.uk/conditions/stomach-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_piles
+  title: Piles (haemorrhoids)
+  url: https://www.nhs.uk/conditions/piles-haemorrhoids/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 01 April 2026'
+
+- id: nhs_anal_fissure
+  title: Anal fissure
+  url: https://www.nhs.uk/conditions/anal-fissure/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 26 June 2025'
+
+- id: nhs_anal_fistula
+  title: Anal fistula
+  url: https://www.nhs.uk/conditions/anal-fistula/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 21 February 2023'
+
+- id: nhs_threadworms
+  title: Threadworms
+  url: https://www.nhs.uk/conditions/threadworms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 01 December 2023'
+
+- id: nhs_ectopic_pregnancy
+  title: Ectopic pregnancy
+  url: https://www.nhs.uk/conditions/ectopic-pregnancy/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 23 August 2022'
+
+- id: nhs_kidney_stones
+  title: Kidney stones
+  url: https://www.nhs.uk/conditions/kidney-stones/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 September 2026'
+
+- id: nhs_peritonitis
+  title: Peritonitis
+  url: https://www.nhs.uk/conditions/peritonitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 01 August 2023'
+
+- id: nhs_lactose_intolerance
+  title: Lactose intolerance
+  url: https://www.nhs.uk/conditions/lactose-intolerance/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 08 July 2026'
+
+- id: nhs_motion_sickness
+  title: Motion sickness
+  url: https://www.nhs.uk/conditions/motion-sickness/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 June 2023'
+
+- id: nhs_vomiting_in_pregnancy
+  title: Vomiting and morning sickness
+  url: https://www.nhs.uk/pregnancy/common-symptoms/vomiting-and-morning-sickness/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 April 2024'
+
+- id: nhs_pelvic_inflammatory_disease
+  title: Pelvic inflammatory disease
+  url: https://www.nhs.uk/conditions/pelvic-inflammatory-disease-pid/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 December 2025'
+
+- id: nhs_ovarian_cyst
+  title: Ovarian cyst
+  url: https://www.nhs.uk/conditions/ovarian-cyst/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 21 June 2023'
+
+- id: nhs_hiatus_hernia
+  title: Hiatus hernia
+  url: https://www.nhs.uk/conditions/hiatus-hernia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 08 May 2024'
+
+- id: nhs_alcohol_related_liver_disease
+  title: Alcohol-related liver disease
+  url: https://www.nhs.uk/conditions/alcohol-related-liver-disease-arld/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 15 July 2026'
+
+- id: nhs_c_difficile
+  title: C. difficile
+  url: https://www.nhs.uk/conditions/c-difficile/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 July 2025'
+
+- id: nhs_inguinal_hernia
+  title: Inguinal hernia
+  url: https://www.nhs.uk/tests-and-treatments/inguinal-hernia-repair/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 February 2025'
+
+- id: nhs_constipation_in_children
+  title: Constipation in children
+  url: https://www.nhs.uk/baby/health/constipation-in-children/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 2 August 2023'

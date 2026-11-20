@@ -1,0 +1,971 @@
+# Observations: urinary and male genital body system (peeing, kidneys, bladder,
+# prostate, testicles, penis and sexual problems).
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Same fields as the other observation files (see general.yaml).
+#
+
+# ===========================================================================
+# Main symptoms (one per entry symptom)
+# ===========================================================================
+- id: blood_in_urine
+  label: "Blood in pee"
+  question: "Do you have blood in your pee, or think you might? It may look pink, red or dark brown."
+  question_carer: "Does the person have blood in their pee, or might they? It may look pink, red or dark brown."
+  checklist_text: "Blood in your pee, or you think there might be (pink, red or dark brown pee)"
+  kind: presenting
+  snomed: "34436003"
+  phrases: ["blood in my pee", "my wee is red", "pink urine", "peeing blood"]
+  source: nhs_blood_in_urine
+
+- id: smelly_urine
+  label: "Smelly pee"
+  question: "Does your pee smell stronger or worse than usual?"
+  question_carer: "Does the person's pee smell stronger or worse than usual?"
+  checklist_text: "Pee that smells stronger or worse than usual"
+  kind: presenting
+  snomed: "278017001"
+  phrases: ["smelly wee", "my pee stinks", "strong smelling urine"]
+  source: nhs_smelly_urine
+
+- id: urinary_incontinence
+  label: "Leaking pee (urinary incontinence)"
+  question: "Do you leak pee when you do not mean to?"
+  question_carer: "Does the person leak pee when they do not mean to?"
+  checklist_text: "Leaking pee when you do not mean to"
+  kind: presenting
+  snomed: "165232002"
+  phrases: ["I leak when I cough", "can't hold my wee", "wetting myself", "bladder leaks"]
+  source: nhs_urinary_incontinence
+
+- id: bedwetting
+  label: "Wetting the bed"
+  question: "Do you wet the bed at night?"
+  question_carer: "Does your child wet the bed at night?"
+  kind: presenting
+  snomed: "8009008"
+  phrases: ["wets the bed", "bedwetting", "wakes up wet"]
+  source: nhs_bedwetting
+
+- id: painful_or_frequent_peeing
+  label: "Pain when peeing, or peeing more often"
+  question: "Does it hurt or burn when you pee, or do you need to pee more often than usual?"
+  question_carer: "Does it hurt or burn when the person pees, or do they need to pee more often than usual?"
+  checklist_text: "Pain or burning when you pee, or needing to pee more often"
+  kind: presenting
+  phrases: ["burns when I wee", "cystitis", "keep needing the toilet", "stings when I pee"]
+  source: nhs_urinary_tract_infections
+
+- id: cannot_pee
+  label: "Unable to pee"
+  question: "Are you unable to pee, or can you only pass a few drops, even though you need to go?"
+  question_carer: "Is the person unable to pee, or only passing a few drops, even though they need to go?"
+  checklist_text: "Unable to pee, or only a few drops, even though you need to go"
+  kind: presenting
+  snomed: "102835006"
+  phrases: ["can't pee", "can't wee", "nothing comes out", "blocked bladder"]
+  source: nhs_prostate_enlargement
+
+- id: testicle_pain
+  label: "Pain in the testicles"
+  question: "Do you have pain or an ache in one or both testicles (balls)?"
+  question_carer: "Does your child have pain or an ache in one or both testicles (balls)?"
+  checklist_text: "Pain or an ache in one or both testicles (balls)"
+  kind: presenting
+  sex: male
+  phrases: ["my balls hurt", "pain in my testicle", "aching testicle"]
+  source: nhs_testicle_pain
+
+- id: testicle_lump_or_swelling
+  label: "Lump or swelling in the testicles"
+  question: "Have you noticed a lump or swelling in or around your testicles (balls)?"
+  question_carer: "Has your child got a lump or swelling in or around their testicles (balls)?"
+  checklist_text: "A lump or swelling in or around your testicles (balls)"
+  kind: presenting
+  snomed: "53929009"
+  phrases: ["lump on my ball", "swollen testicle", "one ball is bigger"]
+  source: nhs_testicle_lumps_and_swellings
+
+- id: penis_lump_or_spot
+  label: "Lump, spot, sore or rash on the penis"
+  question: "Do you have a lump, spot, sore, rash or swelling on your penis?"
+  question_carer: "Has your child got a lump, spot, sore, rash or swelling on their penis?"
+  checklist_text: "A lump, spot, sore, rash or swelling on your penis"
+  kind: presenting
+  phrases: ["spots on my penis", "sore on my willy", "red bell end", "lumps on my penis"]
+  source: nhs_penis_lumps_and_spots
+
+- id: erection_will_not_go_away
+  label: "Erection that will not go away, or is painful"
+  question: "Do you have an erection that will not go away, or that is painful?"
+  checklist_text: "An erection that will not go away, or is painful"
+  kind: presenting
+  phrases: ["erection won't go down", "painful erection", "stuck hard"]
+  source: nhs_priapism_painful_erections
+
+- id: blood_in_semen
+  label: "Blood in semen"
+  question: "Have you noticed blood in your semen (cum)? It may look red or brown."
+  checklist_text: "Blood in your semen (cum)"
+  kind: presenting
+  snomed: "34615008"
+  phrases: ["blood when I come", "red cum", "brown semen"]
+  source: nhs_blood_in_semen
+
+- id: erection_problems
+  label: "Problems getting or keeping an erection"
+  question: "Do you have problems getting an erection, or keeping it for long enough to have sex?"
+  checklist_text: "Problems getting or keeping an erection"
+  kind: presenting
+  snomed: "860914002"
+  phrases: ["can't get it up", "impotence", "erectile dysfunction", "lose my erection"]
+  source: nhs_erection_problems_erectile_dysfunction
+
+- id: ejaculation_problems
+  label: "Problems with ejaculating (coming)"
+  question: "Do you have problems with ejaculating (coming)? For example, coming too soon, taking a long time, or not at all."
+  checklist_text: "Problems with ejaculating (coming)"
+  kind: presenting
+  phrases: ["come too quickly", "premature ejaculation", "can't come", "takes ages to come"]
+  source: nhs_ejaculation_problems
+
+- id: low_sex_drive
+  label: "Low sex drive"
+  question: "Have you lost interest in sex, or has your sex drive gone down?"
+  checklist_text: "Lost interest in sex, or a lower sex drive"
+  kind: presenting
+  phrases: ["no sex drive", "lost my libido", "not interested in sex"]
+  source: nhs_loss_of_libido
+
+- id: peeing_at_night_more
+  label: "Getting up in the night to pee"
+  question: "Do you get up in the night to pee more than you used to?"
+  checklist_text: "Getting up in the night to pee more than you used to"
+  kind: symptom
+  snomed: "139394000"
+  phrases: ["up all night peeing", "wake up to wee"]
+  source: nhs_prostate_enlargement
+
+- id: cloudy_pee
+  label: "Cloudy pee"
+  question: "Is your pee cloudy?"
+  question_carer: "Is the person's pee cloudy?"
+  checklist_text: "Cloudy pee"
+  kind: symptom
+  snomed: "7766007"
+  phrases: ["cloudy wee", "murky pee"]
+  source: nhs_urinary_tract_infections
+
+- id: weak_flow_or_straining
+  label: "Hard to start peeing, or a weak or stop-start flow"
+  question: "Is it hard to start peeing, do you have to strain, or is your flow weak or stop-start?"
+  checklist_text: "Hard to start peeing, straining, or a weak or stop-start flow"
+  kind: symptom
+  snomed: "162128006"
+  phrases: ["weak stream", "takes ages to start", "stop start peeing"]
+  source: nhs_prostate_enlargement
+
+- id: bladder_not_emptying
+  label: "Bladder does not feel empty after peeing, or dribbling afterwards"
+  question: "Do you feel your bladder has not fully emptied after you pee, or do you dribble pee afterwards?"
+  checklist_text: "Bladder does not feel empty after peeing, or dribbling afterwards"
+  kind: symptom
+  snomed: "249288007"
+  phrases: ["still feel I need to go", "dribble after I finish"]
+  source: nhs_prostate_enlargement
+
+- id: peeing_problem_for_months
+  label: "Peeing problems for months or longer"
+  question: "Have these problems with peeing been going on for months or longer?"
+  kind: symptom
+  phrases: ["had it for years", "been going on for months"]
+  source: nhs_urinary_incontinence_symptoms
+
+- id: loin_pain
+  label: "Pain in the back or side, just under the ribs"
+  question: "Do you have pain in your back or side, just under the ribs?"
+  question_carer: "Does the person have pain in their back or side, just under the ribs?"
+  checklist_text: "Pain in your back or side, just under the ribs"
+  kind: symptom
+  snomed: "271857006"
+  phrases: ["pain in my side", "kidney pain", "pain in my flank"]
+  source: nhs_smelly_urine
+
+- id: loin_pain_severe_in_waves
+  label: "Severe pain in the side or back that comes in waves"
+  question: "Is the pain in your side or back severe, and does it come in waves so that you cannot keep still?"
+  checklist_text: "Severe pain in your side or back that comes in waves, so you cannot keep still"
+  kind: symptom
+  parent: loin_pain
+  relation: severity
+  snomed: "7093002"
+  seriousness: serious
+  phrases: ["worst pain ever in my side", "can't keep still with the pain", "comes in waves"]
+  source: nhs_kidney_stones
+
+- id: pain_spreads_to_groin
+  label: "Pain spreads down to the groin"
+  question: "Does the pain spread down to your groin, or towards your testicle or vagina?"
+  kind: symptom
+  parent: loin_pain
+  relation: radiation
+  phrases: ["goes down into my groin", "pain shoots to my testicle"]
+  source: nhs_kidney_stones
+
+- id: temperature_very_low
+  label: "Very low temperature (below 36C)"
+  question: "Is your temperature very low, below 36C?"
+  question_carer: "Is the person's temperature very low, below 36C?"
+  checklist_text: "A very low temperature, below 36C"
+  kind: symptom
+  seriousness: serious
+  phrases: ["temperature is really low", "35 degrees"]
+  source: nhs_urinary_tract_infections
+
+- id: has_urinary_catheter
+  label: "Has a urinary catheter"
+  question: "Do you have a catheter? This is a tube in your bladder that drains your pee."
+  question_carer: "Does the person have a catheter? This is a tube in the bladder that drains pee."
+  checklist_text: "A catheter (a tube in your bladder to drain pee)"
+  kind: history
+  phrases: ["I have a catheter", "bag for my wee"]
+  source: nhs_urinary_tract_infections
+
+- id: keeps_getting_utis
+  label: "Keeps getting urine infections"
+  question: "Have you had 2 urine infections in the last 6 months, or 3 in the last year?"
+  checklist_text: "2 urine infections in 6 months, or 3 in a year"
+  kind: history
+  phrases: ["keep getting cystitis", "another UTI", "always getting water infections"]
+  source: nhs_urinary_tract_infections
+
+- id: uti_not_getting_better
+  label: "Getting worse quickly, or not better within 2 days of treatment"
+  question: "Are your symptoms getting worse quickly? Or have they not got better within 2 days of starting treatment?"
+  checklist_text: "Getting worse quickly, or not better within 2 days of starting treatment"
+  kind: symptom
+  phrases: ["antibiotics aren't working", "getting worse fast", "still bad after 2 days"]
+  source: nhs_urinary_tract_infections
+
+- id: had_kidney_stones_before
+  label: "Has had kidney stones before"
+  question: "Have you had kidney stones before?"
+  kind: history
+  phrases: ["I've had kidney stones", "passed a stone before"]
+  source: nhs_kidney_stones
+
+- id: new_or_unprotected_sex
+  label: "Sex without a condom with a new partner in the last 3 months"
+  question: "In the last 3 months, have you had sex without a condom with a new partner?"
+  checklist_text: "Sex without a condom with a new partner in the last 3 months"
+  kind: history
+  phrases: ["didn't use a condom", "new partner", "one night stand"]
+  source: nhs_syphilis
+
+- id: partner_has_sti
+  label: "A sexual partner has a sexually transmitted infection"
+  question: "Has a sexual partner told you they have a sexually transmitted infection (STI)?"
+  checklist_text: "A sexual partner has told you they have an STI"
+  kind: history
+  phrases: ["my partner has chlamydia", "my girlfriend has an STI"]
+  source: nhs_syphilis
+
+- id: discharge_from_penis
+  label: "Discharge from the penis"
+  question: "Is there any discharge (fluid) coming from the tip of your penis, or from under the foreskin?"
+  checklist_text: "Discharge (fluid) from the tip of your penis or under the foreskin"
+  kind: symptom
+  sex: male
+  snomed: "9957009"
+  phrases: ["discharge from my penis", "white stuff coming out", "drip"]
+  source: nhs_gonorrhoea
+
+- id: takes_antidepressants_or_blood_pressure_medicine
+  label: "Takes antidepressants or blood pressure medicine"
+  question: "Do you take antidepressants, or medicine for high blood pressure?"
+  kind: history
+  phrases: ["on sertraline", "blood pressure tablets", "antidepressants"]
+  source: nhs_loss_of_libido
+
+# ===========================================================================
+# Unable to pee: more detail
+# ===========================================================================
+- id: bladder_full_and_painful
+  label: "Lower tummy painful or swollen, and badly needs to pee but cannot"
+  question: "Is your lower tummy painful or swollen, and do you badly need to pee but cannot?"
+  question_carer: "Is the person's lower tummy painful or swollen, and do they badly need to pee but cannot?"
+  checklist_text: "Lower tummy painful or swollen, and you badly need to pee but cannot"
+  kind: symptom
+  parent: cannot_pee
+  relation: severity
+  seriousness: emergency
+  phrases: ["bladder is bursting", "agony and can't wee", "tummy swollen and can't pee"]
+  source: ai_judgement
+
+- id: cannot_pee_at_all
+  label: "Not able to pee at all for several hours"
+  question: "Have you not been able to pee at all, not even a little, for 6 hours or more?"
+  question_carer: "Has the person not been able to pee at all, not even a little, for 6 hours or more?"
+  checklist_text: "Not able to pee at all for 6 hours or more"
+  kind: symptom
+  parent: cannot_pee
+  relation: severity
+  seriousness: serious
+  phrases: ["nothing since this morning", "haven't been able to go all day"]
+  source: nhs_prostate_enlargement
+
+# ===========================================================================
+# Blood in pee: more detail
+# ===========================================================================
+- id: blood_clots_in_pee
+  label: "Blood clots in pee, or very red pee"
+  question: "Are there blood clots in your pee, or is your pee very red, like it is full of blood?"
+  checklist_text: "Blood clots in your pee, or very red pee"
+  kind: symptom
+  parent: blood_in_urine
+  relation: severity
+  seriousness: serious
+  phrases: ["clots in my wee", "pee is pure blood"]
+  source: ai_judgement
+
+- id: blood_in_urine_no_pain
+  label: "Blood in pee with no pain"
+  question: "Is it painless? That means it does not hurt when you pee, and you have no pain in your tummy, back or side."
+  kind: symptom
+  parent: blood_in_urine
+  relation: character
+  phrases: ["doesn't hurt at all", "no pain, just blood"]
+  source: nhs_bladder_cancer_symptoms
+
+- id: injury_to_back_side_or_groin
+  label: "Started after an injury to the back, side, tummy or groin"
+  question: "Did this start after an injury or a hard blow to your back, side, tummy or groin?"
+  checklist_text: "Started after an injury or hard blow to your back, side, tummy or groin"
+  kind: history
+  seriousness: emergency
+  phrases: ["got kicked in the back", "fell off my bike", "after a rugby tackle"]
+  source: ai_judgement
+
+- id: food_or_medicine_changes_pee
+  label: "Recently had food, drink or medicine that can change pee"
+  question: "In the last day or two, have you had beetroot, blackberries, asparagus, garlic or lots of coffee? Or taken vitamin B6 or a new medicine? These can change the colour or smell of pee."
+  checklist_text: "In the last day or two, had beetroot, lots of coffee, vitamins or a new medicine"
+  kind: history
+  phrases: ["I ate beetroot", "had asparagus for dinner", "new tablets"]
+  source: nhs_smelly_urine
+
+- id: on_period_or_vaginal_bleeding
+  label: "On a period, or bleeding from the vagina"
+  question: "Could the blood be from your period, or from bleeding from your vagina?"
+  kind: symptom
+  sex: female
+  phrases: ["I'm on my period", "might be my period"]
+  source: nhs_blood_in_urine
+
+- id: foamy_pee
+  label: "Very frothy or foamy pee"
+  question: "Is your pee very frothy or foamy?"
+  kind: symptom
+  phrases: ["bubbly wee", "foamy urine"]
+  source: nhs_glomerulonephritis
+
+- id: puffy_face_or_eyes
+  label: "Puffy face or eyes"
+  question: "Is your face, or the skin around your eyes, puffy or swollen?"
+  question_carer: "Is your child's face, or the skin around their eyes, puffy or swollen?"
+  kind: symptom
+  phrases: ["puffy eyes", "swollen face"]
+  source: nhs_glomerulonephritis
+
+- id: recent_sore_throat_or_skin_infection
+  label: "Sore throat or skin infection in the last few weeks"
+  question: "Have you had a sore throat or a skin infection in the last 1 to 3 weeks?"
+  question_carer: "Has your child had a sore throat or a skin infection in the last 1 to 3 weeks?"
+  kind: history
+  phrases: ["had tonsillitis recently", "had impetigo"]
+  source: ai_judgement
+
+- id: not_making_much_pee
+  label: "Making much less pee than usual"
+  question: "Are you making much less pee than usual, without feeling that your bladder is full?"
+  question_carer: "Is the person making much less pee than usual, without seeming to have a full bladder?"
+  checklist_text: "Making much less pee than usual, without a full bladder"
+  kind: symptom
+  phrases: ["hardly peeing", "barely any wee", "don't need to go"]
+  source: nhs_acute_kidney_injury
+
+- id: lump_in_side
+  label: "Lump or swelling in the back or side"
+  question: "Can you feel a lump or swelling in your back or side, under your ribs?"
+  kind: symptom
+  phrases: ["lump in my side", "swelling under my ribs"]
+  source: nhs_kidney_cancer_symptoms
+
+# ===========================================================================
+# Leaking pee: more detail, and signs of a trapped nerve in the lower back
+# ===========================================================================
+- id: leaks_when_coughing_or_laughing
+  label: "Leaks when coughing, sneezing, laughing or exercising"
+  question: "Do you leak pee when you cough, sneeze, laugh, lift something or exercise?"
+  kind: symptom
+  parent: urinary_incontinence
+  relation: exacerbating_factor
+  phrases: ["leak when I sneeze", "wet myself when I laugh", "leak when I jump"]
+  source: nhs_urinary_incontinence_symptoms
+
+- id: leaks_with_sudden_urge
+  label: "Sudden strong need to pee, and leaks before reaching the toilet"
+  question: "Do you get a sudden, strong need to pee, and leak before you can get to the toilet?"
+  kind: symptom
+  parent: urinary_incontinence
+  relation: character
+  phrases: ["can't make it to the loo", "sudden urge", "gotta go now"]
+  source: nhs_urinary_incontinence_symptoms
+
+- id: leaks_all_the_time
+  label: "Leaks or dribbles all the time"
+  question: "Do you leak or dribble pee all the time, or often without feeling that you need to go?"
+  kind: symptom
+  parent: urinary_incontinence
+  relation: character
+  phrases: ["always dribbling", "constantly wet", "leak without knowing"]
+  source: nhs_urinary_incontinence_symptoms
+
+- id: leaking_started_suddenly
+  label: "Leaking started suddenly in the last few days"
+  question: "Did the leaking start suddenly, in the last few days?"
+  question_carer: "Did the leaking start suddenly, in the last few days?"
+  checklist_text: "Leaking pee that started suddenly in the last few days"
+  kind: symptom
+  parent: urinary_incontinence
+  relation: duration
+  phrases: ["started this week", "never had it before", "came on suddenly"]
+  source: ai_judgement
+
+- id: has_given_birth
+  label: "Has given birth"
+  question: "Have you given birth to a baby?"
+  kind: history
+  sex: female
+  phrases: ["I've had children", "after my baby"]
+  source: nhs_urinary_incontinence
+
+# ===========================================================================
+# Wetting the bed: more detail
+# ===========================================================================
+- id: bedwetting_again_after_dry
+  label: "Started wetting the bed again after being dry for 6 months"
+  question: "Have you started wetting the bed again, after being dry at night for more than 6 months?"
+  question_carer: "Has your child started wetting the bed again, after being dry at night for more than 6 months?"
+  checklist_text: "Started wetting the bed again after being dry at night for more than 6 months"
+  kind: symptom
+  parent: bedwetting
+  relation: duration
+  phrases: ["was dry and now wetting again", "started wetting again"]
+  source: nhs_bedwetting
+
+- id: bedwetting_never_dry
+  label: "Has never been dry at night for long"
+  question: "Have you always wet the bed, and never been dry at night for 6 months or more?"
+  question_carer: "Has your child always wet the bed, and never been dry at night for 6 months or more?"
+  kind: symptom
+  parent: bedwetting
+  relation: duration
+  phrases: ["always wet the bed", "never been dry"]
+  source: nhs_bedwetting
+
+- id: bedwetting_home_help_not_worked
+  label: "Bedwetting carries on after trying things at home"
+  question: "Have you tried things at home to help, but the bedwetting keeps happening?"
+  question_carer: "Have you tried things at home to help, but your child keeps wetting the bed?"
+  checklist_text: "Tried things at home, but the bedwetting keeps happening"
+  kind: symptom
+  parent: bedwetting
+  relation: duration
+  phrases: ["tried everything", "still wetting every night"]
+  source: nhs_bedwetting
+
+- id: wets_during_day
+  label: "Also wets during the day"
+  question: "Do you also wet yourself during the day?"
+  question_carer: "Does your child also wet themselves during the day?"
+  checklist_text: "Also wetting during the day"
+  kind: symptom
+  phrases: ["accidents at school", "wets in the day too"]
+  source: nhs_urinary_tract_infections
+
+- id: bedwetting_runs_in_family
+  label: "A parent, brother or sister also wet the bed as a child"
+  question: "Did a parent, brother or sister also wet the bed when they were a child?"
+  kind: history
+  phrases: ["I did it too as a kid", "runs in the family"]
+  source: nhs_bedwetting
+
+# ===========================================================================
+# Testicles: pain, lumps and swellings
+# ===========================================================================
+- id: testicle_pain_sudden_severe
+  label: "Sudden, severe pain in a testicle"
+  question: "Did the pain in your testicle come on suddenly, and is it severe?"
+  question_carer: "Did the pain in your child's testicle come on suddenly, and is it severe?"
+  checklist_text: "Sudden, severe pain in a testicle"
+  kind: symptom
+  parent: testicle_pain
+  relation: severity
+  seriousness: emergency
+  phrases: ["agony in my ball", "woke up with terrible pain", "sudden pain in my testicle"]
+  source: nhs_testicle_pain
+
+- id: testicle_pain_over_an_hour
+  label: "Testicle pain lasting more than an hour, or carrying on at rest"
+  question: "Has the pain in your testicle lasted more than an hour, or does it carry on when you are resting?"
+  question_carer: "Has the pain in your child's testicle lasted more than an hour, or does it carry on when they are resting?"
+  checklist_text: "Testicle pain that has lasted more than an hour, or carries on when resting"
+  kind: symptom
+  parent: testicle_pain
+  relation: duration
+  seriousness: emergency
+  phrases: ["been hurting for hours", "doesn't stop when I lie down"]
+  source: nhs_testicle_pain
+
+- id: testicle_pain_came_on_gradually
+  label: "Testicle pain came on slowly over a day or more"
+  question: "Did the pain come on slowly, over a day or more?"
+  kind: symptom
+  parent: testicle_pain
+  relation: character
+  phrases: ["got worse over a couple of days", "built up slowly"]
+  source: nhs_epididymitis
+
+- id: testicle_ache_worse_standing
+  label: "Dull, dragging ache, worse when standing"
+  question: "Is it a dull, dragging ache that gets worse when you stand or walk, and better when you lie down?"
+  kind: symptom
+  parent: testicle_pain
+  relation: exacerbating_factor
+  phrases: ["heavy dragging feeling", "aches by the end of the day"]
+  source: ai_judgement
+
+- id: testicle_high_or_odd_angle
+  label: "One testicle sitting higher than usual, or at an odd angle"
+  question: "Is one testicle sitting higher than usual, or lying at an odd angle?"
+  question_carer: "Is one of your child's testicles sitting higher than usual, or lying at an odd angle?"
+  kind: symptom
+  phrases: ["one ball has gone up", "testicle sideways"]
+  source: ai_judgement
+
+- id: scrotum_red_hot_swollen
+  label: "Scrotum red, warm and swollen"
+  question: "Is the skin around your testicles (the scrotum) red, warm, swollen or tender?"
+  question_carer: "Is the skin around your child's testicles (the scrotum) red, warm, swollen or tender?"
+  checklist_text: "Skin around your testicles (scrotum) red, warm, swollen or tender"
+  kind: symptom
+  phrases: ["red swollen ball sack", "hot and swollen down there"]
+  source: nhs_epididymitis
+
+- id: testicle_injury
+  label: "Injury to the testicles"
+  question: "Did this start after an injury to your testicles, such as a kick or a blow?"
+  question_carer: "Did this start after an injury to your child's testicles, such as a kick or a blow?"
+  checklist_text: "Started after an injury to your testicles"
+  kind: history
+  phrases: ["got kicked in the balls", "hit by a ball", "fell on the crossbar"]
+  source: nhs_testicle_pain
+
+- id: genital_skin_dark_or_spreading
+  label: "Skin of the genitals turning dark, or pain and swelling spreading fast"
+  question: "Is the skin around your genitals or bottom turning dark, purple or black? Or is the pain or swelling spreading fast?"
+  checklist_text: "Skin around your genitals or bottom turning dark, or pain and swelling spreading fast"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["skin going black", "spreading really quickly", "smells rotten"]
+  source: ai_judgement
+
+- id: hard_painless_testicle_lump
+  label: "Hard lump in the testicle, or a testicle that feels heavy or hard"
+  question: "Is there a hard lump in the testicle itself? Or does the testicle or scrotum feel heavy, firm or hard?"
+  kind: symptom
+  parent: testicle_lump_or_swelling
+  relation: character
+  phrases: ["hard lump on my ball", "feels like a pea on my testicle", "heavy ball"]
+  source: nhs_testicular_cancer_symptoms
+
+- id: testicle_changed_size_or_shape
+  label: "A testicle has got bigger or changed shape"
+  question: "Has one testicle got bigger than the other, or changed shape or the way it feels?"
+  checklist_text: "A testicle that has got bigger, or changed shape or feel"
+  kind: symptom
+  phrases: ["one ball bigger", "testicle feels different"]
+  source: nhs_testicle_lumps_and_swellings
+
+- id: swelling_like_bag_of_worms
+  label: "Swelling feels like a bag of worms"
+  question: "Does the swelling feel like a soft bag of worms, above the testicle, that gets smaller when you lie down?"
+  kind: symptom
+  parent: testicle_lump_or_swelling
+  relation: character
+  phrases: ["feels like spaghetti", "bag of worms", "lumpy veins"]
+  source: ai_judgement
+
+- id: swelling_soft_and_smooth
+  label: "Whole side swollen, soft and smooth, like a water balloon"
+  question: "Is one side swollen all over, soft and smooth, like a balloon filled with water?"
+  question_carer: "Is one side swollen all over, soft and smooth, like a balloon filled with water?"
+  kind: symptom
+  parent: testicle_lump_or_swelling
+  relation: character
+  phrases: ["like a water balloon", "big smooth swelling"]
+  source: ai_judgement
+
+- id: lump_separate_above_testicle
+  label: "Small smooth lump above or behind the testicle"
+  question: "Is it a small, smooth lump that you can feel above or behind the testicle, separate from it?"
+  kind: symptom
+  parent: testicle_lump_or_swelling
+  relation: location
+  phrases: ["pea sized lump above my ball", "lump behind my testicle"]
+  source: ai_judgement
+
+- id: swelling_grew_slowly
+  label: "Swelling or lump has grown slowly over months"
+  question: "Has the swelling or lump been there for months, growing slowly or not at all?"
+  question_carer: "Has the swelling or lump been there for months, growing slowly or not at all?"
+  kind: symptom
+  parent: testicle_lump_or_swelling
+  relation: duration
+  phrases: ["been there for ages", "hasn't changed in months"]
+  source: ai_judgement
+
+- id: groin_bulge
+  label: "A bulge in the groin that may go down into the scrotum"
+  question: "Is there a bulge in your groin, or going down into your scrotum (the skin around your testicles)? It may get bigger when you cough and smaller when you lie down."
+  question_carer: "Is there a bulge in your child's groin, or going down into their scrotum (the skin around the testicles)? It may get bigger when they cough or cry."
+  checklist_text: "A bulge in your groin, or going down into your scrotum"
+  kind: symptom
+  parent: lump_in_tummy_or_groin
+  relation: location
+  phrases: ["lump in my groin", "bulge when I cough", "swelling that goes away when I lie down"]
+  source: nhs_hernia
+
+# ===========================================================================
+# Penis: lumps, spots, sores and injuries
+# ===========================================================================
+- id: tip_of_penis_red_swollen_sore
+  label: "Tip of the penis red, swollen, itchy or sore"
+  question: "Is the tip of your penis swollen, itchy, sore or red? Redness may be harder to see on brown or black skin."
+  question_carer: "Is the tip of your child's penis swollen, itchy, sore or red? Redness may be harder to see on brown or black skin."
+  checklist_text: "Tip of your penis swollen, itchy, sore or red"
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: character
+  phrases: ["red bell end", "sore tip", "itchy under my foreskin"]
+  source: nhs_penis_lumps_and_spots
+
+- id: painful_blisters_or_sores
+  label: "Small painful blisters or sores around the genitals"
+  question: "Do you have small blisters that burst and leave red, open, painful sores? You may have tingling or burning first."
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: character
+  phrases: ["blisters on my penis", "painful sores down below", "cold sore on my penis"]
+  source: nhs_genital_herpes
+
+- id: painless_genital_sore
+  label: "A painless sore or ulcer on the penis"
+  question: "Is it a sore or ulcer that does not hurt? There may be only one."
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: character
+  phrases: ["sore that doesn't hurt", "painless ulcer"]
+  source: nhs_syphilis
+
+- id: warts_on_genitals
+  label: "Small, rough, painless lumps (warts)"
+  question: "Are there small, rough lumps that do not usually hurt? They may be on their own or in a group like a cauliflower."
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: character
+  phrases: ["warts on my penis", "cauliflower lumps", "bumpy growths"]
+  source: nhs_genital_warts
+
+- id: tiny_pearly_bumps
+  label: "Rows of tiny, smooth, skin-coloured bumps that do not change"
+  question: "Are they rows of tiny, smooth, skin-coloured or white bumps around the rim of the head of your penis? Or small pale spots on the shaft?"
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: character
+  phrases: ["tiny white bumps round the head", "little pimples that have always been there"]
+  source: ai_judgement
+
+- id: penis_spots_unchanged_for_months
+  label: "Spots have been there for months without changing"
+  question: "Have the spots or bumps been there for months or years, without changing?"
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: duration
+  phrases: ["always had them", "never changed"]
+  source: ai_judgement
+
+- id: penis_sore_not_healing
+  label: "A growth, lump or sore on the penis that has not healed in 4 weeks"
+  question: "Is there a growth, lump or sore that has not healed within 4 weeks, or is getting bigger? Or has the skin changed colour?"
+  checklist_text: "A growth, lump or sore that has not healed in 4 weeks, or is getting bigger"
+  kind: symptom
+  parent: penis_lump_or_spot
+  relation: duration
+  phrases: ["sore won't heal", "lump getting bigger", "patch changing colour"]
+  source: nhs_penile_cancer_symptoms
+
+- id: foreskin_stuck_back
+  label: "Foreskin pulled back and cannot go back over the tip"
+  question: "Has the foreskin been pulled back and now will not go back over the end of the penis?"
+  question_carer: "Has your child's foreskin been pulled back and now will not go back over the end of the penis?"
+  checklist_text: "Foreskin pulled back and will not go back over the end of the penis"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["foreskin stuck back", "can't pull my foreskin forward", "swollen ring round the head"]
+  source: nhs_phimosis
+
+- id: penis_injury_during_sex
+  label: "Penis bent or injured, often during sex, with a snap or pop"
+  question: "Did your penis get bent or hurt during sex or an injury, maybe with a snap or popping sound? Is it now swollen or bruised?"
+  checklist_text: "Penis bent or hurt with a snap or popping sound, then swollen or bruised"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["heard a crack during sex", "penis went purple", "bent it"]
+  source: ai_judgement
+
+- id: rash_on_palms_and_soles
+  label: "Rash on the palms of the hands and soles of the feet"
+  question: "Do you have a rash on the palms of your hands or the soles of your feet?"
+  kind: symptom
+  phrases: ["rash on my hands and feet", "spots on my palms"]
+  source: nhs_syphilis
+
+# ===========================================================================
+# Erection that will not go away (priapism)
+# ===========================================================================
+- id: erection_over_3_hours
+  label: "Erection lasting more than 3 hours"
+  question: "Has the erection lasted more than 3 hours?"
+  checklist_text: "An erection that has lasted more than 3 hours"
+  kind: symptom
+  parent: erection_will_not_go_away
+  relation: duration
+  seriousness: emergency
+  phrases: ["hard for hours", "since last night"]
+  source: nhs_priapism_painful_erections
+
+- id: erection_over_1_hour
+  label: "Erection lasting more than 1 hour"
+  question: "Has the erection lasted more than 1 hour?"
+  checklist_text: "An erection that has lasted more than 1 hour"
+  kind: symptom
+  parent: erection_will_not_go_away
+  relation: duration
+  phrases: ["over an hour now"]
+  source: nhs_priapism_painful_erections
+
+- id: erection_painful
+  label: "The erection is painful"
+  question: "Is the erection painful?"
+  checklist_text: "The erection is painful"
+  kind: symptom
+  parent: erection_will_not_go_away
+  relation: character
+  phrases: ["it really hurts", "aching penis"]
+  source: nhs_priapism_painful_erections
+
+- id: has_sickle_cell
+  label: "Has sickle cell or another inherited blood condition"
+  question: "Do you have sickle cell, or a blood condition like it that runs in families? For example, thalassaemia."
+  checklist_text: "Sickle cell, or a blood condition like it, such as thalassaemia"
+  kind: history
+  phrases: ["I have sickle cell", "thalassaemia"]
+  source: nhs_sickle_cell_disease
+
+- id: used_erection_medicine_or_cannabis_cocaine
+  label: "Used erection medicine, a penis injection, cannabis or cocaine"
+  question: "Have you used medicine for erection problems, or an injection into the penis? Or have you used cannabis or cocaine?"
+  checklist_text: "Used erection medicine, a penis injection, cannabis or cocaine"
+  kind: history
+  phrases: ["took viagra", "used an injection", "took coke"]
+  source: nhs_priapism_painful_erections
+
+# ===========================================================================
+# Blood in semen and the prostate
+# ===========================================================================
+- id: recent_procedure_on_prostate_or_bladder
+  label: "Procedure on the prostate or bladder, or a vasectomy, in the last few weeks"
+  question: "In the last few weeks, have you had a test or operation on your prostate or bladder, or a vasectomy?"
+  checklist_text: "A test or operation on your prostate or bladder, or a vasectomy, in the last few weeks"
+  kind: history
+  phrases: ["had a prostate biopsy", "had the snip", "camera in my bladder"]
+  source: nhs_blood_in_semen
+
+- id: blood_in_semen_once_or_twice
+  label: "Blood in semen only once or twice, with no other symptoms"
+  question: "Has the blood in your semen happened only once or twice, with no other symptoms?"
+  kind: symptom
+  parent: blood_in_semen
+  relation: duration
+  phrases: ["just the once", "only happened twice"]
+  source: nhs_blood_in_semen
+
+- id: had_prostate_or_bladder_operation
+  label: "Has ever had an operation on the prostate or bladder"
+  question: "Have you ever had an operation on your prostate or bladder?"
+  kind: history
+  phrases: ["had my prostate done", "bladder operation"]
+  source: nhs_ejaculation_problems
+
+- id: perineum_pain
+  label: "Pain between the testicles and bottom"
+  question: "Do you have pain in the area between your testicles and your bottom?"
+  kind: symptom
+  snomed: "430968008"
+  phrases: ["pain behind my balls", "sore when I sit"]
+  source: nhs_prostatitis
+
+- id: pain_when_ejaculating
+  label: "Pain when ejaculating (coming)"
+  question: "Does it hurt when you ejaculate (come)?"
+  kind: symptom
+  snomed: "50818007"
+  phrases: ["hurts when I come", "painful orgasm"]
+  source: nhs_prostatitis
+
+# ===========================================================================
+# Erection, ejaculation and sex drive: more detail
+# ===========================================================================
+- id: erection_problems_keep_happening
+  label: "Erection problems keep happening"
+  question: "Do the erection problems keep happening, most times you try to have sex?"
+  checklist_text: "Erection problems that keep happening"
+  kind: symptom
+  parent: erection_problems
+  relation: duration
+  phrases: ["every time", "for months now"]
+  source: nhs_erection_problems_erectile_dysfunction
+
+- id: still_get_morning_erections
+  label: "Still gets erections at other times, such as on waking"
+  question: "Do you still get erections at other times, for example when you wake up?"
+  kind: symptom
+  parent: erection_problems
+  relation: character
+  phrases: ["fine in the morning", "OK on my own"]
+  source: nhs_erection_problems_erectile_dysfunction
+
+- id: erection_problems_sudden
+  label: "Erection problems started suddenly in the last few days"
+  question: "Did the erection problems start suddenly, in the last few days?"
+  checklist_text: "Erection problems that started suddenly in the last few days"
+  kind: symptom
+  parent: erection_problems
+  relation: duration
+  phrases: ["started this week", "came on suddenly"]
+  source: nhs_back_pain
+
+- id: relationship_problems
+  label: "Problems in a relationship"
+  question: "Are there problems or worries in your relationship?"
+  kind: history
+  phrases: ["arguing a lot", "things are bad with my partner"]
+  source: nhs_loss_of_libido
+
+- id: low_testosterone_signs
+  label: "Less muscle, more fat on the tummy or chest, or low energy and mood swings"
+  question: "Have you noticed less muscle, more fat around your tummy or chest, or low energy and mood swings?"
+  kind: symptom
+  sex: male
+  phrases: ["lost muscle", "man boobs", "no energy"]
+  source: nhs_male_menopause
+
+- id: sex_drive_not_back_after_baby
+  label: "Sex drive has not come back since having a baby"
+  question: "Has your sex drive not come back since having a baby?"
+  checklist_text: "Sex drive not back since having a baby"
+  kind: symptom
+  sex: female
+  phrases: ["since I had the baby", "after giving birth"]
+  source: nhs_loss_of_libido
+
+- id: hot_flushes
+  label: "Hot flushes"
+  question: "Do you get hot flushes? These are sudden feelings of heat in your face, neck or chest."
+  kind: symptom
+  sex: female
+  asked_only_if: age_16_or_over
+  phrases: ["hot flushes", "sudden heat"]
+  source: nhs_menopause
+
+- id: ejaculation_problem_keeps_happening
+  label: "Ejaculation problem keeps happening"
+  question: "Does the problem with coming keep happening? Is it bothering you?"
+  checklist_text: "A problem with coming that keeps happening and bothers you"
+  kind: symptom
+  parent: ejaculation_problems
+  relation: duration
+  phrases: ["happens every time", "it's ruining things"]
+  source: nhs_ejaculation_problems
+
+- id: coming_too_soon
+  label: "Comes sooner than wanted"
+  question: "Do you ejaculate (come) sooner than you or your partner would like?"
+  kind: symptom
+  parent: ejaculation_problems
+  relation: character
+  phrases: ["come too quickly", "finish too fast"]
+  source: nhs_ejaculation_problems
+
+- id: coming_takes_long_or_not_at_all
+  label: "Takes a long time to come, or cannot come"
+  question: "Does it take a long time to ejaculate (come), or can you not come at all?"
+  kind: symptom
+  parent: ejaculation_problems
+  relation: character
+  phrases: ["takes forever", "can't finish"]
+  source: nhs_ejaculation_problems
+
+- id: little_or_no_semen
+  label: "Little or no semen, with cloudy pee afterwards"
+  question: "When you come, is there little or no semen? Is your pee cloudy the first time you go afterwards?"
+  kind: symptom
+  parent: ejaculation_problems
+  relation: character
+  phrases: ["nothing comes out", "dry orgasm"]
+  source: nhs_ejaculation_problems
+
+- id: worried_about_sex_drive
+  label: "Worried about low sex drive"
+  question: "Are you worried about your low sex drive, or is it affecting your life or relationship?"
+  checklist_text: "Worried about your low sex drive, or it is affecting your life"
+  kind: symptom
+  parent: low_sex_drive
+  relation: severity
+  phrases: ["it's affecting my relationship", "I'm worried about it"]
+  source: nhs_loss_of_libido
+
+- id: pain_when_peeing
+  label: "Pain, burning or stinging when peeing"
+  question: "Do you have pain, burning or stinging when you pee?"
+  question_carer: "Does your child have pain, burning or stinging when they pee? They may cry when they pee."
+  kind: symptom
+  parent: painful_or_frequent_peeing
+  relation: character
+  snomed: "49650001"
+  phrases: ["burns when I wee", "stings to pee"]
+  source: nhs_urinary_tract_infections
+
+- id: peeing_more_often
+  label: "Peeing more often than usual"
+  question: "Are you peeing more often than usual, especially at night?"
+  question_carer: "Is your child peeing more often than usual, especially at night? They may have heavier nappies or start wetting the bed."
+  checklist_text: "Peeing more often than usual, especially at night"
+  kind: symptom
+  parent: painful_or_frequent_peeing
+  relation: character
+  snomed: "28442001"
+  phrases: ["up all night weeing", "always needing the toilet"]
+  source: nhs_type_1_diabetes_symptoms

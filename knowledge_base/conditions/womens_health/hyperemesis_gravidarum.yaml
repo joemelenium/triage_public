@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hyperemesis_gravidarum
+body_system: womens_health
+entry_symptoms: [stomach_pain_in_pregnancy, missed_or_late_period, feeling_sick, diarrhoea_or_vomiting]
+name: "Severe sickness in pregnancy (hyperemesis gravidarum)"
+medical_name: "Hyperemesis gravidarum"
+snomed: "14094001"
+# Being sick many times a day and not keeping food or drink down. The page says tell
+# your midwife or doctor as soon as possible.
+acuity_needed: urgent
+danger: serious
+sex: female
+prevalence: rare
+prevalence_when:
+  - {finding: pregnancy_under_12_weeks, prevalence: uncommon}
+  - {finding: stomach_pain_in_pregnancy, prevalence: rare}
+  - {finding: missed_or_late_period, prevalence: very_rare}
+  - {finding: feeling_sick, prevalence: very_rare}
+  - {finding: diarrhoea_or_vomiting, prevalence: very_rare}
+findings:
+  cannot_keep_fluids_down: strongly_supports
+  may_be_pregnant: strongly_supports   # added with the feeling-sick entry symptoms at the merge
+  nausea_or_vomiting: strongly_supports
+  dehydration_signs: strongly_supports
+  weight_loss: supports
+  light_headed: supports
+key_findings: [cannot_keep_fluids_down, dehydration_signs]
+source: nhs_severe_vomiting_pregnancy
+informed_by: [nhs_severe_vomiting_pregnancy]

@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: alcohol_poisoning
+body_system: mental_health
+entry_symptoms: [alcohol_or_drug_problem, agitated_or_out_of_control]
+name: "Alcohol poisoning"
+medical_name: "Acute ethanol intoxication"
+snomed: "1149333003"
+# Call 999 if you think someone has alcohol poisoning.
+acuity_needed: emergency
+level_of_care: emergency_ambulance
+danger: critical
+# Only plausible after a lot of alcohol in the last few hours.
+prevalence: very_rare
+prevalence_when:
+  - {finding: drunk_a_lot_today, prevalence: rare}
+findings:
+  alcohol_poisoning_signs: strongly_supports
+  drowsy_hard_to_wake: strongly_supports
+  breathing_slow_or_irregular: supports
+  nausea_or_vomiting: supports
+  had_a_fit: supports
+key_findings: [drunk_a_lot_today, alcohol_poisoning_signs, drowsy_hard_to_wake, breathing_slow_or_irregular]
+source: nhs_alcohol_poisoning
+informed_by: [nhs_alcohol_poisoning]

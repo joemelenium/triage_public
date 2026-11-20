@@ -1,0 +1,84 @@
+# Entry symptom: vomiting blood (being sick with blood in it).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The source says always get medical help for vomiting blood. If it has stopped
+# and there are no other symptoms, an urgent GP appointment or 111 is enough, so
+# the default is urgent and a floor.
+
+id: vomiting_blood
+name: "Vomiting blood"
+presenting_finding: vomiting_blood
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: vomiting_blood_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - vomiting_blood_large_amount
+      - feels_very_unwell
+      - light_headed
+      - fainted
+      - breathing_very_fast
+      - cold_clammy_skin
+      - stomach_ache
+      - black_or_dark_red_poo
+
+  - id: vomiting_blood_history_screen
+    level: emergency
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - has_liver_problems
+      - drinks_a_lot_of_alcohol
+      - takes_blood_thinners
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_vb_with_other_symptoms
+    description: "Vomiting blood and feeling generally unwell, faint or dizzy, breathing fast or shallowly, cold, clammy pale skin, tummy pain or black poo"
+    when: {any: [feels_very_unwell, light_headed, fainted, breathing_very_fast, cold_clammy_skin, stomach_ache, black_or_dark_red_poo]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_vomiting_blood
+    note: "Feeling confused is in the universal checks."
+
+  - id: rf_vb_large_or_ongoing
+    description: "Still being sick with blood, or a lot of blood"
+    when: vomiting_blood_large_amount
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_diarrhoea_and_vomiting
+    note: "The Diarrhoea and vomiting, Stomach ulcer and Gastritis pages say 999 or A&E for vomiting blood. The Vomiting blood page allows an urgent GP appointment only when it has stopped. Treating a large amount as an emergency is AI judgement."
+
+  - id: rf_vb_liver_or_alcohol
+    description: "Vomiting blood in someone with liver problems or who drinks a lot of alcohol"
+    when: {any: [has_liver_problems, drinks_a_lot_of_alcohol]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_alcohol_related_liver_disease
+    note: "The Alcohol-related liver disease page says 999 or A&E if you are worried alcohol may be affecting your liver and you vomit blood. Swollen veins in the food pipe can bleed heavily."
+
+  - id: rf_vb_blood_thinners
+    description: "Vomiting blood while taking medicine to prevent blood clots"
+    when: takes_blood_thinners
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_vomiting_blood_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: bleeding is harder to stop in people taking these medicines. The Vomiting blood page lists them as a cause."
+
+outcome_rules: []
+
+default:
+  description: "Vomited blood that has stopped, with no other symptoms"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment, call 111 or get help from 111 online"}
+  advice: advice_vomiting_blood_urgent
+  source: nhs_vomiting_blood
+  # A floor: the source says always get medical help if you are vomiting blood.
+  floor: true

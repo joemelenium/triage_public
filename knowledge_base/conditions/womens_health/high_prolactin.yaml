@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: high_prolactin
+body_system: womens_health
+entry_symptoms: [nipple_discharge, missed_or_late_period, irregular_periods]
+name: "Raised levels of the hormone prolactin, from a gland problem or a medicine"
+medical_name: "Hyperprolactinaemia"
+snomed: "237662005"
+# Milky discharge from both nipples, not breastfeeding, with missed periods.
+# Clinical knowledge (AI judgement).
+acuity_needed: routine
+danger: moderate
+prevalence: very_rare
+prevalence_when:
+  - {finding: nipple_discharge, prevalence: uncommon}
+findings:
+  nipple_discharge_milky: strongly_supports
+  nipple_discharge: strongly_supports
+  nipple_discharge_both_sides: supports
+  missed_or_late_period: supports
+  irregular_periods: supports
+  difficulty_getting_pregnant: supports
+  vision_change: supports
+key_findings: [nipple_discharge_milky, missed_or_late_period]
+source: ai_judgement
+informed_by: [nhs_nipple_discharge, nhs_missed_or_late_periods]

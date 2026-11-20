@@ -1,0 +1,203 @@
+
+- id: nhs_prostate_enlargement
+  title: Benign prostate enlargement
+  url: https://www.nhs.uk/conditions/enlarged-prostate/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 08 April 2025'
+
+- id: nhs_prostatitis
+  title: Prostatitis
+  url: https://www.nhs.uk/conditions/prostatitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 February 2024'
+
+- id: nhs_bladder_cancer
+  title: Bladder cancer
+  url: https://www.nhs.uk/conditions/bladder-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_kidney_cancer
+  title: Kidney cancer
+  url: https://www.nhs.uk/conditions/kidney-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_prostate_cancer
+  title: Prostate cancer
+  url: https://www.nhs.uk/conditions/prostate-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_testicular_cancer
+  title: Testicular cancer
+  url: https://www.nhs.uk/conditions/testicular-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_epididymitis
+  title: Epididymitis
+  url: https://www.nhs.uk/conditions/epididymitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 August 2024'
+
+- id: nhs_chlamydia
+  title: Chlamydia
+  url: https://www.nhs.uk/conditions/chlamydia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 October 2024'
+
+- id: nhs_gonorrhoea
+  title: Gonorrhoea
+  url: https://www.nhs.uk/conditions/gonorrhoea/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 December 2024'
+
+- id: nhs_genital_warts
+  title: Genital warts
+  url: https://www.nhs.uk/conditions/genital-warts/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 July 2023'
+
+- id: nhs_genital_herpes
+  title: Genital herpes
+  url: https://www.nhs.uk/conditions/genital-herpes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 27 June 2023'
+
+- id: nhs_syphilis
+  title: Syphilis
+  url: https://www.nhs.uk/conditions/syphilis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 March 2026'
+
+- id: nhs_balanitis
+  title: Balanitis
+  url: https://www.nhs.uk/conditions/balanitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 30 May 2023'
+
+- id: nhs_phimosis
+  title: Tight foreskin (phimosis)
+  url: https://www.nhs.uk/conditions/phimosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 March 2026'
+
+- id: nhs_sickle_cell_disease
+  title: Sickle cell disease
+  url: https://www.nhs.uk/conditions/sickle-cell-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 September 2026'
+
+- id: nhs_glomerulonephritis
+  title: Glomerulonephritis
+  url: https://www.nhs.uk/conditions/glomerulonephritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 April 2023'
+
+- id: nhs_acute_kidney_injury
+  title: Acute kidney injury
+  url: https://www.nhs.uk/conditions/acute-kidney-injury/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 March 2026'
+
+- id: nhs_urinary_incontinence_symptoms
+  title: 'Urinary incontinence: symptoms'
+  url: https://www.nhs.uk/conditions/urinary-incontinence/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 15 June 2023'
+
+- id: nhs_penile_cancer
+  title: Penile cancer
+  url: https://www.nhs.uk/conditions/penile-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_male_menopause
+  title: The male menopause
+  url: https://www.nhs.uk/conditions/male-menopause/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 October 2022'
+
+- id: nhs_urethritis
+  title: Non-gonococcal urethritis
+  url: https://www.nhs.uk/conditions/urethritis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 May 2023'
+
+- id: nhs_bladder_cancer_symptoms
+  title: 'Bladder cancer: symptoms'
+  url: https://www.nhs.uk/conditions/bladder-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 15 April 2025'
+
+- id: nhs_kidney_cancer_symptoms
+  title: 'Kidney cancer: symptoms'
+  url: https://www.nhs.uk/conditions/kidney-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 5 October 2026'
+
+- id: nhs_prostate_cancer_symptoms
+  title: 'Prostate cancer: symptoms'
+  url: https://www.nhs.uk/conditions/prostate-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 July 2025'
+
+- id: nhs_testicular_cancer_symptoms
+  title: 'Testicular cancer: symptoms'
+  url: https://www.nhs.uk/conditions/testicular-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 2 April 2024'
+
+- id: nhs_penile_cancer_symptoms
+  title: 'Penile cancer: symptoms'
+  url: https://www.nhs.uk/conditions/penile-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 9 April 2024'

@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: angioedema
+body_system: skin_and_hair
+entry_symptoms: [raised_itchy_rash, swollen_arm_or_hand]
+name: "Angioedema (sudden swelling under the skin)"
+medical_name: "Angioedema"
+snomed: "41291007"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: swelling_under_skin, prevalence: very_common}
+findings:
+  # What tells it apart from hives alone: swelling under the skin of the eyelids, lips, hands, feet or genitals, sometimes from a medicine such as some blood pressure tablets.
+  swelling_under_skin: strongly_supports
+  lips_tongue_throat_swelling: supports
+  after_allergy_trigger: strongly_supports
+  new_medicine_recently: supports
+  # From the general card for this condition (merged):
+  raised_itchy_rash: supports
+  swelling_severe_painful_or_sudden: supports
+  has_allergies: supports
+key_findings: [swelling_under_skin, lips_tongue_throat_swelling, new_medicine_recently, after_allergy_trigger, raised_itchy_rash]
+source: nhs_angioedema
+informed_by: [nhs_angioedema, nhs_hives, nhs_swollen_arms_and_hands_oedema]
+# Merged with the general card for this condition. Its notes:
+# Swelling under the skin from an allergy (angioedema). The page says urgent help for a part of
+# the body that suddenly swells, and 999 for swelling of the lips, tongue or throat
+# (anaphylaxis, its own card).
+# What tells it apart: sudden swelling soon after a food, medicine or sting, often with an
+# itchy rash.

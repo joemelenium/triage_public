@@ -1,0 +1,123 @@
+# Entry symptom: yellow skin or yellow whites of the eyes (jaundice), in adults and babies.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS website has no Symptoms A to Z page for this. Rules come from the
+# Jaundice, Jaundice in babies, Gallstones, Gilbert's syndrome, Hepatitis and
+# Pancreatic cancer pages.
+
+id: yellow_skin_or_eyes
+name: "Yellow skin or eyes (jaundice)"
+presenting_finding: yellow_skin_or_eyes
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: jaundice_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - child_floppy_or_hard_to_wake
+      - feeding_much_less
+      - had_a_fit
+      - baby_high_temperature
+      - cold_or_shivery
+      - not_peed_12_hours
+      - difficulty_breathing
+      - breathing_very_fast
+      - stomach_ache
+      - very_high_temperature
+
+  - id: jaundice_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - poo_pale_pee_dark
+      - itchy_skin
+      - weight_loss
+      - feels_very_unwell
+
+red_flags:
+  # ---- Emergency: babies ---------------------------------------------------
+  - id: rf_ja_newborn_first_day
+    description: "Jaundice in a baby less than 24 hours old"
+    when: baby_under_24_hours_old
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_jaundice_emergency
+    source: nhs_newborn_jaundice
+
+  - id: rf_ja_baby_unwell
+    description: "A baby with jaundice who is sleepier than usual or hard to wake, floppy or stiff, not feeding, or having jerking movements"
+    when: {all: [age_under_1, {any: [child_floppy_or_hard_to_wake, feeding_much_less, had_a_fit]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_jaundice_emergency
+    source: nhs_newborn_jaundice
+    note: "The page says 'not feeding'. The question asks about feeding much less than usual, which is used to be cautious."
+
+  - id: rf_ja_baby_temperature
+    description: "A baby with jaundice who has a high or low temperature, feels hot or cold to the touch, or is shivering"
+    when: {all: [age_under_1, {any: [baby_high_temperature, very_high_temperature, cold_or_shivery]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_jaundice_emergency
+    source: nhs_newborn_jaundice
+
+  - id: rf_ja_baby_no_wet_nappies_or_breathing
+    description: "A baby with jaundice with no wet nappies, or difficulty breathing or breathing very fast"
+    when: {all: [age_under_1, {any: [not_peed_12_hours, difficulty_breathing, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_baby_jaundice_emergency
+    source: nhs_newborn_jaundice
+
+  # ---- Emergency: children and adults --------------------------------------
+  - id: rf_ja_with_tummy_pain
+    description: "Yellow skin or eyes with tummy pain (possible gallstone blocking the bile duct)"
+    when: {all: [{not: age_under_1}, stomach_ache]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_jaundice_emergency
+    source: nhs_gallstones
+    note: "The Gallstones page says call 999 or go to A&E for yellow skin or eyes in someone with gallstone pain. Applying it to any tummy pain with jaundice is AI judgement, to be cautious."
+
+  - id: rf_ja_with_high_temperature
+    description: "Yellow skin or eyes with a very high temperature, or feeling hot, cold or shivery"
+    when: {all: [{not: age_under_1}, very_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_jaundice_emergency
+    source: nhs_gallstones
+    soft: true    # likely conditions may lower this: hepatitis also causes a high temperature
+    note: "The Gallstones page says call 999 or go to A&E for a very high temperature or feeling hot, cold or shivery. With jaundice this can mean an infected bile duct. Soft, because a viral hepatitis can also cause a high temperature and needs urgent, not emergency, care."
+
+  - id: rf_ja_seriously_unwell
+    description: "Yellow skin or eyes and very unwell and getting worse"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_jaundice_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: jaundice with being very unwell can mean liver failure or a severe infection."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ja_baby_over_24_hours
+    description: "A baby over 24 hours old who may have jaundice, or whose jaundice is not getting better, or with dark pee or pale poo"
+    when: {all: [age_under_1, {not: baby_under_24_hours_old}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or midwife appointment, or call NHS 111"}
+    advice: advice_baby_jaundice_urgent
+    source: nhs_newborn_jaundice
+
+  - id: rf_ja_gilberts_worse
+    description: "Gilbert's syndrome with yellowing worse than usual, or not gone within a few days"
+    when: {all: [has_gilberts_syndrome, gilberts_jaundice_worse_than_usual]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_jaundice_urgent
+    source: nhs_gilberts
+
+  - id: rf_ja_new_jaundice
+    description: "New yellow skin or yellow whites of the eyes, not already known to be Gilbert's syndrome"
+    when: {all: [{not: age_under_1}, {not: has_gilberts_syndrome}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_jaundice_urgent
+    source: nhs_jaundice
+    note: "The Jaundice, Hepatitis and Pancreatic cancer pages all say an urgent GP appointment or 111 for yellow skin or eyes."
+
+default:
+  description: "Known Gilbert's syndrome with yellowing that is no worse than usual"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "No treatment needed for Gilbert's syndrome"}
+  advice: advice_gilberts_self_care
+  source: nhs_gilberts
+  note: "Every other case of yellow skin or eyes is caught by the firm urgent rules above, so this default is only reached by someone already diagnosed with Gilbert's syndrome whose yellowing is as usual."

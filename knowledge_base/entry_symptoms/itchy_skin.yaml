@@ -1,0 +1,134 @@
+# Entry symptom: itchy skin.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" may be lowered by likely conditions. The engine takes
+# the most urgent rule that fires. If none fires, it uses the default at the bottom.
+# A "yes" to a rash, a raised itchy rash (hives) or yellow skin brings in those
+# entry symptoms' own red flags.
+
+id: itchy_skin
+name: "Itchy skin"
+presenting_finding: itchy_skin
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: itchy_skin_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - throat_tight
+      - rash_does_not_fade
+      - skin_peeling_or_blistering_widely
+
+  - id: itchy_skin_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - yellow_skin_or_eyes
+      - itchy_palms_and_soles
+      - swollen_area_red_hot
+      - eczema_infected_signs
+      - eczema_painful_blisters_sudden
+      - very_high_temperature
+
+  # Not a red-flag screen: signs that each lead to a GP.
+  - id: itchy_skin_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - affecting_daily_life_or_wellbeing
+      - not_better_with_self_care
+      - itch_all_over_without_rash
+      - itch_severe
+      - pregnant_or_recently_given_birth
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_it_allergic_swelling
+    description: "Itching with sudden swelling of the lips, mouth, tongue or throat, or the throat feeling tight"
+    when: {any: [lips_tongue_throat_swelling, throat_tight]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_it_non_fading_rash
+    description: "Itching with a rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_meningitis
+    soft: true    # likely conditions may lower this: the sources disagree when the person is well
+    note: "Same as the rash rule. The rash entry symptom, brought in by the rash, holds the firm urgent floor."
+
+  - id: rf_it_skin_peeling
+    description: "Itchy or painful skin that is blistering or peeling over a large area"
+    when: skin_peeling_or_blistering_widely
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_reaction_emergency
+    source: nhs_stevens_johnson
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_it_jaundice
+    description: "Itching with yellow skin or yellow whites of the eyes"
+    when: yellow_skin_or_eyes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_jaundice_urgent
+    source: nhs_jaundice
+
+  - id: rf_it_pregnancy_cholestasis
+    description: "Pregnant with itchy palms or soles, very itchy skin, or itching worse at night (possible cholestasis of pregnancy)"
+    when: {all: [pregnant_or_recently_given_birth, {any: [itchy_palms_and_soles, itch_severe, itch_worse_at_night]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit now. If you cannot contact them, call 111."}
+    advice: advice_itch_pregnancy_urgent
+    source: nhs_cholestasis_pregnancy
+
+  - id: rf_it_skin_infection
+    description: "Itchy skin that has become painful, hot and swollen"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: nhs_cellulitis
+
+  - id: rf_it_eczema_infected
+    description: "Eczema that is leaking, crusty, painful or warm, or suddenly worse and painful with clusters of blisters"
+    when: {all: [has_eczema, {any: [eczema_infected_signs, eczema_painful_blisters_sudden]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eczema_infected_urgent
+    source: nhs_atopic_eczema
+
+  - id: rf_it_eczema_high_temperature
+    description: "Eczema with a high temperature or feeling generally unwell"
+    when: {all: [has_eczema, {any: [very_high_temperature, feels_very_unwell]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eczema_infected_urgent
+    source: nhs_atopic_eczema
+
+outcome_rules:
+  - id: or_it_gp
+    description: "Itching that affects daily life, is not better with self-care, is all over the body, or is severe"
+    when: {any: [affecting_daily_life_or_wellbeing, not_better_with_self_care, itch_all_over_without_rash, itch_severe]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_itchy_skin_gp
+    source: nhs_itchy_skin
+
+  - id: or_it_pregnancy
+    description: "Itchy skin during pregnancy"
+    when: pregnant_or_recently_given_birth
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or midwife. The source gives no fixed time."}
+    advice: advice_itchy_skin_gp
+    source: nhs_itchy_skin
+
+  - id: or_it_worried_rash_or_lump
+    description: "Itching caused by a new rash, lump or swelling that you are worried about"
+    when: {all: [worried_about_symptoms, {any: [rash, skin_lump, swelling_under_skin]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_itchy_skin_gp
+    source: nhs_itchy_skin
+
+default:
+  description: "Itchy skin with nothing that needs more help: treat it yourself, and a pharmacist can advise"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "You can often treat itchy skin yourself. It usually goes away after a few weeks."}
+  advice: advice_itchy_skin_self_care
+  source: nhs_itchy_skin

@@ -1,0 +1,138 @@
+# Entry symptom: bleeding from the bottom (rectal bleeding), or blood in poo.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: bleeding_from_bottom
+name: "Bleeding from the bottom (rectal bleeding)"
+presenting_finding: bleeding_from_bottom
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: rectal_bleeding_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - heavy_bleeding_from_bottom
+      - light_headed
+      - fainted
+      - cold_clammy_skin
+      - vomiting_blood
+      - screaming_bouts_pale_between
+
+  - id: rectal_bleeding_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - black_or_dark_red_poo
+      - diarrhoea
+      - stomach_ache
+      - takes_blood_thinners
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_rb_heavy
+    description: "Bleeding non-stop, or a lot of blood: the toilet water turns red or there are large clots"
+    when: heavy_bleeding_from_bottom
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_rectal_bleeding_ae
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+  - id: rf_rb_faint
+    description: "Bleeding from the bottom with passing out, or cold, clammy skin"
+    when: {any: [fainted, cold_clammy_skin]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_rectal_bleeding_ae
+    source: ai_judgement
+    note: "Clinical knowledge: these can be signs of losing a lot of blood. The Vomiting blood page gives the same signs as reasons for 999 or A&E. Firm: a likely small tear or piles does not explain passing out or cold, clammy skin. Feeling light-headed, the weak part, is a separate soft rule below."
+
+  - id: rf_rb_light_headed
+    description: "Bleeding from the bottom with feeling light-headed"
+    when: light_headed
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_rectal_bleeding_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: feeling light-headed has many harmless causes
+    note: "Clinical knowledge: feeling light-headed can be a sign of losing a lot of blood, but often has another cause."
+
+  - id: rf_rb_vomiting_blood
+    description: "Bleeding from the bottom and vomiting blood"
+    when: vomiting_blood
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_stomach_ulcer
+    note: "The Stomach ulcer page says 999 or A&E for vomiting blood or black, sticky poo."
+
+  - id: rf_rb_child_screaming_bouts
+    description: "A young child with blood in their poo and bouts of screaming with knees pulled up, pale or floppy in between: possible intussusception"
+    when: {all: [age_under_5, screaming_bouts_pale_between]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_child_tummy_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: blood and slime in the poo (like redcurrant jelly) with bouts of screaming is a sign of part of the bowel sliding into itself."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_rb_black_poo
+    description: "Black or dark red poo"
+    when: black_or_dark_red_poo
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+    note: "With a stomach ache, the Stomach ache page says 999 or A&E for black and sticky poo, which the stomach ache rules apply."
+
+  - id: rf_rb_bloody_diarrhoea
+    description: "Bloody diarrhoea"
+    when: diarrhoea
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+  - id: rf_rb_baby
+    description: "A baby under 1 with blood in their poo"
+    when: age_under_1
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_reflux_in_babies
+    note: "The Reflux in babies page says an urgent GP appointment or 111 for a baby with blood in their poo."
+
+  - id: rf_rb_stomach_ache
+    description: "Blood in poo with a stomach ache"
+    when: stomach_ache
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_stomach_ache
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Stomach ache page says an urgent GP appointment or 111 for a stomach ache with blood in the poo. The Bleeding from the bottom page says see a GP (non-urgent) for pain or a lump in the tummy. The more urgent is used, marked soft: pain when pooing from a small tear can be explained."
+
+outcome_rules:
+  - id: or_rb_child
+    description: "A child with blood in their poo"
+    when: age_under_16
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_rectal_bleeding_gp
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+  - id: or_rb_3_weeks
+    description: "Blood in poo for 3 weeks, or poo softer, thinner or longer than usual for 3 weeks"
+    when: {any: [blood_in_poo_3_weeks, bowel_habit_change_3_weeks]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_rectal_bleeding_gp
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+  - id: or_rb_other_signs
+    description: "Bleeding from the bottom with a lot of pain around the bottom, a lump in the tummy, being more tired than usual, or losing weight"
+    when: {any: [anal_pain_severe, lump_in_tummy_or_groin, very_tired, weight_loss]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_rectal_bleeding_gp
+    source: nhs_bleeding_from_the_bottom_rectal_bleeding
+
+default:
+  description: "A small amount of bleeding from the bottom with nothing that needs more urgent help: a GP can check it"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_rectal_bleeding_gp
+  source: nhs_bleeding_from_the_bottom_rectal_bleeding
+  note: "The page says a small amount of one-off bleeding is not usually serious, but a GP can check, because bleeding can sometimes be a sign of bowel cancer. Not a floor: likely piles can lower it to a pharmacist."

@@ -1,0 +1,570 @@
+# Advice for the urinary and male genital body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml.
+
+# ---------------------------------------------------------------------------
+# Emergencies
+# ---------------------------------------------------------------------------
+- id: advice_blood_in_urine_ae
+  what_to_do: "Go to A&E now, or call 999. Blood in your pee after an injury, or a lot of blood while you take blood thinners, needs checking in hospital."
+  look_out_for:
+    - "Feeling faint, dizzy or very pale"
+    - "Not being able to pee"
+    - "Pain in your back, side or tummy getting worse"
+  get_more_help_when:
+    - "Call 999 if you faint, feel very unwell, or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_blood_in_urine, nhs_when_to_go_to_ae]
+
+- id: advice_cannot_pee_ae
+  what_to_do: "Go to A&E now. A full bladder that you cannot empty is very painful and needs a thin tube (catheter) put in to drain it."
+  look_out_for:
+    - "Pain or swelling in your lower tummy getting worse"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Feeling confused or very drowsy"
+  get_more_help_when:
+    - "Call 999 if you feel very unwell, confused or drowsy, or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_prostate_enlargement, nhs_prostatitis]
+
+- id: advice_kidney_pain_ae
+  what_to_do: "Go to A&E now, or call 999. Severe pain in your side with a high temperature can mean a kidney stone is blocking an infected kidney. This needs treatment in hospital today."
+  look_out_for:
+    - "Feeling confused or very drowsy"
+    - "Shivering, or feeling very cold"
+    - "Being sick and not able to keep fluids down"
+  get_more_help_when:
+    - "Call 999 if you feel very unwell, confused or drowsy, or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_kidney_stones, nhs_kidney_infection]
+
+- id: advice_diabetes_emergency
+  what_to_do: "Call 999 or go to A&E now. Being very thirsty with being sick, deep fast breathing or fruity-smelling breath can be signs of diabetic ketoacidosis. This is when a lack of insulin makes the blood harmful, and it can be life-threatening."
+  look_out_for:
+    - "Feeling very sleepy or confused"
+    - "Tummy pain"
+    - "Breathing that is faster and deeper than usual"
+  get_more_help_when:
+    - "Call 999 if the person becomes very sleepy, confused or hard to wake"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_type_1_diabetes_symptoms
+
+- id: advice_back_nerves_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs that the nerves at the bottom of the spine are being squashed (cauda equina syndrome). This needs treatment in hospital straight away to prevent lasting damage."
+  look_out_for:
+    - "Numbness around your genitals or bottom getting worse"
+    - "Not being able to pee, or leaking pee or poo"
+    - "Weakness in your legs getting worse"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_back_pain
+
+- id: advice_testicle_ae
+  what_to_do: "Go to A&E immediately or call 999. This could be a twisted testicle (testicular torsion). It needs an operation within hours to save the testicle."
+  look_out_for:
+    - "The pain getting worse"
+    - "Being sick"
+    - "The testicle becoming more swollen, or higher than the other one"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E quickly. Do not wait to see if the pain goes away."
+  where_to_go: "Go to A&E now. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Do not eat or drink in case you need an operation. Bring any medicines you take."
+  source: nhs_testicle_pain
+  also_informed_by: [nhs_testicle_lumps_and_swellings, nhs_epididymitis]
+
+- id: advice_hernia_ae
+  what_to_do: "Go to A&E now. A hernia (a lump where part of the gut pushes through a weak spot in the tummy wall) that is painful and cannot be pushed back in may be trapped and losing its blood supply. It may need an operation today."
+  look_out_for:
+    - "Being sick, or a swollen tummy"
+    - "Not being able to poo or fart"
+    - "The bulge turning red or dark"
+  get_more_help_when:
+    - "Call 999 if you feel very unwell or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Do not eat or drink in case you need an operation."
+  source: ai_judgement
+  also_informed_by: [nhs_hernia]
+
+- id: advice_genital_infection_ae
+  what_to_do: "Call 999 or go to A&E now. Skin around the genitals turning dark, or pain and swelling that spread fast, can be a rare but very serious infection that needs treatment in hospital straight away."
+  look_out_for:
+    - "Feeling very unwell, confused or drowsy"
+    - "A high temperature, or feeling cold and shivery"
+    - "Blotchy or mottled skin"
+  get_more_help_when:
+    - "Call 999 if you feel very unwell or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_sepsis]
+
+- id: advice_penis_ae
+  what_to_do: "Go to A&E now, or call 999. A foreskin stuck behind the head of the penis, or a penis injury with swelling or bruising, needs treatment in hospital quickly."
+  look_out_for:
+    - "Swelling or pain getting worse"
+    - "The head of the penis changing colour"
+    - "Not being able to pee"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance."
+  self_care:
+    - "Do not try to force the foreskin back over the head of the penis"
+    - "Hold a cold pack wrapped in a towel on the area on the way, to help with swelling"
+  source: nhs_phimosis
+
+- id: advice_priapism_999
+  what_to_do: "Call 999 now. With sickle cell, an erection that is painful or will not go away needs treatment in hospital straight away."
+  look_out_for:
+    - "Severe pain anywhere, or a sickle cell crisis"
+    - "A high temperature"
+    - "Difficulty breathing"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. The person you speak to will tell you what to do."
+  self_care:
+    - "Do not put ice or cold water on your penis. It can make things worse with sickle cell."
+    - "Drink lots of water and try to pee"
+  source: nhs_sickle_cell_disease
+  also_informed_by: [nhs_priapism_painful_erections]
+
+- id: advice_priapism_ae
+  what_to_do: "Call 999 or go to A&E now. An erection that lasts this long needs treatment in hospital as soon as possible to stop permanent damage to your penis."
+  look_out_for:
+    - "Pain getting worse"
+    - "The penis changing colour"
+  get_more_help_when:
+    - "Call 999 if you cannot get to A&E quickly"
+  where_to_go: "Go to A&E. Do not drive yourself. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Do not put ice packs or cold water on your penis"
+    - "Do not have sex or masturbate. It will not make the erection go away."
+  source: nhs_priapism_painful_erections
+
+# ---------------------------------------------------------------------------
+# Urgent
+# ---------------------------------------------------------------------------
+- id: advice_blood_in_urine_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Blood in your pee is not usually serious, but it must be checked, even if there is only a little or you are not sure it is blood."
+  look_out_for:
+    - "Not being able to pee"
+    - "Severe pain in your side, back or tummy"
+    - "A high temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Go to A&E if you cannot pee and your tummy is painful or swollen"
+    - "Call 999 or go to A&E if you feel confused, very drowsy or find it hard to speak"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Take a sample of your pee if you can."
+  self_care:
+    - "Drink plenty of water"
+    - "Beetroot or some medicines can turn pee pink or red. Still get it checked if you are not sure."
+  source: nhs_blood_in_urine
+  also_informed_by: [nhs_bladder_cancer_symptoms]
+
+- id: advice_uti_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You may have a urine infection that needs checking today, or an infection that could spread to the kidneys."
+  look_out_for:
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Pain in your back or side, just under the ribs"
+    - "Feeling or being sick"
+    - "Not having a pee all day"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel confused, very drowsy or find it hard to speak"
+    - "Call 999 or go to A&E if your skin becomes blotchy or very pale. These can be signs of sepsis, a life-threatening reaction to an infection."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Take paracetamol for pain or a high temperature"
+    - "Rest and drink enough fluids so that your pee is pale"
+    - "Avoid fruit juice, coffee and alcohol, which can irritate the bladder"
+  source: nhs_urinary_tract_infections
+  also_informed_by: [nhs_kidney_infection, nhs_smelly_urine]
+
+- id: advice_kidney_pain_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Severe pain in your side that comes in waves can be a kidney stone."
+  look_out_for:
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Being sick and not able to keep fluids down"
+    - "Not being able to pee"
+  get_more_help_when:
+    - "Go to A&E if you get a high temperature or shivering with the pain"
+    - "Call 999 if the pain is unbearable or you feel very unwell"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Drink plenty of water"
+    - "Take paracetamol for the pain"
+  source: nhs_kidney_stones
+
+- id: advice_diabetes_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Peeing more, being very thirsty, tired or losing weight can be signs of diabetes. A quick finger-prick test can check this."
+  look_out_for:
+    - "Being sick, or tummy pain"
+    - "Breathing faster and more deeply than usual"
+    - "Breath that smells fruity, like pear drops"
+    - "Feeling very sleepy or confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E if any of these happen, or if symptoms get worse quickly"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Bring a sample of pee if you can."
+  source: nhs_type_1_diabetes_symptoms
+
+- id: advice_cannot_pee_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 now. Not being able to pee needs checking today."
+  look_out_for:
+    - "Pain or swelling in your lower tummy"
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Numbness around your genitals or bottom, or weakness in your legs"
+  get_more_help_when:
+    - "Go to A&E if your lower tummy becomes painful or swollen and you still cannot pee"
+    - "Call 999 or go to A&E if you get numbness around your genitals or bottom, or weakness in both legs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Try sitting in a warm bath and relaxing to see if you can pee"
+  source: nhs_prostate_enlargement
+  also_informed_by: [nhs_prostatitis]
+
+- id: advice_incontinence_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Leaking that starts suddenly, or constant dribbling, should be checked today."
+  look_out_for:
+    - "Pain or burning when you pee, or a high temperature"
+    - "A painful or swollen lower tummy"
+    - "Numbness around your genitals or bottom, or weakness in your legs"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get numbness around your genitals or bottom, or weakness in both legs"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+  also_informed_by: [nhs_urinary_incontinence, nhs_urinary_tract_infections]
+
+- id: advice_testicle_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Testicle pain or swelling should be checked today."
+  look_out_for:
+    - "Sudden, severe pain"
+    - "Feeling sick, being sick, or tummy pain"
+    - "Pain that lasts more than an hour or carries on when you rest"
+  get_more_help_when:
+    - "Go to A&E immediately or call 999 if you get any of the signs above. This could be a twisted testicle."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. A sexual health clinic can also treat infections."
+  self_care:
+    - "Take paracetamol for the pain"
+    - "Wear supportive underwear"
+    - "Hold a cold pack wrapped in a towel on the area"
+  source: nhs_testicle_pain
+  also_informed_by: [nhs_epididymitis]
+
+- id: advice_penis_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A high temperature with a problem on your penis can mean an infection that needs treatment soon."
+  look_out_for:
+    - "Redness or swelling spreading"
+    - "Skin turning dark"
+    - "Not being able to pee"
+  get_more_help_when:
+    - "Call 999 or go to A&E if the skin turns dark or the swelling spreads fast"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. A sexual health clinic may be able to see you today."
+  source: nhs_gonorrhoea
+  also_informed_by: [nhs_penis_lumps_and_spots]
+
+- id: advice_priapism_urgent
+  what_to_do: "Get help from NHS 111 now. Try the things below to make the erection go down. If it lasts 3 hours, go to A&E."
+  look_out_for:
+    - "The erection lasting 3 hours or more"
+    - "The erection becoming very painful"
+  get_more_help_when:
+    - "Call 999 or go to A&E if it lasts more than 3 hours"
+    - "If you have sickle cell, call 999 now"
+  where_to_go: "Call 111 or use 111 online now. Go to A&E if it lasts 3 hours."
+  self_care:
+    - "Try to go for a pee"
+    - "Have a warm bath or shower, and drink lots of water"
+    - "Go for a gentle walk, or try squats or running on the spot"
+    - "Take paracetamol if you need to"
+    - "Do not put ice or cold water on your penis, and do not drink alcohol or smoke"
+  source: nhs_priapism_painful_erections
+
+- id: advice_prostatitis_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You may have prostatitis, an infection of the prostate gland below the bladder. It can be serious and needs treatment soon."
+  look_out_for:
+    - "Not being able to pee"
+    - "Feeling very unwell, confused or drowsy"
+    - "Blotchy, blue or grey skin"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you feel confused, your skin turns blotchy or grey, or you find it very hard to breathe. These can be signs of sepsis, a life-threatening reaction to an infection."
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink plenty of fluids"
+    - "Take paracetamol or ibuprofen for pain"
+  source: nhs_prostatitis
+
+# ---------------------------------------------------------------------------
+# See a GP, pharmacist or sexual health clinic
+# ---------------------------------------------------------------------------
+- id: advice_uti_pharmacy
+  what_to_do: "See a pharmacist. They can check your symptoms and give the same medicines as a GP for a urine infection (UTI)."
+  look_out_for:
+    - "A high temperature, or feeling hot, cold or shivery"
+    - "Pain in your back or side, just under the ribs"
+    - "Blood in your pee"
+    - "Symptoms getting worse, or not better within 2 days of starting treatment"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 or go to A&E if you feel confused, very drowsy or find it hard to speak"
+  where_to_go: "Go to a pharmacy. You do not need an appointment. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Take paracetamol for pain"
+    - "Rest and drink enough fluids so that your pee is pale"
+    - "Avoid fruit juice, coffee and alcohol, which can irritate the bladder"
+  source: nhs_urinary_tract_infections
+
+- id: advice_peeing_gp
+  what_to_do: "See a GP. Problems such as a weak flow, needing to pee often or getting up at night should be checked, but it is not urgent. Try not to be embarrassed."
+  look_out_for:
+    - "Not being able to pee at all"
+    - "Blood in your pee"
+    - "Pain when peeing"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Go to A&E if you cannot pee and your lower tummy is painful or swollen"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Cut down on alcohol and caffeine"
+    - "Drink less before bed, but enough during the day"
+    - "Eat enough fibre to avoid constipation"
+  source: nhs_prostate_enlargement
+
+- id: advice_sexual_health_clinic
+  what_to_do: "Go to a sexual health clinic or see a GP. You may have a sexually transmitted infection (STI). Tests are free and treatment is quick."
+  look_out_for:
+    - "Pain or swelling in your testicles"
+    - "A high temperature, or pain in your joints"
+    - "A rash, or sore, red eyes"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Go to A&E straight away if you get sudden, severe pain in a testicle"
+  where_to_go: "Go to a sexual health clinic. Many offer walk-in sessions. Or make an appointment with a GP."
+  self_care:
+    - "Do not have sex until you have been tested and treated"
+    - "Tell recent sexual partners so they can be tested. The clinic can help with this."
+  source: nhs_urethritis
+  also_informed_by: [nhs_chlamydia, nhs_gonorrhoea]
+
+- id: advice_sexual_health_clinic_soon
+  what_to_do: "Go to a sexual health clinic as soon as possible, within the next few days. Small painful blisters or sores may be genital herpes. Treatment works best if it starts early."
+  look_out_for:
+    - "Not being able to pee because of the pain"
+    - "A high temperature or feeling very unwell"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you cannot pee or you feel very unwell"
+  where_to_go: "Go to a sexual health clinic. Many offer walk-in sessions. Or make an appointment with a GP."
+  self_care:
+    - "Take paracetamol for the pain"
+    - "Keep the area clean and dry, and wash your hands after touching it"
+    - "Do not have sex until the sores have healed"
+    - "It may help to pee in a warm bath"
+  source: nhs_genital_herpes
+
+- id: advice_smelly_urine_gp
+  what_to_do: "See a GP. Smelly pee with needing to pee often, pain or cloudy pee can be a urine infection. If you are a woman aged 16 to 64 and not pregnant, a pharmacist can also help."
+  look_out_for:
+    - "Blood in your pee"
+    - "Pain in your lower tummy, or in your back under the ribs"
+    - "A high or very low temperature, or feeling hot, cold or shivery"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+    - "Call 999 or go to A&E if you feel confused, very drowsy or find it hard to speak"
+  where_to_go: "Make an appointment with a GP, or see a pharmacist. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Drink plenty of fluids, especially water"
+  source: nhs_smelly_urine
+
+- id: advice_diabetes_gp
+  what_to_do: "See a GP. Being very thirsty and peeing more can be signs of diabetes. A blood test can check this."
+  look_out_for:
+    - "Losing weight without trying"
+    - "Feeling very tired"
+    - "Being sick, or breathing faster and more deeply than usual"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you lose weight or feel very tired"
+    - "Call 999 or go to A&E if you are being sick, breathing fast and deeply, or feel very sleepy"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  source: nhs_type_2_diabetes_symptoms
+
+- id: advice_incontinence_gp
+  what_to_do: "See a GP. Leaking pee is common and can usually be helped. Try not to be embarrassed: they will be used to talking about it."
+  look_out_for:
+    - "Leaking that starts suddenly or gets much worse"
+    - "Pain when peeing, or a high temperature"
+    - "Numbness around your genitals or bottom, or weakness in your legs"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if leaking starts suddenly or you have pain when peeing"
+    - "Call 999 or go to A&E if you get numbness around your genitals or bottom, or weakness in both legs"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Do pelvic floor exercises, squeezing the muscles you use to stop peeing"
+    - "Cut down on caffeine and alcohol"
+    - "Keep to a healthy weight"
+  source: nhs_urinary_incontinence
+
+- id: advice_bedwetting_gp
+  what_to_do: "See a GP or school nurse. They can check for a cause and suggest treatments such as a bedwetting alarm or medicine."
+  look_out_for:
+    - "Being very thirsty, losing weight or feeling very tired"
+    - "Pain when peeing, or a high temperature"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your child is very thirsty, losing weight or has pain when peeing"
+    - "Call 999 or go to A&E if your child is being sick, breathing fast and deeply, or very drowsy"
+  where_to_go: "Make an appointment with a GP, or speak to the school nurse. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Give your child enough water during the day, and no drinks with caffeine"
+    - "Make sure they use the toilet regularly, including just before bed"
+    - "Do not punish your child. It is not their fault."
+  source: nhs_bedwetting
+
+- id: advice_testicle_lump_gp
+  what_to_do: "See a GP. Most lumps and swellings in the testicles are not serious, but always get them checked. Testicular cancer is easier to treat if it is found early."
+  look_out_for:
+    - "Sudden, severe pain in a testicle"
+    - "Pain with feeling or being sick, or tummy pain"
+    - "The lump getting bigger"
+  get_more_help_when:
+    - "Go to A&E immediately or call 999 if you get sudden, severe pain, or pain with being sick"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  source: nhs_testicle_lumps_and_swellings
+  also_informed_by: [nhs_testicular_cancer_symptoms]
+
+- id: advice_penis_gp
+  what_to_do: "See a GP or go to a sexual health clinic. Lumps or spots on the penis are not usually serious, but always get them checked. Try not to be embarrassed."
+  look_out_for:
+    - "A sore or lump that has not healed in 4 weeks, or is getting bigger"
+    - "Discharge or bleeding from your penis"
+    - "Foreskin stuck behind the head of the penis"
+  get_more_help_when:
+    - "Call 999 or go to A&E if your foreskin is pulled back and will not go back over the head of the penis"
+  where_to_go: "Make an appointment with a GP, or go to a sexual health clinic. Many offer walk-in sessions."
+  self_care:
+    - "Do not have sex until it has been checked, in case it is an infection"
+    - "Wash your penis every day with water, and dry it gently"
+  source: nhs_penis_lumps_and_spots
+  also_informed_by: [nhs_balanitis, nhs_genital_warts]
+
+- id: advice_blood_in_semen_gp
+  what_to_do: "See a GP. Blood in semen is not usually serious and often goes away by itself, but get it checked just in case."
+  look_out_for:
+    - "Blood in your pee"
+    - "Pain when peeing, or a high temperature"
+    - "Not being able to pee"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you get any of the signs above"
+  where_to_go: "Make an appointment with a GP. A sexual health clinic can test for infections."
+  source: nhs_blood_in_semen
+
+- id: advice_erection_gp
+  what_to_do: "See a GP or go to a sexual health clinic. Erection problems that keep happening can be a sign of a health condition that can be treated, such as high blood pressure or diabetes."
+  look_out_for:
+    - "Chest pain when you are active"
+    - "Numbness around your genitals or bottom"
+  get_more_help_when:
+    - "Call 999 if you get chest pain that does not go away"
+    - "Call 999 or go to A&E if you get numbness around your genitals or bottom, or weakness in both legs"
+  where_to_go: "Make an appointment with a GP, or go to a sexual health clinic."
+  self_care:
+    - "Do not stop a prescribed medicine without talking to a doctor"
+    - "Stop smoking, and do not drink more than 14 units of alcohol a week"
+    - "Exercise and eat a healthy diet"
+  source: nhs_erection_problems_erectile_dysfunction
+
+- id: advice_erection_self_care
+  what_to_do: "You can look after this yourself. Most men sometimes fail to get or keep an erection. It is usually from stress, tiredness or too much alcohol."
+  look_out_for:
+    - "Erection problems that keep happening"
+  get_more_help_when:
+    - "See a GP or go to a sexual health clinic if it keeps happening"
+  where_to_go: "You do not need an appointment now. See a GP or sexual health clinic if it keeps happening."
+  self_care:
+    - "Try to reduce stress"
+    - "Stop smoking, and do not drink more than 14 units of alcohol a week"
+    - "Lose weight if you need to, and exercise every day"
+  source: nhs_erection_problems_erectile_dysfunction
+
+- id: advice_ejaculation_gp
+  what_to_do: "See a GP. Problems with coming that keep happening can usually be helped."
+  look_out_for:
+    - "Pain when coming with a high temperature"
+    - "Blood in your semen or pee"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you have pain with a high temperature"
+  where_to_go: "Make an appointment with a GP."
+  self_care:
+    - "Do not stop a prescribed medicine without talking to a doctor"
+    - "Talk to your partner about it, if you have one"
+  source: nhs_ejaculation_problems
+
+- id: advice_ejaculation_self_care
+  what_to_do: "You can look after this yourself. Problems with coming now and then are common and are not a cause for concern."
+  look_out_for:
+    - "The problem keeps happening and bothers you"
+    - "Pain when coming"
+  get_more_help_when:
+    - "See a GP if it keeps happening or there is pain"
+  where_to_go: "You do not need an appointment now. See a GP if it keeps happening."
+  self_care:
+    - "Talk to your partner about it, if you have one"
+    - "Try to reduce stress, and cut down on alcohol"
+  source: nhs_ejaculation_problems
+
+- id: advice_low_sex_drive_gp
+  what_to_do: "See a GP. Treating the cause should help your sex drive. A GP can check your medicines, hormones and mood."
+  look_out_for:
+    - "Feeling low or hopeless most of the time"
+    - "Thoughts of harming yourself"
+  get_more_help_when:
+    - "If you are struggling with how you feel, call Samaritans on 116 123 at any time, or call 111 and choose the mental health option"
+    - "Call 999 or go to A&E if you feel you may harm yourself"
+  where_to_go: "Make an appointment with a GP."
+  self_care:
+    - "Do not stop a medicine or your contraception without talking to a doctor first"
+    - "Cut down on alcohol"
+  source: nhs_loss_of_libido
+  also_informed_by: [nhs_suicidal_thoughts]
+
+- id: advice_low_sex_drive_self_care
+  what_to_do: "You can look after this yourself for now. Sex drive often goes up and down with stress, tiredness and relationships."
+  look_out_for:
+    - "Feeling low or hopeless"
+    - "Being worried about it, or it affecting your relationship"
+  get_more_help_when:
+    - "See a GP if you are worried, or think a medicine may be the cause"
+    - "If you are struggling with how you feel, call Samaritans on 116 123 at any time"
+  where_to_go: "You do not need an appointment now. See a GP if you are worried."
+  self_care:
+    - "Talk to your partner about it, if you have one"
+    - "Cut down on alcohol, and try to reduce stress"
+  source: nhs_loss_of_libido
+
+- id: advice_smelly_urine_self_care
+  what_to_do: "You can look after this yourself. Smelly pee on its own is not usually a cause for concern. It is often from not drinking enough, or from food, coffee or vitamins."
+  look_out_for:
+    - "Pain or burning when you pee, or needing to pee more often"
+    - "Cloudy pee or blood in your pee"
+    - "A high temperature, or pain in your back or side"
+  get_more_help_when:
+    - "See a GP or pharmacist if you get pain when peeing, need to pee more often, or have cloudy pee"
+    - "Ask for an urgent GP appointment or call 111 if you have blood in your pee, a high temperature or back pain"
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Drink plenty of water, so you pee often and do not feel thirsty"
+    - "Drink more in hot weather and when exercising"
+    - "Do not eat a lot of garlic or asparagus, or take more than 10mg of vitamin B6 a day"
+  source: nhs_smelly_urine
+
+- id: advice_bedwetting_self_care
+  what_to_do: "Bedwetting is common and most children grow out of it. There are things you can try at home. A GP or school nurse can also give advice."
+  look_out_for:
+    - "Your child starting to wet the bed again after being dry for 6 months"
+    - "Being very thirsty, losing weight or feeling very tired"
+    - "Pain when peeing, or a high temperature"
+  get_more_help_when:
+    - "See a GP if things you try at home do not help, or bedwetting starts again"
+    - "Ask for an urgent GP appointment or call 111 if your child is very thirsty, losing weight or has pain when peeing"
+  where_to_go: "You do not need an appointment now. Speak to a GP or school nurse for advice."
+  self_care:
+    - "Give your child enough water during the day, and no drinks with caffeine"
+    - "Make sure they use the toilet 4 to 7 times a day, including just before bed"
+    - "Use waterproof covers and a night light"
+    - "Do not punish your child. It is not their fault."
+  source: nhs_bedwetting

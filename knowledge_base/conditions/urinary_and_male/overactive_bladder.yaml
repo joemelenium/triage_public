@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: overactive_bladder
+body_system: urinary_and_male
+entry_symptoms: [urinary_incontinence, painful_or_frequent_peeing]
+name: "Overactive bladder (urge incontinence)"
+medical_name: "Overactive urinary bladder"
+snomed: "786457000"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from an infection: it has gone on for months, with no pain.
+  leaks_with_sudden_urge: strongly_supports
+  peeing_more_often: strongly_supports
+  peeing_problem_for_months: strongly_supports
+  peeing_at_night_more: supports
+key_findings: [leaks_with_sudden_urge, peeing_problem_for_months, peeing_at_night_more]
+source: nhs_urinary_incontinence_symptoms
+informed_by: [nhs_urinary_incontinence_symptoms, nhs_urinary_incontinence]

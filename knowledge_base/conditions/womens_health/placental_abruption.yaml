@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: placental_abruption
+body_system: womens_health
+entry_symptoms: [bleeding_in_pregnancy, stomach_pain_in_pregnancy]
+name: "Placental abruption (the placenta starts to come away from the wall of the womb)"
+medical_name: "Placental abruption"
+snomed: "415105001"
+# Life-threatening for the person and the baby. Usually after 20 weeks, with
+# pain that may come and go or be constant, and bleeding. The NHS page on it was
+# not found (404), so the card rests on the Stomach pain in pregnancy page and
+# clinical knowledge.
+acuity_needed: emergency
+danger: critical
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnancy_20_weeks_or_more, prevalence: rare}
+findings:
+  sa_severe: strongly_supports
+  tummy_painful_to_touch: strongly_supports
+  stomach_pain_in_pregnancy: strongly_supports
+  bleeding_in_pregnancy: supports
+  lower_back_pain: supports
+  baby_moving_less: supports
+key_findings: [pregnancy_20_weeks_or_more, tummy_painful_to_touch, baby_moving_less]
+source: nhs_stomach_pain_pregnancy
+informed_by: [nhs_stomach_pain_pregnancy, nhs_vaginal_bleeding_pregnancy]

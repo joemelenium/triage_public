@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: heatstroke
+body_system: general
+# Life-threatening. The page says call 999.
+entry_symptoms: [very_high_temperature, generally_unwell, dehydration_signs]
+name: "Heatstroke (the body overheating dangerously)"
+medical_name: "Heat stroke"
+snomed: "52072009"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart from heat exhaustion: still unwell after 30 minutes of cooling, hot
+  # skin that has stopped sweating, confusion or a fit.
+  in_heat_or_exercise: strongly_supports
+  hot_skin_not_sweating: strongly_supports
+  still_unwell_after_cooling: strongly_supports
+  sudden_confusion: supports
+  had_a_fit: supports
+  breathing_very_fast: supports
+  heart_beating_very_fast: supports
+key_findings: [in_heat_or_exercise, hot_skin_not_sweating, still_unwell_after_cooling]
+source: nhs_heat_exhaustion
+informed_by: [nhs_heat_exhaustion]

@@ -1,0 +1,394 @@
+# Entry symptom: rash (adults, babies and children).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# One entry symptom covers rashes at every age. The build plan listed "rash in
+# an adult" and "rashes in babies and children" separately, but a main symptom
+# can only belong to one file (two files with the same main symptom would both
+# run). Age-specific rules use the age bands, and condition cards use age to set
+# their starting chances (for example chickenpox is common in children).
+# The NHS website has a symptom page for rashes in babies and children only.
+# Adult rules come from the condition pages and clinical knowledge.
+
+id: rash
+name: "Rash"
+presenting_finding: rash
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: rash_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - rash_does_not_fade
+      - lips_tongue_throat_swelling
+      - throat_tight
+      - stiff_neck
+      - bothered_by_light
+      - child_floppy_or_hard_to_wake
+      - breathing_very_fast
+      - skin_blotchy
+      - skin_peeling_or_blistering_widely
+      - pain_much_worse_than_expected
+
+  - id: rash_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - feels_very_unwell
+      - swollen_area_red_hot
+      - sores_mouth_eyes_or_genitals
+      - new_medicine_recently
+      - pregnant_or_recently_given_birth
+      - weakened_immune_system
+      - dehydration_signs
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: rash_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - not_better_with_self_care
+      - affecting_daily_life_or_wellbeing
+      - rash_sandpaper
+      - rash_comes_and_goes
+
+red_flags:
+  # ---- Emergency: a severe allergic reaction --------------------------------
+  - id: rf_ra_allergic_swelling
+    description: "Rash with sudden swelling of the lips, mouth, tongue or throat, or the throat feeling tight"
+    when: {any: [lips_tongue_throat_swelling, throat_tight]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_rashes_babies_and_children
+    note: "The Rashes in babies and children page says call 999 or go to A&E. The Hives and Anaphylaxis pages say call 999. The more urgent is used."
+
+  - id: rf_ra_allergic_breathing
+    description: "Rash that started soon after a food, medicine or sting, with difficulty breathing or breathing very fast"
+    when: {all: [after_allergy_trigger, {any: [difficulty_breathing, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  # ---- Emergency: possible meningitis or sepsis ----------------------------
+  - id: rf_ra_non_fading_and_unwell
+    description: "Rash that does not fade when a glass is pressed on it, in someone who is unwell or has a high temperature"
+    when: {all: [rash_does_not_fade, {any: [feels_very_unwell, very_high_temperature, seriously_unwell_getting_worse, stiff_neck, bothered_by_light, cold_hands_and_feet]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_meningitis
+    note: "The Meningitis and Rashes in babies and children pages say call 999 or go to A&E. The Henoch-Schonlein purpura page agrees when the person feels very unwell."
+
+  - id: rf_ra_non_fading
+    description: "Rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_meningitis
+    soft: true    # likely conditions may lower this: the sources disagree when the person is well
+    note: "Source difference: the Meningitis and Rashes in babies and children pages say call 999 or go to A&E. The Henoch-Schonlein purpura page says an urgent GP appointment or 111 if the person does not feel unwell. The more urgent is used, marked soft, with the firm urgent rule below as its floor. Meningococcal infection is critical, so the outcome is only lowered when it is very unlikely."
+
+  - id: rf_ra_meningitis_signs
+    description: "Rash with a stiff neck, or bright light hurting the eyes"
+    when: {any: [stiff_neck, bothered_by_light]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_rashes_babies_and_children
+    note: "The source lists these for a child who is unwell with a rash. Applying them to adults is AI judgement, following the Meningitis page."
+
+  - id: rf_ra_child_floppy_or_confused
+    description: "A child with a rash who is limp, floppy, hard to wake, confused or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_rashes_babies_and_children
+
+  - id: rf_ra_breathing
+    description: "Rash with difficulty breathing (grunting, or the tummy sucking in under the ribs) or breathing very fast"
+    when: {any: [child_struggling_to_breathe, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_rashes_babies_and_children
+
+  - id: rf_ra_child_difficulty_breathing
+    description: "A child with a rash who is finding it hard to breathe, or a child who is unable to swallow"
+    when: {all: [age_under_16, {any: [difficulty_breathing, unable_to_swallow]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_rashes_babies_and_children
+
+  - id: rf_ra_blotchy_skin
+    description: "Rash with skin, lips or tongue that look pale, blue, grey or blotchy"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_rashes_babies_and_children
+
+  - id: rf_ra_seriously_unwell
+    description: "Rash and very unwell and getting worse, or a feeling that something is seriously wrong"
+    when: seriously_unwell_getting_worse
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_meningitis
+    note: "The Meningitis page says to get help straight away if you think something is seriously wrong."
+
+  - id: rf_ra_fit
+    description: "Rash with a seizure (fit)"
+    when: had_a_fit
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_measles
+
+  - id: rf_ra_baby_high_temperature
+    description: "A baby under 3 months with 38C or more, or 3 to 6 months with 39C or more, and a rash"
+    when: {all: [age_under_1, baby_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_rash_non_fading_emergency
+    source: nhs_meningitis
+    note: "Source difference: the Rashes in babies and children page says an urgent GP appointment or 111. The Meningitis page says call 999 or go to A&E. The more urgent is used."
+
+  # ---- Emergency: a severe skin reaction or deep infection ---------------
+  - id: rf_ra_skin_peeling
+    description: "Rash with skin blistering or peeling over a large area"
+    when: skin_peeling_or_blistering_widely
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_reaction_emergency
+    source: nhs_stevens_johnson
+
+  - id: rf_ra_new_medicine_and_sores
+    description: "Rash after starting a new medicine, with sores or blisters in the mouth, eyes or genitals, or round patches darker in the middle"
+    when: {all: [new_medicine_recently, {any: [sores_mouth_eyes_or_genitals, rash_circles_darker_middle, rash_blisters]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_reaction_emergency
+    source: nhs_stevens_johnson
+
+  - id: rf_ra_sores_mouth_eyes_genitals
+    description: "Rash with painful sores or blisters on the lips, mouth, eyes or genitals"
+    when: sores_mouth_eyes_or_genitals
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_reaction_emergency
+    source: nhs_stevens_johnson
+    soft: true    # likely conditions may lower this: hand, foot and mouth and chickenpox also cause mouth sores
+    note: "The Stevens-Johnson syndrome page says call 999 or go to A&E for a swollen or sore mouth, lips or eyes with a rash. Marked soft because common childhood infections also cause mouth ulcers."
+
+  - id: rf_ra_new_medicine_spreading
+    description: "Rash spreading across the body after starting a new medicine"
+    when: {all: [new_medicine_recently, rash_spreading]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_reaction_emergency
+    source: nhs_stevens_johnson
+    soft: true    # likely conditions may lower this: most rashes from medicines are mild
+    note: "The Stevens-Johnson syndrome page says call 999 or go to A&E for a rash spreading across the body after starting a new medicine. Marked soft because most rashes caused by medicines are mild; a rash with blisters, peeling or sores is firm above."
+
+  - id: rf_ra_deep_infection
+    description: "Red, swollen skin with pain much worse than expected, or black, purple or grey patches"
+    when: {any: [pain_much_worse_than_expected, purple_black_patches_on_skin]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_necrotising_fasciitis
+
+  - id: rf_ra_cellulitis_spreading_unwell
+    description: "Painful, hot, swollen skin with a high temperature, a fast heartbeat, feeling dizzy or very unwell"
+    when: {all: [swollen_area_red_hot, {any: [very_high_temperature, heart_beating_very_fast, light_headed, seriously_unwell_getting_worse]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_infection_emergency
+    source: nhs_cellulitis
+
+  - id: rf_ra_psoriasis_pus
+    description: "Psoriasis that has quickly turned red with white, pus-filled bumps"
+    when: {all: [has_psoriasis, psoriasis_pus_bumps]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_skin_reaction_emergency
+    source: nhs_psoriasis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ra_non_fading_floor
+    description: "Rash that does not fade when a glass is pressed on it, in someone who does not feel unwell"
+    when: rash_does_not_fade
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 now"}
+    advice: advice_rash_non_fading_urgent
+    source: nhs_hsp
+    note: "The firm floor under the soft emergency rule above."
+
+  - id: rf_ra_child_high_temperature
+    description: "A child with a rash and a high temperature, or feeling hot, cold or shivery"
+    when: {all: [age_under_16, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_rashes_babies_and_children
+
+  - id: rf_ra_adult_high_temperature
+    description: "An adult with a rash and a high temperature, or feeling hot, cold or shivery"
+    when: {all: [age_16_or_over, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it rests on a reading of the sources
+    note: "AI judgement, following the Measles, Cellulitis and Lyme disease pages, which each give urgent advice for a rash with a high temperature. Soft because a mild viral rash may explain it."
+
+  - id: rf_ra_very_unwell
+    description: "Rash and feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_measles
+
+  - id: rf_ra_cellulitis
+    description: "Rash or skin that is painful, hot and swollen"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_skin_infection_urgent
+    source: nhs_cellulitis
+
+  - id: rf_ra_eczema_infected
+    description: "Eczema that is leaking, crusty, painful or warm, or suddenly worse and painful with clusters of blisters"
+    when: {all: [has_eczema, {any: [eczema_infected_signs, eczema_painful_blisters_sudden]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eczema_infected_urgent
+    source: nhs_atopic_eczema
+
+  - id: rf_ra_pregnant
+    description: "A new rash in someone who is pregnant or has just given birth"
+    when: pregnant_or_recently_given_birth
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your midwife, maternity unit, GP or NHS 111 now"}
+    advice: advice_rash_pregnancy_urgent
+    source: nhs_pityriasis_rosea
+    note: "The Pityriasis rosea page says call your midwife, maternity unit, GP or 111 immediately for a new rash in pregnancy; the Chickenpox, Measles and Slapped cheek pages also advise checking. Including the 6 weeks after giving birth is AI judgement, because the question asks about both."
+
+  - id: rf_ra_weakened_immune_system
+    description: "A rash in someone whose body is less able to fight infection"
+    when: weakened_immune_system
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_chickenpox
+    soft: true    # likely conditions may lower this: it rests on a reading of the sources
+    note: "The Chickenpox and Measles pages give urgent advice for contact in someone with a weakened immune system, and the Impetigo, Ringworm and Shingles pages say they need checking. Applying this to any rash is AI judgement, so it is soft."
+
+  - id: rf_ra_dehydration
+    description: "Rash with signs of dehydration, such as peeing less than usual"
+    when: dehydration_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_hand_foot_mouth
+    note: "The Hand, foot and mouth, Chickenpox and Measles pages all give this advice."
+
+  - id: rf_ra_child_feeding_less
+    description: "A baby or young child with a rash who is feeding or eating much less than usual"
+    when: {all: [age_under_5, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_measles
+
+  - id: rf_ra_rash_difficulty_breathing
+    description: "An adult with a rash who is finding it hard to breathe"
+    when: {all: [age_16_or_over, difficulty_breathing]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_measles
+    note: "The Measles and Chickenpox pages say an urgent GP appointment or 111 for being more short of breath than usual."
+
+  - id: rf_ra_measles_contact
+    description: "Close contact with measles in a baby under 1, someone pregnant or with a weakened immune system, or someone not fully vaccinated"
+    when: {all: [contact_with_measles, {any: [age_under_1, pregnant_or_recently_given_birth, weakened_immune_system, not_had_mmr_vaccine]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. Call before you go in."}
+    advice: advice_measles_urgent
+    source: nhs_measles
+
+  - id: rf_ra_possible_measles
+    description: "A rash that started on the face or behind the ears and spread down, with a high temperature"
+    when: {all: [rash_started_on_face_spread_down, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. Call before you go in."}
+    advice: advice_measles_urgent
+    source: nhs_measles
+    note: "The Measles page says an urgent GP appointment or 111 if you think you or your child may have measles."
+
+  - id: rf_ra_chickenpox_contact
+    description: "Contact with chickenpox in someone pregnant, with a weakened immune system, or a baby under 1"
+    when: {all: [contact_with_chickenpox, {any: [pregnant_or_recently_given_birth, weakened_immune_system, age_under_1]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 now"}
+    advice: advice_rash_urgent
+    source: nhs_chickenpox
+    note: "The Chickenpox page says 111 for a newborn baby. Using under 1 year is AI judgement, to be cautious."
+
+  - id: rf_ra_kawasaki
+    description: "A high temperature that has lasted 5 days or more, with a rash"
+    when: temperature_5_days_or_more
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_kawasaki_urgent
+    source: nhs_kawasaki_disease
+
+  - id: rf_ra_tick_bite
+    description: "A round or oval rash, like a bullseye, after a tick bite or time in grassy or wooded areas"
+    when: {all: [rash_bullseye, tick_bite_or_tick_area]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_tick_bite_urgent
+    source: nhs_lyme_disease
+
+  - id: rf_ra_shingles_eye
+    description: "A rash of blisters on one side of the body, on or near the eye or nose, or with changes to vision"
+    when: {all: [rash_one_side_of_body, shingles_eye_or_vision]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_shingles_urgent
+    source: nhs_shingles
+
+  - id: rf_ra_rosacea_eye
+    description: "Red face that stays red, with a painful, red or gritty eye or blurred vision"
+    when: {all: [face_red_most_of_time, eye_painful_red_or_gritty]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_rosacea_eye_urgent
+    source: nhs_rosacea
+
+outcome_rules:
+  - id: or_ra_shingles
+    description: "A painful rash on one side of the body (possible shingles): see a pharmacist within 3 days"
+    when: rash_one_side_of_body
+    outcome: {acuity: soon, level_of_care: community_pharmacy, timeframe: few_days, timeframe_detail: "See a pharmacist as soon as possible, and within 3 days of the rash appearing"}
+    advice: advice_shingles_pharmacy
+    source: nhs_shingles
+    note: "The Shingles page says try to see a pharmacist within 3 days of the rash appearing, because antiviral medicine works best when started early. Added after the development cases."
+
+  - id: or_ra_worried
+    description: "A rash you are worried about and not sure what to do"
+    when: worried_about_symptoms
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rash_urgent
+    source: nhs_rashes_babies_and_children
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+    note: "Taken from the source, which says this for a child's rash. Soft, as for the sore throat rule, because many people using a triage tool are worried."
+
+  - id: or_ra_not_better
+    description: "A rash that has not got better after treating it yourself, keeps coming back, or affects daily life"
+    when: {any: [not_better_with_self_care, affecting_daily_life_or_wellbeing, rash_comes_and_goes]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_rash_gp
+    source: nhs_atopic_eczema
+    note: "The Atopic eczema, Psoriasis, Impetigo, Ringworm and Heat rash pages all say see a GP when treatment is not helping or the problem keeps coming back."
+
+  - id: or_ra_scarlet_fever
+    description: "A rash of small raised bumps that feels rough, like sandpaper (possible scarlet fever)"
+    when: rash_sandpaper
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Call the surgery first, as scarlet fever spreads easily."}
+    advice: advice_rash_gp
+    source: nhs_scarlet_fever
+
+  - id: or_ra_baby_under_1
+    description: "A baby under 1 with impetigo-like sores, or a rash in a baby that is not settling"
+    when: {all: [age_under_1, {any: [rash_crusty_golden, not_better_with_self_care]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or health visitor. The source gives no fixed time."}
+    advice: advice_rash_gp
+    source: nhs_impetigo
+    note: "The Impetigo page says see a GP for a child aged 11 months or younger. The Nappy rash page says see a health visitor or GP if it does not go away."
+
+default:
+  description: "A rash with nothing that needs more urgent help: a pharmacist can advise"
+  outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "Speak to a pharmacist. The source gives no fixed time."}
+  advice: advice_rash_pharmacy
+  source: nhs_rashes_babies_and_children
+  note: "The Rashes in babies and children page says many rashes are nothing to worry about, and that a pharmacist can help with heat rash, ringworm, impetigo, scabies, hives and nappy rash. Not a floor: likely conditions such as slapped cheek or hand, foot and mouth can lower it to self-care, and eczema or scarlet fever can raise it."

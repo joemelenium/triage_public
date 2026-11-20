@@ -1,0 +1,48 @@
+id: bn_h03
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [headache]
+
+summary: "A 9-year-old girl has had headaches for 3 weeks that are getting worse. They wake her at night and are worst when she gets up in the morning. She has not been sick, her eyes look straight, her balance and speech are normal and she has no fever."
+
+opening_statement: "My daughter keeps getting headaches, three weeks now, and they're getting worse. She's woken up crying with it twice this week and it's bad first thing in the morning."
+
+findings:
+  present: [headache, headache_on_waking, headache_worse_over_time]
+  absent: [nausea_or_vomiting, vision_change, double_vision, eye_turns_or_squints, headache_worse_coughing_bending, trouble_with_balance_or_walking, difficulty_speaking, child_floppy_or_hard_to_wake, had_a_fit, head_injury_last_3_months, very_high_temperature, stiff_neck, rash_does_not_fade, headache_sudden_severe, numbness_or_weakness, sudden_confusion]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 9, sex: female}
+  full:
+    age: 9
+    sex: female
+    findings: {}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Child's headache that is getting worse and wakes her at night"
+    findings: [headache_on_waking, headache_worse_over_time]
+    minimum_acuity: urgent
+    source: {page: tension_headaches.txt, quote: "a headache that gets progressively worse"}
+
+safety_netting_should_cover:
+  - point: "Get an urgent GP appointment or contact NHS 111"
+    any_of: ["111", "urgent GP", "urgent appointment"]
+  - point: "Call 999 or go to A&E if she has vision problems, trouble speaking, swallowing, balancing or walking, or is drowsy"
+    any_of: ["999", "A&E"]
+
+source:
+  expected_outcome: {page: headaches.txt, quote: "a child has a headache that's getting worse or wakes them at night"}
+  minimum_safe_acuity: {page: tension_headaches.txt, quote: "a headache when they wake up in the morning"}
+
+atypical: false
+notes: "Worsening headache in a child that wakes her at night: urgent on both headaches.txt and tension_headaches.txt (the latter for children under 12). Vomiting, squint and balance problems are absent; with vision problems or trouble balancing or walking, tension_headaches.txt would make it 999 or A&E."

@@ -1,0 +1,94 @@
+id: wh_d02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- pelvic_pain
+summary: A 22-year-old woman with a new partner has had pelvic pain for four days. It is now severe, worse when
+  she moves, and she has a very high temperature with shivers, has been sick, and has an unusual discharge and deep
+  pain during sex.
+opening_statement: My lower tummy has been hurting for a few days and today it's really bad, it hurts to even walk.
+  I'm boiling hot and shivery and I've been sick.
+findings:
+  present:
+  - pelvic_pain
+  - pelvic_pain_severe_or_worsening
+  - very_high_temperature
+  - cold_or_shivery
+  - nausea_or_vomiting
+  - vaginal_discharge
+  - pain_during_sex
+  - new_or_unprotected_sex
+  absent:
+  - may_be_pregnant
+  - missed_or_late_period
+  - shoulder_tip_pain
+  - heavy_vaginal_bleeding
+  - dizziness
+  - fainted
+  - sudden_confusion
+  - difficulty_breathing
+  - pain_below_ribs
+  - blood_in_urine
+  - pain_when_peeing
+  - diarrhoea
+  - sa_moved_to_lower_right
+  - weakened_immune_system
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 22
+    sex: female
+  full:
+    age: 22
+    sex: female
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Pelvic pain that is severe, getting worse and hurts on moving
+  findings:
+  - pelvic_pain_severe_or_worsening
+  minimum_acuity: emergency
+  source:
+    page: pelvic_pain.txt
+    quote: it's severe, getting worse, or hurts when you move or touch the area
+- description: Symptoms of pelvic inflammatory disease with a very high temperature
+  findings:
+  - very_high_temperature
+  - vaginal_discharge
+  minimum_acuity: emergency
+  source:
+    page: pelvic_inflammatory_disease.txt
+    quote: have a very high temperature, or feel hot, cold or shivery
+- description: Symptoms of pelvic inflammatory disease with being sick
+  findings:
+  - nausea_or_vomiting
+  minimum_acuity: emergency
+  source:
+    page: pelvic_inflammatory_disease.txt
+    quote: are feeling or being sick, or are feeling very unwell
+safety_netting_should_cover:
+- point: Go to A&E or call 999
+  any_of:
+  - A&E
+  - '999'
+- point: Not to drive themselves to A&E
+  any_of:
+  - do not drive
+  - don't drive
+  - not drive
+source:
+  expected_outcome:
+    page: pelvic_inflammatory_disease.txt
+    quote: have a very high temperature, or feel hot, cold or shivery
+  minimum_safe_acuity:
+    page: pelvic_pain.txt
+    quote: it's severe, getting worse, or hurts when you move or touch the area
+atypical: false
+notes: pelvic_pain.txt puts a very high temperature or being sick with pelvic pain under 'Get help from NHS 111'
+  (urgent), but puts severe, worsening pelvic pain that hurts on moving under 999 or A&E. pelvic_inflammatory_disease.txt
+  puts all three (severe pain, high temperature, being sick) under 999 or A&E. Emergency chosen; A&E rather than
+  ambulance because she is alert and not faint. Last period a week ago, so not pregnant.

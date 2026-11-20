@@ -1,0 +1,38 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: migraine
+body_system: brain_and_nerves
+entry_symptoms: [headache, dizziness, face_numbness, pins_and_needles, floaters_or_flashes, vision_change]
+name: "Migraine"
+medical_name: "Migraine"
+snomed: "37796009"
+acuity_needed: routine
+danger: minor
+diagnosed_by: has_migraine
+prevalence: common
+prevalence_when:
+  - {finding: has_migraine, prevalence: very_common}
+  - {finding: headache, prevalence: common}
+  - {finding: dizziness, prevalence: common}
+  - {finding: face_numbness, prevalence: common}
+  - {finding: pins_and_needles, prevalence: common}
+  - {finding: floaters_or_flashes, prevalence: uncommon}
+  - {finding: vision_change, prevalence: uncommon}
+findings:
+  # Level self-care: a migraine attack can usually be treated at home. Frequent, worsening or long attacks are sent to a GP or for urgent help by the headache rules. What tells it apart: a throbbing headache on one side, worse moving, with bright lights hurting and feeling sick. Some people get warning signs such as zigzag lines first.
+  headache_one_side_throbbing: strongly_supports
+  bothered_by_light: strongly_supports
+  nausea_or_vomiting: supports
+  vomiting: supports
+  migraine_aura: strongly_supports
+  headache: strongly_supports
+  headaches_regular: supports
+  # From the eyes card for this condition (merged):
+  both_eyes_affected: supports
+key_findings: [headache_one_side_throbbing, bothered_by_light, migraine_aura, has_migraine, headache]
+source: nhs_migraine
+informed_by: [nhs_migraine, nhs_headaches, nhs_dizziness, nhs_pins_and_needles]
+# Merged with the eyes card for this condition. Its notes:
+# May also be built by the brain and nerves agent as part of a migraine card.
+# Kept separate here because the visual aura is what brings people to the eye
+# entry symptoms.

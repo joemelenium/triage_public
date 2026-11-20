@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: abdominal_aortic_aneurysm
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, back_pain]
+name: "A burst swelling in the main blood vessel in the tummy (aortic aneurysm)"
+medical_name: "Ruptured or leaking abdominal aortic aneurysm"
+snomed: "14336007"
+acuity_needed: emergency
+danger: critical
+# Almost only in people aged 65 or over. "rare" is the lowest band, so age is
+# linked as a finding: a "no" makes it much less likely in younger people.
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: rare}
+findings:
+  sa_sudden_severe: strongly_supports
+  sa_spreads_to_back: strongly_supports
+  very_bad_tummy_pain_with_back_pain: strongly_supports
+  light_headed: supports
+  fainted: supports
+  cold_clammy_skin: supports
+  pulsing_in_tummy: supports
+  has_aaa: supports
+  smoker: supports
+key_findings: [sa_sudden_severe, sa_spreads_to_back, has_aaa, light_headed]
+source: nhs_abdominal_aortic_aneurysm
+informed_by: [nhs_abdominal_aortic_aneurysm]

@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cellulitis
+body_system: skin_and_hair
+entry_symptoms: [rash, cut_or_wound, insect_bite_or_sting, burn, skin_lump, nail_problem, smelly_feet, swollen_ankles, swollen_arm_or_hand, foot_pain, hand_pain]
+name: "Cellulitis (an infection of the deeper layers of the skin)"
+medical_name: "Cellulitis"
+snomed: "128045006"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: common}
+findings:
+  # What tells it apart from an insect bite reaction or eczema: painful, hot, swollen skin, often spreading, and sometimes a high temperature or feeling unwell.
+  swollen_area_red_hot: strongly_supports
+  redness_spreading: supports
+  very_high_temperature: supports
+  pus_or_fluid_leaking: supports
+  # From the general card for this condition (merged):
+  skin_broken_near_swelling: supports
+  swelling_severe_painful_or_sudden: supports
+  leg_pain_or_swelling: supports
+key_findings: [swollen_area_red_hot, redness_spreading, very_high_temperature, skin_broken_near_swelling]
+source: nhs_cellulitis
+informed_by: [nhs_cellulitis, nhs_insect_bites, nhs_athletes_foot, nhs_oedema]
+# Merged with the general card for this condition. Its notes: A skin infection. The page
+# says an urgent GP appointment or 111, and 999 or A&E if it spreads into the blood (the
+# rules). What tells it apart from a blood clot: red, hot skin, often near a cut or
+# bite, with a high temperature.

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bad_breath_from_food_or_mouth_care
+body_system: ear_nose_throat
+entry_symptoms: [bad_breath]
+name: "Bad breath from food, smoking or not cleaning the teeth and tongue enough"
+medical_name: "Halitosis from diet, smoking or oral hygiene"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: it comes after strong-smelling food or drink or smoking, and gets better
+  # with cleaning the teeth, tongue and gums well.
+  strong_food_or_drink: strongly_supports
+  smoker: supports
+  white_patches_in_mouth: supports
+key_findings: [strong_food_or_drink, bad_breath_few_weeks]
+source: nhs_bad_breath
+informed_by: [nhs_bad_breath]

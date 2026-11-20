@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: rheumatoid_arthritis
+body_system: bones_joints_muscles
+# Early treatment protects the joints, so a new case needs a specialist soon.
+entry_symptoms: [joint_pain, hand_pain, foot_pain]
+name: "Rheumatoid arthritis (the body's defences attack the joints)"
+medical_name: "Rheumatoid arthritis"
+snomed: "69896004"
+acuity_needed: soon
+danger: moderate
+diagnosed_by: has_rheumatoid_arthritis
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: rare}
+findings:
+  small_joints_hands_feet: strongly_supports
+  same_joints_both_sides: strongly_supports
+  morning_stiffness_over_30_min: strongly_supports
+  swollen_area: supports
+  very_tired: supports
+  several_joints: supports
+key_findings: [small_joints_hands_feet, same_joints_both_sides, morning_stiffness_over_30_min]
+source: nhs_rheumatoid_arthritis
+informed_by: [nhs_rheumatoid_arthritis]

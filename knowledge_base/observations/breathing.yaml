@@ -1,0 +1,829 @@
+# Observations: breathing and lungs (cough, wheezing, breathlessness, infection signs).
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# An observation is anything the engine can know about a patient: a symptom, a
+# feature of a symptom, a risk factor (history, lifestyle, an event) or context
+# such as age. Each is answered "yes", "no" or "not sure". Observations are kept
+# in one file per body system. All files together form one shared network.
+#
+# Shared observations used for breathing that live in other files, and are
+# reused rather than repeated here:
+#   chest_and_heart.yaml  short_of_breath (presenting), coughing_up_blood (presenting),
+#                         chest_pain, cp_worse_breathing_in, cough_mucus_or_temperature,
+#                         leg_pain_or_swelling, heart_beating_very_fast
+#   ear_nose_throat.yaml  difficulty_breathing, stridor, very_high_temperature,
+#                         dehydration_signs, weakened_immune_system, drooling,
+#                         unable_to_swallow, swollen_neck_glands, very_tired
+#   general.yaml          severe_breathing_difficulty, lips_or_skin_blue_grey,
+#                         passed_out, sudden_confusion, age bands
+#
+# Fields:
+#   id             used by rules and condition cards to refer to it
+#   label          short name used in reports
+#   question       what the patient is asked
+#   question_carer optional: the question when someone answers for another person
+#   checklist_text optional: a short form, used as one line of a checklist
+#   kind           presenting (a main symptom), symptom, history, or context
+#   parent         optional: a more general observation this one belongs to. A "yes"
+#                  here means "yes" to the parent too; a "no" to the parent means
+#                  "no" here, so it is not asked.
+#   relation       with a parent: duration, severity, character, exacerbating_factor,
+#                  diminishing_factor, location or radiation
+#   sex            optional: female or male, if it only applies to one
+#   asked_only_if  optional: only asked after a "yes" (or "not sure") to that observation
+#   seriousness    optional: serious, emergency or emergency_ambulance, where a source
+#                  or clinical knowledge marks it as an alarming sign (used in the
+#                  five-level output)
+#   group          related observations share a group so evidence is not counted twice
+#   age_range      the answer is worked out from the patient's age, when the age is known
+#   snomed         SNOMED CT code, only where checked and listed in sources/snomed_codes.yaml
+#   source         id in sources/source_log.yaml
+
+# ===========================================================================
+# Cough (a main symptom) and the kinds of cough
+# ===========================================================================
+- id: cough
+  label: "Cough"
+  question: "Do you have a cough?"
+  question_carer: "Does your child have a cough?"
+  checklist_text: "A cough"
+  kind: presenting
+  snomed: "49727002"
+  phrases: ["cough", "coughing", "can't stop coughing", "tickly cough", "chesty cough"]
+  source: nhs_cough
+
+- id: cough_phlegm
+  label: "Coughing up phlegm"
+  question: "Are you coughing up phlegm (mucus)?"
+  question_carer: "Is your child coughing up phlegm (mucus)?"
+  checklist_text: "Coughing up phlegm (mucus)"
+  kind: symptom
+  parent: cough
+  relation: character
+  snomed: "28743005"
+  phrases: ["chesty cough", "bringing up phlegm", "coughing up mucus", "productive cough"]
+  source: nhs_chest_infection
+
+- id: phlegm_yellow_or_green
+  label: "Yellow or green phlegm"
+  question: "Is the phlegm (mucus) you cough up yellow or green?"
+  checklist_text: "Coughing up yellow or green phlegm (mucus)"
+  kind: symptom
+  parent: cough_phlegm
+  relation: character
+  snomed: "42192008"
+  phrases: ["green phlegm", "yellow phlegm", "green mucus", "yellow mucus"]
+  source: nhs_pneumonia
+
+- id: phlegm_lots_every_day
+  label: "Coughs up a lot of phlegm every day"
+  question: "Do you cough up a lot of phlegm (mucus) every day?"
+  checklist_text: "Coughing up a lot of phlegm (mucus) every day"
+  kind: symptom
+  parent: cough_phlegm
+  relation: severity
+  phrases: ["loads of phlegm every day", "always bringing up mucus"]
+  source: nhs_bronchiectasis
+
+- id: frothy_pink_phlegm
+  label: "Frothy pink phlegm"
+  question: "Are you coughing up frothy, pink phlegm (mucus)?"
+  checklist_text: "Coughing up frothy, pink phlegm (mucus)"
+  kind: symptom
+  parent: cough_phlegm
+  relation: character
+  seriousness: serious
+  phrases: ["pink frothy spit", "frothy pink phlegm", "bubbly pink mucus"]
+  source: nhs_heart_failure
+
+- id: cough_dry
+  label: "Dry cough"
+  question: "Is it a dry cough, with no phlegm (mucus)?"
+  question_carer: "Is it a dry cough, with no phlegm (mucus)?"
+  kind: symptom
+  parent: cough
+  relation: character
+  snomed: "11833005"
+  phrases: ["dry cough", "tickly cough", "nothing comes up"]
+  source: nhs_flu
+
+- id: cough_barking
+  label: "Barking cough"
+  question: "Does the cough sound like a bark, like a seal?"
+  question_carer: "Does your child's cough sound like a bark, like a seal?"
+  checklist_text: "A barking cough that sounds like a seal"
+  kind: symptom
+  parent: cough
+  relation: character
+  snomed: "17986004"
+  phrases: ["barking cough", "sounds like a seal", "croupy cough"]
+  source: nhs_croup
+
+- id: cough_whoop
+  label: "Coughing fits, sometimes with a whoop"
+  question: "Do you get coughing fits that last a few minutes? You may make a \"whoop\" sound when you breathe in between coughs."
+  question_carer: "Does your child get coughing fits that last a few minutes? They may make a \"whoop\" sound when they breathe in between coughs."
+  checklist_text: "Coughing fits that last a few minutes, sometimes with a \"whoop\""
+  kind: symptom
+  parent: cough
+  relation: character
+  snomed: "43025008"
+  phrases: ["whooping", "coughing fits", "coughs until they go red", "gasps between coughs"]
+  source: nhs_whooping_cough
+
+- id: sick_after_coughing
+  label: "Has been sick after coughing"
+  question: "Have you been sick after a coughing fit?"
+  question_carer: "Has your child been sick after a coughing fit?"
+  kind: symptom
+  parent: cough
+  relation: character
+  snomed: "424580008"
+  phrases: ["coughs until they're sick", "sick after coughing"]
+  source: nhs_whooping_cough
+
+- id: cough_3_weeks_or_more
+  label: "Cough for 3 weeks or more"
+  question: "Have you had the cough for 3 weeks or more?"
+  question_carer: "Has your child had the cough for 3 weeks or more?"
+  checklist_text: "A cough for 3 weeks or more"
+  kind: symptom
+  parent: cough
+  relation: duration
+  phrases: ["had this cough for weeks", "cough that won't go away", "coughing for a month"]
+  source: nhs_cough
+
+- id: cough_very_bad_or_worsening
+  label: "Cough very bad or getting worse quickly"
+  question: "Is your cough very bad, or getting worse quickly? For example, a hacking cough, or you cannot stop coughing."
+  question_carer: "Is your child's cough very bad, or getting worse quickly? For example, a hacking cough, or they cannot stop coughing."
+  checklist_text: "A very bad cough, or one that is quickly getting worse"
+  kind: symptom
+  parent: cough
+  relation: severity
+  seriousness: serious
+  phrases: ["hacking cough", "can't stop coughing", "cough is getting worse"]
+  source: nhs_cough
+
+- id: cough_worse_at_night
+  label: "Cough worse at night"
+  question: "Is the cough worse at night?"
+  question_carer: "Is your child's cough worse at night?"
+  kind: symptom
+  parent: cough
+  relation: exacerbating_factor
+  phrases: ["coughing all night", "worse when I lie down at night"]
+  source: nhs_asthma
+
+# ===========================================================================
+# Coughing up blood: more detail under coughing_up_blood (in chest_and_heart.yaml)
+# ===========================================================================
+- id: blood_more_than_streaks
+  label: "Coughing up more than a few spots or streaks of blood"
+  question: "Are you coughing up more than just a few spots or streaks of blood?"
+  question_carer: "Is your child coughing up more than just a few spots or streaks of blood?"
+  checklist_text: "Coughing up more than just a few spots or streaks of blood"
+  kind: symptom
+  parent: coughing_up_blood
+  relation: severity
+  seriousness: emergency
+  phrases: ["a lot of blood", "mouthful of blood", "coughing up clots"]
+  source: nhs_coughing_up_blood
+
+# ===========================================================================
+# Wheezing (a main symptom)
+# ===========================================================================
+- id: wheezing
+  label: "Wheezing"
+  question: "Are you wheezing? This is a whistling sound when you breathe."
+  question_carer: "Is your child wheezing? This is a whistling or rattling sound when they breathe."
+  checklist_text: "Wheezing: a whistling sound when you breathe"
+  kind: presenting
+  snomed: "56018004"
+  phrases: ["wheezy", "whistling when I breathe", "wheezing", "rattly chest"]
+  source: nhs_asthma
+
+- id: wheeze_comes_and_goes
+  label: "Wheezing comes and goes, often worse at night or early morning"
+  question: "Does the wheezing come and go? Is it often worse at night or early in the morning?"
+  question_carer: "Does your child's wheezing come and go? Is it often worse at night or early in the morning?"
+  kind: symptom
+  parent: wheezing
+  relation: duration
+  phrases: ["comes and goes", "worse at night", "worse in the morning"]
+  source: nhs_asthma
+
+- id: wheeze_with_exercise_or_cold_air
+  label: "Wheezing brought on by exercise or cold air"
+  question: "Is the wheezing brought on by exercise or cold air?"
+  question_carer: "Is your child's wheezing brought on by exercise or cold air?"
+  kind: symptom
+  parent: wheezing
+  relation: exacerbating_factor
+  phrases: ["when I run", "cold air sets it off", "after PE at school"]
+  source: nhs_asthma
+
+# ===========================================================================
+# Breathlessness: more detail under short_of_breath (in chest_and_heart.yaml)
+# ===========================================================================
+- id: sob_sudden
+  label: "Breathlessness came on suddenly, or suddenly got much worse"
+  question: "Did your breathing problem come on suddenly? Or has it suddenly got much worse?"
+  question_carer: "Did your child's breathing problem come on suddenly? Or has it suddenly got much worse?"
+  checklist_text: "Breathing problems that came on suddenly, or suddenly got much worse"
+  kind: symptom
+  parent: short_of_breath
+  relation: character
+  seriousness: emergency
+  phrases: ["suddenly couldn't breathe", "came on all of a sudden", "breathing suddenly got worse"]
+  source: nhs_pulmonary_embolism
+
+- id: sob_at_rest
+  label: "Short of breath at rest"
+  question: "Are you short of breath even when you are sitting still or resting?"
+  question_carer: "Is your child short of breath even when they are sitting still or resting?"
+  checklist_text: "Short of breath even when resting"
+  kind: symptom
+  parent: short_of_breath
+  relation: severity
+  seriousness: serious
+  snomed: "161941007"
+  phrases: ["breathless sitting down", "out of breath doing nothing"]
+  source: ai_judgement
+
+- id: too_breathless_to_talk
+  label: "Too breathless to say a short sentence"
+  question: "Are you so short of breath that you cannot say a short sentence, even when resting?"
+  question_carer: "Is your child so short of breath that they cannot talk, or are too breathless to feed?"
+  checklist_text: "So short of breath you cannot say a short sentence, even when resting"
+  kind: symptom
+  parent: sob_at_rest
+  relation: severity
+  seriousness: emergency
+  phrases: ["can't finish a sentence", "too breathless to talk", "can only say a few words"]
+  source: nhs_covid_19
+
+- id: sob_lying_flat
+  label: "Short of breath when lying flat"
+  question: "Do you get short of breath when you lie down flat? For example, you need extra pillows, or you wake up at night gasping for breath."
+  checklist_text: "Short of breath when lying down flat"
+  kind: symptom
+  parent: short_of_breath
+  relation: exacerbating_factor
+  snomed: "62744007"
+  phrases: ["need to sleep propped up", "wake up gasping", "can't lie flat"]
+  source: nhs_heart_failure
+
+- id: sob_everyday_activity
+  label: "Out of breath doing everyday things"
+  question: "Do you get out of breath doing everyday things that never used to take much effort? For example, walking up stairs or getting dressed."
+  checklist_text: "Out of breath doing everyday things that used to be easy"
+  kind: symptom
+  parent: short_of_breath
+  relation: exacerbating_factor
+  snomed: "161940008"
+  phrases: ["puffed out on the stairs", "can't walk as far as I used to"]
+  source: nhs_copd
+
+- id: sob_slowly_worse
+  label: "Breathlessness has come on slowly over weeks or months"
+  question: "Has the breathlessness come on slowly over weeks or months, and been getting worse?"
+  kind: symptom
+  parent: short_of_breath
+  relation: duration
+  phrases: ["been getting worse for months", "slowly getting more breathless"]
+  source: nhs_pulmonary_fibrosis
+
+- id: child_struggling_to_breathe
+  label: "Child struggling to breathe (grunting, or tummy sucking in under the ribs)"
+  question: "Is the person who is unwell struggling to breathe? You may hear grunting noises, or see their tummy sucking in under their ribs."
+  question_carer: "Is your child struggling to breathe? You may hear grunting noises, or see their tummy sucking in under their ribs."
+  checklist_text: "A child struggling to breathe: grunting noises, or their tummy sucking in under their ribs"
+  kind: symptom
+  parent: difficulty_breathing
+  relation: severity
+  seriousness: emergency
+  asked_only_if: age_under_16   # signs described for children
+  phrases: ["grunting", "tummy sucking in", "ribs showing when breathing", "working hard to breathe"]
+  source: nhs_shortness_of_breath
+
+- id: breathing_very_fast
+  label: "Breathing very fast"
+  question: "Are you breathing very fast?"
+  question_carer: "Is your child breathing much faster than usual?"
+  checklist_text: "Breathing very fast"
+  kind: symptom
+  seriousness: emergency
+  snomed: "271823003"
+  phrases: ["breathing really fast", "panting", "rapid breathing"]
+  source: nhs_sepsis
+
+- id: pauses_in_breathing
+  label: "Pauses in a young child's breathing"
+  question: "Are there pauses in the child's breathing, where they stop breathing for a few seconds?"
+  question_carer: "Are there pauses in your child's breathing, where they stop breathing for a few seconds?"
+  checklist_text: "Pauses in a young child's breathing"
+  kind: symptom
+  seriousness: emergency_ambulance
+  asked_only_if: age_under_5   # a sign described for babies and young children
+  snomed: "1023001"
+  phrases: ["stops breathing", "gaps in their breathing", "holds their breath"]
+  source: nhs_bronchiolitis
+
+- id: choked_on_something
+  label: "Started after choking on something"
+  question: "Did this start suddenly after choking on something, such as food or a small object?"
+  question_carer: "Did your child's symptoms start suddenly after choking on something, such as food or a small toy?"
+  checklist_text: "Started suddenly after choking on something, such as food or a small object"
+  kind: symptom
+  seriousness: emergency
+  snomed: "249489001"
+  phrases: ["choked on a peanut", "swallowed something", "something went down the wrong way"]
+  source: ai_judgement
+
+# ===========================================================================
+# Asthma and COPD
+# ===========================================================================
+- id: has_asthma
+  label: "Diagnosed with asthma"
+  question: "Has a doctor told you that you have asthma?"
+  question_carer: "Has a doctor told you that your child has asthma?"
+  kind: history
+  snomed: "161527007"
+  phrases: ["I'm asthmatic", "I have asthma", "I use an inhaler"]
+  source: nhs_asthma
+
+- id: asthma_attack_now
+  label: "Having an asthma attack now"
+  question: "Are you having an asthma attack now? This is when your symptoms are severe and it is hard to breathe."
+  question_carer: "Is your child having an asthma attack now? This is when their symptoms are severe and it is hard to breathe."
+  kind: symptom
+  asked_only_if: has_asthma
+  seriousness: serious
+  phrases: ["having an asthma attack", "my asthma is really bad"]
+  source: nhs_asthma
+
+- id: reliever_not_helping
+  label: "No better after the most puffs of reliever inhaler allowed, or getting worse"
+  question: "Have you taken the most puffs of your reliever inhaler that you are allowed, and you still do not feel better? Or are you getting worse?"
+  question_carer: "Has your child taken the most puffs of their reliever inhaler that they are allowed, and they still do not feel better? Or are they getting worse?"
+  kind: symptom
+  asked_only_if: asthma_attack_now
+  seriousness: emergency_ambulance
+  phrases: ["inhaler isn't working", "taken 10 puffs", "still can't breathe after my inhaler"]
+  source: nhs_asthma
+
+- id: no_reliever_inhaler
+  label: "Asthma attack without a reliever inhaler"
+  question: "Are you without your reliever inhaler? For example, you do not have it with you, or it has run out."
+  question_carer: "Is your child without their reliever inhaler? For example, you do not have it with you, or it has run out."
+  kind: symptom
+  asked_only_if: asthma_attack_now
+  seriousness: emergency_ambulance
+  phrases: ["forgot my inhaler", "inhaler is empty", "don't have my inhaler"]
+  source: nhs_asthma
+
+- id: asthma_needing_reliever_more
+  label: "Asthma needing the reliever more often, or waking at night"
+  question: "Have you needed your reliever inhaler more often than usual? Or is your asthma waking you at night, or stopping you doing your usual activities?"
+  question_carer: "Has your child needed their reliever inhaler more often than usual? Or is their asthma waking them at night, or stopping them doing their usual activities?"
+  kind: symptom
+  asked_only_if: has_asthma
+  phrases: ["using my inhaler a lot more", "asthma keeps waking me up"]
+  source: nhs_asthma
+
+- id: has_copd
+  label: "Diagnosed with COPD"
+  question: "Has a doctor told you that you have COPD? This is a long-term lung condition that causes coughing and breathlessness."
+  kind: history
+  asked_only_if: age_16_or_over   # not asked about children
+  phrases: ["I have COPD", "emphysema", "chronic bronchitis"]
+  source: nhs_copd
+
+- id: copd_flare_up
+  label: "COPD worse than usual (a flare-up)"
+  question: "Is your COPD worse than usual? For example, you are more short of breath than usual, or coughing up more phlegm (mucus)."
+  checklist_text: "COPD worse than usual: more short of breath, or more phlegm (mucus)"
+  kind: symptom
+  asked_only_if: has_copd
+  seriousness: serious
+  phrases: ["my COPD is flaring up", "chest is worse than usual"]
+  source: nhs_copd
+
+# ===========================================================================
+# Risk factors and history for lung conditions
+# ===========================================================================
+- id: smoker
+  label: "Smokes, or has smoked in the past"
+  question: "Do you smoke, or have you smoked in the past?"
+  kind: history
+  asked_only_if: age_16_or_over   # not asked about children
+  phrases: ["I smoke", "ex-smoker", "used to smoke", "I vape and used to smoke"]
+  source: nhs_copd
+
+- id: dust_or_fumes_exposure
+  label: "Has breathed in dust, fumes or chemicals for a long time"
+  question: "Have you spent a long time breathing in dust, fumes or chemicals? For example, at work with asbestos, or wood or metal dust."
+  kind: history
+  asked_only_if: age_16_or_over   # not asked about children
+  phrases: ["worked with asbestos", "dusty job", "fumes at work"]
+  source: nhs_copd
+
+- id: frequent_chest_infections
+  label: "Keeps getting chest infections, or one that is not getting better"
+  question: "Do you keep getting chest infections? Or do you have a chest infection that is not getting better?"
+  question_carer: "Does your child keep getting chest infections? Or do they have a chest infection that is not getting better?"
+  checklist_text: "Keep getting chest infections, or one that is not getting better"
+  kind: history
+  phrases: ["always getting chest infections", "chest infection won't clear"]
+  source: nhs_lung_cancer
+
+- id: weight_loss
+  label: "Losing weight without trying"
+  question: "Are you losing weight without trying?"
+  question_carer: "Is your child losing weight, or not gaining weight as they should?"
+  checklist_text: "Losing weight without trying"
+  kind: symptom
+  snomed: "422868009"
+  phrases: ["losing weight", "clothes are loose", "lost weight for no reason"]
+  source: nhs_cough
+
+- id: night_sweats
+  label: "Night sweats"
+  question: "Do you have night sweats, where you wake up very sweaty?"
+  checklist_text: "Night sweats"
+  kind: symptom
+  snomed: "42984000"
+  phrases: ["sweating at night", "soaked sheets", "night sweats"]
+  source: nhs_tuberculosis
+
+- id: finger_clubbing
+  label: "Fingertips wider or rounder, with nails curving over (clubbing)"
+  question: "Have your fingertips become wider or rounder, with the nails curving over them?"
+  kind: symptom
+  phrases: ["fingers have gone round at the ends", "nails curve over"]
+  source: nhs_pulmonary_fibrosis
+
+- id: tb_contact_or_travel
+  label: "Close contact with TB, or lived where TB is common"
+  question: "Have you spent a lot of time with someone who has TB (tuberculosis)? Or have you lived in a country where TB is common?"
+  question_carer: "Has your child spent a lot of time with someone who has TB (tuberculosis)? Or have they lived in a country where TB is common?"
+  kind: history
+  phrases: ["my flatmate had TB", "grew up abroad where TB is common"]
+  source: nhs_tuberculosis
+
+- id: hoarse_voice
+  label: "Hoarse voice"
+  question: "Is your voice hoarse or croaky?"
+  question_carer: "Is your child's voice hoarse or croaky?"
+  kind: symptom
+  snomed: "50219008"
+  phrases: ["lost my voice", "croaky voice", "hoarse"]
+  source: nhs_croup
+
+- id: long_term_condition
+  label: "Has a long-term health condition"
+  question: "Do you have a long-term health condition? For example, diabetes, or a heart, lung or kidney condition."
+  question_carer: "Does your child have a long-term health condition? For example, diabetes, or a heart, lung or kidney condition."
+  checklist_text: "A long-term health condition, such as diabetes, or a heart, lung or kidney condition"
+  kind: history
+  phrases: ["I'm diabetic", "I have a heart condition", "kidney problems"]
+  source: nhs_flu
+
+- id: contact_whooping_cough
+  label: "In contact with someone who has whooping cough"
+  question: "Have you been in contact with someone who has whooping cough?"
+  question_carer: "Has your child been in contact with someone who has whooping cough?"
+  kind: history
+  phrases: ["whooping cough at nursery", "my sister has whooping cough"]
+  source: nhs_whooping_cough
+
+# ===========================================================================
+# Cold, flu, sinus and allergy symptoms
+# ===========================================================================
+- id: blocked_or_runny_nose
+  label: "Blocked or runny nose"
+  question: "Do you have a blocked or runny nose?"
+  question_carer: "Does your child have a blocked or runny nose?"
+  kind: symptom
+  phrases: ["runny nose", "stuffy nose", "bunged up", "snotty"]
+  source: nhs_common_cold
+
+- id: aching_body
+  label: "Aching body"
+  question: "Does your body ache all over?"
+  question_carer: "Does your child's body ache all over?"
+  kind: symptom
+  snomed: "68962001"
+  phrases: ["aching all over", "everything hurts", "achy muscles"]
+  source: nhs_flu
+
+- id: loss_of_smell_or_taste
+  label: "Lost or changed sense of smell or taste"
+  question: "Have you lost your sense of smell or taste, or has it changed?"
+  kind: symptom
+  phrases: ["can't smell anything", "food tastes strange", "lost my taste"]
+  source: nhs_covid_19
+
+- id: itchy_watery_eyes_sneezing
+  label: "Itchy, watery eyes and sneezing"
+  question: "Do you have itchy, red or watery eyes, and are you sneezing a lot?"
+  question_carer: "Does your child have itchy, red or watery eyes, and are they sneezing a lot?"
+  kind: symptom
+  phrases: ["streaming eyes", "sneezing all the time", "itchy eyes"]
+  source: nhs_hay_fever
+
+- id: triggered_by_allergy
+  label: "Symptoms come on around pollen, dust, mould or animals"
+  question: "Do your symptoms come on around things you may be allergic to? For example, pollen, dust, mould or animals."
+  question_carer: "Do your child's symptoms come on around things they may be allergic to? For example, pollen, dust, mould or animals."
+  kind: symptom
+  phrases: ["worse in summer", "around cats", "when the pollen count is high"]
+  source: nhs_asthma
+
+- id: has_allergies
+  label: "Has eczema, hay fever or a food allergy"
+  question: "Do you have eczema, hay fever or a food allergy?"
+  question_carer: "Does your child have eczema, hay fever or a food allergy?"
+  kind: history
+  phrases: ["I have eczema", "I get hay fever", "allergic to nuts"]
+  source: nhs_asthma
+
+- id: face_pain_around_nose_and_eyes
+  label: "Pain or tenderness around the cheeks, eyes or forehead"
+  question: "Do you have pain, swelling or tenderness around your cheeks, eyes or forehead?"
+  question_carer: "Does your child have pain, swelling or tenderness around their cheeks, eyes or forehead?"
+  kind: symptom
+  snomed: "95668009"
+  phrases: ["sinus pain", "face hurts", "pressure behind my eyes"]
+  source: nhs_sinusitis
+
+- id: mucus_dripping_down_throat
+  label: "Phlegm dripping down the back of the throat from the nose"
+  question: "Can you feel phlegm (mucus) dripping down the back of your throat from your nose?"
+  kind: symptom
+  snomed: "162382001"
+  phrases: ["post-nasal drip", "something dripping down my throat", "always clearing my throat"]
+  source: nhs_cough
+
+# ===========================================================================
+# Feeling very unwell, and signs of a serious infection (sepsis)
+# ===========================================================================
+- id: feels_very_unwell
+  label: "Feels very unwell"
+  question: "Do you feel very unwell?"
+  question_carer: "Does your child seem very unwell, or not themselves?"
+  checklist_text: "Feeling very unwell"
+  kind: symptom
+  seriousness: serious
+  phrases: ["feel terrible", "really poorly", "not myself at all"]
+  source: nhs_cough
+
+- id: seriously_unwell_getting_worse
+  label: "Seems very unwell and getting worse, or feels something is seriously wrong"
+  question: "Do you seem very unwell and are getting worse? Or do you feel something is seriously wrong?"
+  question_carer: "Does your child seem very unwell and are they getting worse? Or do you feel something is seriously wrong?"
+  checklist_text: "Very unwell and getting worse, or you feel something is seriously wrong"
+  kind: symptom
+  parent: feels_very_unwell
+  relation: severity
+  seriousness: emergency
+  phrases: ["something is really wrong", "getting worse by the hour"]
+  source: nhs_covid_19
+
+- id: baby_high_temperature
+  label: "Baby with a high temperature for their age"
+  question: "Is the baby under 3 months old with a temperature of 38C or higher? Or 3 to 6 months old with a temperature of 39C or higher?"
+  question_carer: "Is your baby under 3 months old with a temperature of 38C or higher? Or 3 to 6 months old with a temperature of 39C or higher?"
+  checklist_text: "A baby under 3 months with a temperature of 38C or more, or 3 to 6 months with 39C or more"
+  kind: symptom
+  parent: very_high_temperature
+  relation: severity
+  seriousness: emergency
+  asked_only_if: age_under_1   # only asked about babies
+  phrases: ["baby has a temperature", "my newborn is hot"]
+  source: nhs_sepsis
+
+- id: skin_blotchy
+  label: "Blotchy or mottled skin"
+  question: "Is your skin blotchy or mottled? On brown or black skin, this may be easier to see on the palms of the hands or soles of the feet."
+  question_carer: "Is your child's skin blotchy or mottled? On brown or black skin, this may be easier to see on the palms of the hands or soles of the feet."
+  checklist_text: "Blotchy or mottled skin"
+  kind: symptom
+  seriousness: emergency
+  snomed: "406128001"
+  phrases: ["blotchy skin", "mottled", "patchy skin colour"]
+  source: nhs_sepsis
+
+- id: rash_does_not_fade
+  label: "Rash that does not fade when pressed"
+  question: "Do you have a rash that does not fade when you press a glass against it?"
+  question_carer: "Does your child have a rash that does not fade when you press a glass against it?"
+  checklist_text: "A rash that does not fade when you press a glass against it"
+  kind: symptom
+  parent: rash
+  relation: character
+  seriousness: emergency
+  snomed: "400991008"
+  phrases: ["rash doesn't fade", "spots that don't go under a glass"]
+  source: nhs_sepsis
+
+- id: not_peed_12_hours
+  label: "No pee for 12 hours or more"
+  question: "Have you not had a pee for 12 hours or more?"
+  question_carer: "Has your child not had a pee for 12 hours or more? For a baby, this means a dry nappy for 12 hours."
+  checklist_text: "No pee for 12 hours or more (for a baby, a dry nappy for 12 hours)"
+  kind: symptom
+  parent: dehydration_signs
+  relation: severity
+  seriousness: serious
+  phrases: ["dry nappy all day", "haven't been to the toilet all day"]
+  source: nhs_sepsis
+
+- id: had_a_fit
+  label: "Has had a seizure (fit)"
+  question: "Have you had a seizure (fit)?"
+  question_carer: "Has your child had a seizure (fit)?"
+  checklist_text: "A seizure (fit)"
+  kind: symptom
+  seriousness: emergency
+  snomed: "91175000"
+  phrases: ["had a fit", "shaking and jerking", "seizure"]
+  source: nhs_whooping_cough
+
+# ===========================================================================
+# Signs in babies and children
+# ===========================================================================
+- id: child_floppy_or_hard_to_wake
+  label: "Child limp, floppy, hard to wake or not responding as usual"
+  question: "Is the person who is unwell limp, floppy, much sleepier than usual or hard to wake? Or not responding like they usually do?"
+  question_carer: "Is your child limp, floppy, much sleepier than usual or hard to wake? Or not responding like they usually do? Their head may fall to the side, backwards or forwards."
+  checklist_text: "A child who is limp, floppy, hard to wake, or not responding like they usually do"
+  kind: symptom
+  seriousness: emergency
+  asked_only_if: age_under_16   # signs described for children
+  phrases: ["floppy", "won't wake up properly", "really drowsy", "not responding"]
+  source: nhs_shortness_of_breath
+
+- id: child_restless_cannot_be_calmed
+  label: "Child very upset or restless, struggling to breathe and cannot be calmed"
+  question: "Is the child very upset or restless, finding it hard to breathe, and cannot be calmed down?"
+  question_carer: "Is your child very upset or restless, finding it hard to breathe, and cannot be calmed down?"
+  checklist_text: "A child who is very upset or restless, finding it hard to breathe, and cannot be calmed"
+  kind: symptom
+  seriousness: emergency
+  asked_only_if: age_under_5   # a croup warning sign in young children
+  phrases: ["can't settle them", "really agitated and wheezy"]
+  source: nhs_croup
+
+- id: feeding_much_less
+  label: "Baby or young child feeding or eating much less than usual"
+  question: "Is the child feeding or eating much less than usual?"
+  question_carer: "Is your baby or child feeding or eating much less than usual?"
+  checklist_text: "A baby or young child feeding or eating much less than usual"
+  kind: symptom
+  seriousness: serious
+  asked_only_if: age_under_5   # a sign described for babies and young children
+  snomed: "299698007"
+  phrases: ["not taking their bottle", "won't feed", "off their milk"]
+  source: nhs_bronchiolitis
+
+- id: baby_premature_or_heart_lung_condition
+  label: "Young child born early, or with a heart or lung condition"
+  question: "Was the child born early (premature)? Or do they have a heart or lung condition, or a weak immune system that makes it harder to fight infection?"
+  question_carer: "Was your child born early (premature)? Or do they have a heart or lung condition, or a weak immune system that makes it harder to fight infection?"
+  kind: history
+  asked_only_if: age_under_5   # a sign described for babies and young children
+  phrases: ["born early", "premature baby", "heart problem since birth"]
+  source: nhs_bronchiolitis
+
+# ===========================================================================
+# Severe allergic reaction (anaphylaxis)
+# ===========================================================================
+- id: lips_tongue_throat_swelling
+  label: "Lips, mouth, tongue or throat suddenly swollen"
+  question: "Have your lips, mouth, tongue or throat suddenly become swollen?"
+  question_carer: "Have your child's lips, mouth, tongue or throat suddenly become swollen?"
+  checklist_text: "Lips, mouth, tongue or throat suddenly swollen"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["lips swelling up", "tongue feels big", "face swelling"]
+  source: nhs_anaphylaxis
+
+- id: throat_tight
+  label: "Throat feels tight"
+  question: "Does your throat feel tight or closed up?"
+  question_carer: "Does your child say their throat feels tight or closed up?"
+  checklist_text: "Throat feels tight or closed up"
+  kind: symptom
+  seriousness: emergency_ambulance
+  snomed: "247323005"
+  phrases: ["throat closing up", "tight throat"]
+  source: nhs_anaphylaxis
+
+- id: after_allergy_trigger
+  label: "Started soon after a food, medicine or insect sting"
+  question: "Did this start soon after eating a food, taking a medicine or being stung by an insect?"
+  question_carer: "Did your child's symptoms start soon after eating a food, taking a medicine or being stung by an insect?"
+  checklist_text: "Started soon after eating a food, taking a medicine or being stung by an insect"
+  kind: history
+  phrases: ["after eating nuts", "after a wasp sting", "after taking antibiotics"]
+  source: nhs_anaphylaxis
+
+- id: raised_itchy_rash
+  label: "Raised, itchy or swollen rash (hives)"
+  question: "Do you have a raised, itchy or swollen rash?"
+  question_carer: "Does your child have a raised, itchy or swollen rash?"
+  kind: presenting   # also the main symptom for the hives entry symptom (skin and hair)
+  snomed: "126485001"
+  phrases: ["hives", "itchy bumps", "nettle rash"]
+  source: nhs_anaphylaxis
+
+# ===========================================================================
+# Added with the breathing condition cards (gaps found by test-case authors)
+# ===========================================================================
+- id: asthma_attack_recovered
+  label: "Had an asthma attack recently that has now settled"
+  question: "Have you had an asthma attack in the last few days that has now settled? This is when your symptoms were severe and it was hard to breathe."
+  question_carer: "Has your child had an asthma attack in the last few days that has now settled? This is when their symptoms were severe and it was hard to breathe."
+  checklist_text: "An asthma attack in the last few days that has now settled"
+  kind: history
+  asked_only_if: has_asthma
+  phrases: ["had an asthma attack yesterday", "my attack has calmed down", "I'm better now after my inhaler"]
+  source: nhs_asthma
+
+- id: sob_more_than_usual
+  label: "More short of breath than usual, with a long-term lung or heart condition"
+  question: "Do you have a long-term lung condition or heart condition, such as COPD, asthma, bronchiectasis or heart failure? And are you more short of breath than you usually are?"
+  question_carer: "Does your child have a long-term lung or heart condition? And are they more short of breath than they usually are?"
+  checklist_text: "A long-term lung or heart condition, and more short of breath than usual"
+  kind: symptom
+  parent: short_of_breath
+  relation: severity
+  seriousness: serious
+  phrases: ["more breathless than normal", "my chest is worse than usual", "can't walk as far as I usually can"]
+  source: nhs_bronchiectasis
+
+- id: has_bronchiectasis
+  label: "Diagnosed with bronchiectasis"
+  question: "Has a doctor told you that you have bronchiectasis? This is a long-term condition where the airways in the lungs are damaged and make a lot of phlegm (mucus)."
+  question_carer: "Has a doctor told you that your child has bronchiectasis? This is a long-term condition where the airways in the lungs are damaged and make a lot of phlegm (mucus)."
+  kind: history
+  snomed: "939431000000108"
+  phrases: ["I have bronchiectasis", "damaged airways"]
+  source: nhs_bronchiectasis
+
+- id: cold_or_shivery
+  label: "Feels cold to the touch, or shivery"
+  question: "Do you feel cold to the touch, or are you shivering or shivery? This can happen even without a high temperature."
+  question_carer: "Does the person feel cold to the touch, or are they shivering or shivery? This can happen even without a high temperature."
+  checklist_text: "Feeling cold to the touch, or shivery"
+  kind: symptom
+  parent: very_high_temperature
+  relation: character
+  phrases: ["can't stop shivering", "feel freezing", "cold to touch", "shaking with cold"]
+  source: nhs_sepsis
+
+- id: symptoms_worse_or_not_better
+  label: "Symptoms getting worse, or not getting better after about a week"
+  question: "Are your symptoms getting worse? Or have they not started to get better after about a week?"
+  question_carer: "Are your child's symptoms getting worse? Or have they not started to get better after about a week?"
+  checklist_text: "Symptoms getting worse, or not getting better after about a week"
+  kind: symptom
+  phrases: ["getting worse", "not getting any better", "still ill after a week"]
+  source: nhs_covid_19
+
+- id: tested_positive_covid
+  label: "Tested positive for COVID-19"
+  question: "Have you done a COVID-19 test that was positive in the last few days?"
+  question_carer: "Has your child done a COVID-19 test that was positive in the last few days?"
+  kind: history
+  phrases: ["positive lateral flow", "tested positive for COVID", "I've got COVID"]
+  source: nhs_covid_19
+
+- id: tested_positive_flu
+  label: "Tested positive for flu"
+  question: "Have you had a test for flu that was positive in the last few days?"
+  question_carer: "Has your child had a test for flu that was positive in the last few days?"
+  kind: history
+  phrases: ["flu test was positive", "the doctor said it's flu", "I've got flu"]
+  source: nhs_flu
+
+- id: child_wants_to_sit_up
+  label: "Child wants to sit up rather than lie down"
+  question: "Does the child want to sit up rather than lie down, because it is easier to breathe?"
+  question_carer: "Does your child want to sit up rather than lie down, because it is easier for them to breathe?"
+  checklist_text: "A child who wants to sit up rather than lie down"
+  kind: symptom
+  asked_only_if: age_under_16   # a croup warning sign described for children
+  phrases: ["won't lie down", "only comfortable sitting up", "leaning forward to breathe"]
+  source: nhs_croup
+
+- id: breathing_slow_or_irregular
+  label: "Breathing slowly or unevenly"
+  question: "Is the person breathing very slowly, or with long gaps between breaths?"
+  checklist_text: "Breathing very slowly, or with long gaps between breaths"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["barely breathing", "snoring and won't wake"]
+  source: nhs_alcohol_poisoning

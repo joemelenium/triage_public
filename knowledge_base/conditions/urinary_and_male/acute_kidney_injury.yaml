@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: acute_kidney_injury
+body_system: urinary_and_male
+entry_symptoms: [cannot_pee]
+name: "Kidneys suddenly not working well (kidney injury)"
+medical_name: "Acute kidney injury"
+snomed: "14669001"
+# The page asks for an urgent GP appointment or 111. Danger serious. A candidate
+# when someone cannot pee because little pee is being made, not because the
+# bladder is full.
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+findings:
+  not_making_much_pee: strongly_supports
+  nausea_or_vomiting: supports
+  swollen_ankles: supports
+  feels_very_unwell: supports
+  dehydration_signs: supports
+key_findings: [not_making_much_pee, nausea_or_vomiting, swollen_ankles, feels_very_unwell]
+source: nhs_acute_kidney_injury
+informed_by: [nhs_acute_kidney_injury]

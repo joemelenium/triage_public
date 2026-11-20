@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: osteomyelitis
+body_system: bones_joints_muscles
+# In young children it may only show as not wanting to use an arm or leg.
+entry_symptoms: [limp, arm_pain, knee_pain, foot_pain]
+name: "Osteomyelitis (an infection in a bone)"
+medical_name: "Osteomyelitis"
+snomed: "60168000"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: has_diabetes, prevalence: uncommon}
+  - {finding: weakened_immune_system, prevalence: uncommon}
+findings:
+  very_high_temperature: strongly_supports
+  swollen_area_red_hot: supports
+  red_or_discoloured_skin: supports
+  feels_very_unwell: supports
+  pain_worse_at_night_or_rest: supports
+  child_not_using_arm: supports
+  cannot_bear_weight: supports
+key_findings: [very_high_temperature, swollen_area_red_hot, feels_very_unwell]
+source: nhs_osteomyelitis
+informed_by: [nhs_osteomyelitis]

@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stress_incontinence
+body_system: urinary_and_male
+entry_symptoms: [urinary_incontinence]
+name: "Leaking pee when coughing, sneezing or exercising (stress incontinence)"
+medical_name: "Stress incontinence of urine"
+snomed: "22220005"
+acuity_needed: routine
+danger: minor
+prevalence: very_common
+prevalence_when:
+  - {finding: sex_male, prevalence: uncommon}
+findings:
+  leaks_when_coughing_or_laughing: strongly_supports
+  peeing_problem_for_months: supports
+  has_given_birth: supports
+key_findings: [leaks_when_coughing_or_laughing, peeing_problem_for_months]
+source: nhs_urinary_incontinence_symptoms
+informed_by: [nhs_urinary_incontinence_symptoms, nhs_urinary_incontinence]

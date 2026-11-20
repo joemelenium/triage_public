@@ -1,0 +1,48 @@
+id: st_d24
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "An 11-year-old girl with a sore throat since yesterday, swollen glands, a headache and tiredness, and no cough or runny nose. She is eating and drinking, is not hot or shivery, and her mother has seen no spots on her tonsils. Her mother says this is her fifth throat infection since last autumn, each costing a few days of school. She would like something to ease it and asks whether this many is normal."
+
+opening_statement: "My daughter's eleven and she's got another sore throat, with her glands up and a headache. That's the fifth one since last autumn. What can I give her, and is it normal to get this many?"
+
+findings:
+  present: [sore_throat, frequent_sore_throats, swollen_neck_glands, very_tired,
+      wants_help_with_sore_throat]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, weakened_immune_system, pus_on_tonsils,
+      too_painful_to_eat_or_drink, worried_about_symptoms, sore_throat_over_a_week,
+      lump_in_mouth_or_neck, mouth_ulcer_over_3_weeks, cough_or_runny_nose, stroke_signs,
+      severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+      heavy_bleeding, serious_self_harm, chest_pain, short_of_breath, cold_or_shivery]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 11, sex: female}
+  full: {age: 11, sex: female}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP about the repeated sore throats"
+    any_of: ["GP"]
+  - point: "When to get urgent or emergency help, such as difficulty breathing, being unable to swallow, drooling or a very high temperature"
+    any_of: ["999", "A&E", "111"]
+
+source:
+  expected_outcome: {page: tonsillitis.txt, quote: "you keep getting throat infections"}
+  minimum_safe_acuity: {page: sore_throat.txt, quote: "you often get a sore throat"}
+
+atypical: false
+notes: "The course over months is the point. Both pages advise a GP for repeated episodes (tonsillitis.txt 'you keep getting throat infections'; sore_throat.txt 'you often get a sore throat'), and tonsillitis.txt adds that removing the tonsils is 'usually only done if you have severe tonsillitis that keeps coming back'. For this episode alone, a child aged 5 or over who needs help would see a pharmacist; the GP criterion should take priority, and pharmacy or self-care advice alone would fall short. Nothing in this episode meets an urgent or emergency criterion. Neither page says how many sore throats count as often. Headache cannot be expressed with the question list."

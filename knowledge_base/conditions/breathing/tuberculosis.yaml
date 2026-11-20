@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tuberculosis
+body_system: breathing
+entry_symptoms: [cough, coughing_up_blood, weight_loss, night_sweats]
+name: "Tuberculosis (TB), an infection that usually affects the lungs"
+medical_name: "Pulmonary tuberculosis"
+snomed: "154283005"
+# The TB page says to see a GP (non-urgent) for its symptoms, and an urgent
+# appointment for coughing up blood, which the rules handle. Danger serious: it
+# spreads to others and can be serious if not treated.
+acuity_needed: routine
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: weakened_immune_system, prevalence: uncommon}
+  - {finding: tb_contact_or_travel, prevalence: uncommon}
+  - {finding: cough_3_weeks_or_more, prevalence: rare}
+  - {finding: coughing_up_blood, prevalence: rare}
+findings:
+  # What tells it apart from a chest infection: it builds up over weeks, with
+  # night sweats, weight loss, and contact with TB.
+  cough_3_weeks_or_more: strongly_supports
+  night_sweats: strongly_supports
+  tb_contact_or_travel: strongly_supports    # most people with TB in the UK have one of these; a "no" counts against it
+  weight_loss: supports
+  very_tired: supports
+  very_high_temperature: supports
+  coughing_up_blood: supports
+key_findings: [cough_3_weeks_or_more, night_sweats, weight_loss, tb_contact_or_travel]
+source: nhs_tuberculosis
+informed_by: [nhs_tuberculosis, nhs_cough]

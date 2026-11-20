@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: harmless_twitching
+body_system: brain_and_nerves
+entry_symptoms: [twitching, eyelid_problem]
+name: "Harmless twitching, often from stress, tiredness or caffeine"
+medical_name: "Benign fasciculation"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+prevalence_when:
+  - {finding: twitching, prevalence: very_common}
+  - {finding: eyelid_problem, prevalence: uncommon}
+findings:
+  # Most twitches, especially of the eyelid. They usually stop within days or weeks.
+  twitch_eyelid: strongly_supports
+  lots_of_caffeine_or_alcohol: supports
+  stressful_time: supports
+  very_tired: supports
+  not_enough_sleep: supports
+  # From the eyes card for this condition (merged):
+  long_screen_time: supports
+  dry_eyes: supports
+key_findings: [twitch_eyelid, lots_of_caffeine_or_alcohol, stressful_time]
+source: nhs_twitching_eyes_and_muscles
+informed_by: [nhs_twitching_eyes_and_muscles, nhs_eyelid_problems]
+# Merged with the eyes card for this condition. Its notes: A harmless flicker of the
+# eyelid muscle, often with tiredness, stress or caffeine.

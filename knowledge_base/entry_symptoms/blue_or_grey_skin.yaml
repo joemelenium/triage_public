@@ -1,0 +1,106 @@
+# Entry symptom: blue or grey skin or lips (cyanosis).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Blue or grey lips, tongue or face mean too little oxygen: an emergency. Blue
+# fingers and toes alone are usually a circulation problem: urgent. The NHS page
+# says get medical help immediately for any of it, so the default is urgent.
+#
+# KNOWN GAP: the universal red flag "lips or skin pale, blue or grey" is asked
+# in every session and sends an ambulance. Someone with only blue fingers may
+# tick it, and then the finer rules here are never reached. Changing the
+# universal question is outside this batch.
+
+id: blue_or_grey_skin
+name: "Blue or grey skin or lips"
+presenting_finding: blue_or_grey_skin
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: blue_skin_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - blue_lips_tongue_or_face
+      - difficulty_breathing
+      - chest_pain
+      - light_headed
+      - limb_cold_pale_painful
+      - child_floppy_or_hard_to_wake
+
+  - id: blue_skin_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - blue_fingers_or_toes_only
+      - very_high_temperature
+      - short_of_breath
+
+red_flags:
+  - id: rf_cy_lips_or_face
+    description: "Blue or grey colour on the lips, tongue or face that came on suddenly"
+    when: blue_lips_tongue_or_face
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_cyanosis_999
+    source: nhs_blue_skin_or_lips_cyanosis
+
+  - id: rf_cy_breathing_or_chest
+    description: "Blue or grey skin with difficulty breathing or chest pain"
+    when: {any: [difficulty_breathing, chest_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_cyanosis_999
+    source: nhs_blue_skin_or_lips_cyanosis
+
+  - id: rf_cy_dizzy
+    description: "Blue or grey skin and feeling dizzy or confused"
+    when: light_headed
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_cyanosis_999
+    source: nhs_blue_skin_or_lips_cyanosis
+    note: "Confusion is caught in every session by the universal red flag."
+
+  - id: rf_cy_cold_painful_limb
+    description: "An arm or leg suddenly cold, pale or blue, and painful or numb: possible blood clot blocking its blood supply"
+    when: limb_cold_pale_painful
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_cyanosis_999
+    source: ai_judgement
+    note: "Clinical knowledge: a limb that suddenly loses its blood supply needs surgery within hours. The Cyanosis page names a blood clot that stops the blood supply to a limb as a cause, without its own action."
+
+  - id: rf_cy_child_floppy
+    description: "A child with blue or grey skin who is floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_cyanosis_999
+    source: nhs_baby_seriously_ill
+
+  - id: rf_cy_breathless
+    description: "Blue or grey skin and short of breath"
+    when: short_of_breath
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_cyanosis_999
+    source: nhs_blue_skin_or_lips_cyanosis
+    note: "The page says call 999 for blue or grey skin with difficulty breathing. Mild breathlessness with cold, blue fingers is less clear, so 999 or A&E is used."
+
+  - id: rf_cy_fingers_toes
+    description: "Fingers, toes, hands or feet blue or grey: possible circulation problem"
+    when: blue_fingers_or_toes_only
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_cyanosis_urgent
+    source: nhs_blue_skin_or_lips_cyanosis
+    soft: true    # likely conditions may lower this: known Raynaud's in the cold is usually harmless
+    note: "Soft, so that a typical attack of Raynaud's (fingers white then blue in the cold, then red as they warm up) can be lowered to a routine GP appointment."
+
+outcome_rules:
+  - id: or_cy_raynauds_pattern
+    description: "Fingers or toes turn white or blue in the cold, then red as they warm up"
+    when: blue_white_in_cold
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_raynauds_gp
+    source: nhs_raynauds
+
+default:
+  description: "Blue or grey skin: get medical help"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+  advice: advice_cyanosis_urgent
+  source: nhs_blue_skin_or_lips_cyanosis
+  note: "The page says get medical help immediately for symptoms of cyanosis. Soft, so that a typical Raynaud's attack can be lowered."

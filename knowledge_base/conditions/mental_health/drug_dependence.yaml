@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: drug_dependence
+body_system: mental_health
+# The SNOMED CT concept "Drug dependence" is no longer active, so no code is given.
+entry_symptoms: [alcohol_or_drug_problem]
+name: "Drug dependence (finding it hard to control drug use)"
+medical_name: "Drug dependence"
+acuity_needed: routine
+danger: moderate
+prevalence: common
+findings:
+  regular_drug_use: strongly_supports
+  cannot_cut_down: strongly_supports
+  recent_drug_use: supports
+  low_mood: supports
+  feeling_anxious: supports
+key_findings: [regular_drug_use, cannot_cut_down, recent_drug_use]
+source: nhs_drug_addiction
+informed_by: [nhs_drug_addiction]

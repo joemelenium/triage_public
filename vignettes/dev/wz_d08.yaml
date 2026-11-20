@@ -1,0 +1,48 @@
+id: wz_d08
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing, cough]
+
+summary: "A 3-year-old boy (his mother answering) who has had a cold for two days. Tonight he has a cough that sounds like a seal barking, a hoarse voice and a noisy, high-pitched sound when he breathes in, especially when he cries. His mother calls the noise 'wheezing'. Between coughs he is settled, playing, and not struggling to breathe."
+
+opening_statement: "My son's got a horrible cough tonight, it sounds like a seal, and he's wheezing when he breathes in."
+
+findings:
+  present: [wheezing, stridor, cough, cough_barking, hoarse_voice, blocked_or_runny_nose, recent_viral_illness, very_high_temperature]
+  absent: [child_struggling_to_breathe, difficulty_breathing, short_of_breath, breathing_very_fast, lips_or_skin_blue_grey, skin_blotchy, child_floppy_or_hard_to_wake, child_restless_cannot_be_calmed, drooling, unable_to_swallow, sore_throat, pauses_in_breathing, choked_on_something, lips_tongue_throat_swelling, after_allergy_trigger, has_asthma, rash_does_not_fade, had_a_fit, cough_whoop, feeding_much_less, baby_premature_or_heart_lung_condition, child_wants_to_sit_up]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 3, sex: male}
+  full:
+    age: 3
+    sex: male
+    findings: {has_asthma: "no"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or call NHS 111 (he may need medicine for croup)"
+    any_of: ["111", "GP"]
+  - point: "Keep him upright and calm; no steam"
+    any_of: ["upright", "calm", "steam"]
+  - point: "Call 999 if struggling to breathe, blue or grey lips, very sleepy, drooling, or restless and cannot be calmed"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: croup.txt, quote: "you think your child may have croup – the doctor may give your child medicine to shorten the illness"}
+  minimum_safe_acuity: {page: croup.txt, quote: "it's important to call NHS 111 or see a GP if you think your child has croup"}
+
+variants: []
+
+atypical: false
+notes: "Croup, presented by the parent as 'wheezing' (the noise is actually on breathing in). croup.txt lists 'a high pitched, rasping sound when breathing in' as a croup symptom with urgent advice, and gives 999 only if the child is struggling to breathe or has other danger signs. SOURCE DIFFERENCE: sore_throat.txt gives 999 for 'are making a high-pitched sound as you breathe (called stridor)'; that page is about a sore throat, which he does not have. Judgement: urgent, following croup.txt, the page written for this illness. An engine giving emergency because of the stridor finding is over-cautious but defensible. very_high_temperature is answered yes (mild temperature, feels hot)."

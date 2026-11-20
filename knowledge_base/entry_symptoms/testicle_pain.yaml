@@ -1,0 +1,122 @@
+# Entry symptom: testicle pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Must not miss: a twisted testicle (testicular torsion), a trapped hernia, and a
+# severe spreading infection of the genitals.
+
+id: testicle_pain
+name: "Testicle pain"
+presenting_finding: testicle_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: testicle_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - testicle_pain_sudden_severe
+      - testicle_pain_over_an_hour
+      - nausea_or_vomiting
+      - stomach_ache
+      - lump_painful_and_firm
+      - genital_skin_dark_or_spreading
+
+  - id: testicle_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - testicle_lump_or_swelling
+      - testicle_changed_size_or_shape
+      - scrotum_red_hot_swollen
+      - very_high_temperature
+      - testicle_injury
+      - loin_pain_severe_in_waves
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_tp_sudden_severe
+    description: "Sudden, severe pain in a testicle: possible twisted testicle"
+    when: testicle_pain_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E immediately or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_pain
+    note: "The Testicle lumps and Epididymitis pages give the same advice."
+
+  - id: rf_tp_with_sickness_or_tummy_pain
+    description: "Testicle pain with feeling sick, being sick, or pain in the tummy"
+    when: {any: [nausea_or_vomiting, stomach_ache]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E immediately or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_pain
+
+  - id: rf_tp_over_an_hour
+    description: "Testicle pain that has lasted more than an hour, or carries on when resting"
+    when: testicle_pain_over_an_hour
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E immediately or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_pain
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "Taken from the page. Read literally, it sends anyone with pain lasting more than an hour to A&E, including an infection that has built up over days. Marked soft, so that pain that came on slowly with signs of infection can be lowered to urgent. A twisted testicle stays possible, and keeps the outcome high, unless the answers point away from it. Needs clinical review."
+
+  - id: rf_tp_hernia_stuck
+    description: "A groin bulge that is painful and firm, and cannot be pushed back: possible trapped hernia"
+    when: lump_painful_and_firm
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_hernia_ae
+    source: ai_judgement
+    note: "Source difference: the Hernia page says get help from 111 for pain in a hernia. Clinical knowledge: a hernia that is trapped and painful may have lost its blood supply and needs surgery within hours. The more urgent is used. Needs clinical review."
+
+  - id: rf_tp_skin_dark_spreading
+    description: "Skin around the genitals turning dark, or pain and swelling spreading fast: possible Fournier's gangrene"
+    when: genital_skin_dark_or_spreading
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_genital_infection_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a rare, fast-spreading infection of the skin of the genitals that is life-threatening. No NHS page in the source log covers it."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_tp_lump_or_change
+    description: "Testicle pain with a lump, swelling, or a change in size, shape or feel"
+    when: {any: [testicle_lump_or_swelling, testicle_changed_size_or_shape]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_testicle_urgent
+    source: nhs_testicle_pain
+    note: "Source difference: the Testicle lumps page says see a GP (non-urgent) for these. The Testicle pain page, which applies here because there is pain, says urgent."
+
+  - id: rf_tp_red_hot_or_temperature
+    description: "Testicle pain with a red, warm, swollen scrotum, or a high temperature: possible infection"
+    when: {any: [scrotum_red_hot_swollen, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_testicle_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: these are signs of epididymitis, which needs antibiotics. The Epididymitis page describes them and says see a GP; same-day help is AI judgement."
+
+  - id: rf_tp_injury
+    description: "Testicle pain after an injury"
+    when: testicle_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_testicle_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: an injured testicle can bleed inside or burst. Severe pain after an injury is caught by the emergency rule for sudden, severe pain."
+
+  - id: rf_tp_kidney_stone_pain
+    description: "Severe pain in the side or back that comes in waves and spreads to the testicle: possible kidney stone"
+    when: loin_pain_severe_in_waves
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_kidney_pain_urgent
+    source: nhs_kidney_stones
+
+outcome_rules: []
+
+default:
+  description: "Aching or discomfort in the testicles: get help today"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+  advice: advice_testicle_urgent
+  source: nhs_testicle_pain
+  note: "The page asks for an urgent GP appointment or 111 for aching or discomfort that you are worried about. Using it for everyone with testicle pain is a reading of that: someone using a triage tool is likely to be worried. Not a floor, so a likely harmless cause such as swollen veins can lower it."

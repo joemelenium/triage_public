@@ -1,0 +1,70 @@
+id: cp_h18
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [chest_pain]
+
+summary: "A 34-year-old woman on the combined pill flew back from a long-haul trip ten days ago and has had an aching, swollen calf since. This morning she got sudden breathlessness and a sharp right-sided chest pain that is worse when she breathes in, with her heart racing."
+
+opening_statement: "I've got a sharp pain on the right side of my chest when I breathe in, and I suddenly got really out of breath this morning. My heart's going like the clappers."
+
+findings:
+  present: [chest_pain, cp_sharp_or_stabbing, cp_worse_breathing_in, cp_present_now, cp_sudden_not_going_away, short_of_breath, sob_sudden, heart_beating_very_fast, palpitations, leg_pain_or_swelling, recent_long_journey, pill_or_hrt, cp_lasted_15_minutes, palpitations_came_with_symptoms]
+  absent: [coughing_up_blood, cough, cough_mucus_or_temperature, very_high_temperature, cp_after_injury_or_exercise, cp_tender_to_press, cp_spreads, cp_tight_or_squeezing, cp_heavy, cp_better_leaning_forward, upper_back_pain, sweating, nausea_or_vomiting, fainted, passed_out, previous_blood_clot, pregnant_or_recently_given_birth, recent_surgery_or_immobile, has_cancer, heart_risk_factors, family_heart_history, recent_viral_illness, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, has_anxiety_or_panic, feeling_of_panic, palpitations_irregular]
+  unknown: [light_headed]
+
+context:
+  none: {}
+  basic: {age: 34, sex: female}
+  full:
+    age: 34
+    sex: female
+    findings: {pill_or_hrt: "yes"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Breathlessness that came on suddenly"
+    findings: [sob_sudden]
+    minimum_acuity: emergency
+    source: {page: pulmonary_embolism.txt, quote: "you have difficulty breathing which comes on suddenly"}
+  - description: "Heart beating very fast"
+    findings: [heart_beating_very_fast]
+    minimum_acuity: emergency
+    source: {page: pulmonary_embolism.txt, quote: "your heart is beating very fast"}
+  - description: "Chest pain with shortness of breath"
+    findings: [chest_pain, short_of_breath]
+    minimum_acuity: emergency
+    source: {page: chest_pain.txt, quote: "you have chest pain and you feel sweaty, sick, light headed or short of breath"}
+  - description: "Pain and swelling in one leg (possible clot)"
+    findings: [leg_pain_or_swelling]
+    minimum_acuity: urgent
+    source: {page: shortness_of_breath.txt, quote: "you have pain or swelling in 1 of your legs"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now"
+    any_of: ["999", "A&E"]
+  - point: "Do not drive to A&E"
+    any_of: ["do not drive", "don't drive"]
+
+source:
+  expected_outcome: {page: pulmonary_embolism.txt, quote: "you have difficulty breathing which comes on suddenly"}
+  minimum_safe_acuity: {page: pulmonary_embolism.txt, quote: "It can be life-threatening if not treated quickly."}
+
+variants:
+  - id: cp_h18_v1
+    style: "chatty, volunteers the background up front"
+    opening_statement: "So I got back from Sydney last week, and my calf's been achy and puffy since, and I'm on the pill if that matters. Then this morning I suddenly couldn't catch my breath and I've got a stabbing pain in my chest."
+    volunteered: [recent_long_journey, leg_pain_or_swelling, pill_or_hrt, sob_sudden, chest_pain]
+  - id: cp_h18_v2
+    style: "downplays it"
+    opening_statement: "It's probably just a stitch. It catches on the right when I breathe in and I'm a bit puffed."
+    volunteered: [cp_worse_breathing_in, short_of_breath]
+
+atypical: false
+notes: "Pleurisy and pericarditis pages put sharp pain worse on breathing in at urgent (GP or 111), but here the sudden breathlessness and very fast heartbeat meet the 999 or A&E list on pulmonary_embolism.txt, so emergency is expected. Level chosen as ambulance because the page says not to drive and to call 999 and ask for an ambulance if no one can drive; going to A&E with a driver would also fit the page."

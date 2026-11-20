@@ -1,0 +1,175 @@
+# Entry symptom: neck pain or a stiff neck.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# Must-not-miss causes: meningitis (stiff neck with a high temperature or a very
+# bad headache), pressure on the spinal cord in the neck, a broken neck after a
+# serious accident, bleeding on the brain or a tear in a neck artery (sudden,
+# very bad headache), a heart attack felt in the neck or jaw, and inflamed
+# blood vessels in the head (giant cell arteritis) in older people.
+
+id: neck_pain
+name: "Neck pain"
+presenting_finding: neck_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: neck_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply to you right now? Choose all that apply."
+    findings:
+      - stiff_neck
+      - very_painful_headache
+      - bothered_by_light
+      - rash_does_not_fade
+      - headache_sudden_severe
+      - new_problems_walking
+      - bladder_bowel_change
+      - serious_accident
+      - chest_pain
+
+  - id: neck_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - arm_weakness
+      - leg_weakness
+      - arm_hand_tingling
+      - electric_shock_feeling
+      - severe_pain
+      - pain_getting_worse_quickly
+      - jaw_pain_or_scalp_tender
+      - vision_change
+      - very_high_temperature
+      - upper_back_pain
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_neck_meningitis_signs
+    description: "Stiff neck with a high temperature, a very painful headache, or finding it hard to look at bright lights"
+    when: {all: [stiff_neck, {any: [very_high_temperature, very_painful_headache, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+    note: "Possible meningitis. Neck pain is one of the entry symptoms on the meningitis card."
+
+  - id: rf_neck_rash
+    description: "Neck pain or stiffness with a rash that does not fade when a glass is pressed on it"
+    when: rash_does_not_fade
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_meningitis_emergency
+    source: nhs_meningitis
+    note: "The Meningitis page says call 999 or go to A&E. The Sepsis page says call 999 for a rash that does not fade. The more urgent is used."
+
+  - id: rf_neck_sudden_headache
+    description: "Neck pain with a sudden, very bad headache"
+    when: headache_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_neck_pain_999
+    source: ai_judgement
+    note: "Could be bleeding on the brain or a tear in an artery in the neck. AI judgement, needs clinical review. The brain and nerves body system will hold the headache rules."
+
+  - id: rf_neck_spinal_cord
+    description: "Neck pain with new problems walking or with balance, sudden clumsiness, or loss of bladder or bowel control"
+    when: {any: [new_problems_walking, bladder_bowel_change]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_neck_pain_999
+    source: nhs_cervical_spondylosis
+    note: "Signs of pressure on the spinal cord in the neck."
+
+  - id: rf_neck_serious_accident
+    description: "Neck pain after a serious accident, such as a car crash or a fall from a height"
+    when: serious_accident
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999. Keep still and do not move your neck."}
+    advice: advice_spinal_injury_emergency
+    source: nhs_falls
+    note: "The Falls page says call 999 if someone has fallen and may have injured their head, back or neck. Applying it to any serious accident is AI judgement."
+
+  - id: rf_neck_chest_pain
+    description: "Neck or jaw pain with chest pain"
+    when: chest_pain
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_chest_pain_999
+    source: nhs_heart_attack
+    note: "Heart attack pain can spread to the neck and jaw. A yes to chest pain also brings in the chest pain entry symptom."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_neck_weakness
+    description: "Neck pain with weakness or heaviness in the arms or legs"
+    when: {any: [arm_weakness, leg_weakness]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_neck_pain_urgent
+    source: nhs_cervical_spondylosis
+
+  - id: rf_neck_injury_nerve_signs
+    description: "Neck injury with an electric shock feeling, or severe pain despite painkillers"
+    when: {any: [electric_shock_feeling, {all: [injury_or_fall, severe_pain]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_neck_pain_urgent
+    source: nhs_whiplash
+    note: "Could be damage to the nerves in the neck. Do not drive or cycle until checked."
+
+  - id: rf_neck_severe_sudden_or_worsening
+    description: "Severe neck pain that started suddenly, or neck pain getting worse quickly"
+    when: {any: [{all: [severe_pain, pain_started_suddenly]}, pain_getting_worse_quickly]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_neck_pain_urgent
+    source: nhs_cervical_spondylosis
+
+  - id: rf_neck_arm_tingling
+    description: "Neck pain with pins and needles or numbness in an arm or hand"
+    when: arm_hand_tingling
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_neck_pain_urgent
+    source: nhs_cervical_spondylosis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Cervical spondylosis page says urgent GP or 111 for pins and needles in an arm with neck pain. The Neck pain page says see a GP. The more urgent is used, marked soft so a likely trapped nerve can lower it."
+
+  - id: rf_neck_between_shoulder_blades
+    description: "Neck pain with pain between the shoulder blades"
+    when: upper_back_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_neck_pain_urgent
+    source: nhs_cervical_spondylosis
+    soft: true    # likely conditions may lower this: muscle strain often spreads there
+    note: "The Back pain page gives see a GP for pain between the shoulders. Marked soft: AI judgement, needs clinical review."
+
+  - id: rf_neck_giant_cell_arteritis
+    description: "Neck or shoulder pain with a new headache, a tender scalp, jaw pain when eating or problems with sight"
+    when: {any: [jaw_pain_or_scalp_tender, vision_change, headache_unlike_usual]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact a GP now, or get help from NHS 111"}
+    advice: advice_giant_cell_arteritis_urgent
+    source: nhs_polymyalgia_rheumatica
+    note: "Signs of inflamed blood vessels in the head (giant cell arteritis), which can cause blindness or a stroke if not treated quickly."
+
+  - id: rf_neck_temperature
+    description: "Neck pain with a high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_neck_pain_urgent
+    source: ai_judgement
+    note: "Could be an infection in the neck or spine. Meningitis signs are caught by the emergency rule. AI judgement, needs clinical review."
+
+outcome_rules:
+  - id: or_neck_gp
+    description: "Neck pain that has not gone away after a few weeks, or painkillers have not worked"
+    when: {any: [pain_not_improving, painkillers_not_helping]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_neck_pain_gp
+    source: nhs_neck_pain_and_stiff_neck
+    note: "Firm: the page says see a GP for these whatever the cause. Split from the worried rule below."
+
+  - id: or_neck_worried
+    description: "Worried about neck pain"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_neck_pain_gp
+    source: nhs_neck_pain_and_stiff_neck
+    soft: true    # likely conditions may lower this: being worried is not itself a sign of illness
+
+default:
+  description: "Neck pain with nothing that needs more help: it usually gets better within a few weeks"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most neck pain gets better within a few weeks"}
+  advice: advice_neck_pain_self_care
+  source: nhs_neck_pain_and_stiff_neck

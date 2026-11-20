@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: whiplash
+body_system: bones_joints_muscles
+entry_symptoms: [neck_pain]
+name: "Whiplash (a neck injury from the head being jolted)"
+medical_name: "Whiplash injury"
+snomed: "39848009"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  head_jolted: strongly_supports
+  injury_or_fall: strongly_supports
+  pain_worse_moving_better_rest: supports
+key_findings: [head_jolted, injury_or_fall]
+source: nhs_whiplash
+informed_by: [nhs_whiplash]

@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: retinal_detachment
+body_system: eyes
+# The page says get help from 111; it needs surgery quickly to save the sight.
+entry_symptoms: [floaters_or_flashes, vision_change]
+name: "Detached retina (the thin layer at the back of the eye coming loose)"
+medical_name: "Retinal detachment"
+snomed: "42059000"
+acuity_needed: urgent
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: floaters_or_flashes, prevalence: common}
+findings:
+  curtain_or_shadow: strongly_supports
+  floaters_new_or_sudden: strongly_supports
+  floaters_or_flashes: strongly_supports
+  blurred_vision: supports
+  vision_change_sudden: supports
+  short_sighted: supports
+  eye_surgery_recent: supports
+  eye_injury: supports
+key_findings: [curtain_or_shadow, floaters_new_or_sudden, short_sighted]
+source: nhs_detached_retina
+informed_by: [nhs_detached_retina, nhs_floaters_and_flashes_in_the_eyes]

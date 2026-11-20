@@ -1,0 +1,62 @@
+id: sob_d01
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 47-year-old man whose breathing became very bad over the last hour. He is gasping, can only get out a word or two at a time, and his wife says his lips look blue."
+
+opening_statement: "Can't... breathe... my lips... going blue... wife says."
+
+findings:
+  present: [short_of_breath, sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, difficulty_speaking, breathing_very_fast]
+  absent: [chest_pain, cp_heavy, cp_tight_or_squeezing, cp_spreads, sudden_confusion, passed_out, fainted, coughing_up_blood, lips_tongue_throat_swelling, throat_tight, after_allergy_trigger, raised_itchy_rash, choked_on_something, leg_pain_or_swelling, has_asthma, has_copd, known_heart_condition, very_high_temperature, cough, wheezing, sob_more_than_usual]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 47, sex: male}
+  full:
+    age: 47
+    sex: male
+    findings: {has_asthma: "no", has_copd: "no", known_heart_condition: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Severe difficulty breathing: gasping and not able to get words out"
+    findings: [severe_breathing_difficulty, too_breathless_to_talk]
+    minimum_acuity: emergency
+    source: {page: shortness_of_breath.txt, quote: "you have severe difficulty breathing – you’re gasping, choking or not able to get words out"}
+  - description: "Lips turning blue"
+    findings: [lips_or_skin_blue_grey]
+    minimum_acuity: emergency
+    source: {page: shortness_of_breath.txt, quote: "your lips or skin are turning very pale, blue or grey"}
+
+safety_netting_should_cover:
+  - point: "Call 999 now"
+    any_of: ["999"]
+  - point: "Not to drive to A&E"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: shortness_of_breath.txt, quote: "Call 999 or go to A&E immediately if"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "you have severe difficulty breathing – you’re gasping, choking or not able to get words out"}
+
+variants:
+  - id: sob_d01_v1
+    style: "wife speaking for him, calm and clear"
+    opening_statement: "I'm calling for my husband. He's suddenly really struggling to breathe, he can't get a sentence out and his lips have gone a bluish colour."
+    volunteered: [severe_breathing_difficulty, too_breathless_to_talk, lips_or_skin_blue_grey]
+  - id: sob_d01_v2
+    style: "very brief, minimal words"
+    opening_statement: "Breathing. Bad."
+    volunteered: [short_of_breath]
+
+atypical: false
+notes: "Universal emergency sign case. Cause deliberately left unclear: the source advice depends on the danger signs, not on the cause. Ambulance chosen over self-transport because the patient cannot speak and is cyanosed; the page also says 'Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance.'"

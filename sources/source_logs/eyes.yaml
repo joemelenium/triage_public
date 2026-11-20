@@ -1,0 +1,168 @@
+
+- id: nhs_conjunctivitis
+  title: Conjunctivitis
+  url: https://www.nhs.uk/conditions/conjunctivitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 23 April 2024'
+
+- id: nhs_glaucoma
+  title: Glaucoma
+  url: https://www.nhs.uk/conditions/glaucoma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 June 2025'
+
+- id: nhs_uveitis
+  title: Uveitis
+  url: https://www.nhs.uk/conditions/uveitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 20 March 2024'
+
+- id: nhs_eye_injuries
+  title: Eye injuries
+  url: https://www.nhs.uk/conditions/eye-injuries/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 March 2026'
+
+- id: nhs_detached_retina
+  title: Detached retina (retinal detachment)
+  url: https://www.nhs.uk/conditions/detached-retina-retinal-detachment/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 04 August 2023'
+
+- id: nhs_blepharitis
+  title: Blepharitis
+  url: https://www.nhs.uk/conditions/blepharitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 June 2025'
+
+- id: nhs_stye
+  title: Stye
+  url: https://www.nhs.uk/conditions/stye/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 April 2024'
+
+- id: nhs_overactive_thyroid
+  title: Overactive thyroid (hyperthyroidism)
+  url: https://www.nhs.uk/conditions/overactive-thyroid-hyperthyroidism/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 April 2023'
+
+- id: nhs_cataracts
+  title: Cataracts
+  url: https://www.nhs.uk/conditions/cataracts/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 12 March 2025'
+
+- id: nhs_amd
+  title: Age-related macular degeneration (AMD)
+  url: https://www.nhs.uk/conditions/age-related-macular-degeneration-amd/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 January 2025'
+
+- id: nhs_diabetic_retinopathy
+  title: Diabetic retinopathy
+  url: https://www.nhs.uk/conditions/diabetic-retinopathy/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 July 2025'
+
+- id: nhs_squint
+  title: Squint
+  url: https://www.nhs.uk/conditions/squint/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 May 2023'
+
+- id: nhs_herpes_simplex_eye
+  title: Herpes simplex eye infections
+  url: https://www.nhs.uk/conditions/herpes-simplex-eye-infections/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 September 2026'
+
+- id: nhs_ectropion
+  title: Ectropion
+  url: https://www.nhs.uk/conditions/ectropion/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 July 2025'
+
+- id: nhs_myasthenia_gravis
+  title: Myasthenia gravis
+  url: https://www.nhs.uk/conditions/myasthenia-gravis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 September 2023'
+
+- id: nhs_eye_cancer
+  title: Eye cancer
+  url: https://www.nhs.uk/conditions/eye-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 October 2022'
+
+- id: nhs_diabetes
+  title: Diabetes
+  url: https://www.nhs.uk/conditions/diabetes/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 26 June 2025'
+
+- id: nhs_brain_aneurysm
+  title: Brain aneurysm
+  url: https://www.nhs.uk/conditions/brain-aneurysm/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 October 2025'
+
+- id: nhs_short_sightedness
+  title: Short-sightedness (myopia)
+  url: https://www.nhs.uk/conditions/short-sightedness/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 December 2025'
+
+- id: nhs_astigmatism
+  title: Astigmatism
+  url: https://www.nhs.uk/conditions/astigmatism/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 September 2024'
+
+- id: nhs_lazy_eye
+  title: Lazy eye
+  url: https://www.nhs.uk/conditions/lazy-eye/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 25 August 2026'

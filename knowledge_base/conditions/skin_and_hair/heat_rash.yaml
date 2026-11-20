@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: heat_rash
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Heat rash (prickly heat)"
+medical_name: "Miliaria"
+snomed: "63951004"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_1, prevalence: common}
+findings:
+  # What tells it apart: small, raised, itchy or prickly spots that come on after being hot or sweating, and settle when the skin is kept cool.
+  rash_after_heat: strongly_supports
+  rash_itchy: supports
+  sweating: supports
+key_findings: [rash_after_heat]
+source: nhs_heat_rash
+informed_by: [nhs_heat_rash, nhs_rashes_babies_and_children]

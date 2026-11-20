@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: angle_closure_glaucoma
+body_system: eyes
+# Pressure inside the eye builds up quickly. The Glaucoma page says this is a
+# medical emergency. Danger serious, not critical: it threatens the sight, not
+# life, and the firm rules for a red eye with a severe headache and feeling sick
+# catch most cases.
+entry_symptoms: [red_eye, eye_pain, vision_change]
+name: "Sudden glaucoma (a quick build-up of pressure inside the eye)"
+medical_name: "Acute angle-closure glaucoma"
+acuity_needed: emergency
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: uncommon}
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  eye_pain_severe: strongly_supports
+  halos_around_lights: strongly_supports    # rainbow rings around lights
+  headache: strongly_supports
+  nausea_or_vomiting: strongly_supports
+  very_painful_headache: supports
+  blurred_vision: supports
+  eye_very_red: supports
+  eye_front_cloudy_or_white_spot: supports    # the front of the eye looks cloudy
+  eye_pain_sudden: supports
+  red_eye: supports
+key_findings: [halos_around_lights, eye_pain_severe, nausea_or_vomiting, headache]
+source: nhs_glaucoma
+informed_by: [nhs_glaucoma, nhs_red_eye, nhs_vision_loss]

@@ -1,0 +1,70 @@
+id: en_h02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- swollen_glands
+summary: A 17-year-old girl with glandular fever diagnosed last week. Her neck glands are very swollen, her throat is so sore she cannot swallow even her own spit and is drooling, and she is breathing noisily.
+opening_statement: My daughter's got glandular fever. Her neck's massively swollen and tonight she can't even swallow her spit, she's dribbling, and her breathing sounds noisy.
+findings:
+  present:
+  - swollen_glands
+  - swollen_neck_glands
+  - sore_throat
+  - unable_to_swallow
+  - difficulty_swallowing
+  - drooling
+  - stridor
+  - difficulty_breathing
+  - very_high_temperature
+  absent:
+  - stiff_neck
+  - rash_does_not_fade
+  - sa_severe
+  - drowsy_hard_to_wake
+  - lips_or_skin_blue_grey
+  - lips_tongue_throat_swelling
+  - after_allergy_trigger
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 17
+    sex: female
+  full:
+    age: 17
+    sex: female
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: urgent
+red_flags:
+- description: Cannot swallow saliva
+  findings:
+  - unable_to_swallow
+  - drooling
+  minimum_acuity: urgent
+  source:
+    page: swollen_glands.txt
+    quote: you have swollen glands and you're finding it very difficult to swallow or have difficulty breathing
+- description: Noisy, difficult breathing
+  findings:
+  - stridor
+  - difficulty_breathing
+  minimum_acuity: urgent
+  source:
+    page: swollen_glands.txt
+    quote: you have swollen glands and you're finding it very difficult to swallow or have difficulty breathing
+safety_netting_should_cover:
+- point: Call 999
+  any_of:
+  - '999'
+source:
+  expected_outcome:
+    page: glandular_fever.txt
+    quote: cannot swallow, including your own spit (saliva)
+  minimum_safe_acuity:
+    page: swollen_glands.txt
+    quote: you have swollen glands and you're finding it very difficult to swallow or have difficulty breathing
+atypical: false
+notes: Pages differ. glandular_fever.txt says 'Call 999' if you cannot swallow your own saliva. swollen_glands.txt gives 'Urgent advice' (urgent GP or 111) for swollen glands with great difficulty swallowing or breathing. The story (known glandular fever, drooling, noisy breathing) fits the glandular fever page, so expected is emergency; the swollen glands page sets the minimum at urgent. 'Has glandular fever' has no question id; it is in the summary only.

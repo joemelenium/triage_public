@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stress_fracture
+body_system: bones_joints_muscles
+entry_symptoms: [foot_pain]
+name: "A stress fracture (a small crack in a bone from overuse)"
+medical_name: "Stress fracture of foot"
+snomed: "240197007"
+acuity_needed: soon
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: top_of_foot_pain, prevalence: common}
+findings:
+  overuse: strongly_supports
+  tender_bone: strongly_supports
+  top_of_foot_pain: supports
+  swollen_area: supports
+  pain_worse_moving_better_rest: supports
+key_findings: [tender_bone, overuse]
+source: nhs_pain_in_the_top_of_the_foot
+informed_by: [nhs_pain_in_the_top_of_the_foot, nhs_shin_splints]

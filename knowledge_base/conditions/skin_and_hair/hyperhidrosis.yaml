@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hyperhidrosis
+body_system: skin_and_hair
+entry_symptoms: [sweating_a_lot, body_odour, smelly_feet]
+name: "Hyperhidrosis (sweating more than the body needs to, with no other cause)"
+medical_name: "Primary hyperhidrosis"
+snomed: "312230002"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: sweating_a_lot, prevalence: very_common}
+findings:
+  # What tells it apart from sweating caused by another condition: sweating mainly in the armpits, hands, feet or face, for a long time, often starting young and running in the family.
+  sweating_in_one_area: strongly_supports
+  sweating_6_months_or_more: supports
+  sweating_runs_in_family: supports
+  feet_sweat_a_lot: supports
+key_findings: [sweating_in_one_area, sweating_runs_in_family]
+source: nhs_excessive_sweating_hyperhidrosis
+informed_by: [nhs_excessive_sweating_hyperhidrosis, nhs_smelly_feet]

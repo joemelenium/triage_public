@@ -1,0 +1,44 @@
+id: bn_d09
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [tremor]
+
+summary: "A 68-year-old man has had shaking of his right hand for about 6 months. It is worst when his hand is resting in his lap, is slowly getting worse and now makes doing up buttons hard. His wife says his movements have become slower."
+
+opening_statement: "My right hand has started shaking, mostly when it's just resting. It's been getting worse over the last six months and buttons are a real fiddle now."
+
+findings:
+  present: [tremor, tremor_at_rest, tremor_getting_worse, tremor_affecting_daily_life, stiff_or_slow_movements]
+  absent: [weakness_sudden, numbness_or_weakness, sudden_confusion, difficulty_speaking, alcohol_or_drug_stopped_recently, new_medicine_recently, restless_shaky_hot, tremor_in_family, head_injury_last_3_months, fell_asleep_driving]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 68, sex: male}
+  full:
+    age: 68
+    sex: male
+    findings: {}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "Not to stop any prescribed medicine without advice"
+    any_of: ["medicine"]
+
+source:
+  expected_outcome: {page: tremor_or_shaking_hands.txt, quote: "it's getting worse over time"}
+  minimum_safe_acuity: {page: tremor_or_shaking_hands.txt, quote: "it's affecting your daily activities"}
+
+atypical: false
+notes: "Gradual resting tremor with slowness, possibly Parkinson's disease. tremor_or_shaking_hands.txt gives non-urgent GP advice. The question list has no id for smaller handwriting or a shuffling walk, so these are left out."

@@ -1,0 +1,126 @@
+# Entry symptom: bloating.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Bloating page sends bloating with a stomach ache, being sick, diarrhoea or
+# constipation for urgent help. Those are common together, so the rules for them
+# are soft: a likely mild cause can lower them.
+
+id: bloating
+name: "Bloating"
+presenting_finding: bloating
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bloating_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - sa_sudden_severe
+      - vomiting_blood
+      - cannot_poo_or_fart
+
+  - id: bloating_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - stomach_ache
+      - diarrhoea_or_vomiting
+      - constipation
+      - very_high_temperature
+      - lump_in_tummy_or_groin
+      - cannot_pee_at_all
+      - heartburn_or_sour_taste
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bl_sudden_severe
+    description: "Bloating with a stomach ache that is severe and came on very suddenly"
+    when: sa_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_bloating
+
+  - id: rf_bl_vomiting_blood
+    description: "Bloating and being sick with blood, or sick that looks like ground coffee"
+    when: vomiting_blood
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_bloating
+
+  - id: rf_bl_blocked_bowel
+    description: "Bloating, cannot poo or fart at all, and a swollen tummy or being sick: possible blocked bowel"
+    when: {all: [cannot_poo_or_fart, {any: [tummy_swollen, vomiting]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_constipation_ae
+    source: nhs_diverticulitis
+    note: "The Bloating page says urgent for not being able to poo or fart. With a swollen tummy or being sick, the Diverticulitis and Stomach ache pages say 999 or A&E. The more urgent is used."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bl_stomach_ache
+    description: "Bloating with a stomach ache"
+    when: stomach_ache
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_bloating_urgent
+    source: nhs_bloating
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Bloating page says urgent. The Stomach ache and Farting pages say see a GP for bloating with a stomach ache that does not go away, and list trapped wind as a common cause. The more urgent is used, marked soft."
+
+  - id: rf_bl_d_and_v_or_constipation
+    description: "Bloating with being sick, diarrhoea or constipation"
+    when: {any: [diarrhoea_or_vomiting, constipation]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_bloating_urgent
+    source: nhs_bloating
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Bloating page says urgent. The Constipation page lists bloating as a usual part of constipation and says see a GP (non-urgent) if regularly bloated. The more urgent is used, marked soft."
+
+  - id: rf_bl_high_temperature
+    description: "Bloating with a high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_bloating_urgent
+    source: nhs_bloating
+
+  - id: rf_bl_lump
+    description: "Bloating with a swelling or lump in the tummy"
+    when: lump_in_tummy_or_groin
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_bloating_urgent
+    source: nhs_bloating
+
+  - id: rf_bl_cannot_pee_poo_fart
+    description: "Bloating and cannot pee, poo or fart"
+    when: {any: [cannot_pee_at_all, cannot_poo_or_fart]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_bloating_urgent
+    source: nhs_bloating
+    note: "The Stomach ache page says 999 or A&E for not being able to pee at all with a stomach ache. Saying yes to a stomach ache brings in that rule."
+
+  - id: rf_bl_acid_reflux
+    description: "Bloating with a burning feeling in the chest from acid reflux"
+    when: heartburn_or_sour_taste
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call NHS 111"}
+    advice: advice_bloating_urgent
+    source: nhs_bloating
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Bloating page says urgent. The Heartburn and Indigestion pages say a pharmacist can help. The more urgent is used, marked soft."
+
+outcome_rules:
+  - id: or_bl_gp
+    description: "Bloating regularly or that does not go away, or with weight loss or blood in poo"
+    when: {any: [bloating_regular, weight_loss, bleeding_from_bottom]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_bloating_gp
+    source: nhs_bloating
+
+default:
+  description: "Bloating with nothing that needs more help: try things to ease it, and a pharmacist can help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Bloating is very common and usually eases with simple changes"}
+  advice: advice_bloating_self_care
+  source: nhs_bloating

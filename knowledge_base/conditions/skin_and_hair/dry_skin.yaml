@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: dry_skin
+body_system: skin_and_hair
+entry_symptoms: [itchy_skin]
+name: "Dry skin"
+medical_name: "Xerosis (asteatosis)"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: very_common}
+findings:
+  # What tells it apart: dry, rough, flaky skin with itching, often in older people and in winter, without a rash.
+  dry_skin: strongly_supports
+  itch_all_over_without_rash: supports
+key_findings: [dry_skin]
+source: nhs_itchy_skin
+informed_by: [nhs_itchy_skin]

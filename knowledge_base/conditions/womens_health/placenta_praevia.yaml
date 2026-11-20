@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: placenta_praevia
+body_system: womens_health
+entry_symptoms: [bleeding_in_pregnancy]
+name: "Low-lying placenta (placenta praevia)"
+medical_name: "Placenta praevia"
+snomed: "36813001"
+# Bleeding in the second half of pregnancy, often without pain. Usually seen at
+# the 20-week scan. Clinical knowledge (AI judgement) for the findings.
+acuity_needed: urgent
+danger: serious
+sex: female
+prevalence: very_rare
+prevalence_when:
+  - {finding: pregnancy_20_weeks_or_more, prevalence: uncommon}
+findings:
+  told_low_lying_placenta: strongly_supports
+  heavy_vaginal_bleeding: supports
+  light_headed: supports
+key_findings: [pregnancy_20_weeks_or_more, told_low_lying_placenta]
+source: nhs_vaginal_bleeding_pregnancy
+informed_by: [nhs_vaginal_bleeding_pregnancy]

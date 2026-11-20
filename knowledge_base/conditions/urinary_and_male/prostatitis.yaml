@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: prostatitis
+body_system: urinary_and_male
+entry_symptoms: [painful_or_frequent_peeing, blood_in_semen, cannot_pee, ejaculation_problems, testicle_pain, pelvic_pain]
+name: "Prostatitis (a swollen, painful prostate, usually from an infection)"
+medical_name: "Prostatitis"
+snomed: "9713002"
+# The page says it can be serious and needs urgent medical help, and lists 999
+# signs of sepsis. Danger serious.
+acuity_needed: urgent
+danger: serious
+sex: male
+prevalence: rare
+prevalence_when:
+  - {finding: sex_female, prevalence: very_rare}
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: blood_in_semen, prevalence: uncommon}
+  - {finding: ejaculation_problems, prevalence: uncommon}
+  - {finding: pelvic_pain, prevalence: uncommon}
+findings:
+  # What tells it apart from a bladder infection: pain between the testicles and
+  # bottom, pain when coming, and difficulty peeing, often with a high temperature.
+  perineum_pain: strongly_supports
+  pain_when_ejaculating: supports
+  pain_when_peeing: supports
+  weak_flow_or_straining: supports
+  very_high_temperature: supports
+  cold_or_shivery: supports
+key_findings: [perineum_pain, pain_when_ejaculating, very_high_temperature, weak_flow_or_straining]
+source: nhs_prostatitis
+informed_by: [nhs_prostatitis, nhs_blood_in_semen, nhs_ejaculation_problems]

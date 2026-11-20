@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cervical_changes
+body_system: womens_health
+entry_symptoms: [bleeding_between_periods_or_after_sex, vaginal_discharge]
+name: "Harmless changes on the cervix (the entrance to the womb), such as a polyp (a small soft growth)"
+medical_name: "Cervical ectropion or cervical polyp"
+snomed: "79342006"
+# A common cause of bleeding after sex. The NHS cervical ectropion page was not
+# found (404).
+acuity_needed: routine
+danger: minor
+sex: female
+prevalence: common
+findings:
+  bleeding_after_sex: strongly_supports
+  vaginal_discharge: supports
+  bleeding_between_periods_or_after_sex: supports
+  hormonal_contraception: supports
+key_findings: [bleeding_after_sex]
+source: nhs_vaginal_bleeding_between_periods_or_after_sex
+informed_by: [nhs_vaginal_bleeding_between_periods_or_after_sex]

@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: fungal_nail_infection
+body_system: skin_and_hair
+entry_symptoms: [nail_problem]
+name: "Fungal nail infection"
+medical_name: "Onychomycosis"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: very_common
+findings:
+  # What tells it apart: a toenail that is thick, white or yellow, and brittle or crumbly, often with athlete's foot.
+  nail_thick_discoloured_crumbly: strongly_supports
+  itchy_flaky_skin_between_toes: supports
+key_findings: [nail_thick_discoloured_crumbly]
+source: nhs_fungal_nail
+informed_by: [nhs_fungal_nail, nhs_nail_problems]

@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sinus_infection_spreading
+body_system: ear_nose_throat
+entry_symptoms: [blocked_or_runny_nose, catarrh]
+name: "A sinus infection spreading to the eye or brain. Sinuses are spaces in the face, behind the cheeks."
+medical_name: "Orbital or intracranial complication of rhinosinusitis"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart from ordinary sinusitis: swelling or redness around the eye, changes to
+  # eyesight, or a very bad headache with a stiff neck.
+  swelling_around_eye: strongly_supports
+  vision_change_sudden: strongly_supports
+  stiff_neck: supports
+  bothered_by_light: supports
+  very_high_temperature: supports
+  face_pain_around_nose_and_eyes: supports
+  feels_very_unwell: supports
+key_findings: [swelling_around_eye, vision_change_sudden, stiff_neck, bothered_by_light]
+source: ai_judgement
+informed_by: [nhs_sinusitis, nhs_dental_abscess]

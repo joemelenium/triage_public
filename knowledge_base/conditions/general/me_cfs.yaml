@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: me_cfs
+body_system: general
+# A long-term condition. The page on tiredness says it lasts at least 3 months and makes daily
+# activities very hard.
+entry_symptoms: [very_tired]
+name: "ME or CFS (long-term tiredness that gets worse after activity)"
+medical_name: "Myalgic encephalomyelitis or chronic fatigue syndrome (ME/CFS)"
+snomed: "52702003"
+acuity_needed: routine
+danger: minor
+prevalence: rare
+findings:
+  # What tells it apart: extreme tiredness for months that gets worse after activity, with
+  # problems thinking, often after a virus.
+  tired_worse_after_activity: strongly_supports
+  tiredness_affects_daily_life: strongly_supports
+  tired_for_weeks: strongly_supports
+  trouble_sleeping: supports
+  aching_body: supports
+  recent_viral_illness: supports
+key_findings: [tired_worse_after_activity, tiredness_affects_daily_life]
+source: nhs_me_cfs
+informed_by: [nhs_me_cfs, nhs_tiredness_and_fatigue]

@@ -1,0 +1,75 @@
+id: cg_h05
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- cough
+summary: A 47-year-old man with a cold and cough for 4 days. He does not mention any medical conditions; his record shows type 2 diabetes.
+opening_statement: Just a cold and a cough that won't shift. Probably nothing.
+findings:
+  present:
+  - cough
+  - cough_phlegm
+  - blocked_or_runny_nose
+  - sore_throat
+  - recent_viral_illness
+  absent:
+  - severe_breathing_difficulty
+  - lips_or_skin_blue_grey
+  - sudden_confusion
+  - coughing_up_blood
+  - chest_pain
+  - difficulty_breathing
+  - short_of_breath
+  - breathing_very_fast
+  - skin_blotchy
+  - rash_does_not_fade
+  - feels_very_unwell
+  - cough_very_bad_or_worsening
+  - swollen_neck_glands
+  - phlegm_yellow_or_green
+  - very_high_temperature
+  - cough_3_weeks_or_more
+  - wheezing
+  - smoker
+  - weight_loss
+  - cold_or_shivery
+  unknown:
+  - long_term_condition
+  - weakened_immune_system
+context:
+  none: {}
+  basic:
+    age: 47
+    sex: male
+  full:
+    age: 47
+    sex: male
+    findings:
+      long_term_condition: 'yes'
+      weakened_immune_system: 'yes'
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP because of the diabetes
+  any_of:
+  - GP
+- point: Get urgent help (111 or urgent GP) if the cough gets much worse, breathing becomes hard, chest pain or coughing up blood
+  any_of:
+  - '111'
+  - urgent GP
+source:
+  expected_outcome:
+    page: common_cold.txt
+    quote: you get cold symptoms and you have a long-term medical condition (for example, diabetes, or a heart, lung or kidney condition)
+  minimum_safe_acuity:
+    page: cough.txt
+    quote: you have a weakened immune system – for example, because of chemotherapy or diabetes
+context_test:
+  what_context_adds: The record shows type 2 diabetes, which the patient does not think of as relevant and is unsure about when asked. Without it this is a self-care cold.
+  expected_direction: more_urgent
+atypical: false
+notes: Context test. common_cold.txt and cough.txt both say see a GP (non-urgent) with diabetes. Without context the right answer would be self-care.

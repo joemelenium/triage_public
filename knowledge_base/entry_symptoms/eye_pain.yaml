@@ -1,0 +1,245 @@
+# Entry symptom: eye pain.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Levels of care: "an urgent GP or optician appointment" is mapped to urgent
+# care, and "go to A&E" to the emergency department. The advice names the
+# optician and eye casualty, which have no level of their own in settings.yaml.
+
+id: eye_pain
+name: "Eye pain"
+presenting_finding: eye_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: eye_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eye_pain_sudden
+      - eye_pain_keeps_awake
+      - sight_lost
+      - very_painful_headache
+      - eye_injury
+      - object_stuck_in_eye
+      - chemical_in_eye
+      - eye_surgery_recent
+
+  - id: eye_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eye_pain_severe
+      - bothered_by_light
+      - vision_change
+      - eye_very_red
+      - double_vision
+      - eye_pain_moving_eye
+      - jaw_pain_or_scalp_tender
+
+  - id: eye_pain_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eye_pain_lasting
+      - eyelashes_rubbing_eye
+      - worried_about_symptoms
+      - headache_around_one_eye
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ep_chemical
+    description: "A chemical or other harmful liquid in the eye"
+    when: chemical_in_eye
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Rinse the eye with clean water for at least 20 minutes, then go to A&E or call 999"}
+    advice: advice_chemical_eye
+    source: nhs_eye_injuries
+
+  - id: rf_ep_pierced_or_stuck
+    description: "An injured or pierced eye, something hit it at high speed, or something is stuck in it"
+    when: {any: [eye_pierced, high_speed_object, object_stuck_in_eye]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go straight to A&E, or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_eye_pain
+    note: "The Eye injuries page gives the same advice."
+
+  - id: rf_ep_injury
+    description: "Eye pain after an injury to the eye"
+    when: eye_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go straight to A&E, or call 999"}
+    advice: advice_eye_injury_ae
+    source: nhs_eye_pain
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Eye pain page says call 999 or go to A&E if you have injured your eye. The Eye injuries page says minor injuries often get better in a day, severe pain needs A&E, and an injury that is very painful or not better after 24 hours needs an urgent appointment. Soft, with the firm urgent rule below as its floor."
+
+  - id: rf_ep_cannot_see
+    description: "Eye pain and cannot see (loss of vision)"
+    when: sight_lost
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+
+  - id: rf_ep_keeps_awake
+    description: "Eye pain that keeps you awake at night"
+    when: eye_pain_keeps_awake
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+
+  - id: rf_ep_sudden_severe
+    description: "Severe eye pain that started suddenly"
+    when: {all: [eye_pain_sudden, eye_pain_severe]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_vision_loss
+    note: "The Bulging eyes page says the same."
+
+  - id: rf_ep_sudden
+    description: "Eye symptoms that started suddenly"
+    when: eye_pain_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The page says call 999 or go to A&E if 'your eye symptoms start suddenly'. Read literally this covers grit or a scratch, which other pages treat as minor. Soft, with the firm urgent rule below as its floor."
+
+  - id: rf_ep_lenses_and_vision
+    description: "Wears contact lenses, with eye pain and vision loss"
+    when: {all: [contact_lens_wearer, vision_change]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E. Take your lenses out."}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+
+  - id: rf_ep_headache_red_sick
+    description: "Red eye, severe headache and feeling sick"
+    when: {all: [red_eye, very_painful_headache, nausea_or_vomiting]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+
+  - id: rf_ep_after_surgery
+    description: "Severe pain or loss of vision after eye surgery or treatment in the last 4 weeks"
+    when: {all: [eye_surgery_recent, {any: [eye_pain_severe, vision_change]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E, or call the eye unit that treated you"}
+    advice: advice_eye_emergency
+    source: nhs_eye_pain
+    note: "The page says severe pain or loss of vision. Including any change to the sight is AI judgement, from the Detached retina page, which says go to A&E if blurriness gets worse after surgery."
+
+  - id: rf_ep_gca_vision
+    description: "Eye pain with pain at the temples or jaw pain when eating, and changes to the sight or double vision: possible giant cell arteritis"
+    when: {all: [jaw_pain_or_scalp_tender, {any: [vision_change, double_vision, vision_loss_brief]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_gca_emergency
+    source: ai_judgement
+    note: "Clinical knowledge: giant cell arteritis with any sight symptom can cause permanent blindness within hours and needs same-day hospital treatment. The Giant cell arteritis page says an urgent GP appointment, and a same-day eye specialist if there are vision problems."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ep_severe
+    description: "Severe eye pain"
+    when: eye_pain_severe
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_pain
+
+  - id: rf_ep_light
+    description: "Eye pain with sensitivity to light"
+    when: bothered_by_light
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_pain
+
+  - id: rf_ep_vision
+    description: "Eye pain with changes to the sight, like blurring, how you see colour, or loss of vision"
+    when: vision_change
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_pain
+
+  - id: rf_ep_very_red
+    description: "Eye pain and the eye is very red"
+    when: eye_very_red
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_pain
+
+  - id: rf_ep_double_vision
+    description: "Eye pain and double vision"
+    when: double_vision
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_double_vision
+
+  - id: rf_ep_injury_urgent
+    description: "Eye pain after an injury"
+    when: eye_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. You could also see an optician."}
+    advice: advice_eye_urgent
+    source: nhs_eye_injuries
+    note: "The firm floor under the soft emergency rule for an injury."
+
+  - id: rf_ep_sudden_urgent
+    description: "Eye symptoms that started suddenly"
+    when: eye_pain_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_pain
+    note: "The firm floor under the soft emergency rule for sudden symptoms. AI reading."
+
+  - id: rf_ep_moving_eye
+    description: "Eye pain that is worse when moving the eye"
+    when: eye_pain_moving_eye
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: pain on moving the eye can be optic neuritis or an infection behind the eye, which both need checking the same day."
+
+  - id: rf_ep_gca
+    description: "Eye pain with pain at the temples or scalp, or jaw pain when eating: possible giant cell arteritis"
+    when: jaw_pain_or_scalp_tender
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_gca_urgent
+    source: nhs_giant_cell_arteritis
+
+  - id: rf_ep_shingles
+    description: "Eye pain with blisters or a rash around the eye, such as shingles"
+    when: blisters_around_eye
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_shingles_urgent
+    source: nhs_shingles
+    note: "The Herpes simplex eye infections page says urgent for eye pain, and lists blisters around the eye."
+
+outcome_rules:
+  - id: or_ep_lasting
+    description: "Eye pain lasting more than a few days, or eyelashes rubbing the eye"
+    when: {any: [eye_pain_lasting, eyelashes_rubbing_eye]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or optician. No fixed time is given."}
+    advice: advice_eye_gp
+    source: ai_judgement
+    note: "The Eye pain page gives no routine advice. Seeing a GP or optician for pain that lasts is AI judgement, in line with the Red eye page."
+
+  - id: or_ep_worried
+    description: "Worried about the eye pain"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or optician. No fixed time is given."}
+    advice: advice_eye_gp
+    source: nhs_red_eye
+
+  - id: or_ep_cluster
+    description: "Attacks of very bad pain around 1 eye: possible cluster headaches"
+    when: headache_around_one_eye
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. No fixed time is given."}
+    advice: advice_cluster_headache_gp
+    source: nhs_cluster_headaches
+
+default:
+  description: "Eye pain with nothing that needs more help: usually nothing to worry about"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Eye pain is common and usually nothing to worry about. A pharmacist can help."}
+  advice: advice_eye_pain_self_care
+  source: nhs_eye_pain
+  note: "The page says eye pain is common and usually nothing to worry about, and gives no routine advice. Self-care as the default is a reading of that."

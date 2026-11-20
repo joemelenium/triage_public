@@ -1,0 +1,54 @@
+id: sk_d10
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- sweating_a_lot
+summary: 19-year-old man who has sweated heavily from the armpits and hands most days for over a year, even when cool. Strong antiperspirant has not helped and it embarrasses him at university. No night sweats or weight loss.
+opening_statement: My hands and armpits sweat all the time, even when I'm not hot. It drips on my papers and antiperspirant doesn't help.
+findings:
+  present:
+  - sweating_a_lot
+  - sweating_in_one_area
+  - sweating_6_months_or_more
+  - sweating_at_least_weekly
+  - not_better_with_self_care
+  - affecting_daily_life_or_wellbeing
+  absent:
+  - night_sweats
+  - weight_loss
+  - sweating_suddenly_much_more
+  - restless_shaky_hot
+  - very_high_temperature
+  - new_medicine_recently
+  - palpitations
+  unknown:
+  - sweating_runs_in_family
+context:
+  none: {}
+  basic:
+    age: 19
+    sex: male
+  full:
+    age: 19
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP; a pharmacist can advise on stronger antiperspirants
+  any_of:
+  - GP
+  - pharmacist
+  - antiperspirant
+source:
+  expected_outcome:
+    page: excessive_sweating_hyperhidrosis.txt
+    quote: it's lasted for at least 6 months
+  minimum_safe_acuity:
+    page: excessive_sweating_hyperhidrosis.txt
+    quote: things you can do yourself are not helping
+atypical: false
+notes: Primary focal hyperhidrosis. He does not know whether family members have it (sweating_runs_in_family unknown).

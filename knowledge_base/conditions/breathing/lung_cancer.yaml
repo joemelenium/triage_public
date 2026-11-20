@@ -1,0 +1,36 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lung_cancer
+body_system: breathing
+entry_symptoms: [cough, coughing_up_blood, short_of_breath, weight_loss]
+name: "Lung cancer"
+medical_name: "Malignant neoplasm of lung"
+snomed: "363358000"
+# The Lung cancer page says see a GP (non-urgent) for a cough over 3 weeks or
+# other symptoms, and an urgent appointment for coughing up blood (a rule).
+# Danger serious: finding it early may make it easier to treat.
+acuity_needed: routine
+danger: serious
+# Very rare under 45, and less rare in older smokers. Smoking is linked as a
+# finding, so a "no" counts against it.
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: cough_3_weeks_or_more, prevalence: rare}
+  - {finding: coughing_up_blood, prevalence: rare}
+  - {finding: weight_loss, prevalence: rare}
+findings:
+  smoker: strongly_supports
+  cough_3_weeks_or_more: strongly_supports
+  # What tells it apart from COPD or a chest infection: weight loss, a hoarse
+  # voice that does not go away, and changes to the fingertips.
+  weight_loss: supports
+  coughing_up_blood: supports
+  frequent_chest_infections: supports
+  hoarse_voice: supports
+  finger_clubbing: supports
+  very_tired: supports
+  short_of_breath: supports
+key_findings: [smoker, cough_3_weeks_or_more, weight_loss, coughing_up_blood, hoarse_voice]
+source: nhs_lung_cancer
+informed_by: [nhs_lung_cancer, nhs_cough, nhs_coughing_up_blood]

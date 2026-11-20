@@ -1,0 +1,37 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sexually_transmitted_infection
+body_system: urinary_and_male
+# Chlamydia, gonorrhoea and other infections of the tube that carries pee out of the
+# body (urethritis).
+entry_symptoms: [painful_or_frequent_peeing, blood_in_semen, penis_lump_or_spot, vaginal_discharge, bleeding_between_periods_or_after_sex, pelvic_pain]
+name: "Sexually transmitted infection (STI), such as chlamydia or gonorrhoea"
+medical_name: "Sexually transmitted infection (chlamydia, gonorrhoea, non-gonococcal urethritis)"
+snomed: "8098009"
+# The pages say go to a sexual health clinic or see a GP (non-urgent). Danger
+# moderate: untreated, it can spread and affect fertility.
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: partner_has_sti, prevalence: very_common}
+  - {finding: age_65_or_over, prevalence: rare}
+  - {finding: age_under_16, prevalence: rare}
+  - {finding: vaginal_discharge, prevalence: common}
+findings:
+  # What tells it apart from a urine infection: discharge, and sex without a
+  # condom with a new partner.
+  discharge_from_penis: strongly_supports
+  new_or_unprotected_sex: strongly_supports
+  pain_when_peeing: supports
+  tip_of_penis_red_swollen_sore: supports
+  # From the womens_health card for this condition (merged):
+  partner_has_sti: strongly_supports
+  discharge_green_yellow_frothy: supports
+  bleeding_after_sex: supports
+  vaginal_discharge: supports
+  pelvic_pain: supports
+key_findings: [discharge_from_penis, new_or_unprotected_sex, partner_has_sti, pain_when_peeing, discharge_green_yellow_frothy]
+source: nhs_chlamydia
+informed_by: [nhs_chlamydia, nhs_gonorrhoea, nhs_urethritis, nhs_blood_in_semen, nhs_trichomoniasis, nhs_vaginal_discharge]
+# Merged with the womens_health card for this condition. Its notes: Often no symptoms.

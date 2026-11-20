@@ -1,0 +1,52 @@
+id: wz_h04
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing, short_of_breath]
+
+summary: "An 80-year-old woman living alone who has had a cough for six days, now bringing up green phlegm, with a wheezy chest. She has felt short of breath walking to the kitchen since yesterday and is very tired with no appetite. She is thinking clearly, her colour is normal and she has no fever."
+
+opening_statement: "My chest is wheezy and I'm coughing up green muck. I'm getting out of breath just going to the kitchen."
+
+findings:
+  present: [wheezing, short_of_breath, sob_everyday_activity, cough, cough_phlegm, phlegm_yellow_or_green, cough_mucus_or_temperature, very_tired, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, difficulty_breathing, lips_or_skin_blue_grey, skin_blotchy, sudden_confusion, passed_out, chest_pain, coughing_up_blood, very_high_temperature, breathing_very_fast, rash_does_not_fade, not_peed_12_hours, has_asthma, has_copd, known_heart_condition, long_term_condition, weakened_immune_system, smoker, swollen_ankles, leg_pain_or_swelling, seriously_unwell_getting_worse, after_allergy_trigger, sob_more_than_usual, has_heart_failure, cold_or_shivery]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 80, sex: female}
+  full:
+    age: 80
+    sex: female
+    findings: {has_copd: "no", has_asthma: "no", long_term_condition: "no"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or NHS 111 today"
+    any_of: ["111", "GP"]
+  - point: "Call 999 if struggling to breathe, blue or blotchy lips or skin, or sudden confusion"
+    any_of: ["999"]
+  - point: "Drink plenty of fluids and rest"
+    any_of: ["fluids", "drink", "rest"]
+
+source:
+  expected_outcome: {page: pneumonia.txt, quote: "you're coughing up yellow or green mucus (phlegm)"}
+  minimum_safe_acuity: {page: bronchitis.txt, quote: "Urgent advice: Ask for an urgent GP appointment or get help from NHS 111 if:"}
+
+variants:
+  - id: wz_h04_v1
+    style: "stoical older person"
+    opening_statement: "I don't like to make a fuss. I've a bit of a chesty cough, that's all."
+    volunteered: [cough]
+
+atypical: false
+notes: "Possible pneumonia in an older adult (pneumonia.txt lists 'making wheezing noises when you breathe'). pneumonia.txt urgent list: yellow or green phlegm and feeling short of breath; bronchitis.txt adds 'you're over 65' as urgent. chest_infection.txt gives 'Non-urgent advice: See a GP' for over 65 with a chest infection; judgement: urgent, as two pages agree and she is breathless. pneumonia.txt also notes people over 65 'may need to go to hospital'. The stoical variant volunteers almost nothing, so the engine must ask about breathlessness and phlegm."

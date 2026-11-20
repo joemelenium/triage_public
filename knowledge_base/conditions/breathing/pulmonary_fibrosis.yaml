@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pulmonary_fibrosis
+body_system: breathing
+entry_symptoms: [short_of_breath, cough]
+name: "Scarring of the lungs (pulmonary fibrosis)"
+medical_name: "Idiopathic pulmonary fibrosis"
+snomed: "51615001"
+acuity_needed: routine
+danger: moderate
+# Mainly people aged 70 or over.
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: sob_slowly_worse, prevalence: rare}
+  - {finding: cough_3_weeks_or_more, prevalence: rare}
+findings:
+  # What tells it apart from COPD or heart failure: breathlessness that slowly gets
+  # worse over months, a dry cough, and rounded fingertips.
+  sob_slowly_worse: strongly_supports
+  sob_everyday_activity: strongly_supports
+  cough_dry: strongly_supports
+  short_of_breath: strongly_supports
+  cough_3_weeks_or_more: supports
+  finger_clubbing: supports
+  very_tired: supports
+  dust_or_fumes_exposure: supports
+key_findings: [sob_slowly_worse, cough_dry, finger_clubbing, dust_or_fumes_exposure]
+source: nhs_pulmonary_fibrosis
+informed_by: [nhs_pulmonary_fibrosis, nhs_shortness_of_breath]

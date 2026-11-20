@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tennis_elbow
+body_system: bones_joints_muscles
+entry_symptoms: [arm_pain]
+name: "Tennis or golfer's elbow (painful tendons on the outside or inside of the elbow)"
+medical_name: "Lateral or medial epicondylitis"
+snomed: "202855006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  outer_elbow_pain: strongly_supports
+  overuse: strongly_supports
+  elbow_pain: supports
+key_findings: [outer_elbow_pain, overuse]
+source: nhs_tennis_elbow
+informed_by: [nhs_tennis_elbow]

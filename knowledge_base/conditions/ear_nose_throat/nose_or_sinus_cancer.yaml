@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: nose_or_sinus_cancer
+body_system: ear_nose_throat
+entry_symptoms: [blocked_or_runny_nose, nosebleed, loss_of_smell_or_taste]
+name: "Cancer of the nose or sinuses (rare; sinuses are spaces in the face, behind the cheeks)"
+medical_name: "Nasal and sinus cancer"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart from polyps or sinusitis: a blocked nose on one side only that does not go
+  # away, with nosebleeds, face pain or problems with eyesight.
+  nose_blocked_one_side: strongly_supports
+  nose_symptoms_3_weeks: strongly_supports
+  face_pain_around_nose_and_eyes: supports
+  loss_of_smell_or_taste: supports
+  nosebleeds_regular: supports
+  vision_change_sudden: supports
+  nosebleed: supports
+key_findings: [nose_blocked_one_side, nosebleeds_regular, nose_symptoms_3_weeks]
+source: nhs_nasal_and_sinus_cancer
+informed_by: [nhs_nasal_and_sinus_cancer]

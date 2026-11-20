@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: optic_neuritis
+body_system: eyes
+# Swelling of the nerve at the back of the eye. Most common in young adults, and
+# can be the first sign of MS. The NHS page could not be found.
+entry_symptoms: [vision_change, eye_pain]
+name: "Optic neuritis (swelling of the nerve at the back of the eye)"
+medical_name: "Optic neuritis"
+snomed: "66760008"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  eye_pain_moving_eye: strongly_supports
+  vision_worse_over_days: strongly_supports
+  colours_faded: strongly_supports
+  eye_pain: supports
+  vision_change_one_eye: supports
+  has_inflammatory_condition: supports    # for example MS
+key_findings: [eye_pain_moving_eye, colours_faded, vision_worse_over_days]
+source: ai_judgement
+informed_by: [nhs_multiple_sclerosis, nhs_eye_pain]

@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: swollen_tummy_glands
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache]
+name: "Swollen glands in the tummy after a virus"
+medical_name: "Mesenteric adenitis"
+snomed: "49631001"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: common}
+findings:
+  recent_viral_illness: strongly_supports
+  very_high_temperature: supports
+  swollen_neck_glands: supports
+  sa_lower_right: supports
+key_findings: [recent_viral_illness]
+source: ai_judgement
+informed_by: [nhs_stomach_ache]

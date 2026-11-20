@@ -1,0 +1,44 @@
+id: bn_d11
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [trouble_sleeping]
+
+summary: "A 45-year-old man has struggled to get to sleep and wakes at 4am most nights for 4 months since a stressful change at work. He has cut out late coffee, kept regular hours and stopped using his phone in bed, but nothing has helped and he is struggling to cope at work."
+
+opening_statement: "I just can't sleep. It's been going on about four months. I've tried all the sleep tips, no coffee, no phone in bed, and I'm still lying awake. I'm shattered at work."
+
+findings:
+  present: [trouble_sleeping, trouble_sleeping_3_months, sleep_habits_not_helped, trouble_sleeping_hard_to_cope, stressful_time]
+  absent: [low_mood, suicidal_thoughts_or_self_harm, feeling_hopeless, breathing_stops_in_sleep, urge_to_move_legs, lots_of_caffeine_or_alcohol, fell_asleep_driving, recent_drug_use, restless_shaky_hot]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 45, sex: male}
+  full:
+    age: 45
+    sex: male
+    findings: {}
+
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "See a GP"
+    any_of: ["GP"]
+  - point: "Not to drive when feeling sleepy"
+    any_of: ["drive", "driving"]
+
+source:
+  expected_outcome: {page: insomnia.txt, quote: "changing your sleeping habits has not helped your insomnia"}
+  minimum_safe_acuity: {page: insomnia.txt, quote: "your insomnia is affecting your daily life in a way that makes it hard for you to cope"}
+
+atypical: false
+notes: "Long-term insomnia not helped by sleep habits. Low mood and thoughts of self-harm were checked and are absent."

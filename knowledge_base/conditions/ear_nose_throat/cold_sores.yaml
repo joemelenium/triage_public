@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cold_sores
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_dry_lips]
+name: "Cold sores (small blisters on the lip caused by a virus)"
+medical_name: "Herpes labialis"
+snomed: "1475003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a tingling or burning feeling, then small fluid-filled blisters on the lip
+  # that crust over and heal within about 10 days.
+  cold_sore_blisters: strongly_supports
+  cold_sore_large_or_not_healing: supports
+  lips_weather_or_licking: supports
+  recent_viral_illness: supports
+key_findings: [cold_sore_blisters]
+source: nhs_cold_sores
+informed_by: [nhs_cold_sores, nhs_sore_or_dry_lips]

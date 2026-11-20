@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: anxiety_or_panic
+body_system: chest_and_heart
+entry_symptoms: [chest_pain, palpitations, short_of_breath, dizziness, pins_and_needles, feeling_anxious, agitated_or_out_of_control]
+# feeling_anxious and agitated_or_out_of_control added by the mental health build.
+name: "Anxiety or panic attack"
+medical_name: "Anxiety or panic attack"
+snomed: "48694002"
+acuity_needed: routine
+danger: minor
+diagnosed_by: has_anxiety_or_panic
+prevalence: common
+prevalence_when:
+  - {finding: has_anxiety_or_panic, prevalence: very_common}
+  - {finding: feeling_anxious, prevalence: very_common}     # among people who feel anxious or panicky
+findings:
+  # What tells it apart: a rush of fear, set off by worry, with tingling fingers.
+  feeling_of_panic: strongly_supports
+  cp_with_worry: strongly_supports
+  tingling_fingers: supports
+  breathing_very_fast: supports
+  heart_beating_very_fast: supports
+  palpitations: strongly_supports        # a racing or pounding heart is one of the commonest signs of panic
+  sweating: supports
+  light_headed: supports
+  short_of_breath: supports
+key_findings: [feeling_of_panic, cp_with_worry, tingling_fingers, has_anxiety_or_panic]
+source: nhs_panic_disorder
+informed_by: [nhs_panic_disorder, nhs_chest_pain, nhs_heart_palpitations, nhs_anxiety_fear_panic]

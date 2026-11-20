@@ -1,0 +1,17 @@
+id: semigran2015_07
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Hemolytic uremic syndrome
+original_triage_label: Requires emergent care
+original_triage: emergency
+presenting_text: abdominal pain and diarrhoea for 7 days, bloody after the first day
+presenting: []
+age: 4
+sex: male
+findings:
+  present: []
+  absent: []
+  unknown: []
+conversion_notes: 'Bloody diarrhoea is not mapped to heavy_bleeding (that question is about bleeding that cannot be stopped or blood in spurts). No findings match the question list. The published text ends without a full stop. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 7 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

@@ -1,0 +1,101 @@
+# Entry symptom: testicle lumps and swellings.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# A "yes" to testicle pain brings in the testicle pain entry symptom, with its own
+# rules (urgent for pain with a lump).
+
+id: testicle_lumps_and_swellings
+name: "Testicle lumps and swellings"
+presenting_finding: testicle_lump_or_swelling
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: testicle_lump_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - testicle_pain_sudden_severe
+      - testicle_pain_over_an_hour
+      - lump_painful_and_firm
+      - genital_skin_dark_or_spreading
+
+  - id: testicle_lump_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - testicle_pain
+      - scrotum_red_hot_swollen
+      - very_high_temperature
+      - testicle_injury
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_tl_sudden_severe_pain
+    description: "Sudden, severe pain in a testicle: possible twisted testicle"
+    when: testicle_pain_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E immediately or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_lumps_and_swellings
+
+  - id: rf_tl_pain_with_sickness
+    description: "Testicle pain with feeling sick, being sick, or pain in the tummy"
+    when: {all: [testicle_pain, {any: [nausea_or_vomiting, stomach_ache]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E immediately or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_lumps_and_swellings
+
+  - id: rf_tl_pain_over_an_hour
+    description: "Testicle pain that has lasted more than an hour, or carries on when resting"
+    when: testicle_pain_over_an_hour
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E immediately or call 999"}
+    advice: advice_testicle_ae
+    source: nhs_testicle_lumps_and_swellings
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "Marked soft for the same reason as in the testicle pain entry symptom."
+
+  - id: rf_tl_hernia_stuck
+    description: "A groin bulge that is painful and firm, and cannot be pushed back: possible trapped hernia"
+    when: lump_painful_and_firm
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_hernia_ae
+    source: ai_judgement
+    note: "Source difference: the Hernia page says get help from 111 for pain in a hernia. The more urgent is used. Needs clinical review."
+
+  - id: rf_tl_skin_dark_spreading
+    description: "Skin around the genitals turning dark, or pain and swelling spreading fast: possible Fournier's gangrene"
+    when: genital_skin_dark_or_spreading
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_genital_infection_ae
+    source: ai_judgement
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_tl_infection_signs
+    description: "A swollen testicle with a red, warm scrotum, or a high temperature: possible infection"
+    when: {any: [scrotum_red_hot_swollen, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_testicle_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: signs of epididymitis, which needs antibiotics. The Epididymitis page says see a GP."
+
+  - id: rf_tl_injury
+    description: "A swollen testicle after an injury"
+    when: testicle_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_testicle_urgent
+    source: ai_judgement
+
+outcome_rules: []
+
+default:
+  description: "A lump or swelling in the testicles: always get it checked by a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_testicle_lump_gp
+  source: nhs_testicle_lumps_and_swellings
+  # A floor: the source says you should always get lumps and swellings checked by a GP.
+  floor: true

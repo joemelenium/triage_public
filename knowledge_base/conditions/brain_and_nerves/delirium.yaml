@@ -1,0 +1,36 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: delirium
+body_system: brain_and_nerves
+entry_symptoms: [sudden_confusion, agitated_or_out_of_control, hearing_or_seeing_things]
+name: "Sudden confusion from an illness, such as an infection"
+medical_name: "Delirium"
+snomed: "2776000"
+acuity_needed: emergency
+danger: critical
+prevalence: common
+prevalence_when:
+  - {finding: has_dementia, prevalence: very_common}
+  - {finding: age_65_or_over, prevalence: very_common}
+  - {finding: sudden_confusion, prevalence: common}
+  - {finding: agitated_or_out_of_control, prevalence: rare}
+  - {finding: hearing_or_seeing_things, prevalence: rare}
+findings:
+  # Usually set off by an infection (often a urine infection in older people), a medicine, being dehydrated or being in pain. Much more common in older people and people with dementia.
+  very_high_temperature: supports
+  feels_very_unwell: supports
+  new_medicine_recently: supports
+  dehydration_signs: supports
+  drowsy_hard_to_wake: supports
+  cough: supports
+  # From the mental_health card for this condition (merged):
+  sudden_confusion: strongly_supports
+  came_on_over_hours_or_days: strongly_supports
+  recently_unwell_or_new_medicine: supports
+key_findings: [very_high_temperature, new_medicine_recently, dehydration_signs, has_dementia, sudden_confusion, came_on_over_hours_or_days, drowsy_hard_to_wake, recently_unwell_or_new_medicine]
+source: nhs_confusion
+informed_by: [nhs_confusion, nhs_dementia_symptoms]
+# Merged with the mental_health card for this condition. Its notes: Built there because
+# sudden confusion often shows as agitation or seeing things. What tells it apart from
+# psychosis or mania: it comes on over hours or days, with confusion and drowsiness that
+# come and go, often with an infection or a new medicine, mostly in older people.

@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tonsil_stones
+body_system: ear_nose_throat
+entry_symptoms: [bad_breath]
+name: "Tonsil stones (small lumps that form on the tonsils at the back of the throat)"
+medical_name: "Tonsillolith"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart: small white or yellow lumps at the back of the throat that can be coughed
+  # up, often in people who get sore throats.
+  white_lumps_back_of_throat: strongly_supports
+  frequent_sore_throats: supports
+  bad_taste_in_mouth: supports
+  sore_throat: supports
+key_findings: [white_lumps_back_of_throat]
+source: ai_judgement
+informed_by: [nhs_bad_breath, nhs_tonsillitis]

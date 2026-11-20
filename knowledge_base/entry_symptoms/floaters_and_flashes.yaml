@@ -1,0 +1,112 @@
+# Entry symptom: floaters and flashes in the eyes.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The page says "an urgent opticians appointment or get help from NHS 111".
+# There is no optician level in settings.yaml, so this is mapped to urgent care,
+# and the advice says to see an optician today or call 111.
+
+id: floaters_and_flashes
+name: "Floaters and flashes in the eyes"
+presenting_finding: floaters_or_flashes
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: floaters_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - sight_lost
+      - vision_loss_brief
+      - very_painful_headache
+      - eye_injury
+      - head_injury
+
+  - id: floaters_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - floaters_new_or_sudden
+      - curtain_or_shadow
+      - blurred_vision
+      - eye_pain
+      - eye_surgery_recent
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ff_sight_lost
+    description: "Floaters or flashes and cannot see out of 1 or both eyes"
+    when: sight_lost
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999 now"}
+    advice: advice_eye_emergency
+    source: nhs_vision_loss
+    note: "The Vision loss page says go to A&E or call 999 if you suddenly cannot see from 1 or both eyes."
+
+  - id: rf_ff_head_injury
+    description: "Flashes or floaters after a head injury"
+    when: head_injury
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_head_injury_eyes_999
+    source: nhs_head_injury
+    note: "The Head injury page says call 999 for problems with vision after hitting your head."
+
+  - id: rf_ff_headache
+    description: "Flashing lights with a severe headache"
+    when: very_painful_headache
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_migraine
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Migraine page says call 999 for a headache that came on suddenly and is extremely painful, or with loss of vision. The Brain aneurysm page says the same. Applying it to flashes with a severe headache is AI reading. Soft, because a usual migraine aura with a headache is common."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ff_new_or_sudden
+    description: "Floaters or flashes for the first time, that started suddenly, or that have suddenly increased"
+    when: floaters_new_or_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent optician appointment, or get help from NHS 111"}
+    advice: advice_floaters_urgent
+    source: nhs_floaters_and_flashes_in_the_eyes
+    note: "The Detached retina page says the same."
+
+  - id: rf_ff_curtain
+    description: "A dark curtain or shadow moving across the sight"
+    when: curtain_or_shadow
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent optician appointment, or get help from NHS 111"}
+    advice: advice_floaters_urgent
+    source: nhs_floaters_and_flashes_in_the_eyes
+
+  - id: rf_ff_blurred_or_pain
+    description: "Floaters or flashes with blurred vision or eye pain"
+    when: {any: [blurred_vision, eye_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent optician appointment, or get help from NHS 111"}
+    advice: advice_floaters_urgent
+    source: nhs_floaters_and_flashes_in_the_eyes
+
+  - id: rf_ff_after_surgery_or_injury
+    description: "Floaters that started after eye surgery or an eye injury"
+    when: {any: [eye_surgery_recent, eye_injury]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent optician appointment, or get help from NHS 111"}
+    advice: advice_floaters_urgent
+    source: nhs_floaters_and_flashes_in_the_eyes
+
+outcome_rules:
+  - id: or_ff_zigzag
+    description: "Zigzag or shimmering lights that spread and go within an hour: possible migraine aura"
+    when: migraine_aura
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. No fixed time is given."}
+    advice: advice_migraine_aura_gp
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: these are typical of a migraine aura. A first aura, or a change in a usual one, should be checked by a GP. The Migraine page says urgent if an aura lasts longer than 1 hour."
+
+default:
+  description: "Floaters or flashes you have had for a long time, that are not getting worse, with sight not affected: usually harmless"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Floaters you have had for a long time are usually harmless"}
+  advice: advice_floaters_self_care
+  source: nhs_floaters_and_flashes_in_the_eyes
+  note: "Only reached when the floaters or flashes are not new, not sudden and not increasing, with no curtain, blurring or pain. The page says these are usually harmless."

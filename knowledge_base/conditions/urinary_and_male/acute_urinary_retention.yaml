@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: acute_urinary_retention
+body_system: urinary_and_male
+entry_symptoms: [cannot_pee, urinary_incontinence, blood_in_urine]
+name: "Sudden inability to empty the bladder (urinary retention)"
+medical_name: "Acute retention of urine"
+snomed: "236648008"
+# A full bladder that cannot be emptied is very painful and needs a tube
+# (catheter) put in at hospital. The Prostate enlargement and Prostatitis pages
+# ask for urgent help if you cannot pee at all; going to A&E for a painful, full
+# bladder is AI judgement. Danger serious: the bladder and kidneys can be damaged.
+acuity_needed: emergency
+danger: serious
+prevalence: common
+prevalence_when:
+  - {finding: cannot_pee, prevalence: common}
+  - {finding: urinary_incontinence, prevalence: rare}
+  - {finding: blood_in_urine, prevalence: rare}
+findings:
+  # What tells it apart from a kidney problem that stops pee being made: a full,
+  # painful bladder and a strong need to go.
+  bladder_full_and_painful: strongly_supports
+  cannot_pee_at_all: strongly_supports
+  weak_flow_or_straining: supports      # often an enlarged prostate first
+  sa_low_down: supports
+  new_medicine_recently: supports        # some medicines, for example for colds or allergies
+  constipation: supports
+key_findings: [bladder_full_and_painful, cannot_pee_at_all, weak_flow_or_straining, new_medicine_recently]
+source: ai_judgement
+informed_by: [nhs_prostate_enlargement, nhs_prostatitis, nhs_urinary_incontinence_symptoms]

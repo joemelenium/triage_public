@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: other_worm_infection
+body_system: stomach_and_bowel
+entry_symptoms: [worms_seen]
+name: "Other worm infections, such as roundworm, tapeworm or hookworm"
+medical_name: "Helminth infection"
+snomed: "27601005"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+findings:
+  large_worm_or_eggs: strongly_supports
+  been_abroad_2_years: strongly_supports
+  worm_shaped_rash: supports
+  tummy_symptoms_over_2_weeks: supports
+  weight_loss: supports
+key_findings: [large_worm_or_eggs, been_abroad_2_years, worm_shaped_rash]
+source: nhs_worms_in_humans
+informed_by: [nhs_worms_in_humans]

@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: common_cold
+body_system: breathing
+# Sore throat is left out: a cold as the cause of a sore throat is already the
+# card viral_sore_throat. Colds do not usually cause breathlessness or wheezing.
+# Not linked to sore_throat: asking about it in a cough session would bring in the
+# whole sore throat entry symptom for little gain.
+entry_symptoms: [cough, blocked_or_runny_nose, catarrh, loss_of_smell_or_taste, metallic_taste, ear_pain]
+name: "Common cold"
+medical_name: "Common cold (upper respiratory tract infection)"
+snomed: "82272006"
+acuity_needed: self_manageable
+danger: minor
+# The most common cause of a cough. "common", not "very common": its findings are
+# rarely asked (it is minor), so its starting chance mostly stands unchanged.
+prevalence: very_common
+findings:
+  # What tells it apart: mainly the nose and throat, coming on over 2 to 3 days.
+  blocked_or_runny_nose: strongly_supports
+  hoarse_voice: supports
+  cough_dry: supports
+  mucus_dripping_down_throat: supports
+key_findings: [blocked_or_runny_nose, hoarse_voice, mucus_dripping_down_throat]
+source: nhs_common_cold
+informed_by: [nhs_common_cold, nhs_cough]

@@ -1,0 +1,50 @@
+id: bn_d03
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [had_a_fit]
+
+summary: "A 1-year-old boy with a cold and a high temperature went stiff and had jerking movements of both arms and legs for about 2 minutes. It is his first ever seizure. He is now awake and grizzly in his mother's arms."
+
+opening_statement: "My little boy has had a fit. He's had a temperature with a cold and he just went stiff and started jerking all over. It stopped after a couple of minutes."
+
+findings:
+  present: [had_a_fit, first_seizure, very_high_temperature, cough_or_runny_nose]
+  absent: [seizure_long, seizure_one_side, seizure_more_than_one_24h, seizure_not_recovered, sleepy_long_after_seizure, difficulty_breathing, rash_does_not_fade, child_floppy_or_hard_to_wake, stiff_neck, head_injury_last_3_months, has_epilepsy, seriously_injured_in_collapse]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 1, sex: male}
+  full:
+    age: 1
+    sex: male
+    findings: {has_epilepsy: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "First ever seizure"
+    findings: [first_seizure]
+    minimum_acuity: emergency
+    source: {page: febrile_seizures.txt, quote: "has a seizure for the first time"}
+
+safety_netting_should_cover:
+  - point: "Call 999 (or go to A&E)"
+    any_of: ["999", "A&E"]
+  - point: "Note how long any further seizure lasts"
+    any_of: ["time", "how long"]
+  - point: "Call 999 if a seizure lasts more than 5 minutes"
+    any_of: ["5 minutes", "five minutes"]
+
+source:
+  expected_outcome: {page: what_to_do_if_someone_has_a_seizure_fit.txt, quote: "it's the first time someone has had a seizure"}
+  minimum_safe_acuity: {page: febrile_seizures.txt, quote: "Call 999 or go to A&E if your child:"}
+
+atypical: false
+notes: "Likely febrile seizure, first episode. febrile_seizures.txt says 'Call 999 or go to A&E'; what_to_do_if_someone_has_a_seizure_fit.txt says 'Call 999 and ask for an ambulance' for a first seizure. Ambulance chosen; going straight to A&E would also be acceptable as he is now awake. The child's own recovery to normal within an hour cannot yet be known at the time of the call."

@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sunburn
+body_system: skin_and_hair
+entry_symptoms: [burn]
+name: "Sunburn"
+medical_name: "Sunburn"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: burn_from_sun, prevalence: very_common}
+findings:
+  # What tells it apart: red or sore skin that is hot to touch after time in the sun, sometimes blistering.
+  burn_from_sun: strongly_supports
+  burn_blistered: supports
+key_findings: [burn_from_sun, burn_blistered]
+source: nhs_sunburn
+informed_by: [nhs_sunburn]

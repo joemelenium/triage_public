@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: medicine_cramps
+body_system: bones_joints_muscles
+entry_symptoms: [leg_cramps]
+name: "Cramp caused by a medicine, such as a statin or water tablets"
+medical_name: "Drug-induced muscle cramp"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  takes_statin_or_water_tablets: strongly_supports
+  aching_body: supports
+  cramps_at_night: supports
+key_findings: [takes_statin_or_water_tablets]
+source: nhs_leg_cramps
+informed_by: [nhs_leg_cramps]

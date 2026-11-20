@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: swollen_glands_from_infection
+body_system: ear_nose_throat
+entry_symptoms: [swollen_glands]
+name: "Swollen glands from a common infection, such as a cold or throat infection"
+medical_name: "Reactive lymphadenopathy"
+snomed: "445718006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from lymphoma: tender glands near an infection, such as a cold, sore throat
+  # or ear infection, that go down within 1 to 2 weeks.
+  recent_viral_illness: strongly_supports
+  sore_throat: supports
+  blocked_or_runny_nose: supports
+  ear_pain: supports
+  swollen_neck_glands: supports
+key_findings: [recent_viral_illness, glands_over_a_week]
+source: nhs_swollen_glands
+informed_by: [nhs_swollen_glands]

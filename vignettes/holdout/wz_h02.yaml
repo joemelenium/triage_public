@@ -1,0 +1,52 @@
+id: wz_h02
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing]
+
+summary: "An 18-month-old boy (his mother answering) with a cold and wheezy cough for four days. Tonight his breathing is noisy and wheezy, his tummy is sucking in under his ribs with each breath and he is breathing fast. He is awake and his lips are a normal colour."
+
+opening_statement: "My little one's been wheezy with a cold, and now his tummy is sucking right in under his ribs every time he breathes."
+
+findings:
+  present: [wheezing, child_struggling_to_breathe, difficulty_breathing, short_of_breath, breathing_very_fast, cough, blocked_or_runny_nose, recent_viral_illness, symptoms_worse_or_not_better]
+  absent: [pauses_in_breathing, lips_or_skin_blue_grey, skin_blotchy, child_floppy_or_hard_to_wake, rash_does_not_fade, had_a_fit, baby_high_temperature, very_high_temperature, not_peed_12_hours, choked_on_something, cough_barking, stridor, drooling, lips_tongue_throat_swelling, after_allergy_trigger, has_asthma, baby_premature_or_heart_lung_condition]
+  unknown: [feeding_much_less]
+
+context:
+  none: {}
+  basic: {age: 1, sex: male}
+  full:
+    age: 1
+    sex: male
+    findings: {has_asthma: "no", baby_premature_or_heart_lung_condition: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Child having difficulty breathing: tummy sucking in under the ribs, breathing quickly"
+    findings: [child_struggling_to_breathe, difficulty_breathing, breathing_very_fast]
+    minimum_acuity: emergency
+    source: {page: bronchiolitis.txt, quote: "your child is having difficulty breathing – you may notice grunting noises, their tummy sucking under their ribs or they may be breathing quickly"}
+
+safety_netting_should_cover:
+  - point: "Call 999 now"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: bronchiolitis.txt, quote: "your child is having difficulty breathing – you may notice grunting noises, their tummy sucking under their ribs or they may be breathing quickly"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "has difficulty breathing – they may make grunting noises or suck their stomach in under their ribcage"}
+
+variants:
+  - id: wz_h02_v1
+    style: "parent leads with the wheeze, misses the key sign"
+    opening_statement: "He's 18 months and he's got a wheezy chest with his cold. He's breathing a bit fast."
+    volunteered: [wheezing, breathing_very_fast]
+
+atypical: false
+notes: "Bronchiolitis with signs of respiratory distress. bronchiolitis.txt: 'Call 999 if' difficulty breathing with tummy sucking under the ribs or fast breathing. The variant hides the key sign (tummy sucking in) unless the engine asks. The mother is not sure how much he has drunk today (unknown); it does not change the outcome. Age given as 1 year (18 months)."

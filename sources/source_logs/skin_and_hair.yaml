@@ -1,0 +1,428 @@
+
+- id: nhs_impetigo
+  title: Impetigo
+  url: https://www.nhs.uk/conditions/impetigo/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 06 June 2024'
+
+- id: nhs_atopic_eczema
+  title: Atopic eczema
+  url: https://www.nhs.uk/conditions/atopic-eczema/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 6 September 2024'
+
+- id: nhs_psoriasis
+  title: Psoriasis
+  url: https://www.nhs.uk/conditions/psoriasis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 March 2026'
+
+- id: nhs_contact_dermatitis
+  title: Contact dermatitis
+  url: https://www.nhs.uk/conditions/contact-dermatitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 May 2023'
+
+- id: nhs_chickenpox
+  title: Chickenpox
+  url: https://www.nhs.uk/conditions/chickenpox/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 January 2025'
+
+- id: nhs_measles
+  title: Measles
+  url: https://www.nhs.uk/conditions/measles/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 July 2025'
+
+- id: nhs_scarlet_fever
+  title: Scarlet fever
+  url: https://www.nhs.uk/conditions/scarlet-fever/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 23 December 2024'
+
+- id: nhs_hand_foot_mouth
+  title: Hand, foot and mouth disease
+  url: https://www.nhs.uk/conditions/hand-foot-mouth-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 10 May 2024'
+
+- id: nhs_slapped_cheek
+  title: Slapped cheek syndrome
+  url: https://www.nhs.uk/conditions/slapped-cheek-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 April 2024'
+
+- id: nhs_scabies
+  title: Scabies
+  url: https://www.nhs.uk/conditions/scabies/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 21 November 2023'
+
+- id: nhs_ringworm
+  title: Ringworm
+  url: https://www.nhs.uk/conditions/ringworm/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 August 2023'
+
+- id: nhs_insect_bites
+  title: Insect bites and stings
+  url: https://www.nhs.uk/conditions/insect-bites-and-stings/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 01 October 2026'
+
+- id: nhs_skin_abscess
+  title: Skin abscess
+  url: https://www.nhs.uk/conditions/skin-abscess/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 October 2026'
+
+- id: nhs_lipoma
+  title: Lipoma
+  url: https://www.nhs.uk/conditions/lipoma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 25 July 2023'
+
+- id: nhs_skin_cyst
+  title: Skin cyst
+  url: https://www.nhs.uk/conditions/skin-cyst/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 May 2023'
+
+- id: nhs_melanoma
+  title: Melanoma skin cancer
+  url: https://www.nhs.uk/conditions/melanoma-skin-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_non_melanoma_skin_cancer
+  title: Non-melanoma skin cancer
+  url: https://www.nhs.uk/conditions/non-melanoma-skin-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_stevens_johnson
+  title: Stevens-Johnson syndrome
+  url: https://www.nhs.uk/conditions/stevens-johnson-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 04 March 2026'
+
+- id: nhs_jaundice
+  title: Jaundice
+  url: https://www.nhs.uk/conditions/jaundice/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 January 2024'
+
+- id: nhs_newborn_jaundice
+  title: Newborn jaundice
+  url: https://www.nhs.uk/conditions/jaundice-in-babies/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 March 2026'
+
+- id: nhs_burns
+  title: Burns and scalds
+  url: https://www.nhs.uk/conditions/burns-and-scalds/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 March 2026'
+
+- id: nhs_animal_bites
+  title: Animal and human bites
+  url: https://www.nhs.uk/conditions/animal-and-human-bites/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 27 October 2025'
+
+- id: nhs_heat_rash
+  title: Heat rash
+  url: https://www.nhs.uk/conditions/heat-rash-prickly-heat/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 09 May 2024'
+
+- id: nhs_rosacea
+  title: Rosacea
+  url: https://www.nhs.uk/conditions/rosacea/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 March 2023'
+
+- id: nhs_athletes_foot
+  title: Athlete's foot
+  url: https://www.nhs.uk/conditions/athletes-foot/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 April 2024'
+
+- id: nhs_fungal_nail
+  title: Fungal nail infection
+  url: https://www.nhs.uk/conditions/fungal-nail-infection/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 27 March 2024'
+
+- id: nhs_ingrown_toenail
+  title: Ingrown toenail
+  url: https://www.nhs.uk/conditions/ingrown-toenail/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 30 June 2025'
+
+- id: nhs_pcos
+  title: Polycystic ovary syndrome
+  url: https://www.nhs.uk/conditions/polyendocrine-metabolic-ovarian-syndrome-pmos/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 30 June 2026'
+
+- id: nhs_cushings
+  title: Cushing's syndrome
+  url: https://www.nhs.uk/conditions/cushings-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 March 2025'
+
+- id: nhs_head_lice
+  title: Head lice and nits
+  url: https://www.nhs.uk/conditions/head-lice-and-nits/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 April 2024'
+
+- id: nhs_sunburn
+  title: Sunburn
+  url: https://www.nhs.uk/conditions/sunburn/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 November 2025'
+
+- id: nhs_lyme_disease
+  title: Lyme disease
+  url: https://www.nhs.uk/conditions/lyme-disease/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 June 2025'
+
+- id: nhs_necrotising_fasciitis
+  title: Necrotising fasciitis
+  url: https://www.nhs.uk/conditions/necrotising-fasciitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 02 February 2026'
+
+- id: nhs_hsp
+  title: IgA vasculitis (Henoch-Schonlein purpura)
+  url: https://www.nhs.uk/conditions/henoch-schonlein-purpura-hsp/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 October 2023'
+
+- id: nhs_pityriasis_rosea
+  title: Pityriasis rosea
+  url: https://www.nhs.uk/conditions/pityriasis-rosea/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 07 September 2023'
+
+- id: nhs_hepatitis
+  title: Hepatitis
+  url: https://www.nhs.uk/conditions/hepatitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 December 2025'
+
+- id: nhs_gallstones
+  title: Gallstones
+  url: https://www.nhs.uk/conditions/gallstones/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 August 2025'
+
+- id: nhs_soft_tissue_sarcoma
+  title: Soft tissue sarcoma
+  url: https://www.nhs.uk/conditions/soft-tissue-sarcoma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_skin_tags
+  title: Skin tags
+  url: https://www.nhs.uk/conditions/skin-tags/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 13 April 2023'
+
+- id: nhs_warts
+  title: Warts and verrucas
+  url: https://www.nhs.uk/conditions/warts-and-verrucas/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 25 July 2023'
+
+- id: nhs_acne
+  title: Acne
+  url: https://www.nhs.uk/conditions/acne/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 September 2026'
+
+- id: nhs_tetanus
+  title: Tetanus
+  url: https://www.nhs.uk/conditions/tetanus/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 03 September 2026'
+
+- id: nhs_hidradenitis
+  title: Hidradenitis suppurativa
+  url: https://www.nhs.uk/conditions/hidradenitis-suppurativa/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 March 2023'
+
+- id: nhs_lymphoma
+  title: Non-Hodgkin lymphoma
+  url: https://www.nhs.uk/conditions/non-hodgkin-lymphoma/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_vitiligo
+  title: Vitiligo
+  url: https://www.nhs.uk/conditions/vitiligo/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 22 March 2023'
+
+- id: nhs_molluscum
+  title: Molluscum contagiosum
+  url: https://www.nhs.uk/conditions/molluscum-contagiosum/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 May 2026'
+
+- id: nhs_melanoma_symptoms
+  title: 'Melanoma skin cancer: symptoms'
+  url: https://www.nhs.uk/conditions/melanoma-skin-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 15 July 2026'
+
+- id: nhs_non_melanoma_symptoms
+  title: 'Non-melanoma skin cancer: symptoms'
+  url: https://www.nhs.uk/conditions/non-melanoma-skin-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 September 2026'
+
+- id: nhs_cholestasis_pregnancy
+  title: Itching and intrahepatic cholestasis of pregnancy
+  url: https://www.nhs.uk/pregnancy/complications/itching-and-intrahepatic-cholestasis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 24 February 2026'
+
+- id: nhs_nappy_rash
+  title: Nappy rash
+  url: https://www.nhs.uk/baby/caring-for-a-newborn/nappy-rash/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 August 2026'
+
+- id: nhs_gilberts
+  title: Gilbert's syndrome
+  url: https://www.nhs.uk/conditions/gilberts-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 04 August 2025'
+
+- id: nhs_pancreatic_cancer
+  title: 'Pancreatic cancer: symptoms'
+  url: https://www.nhs.uk/conditions/pancreatic-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 9 June 2023'
+
+- id: nhs_snake_bites
+  title: Snake bites
+  url: https://www.nhs.uk/conditions/snake-bites/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 July 2026'
+
+- id: nhs_chemical_burns
+  title: Acid and chemical burns
+  url: https://www.nhs.uk/conditions/acid-and-chemical-burns/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 05 June 2024'

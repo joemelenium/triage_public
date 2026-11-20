@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: gastritis
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, indigestion, feeling_sick, vomiting_blood]
+name: "Gastritis (swelling of the stomach lining)"
+medical_name: "Gastritis"
+snomed: "4556007"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: takes_anti_inflammatory_painkillers, prevalence: common}
+  - {finding: drinks_a_lot_of_alcohol, prevalence: common}
+findings:
+  sa_upper_middle: strongly_supports
+  indigestion: strongly_supports
+  feeling_sick: supports
+  sa_after_eating: supports
+  loss_of_appetite: supports
+  heartburn_or_sour_taste: supports
+key_findings: [sa_upper_middle, takes_anti_inflammatory_painkillers, drinks_a_lot_of_alcohol]
+source: nhs_gastritis
+informed_by: [nhs_gastritis, nhs_vomiting_blood, nhs_indigestion]

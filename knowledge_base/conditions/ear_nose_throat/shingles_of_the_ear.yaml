@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: shingles_of_the_ear
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain, hearing_loss]
+name: "Shingles of the ear (a painful rash in or around the ear that can weaken one side of the face)"
+medical_name: "Herpes zoster oticus (Ramsay Hunt syndrome)"
+snomed: "21954000"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart: painful blisters in or around the ear, with weakness of one side of the
+  # face. Treatment works best if started early.
+  rash_blisters_on_ear: strongly_supports
+  face_droop_one_side: strongly_supports
+  dizziness_spinning: supports
+  hearing_loss: supports
+  tinnitus: supports
+  ear_pain: supports
+key_findings: [rash_blisters_on_ear, face_droop_one_side, dizziness_spinning]
+source: ai_judgement
+informed_by: [nhs_shingles, nhs_bells_palsy]

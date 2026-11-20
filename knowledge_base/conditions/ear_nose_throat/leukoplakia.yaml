@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: leukoplakia
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_white_tongue]
+name: "Leukoplakia (white patches in the mouth that do not rub off)"
+snomed: "414603003"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: smoker, prevalence: common}
+findings:
+  # What tells it apart from mouth thrush: painless white patches that cannot be rubbed or scraped
+  # away, more common in people who smoke. They need checking because they can turn into cancer.
+  white_patches_do_not_rub_off: strongly_supports
+  white_patches_in_mouth: strongly_supports
+  mouth_patch_or_lump_3_weeks: supports
+key_findings: [white_patches_do_not_rub_off, smoker]
+source: nhs_leukoplakia
+informed_by: [nhs_leukoplakia, nhs_sore_or_white_tongue]

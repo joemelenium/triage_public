@@ -1,0 +1,54 @@
+id: sob_d13
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 55-year-old man who has had a cough for about ten days and has become short of breath walking over the last two days. Only when asked does he mention that he has coughed up a few streaks of blood this morning."
+
+opening_statement: "I've had a cough for over a week and now I'm getting short of breath walking to the car."
+
+findings:
+  present: [short_of_breath, sob_everyday_activity, cough, cough_phlegm, coughing_up_blood, smoker, symptoms_worse_or_not_better]
+  absent: [blood_more_than_streaks, sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, passed_out, chest_pain, upper_back_pain, heart_beating_very_fast, palpitations, leg_pain_or_swelling, recent_surgery_or_immobile, recent_long_journey, previous_blood_clot, has_cancer, very_high_temperature, phlegm_yellow_or_green, cough_3_weeks_or_more, weight_loss, night_sweats, tb_contact_or_travel, has_copd, has_asthma, known_heart_condition, swollen_ankles, wheezing, sob_more_than_usual, has_heart_failure]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 55, sex: male}
+  full:
+    age: 55
+    sex: male
+    findings: {smoker: "yes", has_cancer: "no", previous_blood_clot: "no"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Coughing up blood, here together with breathlessness (easy to miss: not mentioned up front)"
+    findings: [coughing_up_blood]
+    minimum_acuity: urgent
+    source: {page: shortness_of_breath.txt, quote: "you're coughing up blood"}
+
+safety_netting_should_cover:
+  - point: "Go to A&E now or call 999"
+    any_of: ["A&E", "999"]
+  - point: "Not to drive"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: coughing_up_blood.txt, quote: "you're coughing up blood and finding it hard to breathe, have a very fast heartbeat or have pain in your chest or upper back"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "you're coughing up blood"}
+
+variants:
+  - id: sob_d13_v1
+    style: "volunteers the blood"
+    opening_statement: "I've been coughing for over a week, I'm getting breathless, and this morning there were streaks of blood in what I coughed up."
+    volunteered: [cough, short_of_breath, coughing_up_blood]
+
+atypical: false
+notes: "Easy-to-miss combination. coughing_up_blood.txt: 'Call 999 or go to A&E immediately if' coughing up blood and 'finding it hard to breathe'. SOURCE DIFFERENCE: shortness_of_breath.txt, pulmonary_embolism.txt, copd.txt and lung_cancer.txt put coughing up blood at 'urgent' (NHS 111 or urgent GP), and pneumonia.txt, flu.txt and covid_19.txt put it at 999. He is breathless walking rather than at rest, so 'finding it hard to breathe' is a judgement call. Judgement: expected emergency (coughing_up_blood.txt is the most specific page and other pages agree), but minimum safe acuity urgent, since several pages give NHS 111 for a few streaks of blood with breathlessness. Level: A&E, as he is stable. The red flag's minimum is set to urgent to match the pages that give NHS 111; the combination with breathlessness is what lifts the expected outcome to emergency."

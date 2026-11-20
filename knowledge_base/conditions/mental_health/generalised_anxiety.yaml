@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: generalised_anxiety
+body_system: mental_health
+entry_symptoms: [feeling_anxious, low_mood]
+name: "Generalised anxiety (worrying about lots of things, most days)"
+medical_name: "Generalised anxiety disorder"
+snomed: "21897009"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_anxiety_or_panic, prevalence: very_common}
+  - {finding: feeling_anxious, prevalence: common}
+findings:
+  # What tells it apart from panic attacks or a stress reaction: worry about many
+  # things, most days, for 6 months or more, that is hard to control.
+  anxiety_most_days_6_months: strongly_supports
+  worry_hard_to_control: strongly_supports
+  feeling_on_edge: supports
+  sleep_problems: supports
+  very_tired: supports
+  feeling_anxious: supports
+key_findings: [anxiety_most_days_6_months, worry_hard_to_control, feeling_on_edge]
+source: nhs_gad
+informed_by: [nhs_gad, nhs_anxiety_fear_panic]

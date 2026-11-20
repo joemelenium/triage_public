@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: not_enough_sleep
+body_system: brain_and_nerves
+entry_symptoms: [daytime_sleepiness]
+name: "Not getting enough sleep"
+medical_name: "Insufficient sleep"
+snomed: "248256006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # The commonest reason for feeling sleepy in the day: shift work, a young baby or going to bed late.
+  not_enough_sleep: strongly_supports
+  very_tired: supports
+  lots_of_caffeine_or_alcohol: supports
+key_findings: [not_enough_sleep]
+source: nhs_insomnia
+informed_by: [nhs_insomnia, nhs_excessive_daytime_sleepiness_hypersomnia]

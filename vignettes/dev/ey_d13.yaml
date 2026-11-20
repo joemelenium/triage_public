@@ -1,0 +1,46 @@
+id: ey_d13
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [dry_eyes]
+
+summary: "A 34-year-old woman who works long hours at a computer in an air-conditioned office has had dry, gritty, tired eyes by the evening for 2 weeks. Her eyes are not red or painful and her sight is clear. She has not yet tried any treatment."
+
+opening_statement: "My eyes feel really dry and scratchy by the end of the day. I'm staring at screens all day in an air-conditioned office."
+
+findings:
+  present: [dry_eyes, gritty_or_burning, long_screen_time, both_eyes_affected]
+  absent: [dry_eyes_weeks, eye_pain, red_eye, vision_change, blurred_vision, bothered_by_light, contact_lens_wearer, sticky_discharge, eye_injury, dry_mouth, eyelid_turning_in_or_out]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 34, sex: female}
+  full:
+    age: 34
+    sex: female
+    findings: {}
+
+expected:
+  acuity: self_manageable
+  level_of_care: community_pharmacy
+  timeframe: not_needed
+
+minimum_safe_acuity: self_manageable
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Take regular breaks from the screen"
+    any_of: ["break"]
+  - point: "A pharmacist can advise on eyedrops"
+    any_of: ["pharmacist", "pharmacy", "eyedrops", "eye drops"]
+  - point: "See an optician or GP if still dry after a few weeks of home treatment"
+    any_of: ["few weeks", "optician", "GP"]
+
+source:
+  expected_outcome: {page: dry_eyes.txt, quote: "A pharmacist may be able to help with dry eyes"}
+  minimum_safe_acuity: {page: dry_eyes.txt, quote: "there are things you can do to help"}
+
+atypical: false
+notes: "Screen-related dry eyes. Blurred vision is absent to keep the case clean; dry_eyes.txt lists blurring as a dry-eye symptom but makes other changes to sight a 999 or A&E sign."

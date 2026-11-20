@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: epilepsy
+body_system: brain_and_nerves
+entry_symptoms: [had_a_fit]
+name: "Epilepsy (a condition that causes repeated seizures)"
+medical_name: "Epilepsy"
+snomed: "84757009"
+acuity_needed: urgent
+danger: serious
+diagnosed_by: has_epilepsy
+prevalence: common
+prevalence_when:
+  - {finding: has_epilepsy, prevalence: very_common}
+findings:
+  # Level urgent: a possible first seizure needs a same-day check (the Epilepsy page). What tells it apart from a faint: biting the tongue, wetting themselves, and being drowsy or confused afterwards.
+  bit_tongue_or_wet: strongly_supports
+  drowsy_hard_to_wake: supports
+  sudden_confusion: supports
+  seizure_more_than_one_24h: supports
+  fainted_without_warning: supports
+key_findings: [bit_tongue_or_wet, drowsy_hard_to_wake, has_epilepsy]
+source: nhs_epilepsy
+informed_by: [nhs_epilepsy, nhs_what_to_do_if_someone_has_a_seizure_fit]

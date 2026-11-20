@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: rosacea
+body_system: skin_and_hair
+entry_symptoms: [blushing, rash]
+name: "Rosacea (a long-term skin condition that makes the face red)"
+medical_name: "Rosacea"
+snomed: "398909004"
+acuity_needed: routine
+danger: minor
+prevalence: common
+prevalence_when:
+  - {finding: age_under_16, prevalence: very_rare}
+findings:
+  # What tells it apart from everyday blushing: a face that is red most of the time, with small blood vessels or small red spots, and burning or stinging with skincare products.
+  face_red_most_of_time: strongly_supports
+  eye_painful_red_or_gritty: supports
+  rash_sore_or_painful: supports
+key_findings: [face_red_most_of_time, eye_painful_red_or_gritty]
+source: nhs_rosacea
+informed_by: [nhs_rosacea, nhs_blushing]

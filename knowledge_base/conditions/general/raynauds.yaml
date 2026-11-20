@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: raynauds
+body_system: general
+# Common and usually harmless. The page says see a GP if it is bad, one-sided, new over 30, or
+# in a child under 12.
+entry_symptoms: [blue_or_grey_skin]
+name: "Raynaud's (fingers and toes change colour in the cold because of narrowed blood vessels)"
+medical_name: "Raynaud's phenomenon"
+snomed: "266261006"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from a blocked blood supply: it comes and goes with cold or stress,
+  # with white then blue then red fingers.
+  blue_white_in_cold: strongly_supports
+  blue_fingers_or_toes_only: strongly_supports
+  always_feeling_cold: supports
+key_findings: [blue_white_in_cold]
+source: nhs_raynauds
+informed_by: [nhs_raynauds, nhs_blue_skin_or_lips_cyanosis]

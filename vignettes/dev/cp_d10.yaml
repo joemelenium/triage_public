@@ -1,0 +1,74 @@
+id: cp_d10
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 63-year-old woman with an ache in her jaw and both arms for the past hour, with a heavy, uncomfortable
+  feeling in her chest that she would not call pain. It built up gradually and is still there. She feels
+  light-headed.
+opening_statement: For the past hour I've had an ache in my jaw and down both arms, and my chest feels
+  heavy and uncomfortable. I wouldn't really call it a pain. I've come over light-headed too.
+findings:
+  present: [chest_pain, cp_present_now, cp_heavy, cp_spreads, light_headed, angina_pain_not_settling,
+    worried_about_symptoms, heart_risk_factors]
+  absent: [stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+    heavy_bleeding, serious_self_harm, cp_sudden_not_going_away, sweating, nausea_or_vomiting, short_of_breath,
+    heart_beating_very_fast, fainted, palpitations, has_angina, angina_worse_than_usual, cp_comes_and_goes,
+    coughing_up_blood, cp_worse_breathing_in, leg_pain_or_swelling, difficulty_breathing, cp_on_exertion,
+    cp_after_eating, cp_after_injury_or_exercise, cp_with_worry, cough_mucus_or_temperature, family_heart_history,
+    cough_or_runny_nose, sore_throat, very_high_temperature, cp_lasted_15_minutes]
+  unknown: [cp_tight_or_squeezing]
+context:
+  none: {}
+  basic: {age: 63, sex: female}
+  full: {age: 63, sex: female}
+expected: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now}
+minimum_safe_acuity: emergency
+red_flags:
+- description: Discomfort that spreads to the jaw and both arms
+  findings: [cp_spreads]
+  minimum_acuity: emergency
+  source: {page: chest_pain.txt, quote: 'you get pain that spreads to your left or right arm, or your
+      neck, jaw, stomach or back'}
+- description: Chest discomfort with feeling light-headed
+  findings: [light_headed]
+  minimum_acuity: emergency
+  source: {page: chest_pain.txt, quote: 'you have chest pain and you feel sweaty, sick, light headed or
+      short of breath'}
+- description: Chest feels heavy
+  findings: [cp_heavy]
+  minimum_acuity: emergency
+  source: {page: shortness_of_breath.txt, quote: your chest feels tight or heavy}
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of: ['999']
+- point: Not to drive themselves to hospital
+  any_of: [do not drive, Do not drive, don't drive, not drive]
+source:
+  expected_outcome: {page: chest_pain.txt, quote: 'you get pain that spreads to your left or right arm,
+      or your neck, jaw, stomach or back'}
+  minimum_safe_acuity: {page: heart_attack_symptoms.txt, quote: 'you have chest pain that''s spreading
+      to your arms, neck or jaw'}
+variants:
+- id: cp_d10_v1
+  style: does not mention pain in the chest at all
+  opening_statement: My jaw and both my arms are aching and I feel faint. My chest feels a bit funny too,
+    but it doesn't hurt.
+  volunteered: [cp_spreads, light_headed]
+- id: cp_d10_v2
+  style: careful and detailed, volunteers negatives
+  opening_statement: About an hour ago I started getting an ache in my jaw, then down both arms. It crept
+    up on me rather than coming all at once. My chest feels heavy, which is still there now, and I feel
+    light-headed. I'm not sweaty, I don't feel sick and I'm not short of breath.
+  volunteered: [cp_spreads, cp_sudden_not_going_away, cp_heavy, cp_present_now, light_headed, sweating,
+    nausea_or_vomiting, short_of_breath]
+atypical: true
+notes: 'Atypical: the jaw and arm ache lead, and she denies chest ''pain'' (the question asks about pain
+  or discomfort, so chest_pain is yes). It built up gradually, so cp_sudden_not_going_away is no. cp_heavy
+  is yes: heavy is her own word for the feeling. cp_tight_or_squeezing is ''not sure'': she cannot say
+  whether heavy counts as tight or squeezed. The third red flag comes from shortness_of_breath.txt, which
+  lists ''your chest feels tight or heavy'' under ''Call 999 or go to A&E''. When this case was first
+  written no question asked about a heavy chest and that flag had no findings; it is now expressed with
+  cp_heavy. That page is written for people with shortness of breath, which she does not have, so the
+  outcome rests on the first two flags. angina_pain_not_settling is answered yes because the pain is still
+  there at rest, which is the honest answer to that question as worded; the patient has no angina diagnosis.
+  For the questions added to the list later: she has high cholesterol (heart_risk_factors yes).'

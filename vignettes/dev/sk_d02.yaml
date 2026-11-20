@@ -1,0 +1,81 @@
+id: sk_d02
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- insect_bite_or_sting
+- raised_itchy_rash
+summary: 27-year-old woman stung by a wasp on the hand 15 minutes ago, now with an itchy raised rash spreading over her body, swelling of the lips, and a tight throat with difficulty swallowing.
+opening_statement: I got stung by a wasp and now I've come out in an itchy rash, my lips are swelling up and my throat feels tight.
+findings:
+  present:
+  - insect_bite_or_sting
+  - raised_itchy_rash
+  - bite_lump_itchy_or_painful
+  - lips_tongue_throat_swelling
+  - throat_tight
+  - after_allergy_trigger
+  - unable_to_swallow
+  absent:
+  - stung_many_times
+  - bitten_in_mouth_throat_or_near_eye
+  - lips_or_skin_blue_grey
+  - passed_out
+  - sudden_confusion
+  - previous_severe_allergic_reaction
+  - wheezing
+  unknown:
+  - difficulty_breathing
+context:
+  none: {}
+  basic:
+    age: 27
+    sex: female
+  full:
+    age: 27
+    sex: female
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Sudden swelling of the lips after a sting
+  findings:
+  - lips_tongue_throat_swelling
+  minimum_acuity: emergency
+  source:
+    page: insect_bites.txt
+    quote: you or a child suddenly has swollen lips, mouth, throat or tongue
+- description: Tight throat and struggling to swallow
+  findings:
+  - throat_tight
+  - unable_to_swallow
+  minimum_acuity: emergency
+  source:
+    page: hives.txt
+    quote: your throat feels tight or you're struggling to swallow
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of:
+  - '999'
+- point: Use an adrenaline auto-injector if she has one
+  any_of:
+  - adrenaline
+  - auto-injector
+source:
+  expected_outcome:
+    page: insect_bites.txt
+    quote: you or a child suddenly has swollen lips, mouth, throat or tongue
+  minimum_safe_acuity:
+    page: insect_bites.txt
+    quote: you or a child are struggling to swallow
+variants:
+- id: sk_d02_v1
+  style: short and frightened
+  opening_statement: Wasp sting, my lips are swelling and my throat's going tight!
+  volunteered:
+  - insect_bite_or_sting
+  - lips_tongue_throat_swelling
+  - throat_tight
+atypical: false
+notes: Anaphylaxis after a wasp sting. She is not sure whether her breathing is affected (difficulty_breathing unknown); the outcome is emergency either way. unable_to_swallow is used for 'struggling to swallow'. The second safety point (adrenaline) comes from general anaphylaxis advice on anaphylaxis.txt rather than the insect bites page; a reviewer may drop it.

@@ -1,0 +1,139 @@
+# Entry symptom: blocked or runny nose.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The NHS website has no Symptoms A to Z page for a blocked or runny nose. The
+# rules come from the Sinusitis, Common cold, Broken nose and Nasal and sinus
+# cancer pages, and clinical knowledge where marked ai_judgement.
+# A "yes" to a blocked or runny nose in another session (for example a cough)
+# brings these red flags in too.
+
+id: blocked_or_runny_nose
+name: "Blocked or runny nose"
+presenting_finding: blocked_or_runny_nose
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: blocked_nose_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - swelling_around_eye
+      - vision_change_sudden
+      - very_painful_headache
+      - stiff_neck
+      - bothered_by_light
+      - clear_fluid_from_nose
+
+  - id: blocked_nose_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - feels_very_unwell
+      - sinus_pain_severe_or_worse
+      - object_in_nose
+      - weakened_immune_system
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bn_eye_swelling
+    description: "Blocked nose with swelling, redness or pain around the eye"
+    when: swelling_around_eye
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a sinus infection can rarely spread to the tissue around the eye, which needs treatment in hospital the same day."
+
+  - id: rf_bn_vision
+    description: "Blocked nose with sudden problems with eyesight"
+    when: vision_change_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: double or blurred vision with a sinus infection can mean it has spread to the eye socket. The Nasal and sinus cancer page says see a GP for sudden double vision; the more urgent is used."
+
+  - id: rf_bn_meningitis_signs
+    description: "Blocked nose with a very bad headache and a stiff neck, or bright light hurting the eyes"
+    when: {all: [very_painful_headache, {any: [stiff_neck, bothered_by_light]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_nose_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a sinus infection can rarely spread to the lining of the brain (meningitis)."
+
+  - id: rf_bn_clear_fluid_after_injury
+    description: "Clear, watery fluid trickling from the nose after an injury"
+    when: {all: [nose_injury, clear_fluid_from_nose]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_head_injury_ae
+    source: nhs_broken_nose
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bn_very_unwell
+    description: "Blocked nose or sinusitis and feeling very unwell"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_nose_urgent
+    source: nhs_sinusitis
+
+  - id: rf_bn_sinus_pain_worse
+    description: "Face pain that is severe, getting worse, or not helped by painkillers"
+    when: sinus_pain_severe_or_worse
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_nose_urgent
+    source: nhs_sinusitis
+
+  - id: rf_bn_weak_immune_sinusitis
+    description: "Signs of sinusitis in someone with a weakened immune system"
+    when: {all: [weakened_immune_system, face_pain_around_nose_and_eyes]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_nose_urgent
+    source: nhs_sinusitis
+
+  - id: rf_bn_object
+    description: "Something stuck up the nose"
+    when: object_in_nose
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help today from NHS 111, a minor injuries unit or an urgent treatment centre"}
+    advice: advice_object_stuck_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: an object in the nose should be removed the same day by a health professional, as it can be breathed in. A button battery in the nose is an emergency."
+
+  - id: rf_bn_broken_nose
+    description: "After an injury, the nose is crooked, the swelling has not gone down after 3 days, or it is hard to breathe through"
+    when: {all: [nose_injury, nose_crooked_or_not_healing]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_broken_nose_urgent
+    source: nhs_broken_nose
+
+outcome_rules:
+  - id: or_bn_3_weeks
+    description: "Blocked or runny nose for more than 3 weeks"
+    when: nose_symptoms_3_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nose_gp
+    source: nhs_sinusitis
+    note: "The Sinusitis page says see a GP if you do not get better after 3 weeks of treating symptoms yourself. The Nasal polyps and Nasal and sinus cancer pages say see a GP for a blocked nose that does not go away."
+
+  - id: or_bn_sinusitis_pharmacy
+    description: "Signs of sinusitis (pain or tenderness around the cheeks, eyes or forehead), aged 12 or over"
+    when: {all: [face_pain_around_nose_and_eyes, age_12_or_over]}
+    outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "See a pharmacist. The source gives no fixed time."}
+    advice: advice_sinusitis_pharmacy
+    source: nhs_sinusitis
+    note: "The Sinusitis page says see a pharmacist if you think you have sinusitis, or your child is 12 or over. A pharmacist can give the same treatments as a GP."
+
+  - id: or_bn_sinusitis_child
+    description: "Signs of sinusitis (pain or tenderness around the cheeks, eyes or forehead) in a child aged 11 or under"
+    when: {all: [face_pain_around_nose_and_eyes, age_under_12]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_nose_gp
+    source: nhs_sinusitis
+    note: "The Sinusitis page says see a GP if a child aged 11 or under has sinusitis symptoms."
+
+default:
+  description: "Blocked or runny nose with nothing that needs more help: treat it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "A blocked or runny nose from a cold usually clears up within 1 to 2 weeks. A pharmacist can help."}
+  advice: advice_blocked_nose_self_care
+  source: nhs_common_cold

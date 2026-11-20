@@ -1,0 +1,77 @@
+# Entry symptom: low sex drive (loss of libido).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The source gives no urgent or emergency signs, so there are no red-flag
+# checklists here beyond the universal one (which asks about serious self-harm).
+# Feeling low or hopeless leads to a GP, and the advice names crisis lines.
+
+id: low_sex_drive
+name: "Low sex drive (loss of libido)"
+presenting_finding: low_sex_drive
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: low_sex_drive_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - worried_about_sex_drive
+      - new_medicine_recently
+      - takes_antidepressants_or_blood_pressure_medicine
+      - hormonal_contraception
+      - sex_drive_not_back_after_baby
+      - low_mood
+      - low_testosterone_signs
+      - hot_flushes
+
+red_flags: []
+
+outcome_rules:
+  - id: or_ls_worried
+    description: "Worried about a low sex drive, or it is affecting life or a relationship"
+    when: worried_about_sex_drive
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_sex_drive_gp
+    source: nhs_loss_of_libido
+
+  - id: or_ls_medicine
+    description: "Taking a medicine or hormonal contraception that may be affecting sex drive"
+    when: {any: [new_medicine_recently, takes_antidepressants_or_blood_pressure_medicine, hormonal_contraception]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Do not stop a prescribed medicine or contraception without talking to them."}
+    advice: advice_low_sex_drive_gp
+    source: nhs_loss_of_libido
+
+  - id: or_ls_after_baby
+    description: "Sex drive has not come back since having a baby"
+    when: sex_drive_not_back_after_baby
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_sex_drive_gp
+    source: nhs_loss_of_libido
+
+  - id: or_ls_low_mood_or_hormones
+    description: "Low sex drive with feeling low or hopeless, or signs of low testosterone"
+    when: {any: [low_mood, low_testosterone_signs]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_sex_drive_gp
+    source: nhs_loss_of_libido
+    note: "The page lists depression and lower hormone levels as causes. The Male menopause page says see a GP for these symptoms."
+
+  - id: or_ls_menopause
+    description: "Low sex drive with hot flushes or periods changing or stopping: possible menopause"
+    when: {any: [hot_flushes, periods_changed]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_low_sex_drive_gp
+    source: nhs_loss_of_libido
+    note: "The page lists lower hormone levels during the menopause as a cause, treated with HRT from a GP. Sending everyone with these signs to a GP is a reading of that."
+
+default:
+  description: "Low sex drive with nothing that needs help now"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if you are worried about it"}
+  advice: advice_low_sex_drive_self_care
+  source: nhs_loss_of_libido

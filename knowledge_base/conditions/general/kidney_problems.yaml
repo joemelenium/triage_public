@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: kidney_problems
+body_system: general
+# Kidneys that are not working well can cause swelling, tiredness and puffiness around the eyes.
+# The page says see a GP. More likely with diabetes, high blood pressure or older age.
+entry_symptoms: [swollen_ankles, very_tired]
+name: "Kidney problems (the kidneys not working as well as they should)"
+medical_name: "Chronic kidney disease"
+snomed: "709044004"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: has_kidney_or_liver_condition, prevalence: common}
+  - {finding: has_diabetes, prevalence: uncommon}
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart from heart failure: puffiness of the face or around the eyes, without
+  # breathlessness.
+  swelling_elsewhere: strongly_supports
+  very_tired: supports
+  swollen_ankles: supports
+  peeing_more_often: supports
+  nausea_or_vomiting: supports
+key_findings: [swelling_elsewhere, has_kidney_or_liver_condition]
+source: nhs_kidney_disease
+informed_by: [nhs_kidney_disease, nhs_oedema]

@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: gynaecomastia
+body_system: womens_health
+entry_symptoms: [breast_lump, breast_pain]
+name: "Breast swelling in men (gynaecomastia)"
+medical_name: "Gynaecomastia"
+snomed: "4754008"
+# The most common cause of a breast lump in men. Being male is also linked as a
+# finding, as it is part of the definition: it sets the chance when sex is not
+# given as context.
+acuity_needed: routine
+danger: minor
+sex: male
+prevalence: uncommon
+findings:
+  swelling_behind_nipple: strongly_supports
+  breast_lump: strongly_supports
+  breast_pain: supports
+  breast_pain_both_breasts: supports
+key_findings: [swelling_behind_nipple]
+source: nhs_gynaecomastia
+informed_by: [nhs_gynaecomastia]

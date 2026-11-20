@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: infection_after_eye_surgery
+body_system: eyes
+# An infection inside the eye after surgery (such as cataract surgery) or an eye
+# injection. Rare, but can cause blindness within hours.
+entry_symptoms: [eye_pain, red_eye, vision_change]
+name: "Infection inside the eye after surgery or an injection in the eye"
+medical_name: "Endophthalmitis"
+snomed: "1847009"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: eye_surgery_recent, prevalence: rare}
+findings:
+  eye_surgery_recent: strongly_supports
+  eye_pain_severe: strongly_supports
+  vision_change: strongly_supports
+  red_eye: supports
+  sticky_discharge: supports
+key_findings: [eye_surgery_recent, eye_pain_severe]
+source: nhs_eye_pain
+informed_by: [nhs_eye_pain, nhs_detached_retina]

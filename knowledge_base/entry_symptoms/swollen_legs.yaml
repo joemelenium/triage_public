@@ -1,0 +1,179 @@
+# Entry symptom: swollen ankles, feet or legs (oedema).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Uses the network's existing "swollen feet, ankles or legs" observation as its
+# main symptom, so a "yes" to it in a breathlessness session brings these rules
+# in too. The NHS page says call 999 for swelling with breathlessness (a blood
+# clot in the lung). That is kept for the clot signs (sudden breathlessness,
+# chest pain, coughing up blood, one swollen leg) and softened for struggling to
+# breathe. Breathlessness on its own with both ankles swollen, the everyday
+# picture of heart failure, gets same-day help instead (see the rule's note).
+
+id: swollen_legs
+name: "Swollen ankles, feet or legs"
+presenting_finding: swollen_ankles
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_oedema]
+
+screens:
+  - id: swollen_legs_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - short_of_breath
+      - chest_pain
+      - cp_tight_or_squeezing
+      - cp_heavy
+      - coughing_up_blood
+      - palpitations
+      - light_headed
+
+  - id: swollen_legs_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - leg_pain_or_swelling
+      - swelling_severe_painful_or_sudden
+      - swollen_area_red_hot
+      - swelling_after_injury
+      - swelling_elsewhere
+      - very_high_temperature
+      - has_diabetes
+      - pregnant_or_recently_given_birth
+
+red_flags:
+  # ---- Emergency: a possible blood clot in the lung ------------------------
+  - id: rf_sl_clot_in_lung_signs
+    description: "Swollen leg or ankle with chest pain, a tight or heavy chest, coughing up blood, or sudden breathlessness"
+    when: {any: [chest_pain, cp_tight_or_squeezing, cp_heavy, coughing_up_blood, sob_sudden]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_swelling_999
+    source: nhs_oedema
+
+  - id: rf_sl_one_leg_and_breathless
+    description: "Pain or swelling in one leg and short of breath: possible blood clot in the leg that has moved to the lung"
+    when: {all: [leg_pain_or_swelling, short_of_breath]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_swelling_999
+    source: nhs_deep_vein_thrombosis
+
+  - id: rf_sl_struggling_to_breathe
+    description: "Swollen leg or ankle and struggling to breathe, or short of breath at rest"
+    when: {any: [difficulty_breathing, sob_at_rest]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_swelling_999
+    source: nhs_oedema
+    soft: true    # likely conditions may lower this: it is also how a flare of heart failure shows
+    note: "The Oedema page says call 999 if you are short of breath or struggling to breathe. A&E rather than an ambulance, and soft, because a flare of heart failure looks the same, and the Heart failure page sends that to an urgent GP appointment."
+
+  - id: rf_sl_breathless
+    description: "Swollen ankles or legs and short of breath"
+    when: short_of_breath
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_swelling_urgent
+    source: nhs_heart_failure
+    note: "Source difference, resolved by AI reading, needs clinical review. The Oedema page says call 999 for swelling with breathlessness, as a sign of a blood clot in the lung. The Shortness of breath page says see a GP for breathlessness with swollen ankles, and the Heart failure page says an urgent GP appointment or 111 for its symptoms. The clot signs (sudden breathlessness, breathlessness at rest, chest pain, coughing up blood, or one swollen leg) keep 999 or A&E through the rules above. Breathlessness on its own with both ankles swollen, usually from heart failure, gets same-day help."
+
+  - id: rf_sl_palpitations_or_faint
+    description: "Swollen leg or ankle with a racing or pounding heart, or feeling light-headed or faint"
+    when: {any: [palpitations, light_headed]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_swelling_999
+    source: nhs_oedema
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Oedema page says call 999 for these with swelling, as signs of a blood clot in the lung. Soft, because they are common on their own and the page's list is broad."
+
+  - id: rf_sl_cellulitis_spreading
+    description: "A red, hot swollen area with a fast heartbeat, fast breathing, feeling faint, or cold, clammy or blotchy skin"
+    when: {all: [swollen_area_red_hot, {any: [heart_beating_very_fast, breathing_very_fast, light_headed, cold_hands_and_feet, skin_blotchy]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_cellulitis
+
+  - id: rf_sl_cellulitis_temperature
+    description: "A red, hot swollen area with a high temperature, or feeling hot, cold or shivery"
+    when: {all: [swollen_area_red_hot, very_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_cellulitis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Cellulitis page says 999 or A&E for cellulitis with a very high temperature or feeling shivery. The Oedema page says an urgent GP appointment or 111 for swelling with a high temperature. The more urgent is used, marked soft."
+
+  # ---- Urgent ----------------------------------------------------------------
+  - id: rf_sl_one_leg
+    description: "Swelling or pain in one leg without a known cause: possible blood clot in the leg (DVT)"
+    when: leg_pain_or_swelling
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_severe_or_sudden
+    description: "Swelling that is severe, painful or came on suddenly"
+    when: swelling_severe_painful_or_sudden
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_red_hot
+    description: "The swollen area is red or feels hot"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_after_injury
+    description: "A lot of swelling after an injury, or swelling getting worse"
+    when: swelling_after_injury
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_swelling_elsewhere
+    description: "Swelling in other parts of the body too, such as the face or tummy"
+    when: swelling_elsewhere
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_high_temperature
+    description: "Swollen leg or ankle with a high temperature, or feeling hot, cold or shivery"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_diabetes
+    description: "Swollen feet, ankles or legs in someone with diabetes"
+    when: has_diabetes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_swelling_urgent
+    source: nhs_oedema
+
+  - id: rf_sl_pregnancy_warning_signs
+    description: "Pregnant or recently given birth, with swelling and a severe headache, vision problems, pain below the ribs, or sudden swelling of the face or hands"
+    when: {all: [pregnant_or_recently_given_birth, {any: [{any: [severe_headache_not_helped, vision_change, pain_below_ribs]}, swelling_elsewhere, swelling_severe_painful_or_sudden]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit now, or call 111 if you cannot"}
+    advice: advice_pre_eclampsia_urgent
+    source: nhs_pre_eclampsia
+
+outcome_rules:
+  - id: or_sl_not_improving
+    description: "Swelling not better after a few days of treating it at home, or getting worse"
+    when: swelling_not_improving
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_swelling_gp
+    source: nhs_oedema
+
+  - id: or_sl_known_condition
+    description: "Swelling in someone with a heart, kidney or liver condition"
+    when: {any: [known_heart_condition, has_kidney_or_liver_condition]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_swelling_gp
+    source: nhs_oedema
+    note: "The page says see a GP if you have a condition that affects your heart, kidneys or leg veins. Adding the liver is AI judgement, as the page lists liver problems as a cause."
+
+default:
+  description: "Swollen ankles, feet or legs with nothing that needs more help: try the self-help advice for a few days"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Swelling often goes away on its own. See a GP if it is not better after a few days."}
+  advice: advice_swelling_self_care
+  source: nhs_oedema

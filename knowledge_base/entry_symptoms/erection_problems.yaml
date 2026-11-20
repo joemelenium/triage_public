@@ -1,0 +1,93 @@
+# Entry symptom: erection problems (erectile dysfunction).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The source gives no urgent signs. The emergency checklist covers the nerve signs
+# from the Back pain page (cauda equina syndrome).
+
+id: erection_problems
+name: "Erection problems (erectile dysfunction)"
+presenting_finding: erection_problems
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: erection_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - saddle_numbness
+      - legs_weak_or_numb
+      - erection_problems_sudden
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: erection_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - erection_problems_keep_happening
+      - heart_risk_factors
+      - has_diabetes
+      - new_medicine_recently
+      - low_testosterone_signs
+      - low_mood
+
+red_flags:
+  - id: rf_ep_nerve_signs
+    description: "Erection problems with numbness around the genitals or bottom, or new weakness or numbness in both legs: possible cauda equina syndrome"
+    when: {any: [saddle_numbness, legs_weak_or_numb]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    note: "The Back pain page gives these with back pain. Applying them without back pain is AI judgement."
+
+  - id: rf_ep_sudden_with_back_pain
+    description: "Erection problems that started suddenly, with back pain"
+    when: {all: [erection_problems_sudden, back_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Back pain page says call 999 or go to A&E for back pain with not being able to get or keep an erection. Requiring the erection problems to be new and sudden is an AI reading, so that long-standing erection problems in someone with back ache are not sent to A&E."
+
+outcome_rules:
+  - id: or_ep_keep_happening
+    description: "Erection problems that keep happening"
+    when: erection_problems_keep_happening
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or go to a sexual health clinic. The source gives no fixed time."}
+    advice: advice_erection_gp
+    source: nhs_erection_problems_erectile_dysfunction
+
+  - id: or_ep_health_condition
+    description: "Erection problems in someone who smokes or has high blood pressure, diabetes or high cholesterol"
+    when: {any: [heart_risk_factors, has_diabetes]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_erection_gp
+    source: nhs_erection_problems_erectile_dysfunction
+    note: "The page says erection problems may be caused by these conditions and might be a sign of a health condition that can be treated."
+
+  - id: or_ep_medicine
+    description: "Erection problems after starting or changing a medicine"
+    when: new_medicine_recently
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Do not stop a prescribed medicine without talking to them."}
+    advice: advice_erection_gp
+    source: nhs_erection_problems_erectile_dysfunction
+
+  - id: or_ep_hormones_or_mood
+    description: "Erection problems with signs of low testosterone, or feeling low or hopeless"
+    when: {any: [low_testosterone_signs, low_mood]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_erection_gp
+    source: nhs_erection_problems_erectile_dysfunction
+    note: "The page lists depression and hormone problems as causes. The Male menopause page says see a GP for these symptoms."
+
+default:
+  description: "Erection problems now and then, with nothing else that needs help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most men sometimes fail to get or keep an erection. See a GP if it keeps happening."}
+  advice: advice_erection_self_care
+  source: nhs_erection_problems_erectile_dysfunction

@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: vaginal_thrush
+body_system: womens_health
+entry_symptoms: [vaginal_discharge, vaginal_dryness]
+name: "Vaginal thrush (a common yeast infection)"
+medical_name: "Vulvovaginal candidiasis"
+snomed: "72934000"
+# Thick white discharge with itching or soreness. A pharmacist can treat it, so
+# the level of care is a pharmacy (the GP for a first episode, under 16 or over 60).
+acuity_needed: routine
+danger: minor
+sex: female
+level_of_care: community_pharmacy
+prevalence: uncommon
+prevalence_when:
+  - {finding: vaginal_discharge, prevalence: very_common}
+findings:
+  discharge_thick_white: strongly_supports
+  vagina_itchy_or_sore: strongly_supports
+  pain_when_peeing: supports
+  pain_during_sex: supports
+key_findings: [discharge_thick_white, vagina_itchy_or_sore]
+source: nhs_vaginal_thrush
+informed_by: [nhs_vaginal_thrush, nhs_vaginal_discharge]

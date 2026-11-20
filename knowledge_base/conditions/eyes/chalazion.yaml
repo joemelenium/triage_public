@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: chalazion
+body_system: eyes
+# A firm, painless lump from a blocked gland in the eyelid. Often goes on its
+# own over weeks. The NHS page could not be found.
+entry_symptoms: [eyelid_problem]
+name: "Chalazion (a firm, painless lump in the eyelid from a blocked gland)"
+medical_name: "Chalazion (meibomian cyst)"
+snomed: "1482004"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  eyelid_lump_painless: strongly_supports
+  eyelid_lump: strongly_supports
+  eyelid_lump_not_going: supports
+  eyelid_itchy_crusty: supports    # linked to blepharitis
+key_findings: [eyelid_lump_painless, eyelid_lump_not_going]
+source: nhs_stye
+informed_by: [nhs_stye, nhs_eyelid_problems]

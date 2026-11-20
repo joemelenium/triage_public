@@ -1,0 +1,91 @@
+# Entry symptom: coughing up blood (blood in phlegm).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The source says everyone coughing up blood should get it checked as soon as
+# possible, so the default is already urgent and a floor. Nothing below urgent
+# is needed, so the second checklist covers the things that make a blood clot in
+# the lung more likely, which raise the outcome to emergency.
+
+id: coughing_up_blood
+name: "Coughing up blood"
+presenting_finding: coughing_up_blood
+also_covers: [nhs_coughing_up_blood]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: coughing_up_blood_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - blood_more_than_streaks
+      - difficulty_breathing
+      - short_of_breath
+      - heart_beating_very_fast
+      - chest_pain
+      - upper_back_pain
+      - very_high_temperature
+
+  - id: coughing_up_blood_clot_screen
+    level: emergency
+    question: "Do any of these apply to you? Choose all that apply."
+    findings:
+      - leg_pain_or_swelling
+      - recent_surgery_or_immobile
+      - recent_long_journey
+      - previous_blood_clot
+      - pregnant_or_recently_given_birth
+      - has_cancer
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_hb_more_than_streaks
+    description: "Coughing up more than just a few spots or streaks of blood"
+    when: blood_more_than_streaks
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_coughing_blood_ae
+    source: nhs_coughing_up_blood
+    note: "The Bronchiectasis and Pleurisy pages give the same advice."
+
+  - id: rf_hb_with_breathing_heart_or_pain
+    description: "Coughing up blood and finding it hard to breathe, a very fast heartbeat, or pain in the chest or upper back"
+    when: {any: [difficulty_breathing, short_of_breath, heart_beating_very_fast, chest_pain, upper_back_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_coughing_blood_ae
+    source: nhs_coughing_up_blood
+    note: "The page says 'finding it hard to breathe'. Including feeling short of breath is AI judgement, since the two are hard to tell apart and both can mean a blood clot in the lung."
+
+  - id: rf_hb_with_high_temperature
+    description: "Coughing up blood with a high temperature"
+    when: very_high_temperature
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_coughing_blood_ae
+    source: nhs_pneumonia
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Pneumonia, Flu and COVID-19 pages say call 999 or go to A&E if you start coughing up blood with those illnesses. The Coughing up blood, Bronchitis and Chest infection pages say an urgent or routine GP appointment for a few streaks. Using a high temperature to mark those illnesses is AI judgement. The more urgent is used, marked soft."
+
+  - id: rf_hb_clot_risk
+    description: "Coughing up blood in someone more likely to have a blood clot: leg pain or swelling, recent operation or not moving about, long journey, a clot before, pregnancy, or cancer"
+    when: {any: [leg_pain_or_swelling, recent_surgery_or_immobile, recent_long_journey, previous_blood_clot, pregnant_or_recently_given_birth, has_cancer]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_coughing_blood_ae
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: coughing up blood with any of these makes a blood clot in the lung (pulmonary embolism) more likely, which needs checking in hospital the same day. The Pulmonary embolism page lists leg pain and swelling as a clot symptom, and advises moving about on long journeys."
+
+outcome_rules: []
+
+default:
+  description: "Coughing up a few spots, flecks or streaks of blood, with nothing that needs more urgent help"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+  advice: advice_coughing_blood_urgent
+  source: nhs_coughing_up_blood
+  # A floor: the source says it could be something serious, so it is important to get
+  # it checked as soon as possible. Likely conditions can never take it below this.
+  floor: true
+  note: "The Chest infection page says see a GP (non-urgent) for blood-stained phlegm with a chest infection. The Coughing up blood page is used, as the page for the symptom itself."

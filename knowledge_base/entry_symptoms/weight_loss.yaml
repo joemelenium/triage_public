@@ -1,0 +1,92 @@
+# Entry symptom: unintentional weight loss.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Uses the network's existing "losing weight without trying" observation as its
+# main symptom. The NHS page says to see a GP for any unexplained weight loss,
+# so the default is a floor. "As soon as possible" with other symptoms is
+# mapped to "soon" (within a few days).
+
+id: weight_loss
+name: "Unintentional weight loss"
+presenting_finding: weight_loss
+status: "AI-drafted, not clinically reviewed"
+also_covers: [nhs_unintentional_weight_loss]
+
+screens:
+  - id: weight_loss_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - fruity_breath
+      - breathing_deep_and_fast
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - cannot_keep_fluids_down
+
+  - id: weight_loss_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_thirsty
+      - peeing_more_often
+      - yellow_skin_or_eyes
+      - night_sweats
+      - lump_neck_armpit_or_groin
+      - loss_of_appetite
+      - weight_loss_a_lot
+
+red_flags:
+  - id: rf_wl_ketoacidosis_signs
+    description: "Weight loss with breath that smells fruity or breathing faster and more deeply than usual: possible diabetic ketoacidosis"
+    when: {any: [fruity_breath, breathing_deep_and_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_ketoacidosis_emergency
+    source: nhs_type_1_diabetes_symptoms
+
+  - id: rf_wl_drowsy
+    description: "Weight loss and so drowsy they are hard to wake or cannot stay awake"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_ketoacidosis_emergency
+    source: nhs_type_1_diabetes_symptoms
+    note: "The Type 1 diabetes page says call 999 or go to A&E for feeling sleepy or confused with the symptoms of diabetes. Applying it to anyone losing weight is AI judgement."
+
+  - id: rf_wl_thirsty_and_being_sick
+    description: "Weight loss, very thirsty and peeing more, and being sick: possible diabetic ketoacidosis"
+    when: {all: [very_thirsty, peeing_more_often, cannot_keep_fluids_down]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_ketoacidosis_emergency
+    source: nhs_type_1_diabetes_symptoms
+
+  - id: rf_wl_type_1_diabetes
+    description: "Weight loss with feeling very thirsty and peeing more: possible type 1 diabetes"
+    when: {all: [very_thirsty, peeing_more_often]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_type_1_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    note: "Three of the 4 Ts (toilet, thirsty, thinner). The page says an urgent GP appointment or 111 if you think you have type 1 diabetes."
+
+  - id: rf_wl_yellow_skin
+    description: "Weight loss with yellow skin or yellow whites of the eyes"
+    when: yellow_skin_or_eyes
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_weight_loss_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: new yellowing of the skin or eyes (jaundice) with weight loss can be a blocked bile duct or cancer of the pancreas or liver and should be checked the same day. The skin and hair body system owns the jaundice page."
+
+outcome_rules:
+  - id: or_wl_with_other_symptoms
+    description: "Weight loss with other symptoms, such as night sweats, a lump, losing your appetite, or losing a lot of weight quickly"
+    when: {any: [night_sweats, lump_neck_armpit_or_groin, loss_of_appetite, weight_loss_a_lot]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP as soon as possible"}
+    advice: advice_weight_loss_soon
+    source: nhs_unintentional_weight_loss
+    note: "The page says it is important to see a GP as soon as possible if you have weight loss and other symptoms. 'As soon as possible' is mapped to soon. Which symptoms count is AI judgement."
+
+default:
+  description: "Losing weight without trying: see a GP just in case"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_weight_loss_gp
+  source: nhs_unintentional_weight_loss
+  floor: true
+  note: "The page says to see a GP just in case, so likely conditions can never take the outcome below this."

@@ -1,0 +1,222 @@
+# Entry symptom: eyelid problems (lumps, swelling, drooping, itchy or sticky eyelids).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The page gives no emergency advice. The emergency rules below come from the
+# Cellulitis, Anaphylaxis and Cluster headaches pages and clinical knowledge.
+# "An urgent GP or optician appointment" is mapped to urgent care; the advice
+# names the optician.
+
+id: eyelid_problems
+name: "Eyelid problems"
+presenting_finding: eyelid_problem
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: eyelid_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - lips_tongue_throat_swelling
+      - eye_hard_to_move
+      - bulging_eyes
+      - pupils_different_sizes
+      - very_painful_headache
+
+  - id: eyelid_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eyelid_red_hot_painful
+      - eyelid_drooped_suddenly
+      - cannot_open_eye
+      - eye_pain
+      - eye_very_red
+      - bothered_by_light
+      - vision_change
+      - very_high_temperature
+
+  - id: eyelid_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - eyelid_lump_not_going
+      - eyelid_lump_yellow
+      - eyelid_turning_in_or_out
+      - worried_about_symptoms
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_el_allergic_swelling
+    description: "Swollen eyelids with the lips, mouth, tongue or throat suddenly swollen: possible severe allergic reaction"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_el_infection_behind_eye
+    description: "Swollen eyelid with the eye hard or painful to move, a bulging eye, or changes to the sight: possible infection behind the eye"
+    when: {all: [eyelid_swollen, {any: [eye_hard_to_move, eye_pain_moving_eye, bulging_eyes, vision_change]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_eye_infection_spreading
+    source: nhs_cellulitis
+    note: "The Cellulitis page says cellulitis in the eye is very serious. The signs used for infection spreading behind the eye are AI judgement."
+
+  - id: rf_el_infection_very_unwell
+    description: "Red, hot, swollen eyelid with a very high temperature, feeling very unwell, or feeling faint or confused"
+    when: {all: [eyelid_red_hot_painful, {any: [feels_very_unwell, light_headed]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_infection_spreading
+    source: nhs_cellulitis
+    note: "The Cellulitis page says call 999 or go to A&E for cellulitis with feeling dizzy or faint, or other signs of serious illness. A high temperature alone is urgent (Eyelid problems page)."
+
+  - id: rf_el_droop_and_pupil
+    description: "An eyelid drooping for the first time with 1 pupil bigger or smaller than the other"
+    when: {all: [eyelid_drooped_suddenly, pupils_different_sizes]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_eye_emergency
+    source: nhs_cluster_headaches
+    note: "The Cluster headaches page says call 999 or go to A&E for either sign for the first time. Clinical knowledge: together they can mean a nerve to the eye is being pressed on."
+
+  - id: rf_el_droop_and_headache
+    description: "An eyelid that has suddenly started drooping, with a severe headache"
+    when: {all: [eyelid_drooped_suddenly, very_painful_headache]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_eye_emergency
+    source: nhs_cluster_headaches
+    note: "The Cluster headaches page says call 999 or go to A&E for an eyelid drooping for the first time, and the Double vision page for a severe headache with double vision. Clinical knowledge: a painful new droop can be a brain aneurysm pressing on a nerve to the eye. Firm: myasthenia gravis, the milder cause of a droop, does not cause a severe headache."
+
+  - id: rf_el_droop_and_double
+    description: "An eyelid that has suddenly started drooping, with double vision"
+    when: {all: [eyelid_drooped_suddenly, double_vision]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_eye_emergency
+    source: nhs_cluster_headaches
+    soft: true    # likely conditions may lower this: myasthenia gravis also causes a droop with double vision
+    note: "The Cluster headaches page says call 999 or go to A&E for an eyelid drooping for the first time. The Eyelid problems page says urgent for an eyelid that droops suddenly, which stays as the floor. Clinical knowledge: with double vision it can be a brain aneurysm. Soft, because myasthenia gravis can also cause this. The severe headache part is a separate firm rule."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_el_hot_swollen
+    description: "Swollen eyelid that is red, hot, painful, tender or blistered"
+    when: eyelid_red_hot_painful
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_droops_suddenly
+    description: "Eyelid droops suddenly"
+    when: eyelid_drooped_suddenly
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_cannot_open
+    description: "Cannot open the eye or keep it open"
+    when: cannot_open_eye
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_eye_symptoms
+    description: "A very red eye, sensitivity to light, or changes to the sight"
+    when: {any: [eye_very_red, bothered_by_light, vision_change]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_eye_pain
+    description: "Pain in the eye itself, not only the eyelid"
+    when: eye_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The page says urgent if the pain is in your eye, not your eyelid. The eye pain question also covers pain around the eye, such as a painful stye, so the rule is soft: a likely stye can lower it. The Stye page says urgent only if a stye is very painful or swollen."
+
+  - id: rf_el_headache_or_sick
+    description: "Eye symptoms with a headache, or feeling or being sick"
+    when: {any: [headache, nausea_or_vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_newborn_sticky
+    description: "A baby less than 1 month old with a sticky, red eye"
+    when: {all: [age_under_1_month, {any: [sticky_discharge, red_eye]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_baby_eye_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_temperature_unwell
+    description: "A very high temperature, feeling hot, cold or shivery, or feeling generally unwell"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+
+  - id: rf_el_allergy
+    description: "Swollen eyelids that may be an allergic reaction"
+    when: {all: [eyelid_swollen, after_allergy_trigger]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eyelid_urgent
+    source: nhs_eyelid_problems
+    note: "The page says urgent if you think it is an allergic reaction. Using a reaction to a food, medicine or sting to mark this is AI judgement."
+
+  - id: rf_el_shingles_or_blisters
+    description: "Blisters or a rash on the eyelid or around the eye"
+    when: blisters_around_eye
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 today"}
+    advice: advice_shingles_urgent
+    source: nhs_eyelid_problems
+    note: "The page says urgent for a swollen eyelid that is blistered. The Shingles page says urgent for a rash near the eye."
+
+  # ---- Soon --------------------------------------------------------------
+  - id: rf_el_lump_growing
+    description: "An eyelid lump that is growing, bleeding or crusting: possible skin cancer"
+    when: eyelid_lump_growing_or_bleeding
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within a few days"}
+    advice: advice_eyelid_soon
+    source: ai_judgement
+    note: "Clinical knowledge: a lump on the eyelid that grows, bleeds or does not heal can be a skin cancer and should be checked soon. The Eyelid problems page says see a GP for symptoms that last a long time."
+
+outcome_rules:
+  - id: or_el_lasting
+    description: "Eyelid symptoms not improving or lasting a long time"
+    when: {any: [eyelid_lump_not_going, red_eye_lasting]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. No fixed time is given."}
+    advice: advice_eyelid_gp
+    source: nhs_eyelid_problems
+    note: "The Stye page says see a GP if a stye does not get better within a few weeks."
+
+  - id: or_el_yellow
+    description: "Yellow lumps or patches around the eyes"
+    when: eyelid_lump_yellow
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. No fixed time is given."}
+    advice: advice_eyelid_gp
+    source: nhs_eyelid_problems
+
+  - id: or_el_turning_or_drooping
+    description: "Eyelid turning inwards or outwards, eyelashes rubbing the eye, or a drooping eyelid"
+    when: {any: [eyelid_turning_in_or_out, eyelashes_rubbing_eye, eyelid_drooping]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. No fixed time is given."}
+    advice: advice_eyelid_gp
+    source: nhs_ectropion
+    note: "The Ectropion page says see a GP if you think you have it. Including a slowly drooping eyelid is AI judgement: the Eyelid problems page says this is common with age, but a GP can check it."
+
+  - id: or_el_worried
+    description: "Worried about an eyelid problem"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. No fixed time is given."}
+    advice: advice_eyelid_gp
+    source: nhs_eyelid_problems
+
+default:
+  description: "An eyelid problem with nothing that needs more help: most are harmless"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most eyelid problems are harmless. A pharmacist can help."}
+  advice: advice_eyelid_self_care
+  source: nhs_eyelid_problems

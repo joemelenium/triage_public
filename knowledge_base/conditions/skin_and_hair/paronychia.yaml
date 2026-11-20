@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: paronychia
+body_system: skin_and_hair
+entry_symptoms: [nail_problem]
+name: "Infected skin around a nail (paronychia)"
+medical_name: "Paronychia"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from a fungal nail: the skin around the nail is sore, red, swollen and warm, sometimes with pus.
+  skin_around_nail_red_swollen: strongly_supports
+  pus_or_fluid_leaking: supports
+  swollen_area_red_hot: supports
+key_findings: [skin_around_nail_red_swollen, pus_or_fluid_leaking]
+source: nhs_nail_problems
+informed_by: [nhs_nail_problems]

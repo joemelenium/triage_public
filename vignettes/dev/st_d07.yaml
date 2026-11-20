@@ -1,0 +1,66 @@
+id: st_d07
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat]
+
+summary: "A 52-year-old woman whose sore throat began this morning and within hours became the worst she has ever had; it is still getting worse by the hour. She can manage only sips of water but is breathing and speaking normally. She finished chemotherapy a few months ago and does not know whether her immune system is still affected. Her record still flags a weakened immune system."
+
+opening_statement: "My throat was a bit sore when I woke up and now, a few hours later, it's the worst sore throat I've ever had. It's getting worse by the hour."
+
+findings:
+  present: [sore_throat, severe_and_worsening_quickly, too_painful_to_eat_or_drink,
+      worried_about_symptoms, wants_help_with_sore_throat, symptoms_worse_or_not_better]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, swelling_in_mouth_and_throat,
+      difficulty_speaking, difficulty_opening_mouth, very_high_temperature, dehydration_signs,
+      pus_on_tonsils, sore_throat_over_a_week, frequent_sore_throats, lump_in_mouth_or_neck,
+      mouth_ulcer_over_3_weeks, cough_or_runny_nose, swollen_neck_glands, very_tired,
+      stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out,
+      sudden_confusion, heavy_bleeding, serious_self_harm, chest_pain, short_of_breath, cold_or_shivery]
+  unknown: [weakened_immune_system]
+
+context:
+  none: {}
+  basic: {age: 52, sex: female}
+  full:
+    age: 52
+    sex: female
+    findings: {weakened_immune_system: "yes"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_department
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Severe sore throat that is getting worse quickly"
+    findings: [severe_and_worsening_quickly]
+    minimum_acuity: emergency
+    source: {page: sore_throat.txt, quote: "have severe symptoms and are getting worse quickly"}
+  - description: "Throat so painful that it is difficult to eat or drink"
+    findings: [too_painful_to_eat_or_drink]
+    minimum_acuity: urgent
+    source: {page: tonsillitis.txt, quote: "you have a sore throat so painful it's difficult to eat or drink"}
+  - description: "Weakened immune system after chemotherapy, known from the record"
+    findings: [weakened_immune_system]
+    minimum_acuity: urgent
+    source: {page: sore_throat.txt, quote: "you have a weakened immune system – for example, because of diabetes or chemotherapy"}
+
+safety_netting_should_cover:
+  - point: "Call 999 or go to A&E now"
+    any_of: ["999", "A&E"]
+  - point: "Not to drive themselves to A&E"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: sore_throat.txt, quote: "Immediate action required: Call 999 or go to A&E now if:"}
+  minimum_safe_acuity: {page: tonsillitis.txt, quote: "you have a severe sore throat that quickly gets worse"}
+
+context_test:
+  what_context_adds: "The record shows chemotherapy that finished a few months ago and still flags a weakened immune system. The patient says she is not sure whether that still applies."
+  expected_direction: same
+
+atypical: false
+notes: "The two pages agree on the emergency sign (sore_throat.txt 'have severe symptoms and are getting worse quickly'; tonsillitis.txt 'you have a severe sore throat that quickly gets worse'). Context test with direction 'same': a weakened immune system calls for urgent advice by itself, but the outcome is already emergency without it, so the record should not change the result. The weakened-immune finding is listed under unknown because the patient cannot confirm it. The page offers either 999 or A&E, so emergency_department is used as the level of care, together with the page's advice not to drive there."

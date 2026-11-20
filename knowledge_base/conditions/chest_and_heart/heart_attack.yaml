@@ -1,0 +1,46 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: heart_attack
+body_system: chest_and_heart
+# Chest pain only. A heart attack can show as breathlessness alone, but this card
+# has one starting chance for all its entry symptoms, and the chest pain figure
+# would be far too high for breathlessness on its own. Breathlessness with a
+# tight, heavy or spreading chest is caught by the breathlessness rules, and any
+# chest pain brings in the chest pain entry symptom with this card.
+entry_symptoms: [chest_pain, indigestion]
+name: "Heart attack"
+medical_name: "Myocardial infarction"
+snomed: "22298006"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+# Among people with chest pain it is uncommon, and common from 45. Among people
+# with indigestion and no chest pain it is much less common, but not to be ignored
+# from 45, when a heart attack can feel like indigestion (DECISIONS 169).
+prevalence_when:
+  - {finding: age_under_16, also: [chest_pain], prevalence: rare}
+  - {finding: has_angina, prevalence: common}
+  - {finding: age_45_or_over, also: [chest_pain], prevalence: common}
+  - {finding: chest_pain, prevalence: uncommon}
+  - {finding: age_45_or_over, prevalence: rare}
+findings:
+  # The pain: pressing or squeezing, there now, often spreading.
+  cp_tight_or_squeezing: strongly_supports
+  cp_sudden_not_going_away: strongly_supports
+  cp_heavy: supports
+  cp_present_now: supports               # the pain is constant, not coming and going
+  cp_spreads: supports
+  # What comes with it.
+  sweating: supports
+  nausea_or_vomiting: supports
+  light_headed: supports
+  short_of_breath: supports
+  # Who gets it.
+  heart_risk_factors: supports
+  family_heart_history: supports
+  # Kept for the single-cause method only; the network method ignores these.
+  cp_worse_breathing_in: argues_against
+  cp_tender_to_press: argues_against
+key_findings: [cp_tight_or_squeezing, cp_spreads, cp_present_now, sweating, short_of_breath, heart_risk_factors]
+source: nhs_heart_attack
+informed_by: [nhs_heart_attack, nhs_chest_pain, nhs_coronary_heart_disease]

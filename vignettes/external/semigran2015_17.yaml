@@ -1,0 +1,22 @@
+id: semigran2015_17
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Acute pharyngitis
+original_triage_label: Requires non-emergent care
+original_triage: non_emergency
+presenting_text: sudden fever, nausea, vomiting and sore throat
+presenting:
+- sore_throat
+age: 7
+sex: female
+findings:
+  present:
+  - nausea_or_vomiting
+  - very_high_temperature
+  - pus_on_tonsils
+  absent: []
+  unknown: []
+conversion_notes: 'Sore throat is one of the main complaints. Fever with an oral temperature of 101 F (38.5 C) is mapped to very_high_temperature. ''Exudative pharyngitis'' on examination is mapped to pus_on_tonsils (the publication''s simplified version words it as ''tonsilar exudate''). ''Enlarged cervical lymph nodes'' are not mapped to lump_in_mouth_or_neck: the text does not describe a lump. The duration of the sore throat is not given, so sore_throat_over_a_week is left out. Denied cough, rhinorrhea and nasal congestion have no matching question. Rule used for very_high_temperature in this set: present when the text states a fever (not described as low-grade), chills, rigors or feeling hot; left out when the fever is described as low-grade or measured below 38.0 C; absent when fever is explicitly ruled out. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 17 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied.
+  The publication gives this vignette''s source as: Epocrates (online.epocrates.com), 2014.'

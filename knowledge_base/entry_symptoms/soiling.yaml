@@ -1,0 +1,57 @@
+# Entry symptom: soiling (a child pooing their pants).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Soiling in a child who is already potty trained is usually from bad
+# constipation. The source says it is important not to try to sort it out alone.
+
+id: soiling
+name: "Soiling (child pooing their pants)"
+presenting_finding: child_soiling
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: soiling_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - tummy_swollen
+      - vomiting
+      - legs_weak_or_numb
+      - saddle_numbness
+
+red_flags:
+  - id: rf_soil_numb_bottom
+    description: "A child who is soiling and has lost feeling around their bottom or genitals"
+    when: saddle_numbness
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_nerve_emergency
+    source: nhs_back_pain
+    note: "The Back pain page says 999 or A&E for loss of feeling around the genitals or anus. Applying it to a child who is soiling is AI judgement: it can mean pressure on the nerves at the base of the spine."
+
+  - id: rf_soil_swollen_and_sick
+    description: "A child who is soiling, with a swollen tummy and being sick"
+    when: {all: [tummy_swollen, vomiting]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_soiling_urgent
+    source: nhs_soiling_child_pooing_their_pants
+
+  - id: rf_soil_legs
+    description: "A child who is soiling and has numbness or weakness in both legs"
+    when: legs_weak_or_numb
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_soiling_urgent
+    source: nhs_soiling_child_pooing_their_pants
+
+outcome_rules: []
+
+default:
+  description: "A child regularly pooing their pants: see a GP, who can treat the constipation that usually causes it"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_soiling_gp
+  source: nhs_soiling_child_pooing_their_pants
+  # A floor: the source says see a GP, and not to try to sort out soiling alone.
+  floor: true

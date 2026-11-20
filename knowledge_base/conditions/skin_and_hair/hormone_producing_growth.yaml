@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hormone_producing_growth
+body_system: skin_and_hair
+entry_symptoms: [excess_hair_growth]
+name: "A growth that makes male-type hormones (a rare cause of sudden hair growth)"
+medical_name: "Androgen-secreting tumour of the ovary or adrenal gland"
+# Acuity urgent, as the Hirsutism page says for sudden hair growth, a deeper voice or bigger muscles.
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: hair_growth_sudden, prevalence: rare}
+  - {finding: voice_getting_deeper, prevalence: rare}
+findings:
+  # What tells it apart from polycystic ovary syndrome: thick, dark hair that starts growing suddenly, with a deeper voice or bigger muscles.
+  hair_growth_sudden: strongly_supports
+  voice_getting_deeper: strongly_supports
+  muscles_getting_bigger: supports
+  periods_changed: supports
+key_findings: [hair_growth_sudden, voice_getting_deeper, muscles_getting_bigger]
+source: nhs_hirsutism
+informed_by: [nhs_hirsutism]

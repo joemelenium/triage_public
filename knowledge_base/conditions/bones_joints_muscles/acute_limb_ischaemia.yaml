@@ -1,0 +1,32 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: acute_limb_ischaemia
+body_system: bones_joints_muscles
+# A blocked artery needs treatment within hours to save the limb. Its main sign is on
+# the emergency checklist.
+entry_symptoms: [leg_cramps, foot_pain, arm_pain, hand_pain, knee_pain, blue_or_grey_skin]
+name: "A sudden loss of blood supply to an arm or leg"
+medical_name: "Acute limb ischaemia"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: has_heart_rhythm_problem, prevalence: uncommon}
+findings:
+  limb_cold_pale_or_blue: strongly_supports
+  pain_started_suddenly: supports
+  severe_pain: supports
+  leg_numb_or_tingling: supports
+  leg_weakness: supports
+  # From the general card for this condition (merged):
+  limb_cold_pale_painful: strongly_supports
+  blue_fingers_or_toes_only: supports
+  leg_pain_or_swelling: supports
+key_findings: [limb_cold_pale_or_blue, pain_started_suddenly, limb_cold_pale_painful]
+source: ai_judgement
+informed_by: [nhs_peripheral_arterial_disease, nhs_blue_skin_or_lips_cyanosis]
+# Merged with the general card for this condition. Its notes:
+# Must not be missed: a limb with no blood supply needs surgery within hours. More likely with
+# an irregular heartbeat such as atrial fibrillation.
+# What tells it apart from Raynaud's: one limb, suddenly cold, pale and painful, and it does
+# not come back with warmth.

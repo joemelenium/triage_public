@@ -1,0 +1,36 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: heart_failure
+body_system: chest_and_heart
+# Covers new heart failure and a flare of known heart failure. "has_heart_failure"
+# is deliberately NOT used as diagnosed_by: that would leave the card out of the
+# outcome for anyone already diagnosed, and a flare needs help the same day.
+# It raises the starting chance instead, and "heart_failure_worse" points to a flare.
+entry_symptoms: [short_of_breath, cough, wheezing, coughing_up_blood, swollen_ankles, blue_or_grey_skin]
+name: "Heart failure (the heart cannot pump blood as well as it should), or a flare of it"
+medical_name: "Heart failure, new or worsening"
+snomed: "84114007"
+acuity_needed: urgent
+danger: serious
+# Bands are set low because the strong link to breathlessness already raises it
+# about threefold among people whose main symptom is breathlessness: about 1 in 30
+# under 65 and 1 in 8 at 65 or over, before any other answer.
+prevalence: rare
+prevalence_when:
+  - {finding: has_heart_failure, prevalence: very_common}
+  - {finding: age_65_or_over, prevalence: uncommon}
+findings:
+  short_of_breath: strongly_supports
+  sob_everyday_activity: strongly_supports
+  # What tells it apart from a chest infection, asthma or COPD: breathless lying
+  # flat, swollen ankles, and putting on weight from fluid.
+  sob_lying_flat: strongly_supports
+  swollen_ankles: supports
+  sudden_weight_gain: supports
+  heart_failure_worse: supports
+  frothy_pink_phlegm: supports
+  cough_worse_at_night: supports
+  very_tired: supports
+key_findings: [sob_lying_flat, swollen_ankles, sudden_weight_gain, sob_everyday_activity, frothy_pink_phlegm, heart_failure_worse]
+source: nhs_heart_failure
+informed_by: [nhs_heart_failure, nhs_shortness_of_breath]

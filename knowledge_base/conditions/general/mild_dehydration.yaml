@@ -1,0 +1,36 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mild_dehydration
+body_system: general
+# Usually from a tummy bug, heat, exercise or not drinking enough. Gets better with fluids.
+entry_symptoms: [dehydration_signs, very_thirsty, smelly_urine, cannot_pee, dry_mouth]
+name: "Mild dehydration (not having enough water in the body)"
+medical_name: "Mild dehydration"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+prevalence_when:
+  - {finding: smelly_urine, prevalence: very_common}
+  - {finding: dehydration_signs, prevalence: very_common}
+  - {finding: very_thirsty, prevalence: very_common}
+  - {finding: dry_mouth, prevalence: common}
+  - {finding: cannot_pee, prevalence: uncommon}
+findings:
+  # What tells it apart from severe dehydration: an obvious cause and none of the serious
+  # signs (dizzy on standing, no pee for 12 hours, cannot keep fluids down).
+  diarrhoea_or_vomiting: strongly_supports
+  very_thirsty: strongly_supports
+  in_heat_or_exercise: supports
+  light_headed: supports
+  dehydration_signs: strongly_supports
+  # From the urinary_and_male card for this condition (merged):
+  not_making_much_pee: supports
+  # From the ear_nose_throat card for this condition (merged):
+  nausea_or_vomiting: supports
+  very_tired: supports
+key_findings: [diarrhoea_or_vomiting, in_heat_or_exercise, dehydration_signs, not_making_much_pee, nausea_or_vomiting]
+source: nhs_dehydration
+informed_by: [nhs_dehydration, nhs_thirst, nhs_smelly_urine, nhs_smelly_urine, nhs_dry_mouth]
+# Merged with the urinary_and_male card for this condition. Its notes: Merged with the ear_nose_throat card for this condition. Its
+# notes: What tells it apart: peeing less, with dark pee, after not drinking enough,
+# sweating a lot or being ill.

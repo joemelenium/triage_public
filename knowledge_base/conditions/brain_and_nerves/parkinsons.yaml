@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: parkinsons
+body_system: brain_and_nerves
+entry_symptoms: [tremor]
+name: "Parkinson's"
+medical_name: "Parkinson's disease"
+snomed: "49049000"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: common}
+findings:
+  # Usually over 50. What tells it apart: shaking at rest, often on one side, with slow or stiff movements.
+  tremor_at_rest: strongly_supports
+  stiff_or_slow_movements: strongly_supports
+  trouble_with_balance_or_walking: supports
+  tremor_getting_worse: supports
+key_findings: [tremor_at_rest, stiff_or_slow_movements]
+source: nhs_parkinsons_disease
+informed_by: [nhs_parkinsons_disease, nhs_tremor_or_shaking_hands]

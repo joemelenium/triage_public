@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: severe_nosebleed
+body_system: ear_nose_throat
+entry_symptoms: [nosebleed]
+name: "Severe nosebleed from deeper inside the nose"
+medical_name: "Posterior epistaxis"
+snomed: "232355001"
+acuity_needed: emergency
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: takes_blood_thinners, prevalence: common}
+  - {finding: age_65_or_over, prevalence: common}
+findings:
+  # What tells it apart from a usual nosebleed: heavy bleeding that does not stop after 10 to 15
+  # minutes of pressure, with blood going down the throat.
+  nosebleed_over_15_minutes: strongly_supports
+  nosebleed_heavy: supports
+  swallowing_blood_and_sick: supports
+  light_headed: supports
+key_findings: [nosebleed_over_15_minutes, nosebleed_heavy, swallowing_blood_and_sick]
+source: nhs_nosebleed
+informed_by: [nhs_nosebleed]

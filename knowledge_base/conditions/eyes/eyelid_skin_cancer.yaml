@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: eyelid_skin_cancer
+body_system: eyes
+# Usually a slow-growing skin cancer (basal cell carcinoma) on the lower eyelid.
+# Should be checked soon.
+entry_symptoms: [eyelid_problem]
+name: "Skin cancer on the eyelid"
+medical_name: "Malignant neoplasm of eyelid (usually basal cell carcinoma)"
+snomed: "231829006"
+acuity_needed: soon
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: rare}
+findings:
+  eyelid_lump_growing_or_bleeding: strongly_supports
+  eyelid_lump_not_going: strongly_supports
+  eyelid_lump: strongly_supports
+  eyelid_lump_painless: supports
+key_findings: [eyelid_lump_growing_or_bleeding, eyelid_lump_not_going]
+source: ai_judgement
+informed_by: [nhs_eyelid_problems]

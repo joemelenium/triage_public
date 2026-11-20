@@ -1,0 +1,95 @@
+# Entry symptom: vaginal discharge that is unusual.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS Vaginal discharge page sends anyone with discharge that has changed to
+# NHS 111 or a sexual health clinic, labelled non-urgent, and says not to
+# self-diagnose. That is mapped to a routine GP or clinic appointment. The
+# urgent and emergency rules are for a pelvic infection (Pelvic inflammatory
+# disease page) and for pregnancy (Miscarriage page).
+
+id: vaginal_discharge
+name: "Vaginal discharge"
+presenting_finding: vaginal_discharge
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: vaginal_discharge_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - pelvic_pain_severe_or_worsening
+      - sa_sudden_severe
+      - fainted
+      - light_headed
+      - heavy_vaginal_bleeding
+
+  - id: vaginal_discharge_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - pelvic_pain
+      - very_high_temperature
+      - pregnant_now
+      - fluid_leaking_from_vagina
+      - feels_very_unwell
+      - nausea_or_vomiting
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_vd_severe_pelvic_pain
+    description: "Unusual discharge with pelvic pain that is severe, getting worse, sudden, or hurts to move"
+    when: {any: [pelvic_pain_severe_or_worsening, sa_sudden_severe]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_pid_emergency
+    source: nhs_pelvic_inflammatory_disease
+
+  - id: rf_vd_faint_or_heavy_bleeding
+    description: "Unusual discharge with pelvic symptoms and feeling dizzy or faint, or heavy bleeding"
+    when: {any: [fainted, light_headed, heavy_vaginal_bleeding]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_pid_emergency
+    source: nhs_pelvic_inflammatory_disease
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The PID page lists these for someone with PID symptoms. Applying them to anyone with unusual discharge is an AI reading, so soft."
+
+  - id: rf_vd_pid_temperature_or_unwell
+    description: "Unusual discharge and pelvic pain, with a very high temperature, feeling sick or feeling very unwell: possible pelvic infection"
+    when: {all: [pelvic_pain, {any: [very_high_temperature, nausea_or_vomiting, feels_very_unwell]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go straight to A&E"}
+    advice: advice_pid_emergency
+    source: nhs_pelvic_inflammatory_disease
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the PID page says 999 or A&E for PID symptoms with a very high temperature, feeling sick or very unwell. The Pelvic pain page says get help from 111 for pelvic pain with a high temperature or feeling sick. The more urgent is used, marked soft."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_vd_pelvic_pain
+    description: "Unusual discharge with pelvic pain: possible pelvic inflammatory disease"
+    when: pelvic_pain
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_discharge_urgent
+    source: nhs_pelvic_inflammatory_disease
+    note: "The PID page says to get urgent help if you think you have PID symptoms. The Pelvic pain page says get help from 111 for pelvic pain with unusual discharge."
+
+  - id: rf_vd_high_temperature
+    description: "Unusual discharge with a very high temperature, or feeling very unwell"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111"}
+    advice: advice_discharge_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+
+  - id: rf_vd_pregnant
+    description: "Pregnant, with discharge that is unusual or fluid leaking from the vagina"
+    when: {any: [pregnant_now, fluid_leaking_from_vagina]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your maternity unit now, or NHS 111"}
+    advice: advice_discharge_pregnant_urgent
+    source: nhs_miscarriage
+
+outcome_rules: []
+
+default:
+  description: "Discharge that has changed: get it checked by a GP, NHS 111 or a sexual health clinic"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or go to a sexual health clinic, or get help from NHS 111. The source labels this non-urgent."}
+  advice: advice_discharge_gp
+  source: nhs_vaginal_discharge
+  note: "The page says 'get help from NHS 111' under a non-urgent label. Mapped to a routine GP or sexual health clinic appointment. Not a floor: discharge that is clearly a normal change can lower it."

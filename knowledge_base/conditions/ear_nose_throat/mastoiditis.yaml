@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: mastoiditis
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain]
+name: "Mastoiditis (an infection of the bone behind the ear)"
+snomed: "52404001"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart from a middle ear infection: painful swelling and redness behind the ear,
+  # which may push the ear out, with a high temperature.
+  swelling_around_ear: strongly_supports
+  very_high_temperature: supports
+  ear_discharge: supports
+  feels_very_unwell: supports
+  earache_2_to_3_days: supports
+  hearing_loss: supports
+key_findings: [swelling_around_ear, very_high_temperature, ear_discharge]
+source: nhs_mastoiditis
+informed_by: [nhs_mastoiditis, nhs_ear_infections]

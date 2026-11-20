@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: alopecia_areata
+body_system: skin_and_hair
+entry_symptoms: [hair_loss]
+name: "Alopecia areata (bald patches on the head)"
+medical_name: "Alopecia areata"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart from pattern hair loss: round or oval bald patches, sometimes with small dents in the nails.
+  hair_loss_patches: strongly_supports
+  nail_pits: supports
+key_findings: [hair_loss_patches, nail_pits]
+source: nhs_hair_loss
+informed_by: [nhs_hair_loss, nhs_nail_problems]

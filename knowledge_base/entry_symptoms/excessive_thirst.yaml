@@ -1,0 +1,94 @@
+# Entry symptom: feeling very thirsty all the time (the NHS page "Excessive thirst").
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Most thirst is from not drinking enough, heat, exercise or being sick. The
+# danger is new diabetes, and especially diabetic ketoacidosis, which the
+# diabetes pages give emergency and urgent advice for.
+
+id: excessive_thirst
+name: "Feeling very thirsty"
+presenting_finding: very_thirsty
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: thirst_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - fruity_breath
+      - breathing_deep_and_fast
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - nausea_or_vomiting
+      - stomach_ache
+
+  - id: thirst_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - peeing_more_often
+      - weight_loss
+      - high_blood_sugar_or_ketones
+      - dehydration_signs
+
+red_flags:
+  - id: rf_th_ketoacidosis_signs
+    description: "Very thirsty with breath that smells fruity, breathing faster and more deeply, or very sleepy: possible diabetic ketoacidosis"
+    when: {any: [fruity_breath, breathing_deep_and_fast, drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_ketoacidosis_emergency
+    source: nhs_diabetic_ketoacidosis
+
+  - id: rf_th_peeing_more_and_sick
+    description: "Very thirsty and peeing more, with tummy pain or feeling or being sick: possible diabetic ketoacidosis"
+    when: {all: [peeing_more_often, {any: [nausea_or_vomiting, stomach_ache]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_ketoacidosis_emergency
+    source: nhs_type_1_diabetes_symptoms
+    soft: true    # likely conditions may lower this: a urine infection can also cause these
+    note: "The Type 1 diabetes page says call 999 or go to A&E for peeing more and very thirsty with stomach pain or being sick. Soft, because a urine infection or a tummy bug can give the same answers; diabetic ketoacidosis itself, if likely, keeps the outcome at emergency."
+
+  - id: rf_th_high_sugar_or_ketones
+    description: "Diabetes, with blood sugar high and not coming down, or ketones raised"
+    when: high_blood_sugar_or_ketones
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Call your diabetes care team now or get help from NHS 111"}
+    advice: advice_high_blood_sugar_urgent
+    source: nhs_diabetic_ketoacidosis
+    note: "The page says call 999 or go to A&E for ketones over 3mmol/L in the blood; the engine does not ask for the number, so the emergency signs above are used for that."
+
+  - id: rf_th_type_1_diabetes
+    description: "Very thirsty and peeing more, in a child or with weight loss: possible type 1 diabetes"
+    when: {all: [peeing_more_often, {any: [age_under_16, weight_loss]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_type_1_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    note: "Requiring a child or weight loss is AI judgement, as in the tiredness rule."
+
+outcome_rules:
+  - id: or_th_peeing_more
+    description: "Very thirsty and needing to pee often"
+    when: peeing_more_often
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_thirst_gp
+    source: nhs_thirst
+
+  - id: or_th_not_better
+    description: "Still very thirsty after drinking more fluids for several days"
+    when: thirst_not_better_with_drinking
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_thirst_gp
+    source: nhs_thirst
+
+  - id: or_th_pregnant
+    description: "Very thirsty and pregnant"
+    when: pregnant_or_recently_given_birth
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or your midwife. The source gives no fixed time."}
+    advice: advice_thirst_gp
+    source: nhs_thirst
+    note: "The page says see a GP if you are pregnant. The observation also covers having given birth in the last 6 weeks; using it here is AI judgement."
+
+default:
+  description: "Thirst with nothing that needs more help: drink more fluids and avoid alcohol and caffeine"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if drinking more for several days has not helped"}
+  advice: advice_thirst_self_care
+  source: nhs_thirst

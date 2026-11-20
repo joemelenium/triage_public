@@ -1,0 +1,56 @@
+id: wz_d04
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [wheezing]
+
+summary: "An 8-month-old girl (her father answering) on day 4 of a cold, now with a cough and wheezy breathing. Since yesterday she has taken less than half her usual milk. She is a bit grizzly but awake and responding. Her father cannot tell whether her nappies are wetter or drier than usual because they use thick night nappies."
+
+opening_statement: "My daughter's wheezy with a cold and she's barely drinking her milk, maybe half what she normally has."
+
+findings:
+  present: [wheezing, cough, blocked_or_runny_nose, feeding_much_less, recent_viral_illness]
+  absent: [short_of_breath, child_struggling_to_breathe, difficulty_breathing, breathing_very_fast, pauses_in_breathing, lips_or_skin_blue_grey, skin_blotchy, child_floppy_or_hard_to_wake, child_restless_cannot_be_calmed, baby_high_temperature, very_high_temperature, rash_does_not_fade, had_a_fit, baby_premature_or_heart_lung_condition, choked_on_something, cough_whoop, cough_barking, stridor]
+  unknown: [dehydration_signs, not_peed_12_hours]
+
+context:
+  none: {}
+  basic: {age: 0, sex: female}
+  full:
+    age: 0
+    sex: female
+    findings: {baby_premature_or_heart_lung_condition: "no"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Baby feeding much less than normal"
+    findings: [feeding_much_less]
+    minimum_acuity: urgent
+    source: {page: bronchiolitis.txt, quote: "your child is feeding or eating much less than normal"}
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or call 111"
+    any_of: ["111", "GP"]
+  - point: "Call 999 if difficulty breathing, pauses in breathing, blue or grey lips, or floppy"
+    any_of: ["999"]
+  - point: "Smaller feeds more often"
+    any_of: ["smaller feeds", "feeds", "fluids"]
+
+source:
+  expected_outcome: {page: bronchiolitis.txt, quote: "Urgent advice: Ask for an urgent GP appointment or call 111 if:"}
+  minimum_safe_acuity: {page: bronchiolitis.txt, quote: "your child is feeding or eating much less than normal"}
+
+variants:
+  - id: wz_d04_v1
+    style: "tired parent, rambling"
+    opening_statement: "She's had a snotty cold for a few days and now there's this wheezy sound when she breathes, and she just pushes the bottle away. I honestly can't tell about her nappies, we use the thick ones."
+    volunteered: [blocked_or_runny_nose, wheezing, feeding_much_less]
+
+atypical: false
+notes: "Bronchiolitis with reduced feeding. bronchiolitis.txt urgent list includes feeding much less than normal and 'a dry nappy for 12 hours or more, or shows other signs of dehydration'. The father genuinely cannot say about dehydration or a dry nappy (unknowns); either would also be urgent, so the expected outcome does not change. A dry nappy for 12 hours would be 999 on sepsis.txt for an under-5 ('has not had a pee for the last 12 hours'); that is why an engine may escalate on 'not sure' here. Age given as 0 years (8 months)."

@@ -1,0 +1,174 @@
+# Entry symptom: joint pain (one or several joints).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# Pain in one named joint (such as the knee or hip) has its own entry symptom.
+# This one is for joint pain in general, and for pain in several joints.
+#
+# Must-not-miss causes: an infected joint (septic arthritis: a hot, swollen
+# joint, often with a high temperature), gout, a broken or dislocated joint,
+# reactive arthritis after an infection, and inflamed blood vessels in the head
+# (giant cell arteritis) with polymyalgia rheumatica.
+
+id: joint_pain
+name: "Joint pain"
+presenting_finding: joint_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: joint_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - joint_out_of_place
+      - cannot_bear_weight
+      - numb_after_injury
+      - changed_shape
+      - bone_through_skin
+      - limb_cold_pale_or_blue
+
+  - id: joint_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - swollen_area_red_hot
+      - very_high_temperature
+      - feels_very_unwell
+      - severe_pain
+      - red_or_discoloured_skin
+      - swollen_area
+      - red_eye
+      - injury_or_fall
+      - jaw_pain_or_scalp_tender
+      - vision_change
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_joint_severe_after_injury
+    description: "Very bad joint pain after a fall or injury"
+    when: {all: [injury_or_fall, severe_pain]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_joint_pain
+
+  - id: rf_joint_cannot_bear_weight
+    description: "Unable to walk or put weight on a joint"
+    when: cannot_bear_weight
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_joint_pain
+
+  - id: rf_joint_out_of_place
+    description: "A joint has moved out of place"
+    when: joint_out_of_place
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_joint_pain
+    note: "The Dislocated kneecap page says 111 if the kneecap moved out and then went back by itself. The more urgent Joint pain page is used."
+
+  - id: rf_joint_numb_after_injury
+    description: "Tingling or no feeling in the area around the joint after an injury"
+    when: numb_after_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_joint_pain
+
+  - id: rf_joint_misshapen_after_injury
+    description: "A joint injury where it has changed shape or a bone is sticking out"
+    when: {any: [bone_through_skin, {all: [injury_or_fall, changed_shape]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_msk_emergency_ae
+    source: nhs_sprains_and_strains
+
+  - id: rf_joint_cold_limb
+    description: "Arm, hand, leg or foot cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: nhs_sprains_and_strains
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_joint_hot_swollen
+    description: "Joint pain and the skin around the joint is swollen and feels hot"
+    when: swollen_area_red_hot
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_joint_pain
+
+  - id: rf_joint_unwell
+    description: "Joint pain and feeling generally unwell, a high temperature, or feeling hot, cold or shivery"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_joint_pain
+
+  - id: rf_joint_sudden_severe
+    description: "Severe joint pain that started suddenly"
+    when: {all: [severe_pain, pain_started_suddenly]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_septic_arthritis
+    note: "The Septic arthritis and Reactive arthritis pages say this, usually in just one joint. Gout also starts like this."
+
+  - id: rf_joint_colour_change
+    description: "The skin around a joint has changed colour"
+    when: red_or_discoloured_skin
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_septic_arthritis
+
+  - id: rf_joint_swelling_or_hard_to_move
+    description: "Swelling around a joint, or a joint that is difficult to move"
+    when: {any: [swollen_area, cannot_move_painful_part]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_infection_urgent
+    source: nhs_septic_arthritis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Septic arthritis page lists these as urgent signs. The Joint pain, Rheumatoid arthritis and Psoriatic arthritis pages say see a GP for joint swelling that keeps coming back. Marked soft so a likely long-term arthritis can lower it."
+
+  - id: rf_joint_reactive_signs
+    description: "Sore joints with sore or red eyes or sight problems, or after diarrhoea or an infection caught through sex"
+    when: {any: [red_eye, recent_gut_or_sex_infection]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_pain_urgent
+    source: nhs_reactive_arthritis
+    note: "Signs of reactive arthritis. The page lists sore eyes with sight problems, and pain when peeing or genital symptoms. Applying it to a recent infection is AI judgement."
+
+  - id: rf_joint_painkillers_not_helping
+    description: "Joint pain not controlled with simple painkillers"
+    when: painkillers_not_helping
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_joint_pain_urgent
+    source: nhs_reactive_arthritis
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "From the Reactive arthritis page. Applying it to all joint pain is AI judgement; marked soft."
+
+  - id: rf_joint_giant_cell_arteritis
+    description: "Joint or muscle pain with a new headache, a tender scalp, jaw pain when eating or problems with sight"
+    when: {any: [jaw_pain_or_scalp_tender, vision_change, headache_unlike_usual]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact a GP now, or get help from NHS 111"}
+    advice: advice_giant_cell_arteritis_urgent
+    source: nhs_polymyalgia_rheumatica
+
+outcome_rules:
+  - id: or_joint_gp
+    description: "Joint pain stopping usual activities or sleep, getting worse or coming back, not better after 2 weeks, or stiff for more than 30 minutes after waking"
+    when: {any: [stopping_daily_activities, pain_getting_worse_or_recurring, pain_not_improving, morning_stiffness_over_30_min, small_joints_hands_feet, pain_stiff_both_shoulders_or_hips]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, or refer yourself to a physiotherapist where you can"}
+    advice: advice_msk_gp
+    source: nhs_joint_pain
+    note: "Small joints of the hands or feet are from the Rheumatoid arthritis page. Both shoulders or hips are from the Polymyalgia rheumatica page."
+
+  - id: or_joint_child
+    description: "A child with joint problems"
+    when: age_under_16
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP"}
+    advice: advice_msk_gp
+    source: nhs_joint_pain
+
+default:
+  description: "Joint pain with nothing that needs more help: ease it yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if it has not improved after 2 weeks"}
+  advice: advice_joint_pain_self_care
+  source: nhs_joint_pain

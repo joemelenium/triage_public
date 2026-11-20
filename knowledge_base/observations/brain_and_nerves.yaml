@@ -1,0 +1,1298 @@
+# Observations: brain and nerves.
+# NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+#
+# Same fields as the other observation files (see general.yaml).
+#
+# Observations that are reused from other files rather than repeated here:
+#   stroke_signs, sudden_confusion, passed_out (general.yaml, universal red flags)
+#   fainted, light_headed, nausea_or_vomiting, palpitations, chest_pain, sweating,
+#   known_heart_condition, pregnant_or_recently_given_birth, recent_viral_illness,
+#   tingling_fingers, feeling_of_panic, rash_one_side_of_body (chest_and_heart.yaml)
+#   had_a_fit, very_high_temperature, cold_or_shivery, rash_does_not_fade,
+#   child_floppy_or_hard_to_wake, baby_high_temperature, feels_very_unwell,
+#   breathing_very_fast, weight_loss, aching_body, blocked_or_runny_nose,
+#   face_pain_around_nose_and_eyes (breathing.yaml)
+#   difficulty_speaking, difficulty_breathing, unable_to_swallow, very_tired,
+#   worried_about_symptoms, weakened_immune_system (ear_nose_throat.yaml)
+#
+
+# ===========================================================================
+# Main symptoms (entry symptoms)
+# ===========================================================================
+- id: headache
+  label: "Headache"
+  question: "Do you have a headache?"
+  question_carer: "Does your child have a headache?"
+  checklist_text: "A headache"
+  kind: presenting
+  snomed: "25064002"
+  phrases: ["headache", "my head hurts", "head is pounding", "sore head"]
+  source: nhs_headaches
+
+- id: dizziness
+  label: "Dizzy or off-balance"
+  question: "Do you feel dizzy or off-balance, or like you or the room is spinning?"
+  question_carer: "Does the person feel dizzy or off-balance, or like they or the room is spinning?"
+  checklist_text: "Feeling dizzy or off-balance, or like the room is spinning"
+  kind: presenting
+  snomed: "404640003"
+  phrases: ["dizzy", "room is spinning", "giddy", "wobbly", "off-balance"]
+  source: nhs_dizziness
+
+- id: numbness_or_weakness
+  label: "Numbness or weakness in the face, arms or legs"
+  question: "Do you have numbness or weakness in your face, arms or legs?"
+  question_carer: "Does the person have numbness or weakness in their face, arms or legs?"
+  checklist_text: "Numbness or weakness in your face, arms or legs"
+  kind: symptom
+  seriousness: serious
+  phrases: ["arm feels weak", "leg went numb", "face feels numb", "can't feel my hand"]
+  source: nhs_headaches
+
+- id: weakness_or_paralysis
+  label: "Weakness, or cannot move part of the body (paralysis)"
+  question: "Do you have weakness in your face or body, or are you unable to move part of your body?"
+  question_carer: "Does the person have weakness in their face or body, or are they unable to move part of their body?"
+  checklist_text: "Weakness, or not able to move part of your face or body"
+  kind: presenting
+  parent: numbness_or_weakness
+  relation: character
+  snomed: "44695005"
+  phrases: ["can't move my arm", "leg is weak", "paralysed", "arm gave way", "floppy arm"]
+  source: nhs_paralysis
+
+- id: face_numbness
+  label: "Numbness or tingling in the face"
+  question: "Is part of your face numb or tingling, or does it have less feeling than usual?"
+  question_carer: "Is part of the person's face numb or tingling, or does it have less feeling than usual?"
+  checklist_text: "Numbness or tingling in your face"
+  kind: presenting
+  parent: numbness_or_weakness
+  relation: location
+  snomed: "309557009"
+  phrases: ["face is numb", "tingling in my cheek", "numb lip", "can't feel one side of my face"]
+  source: nhs_paralysis
+
+- id: pins_and_needles
+  label: "Pins and needles, tingling or numbness"
+  question: "Do you have pins and needles, tingling or numbness in part of your body, such as your hands, arms, legs or feet?"
+  question_carer: "Does the person have pins and needles, tingling or numbness in part of their body, such as their hands, arms, legs or feet?"
+  checklist_text: "Pins and needles, tingling or numbness"
+  kind: presenting
+  snomed: "62507009"
+  phrases: ["pins and needles", "tingling", "my hand keeps going numb", "prickling feeling"]
+  source: nhs_pins_and_needles
+
+- id: memory_problems
+  label: "Problems remembering things"
+  question: "Are you having problems remembering things?"
+  question_carer: "Is the person having problems remembering things?"
+  checklist_text: "Problems remembering things"
+  kind: presenting
+  snomed: "386807006"
+  phrases: ["forgetful", "can't remember things", "memory is going", "keeps forgetting"]
+  source: nhs_memory_loss_amnesia
+
+- id: tremor
+  label: "Shaking or trembling (tremor)"
+  question: "Do you have shaking or trembling that you cannot control, for example in your hands?"
+  question_carer: "Does the person have shaking or trembling that they cannot control, for example in their hands?"
+  checklist_text: "Shaking or trembling you cannot control"
+  kind: presenting
+  snomed: "26079004"
+  phrases: ["shaky hands", "my hands shake", "trembling", "tremor"]
+  source: nhs_tremor_or_shaking_hands
+
+- id: twitching
+  label: "Twitching of an eyelid or muscle"
+  question: "Do you have a twitch in an eyelid or muscle that you cannot control?"
+  question_carer: "Does the person have a twitch in an eyelid or muscle that they cannot control?"
+  checklist_text: "A twitch in an eyelid or muscle"
+  kind: presenting
+  snomed: "82470000"
+  phrases: ["eye twitching", "muscle twitching", "my eyelid keeps flickering", "jumping muscle"]
+  source: nhs_twitching_eyes_and_muscles
+
+- id: daytime_sleepiness
+  label: "Very sleepy or falling asleep during the day"
+  question: "Do you often feel very sleepy, or keep falling asleep, during the day?"
+  question_carer: "Does the person often seem very sleepy, or keep falling asleep, during the day?"
+  checklist_text: "Very sleepy or falling asleep during the day"
+  kind: presenting
+  snomed: "1367959007"
+  phrases: ["always falling asleep", "can't stay awake in the day", "nodding off", "sleepy all day"]
+  source: nhs_excessive_daytime_sleepiness_hypersomnia
+
+- id: trouble_sleeping
+  label: "Trouble sleeping (insomnia)"
+  question: "Do you regularly have trouble getting to sleep, staying asleep, or wake up too early?"
+  question_carer: "Does the person regularly have trouble getting to sleep, staying asleep, or wake up too early?"
+  checklist_text: "Trouble getting to sleep or staying asleep"
+  kind: presenting
+  snomed: "301345002"
+  phrases: ["can't sleep", "insomnia", "awake all night", "wake up at 4am"]
+  source: nhs_insomnia
+
+- id: head_injury_last_3_months
+  label: "Head injury in the last 3 months"
+  question: "Have you hit your head, or had a head injury, in the last 3 months? For example, from a fall or accident."
+  question_carer: "Has the person hit their head, or had a head injury, in the last 3 months? For example, from a fall or accident."
+  checklist_text: "A head injury in the last 3 months, for example from a fall or accident"
+  kind: history
+  seriousness: serious
+  phrases: ["banged my head last month", "fell and hit my head", "had a knock to the head"]
+  source: nhs_headaches
+
+- id: head_injury
+  label: "Head injury in the last month"
+  question: "Have you hit your head, or had an injury to your head, in the last month?"
+  question_carer: "Has the person hit their head, or had an injury to their head, in the last month?"
+  checklist_text: "A head injury in the last month"
+  kind: presenting
+  parent: head_injury_last_3_months
+  relation: duration
+  snomed: "82271004"
+  phrases: ["banged my head", "hit my head", "knock to the head", "fell and hit his head"]
+  source: nhs_head_injury
+
+- id: trouble_with_balance_or_walking
+  label: "Finding it hard to balance or walk"
+  question: "Are you finding it hard to balance or walk, or are you falling over?"
+  question_carer: "Is the person finding it hard to balance or walk, or falling over?"
+  checklist_text: "Finding it hard to balance or walk"
+  kind: symptom
+  snomed: "22631008"
+  seriousness: serious
+  phrases: ["can't walk straight", "keep falling over", "unsteady on my feet", "staggering"]
+  source: nhs_headaches
+
+- id: memory_loss_sudden
+  label: "Problems remembering things that started suddenly"
+  question: "Did the problems remembering things start suddenly, in the last few hours or days?"
+  question_carer: "Did the person's problems remembering things start suddenly, in the last few hours or days?"
+  checklist_text: "Sudden problems remembering things"
+  kind: symptom
+  parent: memory_problems
+  relation: duration
+  seriousness: emergency
+  phrases: ["can't remember the last few hours", "suddenly forgetting everything", "keeps asking the same question"]
+  source: nhs_stroke_symptoms
+
+- id: stiff_neck
+  label: "Stiff neck"
+  question: "Do you have a stiff neck, so it is hard or painful to bend your head forward towards your chest?"
+  question_carer: "Does the person have a stiff neck, so it is hard or painful for them to bend their head forward towards their chest?"
+  checklist_text: "A stiff neck, so it hurts to bend your head forward"
+  kind: symptom
+  parent: neck_pain
+  relation: character
+  snomed: "161882006"
+  seriousness: emergency
+  phrases: ["stiff neck", "can't put my chin on my chest", "neck is rigid"]
+  source: nhs_headaches
+
+- id: bothered_by_light
+  label: "Bright lights hurt the eyes or are bothering you"
+  question: "Do bright lights hurt your eyes, or bother you much more than usual?"
+  question_carer: "Do bright lights seem to hurt the person's eyes, or bother them much more than usual?"
+  checklist_text: "Bright lights hurt your eyes or are bothering you"
+  kind: symptom
+  snomed: "409668002"
+  phrases: ["light hurts my eyes", "need to be in a dark room", "can't look at the light"]
+  source: nhs_headaches
+
+- id: personality_or_behaviour_change
+  label: "Changes in personality or behaviour"
+  question: "Have other people said that you seem to act differently, or are not your usual self?"
+  question_carer: "Has the person started to act differently, or are they not their usual self?"
+  checklist_text: "Acting differently, or not your usual self"
+  kind: symptom
+  phrases: ["not himself", "personality has changed", "acting oddly", "become withdrawn"]
+  source: nhs_brain_tumours
+
+- id: others_in_home_unwell
+  label: "Others at home, or pets, unwell with similar symptoms"
+  question: "Are other people you live with, or your pets, unwell with similar symptoms?"
+  question_carer: "Are other people the person lives with, or their pets, unwell with similar symptoms?"
+  checklist_text: "Other people you live with, or pets, unwell with similar symptoms"
+  kind: symptom
+  seriousness: serious
+  phrases: ["the whole family has headaches", "my partner feels the same", "the dog is unwell too"]
+  source: nhs_confusion
+
+- id: better_away_from_home
+  label: "Better when away from home, worse on returning"
+  question: "Do your symptoms get better when you go out, and come back when you return home or to a certain room?"
+  question_carer: "Do the person's symptoms get better when they go out, and come back when they return home or to a certain room?"
+  checklist_text: "Better when you go out, worse when you go back home"
+  kind: symptom
+  phrases: ["fine at work but bad at home", "worse when the heating is on", "better when I go outside"]
+  source: nhs_carbon_monoxide_poisoning
+
+- id: diabetes_low_sugar_signs
+  label: "Signs of low blood sugar in someone with diabetes"
+  question: "Is your blood sugar below 4, or do you feel shaky, sweaty, hungry or muddled, like when your sugar is low?"
+  question_carer: "Is the person's blood sugar below 4, or do they seem shaky, sweaty, hungry or muddled, like when their sugar is low?"
+  checklist_text: "Blood sugar below 4, or shaky, sweaty and hungry like a hypo"
+  kind: symptom
+  asked_only_if: has_diabetes   # only makes sense for someone with diabetes
+  seriousness: serious
+  phrases: ["having a hypo", "my sugar is low", "sugars are 3.2"]
+  source: nhs_low_blood_sugar
+
+- id: lots_of_caffeine_or_alcohol
+  label: "Having a lot of caffeine or alcohol"
+  question: "Have you had a lot of alcohol, or a lot of caffeine? Caffeine is in tea, coffee, cola and energy drinks."
+  question_carer: "Has the person had a lot of alcohol, or a lot of caffeine? Caffeine is in tea, coffee, cola and energy drinks."
+  checklist_text: "A lot of caffeine or alcohol"
+  kind: history
+  phrases: ["lots of coffee", "energy drinks", "drinking a lot lately"]
+  source: nhs_twitching_eyes_and_muscles
+
+# ===========================================================================
+# Headache: more detail under headache
+# ===========================================================================
+- id: headache_sudden_severe
+  label: "Headache that came on suddenly and is extremely painful"
+  question: "Did the headache come on suddenly, and is it extremely painful? For example, the worst headache you have ever had, at its worst within a few minutes."
+  question_carer: "Did the person's headache come on suddenly, and is it extremely painful? For example, the worst headache they have ever had, at its worst within a few minutes."
+  checklist_text: "A headache that came on suddenly and is extremely painful"
+  kind: symptom
+  parent: very_painful_headache   # a kind of very painful headache, so rules on that see it (eye, ear and nose rules)
+  relation: character
+  snomed: "95660002"
+  seriousness: emergency_ambulance
+  phrases: ["worst headache of my life", "like being hit on the head", "thunderclap headache", "exploded in my head"]
+  source: nhs_subarachnoid_haemorrhage
+
+- id: headache_worse_coughing_bending
+  label: "Headache brought on or made worse by coughing, sneezing, bending down or exercise"
+  question: "Is the headache brought on, or made worse, by coughing, sneezing, bending down or exercise?"
+  question_carer: "Is your child's headache brought on, or made worse, by coughing, sneezing, bending down or exercise?"
+  checklist_text: "A headache made worse by coughing, sneezing, bending down or exercise"
+  kind: symptom
+  parent: headache
+  relation: exacerbating_factor
+  seriousness: serious
+  phrases: ["hurts more when I cough", "worse when I bend over", "pain when I sneeze"]
+  source: nhs_headaches
+
+- id: headache_on_waking
+  label: "Headache wakes them at night, or is worst on waking"
+  question: "Does the headache wake you up at night, or is it worst when you wake up?"
+  question_carer: "Does the headache wake your child up at night, or is it worst when they wake up?"
+  checklist_text: "A headache that wakes you at night, or is worst when you wake up"
+  kind: symptom
+  parent: headache
+  relation: exacerbating_factor
+  phrases: ["wakes me up at night", "worst first thing in the morning", "wake up with a headache"]
+  source: nhs_headaches
+
+- id: headache_worse_over_time
+  label: "Headache getting worse over days or weeks"
+  question: "Has the headache been getting worse over days or weeks?"
+  question_carer: "Has your child's headache been getting worse over days or weeks?"
+  checklist_text: "A headache that has been getting worse over days or weeks"
+  kind: symptom
+  parent: headache
+  relation: duration
+  phrases: ["getting worse every day", "worse than last week", "keeps building up"]
+  source: nhs_brain_tumours
+
+- id: headache_unlike_usual
+  label: "Headache feels different from usual headaches"
+  question: "Does this headache feel different from the headaches you usually get?"
+  question_carer: "Does this headache seem different from the headaches your child usually gets?"
+  kind: symptom
+  parent: headache
+  relation: character
+  phrases: ["not like my usual migraine", "never had one like this", "a different kind of headache"]
+  source: nhs_brain_tumours
+
+- id: headache_one_side_throbbing
+  label: "Throbbing headache, often on one side, worse when moving"
+  question: "Is it a throbbing headache, often on one side of your head, that gets worse when you move?"
+  question_carer: "Is it a throbbing headache, often on one side of the head, that gets worse when your child moves?"
+  kind: symptom
+  parent: headache
+  relation: character
+  phrases: ["throbbing on one side", "pounding headache", "hurts more when I move"]
+  source: nhs_migraine
+
+- id: headache_band_pressing
+  label: "Feels like pressing or tightening on both sides of the head"
+  question: "Does the headache feel like something is pressing on your head or tightening around it, on both sides?"
+  question_carer: "Does your child say the headache feels like something pressing on their head or tight around it, on both sides?"
+  kind: symptom
+  parent: headache
+  relation: character
+  phrases: ["like a tight band", "pressure all round my head", "a vice around my head"]
+  source: nhs_tension_headaches
+
+- id: headache_around_one_eye
+  label: "Severe sharp or burning pain around one eye, with a red or watering eye"
+  question: "Is it a very bad, sharp or burning pain around one eye? Is that eye red or watering, or that side of your nose blocked or runny?"
+  kind: symptom
+  parent: headache
+  relation: location
+  phrases: ["pain behind one eye", "eye waters with the headache", "like a hot poker in my eye"]
+  source: nhs_cluster_headaches
+
+- id: eyelid_drooping_new
+  label: "One eyelid drooping, or one pupil smaller, for the first time"
+  question: "Is one of your eyelids drooping, or is the black centre of one eye smaller than the other, for the first time?"
+  question_carer: "Is one of the person's eyelids drooping, or is the black centre of one eye smaller than the other, for the first time?"
+  checklist_text: "One eyelid drooping, or the black circle in the middle of one eye smaller than the other, for the first time"
+  kind: symptom
+  parent: eyelid_drooping   # a new droop; a new small pupil comes with a slight droop (Horner's)
+  relation: duration
+  seriousness: emergency
+  phrases: ["droopy eyelid", "one pupil is smaller", "my eye looks different"]
+  source: nhs_cluster_headaches
+
+- id: migraine_aura
+  label: "Warning signs such as zigzag lines or flashing lights"
+  question: "Before or during it, do you get warning signs that last less than an hour? For example, seeing zigzag lines or flashing lights, or tingling that spreads."
+  question_carer: "Before or during it, does the person get warning signs that last less than an hour? For example, seeing zigzag lines or flashing lights, or tingling that spreads."
+  kind: symptom
+  phrases: ["zigzag lines", "flashing lights before the headache", "blind spot then a headache"]
+  source: nhs_migraine
+
+- id: aura_over_an_hour
+  label: "Warning signs (aura) lasting longer than 1 hour"
+  question: "Have the warning signs, such as zigzag lines, flashing lights or tingling, lasted longer than 1 hour this time?"
+  checklist_text: "Warning signs such as zigzag lines or flashing lights lasting longer than 1 hour"
+  kind: symptom
+  parent: migraine_aura
+  relation: duration
+  seriousness: serious
+  phrases: ["the flashing lights won't go", "aura for hours"]
+  source: nhs_migraine
+
+- id: has_migraine
+  label: "Diagnosed with migraine"
+  question: "Has a doctor told you that you get migraines?"
+  question_carer: "Has a doctor said your child gets migraines?"
+  kind: history
+  phrases: ["I get migraines", "I'm a migraine sufferer", "my usual migraine"]
+  source: nhs_migraine
+
+- id: migraine_over_72_hours
+  label: "Migraine lasting longer than 72 hours"
+  question: "Has this migraine lasted longer than 3 days (72 hours)?"
+  checklist_text: "A migraine that has lasted longer than 3 days"
+  kind: symptom
+  asked_only_if: has_migraine   # only makes sense for someone who gets migraines
+  seriousness: serious
+  phrases: ["migraine for 4 days", "it won't go away this time"]
+  source: nhs_migraine
+
+- id: headaches_regular
+  label: "Gets headaches regularly"
+  question: "Do you get headaches a lot, for example a few times a week?"
+  question_carer: "Does your child get headaches a lot, for example a few times a week?"
+  kind: symptom
+  parent: headache
+  relation: duration
+  phrases: ["headaches every week", "always getting headaches", "headaches most days"]
+  source: nhs_headaches
+
+- id: headache_not_getting_better
+  label: "Headache not getting better with self-care"
+  question: "Have you tried treating the headache yourself, and it is not getting better, or is getting worse?"
+  question_carer: "Have you tried treating your child's headache, and it is not getting better, or is getting worse?"
+  kind: symptom
+  parent: headache
+  relation: duration
+  phrases: ["painkillers aren't working", "tried everything", "still there after days"]
+  source: nhs_headaches
+
+- id: painkillers_most_days
+  label: "Taking painkillers for headaches on more than 2 days a week"
+  question: "For a month or more, have you been taking painkillers for headaches on more than 2 days a week?"
+  question_carer: "For a month or more, has the person been taking painkillers for headaches on more than 2 days a week?"
+  kind: history
+  phrases: ["taking paracetamol every day", "living on painkillers", "co-codamol most days"]
+  source: nhs_migraine
+
+- id: jaw_pain_or_scalp_tender
+  label: "Jaw pain when eating, or a sore or tender scalp or temple"
+  question: "Do you have pain in your jaw when eating, or is your scalp or the side of your head (temple) sore or tender to touch?"
+  checklist_text: "Jaw pain when eating, or a sore or tender scalp"
+  kind: symptom
+  seriousness: serious
+  phrases: ["jaw aches when I chew", "scalp is tender", "hurts to brush my hair", "sore temples"]
+  source: nhs_headaches
+
+# ===========================================================================
+# Dizziness: more detail under dizziness
+# ===========================================================================
+- id: dizziness_spinning
+  label: "Feels like you or the room is spinning (vertigo)"
+  question: "Does it feel like you, or everything around you, is spinning?"
+  question_carer: "Does the person say it feels like they, or everything around them, is spinning?"
+  checklist_text: "Feeling like you or the room is spinning"
+  kind: symptom
+  parent: dizziness
+  relation: character
+  snomed: "399153001"
+  phrases: ["room is spinning", "world is going round", "vertigo"]
+  source: nhs_vertigo
+
+- id: dizziness_with_head_movement
+  label: "Brief spinning brought on by moving the head"
+  question: "Does the spinning start when you move your head, such as when you roll over in bed or look up? Does it last less than a minute each time?"
+  kind: symptom
+  parent: dizziness
+  relation: exacerbating_factor
+  phrases: ["when I roll over in bed", "when I look up", "spins for a few seconds"]
+  source: nhs_vertigo
+
+- id: dizziness_on_standing
+  label: "Dizzy when standing or sitting up quickly"
+  question: "Does the dizziness come on when you stand up or sit up quickly, and ease when you sit or lie down?"
+  question_carer: "Does the person's dizziness come on when they stand up or sit up quickly, and ease when they sit or lie down?"
+  kind: symptom
+  parent: dizziness
+  relation: exacerbating_factor
+  phrases: ["head rush when I stand", "dizzy getting out of bed", "goes when I sit down"]
+  source: nhs_dizziness
+
+- id: dizziness_constant
+  label: "Dizziness there all the time since it started"
+  question: "Has the dizziness been there all the time since it started, for a day or more, rather than coming and going?"
+  question_carer: "Has the person's dizziness been there all the time since it started, for a day or more, rather than coming and going?"
+  kind: symptom
+  parent: dizziness
+  relation: duration
+  phrases: ["dizzy non-stop since yesterday", "constant spinning", "haven't been able to get up"]
+  source: nhs_labyrinthitis
+
+- id: dizziness_keeps_coming_back
+  label: "Dizziness keeps coming back, or will not go away"
+  question: "Does the dizziness keep coming back, or will it not go away?"
+  question_carer: "Does the person's dizziness keep coming back, or will it not go away?"
+  kind: symptom
+  parent: dizziness
+  relation: duration
+  phrases: ["keeps happening", "dizzy spells every week", "it's been weeks"]
+  source: nhs_dizziness
+
+# ===========================================================================
+# Fainting: more detail under fainted (chest_and_heart.yaml)
+# ===========================================================================
+- id: fainted_during_exercise
+  label: "Fainted while exercising"
+  question: "Did you faint while you were exercising or being very active?"
+  question_carer: "Did the person faint while they were exercising or being very active?"
+  checklist_text: "Fainted while exercising"
+  kind: symptom
+  parent: fainted
+  relation: exacerbating_factor
+  seriousness: emergency_ambulance
+  phrases: ["collapsed while running", "passed out playing football", "fainted at the gym"]
+  source: nhs_fainting
+
+- id: fainted_lying_down
+  label: "Fainted while lying down"
+  question: "Did you faint while you were lying down?"
+  question_carer: "Did the person faint while they were lying down?"
+  checklist_text: "Fainted while lying down"
+  kind: symptom
+  parent: fainted
+  relation: exacerbating_factor
+  seriousness: emergency_ambulance
+  phrases: ["passed out in bed", "fainted lying on the sofa"]
+  source: nhs_fainting
+
+- id: not_recovered_after_faint
+  label: "Not fully recovered after fainting, or trouble speaking or moving"
+  question: "Since they fainted, is the person still not back to how they were? Or do they find it hard to speak or move?"
+  checklist_text: "Not fully recovered, or having difficulty speaking or moving"
+  kind: symptom
+  parent: fainted
+  relation: duration
+  seriousness: emergency_ambulance
+  phrases: ["still not right", "can't speak properly since", "still very groggy"]
+  source: nhs_fainting
+
+- id: slow_to_wake_after_faint
+  label: "Could not be woken within 1 minute"
+  question: "When the person fainted, did it take longer than 1 minute to wake them?"
+  checklist_text: "Took longer than 1 minute to wake up"
+  kind: symptom
+  parent: fainted
+  relation: duration
+  seriousness: emergency_ambulance
+  phrases: ["out for a few minutes", "couldn't wake her"]
+  source: nhs_fainting
+
+- id: fainted_without_warning
+  label: "Fainted with no warning at all"
+  question: "Did you pass out with no warning at all? For example, no feeling dizzy, hot or sick first."
+  question_carer: "Did the person pass out with no warning at all? For example, they did not feel dizzy, hot or sick first."
+  kind: symptom
+  parent: fainted
+  relation: character
+  phrases: ["just dropped", "no warning", "out like a light"]
+  source: ai_judgement
+
+- id: warning_signs_before_faint
+  label: "Felt dizzy, sweaty, hot or sick just before fainting"
+  question: "Just before you passed out, did you feel dizzy, sweaty, hot or sick, or did your vision change?"
+  question_carer: "Just before they passed out, did the person feel dizzy, sweaty, hot or sick, or say their vision changed?"
+  kind: symptom
+  parent: fainted
+  relation: character
+  phrases: ["felt it coming on", "went hot and clammy first", "vision went grey"]
+  source: nhs_fainting
+
+- id: fainted_with_trigger
+  label: "Fainted after standing a long time, heat, a shock, pain or the sight of blood"
+  question: "Did you faint after you stood for a long time or got too hot? Or after a shock, sudden pain, or the sight of blood or a needle?"
+  question_carer: "Did the person faint after they stood for a long time or got too hot? Or after a shock, sudden pain, or the sight of blood or a needle?"
+  kind: symptom
+  parent: fainted
+  relation: exacerbating_factor
+  phrases: ["fainted at a blood test", "passed out in assembly", "fainted in the heat"]
+  source: nhs_fainting
+
+- id: fainted_after_standing_up
+  label: "Fainted just after standing up"
+  question: "Did you faint just after standing up from sitting or lying down?"
+  question_carer: "Did the person faint just after standing up from sitting or lying down?"
+  kind: symptom
+  parent: fainted
+  relation: exacerbating_factor
+  phrases: ["got up too quickly", "stood up and blacked out"]
+  source: nhs_fainting
+
+- id: fainted_more_than_once
+  label: "Fainted more than once recently"
+  question: "Have you fainted more than once recently?"
+  question_carer: "Has the person fainted more than once recently?"
+  kind: symptom
+  parent: fainted
+  relation: duration
+  phrases: ["keep fainting", "third time this month"]
+  source: nhs_fainting
+
+- id: seriously_injured_in_collapse
+  label: "Seriously hurt when they passed out, fell or had a seizure"
+  question: "Were you seriously hurt when you passed out, fell or had a seizure?"
+  question_carer: "Was the person seriously hurt when they passed out, fell or had a seizure?"
+  checklist_text: "Seriously hurt when you passed out, fell or had a seizure"
+  kind: symptom
+  seriousness: emergency_ambulance
+  phrases: ["cut my head open when I fell", "think I've broken something", "hit my head hard when I collapsed"]
+  source: nhs_fainting
+
+# ===========================================================================
+# Seizures: more detail under had_a_fit (breathing.yaml)
+# ===========================================================================
+- id: has_epilepsy
+  label: "Diagnosed with epilepsy"
+  question: "Has a doctor told you that you have epilepsy?"
+  question_carer: "Has a doctor said the person has epilepsy?"
+  kind: history
+  phrases: ["I have epilepsy", "she's epileptic", "on epilepsy tablets"]
+  source: nhs_epilepsy
+
+- id: first_seizure
+  label: "First ever seizure"
+  question: "Is this the first time you have ever had a seizure (fit)?"
+  question_carer: "Is this the first time the person has ever had a seizure (fit)?"
+  checklist_text: "The first ever seizure (fit)"
+  kind: symptom
+  parent: had_a_fit
+  relation: character
+  seriousness: emergency_ambulance
+  phrases: ["never had a fit before", "first seizure"]
+  source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+- id: seizure_long
+  label: "Seizure lasting more than 5 minutes, or longer than usual"
+  question: "Did the seizure last more than 5 minutes, or longer than is usual for the person?"
+  checklist_text: "A seizure lasting more than 5 minutes, or longer than usual"
+  kind: symptom
+  parent: had_a_fit
+  relation: duration
+  seriousness: emergency_ambulance
+  phrases: ["fitting for ages", "still fitting", "longer than her usual seizures"]
+  source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+- id: seizure_not_recovered
+  label: "Not woken up fully, or another seizure without waking in between"
+  question: "Is the person still not fully awake after the seizure? Or have they had another seizure without waking up in between?"
+  checklist_text: "Not woken up fully, or another seizure without waking up in between"
+  kind: symptom
+  parent: had_a_fit
+  relation: duration
+  seriousness: emergency_ambulance
+  phrases: ["still not responding properly", "one fit after another"]
+  source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+- id: seizure_more_than_one_24h
+  label: "More than one seizure in 24 hours"
+  question: "Has the person had more than one seizure in the last 24 hours?"
+  checklist_text: "More than one seizure in the last 24 hours"
+  kind: symptom
+  parent: had_a_fit
+  relation: duration
+  seriousness: emergency
+  phrases: ["second fit today", "three seizures since this morning"]
+  source: nhs_febrile_seizures
+
+- id: seizure_one_side
+  label: "Stiffness or jerking on only one side of the body"
+  question: "During the seizure, was the stiffness or jerking only on one side of the body?"
+  checklist_text: "Stiffness or jerking on only one side of the body"
+  kind: symptom
+  parent: had_a_fit
+  relation: location
+  seriousness: emergency
+  phrases: ["only her left arm was jerking", "one side was twitching"]
+  source: nhs_febrile_seizures
+
+- id: sleepy_long_after_seizure
+  label: "Much sleepier than usual for more than 1 hour after the seizure"
+  question: "Has the person been much sleepier than usual for more than 1 hour since the seizure stopped?"
+  checklist_text: "Much sleepier than usual for more than 1 hour after the seizure"
+  kind: symptom
+  parent: had_a_fit
+  relation: duration
+  seriousness: emergency
+  phrases: ["still very sleepy an hour later", "won't wake up properly"]
+  source: nhs_febrile_seizures
+
+- id: bit_tongue_or_wet
+  label: "Bit their tongue or wet themselves during the seizure"
+  question: "During the seizure, did the person bite their tongue or wet themselves?"
+  kind: symptom
+  parent: had_a_fit
+  relation: character
+  phrases: ["bit his tongue", "wet herself during the fit"]
+  source: nhs_what_to_do_if_someone_has_a_seizure_fit
+
+- id: seizure_like_usual
+  label: "A seizure like their usual ones, and recovered as usual"
+  question: "Was this seizure like the ones the person usually has? And are they back to how they usually are after one?"
+  kind: symptom
+  asked_only_if: has_epilepsy   # only makes sense for someone with epilepsy
+  phrases: ["just one of her normal fits", "his usual seizure, he's fine now"]
+  source: nhs_epilepsy
+
+- id: seizure_after_long_gap
+  label: "A seizure after a long time without any"
+  question: "Is this the first seizure the person has had after a long time without any?"
+  kind: symptom
+  asked_only_if: has_epilepsy   # only makes sense for someone with epilepsy
+  phrases: ["first fit in years", "hadn't had one for ages"]
+  source: nhs_epilepsy
+
+# ===========================================================================
+# Weakness and paralysis: more detail under weakness_or_paralysis
+# ===========================================================================
+- id: weakness_sudden
+  label: "Weakness that came on suddenly"
+  question: "Did the weakness come on suddenly, over minutes or hours?"
+  question_carer: "Did the person's weakness come on suddenly, over minutes or hours?"
+  checklist_text: "Weakness that came on suddenly"
+  kind: symptom
+  parent: weakness_or_paralysis
+  relation: duration
+  seriousness: emergency_ambulance
+  phrases: ["arm suddenly went weak", "leg gave way this morning", "came on all at once"]
+  source: nhs_paralysis
+
+- id: weakness_one_side
+  label: "Weakness on one side of the face or body"
+  question: "Is the weakness on one side of your body, or one side of your face?"
+  question_carer: "Is the person's weakness on one side of their body, or one side of their face?"
+  checklist_text: "Weakness on one side of your face or body"
+  kind: symptom
+  parent: weakness_or_paralysis
+  relation: location
+  seriousness: emergency_ambulance
+  phrases: ["left side is weak", "face has dropped on one side", "right arm and leg weak"]
+  source: nhs_paralysis
+
+- id: weakness_after_injury
+  label: "Weakness after an injury to the head, neck or back"
+  question: "Did the weakness start after an injury to your head, neck or back?"
+  question_carer: "Did the person's weakness start after an injury to their head, neck or back?"
+  checklist_text: "Weakness after an injury to your head, neck or back"
+  kind: symptom
+  parent: weakness_or_paralysis
+  relation: exacerbating_factor
+  seriousness: emergency_ambulance
+  phrases: ["since I fell on my back", "after the car crash", "since I hurt my neck"]
+  source: nhs_paralysis
+
+- id: weakness_gradual
+  label: "Weakness that started gradually or is slowly getting worse"
+  question: "Did the weakness start gradually, or has it been slowly getting worse over weeks or months?"
+  question_carer: "Did the person's weakness start gradually, or has it been slowly getting worse over weeks or months?"
+  kind: symptom
+  parent: weakness_or_paralysis
+  relation: duration
+  phrases: ["getting weaker over months", "slowly losing strength", "keep dropping things"]
+  source: nhs_paralysis
+
+- id: weakness_comes_and_goes
+  label: "Weakness that comes and goes"
+  question: "Does the weakness come and go?"
+  question_carer: "Does the person's weakness come and go?"
+  kind: symptom
+  parent: weakness_or_paralysis
+  relation: duration
+  phrases: ["on and off", "some days my legs are weak"]
+  source: nhs_paralysis
+
+- id: face_droop_one_side
+  label: "One side of the face weak or drooping"
+  question: "Is one side of your face weak or drooping? For example, your eye will not close or the corner of your mouth droops."
+  question_carer: "Is one side of the person's face weak or drooping? For example, their eye will not close or the corner of their mouth droops."
+  checklist_text: "One side of your face weak or drooping"
+  kind: symptom
+  parent: weakness_or_paralysis
+  relation: location
+  snomed: "95666008"
+  seriousness: emergency_ambulance
+  phrases: ["face has dropped", "can't close my eye", "mouth droops on one side"]
+  source: nhs_bells_palsy
+
+- id: pain_behind_ear_or_taste_change
+  label: "Pain behind the ear, or a change in taste, with face weakness"
+  question: "Have you had pain behind your ear, a change in taste, or a dry or watering eye on the same side?"
+  kind: symptom
+  asked_only_if: face_droop_one_side
+  phrases: ["ache behind my ear", "food tastes odd", "eye keeps watering"]
+  source: nhs_bells_palsy
+
+- id: weakness_spreading_up
+  label: "Tingling or weakness starting in the feet or hands and spreading over days"
+  question: "Did tingling or weakness start in your feet or hands, and has it spread up your arms or legs over hours or days?"
+  question_carer: "Did the person's tingling or weakness start in their feet or hands, and has it spread up their arms or legs over hours or days?"
+  checklist_text: "Tingling or weakness that started in your feet or hands and is spreading up"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["legs getting weaker every day", "tingling creeping up my legs", "can't climb stairs since yesterday"]
+  source: nhs_guillain_barre_syndrome
+
+- id: stiff_or_slow_movements
+  label: "Movements becoming slower or stiffer"
+  question: "Have your movements become slower or stiffer? For example, when walking, getting dressed or writing."
+  question_carer: "Have the person's movements become slower or stiffer? For example, when walking, getting dressed or writing."
+  kind: symptom
+  phrases: ["shuffling", "slower at everything", "handwriting has got smaller", "stiff all over"]
+  source: nhs_parkinsons_disease
+
+# ===========================================================================
+# Pins and needles: more detail under pins_and_needles
+# ===========================================================================
+- id: pins_needles_after_pressure
+  label: "Pins and needles after sitting or lying on that part, that goes within minutes"
+  question: "Did the pins and needles start after you sat or lay on that part of your body? Do they go within a few minutes?"
+  kind: symptom
+  parent: pins_and_needles
+  relation: exacerbating_factor
+  phrases: ["sat on my leg", "slept on my arm", "goes when I move it"]
+  source: nhs_pins_and_needles
+
+- id: pins_needles_constant
+  label: "Pins and needles all the time"
+  question: "Do you have the pins and needles all the time?"
+  question_carer: "Does the person have pins and needles all the time?"
+  kind: symptom
+  parent: pins_and_needles
+  relation: duration
+  phrases: ["never goes away", "constant tingling"]
+  source: nhs_pins_and_needles
+
+- id: pins_needles_keeps_coming_back
+  label: "Pins and needles that keep coming back"
+  question: "Do the pins and needles keep coming back?"
+  question_carer: "Do the person's pins and needles keep coming back?"
+  kind: symptom
+  parent: pins_and_needles
+  relation: duration
+  phrases: ["keeps happening", "comes back every night"]
+  source: nhs_pins_and_needles
+
+- id: pins_needles_sudden_one_side
+  label: "Numbness or tingling that came on suddenly on one side of the body"
+  question: "Did the numbness or tingling come on suddenly, on one side of your body?"
+  question_carer: "Did the person's numbness or tingling come on suddenly, on one side of their body?"
+  checklist_text: "Numbness or tingling that came on suddenly on one side of your body"
+  kind: symptom
+  parent: pins_and_needles
+  relation: location
+  seriousness: emergency_ambulance
+  phrases: ["whole left side went numb", "suddenly numb down one side"]
+  source: nhs_stroke_symptoms
+
+- id: pins_needles_both_feet_or_hands
+  label: "Tingling or numbness in both feet or both hands that came on slowly"
+  question: "Is the tingling or numbness in both feet or both hands, and has it come on slowly?"
+  question_carer: "Is the person's tingling or numbness in both feet or both hands, and has it come on slowly?"
+  kind: symptom
+  parent: pins_and_needles
+  relation: location
+  phrases: ["both feet are numb", "like walking on cotton wool", "tingling in both hands"]
+  source: nhs_peripheral_neuropathy
+
+- id: pins_needles_different_places
+  label: "Tingling or numbness in different parts of the body at different times"
+  question: "Do you get the tingling or numbness in different parts of your body at different times?"
+  kind: symptom
+  parent: pins_and_needles
+  relation: location
+  phrases: ["moves around my body", "different place each time"]
+  source: nhs_pins_and_needles
+
+- id: burning_or_shooting_pain_feet_hands
+  label: "Burning, stabbing or shooting pains in the feet or hands"
+  question: "Do you have burning, stabbing or shooting pains in your feet or hands?"
+  kind: symptom
+  phrases: ["feet burn at night", "shooting pains in my feet", "electric shocks in my hands"]
+  source: nhs_peripheral_neuropathy
+
+- id: vegan_or_stomach_condition
+  label: "Vegan diet without vitamin B12, or a stomach or bowel condition"
+  question: "Do you eat a vegan diet and not take vitamin B12? Or do you have a stomach or bowel problem?"
+  kind: history
+  phrases: ["I'm vegan", "I have Crohn's", "had stomach surgery"]
+  source: nhs_vitamin_b12_deficiency
+
+# ===========================================================================
+# Numbness of the face: more detail under face_numbness
+# ===========================================================================
+- id: face_numbness_sudden
+  label: "Numbness in the face that came on suddenly"
+  question: "Did the numbness in your face come on suddenly?"
+  question_carer: "Did the numbness in the person's face come on suddenly?"
+  checklist_text: "Numbness in your face that came on suddenly"
+  kind: symptom
+  parent: face_numbness
+  relation: duration
+  seriousness: emergency
+  phrases: ["face suddenly went numb", "half my face went numb this morning"]
+  source: nhs_stroke_symptoms
+
+# ===========================================================================
+# Memory loss: more detail under memory_problems
+# ===========================================================================
+- id: memory_getting_worse
+  label: "Memory problems slowly getting worse over months or years"
+  question: "Have the memory problems come on slowly, and been getting worse over months or years?"
+  question_carer: "Have the person's memory problems come on slowly, and been getting worse over months or years?"
+  kind: symptom
+  parent: memory_problems
+  relation: duration
+  phrases: ["getting more forgetful every year", "worse than last year"]
+  source: nhs_dementia_symptoms
+
+- id: memory_affecting_daily_life
+  label: "Memory problems affecting day-to-day life"
+  question: "Are the memory problems affecting your day-to-day life?"
+  question_carer: "Are the person's memory problems affecting their day-to-day life?"
+  kind: symptom
+  parent: memory_problems
+  relation: severity
+  phrases: ["forgetting appointments", "left the cooker on", "can't manage at home"]
+  source: nhs_memory_loss_amnesia
+
+- id: struggling_everyday_tasks
+  label: "Finding familiar everyday tasks harder, or getting lost"
+  question: "Are you finding familiar everyday tasks harder, such as paying for shopping or following a conversation? Or getting lost in places you know?"
+  question_carer: "Is the person finding familiar everyday tasks harder, such as paying for shopping or following a conversation? Or getting lost in places they know?"
+  kind: symptom
+  phrases: ["gets lost on the way home", "can't work the remote any more", "muddles up money"]
+  source: nhs_dementia_symptoms
+
+- id: has_dementia
+  label: "Diagnosed with dementia"
+  question: "Has a doctor told you that you have dementia?"
+  question_carer: "Has a doctor said the person has dementia?"
+  kind: history
+  phrases: ["mum has dementia", "he has Alzheimer's"]
+  source: nhs_confusion
+
+# ===========================================================================
+# Tremor: more detail under tremor
+# ===========================================================================
+- id: tremor_getting_worse
+  label: "Tremor getting worse over time"
+  question: "Is the shaking getting worse over time?"
+  question_carer: "Is the person's shaking getting worse over time?"
+  kind: symptom
+  parent: tremor
+  relation: duration
+  phrases: ["shake is worse than last year", "getting worse"]
+  source: nhs_tremor_or_shaking_hands
+
+- id: tremor_affecting_daily_life
+  label: "Tremor affecting daily activities"
+  question: "Does the shaking make it hard to do things like eat, drink or write?"
+  question_carer: "Does the shaking make it hard for the person to do things like eat, drink or write?"
+  kind: symptom
+  parent: tremor
+  relation: severity
+  phrases: ["spill my tea", "can't write properly", "hard to do up buttons"]
+  source: nhs_tremor_or_shaking_hands
+
+- id: tremor_at_rest
+  label: "Shaking worst when the hand is resting, often on one side"
+  question: "Is the shaking worst when your hand is resting, and better when you use it? It often starts on one side."
+  question_carer: "Is the person's shaking worst when their hand is resting, and better when they use it? It often starts on one side."
+  kind: symptom
+  parent: tremor
+  relation: character
+  phrases: ["shakes when my hand is in my lap", "pill-rolling", "only my right hand"]
+  source: ai_judgement
+
+- id: tremor_when_using_hands
+  label: "Shaking worst when holding the hands out or using them"
+  question: "Is the shaking worst when you hold your hands out or use them, for example to hold a cup or write?"
+  question_carer: "Is the person's shaking worst when they hold their hands out or use them, for example to hold a cup or write?"
+  kind: symptom
+  parent: tremor
+  relation: exacerbating_factor
+  phrases: ["shakes when I hold a cup", "worse when I write"]
+  source: ai_judgement
+
+- id: tremor_in_family
+  label: "Close family member also has a tremor"
+  question: "Does anyone in your close family also have a tremor or shaking hands?"
+  question_carer: "Does anyone in the person's close family also have a tremor or shaking hands?"
+  kind: history
+  phrases: ["my dad's hands shook too", "runs in the family"]
+  source: nhs_tremor_or_shaking_hands
+
+- id: tremor_with_stress_or_caffeine
+  label: "Shaking worse with stress, tiredness, caffeine, alcohol or smoking"
+  question: "Is the shaking worse when you are stressed, tired or worried? Or after caffeine, alcohol or smoking?"
+  question_carer: "Is the person's shaking worse when they are stressed, tired or worried? Or after caffeine, alcohol or smoking?"
+  kind: symptom
+  parent: tremor
+  relation: exacerbating_factor
+  phrases: ["worse after coffee", "when I'm nervous", "after a late night"]
+  source: nhs_tremor_or_shaking_hands
+
+# ===========================================================================
+# Twitching: more detail under twitching
+# ===========================================================================
+- id: twitch_over_2_weeks
+  label: "Twitch lasting more than 2 weeks"
+  question: "Have you had the twitch for more than 2 weeks?"
+  question_carer: "Has the person had the twitch for more than 2 weeks?"
+  kind: symptom
+  parent: twitching
+  relation: duration
+  phrases: ["for a month", "weeks and weeks"]
+  source: nhs_twitching_eyes_and_muscles
+
+- id: twitch_more_than_one_place
+  label: "Twitching in more than one place"
+  question: "Do you have twitching in more than one place in your body?"
+  question_carer: "Does the person have twitching in more than one place in their body?"
+  kind: symptom
+  parent: twitching
+  relation: location
+  phrases: ["twitching all over", "arms and legs twitch"]
+  source: nhs_twitching_eyes_and_muscles
+
+- id: twitch_area_weak_or_stiff
+  label: "The twitching area feels weak or stiff"
+  question: "Does the part of your body that is twitching feel weak or stiff?"
+  question_carer: "Does the part of the person's body that is twitching feel weak or stiff?"
+  kind: symptom
+  parent: twitching
+  relation: character
+  phrases: ["hand is weak too", "muscle feels stiff"]
+  source: nhs_twitching_eyes_and_muscles
+
+- id: twitch_eyelid
+  label: "Twitch in the eyelid"
+  question: "Is the twitch in your eyelid?"
+  question_carer: "Is the twitch in the person's eyelid?"
+  kind: symptom
+  parent: twitching
+  relation: location
+  phrases: ["eye keeps twitching", "eyelid flickering"]
+  source: nhs_twitching_eyes_and_muscles
+
+# ===========================================================================
+# Daytime sleepiness: more detail under daytime_sleepiness
+# ===========================================================================
+- id: falls_asleep_suddenly
+  label: "Falls asleep suddenly without warning"
+  question: "Do you fall asleep suddenly, without warning, even when you are busy?"
+  question_carer: "Does the person fall asleep suddenly, without warning, even when they are busy?"
+  kind: symptom
+  parent: daytime_sleepiness
+  relation: character
+  phrases: ["fell asleep mid-sentence", "nod off at my desk", "drop off without warning"]
+  source: nhs_narcolepsy
+
+- id: muscles_weak_with_emotion
+  label: "Muscles suddenly go weak when laughing, angry or surprised"
+  question: "Do your muscles suddenly go weak when you laugh, or feel angry or surprised?"
+  question_carer: "Do the person's muscles suddenly go weak when they laugh, or feel angry or surprised?"
+  kind: symptom
+  phrases: ["knees buckle when I laugh", "go floppy when I'm surprised"]
+  source: nhs_narcolepsy
+
+- id: not_enough_sleep
+  label: "Getting less sleep than needed"
+  question: "Are you getting less sleep than you need? For example, because of shift work, a young baby or going to bed late."
+  question_carer: "Is the person getting less sleep than they need? For example, because of shift work, a young baby or going to bed late."
+  kind: history
+  phrases: ["night shifts", "up with the baby", "only sleep 5 hours"]
+  source: nhs_insomnia
+
+- id: sleepiness_affecting_life
+  label: "Sleepiness affecting life, such as work, school or driving"
+  question: "Is the sleepiness affecting your life, such as work, school or driving?"
+  question_carer: "Is the sleepiness affecting the person's life, such as work, school or driving?"
+  kind: symptom
+  parent: daytime_sleepiness
+  relation: severity
+  phrases: ["falling asleep at work", "can't concentrate at school"]
+  source: nhs_excessive_daytime_sleepiness_hypersomnia
+
+- id: sleepiness_sudden_new
+  label: "Much sleepier than usual, starting suddenly in the last few days"
+  question: "Did the sleepiness start suddenly in the last few days, so you are much sleepier than usual?"
+  question_carer: "Did the person's sleepiness start suddenly in the last few days, so they are much sleepier than usual?"
+  checklist_text: "Much sleepier than usual, starting suddenly in the last few days"
+  kind: symptom
+  parent: daytime_sleepiness
+  relation: duration
+  seriousness: serious
+  phrases: ["sleeping all the time since Tuesday", "suddenly can't stay awake"]
+  source: ai_judgement
+
+- id: fell_asleep_driving
+  label: "Fallen asleep, or nearly, while driving"
+  question: "Have you fallen asleep, or nearly fallen asleep, while driving?"
+  kind: symptom
+  parent: daytime_sleepiness
+  relation: severity
+  seriousness: serious
+  phrases: ["nodded off at the wheel", "nearly crashed because I was sleepy"]
+  source: nhs_excessive_daytime_sleepiness_hypersomnia
+
+- id: urge_to_move_legs
+  label: "Strong urge to move the legs, mostly in the evening or at night"
+  question: "Do you get a strong need to move your legs, with odd feelings in them? Is it mostly in the evening or at night?"
+  question_carer: "Does the person get a strong need to move their legs, with odd feelings in them? Is it mostly in the evening or at night?"
+  kind: symptom
+  phrases: ["legs won't keep still at night", "creepy crawly feeling in my legs", "have to get up and walk"]
+  source: nhs_restless_legs_syndrome
+
+# ===========================================================================
+# Trouble sleeping: more detail under trouble_sleeping
+# ===========================================================================
+- id: trouble_sleeping_3_months
+  label: "Trouble sleeping for 3 months or more"
+  question: "Have you had trouble sleeping for 3 months or more?"
+  question_carer: "Has the person had trouble sleeping for 3 months or more?"
+  kind: symptom
+  parent: trouble_sleeping
+  relation: duration
+  phrases: ["haven't slept properly for months", "for years"]
+  source: nhs_insomnia
+
+- id: trouble_sleeping_hard_to_cope
+  label: "Lack of sleep making daily life hard to cope with"
+  question: "Is the lack of sleep making it hard for you to cope with daily life?"
+  question_carer: "Is the lack of sleep making it hard for the person to cope with daily life?"
+  kind: symptom
+  parent: trouble_sleeping
+  relation: severity
+  phrases: ["can't function", "struggling at work because I'm so tired"]
+  source: nhs_insomnia
+
+- id: sleep_habits_not_helped
+  label: "Changing sleeping habits has not helped"
+  question: "Have you tried changing your sleeping habits, and it has not helped?"
+  question_carer: "Has the person tried changing their sleeping habits, and it has not helped?"
+  kind: symptom
+  parent: trouble_sleeping
+  relation: duration
+  phrases: ["tried everything", "no screens and still can't sleep"]
+  source: nhs_insomnia
+
+# ===========================================================================
+# Head injury: more detail under head_injury
+# ===========================================================================
+- id: knocked_out
+  label: "Knocked out by the head injury, even briefly"
+  question: "Were you knocked out (unconscious) by the head injury, even for a short time?"
+  question_carer: "Was the person knocked out (unconscious) by the head injury, even for a short time?"
+  checklist_text: "Knocked out by the head injury, even for a short time"
+  kind: symptom
+  parent: head_injury_serious_signs
+  relation: severity
+  seriousness: emergency
+  phrases: ["was out cold", "knocked unconscious", "can't remember the fall"]
+  source: ai_judgement
+
+- id: head_injury_high_force
+  label: "Fell from more than 1 metre or 5 stairs, or hit the head at high speed"
+  question: "Did you fall from higher than 1 metre or 5 stairs, or hit your head at high speed, such as in a road accident?"
+  question_carer: "Did the person fall from higher than 1 metre or 5 stairs, or hit their head at high speed, such as in a road accident?"
+  checklist_text: "A fall from higher than 1 metre or 5 stairs, or a high-speed accident"
+  kind: symptom
+  parent: head_injury
+  relation: severity
+  seriousness: emergency_ambulance
+  phrases: ["fell down the stairs", "came off my bike at speed", "car crash"]
+  source: nhs_head_injury
+
+- id: skull_injury_signs
+  label: "Fluid or blood from the ears or nose, bruising behind the ears or a black eye, a dent or something in a wound"
+  question: "Since the head injury, is clear fluid or blood coming from the ears or nose? Or is there a bruise behind the ears, a black eye (but the eye was not hit), a dent in the head, or something stuck in a cut?"
+  question_carer: "Since the head injury, is clear fluid or blood coming from the person's ears or nose? Or is there a bruise behind their ears, a black eye (but the eye was not hit), a dent in their head, or something stuck in a cut?"
+  checklist_text: "Signs of a broken skull: fluid or blood from the ears or nose. Bruises behind the ears. A black eye but the eye was not hit. A dent in the head."
+  kind: symptom
+  parent: head_injury_serious_signs
+  relation: character
+  seriousness: emergency_ambulance
+  phrases: ["clear fluid from my nose", "bleeding from the ear", "dent in his head"]
+  source: nhs_head_injury
+
+- id: head_bruise_swelling_or_cut
+  label: "A bruise, swelling or large cut on the head"
+  question: "Is there a bruise, swelling or large cut on the head?"
+  checklist_text: "A bruise, swelling or large cut on the head"
+  kind: symptom
+  parent: head_injury
+  relation: character
+  phrases: ["big lump on her head", "egg on his forehead", "cut on my head"]
+  source: nhs_head_injury
+
+- id: behaviour_changed_since_injury
+  label: "Behaviour changed since the head injury"
+  question: "Since the head injury, has the person's behaviour changed? For example, they are more irritable or distracted, or have lost interest in things around them."
+  checklist_text: "Acting differently since the injury. For example, more grumpy, or not paying attention."
+  kind: symptom
+  parent: head_injury
+  relation: character
+  seriousness: emergency_ambulance
+  phrases: ["not acting like himself since he fell", "really irritable since the bang", "staring into space"]
+  source: nhs_head_injury
+
+- id: alcohol_or_substances_at_injury
+  label: "Drinking alcohol or taking substances at the time of the head injury"
+  question: "When you hurt your head, had you been drinking alcohol? Or taking things like cannabis or cocaine?"
+  question_carer: "When the person hurt their head, had they been drinking alcohol? Or taking things like cannabis or cocaine?"
+  kind: history
+  parent: head_injury
+  relation: exacerbating_factor
+  phrases: ["I'd been drinking", "fell over drunk"]
+  source: nhs_head_injury
+
+- id: head_injury_symptoms_over_2_weeks
+  label: "Symptoms from the head injury lasting more than 2 weeks"
+  question: "Have the symptoms from the head injury lasted more than 2 weeks?"
+  question_carer: "Have the person's symptoms from the head injury lasted more than 2 weeks?"
+  kind: symptom
+  parent: head_injury
+  relation: duration
+  phrases: ["still getting headaches 3 weeks after", "still not right since the fall"]
+  source: nhs_head_injury
+
+- id: very_painful_headache
+  label: "Very painful headache"
+  question: "Do you have a very painful headache, worse than any you usually get?"
+  question_carer: "Does the person have a very painful headache, worse than any they usually get?"
+  checklist_text: "A very painful headache"
+  kind: symptom
+  parent: headache
+  relation: severity
+  seriousness: serious
+  phrases: ["worst headache", "head is pounding"]
+  source: nhs_meningitis
+
+- id: sleep_problems
+  label: "Sleep has changed: hard to sleep, waking early, or sleeping much more"
+  question: "Has your sleep changed? For example, finding it hard to get to sleep, waking very early, or sleeping much more than usual."
+  question_carer: "Has the person's sleep changed? For example, finding it hard to get to sleep, waking very early, or sleeping much more than usual."
+  checklist_text: "Sleep has changed: hard to sleep, waking early, or sleeping much more"
+  kind: symptom
+  phrases: ["can't sleep", "awake at 4am", "sleeping all day"]
+  source: nhs_depression
+
+- id: weak_or_cannot_stand
+  label: "So weak it is hard to stand up, climb stairs or get up from sitting"
+  question: "Do you feel so weak that it is hard to stand up, climb stairs or get up from sitting?"
+  question_carer: "Is the person so weak that it is hard for them to stand up, climb stairs or get up from sitting?"
+  checklist_text: "So weak it is hard to stand up, climb stairs or get up from sitting"
+  kind: symptom
+  seriousness: emergency
+  phrases: ["legs won't hold me", "too weak to stand"]
+  source: ai_judgement
+
+# ===========================================================================
+# Physical causes and danger signs (confusion, poisoning)
+# ===========================================================================
+- id: came_on_over_hours_or_days
+  label: "Came on suddenly, over hours or a few days"
+  question: "Did this come on suddenly, over a few hours or days?"
+  question_carer: "Did this come on suddenly, over a few hours or days?"
+  checklist_text: "Came on suddenly, over a few hours or days"
+  kind: symptom
+  phrases: ["came on overnight", "was fine yesterday"]
+  source: nhs_confusion
+
+- id: recently_unwell_or_new_medicine
+  label: "Recent infection, or started a new medicine"
+  question: "Have you recently had an infection, such as a urine or chest infection? Or have you started a new medicine?"
+  question_carer: "Has the person recently had an infection, such as a urine or chest infection? Or have they started a new medicine?"
+  kind: history
+  phrases: ["has a water infection", "new tablets", "chest infection"]
+  source: nhs_confusion
+
+- id: head_injury_serious_signs
+  label: "Serious signs after a head injury"
+  question: "Since hitting your head, have you been knocked out, had a fit, found it hard to stay awake, or had problems seeing, hearing, walking or speaking? Or new numbness or weakness, or fluid or blood coming from the ears or nose?"
+  question_carer: "Since hitting their head, has the person been knocked out, had a fit, found it hard to stay awake, or had problems seeing, hearing, walking or speaking? Or new numbness or weakness, or fluid or blood from the ears or nose?"
+  checklist_text: "After hitting the head: knocked out, a fit, very sleepy, or problems seeing, walking or speaking"
+  kind: symptom
+  parent: head_injury
+  relation: character
+  seriousness: emergency_ambulance
+  phrases: ["knocked out", "can't stay awake", "blood from my ear"]
+  source: nhs_head_injury
+
+- id: head_injury_sick_or_dizzy
+  label: "Being sick or dizzy after a head injury"
+  question: "Since hitting your head, have you been sick or felt dizzy?"
+  question_carer: "Since hitting their head, has the person been sick or felt dizzy?"
+  kind: symptom
+  parent: head_injury
+  relation: character
+  phrases: ["been sick since I hit my head", "dizzy after banging my head"]
+  source: nhs_head_injury
+
+# Signs of pre-eclampsia (high blood pressure in pregnancy)
+- id: severe_headache_not_helped
+  label: "Severe headache that painkillers do not help"
+  question: "Do you have a severe headache that does not go away with painkillers?"
+  checklist_text: "A severe headache that painkillers do not help"
+  kind: symptom
+  parent: very_painful_headache   # a kind of very painful headache
+  relation: character
+  seriousness: serious
+  phrases: ["bad headache", "headache won't go"]
+  source: nhs_pre_eclampsia
+
+- id: has_brain_or_nerve_condition
+  label: "Has a condition that affects the brain or nerves"
+  question: "Do you have a condition that affects the brain or nerves? For example, a past stroke, Parkinson's, multiple sclerosis or dementia."
+  kind: history
+  phrases: ["had a stroke", "Parkinson's", "MS", "dementia"]
+  source: nhs_swallowing_problems_dysphagia

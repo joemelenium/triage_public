@@ -1,0 +1,60 @@
+id: sob_h05
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 15-year-old girl with asthma (her mother answering) who has been increasingly breathless and tight-chested for an hour after PE at school. She has taken 10 puffs of her blue reliever with a spacer and is no better. She can still talk in short sentences."
+
+opening_statement: "My daughter's having an asthma attack. She's had ten puffs of her blue inhaler and she's still really struggling."
+
+findings:
+  present: [short_of_breath, sob_at_rest, has_asthma, asthma_attack_now, reliever_not_helping, wheezing, wheeze_with_exercise_or_cold_air, cp_tight_or_squeezing, difficulty_breathing, sob_more_than_usual, symptoms_worse_or_not_better]
+  absent: [too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, child_floppy_or_hard_to_wake, passed_out, no_reliever_inhaler, lips_tongue_throat_swelling, throat_tight, after_allergy_trigger, raised_itchy_rash, choked_on_something, chest_pain, very_high_temperature, cough_mucus_or_temperature, asthma_attack_recovered]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 15, sex: female}
+  full:
+    age: 15
+    sex: female
+    findings: {has_asthma: "yes"}
+
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+
+minimum_safe_acuity: emergency
+
+red_flags:
+  - description: "Asthma attack not better after the maximum reliever dose"
+    findings: [asthma_attack_now, reliever_not_helping]
+    minimum_acuity: emergency
+    source: {page: asthma.txt, quote: "do not feel better after taking the maximum dose using an asthma reliever inhaler"}
+  - description: "Child having difficulty breathing"
+    findings: [difficulty_breathing]
+    minimum_acuity: emergency
+    source: {page: shortness_of_breath.txt, quote: "Call 999 or go to A&E immediately if your child"}
+
+safety_netting_should_cover:
+  - point: "Call 999 now"
+    any_of: ["999"]
+  - point: "Sit up straight and keep calm; if no better after 10 minutes and no ambulance, repeat the reliever"
+    any_of: ["sit up", "10 minutes", "inhaler again"]
+  - point: "Not to drive to A&E"
+    any_of: ["do not drive", "don't drive", "not drive"]
+
+source:
+  expected_outcome: {page: asthma.txt, quote: "You or someone else is having an asthma attack and:"}
+  minimum_safe_acuity: {page: asthma.txt, quote: "do not feel better after taking the maximum dose using an asthma reliever inhaler"}
+
+variants:
+  - id: sob_h05_v1
+    style: "the teenager herself, short phrases"
+    opening_statement: "Asthma's bad. Done ten puffs. Not working."
+    volunteered: [has_asthma, asthma_attack_now, reliever_not_helping]
+
+atypical: false
+notes: "asthma.txt: 'Call 999 if' an asthma attack and no better after the maximum reliever dose (10 puffs of a blue reliever). She can still say short sentences, so too_breathless_to_talk and severe_breathing_difficulty are absent; the 999 trigger is the failed reliever. Wheezing is present as a secondary finding (presenting symptom is breathlessness)."

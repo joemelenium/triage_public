@@ -1,0 +1,206 @@
+
+- id: nhs_miscarriage
+  title: Miscarriage
+  url: https://www.nhs.uk/conditions/miscarriage/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 March 2026'
+
+- id: nhs_vaginal_bleeding_pregnancy
+  title: Vaginal bleeding in pregnancy
+  url: https://www.nhs.uk/pregnancy/common-symptoms/vaginal-bleeding/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 February 2026'
+
+- id: nhs_stomach_pain_pregnancy
+  title: Stomach pain in pregnancy
+  url: https://www.nhs.uk/pregnancy/common-symptoms/stomach-pain/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 November 2024'
+
+- id: nhs_endometriosis
+  title: Endometriosis
+  url: https://www.nhs.uk/conditions/endometriosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 27 August 2024'
+
+- id: nhs_fibroids
+  title: Fibroids
+  url: https://www.nhs.uk/conditions/fibroids/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 March 2026'
+
+- id: nhs_ovarian_cancer
+  title: Ovarian cancer
+  url: https://www.nhs.uk/conditions/ovarian-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 November 2025'
+
+- id: nhs_cervical_cancer
+  title: Cervical cancer
+  url: https://www.nhs.uk/conditions/cervical-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_womb_cancer
+  title: Womb (uterus) cancer
+  url: https://www.nhs.uk/conditions/womb-cancer/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 October 2024'
+
+- id: nhs_vaginal_thrush
+  title: Vaginal thrush
+  url: https://www.nhs.uk/conditions/thrush-in-men-and-women/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 28 July 2023'
+
+- id: nhs_bacterial_vaginosis
+  title: Bacterial vaginosis
+  url: https://www.nhs.uk/conditions/bacterial-vaginosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 June 2026'
+
+- id: nhs_trichomoniasis
+  title: Trichomoniasis
+  url: https://www.nhs.uk/conditions/trichomoniasis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 16 July 2025'
+
+- id: nhs_mastitis
+  title: Mastitis
+  url: https://www.nhs.uk/conditions/mastitis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 March 2023'
+
+- id: nhs_breast_cancer
+  title: Breast cancer in women
+  url: https://www.nhs.uk/conditions/breast-cancer-in-women/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+
+- id: nhs_severe_vomiting_pregnancy
+  title: Severe vomiting in pregnancy
+  url: https://www.nhs.uk/pregnancy/complications/severe-vomiting/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 11 January 2023'
+
+- id: nhs_breast_abscess
+  title: Breast abscess
+  url: https://www.nhs.uk/conditions/breast-abscess/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 June 2023'
+
+- id: nhs_ovarian_cancer_symptoms
+  title: 'Ovarian cancer: symptoms'
+  url: https://www.nhs.uk/conditions/ovarian-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 17 November 2025'
+
+- id: nhs_cervical_cancer_symptoms
+  title: 'Cervical cancer: symptoms'
+  url: https://www.nhs.uk/conditions/cervical-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 4 September 2024'
+
+- id: nhs_womb_cancer_symptoms
+  title: 'Womb (uterus) cancer: symptoms'
+  url: https://www.nhs.uk/conditions/womb-cancer/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 29 October 2024'
+
+- id: nhs_menopause_symptoms
+  title: 'Menopause and perimenopause: symptoms'
+  url: https://www.nhs.uk/conditions/menopause-and-perimenopause/symptoms/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 19 May 2026'
+
+- id: nhs_breast_cancer_symptoms
+  title: 'Breast cancer in women: symptoms'
+  url: https://www.nhs.uk/conditions/breast-cancer-in-women/symptoms-of-breast-cancer-in-women/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 4 March 2024'
+
+- id: nhs_gynaecomastia
+  title: Gynaecomastia
+  url: https://www.nhs.uk/conditions/gynaecomastia/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 May 2024'
+
+- id: nhs_adenomyosis
+  title: Adenomyosis
+  url: https://www.nhs.uk/conditions/adenomyosis/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 14 October 2026'
+
+- id: nhs_pms
+  title: Premenstrual syndrome (PMS)
+  url: https://www.nhs.uk/conditions/pre-menstrual-syndrome/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 18 June 2024'
+
+- id: nhs_pregnancy_signs
+  title: Signs and symptoms of pregnancy
+  url: https://www.nhs.uk/pregnancy/trying-for-a-baby/signs-and-symptoms-that-might-mean-youre-pregnant/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 31 July 2026'
+
+- id: nhs_baby_movements
+  title: Your baby's movements
+  url: https://www.nhs.uk/pregnancy/keeping-well/your-babys-movements/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 8 July 2024'
+
+- id: nhs_signs_of_labour
+  title: Signs that labour has begun
+  url: https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/
+  accessed: '2026-11-19'
+  licence: OGL v3.0
+  used_for: Content drafting
+  note: 'Page last reviewed: 9 November 2023'

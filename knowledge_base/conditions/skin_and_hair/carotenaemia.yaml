@@ -1,0 +1,17 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: carotenaemia
+body_system: skin_and_hair
+entry_symptoms: [yellow_skin_or_eyes]
+name: "Yellow or orange skin from eating a lot of carrots or similar foods"
+medical_name: "Carotenaemia"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+findings:
+  # What tells it apart from jaundice: the skin looks yellow or orange, especially the palms, but the whites of the eyes stay white.
+  yellow_skin_but_eyes_white: strongly_supports
+  eats_lots_of_orange_foods: supports
+key_findings: [yellow_skin_but_eyes_white]
+source: ai_judgement
+informed_by: [nhs_jaundice]

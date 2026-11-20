@@ -1,0 +1,128 @@
+# Entry symptom: bedwetting in children.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# KNOWN GAP: bedwetting that starts again can be a sign that a child is upset or
+# unsafe. Safeguarding is not screened (see red_flags.yaml).
+
+id: bedwetting
+name: "Bedwetting in children"
+presenting_finding: bedwetting
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: bedwetting_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - vomiting
+      - breathing_deep_and_fast
+      - fruity_breath
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+
+  - id: bedwetting_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_thirsty
+      - weight_loss
+      - pain_when_peeing
+      - very_high_temperature
+      - blood_in_urine
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: bedwetting_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - bedwetting_again_after_dry
+      - bedwetting_home_help_not_worked
+      - wets_during_day
+      - constipation
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_bw_diabetes_emergency
+    description: "Wetting the bed and very thirsty, with being sick, fast deep breathing or fruity-smelling breath: possible diabetic ketoacidosis"
+    when: {all: [very_thirsty, {any: [vomiting, breathing_deep_and_fast, fruity_breath]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_diabetes_emergency
+    source: nhs_type_1_diabetes_symptoms
+
+  - id: rf_bw_drowsy
+    description: "Very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_urinary_tract_infections
+    note: "The Kidney infection page lists drowsiness and wetting the bed as signs in young children. The Type 1 diabetes page says 999 or A&E for feeling sleepy or confused."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bw_thirsty
+    description: "Wetting the bed and very thirsty all the time: possible type 1 diabetes"
+    when: very_thirsty
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    note: "The page says children may start wetting the bed because they are peeing more, and asks for an urgent GP appointment or 111 if you think your child has type 1 diabetes."
+
+  - id: rf_bw_weight_loss
+    description: "Wetting the bed and losing weight without trying"
+    when: weight_loss
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_diabetes_urgent
+    source: nhs_type_1_diabetes_symptoms
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "AI reading of the Type 1 diabetes page (toilet, thirsty, tired, thinner)."
+
+  - id: rf_bw_infection
+    description: "Wetting the bed with pain when peeing, a high temperature or blood in the pee: possible urine infection"
+    when: {any: [pain_when_peeing, very_high_temperature, blood_in_urine]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_uti_urgent
+    source: nhs_urinary_tract_infections
+    note: "The UTI page says children with UTIs may wet the bed, and asks for an urgent GP appointment or 111 for a child aged 15 or under with a UTI."
+
+outcome_rules:
+  - id: or_bw_again_after_dry
+    description: "Started wetting the bed again after being dry for more than 6 months"
+    when: bedwetting_again_after_dry
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_bedwetting_gp
+    source: nhs_bedwetting
+
+  - id: or_bw_home_help_not_worked
+    description: "Tried things at home and the bedwetting keeps happening"
+    when: bedwetting_home_help_not_worked
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_bedwetting_gp
+    source: nhs_bedwetting
+
+  - id: or_bw_day_or_constipation
+    description: "Also wetting during the day, or constipated"
+    when: {any: [wets_during_day, constipation]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_bedwetting_gp
+    source: nhs_bedwetting
+    note: "The page says bedwetting may be caused by constipation. Daytime wetting as a reason to see a GP is AI judgement."
+
+  - id: or_bw_adult
+    description: "Bedwetting in someone aged 16 or over"
+    when: age_16_or_over
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_bedwetting_gp
+    source: ai_judgement
+    note: "Clinical knowledge: bedwetting that continues or starts in adults should be checked for a bladder, prostate or other health problem. The page is about children."
+
+default:
+  description: "Bedwetting with nothing else that needs help: things to try at home"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Most children grow out of bedwetting. A GP or school nurse can give advice."}
+  advice: advice_bedwetting_self_care
+  source: nhs_bedwetting

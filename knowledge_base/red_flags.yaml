@@ -1,0 +1,77 @@
+# Universal red flags: checked in every session, whatever the presenting symptom.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# A red flag sets a minimum outcome. Probabilities cannot override it.
+# An emergency red flag ends the session at once.
+#
+# KNOWN GAPS, for clinical review:
+#   - Safeguarding concerns are not screened. The working levels of care have
+#     no route for a non-medical safety need, so this needs an owner decision.
+#   - Thoughts of suicide without immediate risk are not screened. Mental
+#     health routes come in a later wave.
+#   - Signs that are specific to children are not included (for example a child
+#     who is limp, floppy or not responding as they normally do).
+
+screen:
+  id: universal_emergency_screen
+  level: emergency
+  question: "First, do any of these apply? Choose all that apply."
+  findings:
+    - stroke_signs
+    - severe_breathing_difficulty
+    - lips_or_skin_blue_grey
+    - passed_out
+    - heavy_bleeding
+    - sudden_confusion
+    - serious_self_harm
+
+rules:
+  - id: rf_stroke_signs
+    description: "Signs of a stroke now or in the last 24 hours"
+    when: stroke_signs
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_stroke
+    source: nhs_stroke_symptoms
+
+  - id: rf_severe_breathing_difficulty
+    description: "Severe difficulty breathing: gasping, choking or not able to get words out"
+    when: severe_breathing_difficulty
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_breathing_emergency
+    source: nhs_heart_attack
+
+  - id: rf_lips_or_skin_blue_grey
+    description: "Lips or skin pale, blue or grey"
+    when: lips_or_skin_blue_grey
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_breathing_emergency
+    source: nhs_heart_attack
+
+  - id: rf_passed_out
+    description: "Passed out and not responding normally"
+    when: passed_out
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_breathing_emergency
+    source: nhs_heart_attack
+
+  - id: rf_sudden_confusion
+    description: "Suddenly confused"
+    when: sudden_confusion
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E immediately"}
+    advice: advice_sudden_confusion
+    source: nhs_shortness_of_breath
+    note: "The source lists this for people who are short of breath. Checking it in every session is AI judgement, needs clinical review."
+
+  - id: rf_heavy_bleeding
+    description: "Bleeding that cannot be stopped, or blood coming out in spurts"
+    when: heavy_bleeding
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_heavy_bleeding
+    source: nhs_cuts_and_grazes
+
+  - id: rf_serious_self_harm
+    description: "Has seriously self-harmed, or feels about to self-harm"
+    when: serious_self_harm
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 for an ambulance or go straight to A&E"}
+    advice: advice_self_harm
+    source: nhs_suicidal_thoughts

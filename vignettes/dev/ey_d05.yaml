@@ -1,0 +1,48 @@
+id: ey_d05
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [floaters_or_flashes]
+
+summary: "A 58-year-old short-sighted man noticed a sudden shower of new black dots and squiggles in his left eye yesterday, with flashes of light at the edge of his vision. There is no shadow or curtain and his sight is otherwise clear. No pain or injury."
+
+opening_statement: "Since yesterday I've got loads of little black dots floating in my left eye, and I keep seeing flashes at the side. I've never had them before."
+
+findings:
+  present: [floaters_or_flashes, floaters_new_or_sudden, short_sighted]
+  absent: [floaters_long_standing, curtain_or_shadow, blurred_vision, sight_lost, eye_pain, red_eye, eye_injury, eye_surgery_recent, headache, has_migraine, migraine_aura, both_eyes_affected]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 58, sex: male}
+  full:
+    age: 58
+    sex: male
+    findings: {short_sighted: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "New, sudden floaters and flashes (possible retinal detachment)"
+    findings: [floaters_new_or_sudden]
+    minimum_acuity: urgent
+    source: {page: detached_retina.txt, quote: "floaters (dots and lines) suddenly appear in your vision or suddenly increase in number"}
+
+safety_netting_should_cover:
+  - point: "Get an urgent optician appointment or contact NHS 111 today"
+    any_of: ["optician", "111"]
+  - point: "Get help straight away if a shadow or curtain moves across the sight"
+    any_of: ["curtain", "shadow"]
+
+source:
+  expected_outcome: {page: floaters_and_flashes_in_the_eyes.txt, quote: "you suddenly get floaters or flashes in your vision"}
+  minimum_safe_acuity: {page: floaters_and_flashes_in_the_eyes.txt, quote: "These could be signs of a serious problem with the back of your eye, which could permanently affect your vision if it's not treated quickly."}
+
+atypical: false
+notes: "Possible retinal tear or detachment. floaters_and_flashes_in_the_eyes.txt and detached_retina.txt both give urgent optician or 111 advice. The question list has no optician level of care, so urgent_care is used."

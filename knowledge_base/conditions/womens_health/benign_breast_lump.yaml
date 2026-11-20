@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: benign_breast_lump
+body_system: womens_health
+entry_symptoms: [breast_lump, breast_pain, nipple_discharge]
+name: "A harmless breast lump, such as a fibroadenoma (a non-cancerous growth) or a breast cyst (a sac of fluid)"
+medical_name: "Fibroadenoma or breast cyst"
+# Most breast lumps. Still need checking by a GP (the entry symptom floor).
+acuity_needed: routine
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: breast_lump, prevalence: very_common}
+findings:
+  lump_smooth_moves: strongly_supports
+  breast_lump: strongly_supports
+  lump_changes_with_period: supports
+  breast_pain: supports
+  nipple_discharge: supports
+key_findings: [lump_smooth_moves, lump_changes_with_period]
+source: nhs_breast_lump
+informed_by: [nhs_breast_lump, nhs_nipple_discharge]

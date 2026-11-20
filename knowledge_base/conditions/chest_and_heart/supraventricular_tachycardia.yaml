@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: supraventricular_tachycardia
+body_system: chest_and_heart
+# Palpitations only: chest pain with a racing heart brings in the palpitations
+# entry symptom, where this card is weighed.
+entry_symptoms: [palpitations]
+name: "Episodes of a very fast heartbeat (supraventricular tachycardia, SVT)"
+medical_name: "Supraventricular tachycardia"
+snomed: "6456007"
+# Most people with SVT need a GP check to confirm it (routine), danger moderate.
+# An episode happening now with chest pain, breathlessness or feeling faint is
+# handled by the red flags, which send it to 999. Changed after the pilot check:
+# 'emergency' with 'minor' let a likely SVT raise a settled episode too far.
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_heart_rhythm_problem, prevalence: common}
+findings:
+  palpitations: strongly_supports
+  heart_beating_very_fast: strongly_supports
+  # What tells it apart from AF or extra beats: it switches on and off suddenly, and is regular.
+  palpitations_start_stop_suddenly: strongly_supports
+  palpitations_now: strongly_supports
+  palpitations_last_minutes: supports
+  palpitations_keep_coming_back: supports
+  light_headed: supports
+key_findings: [palpitations_start_stop_suddenly, palpitations_now, palpitations_last_minutes, light_headed]
+source: nhs_svt
+informed_by: [nhs_svt, nhs_heart_palpitations]

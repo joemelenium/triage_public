@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: contact_dermatitis
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Contact dermatitis (a reaction to something on the skin)"
+medical_name: "Contact dermatitis"
+snomed: "40275004"
+acuity_needed: routine
+danger: minor
+level_of_care: community_pharmacy
+prevalence: common
+findings:
+  # What tells it apart from eczema: an itchy, dry or blistered rash where the skin touched something, such as a soap, metal, plant or chemical, within hours or days.
+  rash_where_skin_touched_something: strongly_supports
+  rash_itchy: supports
+  rash_dry_cracked: supports
+  rash_blisters: supports
+key_findings: [rash_where_skin_touched_something]
+source: nhs_contact_dermatitis
+informed_by: [nhs_contact_dermatitis]

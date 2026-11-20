@@ -1,0 +1,84 @@
+id: mh_d03
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- agitated_or_out_of_control
+summary: A 24-year-old man at a festival took some pills two hours ago. His friend says he is now very agitated,
+  hot and sweaty, his heart is pounding and he is suddenly confused about where he is. He has not collapsed or had
+  a fit.
+opening_statement: My mate took some pills earlier and now he's really wired, he can't keep still, he's soaking
+  with sweat and he doesn't seem to know where he is.
+findings:
+  present:
+  - agitated_or_out_of_control
+  - recent_drug_use
+  - drug_bad_reaction
+  - swallowed_something_harmful
+  - sweating
+  - heart_beating_very_fast
+  - sudden_confusion
+  - very_high_temperature
+  absent:
+  - passed_out
+  - had_a_fit
+  - chest_pain
+  - difficulty_breathing
+  - aggressive_or_violent
+  - thoughts_of_harming_others
+  - suicidal_thoughts
+  - drunk_a_lot_today
+  - head_injury
+  - regular_drug_use
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 24
+    sex: male
+  full:
+    age: 24
+    sex: male
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Very unwell after taking a drug
+  findings:
+  - drug_bad_reaction
+  - swallowed_something_harmful
+  minimum_acuity: emergency
+  source:
+    page: poisoning.txt
+    quote: you think you, a child, or someone else may have swallowed, touched or breathed in something harmful
+- description: Sudden confusion
+  findings:
+  - sudden_confusion
+  minimum_acuity: emergency
+  source:
+    page: confusion.txt
+    quote: someone suddenly becomes confused
+safety_netting_should_cover:
+- point: Call 999
+  any_of:
+  - '999'
+- point: Stay with him
+  any_of:
+  - stay with
+- point: Tell the medical team what was taken
+  any_of:
+  - what they took
+  - what was taken
+  - packet
+  - pills
+source:
+  expected_outcome:
+    page: poisoning.txt
+    quote: you think you, a child, or someone else may have swallowed, touched or breathed in something harmful
+  minimum_safe_acuity:
+    page: confusion.txt
+    quote: someone suddenly becomes confused
+atypical: false
+notes: The mental health pages in the snapshots do not cover agitation after drug use; poisoning.txt and confusion.txt
+  do and both give 999 or A&E. No question id for 'how much or what drug'.

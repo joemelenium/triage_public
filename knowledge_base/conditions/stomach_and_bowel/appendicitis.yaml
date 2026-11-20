@@ -1,0 +1,35 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: appendicitis
+body_system: stomach_and_bowel
+entry_symptoms: [stomach_ache, diarrhoea_or_vomiting, feeling_sick, pelvic_pain, stomach_pain_in_pregnancy]
+name: "Appendicitis (a swollen appendix, a pouch on the bowel)"
+medical_name: "Acute appendicitis"
+snomed: "74400008"
+# Needs to be seen in hospital the same day. The Appendicitis page says an urgent
+# GP appointment or 111 for pain that is getting worse or moves to the lower
+# right, and 999 or A&E for severe pain. Missing it can lead to a burst appendix.
+acuity_needed: emergency
+danger: serious
+prevalence: uncommon
+prevalence_when:
+  - {finding: stomach_ache, prevalence: uncommon}
+  - {finding: diarrhoea_or_vomiting, prevalence: uncommon}
+  - {finding: feeling_sick, prevalence: uncommon}
+  - {finding: pelvic_pain, prevalence: uncommon}
+  - {finding: stomach_pain_in_pregnancy, prevalence: rare}
+findings:
+  # What tells it apart from a stomach bug: pain that starts in the middle and
+  # moves to the lower right, worse on moving, with loss of appetite.
+  sa_moved_to_lower_right: strongly_supports
+  sa_lower_right: strongly_supports
+  sa_worse_moving_or_coughing: strongly_supports
+  loss_of_appetite: strongly_supports
+  stomach_ache: strongly_supports        # evidence when it starts as being sick or feeling sick
+  sa_getting_worse: supports
+  feeling_sick: supports
+  vomiting: supports
+  very_high_temperature: supports
+key_findings: [sa_moved_to_lower_right, sa_lower_right, sa_worse_moving_or_coughing, loss_of_appetite, sa_getting_worse]
+source: nhs_appendicitis
+informed_by: [nhs_appendicitis, nhs_stomach_ache]

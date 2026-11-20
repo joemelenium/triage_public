@@ -1,0 +1,904 @@
+# Advice for the ear, nose, mouth and throat body system.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml. Sore throat advice is in advice/core.yaml.
+# Wording is adapted from the cited NHS website page, aiming for a reading age
+# of 9 to 11. Adapted text no longer carries the NHS website's clinical approval.
+
+- id: advice_object_stuck_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Do not try to take the object out yourself. You could push it further in."
+  look_out_for:
+    - "Pain, bleeding or fluid coming from the ear or nose"
+    - "Difficulty breathing"
+    - "A button battery or magnet, which can cause damage within hours"
+  get_more_help_when:
+    - "Go to A&E now if it is a button battery or magnet, or if the person is in a lot of pain"
+    - "Call 999 if the person finds it hard to breathe"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. A minor injuries unit or urgent treatment centre can also help."
+  source: nhs_earache
+
+- id: advice_mouth_throat_ae
+  what_to_do: "Call 999 or go to A&E now. Swelling in the mouth or neck can make it hard to breathe."
+  look_out_for:
+    - "Difficulty breathing, or a high-pitched sound when breathing"
+    - "Not being able to swallow, even your own spit, or drooling"
+    - "Swelling that is spreading in the neck, under the tongue or around the eye"
+  get_more_help_when:
+    - "Call 999 if breathing gets harder or you cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Sit up and lean forward if that makes breathing easier"
+  source: nhs_dental_abscess
+  also_informed_by: [nhs_sore_throat, nhs_glandular_fever]
+
+# ---------------------------------------------------------------------------
+# Earache
+# ---------------------------------------------------------------------------
+- id: advice_earache_ae
+  what_to_do: "Call 999 or go to A&E now. An ear infection can rarely spread, and this needs checking in hospital."
+  look_out_for:
+    - "A very bad headache, a stiff neck, or bright light hurting the eyes"
+    - "A rash that does not fade when you press a glass against it"
+    - "Being very sleepy, confused or hard to wake"
+  get_more_help_when:
+    - "Call 999 if the person gets worse before you reach A&E, or you cannot get there safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_mastoiditis
+  also_informed_by: [nhs_mumps, nhs_earache]
+
+- id: advice_earache_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. You can call 111 or use 111 online. Call 111 if you need advice for a child under 5."
+  look_out_for:
+    - "Swelling, redness or pain behind the ear, or the ear sticking out"
+    - "A very bad headache with a stiff neck"
+    - "One side of the face becoming weak or drooping"
+    - "A child who is floppy, very sleepy or hard to wake"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you or your child has a very bad headache with a stiff neck, or a rash that does not fade when pressed"
+    - "Call 999 if a child is floppy or will not wake up"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+    - "Hold a warm flannel against the ear"
+    - "Do not put anything inside the ear, such as cotton buds"
+    - "Do not let water get inside the ear"
+  source: nhs_earache
+  also_informed_by: [nhs_ear_infections, nhs_mastoiditis]
+
+- id: advice_earache_gp
+  what_to_do: "See a GP. They can look inside the ear and check what is causing the earache."
+  look_out_for:
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Fluid coming from the ear, or swelling around the ear"
+    - "Hearing loss or a change in hearing"
+    - "Earache that lasts more than 2 to 3 days"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if you get any of the signs above. Do the same if you feel unwell."
+    - "Call 999 or go to A&E for a very bad headache with a stiff neck"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+    - "Hold a warm flannel against the ear"
+    - "Do not put anything inside the ear, such as cotton buds"
+  source: nhs_earache
+  also_informed_by: [nhs_ear_infections]
+
+- id: advice_earache_self_care
+  what_to_do: "Most earaches get better on their own within 2 to 3 days. You can ease the pain yourself. A pharmacist can help, and can treat a middle ear infection in children aged 1 to 17."
+  look_out_for:
+    - "Earache that is not better after 2 to 3 days"
+    - "A very high temperature, or feeling hot, cold or shivery"
+    - "Swelling around the ear, or fluid coming from the ear"
+    - "Hearing loss, feeling dizzy, or being sick"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if you get any of the signs above. Do the same if you feel unwell."
+    - "See a GP if you or your child keep getting earache"
+    - "Call 999 or go to A&E for a very bad headache with a stiff neck"
+  where_to_go: "You do not need an appointment now. A pharmacist can help. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+    - "Hold a warm flannel against the ear"
+    - "Do not put anything inside the ear, such as cotton buds"
+    - "Do not try to remove earwax, and do not let water get inside the ear"
+  source: nhs_earache
+  also_informed_by: [nhs_ear_infections]
+
+# ---------------------------------------------------------------------------
+# Hearing loss
+# ---------------------------------------------------------------------------
+- id: advice_hearing_ae
+  what_to_do: "Go to A&E now, or call 999. Hearing loss with weakness of the face, or a very bad headache with a stiff neck, needs checking in hospital."
+  look_out_for:
+    - "Signs of a stroke: the face drooping on one side, not being able to lift both arms, or slurred speech"
+    - "A very bad headache with a stiff neck"
+    - "Being sick, or feeling very off balance"
+  get_more_help_when:
+    - "Call 999 straight away if you see any signs of a stroke"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_tinnitus
+  also_informed_by: [nhs_bells_palsy, nhs_menieres_disease]
+
+- id: advice_hearing_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. It might not be anything serious, but some causes of hearing loss need treatment quickly."
+  look_out_for:
+    - "One side of the face becoming weak or drooping"
+    - "Feeling as if you or the room is spinning (vertigo)"
+    - "Earache, or fluid coming out of the ear"
+  get_more_help_when:
+    - "Call 999 if you get signs of a stroke, such as the face drooping, weak arms or slurred speech"
+    - "Go to A&E if your face becomes weak, or the hearing loss came after a head injury"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Do not put your fingers or anything else, such as cotton buds, in your ears"
+    - "Keep away from loud noise until you have been checked"
+  source: nhs_hearing_loss
+  also_informed_by: [nhs_tinnitus, nhs_perforated_eardrum]
+
+- id: advice_hearing_gp
+  what_to_do: "See a GP about your hearing. It could be caused by something that is easy to treat, such as earwax."
+  look_out_for:
+    - "Hearing loss that comes on suddenly"
+    - "Hearing that gets worse over a few days or weeks"
+    - "Earache, or fluid coming out of the ear"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if you get any of the signs above"
+    - "Go to A&E if your face becomes weak or droops on one side"
+  where_to_go: "Make an appointment with a GP. You can also get a free hearing test at some pharmacies and opticians."
+  self_care:
+    - "Reduce background noise, and face people when they talk to you"
+    - "Ask people to repeat themselves or speak more clearly if you need them to"
+    - "Wear ear protection around loud noise, and do not play music too loudly"
+    - "Do not put your fingers or anything else, such as cotton buds, in your ears"
+  source: nhs_hearing_loss
+
+# ---------------------------------------------------------------------------
+# Tinnitus
+# ---------------------------------------------------------------------------
+- id: advice_tinnitus_ae
+  what_to_do: "Go to A&E or call 999. Ringing or buzzing in the ears (tinnitus) with sudden hearing loss, weakness in the face or a spinning feeling needs checking straight away."
+  look_out_for:
+    - "Signs of a stroke: the face drooping on one side, not being able to lift both arms, or slurred speech"
+    - "Feeling very off balance, or being sick"
+  get_more_help_when:
+    - "Call 999 straight away if you see any signs of a stroke"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_tinnitus
+  also_informed_by: [nhs_menieres_disease]
+
+- id: advice_tinnitus_urgent
+  what_to_do: "Ask for an urgent GP appointment. Ringing or whooshing in the ears (tinnitus) that beats in time with your pulse needs checking."
+  look_out_for:
+    - "Sudden hearing loss"
+    - "Weakness in the face, or a spinning feeling (vertigo)"
+    - "A very bad headache, or problems with your eyesight"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you get sudden hearing loss, weakness in your face, or a spinning feeling"
+  where_to_go: "Ask your GP surgery for an urgent appointment. If you cannot get one, call 111 or use 111 online."
+  source: nhs_tinnitus
+
+- id: advice_tinnitus_gp
+  what_to_do: "See a GP. They will look in your ears for something they can treat, such as an ear infection or earwax, and may check your hearing. Tinnitus means hearing ringing or buzzing that does not come from outside."
+  look_out_for:
+    - "A noise that beats in time with your pulse"
+    - "Sudden hearing loss, weakness in your face, or a spinning feeling"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment if the noise beats in time with your pulse"
+    - "Go to A&E or call 999 for sudden hearing loss, weakness in your face, or a spinning feeling"
+  where_to_go: "Make an appointment with a GP. The Tinnitus UK helpline is free on 0800 018 0527."
+  self_care:
+    - "Try to relax. Deep breathing or yoga may help."
+    - "Try to improve your sleep, for example with a bedtime routine and less caffeine"
+    - "Avoid total silence. Soft music or sounds may help take your mind off the noise."
+  source: nhs_tinnitus
+
+- id: advice_tinnitus_self_care
+  what_to_do: "Ringing or buzzing in your ears (tinnitus) is not usually a sign of anything serious, and it may get better by itself. There are things you can do to help you cope."
+  look_out_for:
+    - "Tinnitus that you hear all the time, or that is getting worse"
+    - "Tinnitus that affects your sleep or concentration, or makes you feel anxious or low"
+    - "A noise that beats in time with your pulse"
+  get_more_help_when:
+    - "See a GP if you get any of the first two signs above"
+    - "Ask for an urgent GP appointment if the noise beats in time with your pulse"
+    - "Go to A&E or call 999 for sudden hearing loss, weakness in your face, or a spinning feeling"
+  where_to_go: "You do not need an appointment now. The Tinnitus UK helpline is free on 0800 018 0527."
+  self_care:
+    - "Try to relax. Deep breathing or yoga may help."
+    - "Try to avoid stress and loud background noise"
+    - "Avoid total silence. Soft music or sounds may help take your mind off the noise."
+    - "Do not focus on it. Hobbies and activities may help."
+  source: nhs_tinnitus
+
+# ---------------------------------------------------------------------------
+# Nose, sinuses and catarrh
+# ---------------------------------------------------------------------------
+- id: advice_nose_ae
+  what_to_do: "Go to A&E now, or call 999. An infection in the sinuses (spaces in the face, behind the cheeks) can rarely spread to the eye or brain."
+  look_out_for:
+    - "Swelling or redness around the eye getting worse"
+    - "Double or blurred vision"
+    - "A very bad headache, a stiff neck, or feeling confused"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_sinusitis
+  also_informed_by: [nhs_dental_abscess]
+
+- id: advice_nose_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Call 111 if you need advice for a child under 5."
+  look_out_for:
+    - "Swelling or redness around the eye"
+    - "Double or blurred vision"
+    - "A very bad headache with a stiff neck"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Take paracetamol or ibuprofen for pain. Do not give aspirin to children under 16."
+    - "Rinse your nose with salt water"
+  source: nhs_sinusitis
+
+- id: advice_nose_gp
+  what_to_do: "See a GP. They can check for causes such as sinusitis (swollen spaces in the face) or nasal polyps (soft growths inside the nose)."
+  look_out_for:
+    - "Pain in the face that is severe or getting worse"
+    - "Feeling very unwell"
+    - "Swelling around the eye, or problems with your eyesight"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if the face pain gets worse or you feel very unwell"
+    - "Go to A&E or call 999 for swelling around the eye, problems with your eyesight, or a very bad headache with a stiff neck"
+  where_to_go: "Make an appointment with a GP. A pharmacist can suggest treatments while you wait."
+  self_care:
+    - "Drink plenty of water"
+    - "Rinse your nose with salt water"
+    - "Try not to smoke, and keep away from smoky places"
+  source: nhs_catarrh
+  also_informed_by: [nhs_sinusitis, nhs_nasal_polyps]
+
+- id: advice_catarrh_self_care
+  what_to_do: "Catarrh is a build-up of phlegm in your nose and throat. It usually clears up by itself. A pharmacist can help."
+  look_out_for:
+    - "Catarrh that lasts more than a few weeks"
+    - "New symptoms, such as problems swallowing or a lost sense of smell"
+    - "Pain in the face that is severe or getting worse, or feeling very unwell"
+  get_more_help_when:
+    - "See a GP if you get the first two signs above"
+    - "Ask for an urgent GP appointment or get help from 111 if face pain gets worse or you feel very unwell"
+    - "Go to A&E for swelling around the eye or problems with your eyesight"
+  where_to_go: "You do not need an appointment. A pharmacist can suggest treatments, such as salt water nose rinses."
+  self_care:
+    - "Drink plenty of water"
+    - "Sip ice-cold water when you need to clear your throat, rather than coughing"
+    - "Sit in the bathroom with a hot shower running to loosen the phlegm"
+    - "Rinse your nose with salt water, or gargle with salt water"
+  source: nhs_catarrh
+
+- id: advice_blocked_nose_self_care
+  what_to_do: "A blocked or runny nose from a cold usually gets better within 1 to 2 weeks. You can treat it yourself. A pharmacist can help."
+  look_out_for:
+    - "A blocked nose that lasts more than 3 weeks, or only on one side"
+    - "Pain in the face that is severe or getting worse, or feeling very unwell"
+    - "Swelling or redness around the eye, or problems with your eyesight"
+  get_more_help_when:
+    - "See a GP if your nose is still blocked after 3 weeks"
+    - "Ask for an urgent GP appointment or get help from 111 if face pain gets worse or you feel very unwell"
+    - "Go to A&E for swelling around the eye or problems with your eyesight"
+  where_to_go: "You do not need an appointment. A pharmacist can suggest treatments for a blocked nose or sinusitis (swollen spaces in the face)."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Rinse your nose with salt water"
+    - "Do not use a spray to unblock your nose for more than a week, as it can make it worse"
+    - "Try to stay away from things you are allergic to, and from smoke"
+  source: nhs_common_cold
+  also_informed_by: [nhs_sinusitis, nhs_allergic_rhinitis]
+
+- id: advice_broken_nose_urgent
+  what_to_do: "Get help from NHS 111 today. You may have broken your nose and it may need to be checked or straightened."
+  look_out_for:
+    - "A nosebleed that will not stop"
+    - "Clear, watery fluid trickling from your nose"
+    - "A very bad headache with blurred or double vision"
+    - "A purple swelling inside your nose"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above, or you are sick or pass out"
+  where_to_go: "Call 111 or use 111 online today. In an emergency call 999 or go to A&E."
+  self_care:
+    - "Hold an ice pack wrapped in a tea towel on your nose for up to 15 minutes, several times a day"
+    - "Take paracetamol or ibuprofen for pain"
+    - "Do not blow your nose or wear glasses until the swelling goes down"
+  source: nhs_broken_nose
+
+# ---------------------------------------------------------------------------
+# Lost or changed sense of smell
+# ---------------------------------------------------------------------------
+- id: advice_smell_urgent
+  what_to_do: "Get help from NHS 111 today. You can call 111 or use 111 online."
+  look_out_for:
+    - "Clear, watery fluid trickling from your nose"
+    - "A very bad headache, being sick, or feeling very sleepy"
+    - "A seizure (fit)"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Call 111 or use 111 online today. In an emergency call 999 or go to A&E."
+  source: nhs_lost_or_changed_sense_smell
+  also_informed_by: [nhs_broken_nose]
+
+- id: advice_smell_gp
+  what_to_do: "See a GP. They will check for causes such as sinusitis (swollen spaces in the face) or nasal polyps (soft growths inside the nose), and may send you for tests."
+  look_out_for:
+    - "A blocked nose on one side that does not go away"
+    - "Nosebleeds, or problems with your eyesight"
+    - "A seizure (fit), or a very bad headache"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you have a seizure or a very bad headache with a stiff neck"
+  where_to_go: "Make an appointment with a GP."
+  self_care:
+    - "Rinse your nose with salt water if a cold or allergy might be the cause"
+    - "Smell training can help some people"
+    - "Fit a smoke alarm and a gas alarm, and check use-by dates, as you may not smell gas, fire or food that has gone off"
+  source: nhs_lost_or_changed_sense_smell
+
+- id: advice_smell_self_care
+  what_to_do: "A change in your sense of smell is not usually serious. It may get better in a few weeks or months, especially after a cold, flu or COVID-19."
+  look_out_for:
+    - "Your sense of smell not going back to normal after a few weeks"
+    - "Smelling things that are not there, like smoke or burnt toast"
+    - "A blocked nose on one side, or nosebleeds"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above"
+    - "Call 999 or go to A&E if you have a seizure or a very bad headache with a stiff neck"
+  where_to_go: "You do not need an appointment now. A pharmacist can suggest salt water nose rinses."
+  self_care:
+    - "Rinse your nose with salt water if a cold or allergy might be the cause"
+    - "Stay at home if you have a high temperature or do not feel well enough to do your usual activities"
+    - "Fit a smoke alarm and a gas alarm, and check use-by dates, as you may not smell gas, fire or food that has gone off"
+  source: nhs_lost_or_changed_sense_smell
+
+# ---------------------------------------------------------------------------
+# Swollen glands
+# ---------------------------------------------------------------------------
+- id: advice_glands_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Call 111 if you need advice for a child under 5."
+  look_out_for:
+    - "Not being able to swallow, even your own spit, or drooling"
+    - "Severe difficulty breathing, or a high-pitched sound when breathing"
+    - "Swelling spreading in the neck or under the tongue"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+  source: nhs_swollen_glands
+  also_informed_by: [nhs_glandular_fever, nhs_acute_lymphoblastic_leukaemia]
+
+- id: advice_glands_gp
+  what_to_do: "See a GP. Swollen glands are usually caused by an infection, but they can check for other causes."
+  look_out_for:
+    - "Finding it very difficult to swallow, or difficulty breathing"
+    - "Bruising or bleeding easily"
+    - "Glands that keep getting bigger"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if it gets very hard to swallow or breathe"
+    - "Call 999 or go to A&E if you cannot swallow at all, are drooling, or have severe difficulty breathing"
+  where_to_go: "Make an appointment with a GP."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+  source: nhs_swollen_glands
+  also_informed_by: [nhs_hodgkin_lymphoma]
+
+- id: advice_glands_self_care
+  what_to_do: "Swollen glands are usually a sign that the body is fighting an infection. They usually go down by themselves within 1 to 2 weeks."
+  look_out_for:
+    - "Glands that are getting bigger, or have not gone down after 1 week"
+    - "Glands that feel hard, or do not move when you press them"
+    - "Night sweats, or a very high temperature"
+    - "Finding it very difficult to swallow, or difficulty breathing"
+  get_more_help_when:
+    - "See a GP if you get any of the first three signs above"
+    - "Ask for an urgent GP appointment or get help from 111 if it gets very hard to swallow or breathe"
+    - "Call 999 or go to A&E if you cannot swallow at all or are drooling"
+  where_to_go: "You do not need an appointment now. A pharmacist can advise on painkillers."
+  self_care:
+    - "Rest and drink plenty of fluids"
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+  source: nhs_swollen_glands
+
+# ---------------------------------------------------------------------------
+# Swallowing problems
+# ---------------------------------------------------------------------------
+- id: advice_swallowing_ae
+  what_to_do: "Call 999 or go to A&E now. Something may be stuck in the throat or food pipe, or the throat may be swelling."
+  look_out_for:
+    - "Difficulty breathing, choking, or a high-pitched sound when breathing"
+    - "Not being able to swallow, even your own spit"
+    - "Lips, tongue or throat swelling"
+  get_more_help_when:
+    - "Call 999 straight away if breathing gets harder, or the person cannot speak or cough"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. If a battery or magnet was swallowed, take the packet with you."
+  self_care:
+    - "Do not try to eat or drink anything more"
+    - "Do not try to make yourself sick"
+  source: nhs_swallowing_problems_dysphagia
+  also_informed_by: [nhs_sore_throat, nhs_glandular_fever]
+
+- id: advice_swallowing_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Problems swallowing should always be checked. You can call 111 or use 111 online."
+  look_out_for:
+    - "Not being able to swallow at all, even your own spit, or drooling"
+    - "Difficulty breathing, or a high-pitched sound when breathing"
+    - "Food stuck in the throat or chest that will not go down"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+    - "Call 999 if you get signs of a stroke, such as the face drooping, weak arms or slurred speech"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Eat slowly, take small mouthfuls, and sit upright when you eat and drink"
+    - "Soft foods may be easier to swallow until you have been checked"
+  source: nhs_swallowing_problems_dysphagia
+
+# ---------------------------------------------------------------------------
+# Teeth, gums, bad breath and high blood sugar
+# ---------------------------------------------------------------------------
+- id: advice_toothache_ae
+  what_to_do: "Go to A&E now, or call 999. An infection from a tooth may be spreading. Swelling in the mouth or neck can make it hard to breathe."
+  look_out_for:
+    - "Swelling that is spreading to the eye or neck"
+    - "Finding it harder to breathe, swallow or speak"
+    - "Problems with your eyesight"
+  get_more_help_when:
+    - "Call 999 if breathing gets harder or you cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_toothache
+  also_informed_by: [nhs_dental_abscess]
+
+- id: advice_dentist_urgent
+  what_to_do: "Ask for an urgent dentist appointment today. Do not go to a GP, as they cannot give dental treatment."
+  look_out_for:
+    - "Swelling spreading to the eye or neck"
+    - "Finding it hard to breathe, swallow, speak or open your mouth"
+    - "Problems with your eyesight"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you get any of the signs above"
+    - "If you cannot get an urgent dentist appointment, call 111 or use 111 online"
+  where_to_go: "Call your dentist. If they are closed, their answerphone may tell you what to do. If you do not have a dentist, call 111 or use 111 online, or find a dentist and ask for an emergency appointment."
+  self_care:
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+    - "Eat soft foods and try not to chew on the sore side"
+    - "Rinse your mouth with warm salt water (children should not do this)"
+  source: nhs_dental_abscess
+  also_informed_by: [nhs_toothache, nhs_gum_disease]
+
+- id: advice_knocked_out_tooth
+  what_to_do: "Ask for an emergency dentist appointment as soon as you can. Do this even if you cannot find the tooth."
+  look_out_for:
+    - "Bleeding that will not stop"
+    - "A head injury, such as feeling sick, sleepy or confused"
+    - "Swelling that makes it hard to breathe or swallow"
+  get_more_help_when:
+    - "Go to A&E if you hit your head or the bleeding will not stop"
+    - "If you cannot get an emergency dentist appointment, call 111"
+  where_to_go: "Call your dentist. If they are closed, their answerphone may tell you what to do. If you do not have a dentist, call 111 or find a dentist and ask for an emergency appointment."
+  self_care:
+    - "Hold the tooth by the top part, not the root, and rinse it briefly in milk or water if it is dirty"
+    - "Push an adult tooth gently back into place and bite on a clean cloth to hold it"
+    - "If you cannot put it back, keep it in milk or spit. Do not put a baby tooth back in."
+  source: nhs_knocked_out_tooth
+
+- id: advice_toothache_dentist
+  what_to_do: "See a dentist. They can treat the cause of the pain and stop it getting worse. Do not go to a GP, as they cannot give dental treatment."
+  look_out_for:
+    - "Your face, cheek or jaw becoming swollen"
+    - "A high temperature, or an intense, throbbing pain"
+    - "Swelling around the eye or in the neck, or finding it hard to breathe, swallow or speak"
+  get_more_help_when:
+    - "Ask for an urgent dentist appointment if your face swells or you get a high temperature"
+    - "Go to A&E if swelling spreads to your eye or neck, or you find it hard to breathe, swallow or speak"
+  where_to_go: "Make an appointment with a dentist. If you do not have one, call 111 or find a dentist near you."
+  self_care:
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+    - "Use a pain-relieving gel for your mouth"
+    - "Eat soft foods and avoid foods that are sweet, very hot or very cold"
+    - "Use a soft toothbrush and do not floss around the sore tooth"
+  source: nhs_toothache
+
+- id: advice_toothache_self_care
+  what_to_do: "There are things you can do to ease toothache. See a dentist if it lasts more than 2 days."
+  look_out_for:
+    - "Toothache lasting more than 2 days, or not helped by painkillers"
+    - "A high temperature, pain when you bite, red gums or a bad taste in your mouth"
+    - "Your cheek or jaw becoming swollen"
+  get_more_help_when:
+    - "See a dentist if you get any of the first two signs above"
+    - "Ask for an urgent dentist appointment if your face or jaw swells"
+    - "Go to A&E if swelling spreads to your eye or neck, or you find it hard to breathe, swallow or speak"
+  where_to_go: "You do not need an appointment yet. A pharmacist can advise on painkillers. If you need a dentist and do not have one, call 111."
+  self_care:
+    - "Take painkillers such as paracetamol or ibuprofen. Do not give aspirin to a child under 16."
+    - "Use a pain-relieving gel for your mouth"
+    - "Rinse your mouth with warm salt water (children should not do this)"
+    - "Eat soft foods, and avoid foods that are sweet, very hot or very cold"
+    - "Do not smoke"
+  source: nhs_toothache
+
+- id: advice_bad_breath_dentist
+  what_to_do: "See a dentist. Bad breath and sore or bleeding gums are often caused by gum problems or tooth decay, which a dentist can treat."
+  look_out_for:
+    - "Very sore and swollen gums, or teeth becoming loose"
+    - "A swollen face or jaw, or a throbbing toothache"
+  get_more_help_when:
+    - "Ask for an urgent dentist appointment if you get any of the signs above"
+    - "Go to A&E if swelling spreads to your eye or neck, or you find it hard to breathe or swallow"
+  where_to_go: "Make an appointment with a dentist. If you do not have one, find a dentist near you or call 111."
+  self_care:
+    - "Brush your teeth and gums twice a day for 2 minutes with fluoride toothpaste"
+    - "Clean between your teeth with floss or small brushes once a day"
+    - "Clean your tongue once a day with a tongue scraper"
+    - "Do not smoke"
+  source: nhs_bad_breath
+  also_informed_by: [nhs_gum_disease]
+
+- id: advice_bad_breath_self_care
+  what_to_do: "Bad breath is very common. You can usually treat it yourself by keeping your teeth, tongue and mouth clean."
+  look_out_for:
+    - "Bad breath that does not go away after a few weeks of treating it yourself"
+    - "Painful, bleeding or swollen gums"
+    - "Toothache, or wobbly adult teeth"
+  get_more_help_when:
+    - "See a dentist if you get any of the signs above"
+    - "Get help from 111 if your breath smells fruity, like pear drops, especially if you feel very thirsty or unwell"
+  where_to_go: "You do not need an appointment now. Have regular dental check-ups."
+  self_care:
+    - "Brush your teeth and gums twice a day for 2 minutes with fluoride toothpaste"
+    - "Clean between your teeth and clean your tongue once a day"
+    - "Use sugar-free mints or gum after strong-smelling food and drinks"
+    - "Do not smoke, and do not drink too much alcohol"
+  source: nhs_bad_breath
+
+- id: advice_high_blood_sugar_ae
+  what_to_do: "Go to A&E now, or call 999. These can be signs of very high blood sugar with ketones (diabetic ketoacidosis, caused by a lack of insulin), which needs treatment in hospital."
+  look_out_for:
+    - "Breathing that is very fast or deep"
+    - "Feeling confused or very sleepy"
+    - "Being sick, or tummy pain"
+  get_more_help_when:
+    - "Call 999 if the person is confused, very sleepy or passes out"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "If you have diabetes, keep taking your insulin and check your blood sugar and ketones if you can"
+  source: ai_judgement
+  also_informed_by: [nhs_type_2_diabetes]
+
+- id: advice_possible_high_blood_sugar_urgent
+  what_to_do: "Get help from NHS 111 today. Breath that smells fruity can be a sign of high blood sugar. If you have diabetes, check your blood sugar and ketones if you can."
+  look_out_for:
+    - "Feeling very thirsty and peeing a lot"
+    - "Being sick, or tummy pain"
+    - "Breathing very fast, or feeling confused or very sleepy"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you get any of the last two signs above"
+  where_to_go: "Call 111 or use 111 online today. If you have diabetes, follow the advice from your diabetes team."
+  self_care:
+    - "Drink plenty of water"
+    - "Do not stop taking any diabetes medicine or insulin"
+  source: ai_judgement
+  also_informed_by: [nhs_type_2_diabetes]
+
+- id: advice_jaw_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. These can be signs of a problem that needs treatment quickly."
+  look_out_for:
+    - "Problems with your eyesight, such as double vision or loss of vision"
+    - "A severe headache, or tenderness on the side of your head"
+    - "Not being able to eat or drink"
+  get_more_help_when:
+    - "Go to A&E or call 999 if you suddenly lose vision, or get signs of a stroke"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online."
+  self_care:
+    - "Eat soft food and take small bites"
+    - "Hold an ice pack wrapped in a tea towel on your jaw for 20 to 30 minutes"
+    - "Take paracetamol or ibuprofen for pain"
+  source: nhs_tmd
+
+- id: advice_teeth_grinding_dentist
+  what_to_do: "See a dentist. They can check your teeth for damage and may give you a mouth guard to wear at night."
+  look_out_for:
+    - "Your jaw locking, or so much pain that you cannot eat or drink"
+    - "Breathing that stops and starts while you sleep, or feeling very sleepy in the day"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if your jaw locks or you cannot eat or drink"
+    - "See a GP if your breathing stops and starts while you sleep, or for help with stress, anxiety, smoking or drinking"
+  where_to_go: "Make an appointment with a dentist. If you do not have one, find a dentist near you."
+  self_care:
+    - "Find ways to relax. For example, try breathing exercises, music or sport."
+    - "Go to bed at the same time every night, in a dark, quiet room"
+    - "For jaw pain, take painkillers and hold an ice pack wrapped in a tea towel on your jaw"
+    - "Do not chew gum, and cut down on alcohol and caffeine"
+  source: nhs_teeth_grinding
+
+- id: advice_dry_mouth_gp
+  what_to_do: "See a GP. They can check what is causing your dry mouth and suggest treatment. Do not stop a prescribed medicine without getting advice first."
+  look_out_for:
+    - "Feeling very thirsty and peeing a lot, mainly if you also feel sick or very unwell"
+    - "Peeing less than usual, or dark pee"
+    - "Sore white patches, or a painful, red, swollen or bleeding mouth"
+  get_more_help_when:
+    - "Get help from 111 today if you are peeing less than usual or your breath smells fruity"
+    - "Go to A&E if you are very thirsty and also being sick, breathing fast or feeling very unwell"
+  where_to_go: "Make an appointment with a GP. A pharmacist can suggest gels, sprays or lozenges while you wait."
+  self_care:
+    - "Sip cold water often, and keep water by your bed at night"
+    - "Chew sugar-free gum or suck sugar-free sweets"
+    - "Brush your teeth twice a day, as a dry mouth makes tooth decay more likely"
+    - "Do not drink lots of alcohol, caffeine or fizzy drinks, and do not smoke"
+  source: nhs_dry_mouth
+
+- id: advice_dry_mouth_self_care
+  what_to_do: "A dry mouth is rarely a sign of anything serious. There are things you can do to ease it yourself. A pharmacist can help."
+  look_out_for:
+    - "A dry mouth that makes it hard to talk or eat"
+    - "A mouth that is still dry after a few weeks of trying things to help"
+    - "Sore white patches, or a painful, red, swollen or bleeding mouth"
+    - "Needing to pee a lot, or dry eyes"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above, or think a medicine is causing it"
+    - "Get help from 111 today if you are peeing less than usual or have dark pee"
+  where_to_go: "You do not need an appointment now. A pharmacist can suggest gels, sprays or lozenges."
+  self_care:
+    - "Sip cold water often, and keep water by your bed at night"
+    - "Suck ice cubes, or chew sugar-free gum"
+    - "Use lip balm if your lips are dry too"
+    - "Do not drink lots of alcohol, caffeine or fizzy drinks, and do not smoke"
+  source: nhs_dry_mouth
+
+- id: advice_lips_gp
+  what_to_do: "See a GP. Your lips may be infected, or a cold sore may need treatment."
+  look_out_for:
+    - "Lips, mouth, tongue or throat suddenly swelling"
+    - "Finding it hard to breathe or swallow"
+    - "A high temperature, or redness spreading across your face"
+  get_more_help_when:
+    - "Call 999 if your lips, tongue or throat suddenly swell or you find it hard to breathe. This could be a severe allergic reaction."
+    - "Get help from 111 if the redness spreads or you feel very unwell"
+  where_to_go: "Make an appointment with a GP. A pharmacist can suggest treatments while you wait."
+  self_care:
+    - "Use a lip balm with petroleum jelly or beeswax"
+    - "Do not pick or bite flaky skin on your lips"
+    - "Do not share lip balms, towels or cups if you have a cold sore"
+  source: nhs_sore_or_dry_lips
+  also_informed_by: [nhs_cold_sores, nhs_anaphylaxis]
+
+- id: advice_mouth_lump_gp
+  what_to_do: "See a GP or dentist about the ulcer, patch, lump or hoarse voice. Most are not serious, but it is important to get them checked, because finding cancer early makes it easier to treat."
+  look_out_for:
+    - "Difficulty swallowing or speaking"
+    - "A lump in your neck"
+    - "Losing weight without trying"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or get help from 111 if you find it very hard to swallow"
+    - "Call 999 or go to A&E if you cannot swallow at all or find it hard to breathe"
+  where_to_go: "Make an appointment with a GP or dentist."
+  self_care:
+    - "Do not smoke, and cut down on alcohol"
+    - "Use a soft toothbrush and avoid spicy or very hot food if your mouth is sore"
+  source: nhs_mouth_cancer
+  also_informed_by: [nhs_mouth_ulcers, nhs_laryngeal_cancer]
+
+- id: advice_lips_self_care
+  what_to_do: "Sore or dry lips are common, especially in hot or cold weather. You can usually treat them yourself. A pharmacist can help."
+  look_out_for:
+    - "Lips that are hot, painful and swollen"
+    - "A cold sore that is very large or painful, or not healing after 10 days"
+    - "Lips, mouth, tongue or throat suddenly swelling"
+  get_more_help_when:
+    - "See a GP if you get any of the first two signs above"
+    - "Call 999 if your lips, tongue or throat suddenly swell or you find it hard to breathe"
+  where_to_go: "You do not need an appointment. A pharmacist can advise on lip balms and cold sore creams."
+  self_care:
+    - "Use a lip balm with petroleum jelly or beeswax, and one with sun protection (SPF 15 or more) outdoors"
+    - "Do not lick, pick or bite your lips"
+    - "Drink plenty of water"
+    - "Do not share lip balms"
+  source: nhs_sore_or_dry_lips
+  also_informed_by: [nhs_cold_sores]
+
+- id: advice_tongue_gp_or_dentist
+  what_to_do: "See a GP or dentist. They can check the cause, such as mouth thrush or a patch that needs testing."
+  look_out_for:
+    - "A mouth ulcer or patch that lasts more than 3 weeks"
+    - "Pain or difficulty swallowing"
+    - "Lips, tongue or throat suddenly swelling"
+  get_more_help_when:
+    - "Call 999 if your tongue or throat suddenly swells or you find it hard to breathe"
+    - "Ask for an urgent GP appointment or get help from 111 if you find it very hard to swallow"
+  where_to_go: "Make an appointment with a GP or dentist. A pharmacist can suggest treatments for pain while you wait."
+  self_care:
+    - "Use a soft toothbrush, and brush or scrape your tongue gently"
+    - "Drink cool drinks through a straw"
+    - "Take paracetamol or ibuprofen for pain"
+    - "Avoid spicy, acidic or hot food and drink, smoking and alcohol"
+  source: nhs_sore_or_white_tongue
+  also_informed_by: [nhs_mouth_ulcers, nhs_oral_thrush]
+
+- id: advice_tongue_self_care
+  what_to_do: "A sore or white tongue is not usually serious and is often easily treated. A pharmacist can help."
+  look_out_for:
+    - "Pain or itching that does not go away or gets worse"
+    - "White patches on your tongue"
+    - "A mouth ulcer that lasts more than 3 weeks"
+  get_more_help_when:
+    - "See a GP or dentist if you get any of the signs above"
+    - "Call 999 if your tongue or throat suddenly swells or you find it hard to breathe"
+  where_to_go: "You do not need an appointment now. A pharmacist can tell you if you need to see a GP or dentist."
+  self_care:
+    - "Use a soft toothbrush, and brush or scrape your tongue gently"
+    - "Drink cool drinks through a straw"
+    - "Take paracetamol or ibuprofen for pain"
+    - "Avoid spicy, acidic or hot food and drink, smoking and alcohol"
+  source: nhs_sore_or_white_tongue
+
+- id: advice_metallic_taste_gp
+  what_to_do: "See a GP. They can look for a cause. Do not stop a prescribed medicine without getting advice first."
+  look_out_for:
+    - "Lips, tongue or throat suddenly swelling, or finding it hard to breathe"
+    - "Sore or bleeding gums"
+  get_more_help_when:
+    - "Call 999 if your lips, tongue or throat suddenly swell or you find it hard to breathe"
+    - "See a dentist for sore or bleeding gums"
+  where_to_go: "Make an appointment with a GP. A pharmacist can advise if you think a medicine is the cause."
+  source: nhs_metallic_taste
+
+- id: advice_metallic_taste_self_care
+  what_to_do: "A metallic taste is not usually serious. It will sometimes go away by itself, for example after a cold clears up or during pregnancy."
+  look_out_for:
+    - "A metallic taste that does not go away, or has no obvious cause"
+    - "Sore or bleeding gums"
+    - "Lips, tongue or throat suddenly swelling"
+  get_more_help_when:
+    - "See a GP if the taste does not go away or has no obvious cause"
+    - "Call 999 if your lips, tongue or throat suddenly swell or you find it hard to breathe"
+  where_to_go: "You do not need an appointment now. Speak to a pharmacist if you think a medicine is causing it."
+  self_care:
+    - "Brush your teeth and gums twice a day and floss, and have regular dental check-ups"
+    - "Do not stop taking a prescribed medicine without advice"
+  source: nhs_metallic_taste
+
+# ---------------------------------------------------------------------------
+# Snoring and hiccups
+# ---------------------------------------------------------------------------
+- id: advice_snoring_gp
+  what_to_do: "See a GP. You may have sleep apnoea, where your breathing stops and starts while you sleep. It can be serious if it is not treated."
+  look_out_for:
+    - "Feeling so sleepy in the day that you nod off"
+    - "Waking up with a headache, or finding it hard to concentrate"
+  get_more_help_when:
+    - "Do not drive if you feel sleepy. Tell the GP if you have nodded off while driving."
+    - "Call 999 if someone stops breathing and does not start again"
+  where_to_go: "Make an appointment with a GP. It can help to bring someone who has seen you sleep."
+  self_care:
+    - "Try to lose weight if you are overweight"
+    - "Sleep on your side"
+    - "Do not smoke, drink too much alcohol, or take sleeping pills"
+  source: nhs_snoring
+  also_informed_by: [nhs_sleep_apnoea]
+
+- id: advice_snoring_self_care
+  what_to_do: "Snoring is very common and is not usually caused by anything serious. Simple changes can help."
+  look_out_for:
+    - "Breathing that stops and starts while you sleep, or gasping or choking noises"
+    - "Feeling very sleepy during the day"
+    - "Snoring that has a big impact on your life or your partner's"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above, or changes do not help"
+  where_to_go: "You do not need an appointment now."
+  self_care:
+    - "Try to lose weight if you are overweight"
+    - "Sleep on your side. A special pillow can help."
+    - "Do not smoke, drink too much alcohol, or take sleeping pills"
+  source: nhs_snoring
+
+- id: advice_hiccups_gp
+  what_to_do: "See a GP. They will check if a health condition or a medicine is causing your hiccups."
+  look_out_for:
+    - "Chest pain, or difficulty breathing"
+    - "Being sick, or losing weight without trying"
+  get_more_help_when:
+    - "Call 999 if you get chest pain that spreads to your arm, neck, jaw or back, or you feel sweaty or short of breath"
+  where_to_go: "Make an appointment with a GP. Do not stop taking a prescribed medicine without advice."
+  source: nhs_hiccups
+
+- id: advice_hiccups_self_care
+  what_to_do: "Hiccups usually last only a few minutes. You can wait for them to go away or try things to stop them."
+  look_out_for:
+    - "Hiccups that last longer than 48 hours"
+    - "Hiccups that keep coming back and affect your life"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above"
+  where_to_go: "You do not need an appointment."
+  self_care:
+    - "Sip ice-cold water, or hold your breath for a short time"
+    - "Pull your knees up to your chest and lean forward"
+    - "Breathe into a paper bag. Do not put it over your head."
+    - "Avoid fizzy or alcoholic drinks, and do not eat too quickly"
+  source: nhs_hiccups
+
+# ---------------------------------------------------------------------------
+# Nosebleeds
+# ---------------------------------------------------------------------------
+- id: advice_nosebleed_ae
+  what_to_do: "Go to A&E now. Keep pinching the soft part of your nose on the way."
+  look_out_for:
+    - "Feeling weak, dizzy or faint"
+    - "Difficulty breathing"
+    - "Blood coming from the mouth as well as the nose"
+  get_more_help_when:
+    - "Call 999 if you pass out, find it hard to breathe, or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  self_care:
+    - "Sit down and lean forward, and pinch the soft part of your nose just above your nostrils"
+    - "Breathe through your mouth and spit out any blood"
+  source: nhs_nosebleed
+
+- id: advice_nosebleed_urgent
+  what_to_do: "Ask for an urgent GP appointment or call 111 today. Bruising or bleeding easily in a child needs checking."
+  look_out_for:
+    - "A nosebleed lasting longer than 10 to 15 minutes"
+    - "Being very pale, very tired or getting lots of infections"
+    - "Feeling weak or dizzy"
+  get_more_help_when:
+    - "Go to A&E if a nosebleed lasts longer than 10 to 15 minutes, or the child feels weak or dizzy"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 if you need advice for a child under 5."
+  self_care:
+    - "For a nosebleed, sit down and lean forward, and pinch the soft part of the nose for 10 to 15 minutes"
+  source: nhs_acute_lymphoblastic_leukaemia
+  also_informed_by: [nhs_nosebleed]
+
+- id: advice_nosebleed_gp
+  what_to_do: "See a GP. They may check for a cause, such as a problem with how your blood clots or a lack of iron."
+  look_out_for:
+    - "A nosebleed lasting longer than 10 to 15 minutes"
+    - "Bleeding that seems very heavy, or swallowing a lot of blood"
+    - "Feeling weak or dizzy"
+  get_more_help_when:
+    - "Go to A&E if you get any of the signs above"
+  where_to_go: "Make an appointment with a GP. Do not stop a prescribed medicine to prevent blood clots without advice."
+  self_care:
+    - "Sit down and lean forward, and pinch the soft part of your nose for 10 to 15 minutes"
+    - "Breathe through your mouth"
+    - "Afterwards, do not blow or pick your nose, or do heavy lifting, for 24 hours"
+  source: nhs_nosebleed
+
+- id: advice_nosebleed_self_care
+  what_to_do: "Most nosebleeds are not serious and can be treated at home."
+  look_out_for:
+    - "A nosebleed lasting longer than 10 to 15 minutes"
+    - "Bleeding that seems very heavy, or swallowing a lot of blood that makes you sick"
+    - "Feeling weak or dizzy, or difficulty breathing"
+    - "Regular nosebleeds"
+  get_more_help_when:
+    - "Go to A&E if you get any of the first three signs above"
+    - "See a GP if you get nosebleeds regularly, or a child under 2 has had a nosebleed"
+  where_to_go: "You do not need an appointment. A pharmacist can suggest a cream for the inside of the nose if it is dry."
+  self_care:
+    - "Sit down and lean forward, and pinch the soft part of your nose just above your nostrils for 10 to 15 minutes"
+    - "Breathe through your mouth"
+    - "Put an ice pack wrapped in a tea towel on the top of your nose"
+    - "Afterwards, do not blow or pick your nose, or do heavy lifting, for 24 hours"
+  source: nhs_nosebleed
+
+- id: advice_sinusitis_pharmacy
+  what_to_do: "See a pharmacist. They can give the same treatments as a GP for sinusitis (swollen spaces in the face), or tell you where else to get help."
+  look_out_for:
+    - "Pain in the face that is severe or getting worse"
+    - "Feeling very unwell"
+    - "Swelling around the eye, or problems with your eyesight"
+  get_more_help_when:
+    - "See a GP if you are no better 7 days after a pharmacist treats you"
+    - "See a GP if it has not gone after 3 weeks, or it keeps coming back"
+    - "Go to A&E or call 999 for swelling around the eye, problems with your eyesight, or a very bad headache with a stiff neck"
+  where_to_go: "A pharmacy. You can also call 111 or use 111 online."
+  self_care:
+    - "Get plenty of rest and drink plenty of fluids"
+    - "Take paracetamol or ibuprofen for the pain"
+    - "Rinse your nose with salt water"
+  source: nhs_sinusitis

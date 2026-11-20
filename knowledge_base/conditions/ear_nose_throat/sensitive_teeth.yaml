@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: sensitive_teeth
+body_system: ear_nose_throat
+entry_symptoms: [toothache]
+name: "Sensitive teeth (a short, sharp pain from hot, cold or sweet things)"
+medical_name: "Dentine hypersensitivity"
+snomed: "13468005"
+acuity_needed: self_manageable
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from tooth decay: a short, sharp pain with hot or cold things across several
+  # teeth, with no hole, often from worn teeth or gums pulling back.
+  tooth_sensitive: strongly_supports
+  teeth_worn_or_sensitive: supports
+  teeth_grinding: supports
+  gums_sore_swollen_bleeding: supports
+key_findings: [tooth_sensitive, tooth_hole_or_spots]
+source: nhs_toothache
+informed_by: [nhs_toothache, nhs_tooth_decay]

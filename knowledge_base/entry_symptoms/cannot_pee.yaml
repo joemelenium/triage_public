@@ -1,0 +1,90 @@
+# Entry symptom: unable to pee. There is no Symptoms A to Z page for this; the
+# Prostate enlargement, Prostatitis and Back pain pages are used.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Prostate enlargement and Prostatitis pages ask for an urgent GP appointment
+# or 111 if you cannot pee at all, so the default is urgent and a floor. There is
+# no urgent-level checklist, because nothing below emergency can raise it.
+
+id: cannot_pee
+name: "Unable to pee"
+presenting_finding: cannot_pee
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: cannot_pee_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - bladder_full_and_painful
+      - saddle_numbness
+      - legs_weak_or_numb
+      - back_pain
+      - bowel_incontinence
+      - drowsy_hard_to_wake
+      - child_floppy_or_hard_to_wake
+      - skin_blotchy
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_cp_full_painful_bladder
+    description: "A painful or swollen lower tummy and a strong need to pee, but unable to"
+    when: bladder_full_and_painful
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_cannot_pee_ae
+    source: ai_judgement
+    note: "Source difference: the Prostate enlargement and Prostatitis pages say an urgent GP appointment or 111 if you cannot pee. Clinical knowledge: a full, painful bladder (acute urinary retention) needs a tube (catheter) put in within hours, which is usually done at A&E. The more urgent is used. Needs clinical review."
+
+  - id: rf_cp_nerve_signs
+    description: "Unable to pee, with numbness around the genitals or bottom, or new weakness or numbness in both legs: possible cauda equina syndrome"
+    when: {any: [saddle_numbness, legs_weak_or_numb]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    note: "The Back pain page gives these with back pain. Applying them without back pain is AI judgement, since the nerve signs matter most."
+
+  - id: rf_cp_back_pain_bowels
+    description: "Back pain with being unable to pee and pooing without meaning to"
+    when: {all: [back_pain, bowel_incontinence]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+
+  - id: rf_cp_back_pain
+    description: "Back pain with difficulty peeing"
+    when: back_pain
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_back_nerves_emergency
+    source: nhs_back_pain
+    soft: true    # likely conditions may lower this: an enlarged prostate is far more common
+    note: "The Back pain page says call 999 or go to A&E for back pain with difficulty peeing. Marked soft: back ache is common in older men who cannot pee because of an enlarged prostate. Cauda equina syndrome keeps the outcome high while it is possible."
+
+  - id: rf_cp_drowsy
+    description: "Unable to pee and very drowsy, hard to wake or finding it hard to speak"
+    when: {any: [drowsy_hard_to_wake, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_urinary_tract_infections
+
+  - id: rf_cp_sepsis_skin
+    description: "Unable to pee with blotchy skin: possible sepsis"
+    when: skin_blotchy
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_sepsis_emergency
+    source: nhs_prostatitis
+
+outcome_rules: []
+
+default:
+  description: "Unable to pee, or only a few drops: get help today"
+  outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111 now"}
+  advice: advice_cannot_pee_urgent
+  source: nhs_prostate_enlargement
+  floor: true
+  note: "The Prostatitis page gives the same advice for being unable to pee."

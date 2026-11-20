@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bronchiolitis
+body_system: breathing
+# A chest infection of babies and children under 2. "rare" is the band for older
+# children and adults, where it does not really happen.
+entry_symptoms: [wheezing, cough, short_of_breath, very_high_temperature, baby_unsettled_or_not_feeding, blue_or_grey_skin]
+name: "Bronchiolitis (a chest infection that babies get)"
+medical_name: "Bronchiolitis"
+snomed: "4120002"
+# Usually mild and looked after at home. The warning signs (feeding much less,
+# fast breathing, pauses in breathing, a dry nappy) are sent for help by the
+# rules. Level routine so that likely bronchiolitis can be checked by a GP.
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: age_under_1, prevalence: common}
+  - {finding: age_under_5, prevalence: uncommon}
+findings:
+  # What tells it apart from croup or asthma: a baby, cold symptoms first, then a
+  # cough, fast or noisy breathing, and feeding less.
+  blocked_or_runny_nose: strongly_supports
+  cough: supports
+  wheezing: supports
+  breathing_very_fast: supports
+  feeding_much_less: supports
+  very_high_temperature: supports
+key_findings: [blocked_or_runny_nose, breathing_very_fast, feeding_much_less, baby_premature_or_heart_lung_condition]
+source: nhs_bronchiolitis
+informed_by: [nhs_bronchiolitis, nhs_croup]

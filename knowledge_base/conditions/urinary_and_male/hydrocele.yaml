@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hydrocele
+body_system: urinary_and_male
+entry_symptoms: [testicle_lump_or_swelling]
+name: "Build-up of fluid around a testicle (hydrocele)"
+medical_name: "Hydrocele"
+# Common in newborn babies, where it usually goes away by itself.
+acuity_needed: routine
+danger: minor
+sex: male
+prevalence: common
+prevalence_when:
+  - {finding: age_under_1, prevalence: very_common}
+findings:
+  # What tells it apart: a smooth, soft swelling of the whole side, like a water
+  # balloon, that is not painful and has been there a while.
+  swelling_soft_and_smooth: strongly_supports
+  swelling_grew_slowly: supports
+key_findings: [swelling_soft_and_smooth, swelling_grew_slowly]
+source: nhs_testicle_lumps_and_swellings
+informed_by: [nhs_testicle_lumps_and_swellings, nhs_epididymitis]

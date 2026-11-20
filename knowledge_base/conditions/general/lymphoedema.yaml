@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: lymphoedema
+body_system: general
+# Long-term swelling, often after cancer treatment that removed or damaged lymph glands.
+entry_symptoms: [swollen_arm_or_hand, swollen_ankles]
+name: "Lymphoedema (long-term swelling from a problem with the lymph glands)"
+medical_name: "Lymphoedema"
+snomed: "234097001"
+acuity_needed: routine
+danger: moderate
+prevalence: rare
+prevalence_when:
+  - {finding: has_cancer, prevalence: common}
+findings:
+  # What tells it apart from fluid build-up: swelling for 3 months or more that does not go
+  # down overnight.
+  swelling_for_months: strongly_supports
+  swelling_not_improving: supports
+  swelling_from_heat_or_position: supports
+key_findings: [swelling_for_months, has_cancer]
+source: nhs_lymphoedema
+informed_by: [nhs_lymphoedema, nhs_swollen_arms_and_hands_oedema]

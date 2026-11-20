@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: growth_behind_eye
+body_system: eyes
+# Less common causes of bulging named on the Bulging eyes page: a growth,
+# bleeding or a problem with blood vessels behind the eye. In children it can be
+# a cancer.
+entry_symptoms: [bulging_eyes]
+name: "A growth, swelling or bleeding behind the eye"
+medical_name: "Orbital mass or orbital haemorrhage"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  bulging_one_eye: strongly_supports
+  bulging_just_started: supports
+  double_vision: supports
+  eye_pain: supports
+  vision_change: supports
+key_findings: [bulging_one_eye, bulging_just_started]
+source: nhs_bulging_eyes
+informed_by: [nhs_bulging_eyes]

@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: globus
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing, catarrh]
+name: "A feeling of a lump in the throat with nothing actually stuck"
+medical_name: "Globus sensation"
+snomed: "267103008"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart: a lump feeling in the throat while food and drink go down as usual, often
+  # worse with stress or reflux.
+  lump_in_throat_feeling: strongly_supports
+  feeling_anxious: supports
+  heartburn_or_sour_taste: supports
+  mucus_dripping_down_throat: supports
+key_findings: [lump_in_throat_feeling, weight_loss]
+source: ai_judgement
+informed_by: [nhs_catarrh, nhs_swallowing_problems_dysphagia]

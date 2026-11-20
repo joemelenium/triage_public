@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: nerve_or_tendon_injury
+body_system: skin_and_hair
+entry_symptoms: [cut_or_wound]
+name: "Cut damaging a nerve or tendon"
+medical_name: "Injury of nerve or tendon from a laceration"
+snomed: "240037007"
+acuity_needed: emergency
+danger: serious
+prevalence: rare
+findings:
+  # What tells it apart: numbness near the wound, or not being able to move a finger, hand or foot properly, often after a cut to the hand or wrist.
+  wound_numb_or_cannot_move: strongly_supports
+  wound_on_face_or_palm: supports
+  wound_large_or_deep: supports
+key_findings: [wound_numb_or_cannot_move]
+source: nhs_cuts_and_grazes
+informed_by: [nhs_cuts_and_grazes]

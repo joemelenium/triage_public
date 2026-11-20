@@ -1,0 +1,63 @@
+id: cp_d12
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 80-year-old man who lives alone. A tight feeling in his chest came on suddenly an hour ago and
+  is still there, and he is short of breath sitting still. He then found himself on the kitchen floor
+  and does not know whether he tripped or blacked out. He has not seen his own colour.
+opening_statement: About an hour ago I suddenly got a tight feeling in my chest while I was making tea,
+  and it's still there. I'm puffed just sitting here. Next thing I knew I was on the kitchen floor, and
+  I don't know if I tripped or blacked out.
+findings:
+  present: [chest_pain, cp_present_now, cp_sudden_not_going_away, cp_tight_or_squeezing, short_of_breath,
+    difficulty_breathing, angina_pain_not_settling, worried_about_symptoms, heart_risk_factors, cp_lasted_15_minutes]
+  absent: [stroke_signs, severe_breathing_difficulty, passed_out, sudden_confusion, heavy_bleeding, serious_self_harm,
+    cp_heavy, cp_spreads, sweating, nausea_or_vomiting, light_headed, heart_beating_very_fast, palpitations,
+    has_angina, angina_worse_than_usual, cp_comes_and_goes, coughing_up_blood, cp_worse_breathing_in,
+    leg_pain_or_swelling, cp_on_exertion, cp_after_eating, cp_after_injury_or_exercise, cp_with_worry,
+    cough_mucus_or_temperature, family_heart_history, cough_or_runny_nose, sore_throat, very_high_temperature]
+  unknown: [fainted, lips_or_skin_blue_grey]
+context:
+  none: {}
+  basic: {age: 80, sex: male}
+  full: {age: 80, sex: male}
+expected: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now}
+minimum_safe_acuity: emergency
+red_flags:
+- description: Sudden chest pain that has not gone away
+  findings: [cp_sudden_not_going_away]
+  minimum_acuity: emergency
+  source: {page: chest_pain.txt, quote: you get sudden pain or discomfort in your chest that does not
+      go away}
+- description: Chest pain with shortness of breath
+  findings: [short_of_breath]
+  minimum_acuity: emergency
+  source: {page: chest_pain.txt, quote: 'you have chest pain and you feel sweaty, sick, light headed or
+      short of breath'}
+- description: Chest feels tight
+  findings: [cp_tight_or_squeezing]
+  minimum_acuity: emergency
+  source: {page: heart_attack_symptoms.txt, quote: you have chest pain that feels tight or like squeezing
+      on your chest}
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of: ['999']
+- point: Not to drive themselves to hospital
+  any_of: [do not drive, Do not drive, don't drive, not drive]
+source:
+  expected_outcome: {page: chest_pain.txt, quote: You could be having a heart attack. Call 999 straight
+      away as you need immediate treatment in hospital.}
+  minimum_safe_acuity: {page: chest_pain.txt, quote: 'you have chest pain and you feel sweaty, sick, light
+      headed or short of breath'}
+atypical: false
+notes: 'Two things the patient genuinely cannot say: whether he passed out (fainted: he was on the floor
+  and does not know how he got there) and whether his lips or skin are pale, blue or grey (he is alone
+  and has not looked). Both would be emergency signs if present (pulmonary_embolism.txt: ''someone has
+  passed out''; heart_attack_symptoms.txt: lips or skin pale, blue or grey), but the outcome is already
+  emergency on what he can say, so the unknowns must not delay or lower it. passed_out is no: that question
+  is about someone who is not responding now, and he is talking. severe_breathing_difficulty is no because
+  he can speak in full sentences. cp_heavy is no: his word for the feeling is tight, and he does not describe
+  heaviness. angina_pain_not_settling is answered yes because the pain is still there at rest, which is
+  the honest answer to that question as worded; the patient has no angina diagnosis. No question asks
+  whether the breathlessness came on suddenly, which is the wording of the 999 sign on pulmonary_embolism.txt.
+  For the questions added to the list later: he has high blood pressure (heart_risk_factors yes).'

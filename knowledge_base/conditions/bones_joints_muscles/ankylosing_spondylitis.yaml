@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: ankylosing_spondylitis
+body_system: bones_joints_muscles
+# Usually starts in teenagers and young adults. What tells it apart: morning stiffness
+# that gets better with exercise, over months.
+entry_symptoms: [back_pain]
+name: "Ankylosing spondylitis (a long-term stiff, sore spine)"
+medical_name: "Axial spondyloarthritis (ankylosing spondylitis)"
+snomed: "9631008"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: rare}
+findings:
+  morning_stiffness_over_30_min: strongly_supports
+  stiffness_better_with_movement: strongly_supports
+  pain_over_3_months: strongly_supports
+  pain_worse_at_night_or_rest: supports
+  red_eye: supports
+key_findings: [morning_stiffness_over_30_min, stiffness_better_with_movement, pain_over_3_months]
+source: nhs_ankylosing_spondylitis
+informed_by: [nhs_ankylosing_spondylitis]

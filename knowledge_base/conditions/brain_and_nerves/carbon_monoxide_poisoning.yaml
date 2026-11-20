@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: carbon_monoxide_poisoning
+body_system: brain_and_nerves
+entry_symptoms: [headache, dizziness, sudden_confusion]
+name: "Poisoning by carbon monoxide, a gas from a faulty boiler, fire or car"
+medical_name: "Toxic effect of carbon monoxide"
+snomed: "17383000"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+findings:
+  # What tells it apart: other people or pets at home are unwell too, and it gets better away from home. Only common features are linked, because a no to a linked feature counts against it.
+  others_in_home_unwell: strongly_supports
+  better_away_from_home: strongly_supports
+  headache: strongly_supports
+  dizziness: supports
+  nausea_or_vomiting: supports
+key_findings: [others_in_home_unwell, better_away_from_home]
+source: nhs_carbon_monoxide_poisoning
+informed_by: [nhs_carbon_monoxide_poisoning, nhs_confusion]

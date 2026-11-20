@@ -1,0 +1,38 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: diabetic_ketoacidosis
+body_system: general
+# Life-threatening. Can be the first sign of type 1 diabetes. The pages say 999 or A&E.
+entry_symptoms: [very_thirsty, dehydration_signs, generally_unwell, stomach_ache, diarrhoea_or_vomiting, feeling_sick]
+name: "Diabetic ketoacidosis (DKA). This is when a lack of insulin makes you very ill."
+medical_name: "Diabetic ketoacidosis"
+snomed: "420422005"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: has_diabetes, prevalence: uncommon}
+findings:
+  # What tells it apart from a tummy bug or dehydration: fruity breath, deep fast breathing,
+  # and high blood sugar or ketones, with thirst and peeing more.
+  fruity_breath: strongly_supports
+  breathing_deep_and_fast: strongly_supports
+  high_blood_sugar_or_ketones: strongly_supports
+  peeing_more_often: strongly_supports
+  very_thirsty: strongly_supports
+  cannot_keep_fluids_down: supports
+  stomach_ache: supports
+  drowsy_hard_to_wake: supports
+  child_floppy_or_hard_to_wake: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  vomiting: strongly_supports
+  high_ketones: strongly_supports
+  breathing_very_fast: supports
+  weight_loss: supports
+  very_tired: supports
+key_findings: [fruity_breath, breathing_deep_and_fast, high_blood_sugar_or_ketones, cannot_keep_fluids_down, very_thirsty, peeing_more_often, has_diabetes, high_ketones]
+source: nhs_diabetic_ketoacidosis
+informed_by: [nhs_diabetic_ketoacidosis, nhs_type_1_diabetes_symptoms]
+# Merged with the stomach_and_bowel card for this condition. Its notes:
+# Tummy pain and being sick are common in DKA, especially in children. It can be
+# the first sign of type 1 diabetes.

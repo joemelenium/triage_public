@@ -1,0 +1,35 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: atrial_fibrillation
+body_system: chest_and_heart
+entry_symptoms: [palpitations, short_of_breath, chest_pain]
+name: "Irregular heartbeat (atrial fibrillation)"
+medical_name: "Atrial fibrillation"
+snomed: "49436004"
+# Danger serious: it raises the chance of a stroke, and a fast irregular heartbeat
+# can strain the heart. Level soon: a GP should check it within days and decide
+# about medicine to prevent a stroke. An irregular heartbeat happening now is sent
+# for help the same day by the palpitations rules.
+acuity_needed: soon
+danger: serious
+# has_heart_rhythm_problem covers SVT as well, so it raises the starting chance
+# but is not used as diagnosed_by.
+# Rare under 45, and much more common with age. The card is linked strongly to
+# palpitations, which roughly triples its chance among people whose main symptom
+# is palpitations, so "uncommon" gives about 1 in 8 of those aged 45 or over.
+prevalence: rare
+prevalence_when:
+  - {finding: has_heart_rhythm_problem, prevalence: common}
+  - {finding: age_45_or_over, prevalence: uncommon}
+findings:
+  palpitations: strongly_supports
+  # What tells it apart from extra beats or SVT: no steady rhythm at all.
+  palpitations_irregular: strongly_supports
+  palpitations_last_minutes: supports
+  palpitations_now: supports
+  heart_beating_very_fast: supports
+  short_of_breath: supports
+  very_tired: supports
+key_findings: [palpitations_irregular, palpitations_now, palpitations_last_minutes, short_of_breath, very_tired]
+source: nhs_atrial_fibrillation
+informed_by: [nhs_atrial_fibrillation, nhs_heart_palpitations]

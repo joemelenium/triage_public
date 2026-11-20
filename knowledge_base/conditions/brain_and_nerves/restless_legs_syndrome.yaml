@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: restless_legs_syndrome
+body_system: brain_and_nerves
+entry_symptoms: [trouble_sleeping, daytime_sleepiness]
+name: "Restless legs syndrome"
+medical_name: "Restless legs syndrome"
+snomed: "32914008"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: pregnant_or_recently_given_birth, prevalence: common}
+findings:
+  # What tells it apart: a strong urge to move the legs in the evening or at night. More common in pregnancy and with iron deficiency anaemia.
+  urge_to_move_legs: strongly_supports
+  trouble_sleeping: supports
+  paler_than_usual: supports
+key_findings: [urge_to_move_legs]
+source: nhs_restless_legs_syndrome
+informed_by: [nhs_restless_legs_syndrome, nhs_insomnia]

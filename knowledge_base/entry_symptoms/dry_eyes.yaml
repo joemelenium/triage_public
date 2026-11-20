@@ -1,0 +1,150 @@
+# Entry symptom: dry eyes.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Dry eyes page lists blurring and sensitivity to light as dry eye symptoms,
+# but also lists changes to the sight and pain looking at light as reasons to
+# call 999. Those emergency rules are soft, with firm urgent rules as their floor.
+# "See an optician or GP" is mapped to general practice (routine).
+
+id: dry_eyes
+name: "Dry eyes"
+presenting_finding: dry_eyes
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: dry_eyes_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - vision_change
+      - bothered_by_light
+      - very_painful_headache
+      - eye_very_dark_red
+      - eye_injury
+      - object_stuck_in_eye
+
+  - id: dry_eyes_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - red_eye
+      - eye_pain
+      - contact_lens_wearer
+
+  - id: dry_eyes_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - dry_eyes_weeks
+      - eyelid_turning_in_or_out
+      - bulging_eyes
+      - worried_about_symptoms
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_de_pierced_or_stuck
+    description: "Injured or pierced eye, something stuck in the eye, or a chemical in the eye"
+    when: {any: [eye_pierced, high_speed_object, object_stuck_in_eye, chemical_in_eye]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_injury_ae
+    source: nhs_dry_eyes
+
+  - id: rf_de_red_headache_sick
+    description: "Red eye, severe headache and feeling sick"
+    when: {all: [red_eye, very_painful_headache, nausea_or_vomiting]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_dry_eyes
+
+  - id: rf_de_vision
+    description: "Any changes to the sight, like wavy lines, flashing or loss of vision"
+    when: vision_change
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_dry_eyes
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Dry eyes page says call 999 or go to A&E, but lists blurry eyes as a dry eye symptom. The Vision loss and Conjunctivitis pages say urgent for changes in sight. Soft, with the firm urgent rule below as its floor."
+
+  - id: rf_de_light
+    description: "It hurts to look at light"
+    when: bothered_by_light
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_dry_eyes
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the page lists sensitivity to light as a dry eye symptom, and pain looking at light as a reason to call 999. The Eye pain page says urgent. Soft, with the firm urgent rule below as its floor."
+
+  - id: rf_de_very_dark_red
+    description: "Eye or eyes very dark red"
+    when: eye_very_dark_red
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_emergency
+    source: nhs_dry_eyes
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Same as the red eye rule: the Eyelid problems page says urgent for a very red eye."
+
+  - id: rf_de_injury
+    description: "An injury to the eye"
+    when: eye_injury
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_eye_injury_ae
+    source: nhs_dry_eyes
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Eye injuries page says minor injuries often get better within a day. Soft, with the firm urgent rule below as its floor."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_de_vision_or_light_urgent
+    description: "Changes to the sight, pain looking at light, or an eye injury"
+    when: {any: [vision_change, bothered_by_light, eye_injury, eye_very_red]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP or optician appointment, or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_eye_pain
+    note: "The firm floor under the soft emergency rules above."
+
+  - id: rf_de_painful_red
+    description: "The eye is painful and red"
+    when: {all: [red_eye, eye_pain]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_eye_urgent
+    source: nhs_dry_eyes
+
+  - id: rf_de_red_lenses
+    description: "Red eye in someone who wears contact lenses: could be an eye infection"
+    when: {all: [red_eye, contact_lens_wearer]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111. Take your lenses out."}
+    advice: advice_eye_contact_lens_urgent
+    source: nhs_dry_eyes
+
+outcome_rules:
+  - id: or_de_weeks
+    description: "Still dry after trying home treatments for a few weeks"
+    when: dry_eyes_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See an optician or GP. No fixed time is given."}
+    advice: advice_dry_eyes_gp
+    source: nhs_dry_eyes
+
+  - id: or_de_eyelid_shape
+    description: "Any change in the shape of the eyelids"
+    when: eyelid_turning_in_or_out
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See an optician or GP. No fixed time is given."}
+    advice: advice_dry_eyes_gp
+    source: nhs_dry_eyes
+
+  - id: or_de_worried
+    description: "Worried about the eyes"
+    when: worried_about_symptoms
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See an optician or GP. No fixed time is given."}
+    advice: advice_dry_eyes_gp
+    source: nhs_red_eye
+
+default:
+  description: "Dry eyes with nothing that needs more help: treat them yourself"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Dry eyes are not usually serious. A pharmacist can help."}
+  advice: advice_dry_eyes_self_care
+  source: nhs_dry_eyes

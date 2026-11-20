@@ -1,0 +1,317 @@
+# Plain language rules for any text a patient sees: questions, advice, and the
+# names of possible conditions. The engine refuses to load content that breaks
+# them. Reviewers can add entries.
+#
+# Two kinds of rule:
+#
+# avoid: words the NHS digital service manual's "A to Z of NHS health writing"
+#   tells writers to avoid, with the word to use instead. Based on NHS user
+#   research. A text may only use an avoided word if it also uses one of the
+#   "unless_with" phrases, for example "feeling sick (nausea)".
+#   Source: https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing
+#   Contains public sector information licensed under the Open Government Licence v3.0.
+#
+# explain: medical words with no everyday alternative. A text may use one only
+#   if it also explains it, using one of the "explained_by" phrases. Where the A
+#   to Z covers the word, its advice was followed. Otherwise the explanation is
+#   AI-drafted and needs review.
+#     term          the medical word (matched without regard to capitals, and also
+#                   matches longer words that start with it, so "tonsil" covers "tonsils")
+#     plain         what it means, in plain words
+#     explained_by  the text must also contain one of these phrases
+#     explained_in  optional: a question that explains the word. Questions only asked
+#                   after a "yes" to that question need not explain it again.
+
+avoid:
+  - {term: "acute", use_instead: "sudden, starts suddenly, short-term"}
+  - {term: "absorb", use_instead: "take in"}
+  - {term: "chronic", use_instead: "for a long time, does not go away"}
+  - {term: "disease", use_instead: "condition, problem or illness"}
+  - {term: "disorder", use_instead: "condition, problem or illness"}
+  - {term: "medication", use_instead: "medicine"}
+  - {term: "drugs", use_instead: "medicines", unless_with: [overdose]}
+  - {term: "exceed", use_instead: "more than"}
+  - {term: "excessive", use_instead: "too much"}
+  - {term: "fever", use_instead: "high temperature", unless_with: [high temperature, glandular fever, scarlet fever, hay fever]}   # the A to Z keeps "fever" in condition names
+  - {term: "nausea", use_instead: "feeling sick", unless_with: [feeling sick, feel sick]}
+  - {term: "vomit", use_instead: "being sick", unless_with: [being sick, been sick, blood in your vomit]}
+  - {term: "normally", use_instead: "usually"}
+  - {term: "occur", use_instead: "happen, or reword"}
+  - {term: "oral", use_instead: "mouth, or by mouth"}
+  - {term: "persist", use_instead: "carry on, keep going"}
+  - {term: "prognosis", use_instead: "outlook"}
+  - {term: "renal", use_instead: "kidney"}
+  - {term: "risk", use_instead: "chance"}
+  - {term: "seek", use_instead: "ask for"}
+  - {term: "suffering from", use_instead: "have, or reword"}
+  - {term: "chemist", use_instead: "pharmacy"}
+  - {term: "equivalent", use_instead: "equal to"}
+  - {term: "medical record", use_instead: "health record"}
+  - {term: "telephone", use_instead: "phone"}
+  - {term: "etc", use_instead: "list the things, or say 'for example'"}
+  - {term: "can't", use_instead: "cannot"}
+  - {term: "don't", use_instead: "do not"}
+  - {term: "rectum", use_instead: "bottom", unless_with: [bottom]}
+  - {term: "uterus", use_instead: "womb", unless_with: [womb]}
+  - {term: "flatulence", use_instead: "farting", unless_with: [farting]}
+  - {term: "gullet", use_instead: "food pipe"}
+  - {term: "water infection", use_instead: "urinary tract infection (UTI)"}
+
+explain:
+  - term: angina
+    plain: chest pain caused by narrowed blood vessels to the heart
+    explained_by:
+    - narrowed blood vessels
+    explained_in: has_angina
+  - term: glyceryl trinitrate
+    plain: a medicine for angina, usually a spray used under the tongue
+    explained_by:
+    - under your tongue
+    - under the tongue
+  - term: gtn
+    plain: short for glyceryl trinitrate, a spray used under the tongue for angina
+    explained_by:
+    - under your tongue
+    - under the tongue
+  - term: tonsil
+    plain: the two lumps at the back of the throat
+    explained_by:
+    - back of your throat
+    - back of the throat
+  - term: immune system
+    plain: the body's defence against infection
+    explained_by:
+    - fight infection
+  - term: chemotherapy
+    plain: a treatment for cancer
+    explained_by:
+    - cancer
+  - term: dehydration
+    plain: not having enough water in the body
+    explained_by:
+    - peeing less
+    - not having enough water
+  - term: cpr
+    plain: pressing hard and fast on the middle of someone's chest to keep their heart going
+    explained_by:
+    - press hard and fast
+  - term: mucus
+    plain: phlegm
+    explained_by:
+    - phlegm
+  - term: abscess
+    plain: a pocket of pus
+    explained_by:
+    - pocket of pus
+  - term: pericarditis
+    plain: swelling of the lining around the heart
+    explained_by:
+    - lining around the heart
+  - term: pulmonary embolism
+    plain: a blood clot in the lung
+    explained_by:
+    - blood clot in the lung
+  - term: pleurisy
+    plain: swelling of the lining around the lungs
+    explained_by:
+    - lining around the lungs
+  - term: stridor
+    plain: a high-pitched sound when breathing
+    explained_by:
+    - high-pitched
+  - term: copd
+    plain: a long-term lung condition that makes it hard to breathe (chronic obstructive pulmonary disease)
+    explained_by:
+    - long-term lung condition
+    explained_in: has_copd
+  - term: anaphylaxis
+    plain: a severe allergic reaction
+    explained_by:
+    - severe allergic reaction
+  - term: sepsis
+    plain: a life-threatening reaction to an infection
+    explained_by:
+    - reaction to an infection
+  - term: croup
+    plain: an infection of the airways in young children that causes a barking cough
+    explained_by:
+    - barking cough
+  # Added by the stomach and bowel batch.
+  - term: appendicitis
+    plain: a swollen appendix, a small pouch attached to the bowel
+    explained_by:
+    - appendix
+  # Added for women's health.
+  - term: ectopic pregnancy
+    plain: a pregnancy growing outside the womb
+    explained_by:
+    - outside the womb
+  - term: aneurysm
+    plain: a swelling in a blood vessel
+    explained_by:
+    - swelling in
+  - term: jaundice
+    plain: yellow skin or yellow whites of the eyes
+    explained_by:
+    - yellow
+  - term: hernia
+    plain: a lump where part of the gut pushes through a weak spot in the tummy wall
+    explained_by:
+    - weak spot
+    - lump
+  - term: laxative
+    plain: a medicine that helps you poo
+    explained_by:
+    - help you poo
+    - helps you poo
+  - term: peritonitis
+    plain: infection of the lining of the tummy
+    explained_by:
+    - lining of the tummy
+  - term: pancreatitis
+    plain: sudden swelling of the pancreas, an organ behind the stomach
+    explained_by:
+    - pancreas
+  - term: ketoacidosis
+    plain: a serious problem caused by a lack of insulin
+    explained_by:
+    - lack of insulin
+  - term: endometriosis
+    plain: tissue like the lining of the womb growing in other places
+    explained_by:
+    - lining of the womb
+  - term: fibroid
+    plain: non-cancerous growths in or around the womb
+    explained_by:
+    - growths in
+  - term: mastitis
+    plain: a breast infection or inflammation
+    explained_by:
+    - breast infection
+  - term: pre-eclampsia
+    plain: high blood pressure in pregnancy that can cause serious problems
+    explained_by:
+    - high blood pressure
+  - term: cervix
+    plain: the entrance to the womb
+    explained_by:
+    - entrance to the womb
+  - term: ovulation
+    plain: when an egg is released from an ovary
+    explained_by:
+    - egg is released
+  - term: hrt
+    plain: hormone replacement therapy, hormone treatment for the menopause
+    explained_by:
+    - for the menopause
+    - hormone treatment
+  # Added in the ear, nose and throat batch (AI-drafted explanations).
+  - term: tinnitus
+    plain: hearing ringing, buzzing or other noises that do not come from around you
+    explained_by:
+    - ringing
+    - buzzing
+  - term: vertigo
+    plain: a feeling that you or everything around you is spinning
+    explained_by:
+    - spinning
+  - term: sinus
+    plain: small spaces in the face, behind the cheeks and forehead
+    explained_by:
+    - in the face
+    - spaces in the face
+    - behind the cheeks
+    - behind your cheeks
+  - term: catarrh
+    plain: a build-up of phlegm in the nose or throat
+    explained_by:
+    - phlegm
+  - term: polyp
+    plain: a soft growth
+    explained_by:
+    - growth
+  - term: oesophag
+    plain: the food pipe
+    explained_by:
+    - food pipe
+  - term: lymph
+    plain: glands that help fight infection
+    explained_by:
+    - gland
+  - term: apnoea
+    plain: breathing that stops and starts
+    explained_by:
+    - breathing stops
+    - stops and starts
+  - term: epiglott
+    plain: the flap at the back of the throat that covers the windpipe
+    explained_by:
+    - flap
+  - term: leukaemia
+    plain: a cancer of the blood
+    explained_by:
+    - cancer of the blood
+  - term: mastoid
+    plain: the bone behind the ear
+    explained_by:
+    - bone behind the ear
+  - term: rhinitis
+    plain: a blocked or runny nose
+    explained_by:
+    - nose
+  - term: pupil
+    plain: the black circle in the middle of the eye
+    explained_by:
+    - black circle
+  - term: retina
+    plain: the thin layer at the back of the eye
+    explained_by:
+    - back of the eye
+    - back of your eye
+  - term: glaucoma
+    plain: damage to the nerve at the back of the eye, often from pressure in the eye
+    explained_by:
+    - pressure
+    - nerve at the back of the eye
+  # Added with the mental health body system. AI-drafted explanations.
+  - term: psychosis
+    plain: losing touch with what is real, for example hearing voices or believing things that are not true
+    explained_by:
+    - touch with what is real
+    - touch with reality
+  - term: mania
+    plain: a very high mood, feeling very excited or overactive
+    explained_by:
+    - very high mood
+    - feeling very high
+  - term: bipolar
+    plain: a condition where your mood swings between very high and very low
+    explained_by:
+    - very high and very low
+    - very low and very high
+  - term: delirium
+    plain: sudden confusion
+    explained_by:
+    - sudden confusion
+    - suddenly confused
+  - term: hallucination
+    plain: seeing, hearing or feeling things that are not there
+    explained_by:
+    - things that are not there
+    - things that are not real
+    - things other people do not
+  - term: anorexia
+    plain: an eating problem where someone eats too little to keep their weight very low
+    explained_by:
+    - eating very little
+    - eats too little
+  - term: bulimia
+    plain: an eating problem where someone eats large amounts, then makes themselves sick or uses laxatives
+    explained_by:
+    - make yourself sick
+    - making yourself sick
+    - makes themselves sick
+  - term: ptsd
+    plain: post-traumatic stress, a reaction to a very frightening or upsetting event
+    explained_by:
+    - post-traumatic stress

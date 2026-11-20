@@ -1,0 +1,66 @@
+id: sb_d07
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- vomiting_blood
+summary: 21-year-old woman who was sick many times after a night of heavy drinking, then saw a few streaks of bright red blood in the last vomit. She has stopped being sick and otherwise feels well.
+opening_statement: I was sick loads last night after drinking and the last time there were some streaks of red blood in it. I've stopped being sick now.
+findings:
+  present:
+  - vomiting_blood
+  - blood_after_retching
+  - vomiting
+  absent:
+  - vomiting_blood_large_amount
+  - keeps_being_sick
+  - black_or_dark_red_poo
+  - stomach_ache
+  - light_headed
+  - cold_clammy_skin
+  - sudden_confusion
+  - breathing_very_fast
+  - feels_very_unwell
+  - takes_anti_inflammatory_painkillers
+  - takes_blood_thinners
+  - drinks_a_lot_of_alcohol
+  - swallowed_something_harmful
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 21
+    sex: female
+  full:
+    age: 21
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Has vomited blood
+  findings:
+  - vomiting_blood
+  minimum_acuity: urgent
+  source:
+    page: vomiting_blood.txt
+    quote: You should always get medical help if you are vomiting blood
+safety_netting_should_cover:
+- point: Get an urgent GP appointment or call 111
+  any_of:
+  - urgent GP
+  - '111'
+- point: Call 999 or go to A&E if she vomits blood again and feels faint, has tummy pain or black poo
+  any_of:
+  - '999'
+  - A&E
+source:
+  expected_outcome:
+    page: vomiting_blood.txt
+    quote: If you have stopped vomiting blood and had no other symptoms, ask for an urgent GP appointment, call 111 or get help from 111 online.
+  minimum_safe_acuity:
+    page: vomiting_blood.txt
+    quote: If you have stopped vomiting blood and had no other symptoms
+atypical: false
+notes: 'Look-alike: a frightening symptom where the page supports urgent rather than emergency care. vomiting_blood.txt lists ''damage to your food pipe from being sick or coughing a lot'' as a common cause. drinks_a_lot_of_alcohol is absent because this was one night out, not regular heavy drinking.'

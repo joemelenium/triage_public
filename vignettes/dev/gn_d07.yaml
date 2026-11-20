@@ -1,0 +1,57 @@
+id: gn_d07
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- swollen_arm_or_hand
+summary: A 46-year-old woman whose left hand and forearm have been puffy for 3 days. There was no injury or bite and she does not know why. It is not red, hot or painful and she is not breathless.
+opening_statement: My left hand and arm have gone puffy over the last few days and I've no idea why. I haven't hurt it or been bitten or anything.
+findings:
+  present:
+  - swollen_arm_or_hand
+  absent:
+  - swelling_has_obvious_cause
+  - swelling_after_injury
+  - skin_broken_near_swelling
+  - swollen_area_red_hot
+  - swelling_severe_painful_or_sudden
+  - very_high_temperature
+  - short_of_breath
+  - chest_pain
+  - swelling_elsewhere
+  - has_diabetes
+  - lips_tongue_throat_swelling
+  - insect_bite_or_sting
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 46
+    sex: female
+  full:
+    age: 46
+    sex: female
+    findings:
+      has_cancer: 'no'
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags: []
+safety_netting_should_cover:
+- point: Ask for an urgent GP appointment or contact NHS 111
+  any_of:
+  - '111'
+  - urgent GP
+- point: Call 999 if short of breath or the chest feels tight
+  any_of:
+  - '999'
+source:
+  expected_outcome:
+    page: swollen_arms_and_hands_oedema.txt
+    quote: you have swelling in 1 or both arms or hands and there's no obvious cause, such as an injury
+  minimum_safe_acuity:
+    page: swollen_arms_and_hands_oedema.txt
+    quote: you have swelling in 1 or both arms or hands and there's no obvious cause, such as an injury
+atypical: false
+notes: The urgency comes from swelling with no known cause. Circulation problems and a blood clot are listed causes on the page. The 999 signs (short of breath, chest tight) are absent.

@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: newborn_jaundice
+body_system: skin_and_hair
+entry_symptoms: [yellow_skin_or_eyes]
+name: "Jaundice (yellow skin or yellow whites of the eyes) in a newborn baby"
+medical_name: "Neonatal jaundice"
+snomed: "387712008"
+# Usually harmless, but needs a check of the yellow level. Danger serious: very high levels can harm the brain.
+acuity_needed: urgent
+danger: serious
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_1, prevalence: very_common}
+findings:
+  # What tells it apart: a baby a few days old with yellow skin or eyes. Warning signs are being sleepy, not feeding, and dark pee or pale poo.
+  feeding_much_less: supports
+  child_floppy_or_hard_to_wake: supports
+  poo_pale_pee_dark: supports
+key_findings: [feeding_much_less, poo_pale_pee_dark]
+source: nhs_newborn_jaundice
+informed_by: [nhs_newborn_jaundice]

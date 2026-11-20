@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: peripheral_neuropathy
+body_system: brain_and_nerves
+entry_symptoms: [pins_and_needles]
+name: "Nerve damage in the hands or feet (peripheral neuropathy)"
+medical_name: "Peripheral neuropathy"
+snomed: "302226006"
+acuity_needed: routine
+danger: moderate
+prevalence: common
+prevalence_when:
+  - {finding: has_diabetes, prevalence: very_common}
+findings:
+  # Diabetes is the commonest cause. What tells it apart: numbness or tingling in both feet or both hands that has come on slowly, often with burning or shooting pains.
+  pins_needles_both_feet_or_hands: strongly_supports
+  burning_or_shooting_pain_feet_hands: strongly_supports
+  pins_needles_constant: supports
+  trouble_with_balance_or_walking: supports
+key_findings: [pins_needles_both_feet_or_hands, burning_or_shooting_pain_feet_hands, has_diabetes]
+source: nhs_peripheral_neuropathy
+informed_by: [nhs_peripheral_neuropathy, nhs_pins_and_needles]

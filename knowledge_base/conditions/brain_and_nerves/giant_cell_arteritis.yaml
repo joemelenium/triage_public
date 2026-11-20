@@ -1,0 +1,39 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: giant_cell_arteritis
+body_system: brain_and_nerves
+entry_symptoms: [headache, vision_change, double_vision, eye_pain]
+name: "Swollen blood vessels in the head (temporal arteritis)"
+medical_name: "Giant cell arteritis"
+snomed: "414341000"
+acuity_needed: urgent   # the source page says an urgent GP appointment or 111; its 999 signs are red flags (DECISIONS 167)
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: uncommon}
+  - {finding: headache, prevalence: rare}
+  - {finding: vision_change, prevalence: very_rare}
+  - {finding: double_vision, prevalence: very_rare}
+  - {finding: eye_pain, prevalence: very_rare}
+findings:
+  # Almost never under 50. What tells it apart: jaw pain when eating, a tender scalp or temple, and changes to vision.
+  jaw_pain_or_scalp_tender: strongly_supports
+  vision_change: supports
+  headache_unlike_usual: supports
+  very_tired: supports
+  aching_body: supports
+  weight_loss: supports
+  # From the eyes card for this condition (merged):
+  headache: strongly_supports
+  double_vision: supports
+  feels_very_unwell: supports
+  pain_stiff_both_shoulders_or_hips: supports
+  vision_loss_brief: supports
+  sight_lost: supports
+key_findings: [jaw_pain_or_scalp_tender, vision_change, aching_body, headache, pain_stiff_both_shoulders_or_hips, vision_loss_brief]
+source: nhs_giant_cell_arteritis
+informed_by: [nhs_giant_cell_arteritis, nhs_headaches, nhs_tension_headaches, nhs_cluster_headaches]
+# Merged with the eyes card for this condition. Its notes:
+# May also be built by the brain and nerves agent. Built here for the eye entry
+# symptoms: with any sight symptom it is an emergency, because it can cause
+# blindness in both eyes within hours.

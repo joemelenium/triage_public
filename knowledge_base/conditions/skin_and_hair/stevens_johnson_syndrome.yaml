@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stevens_johnson_syndrome
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Stevens-Johnson syndrome (a rare, serious skin reaction)"
+medical_name: "Stevens-Johnson syndrome or toxic epidermal necrolysis"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: skin_peeling_or_blistering_widely, prevalence: uncommon}
+  - {finding: new_medicine_recently, prevalence: rare}
+findings:
+  # What tells it apart from an ordinary rash from a medicine: blistering or peeling skin, sores in the mouth, eyes or genitals, and round patches darker in the middle, often after flu-like symptoms.
+  new_medicine_recently: strongly_supports
+  skin_peeling_or_blistering_widely: strongly_supports
+  sores_mouth_eyes_or_genitals: strongly_supports
+  rash_circles_darker_middle: supports
+  very_high_temperature: supports
+  rash_spreading: supports
+  rash_sore_or_painful: supports
+  feels_very_unwell: supports
+key_findings: [new_medicine_recently, skin_peeling_or_blistering_widely, sores_mouth_eyes_or_genitals, rash_circles_darker_middle]
+source: nhs_stevens_johnson
+informed_by: [nhs_stevens_johnson]

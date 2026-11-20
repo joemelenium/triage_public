@@ -1,0 +1,26 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: suicidal_crisis
+body_system: mental_health
+# A crisis in which someone may act on thoughts of suicide soon. The red flags
+# (a plan, preparing, not able to keep safe) catch most of it. The card lets the
+# engine act on several smaller signs together. Its starting chance is very low,
+# so thoughts of suicide alone give urgent help (the sourced rule), not 999.
+entry_symptoms: [suicidal_thoughts_or_self_harm]
+name: "A suicidal crisis (a high chance of acting on thoughts of suicide)"
+medical_name: "High suicide risk"
+snomed: "394685004"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: previous_suicide_attempt, prevalence: rare}
+findings:
+  suicide_plan: strongly_supports
+  preparing_for_suicide: strongly_supports
+  cannot_keep_safe: strongly_supports
+  suicidal_thoughts_getting_worse: supports
+  feeling_hopeless: supports
+key_findings: [suicide_plan, preparing_for_suicide, cannot_keep_safe, suicidal_thoughts_getting_worse, previous_suicide_attempt]
+source: nhs_suicidal_thoughts
+informed_by: [nhs_suicidal_thoughts, nhs_urgent_mental_health]

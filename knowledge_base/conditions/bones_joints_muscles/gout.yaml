@@ -1,0 +1,27 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: gout
+body_system: bones_joints_muscles
+# Looks like an infected joint. What tells it apart: the big toe, a sudden start, often
+# overnight, and having had gout before.
+entry_symptoms: [foot_pain, joint_pain, knee_pain, hand_pain]
+name: "Gout (sudden, very painful swelling in a joint, often the big toe)"
+medical_name: "Gout"
+snomed: "90560007"
+acuity_needed: soon
+danger: moderate
+diagnosed_by: had_gout_before
+prevalence: uncommon
+prevalence_when:
+  - {finding: toe_pain, prevalence: common}
+findings:
+  swollen_area_red_hot: strongly_supports
+  pain_started_suddenly: strongly_supports
+  toe_pain: strongly_supports
+  red_or_discoloured_skin: supports
+  severe_pain: supports
+  one_joint_only: supports
+  takes_statin_or_water_tablets: supports
+key_findings: [toe_pain, pain_started_suddenly, swollen_area_red_hot]
+source: nhs_gout
+informed_by: [nhs_gout, nhs_joint_pain, nhs_pain_in_the_top_of_the_foot]

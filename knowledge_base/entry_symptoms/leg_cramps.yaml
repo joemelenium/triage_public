@@ -1,0 +1,62 @@
+# Entry symptom: leg cramps.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Same rule format as back_pain.yaml.
+#
+# Most leg cramps are harmless. Must-not-miss causes that can feel like cramp:
+# a blood clot in a leg vein (DVT), which can travel to the lungs, and a sudden
+# loss of blood supply to the leg. Pain in the calf when walking that goes with
+# rest can be narrowed arteries in the legs.
+
+id: leg_cramps
+name: "Leg cramps"
+presenting_finding: leg_cramps
+status: "AI-drafted, not clinically reviewed"
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_cramp_cold_leg
+    description: "Leg or foot cold, pale, white, blue or grey"
+    when: limb_cold_pale_or_blue
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_limb_blood_supply_emergency
+    source: ai_judgement
+    note: "A painful, cold, pale leg can mean the blood supply is suddenly blocked, which needs treatment within hours. AI judgement, needs clinical review."
+
+  - id: rf_cramp_dvt_breathless
+    description: "Signs of a blood clot in the leg with shortness of breath or chest pain"
+    when: {all: [dvt_signs, {any: [short_of_breath, chest_pain]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_dvt_emergency
+    source: nhs_deep_vein_thrombosis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_cramp_dvt
+    description: "Signs of a blood clot in the leg: one leg swollen, warm and painful, usually in the calf"
+    when: dvt_signs
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_dvt_urgent
+    source: nhs_deep_vein_thrombosis
+    note: "Calf pain from a blood clot can be mistaken for cramp."
+
+outcome_rules:
+  - id: or_cramp_gp
+    description: "Leg cramps that disturb sleep, last longer than 10 minutes, or come with numbness or swelling in the legs"
+    when: {any: [stopping_daily_activities, cramps_last_over_10_minutes, leg_numb_or_swollen_with_cramps]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP"}
+    advice: advice_leg_cramps_gp
+    source: nhs_leg_cramps
+
+  - id: or_cramp_walking_pain
+    description: "Pain in the calf, thigh or bottom when walking that goes away after resting"
+    when: pain_with_exercise_eases_with_rest
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP"}
+    advice: advice_leg_cramps_gp
+    source: nhs_peripheral_arterial_disease
+    note: "Can be narrowed arteries in the legs (peripheral arterial disease) rather than cramp."
+
+default:
+  description: "Leg cramps with nothing that needs more help: they are usually harmless"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Leg cramps are common and usually harmless"}
+  advice: advice_leg_cramps_self_care
+  source: nhs_leg_cramps

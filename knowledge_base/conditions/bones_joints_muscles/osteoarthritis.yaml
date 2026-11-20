@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: osteoarthritis
+body_system: bones_joints_muscles
+# Mostly over 45. Stiffness after rest usually lasts less than 30 minutes, unlike
+# rheumatoid arthritis.
+entry_symptoms: [knee_pain, hip_pain, hand_pain, joint_pain, shoulder_pain, foot_pain]
+name: "Osteoarthritis (painful, stiff joints from wear and repair over time)"
+medical_name: "Osteoarthritis"
+snomed: "396275006"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_16, prevalence: rare}
+  - {finding: age_45_or_over, prevalence: common}
+findings:
+  pain_over_3_months: strongly_supports
+  pain_worse_moving_better_rest: strongly_supports
+  same_joints_both_sides: supports
+  grating_when_moving: supports
+  pain_getting_worse_or_recurring: supports
+key_findings: [pain_over_3_months, pain_worse_moving_better_rest, grating_when_moving]
+source: nhs_osteoarthritis
+informed_by: [nhs_osteoarthritis, nhs_joint_pain, nhs_hip_pain, nhs_knee_pain]

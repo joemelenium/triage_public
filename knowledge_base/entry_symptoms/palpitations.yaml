@@ -1,0 +1,175 @@
+# Entry symptom: heart palpitations.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Where two NHS website pages give different urgency for the same finding, the
+# more urgent one is used and the difference is written in the rule's note.
+# Rules with source ai_judgement come from clinical knowledge, not a page.
+
+id: palpitations
+name: "Heart palpitations"
+presenting_finding: palpitations
+also_covers: [nhs_heart_palpitations]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: palpitations_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - palpitations_now
+      - chest_pain
+      - short_of_breath
+      - light_headed
+      - fainted
+      - sweating
+      - nausea_or_vomiting
+
+  - id: palpitations_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - palpitations_irregular
+      - heart_beating_very_fast
+      - palpitations_during_exercise
+      - palpitations_came_with_symptoms
+
+  # Not a red-flag screen: signs that each lead to a GP. Asked as one checklist
+  # after the red flags, and only if the outcome so far is lower than this.
+  - id: palpitations_gp_checklist
+    level: routine
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - palpitations_keep_coming_back
+      - palpitations_last_minutes
+      - palpitations_irregular
+      - known_heart_condition
+      - family_heart_history
+      - paler_than_usual
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_palp_now_with_symptoms
+    description: "Heart racing or fluttering right now, with chest pain, shortness of breath, sweating, feeling sick, or feeling faint or fainting"
+    when: {all: [palpitations_now, {any: [chest_pain, short_of_breath, light_headed, fainted, sweating, nausea_or_vomiting]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_palpitations_999
+    source: nhs_atrial_fibrillation
+    note: "Source difference: the Heart palpitations page says call 999 or go to A&E for palpitations now with chest pain, shortness of breath or feeling faint. The Atrial fibrillation and SVT pages say call 999, and the Atrial fibrillation page adds sweating and feeling or being sick. The more urgent is used. The Atrial fibrillation page also lists a severe headache, which has no observation yet."
+
+  - id: rf_palp_not_going_away
+    description: "Heart racing or fluttering right now that has gone on for more than a few minutes"
+    when: {all: [palpitations_now, palpitations_last_minutes]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_palpitations_ae
+    source: nhs_heart_palpitations
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "AI reading of 'you currently have heart palpitations and they do not go away'. The page gives no time, so 'more than a few minutes' is used, from its advice to see a GP if they last longer than a few minutes. Marked soft because ongoing palpitations from a panic attack or caffeine are common."
+
+  - id: rf_palp_rhythm_episode_long
+    description: "A diagnosed heart rhythm problem and this episode has lasted longer than usual"
+    when: {all: [has_heart_rhythm_problem, episode_longer_than_usual]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_palpitations_999
+    source: nhs_svt
+    note: "The SVT page says this for diagnosed SVT. Applying it to other diagnosed heart rhythm problems is AI judgement."
+
+  - id: rf_palp_very_slow_heartbeat
+    description: "Heart beating very slowly, with feeling faint, passing out, chest pain or breathlessness"
+    when: {all: [heart_beating_very_slowly, {any: [light_headed, fainted, chest_pain, short_of_breath]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_palpitations_999
+    source: ai_judgement
+    note: "AI judgement from clinical knowledge: a very slow heartbeat with these signs can mean the heart is not pumping enough blood (for example heart block). Added after the pilot check."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_palp_stopped_with_symptoms
+    description: "Heart palpitations that came with chest pain, shortness of breath, or feeling faint or fainting, and have now stopped"
+    when: {any: [chest_pain, short_of_breath, light_headed, fainted, palpitations_came_with_symptoms]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask your GP surgery for an urgent appointment, call 111 or get help from 111 online"}
+    advice: advice_palpitations_urgent
+    source: nhs_heart_palpitations
+    note: "If the palpitations are still happening, the emergency rule above applies instead. The question about symptoms that came with the palpitations, even if they have stopped, was added in the breathing batch: before it, chest pain or feeling faint that had settled could not be reported."
+
+  - id: rf_palp_irregular_now
+    description: "An irregular heartbeat right now"
+    when: {all: [palpitations_now, palpitations_irregular]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_palpitations_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: an irregular heartbeat happening now may be atrial fibrillation, which is best caught on a heart tracing (ECG) while it is happening. The Atrial fibrillation page says see a GP (non-urgent) if you think you have it."
+
+  - id: rf_palp_fast_now
+    description: "A very fast heartbeat right now"
+    when: {all: [palpitations_now, heart_beating_very_fast]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_palpitations_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: a very fast heartbeat happening now is best caught on a heart tracing (ECG). If it goes on for more than a few minutes, the emergency rule above applies."
+
+  - id: rf_palp_during_exercise
+    description: "Heart racing or fluttering that comes on while exercising"
+    when: palpitations_during_exercise
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Get help from NHS 111 or an urgent GP appointment today"}
+    advice: advice_palpitations_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: it is AI judgement
+    note: "Clinical knowledge: palpitations brought on by exercise can be a sign of a heart problem and should be checked promptly. No NHS page in the source log gives an urgency for this. Needs clinical review."
+
+outcome_rules:
+  - id: or_palp_keep_coming_back
+    description: "Palpitations that keep coming back or are happening more often"
+    when: palpitations_keep_coming_back
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_palpitations_gp
+    source: nhs_heart_palpitations
+
+  - id: or_palp_last_minutes
+    description: "Palpitations that last longer than a few minutes"
+    when: palpitations_last_minutes
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_palpitations_gp
+    source: nhs_heart_palpitations
+
+  - id: or_palp_heart_condition
+    description: "Palpitations in someone with a heart condition"
+    when: known_heart_condition
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_palpitations_gp
+    source: nhs_heart_palpitations
+
+  - id: or_palp_family_history
+    description: "Palpitations and a history of heart problems in the family"
+    when: {all: [age_16_or_over, family_heart_history]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_palpitations_gp
+    source: nhs_heart_palpitations
+    note: "The page says 'a history of heart problems in your family'. The existing observation asks about heart problems in a close relative before 60, which is narrower. Needs review."
+
+  - id: or_palp_irregular
+    description: "A heartbeat that feels irregular (possible atrial fibrillation)"
+    when: palpitations_irregular
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_palpitations_gp
+    source: nhs_atrial_fibrillation
+
+  - id: or_palp_pale
+    description: "Palpitations with skin paler than usual (possible anaemia)"
+    when: paler_than_usual
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_palpitations_gp
+    source: nhs_iron_deficiency_anaemia
+
+default:
+  description: "Palpitations in someone who feels well, with nothing that needs more help: usually harmless"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Heart palpitations are usually harmless. Avoid things that can trigger them."}
+  advice: advice_palpitations_self_care
+  source: nhs_heart_palpitations
+  note: "The page says palpitations are common and usually harmless, and to get help if they keep coming back or come with other symptoms. Self-care as the default is a reading of that."

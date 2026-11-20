@@ -1,0 +1,67 @@
+# Entry symptom: twitching eyes and muscles.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The Twitching page has no urgent advice: twitches are very rarely serious.
+# Jerking of the whole body is a seizure, and new weakness is covered by the
+# weakness entry symptom; the checklist below brings those in.
+
+id: twitching
+name: "Twitching eyes and muscles"
+presenting_finding: twitching
+also_covers: [nhs_twitching_eyes_and_muscles]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: twitching_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - had_a_fit
+      - weakness_sudden
+
+red_flags:
+  - id: rf_tw_sudden_weakness
+    description: "Twitching with weakness that came on suddenly"
+    when: weakness_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_stroke
+    source: nhs_paralysis
+
+outcome_rules:
+  - id: or_tw_over_2_weeks
+    description: "A twitch that has lasted more than 2 weeks"
+    when: twitch_over_2_weeks
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_twitching_gp
+    source: nhs_twitching_eyes_and_muscles
+
+  - id: or_tw_more_than_one_place
+    description: "Twitching in more than one place"
+    when: twitch_more_than_one_place
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_twitching_gp
+    source: nhs_twitching_eyes_and_muscles
+
+  - id: or_tw_weak_or_stiff
+    description: "The twitching area feels weak or stiff"
+    when: twitch_area_weak_or_stiff
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_twitching_gp
+    source: nhs_twitching_eyes_and_muscles
+
+  - id: or_tw_new_medicine
+    description: "A twitch that may be caused by a prescribed medicine"
+    when: new_medicine_recently
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Do not stop a prescribed medicine without advice."}
+    advice: advice_twitching_gp
+    source: nhs_twitching_eyes_and_muscles
+
+default:
+  description: "A twitch with nothing that needs more help: usually harmless and stops in days or weeks"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Twitches usually stop on their own within a few days or weeks"}
+  advice: advice_twitching_self_care
+  source: nhs_twitching_eyes_and_muscles

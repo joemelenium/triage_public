@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: geographic_tongue
+body_system: ear_nose_throat
+entry_symptoms: [sore_or_white_tongue]
+name: "Geographic tongue (harmless patches on the tongue that look like a map)"
+medical_name: "Geographic tongue"
+snomed: "59032001"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+findings:
+  # What tells it apart: smooth red patches with a pale edge that move around the tongue from day to
+  # day.
+  tongue_map_patches: strongly_supports
+  white_patches_in_mouth: supports
+  tongue_pain_not_going: supports
+key_findings: [tongue_map_patches]
+source: nhs_sore_or_white_tongue
+informed_by: [nhs_sore_or_white_tongue]

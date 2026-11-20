@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: tremor_from_stress_or_caffeine
+body_system: brain_and_nerves
+entry_symptoms: [tremor]
+name: "Shaking from stress, tiredness, caffeine or alcohol"
+medical_name: "Enhanced physiological tremor"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # Everyone has a slight tremor. It gets more noticeable with stress, tiredness, caffeine, alcohol or smoking.
+  tremor_with_stress_or_caffeine: strongly_supports
+  lots_of_caffeine_or_alcohol: supports
+  stressful_time: supports
+  feeling_of_panic: supports
+key_findings: [tremor_with_stress_or_caffeine, lots_of_caffeine_or_alcohol]
+source: nhs_tremor_or_shaking_hands
+informed_by: [nhs_tremor_or_shaking_hands]

@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: genital_herpes
+body_system: urinary_and_male
+entry_symptoms: [penis_lump_or_spot, painful_or_frequent_peeing]
+name: "Genital herpes"
+medical_name: "Genital herpes simplex"
+snomed: "33839006"
+# The page says go to a sexual health clinic as soon as possible. Level soon (AI
+# judgement): treatment works best if started within a few days.
+acuity_needed: soon
+danger: moderate
+prevalence: common
+prevalence_when:
+  - {finding: penis_lump_or_spot, prevalence: common}
+  - {finding: painful_or_frequent_peeing, prevalence: rare}
+findings:
+  painful_blisters_or_sores: strongly_supports
+  pain_when_peeing: supports
+  new_or_unprotected_sex: supports
+  very_high_temperature: supports
+key_findings: [painful_blisters_or_sores, pain_when_peeing]
+source: nhs_genital_herpes
+informed_by: [nhs_genital_herpes, nhs_penis_lumps_and_spots]

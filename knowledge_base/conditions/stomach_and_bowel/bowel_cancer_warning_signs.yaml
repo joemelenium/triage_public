@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bowel_cancer_warning_signs
+body_system: stomach_and_bowel
+entry_symptoms: [bleeding_from_bottom, constipation, bloating, bowel_incontinence, stomach_ache]
+name: "Bowel cancer warning signs"
+medical_name: "Possible colorectal cancer"
+snomed: "1286877004"
+# Needs a GP soon for tests. Danger serious: finding it early makes it easier to treat.
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: uncommon}
+findings:
+  blood_in_poo_3_weeks: strongly_supports
+  bowel_habit_change_3_weeks: strongly_supports
+  weight_loss: supports
+  very_tired: supports
+  bleeding_from_bottom: supports
+key_findings: [bowel_habit_change_3_weeks, blood_in_poo_3_weeks, weight_loss]
+source: nhs_bowel_cancer
+informed_by: [nhs_bowel_cancer, nhs_bleeding_from_the_bottom_rectal_bleeding, nhs_constipation]

@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: orbital_cellulitis
+body_system: eyes
+# An infection behind the eye. Can spread to the brain. More common in children,
+# often after a cold or sinusitis.
+entry_symptoms: [eyelid_problem, red_eye, eye_pain, bulging_eyes, double_vision]
+name: "Infection behind the eye (orbital cellulitis)"
+medical_name: "Orbital cellulitis"
+snomed: "194005002"
+acuity_needed: emergency
+danger: critical
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_16, prevalence: rare}
+findings:
+  eyelid_red_hot_painful: strongly_supports
+  eye_hard_to_move: strongly_supports
+  eyelid_swollen: strongly_supports
+  bulging_eyes: supports
+  eye_pain_moving_eye: supports
+  very_high_temperature: supports
+  vision_change: supports
+  face_pain_around_nose_and_eyes: supports    # often after sinusitis
+  feels_very_unwell: supports
+key_findings: [eye_hard_to_move, eyelid_red_hot_painful, bulging_eyes, very_high_temperature]
+source: nhs_cellulitis
+informed_by: [nhs_cellulitis, nhs_bulging_eyes, nhs_eyelid_problems]

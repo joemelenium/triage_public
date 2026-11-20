@@ -1,0 +1,93 @@
+# Entry symptom: penis lumps and spots (also a sore, rash or swelling on the penis).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The source says always get lumps or spots on the penis checked, so the default
+# is a GP or sexual health clinic, as a floor. There is no urgent-level checklist
+# beyond a high temperature.
+
+id: penis_lumps_and_spots
+name: "Penis lumps and spots"
+presenting_finding: penis_lump_or_spot
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: penis_emergency_screen
+    level: emergency
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - foreskin_stuck_back
+      - penis_injury_during_sex
+      - genital_skin_dark_or_spreading
+
+  - id: penis_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - very_high_temperature
+      - cannot_pee
+      - painful_blisters_or_sores
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_pl_foreskin_stuck
+    description: "Foreskin pulled back and will not go back over the end of the penis"
+    when: foreskin_stuck_back
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_penis_ae
+    source: nhs_phimosis
+
+  - id: rf_pl_injury
+    description: "Penis bent or hurt, often during sex, with a snap or pop, then swelling or bruising: possible broken penis"
+    when: penis_injury_during_sex
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now"}
+    advice: advice_penis_ae
+    source: ai_judgement
+    note: "Clinical knowledge: a tear in the erect penis (penile fracture) needs surgery soon. No NHS page in the source log covers it."
+
+  - id: rf_pl_skin_dark_spreading
+    description: "Skin around the genitals turning dark, or pain and swelling spreading fast: possible Fournier's gangrene"
+    when: genital_skin_dark_or_spreading
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_genital_infection_ae
+    source: ai_judgement
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_pl_temperature
+    description: "A lump, sore or rash on the penis with a high temperature"
+    when: very_high_temperature
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_penis_urgent
+    source: nhs_gonorrhoea
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "The Gonorrhoea page asks for an urgent GP appointment or 111 for a high temperature with gonorrhoea, as a sign of a more serious infection. Applying it to all genital symptoms with a high temperature is AI judgement; a first outbreak of genital herpes often comes with one, so it is soft."
+
+  - id: rf_pl_cannot_pee
+    description: "A problem with the penis and unable to pee"
+    when: cannot_pee
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_cannot_pee_urgent
+    source: nhs_prostate_enlargement
+    note: "The unable to pee entry symptom also applies once this is reported."
+
+outcome_rules:
+  - id: or_pl_painful_blisters
+    description: "Small painful blisters or sores: possible genital herpes"
+    when: painful_blisters_or_sores
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "Go to a sexual health clinic as soon as possible"}
+    advice: advice_sexual_health_clinic_soon
+    source: nhs_genital_herpes
+    note: "The page says go to a sexual health clinic as soon as possible. 'Soon' (within a few days) is the nearest level."
+
+default:
+  description: "A lump, spot, sore, rash or swelling on the penis: always get it checked"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP or go to a sexual health clinic. The source gives no fixed time."}
+  advice: advice_penis_gp
+  source: nhs_penis_lumps_and_spots
+  # A floor: the source says you should always get them checked out.
+  floor: true

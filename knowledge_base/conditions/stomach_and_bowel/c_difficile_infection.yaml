@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: c_difficile_infection
+body_system: stomach_and_bowel
+entry_symptoms: [diarrhoea_or_vomiting, stomach_ache]
+name: "A bowel infection after antibiotics (C. difficile)"
+medical_name: "Clostridioides difficile infection"
+# The C. difficile page says an urgent GP appointment or 111 for diarrhoea while
+# taking, or soon after taking, antibiotics.
+acuity_needed: urgent
+danger: serious
+# Rare overall. Recent antibiotics is almost always present, so it is linked as a
+# finding: a "yes" raises it, and a "no" makes it very unlikely.
+prevalence: rare
+findings:
+  recent_antibiotics: strongly_supports
+  diarrhoea: supports
+  diarrhoea_over_7_days: supports
+  sa_comes_in_waves: supports
+  very_high_temperature: supports
+  feels_very_unwell: supports
+key_findings: [recent_antibiotics, diarrhoea_over_7_days]
+source: nhs_c_difficile
+informed_by: [nhs_c_difficile]

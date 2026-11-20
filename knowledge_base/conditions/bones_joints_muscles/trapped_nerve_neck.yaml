@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: trapped_nerve_neck
+body_system: bones_joints_muscles
+entry_symptoms: [neck_pain, arm_pain, shoulder_pain]
+name: "A trapped nerve in the neck, causing pain or tingling down the arm"
+medical_name: "Cervical radiculopathy"
+snomed: "54404000"
+acuity_needed: routine
+danger: moderate
+prevalence: uncommon
+findings:
+  pain_spreads_down_arm: strongly_supports
+  arm_hand_tingling: strongly_supports
+  arm_weakness: supports
+  pins_needles_constant: supports
+key_findings: [pain_spreads_down_arm, arm_hand_tingling, arm_weakness]
+source: nhs_cervical_spondylosis
+informed_by: [nhs_cervical_spondylosis, nhs_neck_pain_and_stiff_neck]

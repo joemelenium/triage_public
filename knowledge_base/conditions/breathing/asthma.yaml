@@ -1,0 +1,41 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: asthma
+body_system: breathing
+# Covers asthma that has not been diagnosed yet, and asthma that is worse than
+# usual, including an asthma attack. A known asthma attack is handled by the
+# sourced rules (999 if the reliever does not help; a GP within 2 days once it
+# has settled), so has_asthma is diagnosed_by: a known, managed condition does
+# not on its own raise the outcome.
+entry_symptoms: [wheezing, short_of_breath, cough, blue_or_grey_skin]
+name: "Asthma (a long-term condition that makes the airways narrow), or an asthma attack"
+medical_name: "Asthma, including an acute asthma attack"
+snomed: "195967001"
+# Level soon: new asthma symptoms need a GP to diagnose and treat them, and the
+# Asthma page says to see a GP within 2 days of an attack. Danger moderate: an
+# attack can be life-threatening, but the red flags catch a severe one.
+acuity_needed: routine   # the source page says "Non-urgent advice: See a GP"; attacks and warning signs are rules (DECISIONS 168)
+danger: moderate
+diagnosed_by: has_asthma
+# The most common cause of wheezing, and a common cause of breathlessness and of a
+# cough that keeps coming back. Wheezing raises the starting chance rather than
+# being linked as a finding: within the wheezing entry symptom it is not evidence,
+# and for breathlessness or a cough a "no" to wheezing should not rule asthma out.
+# Without a wheeze, "uncommon".
+prevalence: uncommon
+prevalence_when:
+  - {finding: has_asthma, prevalence: very_common}
+  - {finding: wheezing, prevalence: common}
+findings:
+  # What tells it apart from a chest infection, COPD or heart failure: it comes and
+  # goes, is worse at night or early morning, and is set off by exercise, cold air
+  # or allergies, often in someone with eczema or hay fever.
+  wheeze_comes_and_goes: strongly_supports
+  wheeze_with_exercise_or_cold_air: supports
+  triggered_by_allergy: supports
+  cough_worse_at_night: supports
+  has_allergies: supports
+  cp_tight_or_squeezing: supports       # a tight chest is one of the main asthma symptoms
+key_findings: [wheeze_comes_and_goes, wheeze_with_exercise_or_cold_air, triggered_by_allergy, has_allergies, asthma_attack_now, asthma_attack_recovered]
+source: nhs_asthma
+informed_by: [nhs_asthma, nhs_shortness_of_breath, nhs_cough]

@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: stretch_marks_from_growth
+body_system: skin_and_hair
+entry_symptoms: [stretch_marks]
+name: "Stretch marks from growth, pregnancy or weight change"
+medical_name: "Physiological striae"
+snomed: "201067006"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart from Cushing's syndrome: stretch marks after pregnancy, puberty or a quick change in weight, without other body changes.
+  pregnant_or_recently_given_birth: supports
+  gained_or_lost_weight_quickly: supports
+key_findings: [gained_or_lost_weight_quickly]
+source: nhs_stretch_marks
+informed_by: [nhs_stretch_marks]

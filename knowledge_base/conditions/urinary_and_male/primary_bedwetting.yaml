@@ -1,0 +1,19 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: primary_bedwetting
+body_system: urinary_and_male
+entry_symptoms: [bedwetting]
+name: "Bedwetting that a child usually grows out of"
+medical_name: "Primary nocturnal enuresis"
+snomed: "450845009"
+# The Bedwetting page says it is common, often runs in families, and most children
+# grow out of it.
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  bedwetting_never_dry: strongly_supports
+  bedwetting_runs_in_family: supports
+key_findings: [bedwetting_never_dry, bedwetting_runs_in_family]
+source: nhs_bedwetting
+informed_by: [nhs_bedwetting]

@@ -1,0 +1,50 @@
+# Entry symptom: a lump or swelling in the breast, chest or armpit.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS Breast lumps page says always get a lump checked by a GP, so the
+# default is a GP and a floor. A hot, red or swollen breast, or a high
+# temperature, can be a breast infection or abscess, which needs urgent help
+# (Breast pain and Breast abscess pages). Men can get breast lumps too, so the
+# main symptom carries no sex.
+
+id: breast_lump
+name: "Breast lump"
+presenting_finding: breast_lump
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: breast_lump_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - breast_hot_red_swollen
+      - very_high_temperature
+      - feels_very_unwell
+
+red_flags:
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_bl_hot_red_swollen
+    description: "Breast lump with part of the breast hot, swollen or a different colour: possible breast infection or abscess"
+    when: breast_hot_red_swollen
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_abscess
+    note: "The Breast pain page gives the same advice."
+
+  - id: rf_breast_lump_high_temperature
+    description: "Breast lump with a very high temperature, or feeling hot, cold or shivery, or feeling very unwell"
+    when: {any: [very_high_temperature, feels_very_unwell]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_breast_infection_urgent
+    source: nhs_breast_pain
+    note: "The Breast pain page says urgent help for breast pain with a very high temperature. The Breast abscess page lists a high temperature and feeling generally unwell as abscess symptoms."
+
+outcome_rules: []
+
+default:
+  description: "A lump in the breast or armpit: always get it checked by a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_breast_lump_gp
+  source: nhs_breast_lump
+  # A floor: the source says always get a breast lump checked by a GP.
+  floor: true

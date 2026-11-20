@@ -1,0 +1,9 @@
+# Example case for trying the engine. Written alongside the knowledge base,
+# so it is NOT an evaluation case. Synthetic. Not a real patient.
+description: "Adult, 50, chest pain and sore throat together, palpitations"
+presenting: [chest_pain, sore_throat]
+context:
+  age: 50
+answers:
+  palpitations: yes
+otherwise: no

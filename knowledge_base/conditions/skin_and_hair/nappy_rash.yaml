@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: nappy_rash
+body_system: skin_and_hair
+entry_symptoms: [rash]
+name: "Nappy rash"
+medical_name: "Diaper dermatitis"
+snomed: "91487003"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_rare
+prevalence_when:
+  - {finding: age_under_1, prevalence: common}
+  - {finding: age_under_5, prevalence: uncommon}
+findings:
+  # What tells it apart: red, sore patches in the nappy area of a baby.
+  rash_in_nappy_area: strongly_supports
+  rash_sore_or_painful: supports
+  rash_blisters: supports
+key_findings: [rash_in_nappy_area]
+source: nhs_nappy_rash
+informed_by: [nhs_nappy_rash, nhs_rashes_babies_and_children]

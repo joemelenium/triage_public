@@ -1,0 +1,48 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: menopause
+body_system: womens_health
+# Hot flushes and night sweats are among the commonest symptoms. The page says see a GP
+# if they are troubling you.
+entry_symptoms: [night_sweats, low_sex_drive, urinary_incontinence, irregular_periods, missed_or_late_period, heavy_periods, vaginal_dryness, sweating_a_lot, blushing]
+name: "Perimenopause or menopause (when periods change and then stop)"
+medical_name: "Menopausal syndrome"
+acuity_needed: routine
+danger: minor
+snomed: "289903006"
+sex: female
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: very_common}
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: night_sweats, prevalence: uncommon}
+  - {finding: low_sex_drive, prevalence: uncommon}
+  - {finding: irregular_periods, prevalence: uncommon}
+  - {finding: missed_or_late_period, prevalence: uncommon}
+  - {finding: heavy_periods, prevalence: uncommon}
+  - {finding: vaginal_dryness, prevalence: uncommon}
+  - {finding: sweating_a_lot, prevalence: uncommon}
+  - {finding: blushing, prevalence: uncommon}
+  - {finding: urinary_incontinence, prevalence: rare}
+findings:
+  # What tells it apart: hot flushes or changing periods, aged 45 or over.
+  hot_flushes: strongly_supports
+  trouble_sleeping: supports
+  low_mood: supports
+  # From the urinary_and_male card for this condition (merged):
+  periods_changed: strongly_supports
+  very_tired: supports
+  # From the womens_health card for this condition (merged):
+  night_sweats: supports
+  vaginal_dryness: supports
+  irregular_periods: supports
+  periods_stopped_12_months: supports
+key_findings: [hot_flushes, periods_changed, night_sweats, vaginal_dryness]
+source: nhs_menopause
+informed_by: [nhs_menopause, nhs_night_sweats, nhs_loss_of_libido, nhs_menopause_symptoms, nhs_irregular_periods, nhs_missed_or_late_periods, nhs_vaginal_dryness, nhs_blushing]
+# Merged with the urinary_and_male card for this condition. Its notes: Merged with the womens_health card for this condition. Its
+# notes: Changes to periods with hot flushes and night sweats, usually from 45. A GP can
+# help if wanted, so level self-manageable; the entry symptoms' own rules send anyone
+# who needs it to a GP. Merged with the skin_and_hair card for this condition. Its
+# notes: What tells it apart: hot flushes and night sweats in a woman around her 40s or
+# 50s, with periods becoming irregular or stopping.

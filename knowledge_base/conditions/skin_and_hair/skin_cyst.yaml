@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: skin_cyst
+body_system: skin_and_hair
+entry_symptoms: [skin_lump]
+name: "Skin cyst (a round lump under the skin, often filled with fluid)"
+medical_name: "Epidermoid cyst of skin"
+snomed: "419603000"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from a lipoma: smooth and round, just under the skin, sometimes with a small dark dot in the middle. It can become sore and red if infected.
+  lump_round_with_central_dot: strongly_supports
+  pus_or_fluid_leaking: supports
+  swollen_area_red_hot: supports
+  lump_more_than_2_weeks: supports
+key_findings: [lump_round_with_central_dot]
+source: nhs_skin_cyst
+informed_by: [nhs_skin_cyst, nhs_lumps]

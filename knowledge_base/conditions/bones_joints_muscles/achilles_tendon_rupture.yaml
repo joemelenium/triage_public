@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: achilles_tendon_rupture
+body_system: bones_joints_muscles
+# Needs treatment within days. What tells it apart: a snap or kick felt at the back of
+# the heel, and not being able to stand on tiptoe.
+entry_symptoms: [foot_pain, injury_or_fall]
+name: "A torn Achilles tendon (the tendon at the back of the heel)"
+medical_name: "Rupture of Achilles tendon"
+snomed: "429513001"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+findings:
+  snap_back_of_heel: strongly_supports
+  cannot_stand_on_tiptoe: strongly_supports
+  heel_pain: supports
+  calf_ankle_swelling_bruising: supports
+  injury_or_fall: supports
+key_findings: [snap_back_of_heel, cannot_stand_on_tiptoe]
+source: nhs_heel_pain
+informed_by: [nhs_heel_pain]

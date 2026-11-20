@@ -1,0 +1,81 @@
+# Entry symptom: irregular periods.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# The NHS page says to speak to a GP if periods are irregular, so the default is
+# a GP and a floor. The emergency and urgent rules are for a possible ectopic
+# pregnancy or heavy blood loss (Ectopic pregnancy page and AI judgement).
+
+id: irregular_periods
+name: "Irregular periods"
+presenting_finding: irregular_periods
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: irregular_periods_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - sa_sudden_severe
+      - shoulder_tip_pain
+      - fainted
+      - heavy_vaginal_bleeding
+
+  - id: irregular_periods_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - may_be_pregnant
+      - pelvic_pain
+      - one_sided_lower_tummy_pain
+      - light_headed
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ip_ectopic_burst_signs
+    description: "Irregular bleeding with a sharp, sudden and very bad tummy pain, pain in the tip of the shoulder, or passing out"
+    when: {any: [sa_sudden_severe, shoulder_tip_pain, fainted]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_possible_ectopic_emergency
+    source: nhs_ectopic_pregnancy
+    note: "The Ectopic pregnancy page lists these as signs of a burst ectopic pregnancy. Applying them to anyone with irregular periods is AI judgement: an ectopic pregnancy can look like an irregular period."
+
+  - id: rf_ip_heavy_and_faint
+    description: "Very heavy bleeding with feeling faint or dizzy"
+    when: {all: [heavy_vaginal_bleeding, {any: [light_headed, fainted]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_heavy_bleeding_emergency
+    source: ai_judgement
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ip_pregnant_with_pain
+    description: "Could be pregnant, with tummy pain"
+    when: {all: [{any: [may_be_pregnant, pregnant_now]}, {any: [pelvic_pain, one_sided_lower_tummy_pain]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_possible_ectopic_urgent
+    source: nhs_ectopic_pregnancy
+
+  - id: rf_ip_heavy_bleeding
+    description: "Irregular periods with very heavy bleeding"
+    when: heavy_vaginal_bleeding
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_heavy_periods_urgent
+    source: ai_judgement
+    note: "Clinical knowledge: bleeding heavy enough to soak a pad soon after putting it on needs checking the same day. Split from feeling light-headed (below), which is the weak part, so a likely mild cause cannot lower heavy bleeding."
+
+  - id: rf_ip_light_headed
+    description: "Irregular periods and feeling light-headed"
+    when: light_headed
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_heavy_periods_urgent
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: feeling light-headed has many harmless causes
+
+outcome_rules: []
+
+default:
+  description: "Irregular periods: speak to a GP"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_irregular_periods_gp
+  source: nhs_irregular_periods
+  # A floor: the source says to see a GP if your periods are irregular.
+  floor: true

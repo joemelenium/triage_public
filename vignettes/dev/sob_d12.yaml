@@ -1,0 +1,56 @@
+id: sob_d12
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath]
+
+summary: "A 71-year-old man, ex-smoker, who for three days has been more out of breath than usual and coughing up more phlegm, now green. His record shows COPD, but he only says his doctor told him his lungs were 'damaged from the smoking' and is not sure what it is called."
+
+opening_statement: "My chest's always been a bit bad, but these last three days I'm more puffed than normal and bringing up a lot more green stuff."
+
+findings:
+  present: [short_of_breath, sob_everyday_activity, copd_flare_up, cough, cough_phlegm, phlegm_yellow_or_green, cough_mucus_or_temperature, smoker, long_term_condition, sob_more_than_usual, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, sudden_confusion, passed_out, chest_pain, cp_tight_or_squeezing, cp_heavy, cp_spreads, coughing_up_blood, very_high_temperature, leg_pain_or_swelling, palpitations, heart_beating_very_fast, swollen_ankles, sob_lying_flat, breathing_very_fast, skin_blotchy, has_asthma, known_heart_condition, weight_loss, feels_very_unwell, has_heart_failure]
+  unknown: [has_copd]
+
+context:
+  none: {}
+  basic: {age: 71, sex: male}
+  full:
+    age: 71
+    sex: male
+    findings: {has_copd: "yes", smoker: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "COPD with more breathlessness than usual (a flare-up)"
+    findings: [copd_flare_up]
+    minimum_acuity: urgent
+    source: {page: copd.txt, quote: "you have chronic obstructive pulmonary disease (COPD) and you're more short of breath than usual"}
+
+safety_netting_should_cover:
+  - point: "Urgent GP appointment or NHS 111"
+    any_of: ["111", "GP"]
+  - point: "Rescue pack, if he has one"
+    any_of: ["rescue pack", "antibiotics", "steroids"]
+  - point: "Call 999 if severe difficulty breathing, lips or skin blue or grey, or confusion"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: copd.txt, quote: "you have chronic obstructive pulmonary disease (COPD) and you're more short of breath than usual"}
+  minimum_safe_acuity: {page: shortness_of_breath.txt, quote: "you have difficulty breathing – you may be more short of breath than usual"}
+
+variants: []
+
+context_test:
+  what_context_adds: "The record shows a COPD diagnosis (has_copd yes), which makes copd_flare_up answerable. The patient is not sure his condition is called COPD."
+  expected_direction: same
+
+atypical: false
+notes: "Context test where the outcome should NOT change: copd.txt (COPD and more short of breath than usual) and shortness_of_breath.txt ('Contact NHS 111 if you have difficulty breathing – you may be more short of breath than usual') both give urgent; pneumonia.txt also gives urgent for yellow or green phlegm. copd_flare_up is present but is only asked when has_copd is yes, so it can only come into play with full context. Tests that context improves the explanation without changing the acuity. sob_more_than_usual, a question added later, is yes: he knows his lungs are damaged (a long-term lung condition, whatever it is called) and he is more breathless than usual, so the engine can reach the urgent advice without the record."

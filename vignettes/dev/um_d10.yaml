@@ -1,0 +1,61 @@
+id: um_d10
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- urinary_incontinence
+summary: 46-year-old woman who has had three children. She leaks pee when she coughs, sneezes or goes running, and this has been getting more of a nuisance over the past year.
+opening_statement: I leak a bit of wee whenever I cough or sneeze, and I've had to give up running because of it.
+findings:
+  present:
+  - urinary_incontinence
+  - leaks_when_coughing_or_laughing
+  - has_given_birth
+  absent:
+  - leaking_started_suddenly
+  - leaks_all_the_time
+  - leaks_with_sudden_urge
+  - pain_when_peeing
+  - peeing_more_often
+  - blood_in_urine
+  - saddle_numbness
+  - back_pain
+  - legs_weak_or_numb
+  - bowel_incontinence
+  - very_high_temperature
+  - cloudy_pee
+  - smelly_urine
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 46
+    sex: female
+  full:
+    age: 46
+    sex: female
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP; it is common and treatable
+  any_of:
+  - GP
+- point: Pelvic floor exercises
+  any_of:
+  - pelvic floor
+- point: Cut down on caffeine and alcohol
+  any_of:
+  - caffeine
+  - alcohol
+source:
+  expected_outcome:
+    page: urinary_incontinence.txt
+    quote: See a GP if you have any type of urinary incontinence.
+  minimum_safe_acuity:
+    page: urinary_incontinence.txt
+    quote: See a GP if you have any type of urinary incontinence.
+atypical: false
+notes: Stress incontinence. Pregnancy and vaginal birth are listed as risk factors. New leaking with back pain or numbness would point to the sciatica.txt emergency; these are absent.

@@ -1,0 +1,18 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pregnancy_cramps
+body_system: bones_joints_muscles
+entry_symptoms: [leg_cramps]
+name: "Leg cramps in pregnancy"
+medical_name: "Leg cramps in pregnancy"
+acuity_needed: self_manageable
+danger: minor
+prevalence: rare
+prevalence_when:
+  - {finding: pregnant_or_recently_given_birth, prevalence: common}
+findings:
+  pregnant_or_recently_given_birth: strongly_supports
+  cramps_at_night: supports
+key_findings: [pregnant_or_recently_given_birth]
+source: nhs_leg_cramps
+informed_by: [nhs_leg_cramps]

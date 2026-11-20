@@ -1,0 +1,37 @@
+# Entry symptom: worms in humans (threadworms, roundworm, tapeworm, hookworm).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: worms
+name: "Worms in humans"
+presenting_finding: worms_seen
+status: "AI-drafted, not clinically reviewed"
+
+screens: []
+
+red_flags: []
+
+outcome_rules:
+  - id: or_worms_other_types
+    description: "A large worm, a piece of worm or eggs, a worm-shaped rash, sickness, diarrhoea or stomach ache for more than 2 weeks, or weight loss: possible roundworm, hookworm or tapeworm"
+    when: {any: [large_worm_or_eggs, worm_shaped_rash, tummy_symptoms_over_2_weeks, weight_loss]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. Tell them if you have been abroad in the last 2 years."}
+    advice: advice_worms_gp
+    source: nhs_worms_in_humans
+
+  - id: or_worms_threadworms_young_or_pregnant
+    description: "Possible threadworms in a child under 2, or in someone pregnant or breastfeeding"
+    when: {all: [{any: [threadlike_worms, itchy_bottom_worse_at_night]}, {any: [age_under_2, pregnant_or_recently_given_birth]}]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP, midwife or health visitor. The source gives no fixed time."}
+    advice: advice_worms_gp
+    source: nhs_itchy_anus
+
+default:
+  description: "Small white worms like thread, or itching around the bottom: probably threadworms, which a pharmacist can treat"
+  outcome: {acuity: routine, level_of_care: community_pharmacy, timeframe: no_fixed_time, timeframe_detail: "See a pharmacist. The source gives no fixed time."}
+  advice: advice_worms_pharmacy
+  source: nhs_worms_in_humans
+  note: "Threadworms are by far the commonest worms in the UK, so a pharmacist is the default. Other worms go to a GP by the rule above."

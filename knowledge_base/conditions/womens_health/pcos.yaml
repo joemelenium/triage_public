@@ -1,0 +1,31 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pcos
+body_system: womens_health
+entry_symptoms: [irregular_periods, missed_or_late_period, excess_hair_growth]
+name: "PCOS or PMOS (a hormone condition that affects the ovaries)"
+medical_name: "Polycystic ovary syndrome (PCOS), now called polyendocrine metabolic ovarian syndrome (PMOS)"
+snomed: "237055002"
+# Irregular or missed periods with more hair on the face or body, oily skin or
+# weight gain.
+acuity_needed: routine
+danger: moderate
+sex: female
+prevalence: common
+prevalence_when:
+  - {finding: sex_male, prevalence: very_rare}
+  - {finding: excess_hair_growth, prevalence: very_common}
+findings:
+  excess_hair_growth: strongly_supports
+  irregular_periods: strongly_supports
+  acne_or_oily_skin: supports
+  weight_gain: supports
+  difficulty_getting_pregnant: supports
+  missed_3_periods: supports
+  # From the skin_and_hair card for this condition (merged):
+  periods_changed: strongly_supports
+key_findings: [excess_hair_growth, acne_or_oily_skin, weight_gain, periods_changed]
+source: nhs_pcos
+informed_by: [nhs_pcos, nhs_irregular_periods, nhs_missed_or_late_periods, nhs_hirsutism]
+# Merged with the skin_and_hair card for this condition. Its notes:
+# What tells it apart from Cushing's syndrome or a hormone-producing growth: irregular periods, oily skin or acne and weight gain, starting around puberty and building up slowly.

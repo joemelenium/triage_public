@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: hay_fever
+body_system: breathing
+entry_symptoms: [cough, sore_throat, blocked_or_runny_nose, catarrh, loss_of_smell_or_taste]
+name: "Hay fever (an allergy to pollen)"
+medical_name: "Allergic rhinitis caused by pollen"
+snomed: "21719001"
+acuity_needed: self_manageable
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_under_5, prevalence: rare}
+findings:
+  # What tells it apart from a cold: itchy, watery eyes and sneezing, set off by
+  # pollen, lasting weeks or months.
+  itchy_watery_eyes_sneezing: strongly_supports
+  triggered_by_allergy: strongly_supports
+  blocked_or_runny_nose: strongly_supports
+  has_allergies: supports
+  cough_dry: supports
+key_findings: [itchy_watery_eyes_sneezing, triggered_by_allergy, has_allergies]
+source: nhs_hay_fever
+informed_by: [nhs_hay_fever]

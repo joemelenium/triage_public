@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: oesophageal_cancer
+body_system: ear_nose_throat
+entry_symptoms: [difficulty_swallowing]
+name: "Cancer of the food pipe"
+medical_name: "Oesophageal cancer"
+snomed: "363402007"
+acuity_needed: soon
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: age_45_or_over, prevalence: uncommon}
+findings:
+  # What tells it apart from reflux: swallowing that gets harder over weeks, with food sticking in
+  # the chest and weight loss.
+  swallowing_getting_worse: strongly_supports
+  food_sticks_in_chest: strongly_supports
+  weight_loss: supports
+  heartburn_or_sour_taste: supports
+  hoarse_voice: supports
+  very_tired: supports
+key_findings: [swallowing_getting_worse, food_sticks_in_chest, weight_loss]
+source: nhs_oesophageal_cancer
+informed_by: [nhs_oesophageal_cancer, nhs_swallowing_problems_dysphagia]

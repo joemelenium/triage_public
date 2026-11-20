@@ -1,0 +1,72 @@
+id: um_d03
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- smelly_urine
+summary: 84-year-old woman in a care home. Her carer reports that today she is suddenly confused and very drowsy, with smelly, cloudy pee, more wetting than usual, and she feels hot and shivery. She does not have dementia and is not usually confused.
+opening_statement: She's not herself at all today. She's very muddled and sleepy, her pee smells strong and she's wet herself a few times.
+findings:
+  present:
+  - smelly_urine
+  - cloudy_pee
+  - sudden_confusion
+  - drowsy_hard_to_wake
+  - urinary_incontinence
+  - leaking_started_suddenly
+  - very_high_temperature
+  - cold_or_shivery
+  absent:
+  - has_dementia
+  - has_urinary_catheter
+  - difficulty_breathing
+  - rash_does_not_fade
+  - skin_blotchy
+  - vomiting
+  - head_injury
+  - had_a_fall
+  - blood_in_urine
+  - stomach_ache
+  unknown:
+  - pain_when_peeing
+context:
+  none: {}
+  basic:
+    age: 84
+    sex: female
+  full:
+    age: 84
+    sex: female
+    findings:
+      has_dementia: 'no'
+      has_urinary_catheter: 'no'
+expected:
+  acuity: emergency
+  level_of_care: emergency_ambulance
+  timeframe: now
+minimum_safe_acuity: emergency
+red_flags:
+- description: Confused and drowsy with signs of a urine infection
+  findings:
+  - sudden_confusion
+  - drowsy_hard_to_wake
+  minimum_acuity: emergency
+  source:
+    page: uti.txt
+    quote: you or your child are confused, drowsy, or have difficulty speaking
+safety_netting_should_cover:
+- point: Call 999 now
+  any_of:
+  - '999'
+  - ambulance
+- point: Bring her medicines
+  any_of:
+  - medicines
+source:
+  expected_outcome:
+    page: uti.txt
+    quote: you or your child are confused, drowsy, or have difficulty speaking
+  minimum_safe_acuity:
+    page: kidney_infection.txt
+    quote: you are confused, drowsy or have difficulty speaking
+atypical: false
+notes: 'Source difference: smelly_urine.txt lists smelly pee with ''you feel confused or agitated'' under urgent advice, but uti.txt and kidney_infection.txt say call 999 or go to A&E if confused, drowsy or having difficulty speaking. She is both confused and drowsy, so the 999 advice fits better. uti.txt notes that in older, frail people a UTI may cause confusion and worse incontinence. She cannot say whether it hurts to pee. Ambulance chosen because she is drowsy and cannot travel safely by herself.'

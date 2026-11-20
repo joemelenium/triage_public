@@ -1,0 +1,55 @@
+id: cp_d21
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting: [chest_pain]
+summary: 19-year-old man with no risk factors. On his last five or six runs on cold mornings he has had
+  an ache in the centre of his chest after about ten minutes, which goes within a couple of minutes if
+  he stops and walks. He is otherwise well and has no pain now. He does not know his father's side of
+  the family.
+opening_statement: When I go running on cold mornings I get an ache in the middle of my chest after about
+  ten minutes. If I stop and walk it goes within a couple of minutes. It's happened on the last five or
+  six runs. I'm fine otherwise and it's not there now. Is it just the cold air?
+findings:
+  present: [chest_pain, cp_comes_and_goes, cp_on_exertion]
+  absent: [stroke_signs, severe_breathing_difficulty, lips_or_skin_blue_grey, passed_out, sudden_confusion,
+    heavy_bleeding, serious_self_harm, cp_present_now, cp_sudden_not_going_away, cp_tight_or_squeezing,
+    cp_heavy, cp_spreads, sweating, nausea_or_vomiting, light_headed, short_of_breath, heart_beating_very_fast,
+    fainted, palpitations, has_angina, angina_pain_not_settling, angina_worse_than_usual, coughing_up_blood,
+    cp_worse_breathing_in, leg_pain_or_swelling, difficulty_breathing, worried_about_symptoms, cp_after_eating,
+    cp_after_injury_or_exercise, cp_with_worry, cough_mucus_or_temperature, heart_risk_factors, cough_or_runny_nose,
+    sore_throat, very_high_temperature, cp_lasted_15_minutes]
+  unknown: [family_heart_history]
+context:
+  none: {}
+  basic: {age: 19, sex: male}
+  full: {age: 19, sex: male}
+expected: {acuity: urgent, level_of_care: urgent_care, timeframe: today}
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: Get help from NHS 111 today
+  any_of: ['111']
+- point: Call 999 if the pain comes on suddenly and does not go away, spreads to the arm, neck, jaw, stomach
+    or back, or comes with feeling sweaty, sick, light-headed or short of breath
+  any_of: ['999']
+source:
+  expected_outcome: {page: angina.txt, quote: you have chest pain or other symptoms of angina that come
+      and go}
+  minimum_safe_acuity: {page: chest_pain.txt, quote: you have chest pain that comes and goes}
+atypical: false
+notes: 'The pattern points one way and the background the other, and the pages disagree, which is why
+  expected and minimum safe acuity differ. His pain matches angina.txt''s description (brought on by exercise
+  or cold, stops after resting for a few minutes), and that page says ''Get help from NHS 111'' for ''chest
+  pain or other symptoms of angina that come and go''. chest_pain.txt puts chest pain that comes and goes
+  under non-urgent ''See a GP''. His background makes a heart cause less likely on the sources'' own terms:
+  angina.txt lists men aged 45 or over, smokers and people with other conditions as more likely to get
+  angina, and chest_pain.txt says heart problems are more likely in older people and those at risk. But
+  no page gives different advice for a young person. Judgement: expected follows the angina page because
+  the pattern is the one it describes; the minimum safe acuity is routine, the explicit advice of chest_pain.txt,
+  because nothing in his background adds weight and he does not himself think he has angina (compare the
+  cases where the same pattern comes with risk factors, where ''see a GP as soon as possible'' is used
+  as the minimum). red_flags is left empty for the same reason. family_heart_history is ''not sure'':
+  he does not know his father''s family. cp_after_injury_or_exercise is no: the pain comes during each
+  run and goes on stopping; it did not start after one bout of exercise and there is no sore muscle to
+  rest. That question and cp_on_exertion both mention exercise and rest, and a patient could easily answer
+  yes to both.'

@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: insomnia
+body_system: brain_and_nerves
+entry_symptoms: [trouble_sleeping]
+name: "Insomnia from stress, worry or sleep habits"
+medical_name: "Insomnia"
+snomed: "193462001"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # Usually gets better by changing sleeping habits.
+  lots_of_caffeine_or_alcohol: supports
+  stressful_time: supports
+  very_tired: supports
+  trouble_sleeping_3_months: supports
+key_findings: [lots_of_caffeine_or_alcohol, stressful_time]
+source: nhs_insomnia
+informed_by: [nhs_insomnia]

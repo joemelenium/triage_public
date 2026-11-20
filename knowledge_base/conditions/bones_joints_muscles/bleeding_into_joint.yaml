@@ -1,0 +1,22 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: bleeding_into_joint
+body_system: bones_joints_muscles
+# More likely on medicine that thins the blood, or after a bad knee injury.
+entry_symptoms: [knee_pain, joint_pain]
+name: "Bleeding into a joint"
+medical_name: "Haemarthrosis"
+snomed: "81808003"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: takes_blood_thinners, prevalence: uncommon}
+findings:
+  badly_swollen: strongly_supports
+  bruised: supports
+  swollen_area_red_hot: supports
+  injury_or_fall: supports
+key_findings: [badly_swollen, takes_blood_thinners]
+source: nhs_knee_pain
+informed_by: [nhs_knee_pain]

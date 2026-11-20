@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: guillain_barre_syndrome
+body_system: brain_and_nerves
+entry_symptoms: [weakness_or_paralysis, pins_and_needles]
+name: "Guillain-Barre syndrome (a rare condition that attacks the nerves)"
+medical_name: "Guillain-Barre syndrome"
+snomed: "40956001"
+acuity_needed: emergency
+danger: serious
+prevalence: rare
+findings:
+  # Danger serious, level emergency: it needs hospital treatment and can affect breathing. What tells it apart: tingling and weakness that start in the feet or hands and spread up over days, often after an infection.
+  weakness_spreading_up: strongly_supports
+  pins_needles_both_feet_or_hands: supports
+  trouble_with_balance_or_walking: supports
+  recent_viral_illness: supports
+  difficulty_breathing: supports
+  unable_to_swallow: supports
+  burning_or_shooting_pain_feet_hands: supports
+key_findings: [weakness_spreading_up, recent_viral_illness, difficulty_breathing, unable_to_swallow]
+source: nhs_guillain_barre_syndrome
+informed_by: [nhs_guillain_barre_syndrome, nhs_paralysis]

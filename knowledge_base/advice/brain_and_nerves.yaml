@@ -1,0 +1,745 @@
+# Advice for the brain and nerves batch.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+# Same fields as advice/core.yaml. Wording is adapted from the cited NHS
+# website page, aiming for a reading age of 9 to 11.
+
+# ---------------------------------------------------------------------------
+# Headache
+# ---------------------------------------------------------------------------
+- id: advice_headache_999
+  what_to_do: "Call 999 now. A sudden, extremely painful headache can be a sign of bleeding on the brain. This needs treatment in hospital straight away."
+  look_out_for:
+    - "The person becoming drowsy, confused or hard to wake"
+    - "A seizure (fit)"
+    - "One side of the face drooping, weakness in an arm, or slurred speech"
+  get_more_help_when:
+    - "Call 999 again if the person gets worse before help arrives"
+    - "If they stop responding and are not breathing properly, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  source: nhs_subarachnoid_haemorrhage
+  also_informed_by: [nhs_headaches, nhs_migraine]
+
+- id: advice_headache_ae
+  what_to_do: "Call 999 or go to A&E now. A headache with these symptoms needs to be checked in hospital straight away."
+  look_out_for:
+    - "Getting drowsy, confused or hard to wake"
+    - "A seizure (fit)"
+    - "Weakness, numbness or a drooping face, or slurred speech"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_headaches
+
+- id: advice_meningitis_emergency
+  what_to_do: "Call 999 or go to A&E now. These can be signs of meningitis (an infection of the layers around the brain) or sepsis (a life-threatening reaction to an infection). They need treatment in hospital straight away."
+  look_out_for:
+    - "A rash that does not fade when you press a glass against it. On brown or black skin, check paler areas such as the palms of the hands."
+    - "Being very sleepy, confused or hard to wake"
+    - "A seizure (fit)"
+    - "In a baby: being floppy, not feeding, or a high-pitched cry"
+    - "Skin, lips or tongue turning blue, grey, pale or blotchy"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or cannot get to A&E safely"
+    - "Do not wait for a rash. Get help if you are worried, even if there is no rash."
+    - "Trust your instincts. If you think something is seriously wrong, get help straight away."
+  where_to_go: "Call 999 or go to A&E. Do not drive yourself to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_meningitis
+  also_informed_by: [nhs_headaches, nhs_sepsis]
+
+- id: advice_headache_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your headache should be checked today."
+  look_out_for:
+    - "A headache that suddenly becomes extremely painful"
+    - "Numbness or weakness. Or it is hard to speak, walk or remember things."
+    - "A stiff neck, a very high temperature, or a rash that does not fade when pressed"
+    - "Getting drowsy or confused"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5. In an emergency call 999."
+  self_care:
+    - "Rest, and drink plenty of water"
+    - "Take paracetamol or ibuprofen while you wait"
+  source: nhs_headaches
+
+- id: advice_headache_temporal_arteritis
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. A headache with jaw pain when eating, or a tender scalp, can be temporal arteritis (swollen blood vessels in the head). It needs treatment quickly to protect your sight."
+  look_out_for:
+    - "Any change to your vision, such as double vision or losing sight in one eye"
+    - "Pain or tenderness at the sides of your head"
+  get_more_help_when:
+    - "Go to A&E now if you get any change to your vision"
+    - "Call 999 if one side of your face droops, you cannot lift both arms, or your speech is slurred"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_giant_cell_arteritis
+  also_informed_by: [nhs_headaches]
+
+- id: advice_headache_pregnancy
+  what_to_do: "Contact your midwife or maternity unit, or get help from NHS 111, today. A headache in pregnancy or just after having a baby can be a sign of high blood pressure (pre-eclampsia), which needs checking."
+  look_out_for:
+    - "Blurred vision or flashing lights"
+    - "Pain just below your ribs"
+    - "Sudden swelling of your face, hands or feet"
+    - "Feeling very unwell, or being sick"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you have a sudden, very bad headache, a seizure (fit), or trouble seeing or speaking"
+  where_to_go: "Call your midwife or maternity unit, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Paracetamol is the first choice of painkiller in pregnancy. Do not take ibuprofen unless a doctor says you can."
+  source: nhs_migraine
+  also_informed_by: [nhs_tension_headaches]
+
+- id: advice_headache_gp
+  what_to_do: "See a GP about your headaches. It is not urgent, but they can help find the cause and the right treatment."
+  look_out_for:
+    - "A headache that suddenly becomes extremely painful"
+    - "Numbness or weakness. Or it is hard to speak, walk or remember things."
+    - "A headache with being sick, or one that gets worse when you cough or bend down"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your headache gets worse or you get new symptoms"
+    - "Call 999 or go to A&E if you get any of the serious signs above"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep a headache diary: when they happen, how long they last, and what might set them off"
+    - "Try not to take painkillers on more than 2 days a week. Taking them more often can cause more headaches."
+    - "Drink plenty of water, eat regular meals and try to relax"
+  source: nhs_headaches
+  also_informed_by: [nhs_migraine, nhs_tension_headaches, nhs_brain_tumours]
+
+- id: advice_headache_self_care
+  what_to_do: "You can usually treat a headache yourself. Most headaches go away on their own and are not a sign of something more serious."
+  look_out_for:
+    - "A headache that is not getting better, or is getting worse"
+    - "Headaches that keep coming back"
+    - "Being sick, or a headache made worse by coughing or bending down"
+  get_more_help_when:
+    - "See a GP if your headache is not getting better or you get headaches regularly"
+    - "Ask for an urgent GP appointment or call 111 if you have problems with your vision or are being sick"
+    - "Call 999 or go to A&E for a sudden, extremely painful headache, a stiff neck, or weakness or numbness"
+  where_to_go: "You do not need an appointment now. A pharmacist can help you choose a painkiller. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Drink plenty of water and get plenty of rest"
+    - "Take paracetamol or ibuprofen"
+    - "Try to relax: stress can make headaches worse"
+    - "Do not skip meals, drink alcohol, or strain your eyes for a long time"
+  source: nhs_headaches
+  also_informed_by: [nhs_tension_headaches]
+
+# ---------------------------------------------------------------------------
+# Carbon monoxide and low blood sugar (several entry symptoms)
+# ---------------------------------------------------------------------------
+- id: advice_carbon_monoxide
+  what_to_do: "Go outside into fresh air now, then call NHS 111. Other people being unwell too can be a sign of carbon monoxide, a poisonous gas from faulty boilers, cookers, fires or engines."
+  look_out_for:
+    - "Finding it hard to breathe"
+    - "Sudden confusion, feeling weak, or chest or muscle pain"
+    - "Anyone passing out"
+  get_more_help_when:
+    - "Call 999 or go to A&E if anyone has any of the signs above"
+    - "If you think an appliance is leaking gas, call the free National Gas Helpline on 0800 111 999"
+  where_to_go: "Call 111 or use 111 online. In an emergency call 999. Do not go back inside until you have got advice."
+  self_care:
+    - "Stop using any boiler, cooker or heater you think may be the cause, if you can do it safely"
+    - "Get a carbon monoxide alarm for each room with a gas, oil, coal or wood appliance"
+  source: nhs_carbon_monoxide_poisoning
+
+- id: advice_carbon_monoxide_emergency
+  what_to_do: "Get everyone outside into fresh air, then call 999 or go to A&E now. This could be carbon monoxide poisoning, from a poisonous gas you cannot see or smell."
+  look_out_for:
+    - "Anyone passing out or finding it hard to breathe"
+    - "Others in the home becoming confused or very sleepy"
+  get_more_help_when:
+    - "Call 999 if anyone gets worse or cannot get to A&E safely"
+    - "If you think an appliance is leaking gas, call the free National Gas Helpline on 0800 111 999"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Do not go back into the building until you have got advice."
+  source: nhs_carbon_monoxide_poisoning
+  also_informed_by: [nhs_confusion]
+
+- id: advice_low_blood_sugar
+  what_to_do: "Treat the low blood sugar now. Have something sugary straight away, such as a small glass of fruit juice or a sugary fizzy drink, or glucose tablets. Check your blood sugar again after 10 to 15 minutes."
+  look_out_for:
+    - "Blood sugar still below 4 after treating it twice"
+    - "Getting confused, very drowsy or hard to wake"
+    - "A seizure (fit)"
+  get_more_help_when:
+    - "Once you feel better, eat something like biscuits or a sandwich to keep your sugar up"
+    - "Get help from NHS 111 or your diabetes team if it does not get better, or you keep having hypos"
+    - "Call 999 if the person stops responding as usual or has a seizure. Do not give them food or drink if they are not fully awake."
+  where_to_go: "Treat it yourself first. For help call 111 or use 111 online, or contact your diabetes team. In an emergency call 999."
+  self_care:
+    - "Always carry something sugary with you"
+    - "Do not drive for at least 45 minutes after your blood sugar is back to normal"
+  source: nhs_low_blood_sugar
+
+- id: advice_low_blood_sugar_emergency
+  what_to_do: "If the person is awake and can swallow safely, give them something sugary now, such as fruit juice or a sugary fizzy drink. Call 999 if they do not get better quickly, or stop responding as usual."
+  look_out_for:
+    - "Not responding, or very drowsy"
+    - "A seizure (fit)"
+  get_more_help_when:
+    - "If they are not fully awake, do not give food or drink. Put them on their side and call 999."
+    - "Give a glucagon injection if one is available and you know how to use it"
+  where_to_go: "Call 999 or go to A&E. Stay with the person until they have fully recovered or help arrives."
+  source: nhs_low_blood_sugar
+  also_informed_by: [nhs_confusion]
+
+# ---------------------------------------------------------------------------
+# Dizziness
+# ---------------------------------------------------------------------------
+- id: advice_dizziness_ae
+  what_to_do: "Call 999 or go to A&E now. Dizziness or spinning with these symptoms needs to be checked in hospital, because it can be a sign of a stroke."
+  look_out_for:
+    - "One side of the face drooping, weakness in an arm, or slurred speech"
+    - "Getting worse, or not being able to stand"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above or cannot get to A&E safely"
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines you take."
+  source: nhs_vertigo
+  also_informed_by: [nhs_menieres_disease]
+
+- id: advice_dizziness_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Your dizziness should be checked today."
+  look_out_for:
+    - "Numbness or weakness in your face, arms or legs"
+    - "Double vision, loss of sight, or trouble speaking"
+    - "A sudden, extremely painful headache"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Lie down until the dizziness passes, then get up slowly"
+    - "Drink plenty of water, especially if you are being sick"
+    - "Do not drive, climb ladders or use machinery while you feel dizzy"
+  source: nhs_vertigo
+  also_informed_by: [nhs_dizziness]
+
+- id: advice_dizziness_gp
+  what_to_do: "See a GP about your dizziness. It is not usually serious, but they can help find the cause."
+  look_out_for:
+    - "Numbness or weakness in your face, arms or legs"
+    - "Double vision, loss of sight, or trouble speaking"
+    - "Fainting, or chest pain"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you are being sick or have a very high temperature"
+    - "Call 999 if you get any of the serious signs above"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Lie down until the dizziness passes, then get up slowly"
+    - "Move slowly and carefully, and get plenty of rest"
+    - "Drink plenty of water. Avoid coffee, cigarettes and alcohol."
+    - "Do not stop a medicine your doctor gave you without asking a doctor or pharmacist first"
+    - "Do not drive while you feel dizzy. You may need to tell the DVLA if it keeps happening."
+  source: nhs_dizziness
+  also_informed_by: [nhs_vertigo, nhs_labyrinthitis]
+
+- id: advice_dizziness_self_care
+  what_to_do: "Dizziness usually goes away on its own. You can look after yourself at home."
+  look_out_for:
+    - "Dizziness that will not go away or keeps coming back"
+    - "Changes to your hearing or eyesight"
+    - "Numbness or weakness, trouble speaking, or fainting"
+  get_more_help_when:
+    - "See a GP if it will not go away, keeps coming back, or you are worried"
+    - "Call 999 if you get numbness or weakness, trouble speaking, or loss of sight"
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Lie down until the dizziness passes, then get up slowly"
+    - "Do not bend down or get up suddenly"
+    - "Drink plenty of fluids, especially water"
+    - "Do not drive, climb ladders or use machinery while you feel dizzy"
+  source: nhs_dizziness
+
+# ---------------------------------------------------------------------------
+# Fainting
+# ---------------------------------------------------------------------------
+- id: advice_fainting_999
+  what_to_do: "Call 999 now. Fainting with these signs can be caused by a problem with the heart or brain, and needs checking in hospital straight away."
+  look_out_for:
+    - "Not breathing, or not responding"
+    - "Chest pain, or a pounding or irregular heartbeat"
+  get_more_help_when:
+    - "If they stop responding and are not breathing properly, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+    - "Call 999 again if the person gets worse"
+  where_to_go: "Call 999. Do not drive yourself to A&E. The person you speak to at 999 will tell you what to do."
+  self_care:
+    - "Lay the person on their back and raise their legs, if they are breathing well"
+    - "If they are pregnant, lay them on their side instead"
+  source: nhs_fainting
+
+- id: advice_fainting_ae
+  what_to_do: "Go to A&E now, or call 999. Fainting with these symptoms needs to be checked in hospital today."
+  look_out_for:
+    - "Chest pain, or finding it harder to breathe"
+    - "Fainting again"
+  get_more_help_when:
+    - "Call 999 if you get worse or cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive yourself. Bring any medicines you take."
+  source: nhs_fainting
+  also_informed_by: [nhs_shortness_of_breath]
+
+- id: advice_fainting_urgent
+  what_to_do: "Get help from NHS 111 or ask for an urgent GP appointment today. The cause of your faint should be checked today, in case it is a heart problem."
+  look_out_for:
+    - "Fainting again, especially during exercise or while lying down"
+    - "Chest pain, or a pounding, fluttering or irregular heartbeat"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above"
+  where_to_go: "Call 111 or use 111 online, or ask your GP surgery for an urgent appointment. In an emergency call 999."
+  self_care:
+    - "Do not drive until you have been checked"
+    - "If you feel faint, lie down with your legs raised"
+  source: nhs_fainting
+  also_informed_by: [nhs_heart_palpitations]
+
+- id: advice_fainting_gp
+  what_to_do: "See a GP. Fainting is not usually serious, but it is important to get checked to find out what caused it."
+  look_out_for:
+    - "Fainting while exercising or lying down"
+    - "Chest pain, or a pounding, fluttering or irregular heartbeat"
+    - "Not recovering fully, or difficulty speaking or moving"
+  get_more_help_when:
+    - "Call 999 if you faint again with any of the signs above"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "If you feel faint, lie down with your legs raised. If you cannot, sit with your head between your knees."
+    - "Drink some water. Cross your legs while standing, or clench your fists."
+    - "You must tell the DVLA if you faint regularly and you drive"
+  source: nhs_fainting
+
+# ---------------------------------------------------------------------------
+# Sudden confusion
+# ---------------------------------------------------------------------------
+- id: advice_confusion_999
+  what_to_do: "Call 999 now. Sudden confusion with these signs needs treatment in hospital straight away."
+  look_out_for:
+    - "The person stops responding, or their breathing changes"
+    - "A seizure (fit)"
+  get_more_help_when:
+    - "If they stop responding and are not breathing properly, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+  where_to_go: "Call 999. Do not drive them to A&E yourself. Stay with the person until help arrives."
+  self_care:
+    - "Stay with the person. Tell them who you are and where they are, and keep reassuring them."
+    - "Make a note of any medicines they take"
+  source: nhs_confusion
+  also_informed_by: [nhs_head_injury]
+
+- id: advice_confusion_ae
+  what_to_do: "Go to A&E or call 999 now. Many causes of sudden confusion need to be checked and treated as soon as possible."
+  look_out_for:
+    - "Signs of a stroke: one side of the face drooping, weakness in an arm, or slurred speech"
+    - "Very drowsy or hard to wake"
+    - "A seizure (fit)"
+  get_more_help_when:
+    - "Call 999 if the person gets worse or you cannot get them to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines they take."
+  self_care:
+    - "Stay with the person. Tell them who you are and where they are, and keep reassuring them."
+    - "Use simple words and short sentences. Do not ask lots of questions."
+    - "Do not stop them moving around, unless they are in danger"
+  source: nhs_confusion
+
+# ---------------------------------------------------------------------------
+# Seizures
+# ---------------------------------------------------------------------------
+- id: advice_seizure_999
+  what_to_do: "Call 999 and ask for an ambulance."
+  look_out_for:
+    - "The seizure lasting more than 5 minutes"
+    - "Another seizure without waking up in between"
+    - "Difficulty breathing"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. The person you speak to will tell you what to do."
+  self_care:
+    - "Only move them if they are in danger. Cushion their head."
+    - "Do not put anything in their mouth, including your fingers"
+    - "When the jerking stops, turn them on their side. Stay with them and talk calmly."
+    - "Note the time the seizure starts and stops"
+  source: nhs_what_to_do_if_someone_has_a_seizure_fit
+  also_informed_by: [nhs_epilepsy]
+
+- id: advice_seizure_ae
+  what_to_do: "Call 999 or go to A&E now. A seizure like this needs to be checked in hospital today."
+  look_out_for:
+    - "Another seizure"
+    - "Difficulty breathing"
+    - "Not waking up fully"
+  get_more_help_when:
+    - "Do not take the person to A&E if they are still having a seizure or are not fully awake. Call 999 instead."
+  where_to_go: "Call 999 or go to A&E. Do not drive to A&E. Ask someone to drive you or call 999 and ask for an ambulance. Bring any medicines they take."
+  self_care:
+    - "Put the person on their side and stay with them"
+    - "Do not give them food or drink until they have fully recovered"
+  source: nhs_febrile_seizures
+  also_informed_by: [nhs_what_to_do_if_someone_has_a_seizure_fit]
+
+- id: advice_seizure_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Anyone who has had a seizure needs to be checked to find out what caused it."
+  look_out_for:
+    - "Another seizure"
+    - "A seizure that lasts more than 5 minutes"
+    - "Not waking up fully, or difficulty breathing"
+  get_more_help_when:
+    - "Call 999 if there is another seizure, or any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. Call 111 for a child under 5. In an emergency call 999."
+  self_care:
+    - "Write down what happened before, during and after the seizure, and how long it lasted. A video can help the doctor."
+    - "Do not drive until a doctor says it is safe"
+    - "For a child with a high temperature, do not try to cool them by undressing them or sponging them with cold water"
+  source: nhs_epilepsy
+  also_informed_by: [nhs_febrile_seizures, nhs_what_to_do_if_someone_has_a_seizure_fit]
+
+- id: advice_seizure_known_epilepsy
+  what_to_do: "Follow the person's epilepsy care plan. People with epilepsy do not always need an ambulance or to go to hospital after a seizure."
+  look_out_for:
+    - "A seizure that lasts longer than usual, or more than 5 minutes"
+    - "Another seizure without waking up in between"
+    - "Not recovering as usual, or difficulty breathing"
+  get_more_help_when:
+    - "Call 999 if there are any of the signs above"
+    - "Tell the epilepsy team or GP if seizures happen more often"
+  where_to_go: "Let the epilepsy team or GP know. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Keep a seizure diary"
+    - "Take epilepsy medicine as prescribed. Do not change the dose without advice."
+  source: nhs_what_to_do_if_someone_has_a_seizure_fit
+  also_informed_by: [nhs_epilepsy]
+
+# ---------------------------------------------------------------------------
+# Weakness, pins and needles, numbness of the face
+# ---------------------------------------------------------------------------
+- id: advice_weakness_999
+  what_to_do: "Call 999 now. This could be a sign of something serious, such as a stroke or an injury to the spine, that needs treatment in hospital straight away."
+  look_out_for:
+    - "Difficulty breathing or swallowing"
+    - "Weakness spreading, or getting worse"
+  get_more_help_when:
+    - "Call 999 again if things get worse before help arrives"
+  where_to_go: "Call 999. Do not drive yourself to A&E. If the person has hurt their neck or back, do not move them unless they are in danger."
+  source: nhs_paralysis
+
+- id: advice_weakness_ae
+  what_to_do: "Go to A&E now, or call 999. These symptoms need to be checked in hospital today."
+  look_out_for:
+    - "Difficulty breathing or swallowing"
+    - "Weakness spreading up your body, or getting worse"
+    - "Not being able to pee"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above or cannot get to A&E safely"
+  where_to_go: "Go to A&E or call 999. Do not drive yourself. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_guillain_barre_syndrome, nhs_paralysis]
+
+- id: advice_weakness_urgent
+  what_to_do: "Ask for an urgent GP appointment or get help from NHS 111 today. Weakness or tingling that is spreading needs to be checked today."
+  look_out_for:
+    - "Difficulty breathing or swallowing"
+    - "A drooping face, or trouble speaking"
+    - "Weakness spreading quickly, or not being able to walk"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Ask your GP surgery for an urgent appointment, or call 111 or use 111 online. In an emergency call 999."
+  source: nhs_guillain_barre_syndrome
+
+- id: advice_weakness_gp
+  what_to_do: "See a GP about the weakness. They can find out what is causing it and what treatment may help."
+  look_out_for:
+    - "Weakness that comes on suddenly"
+    - "Weakness on one side of your face or body, or trouble speaking"
+    - "Difficulty breathing or swallowing"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if it is getting worse quickly"
+    - "Call 999 if you get any of the signs above"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  source: nhs_paralysis
+
+- id: advice_pins_needles_gp
+  what_to_do: "See a GP about your pins and needles. They can find out what is causing it."
+  look_out_for:
+    - "Numbness or weakness that comes on suddenly, mostly if it is on one side of the body"
+    - "Tingling or weakness spreading up your arms or legs"
+    - "A cut or sore on your foot that is not healing"
+  get_more_help_when:
+    - "Call 999 if numbness or weakness comes on suddenly, or you have trouble speaking"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "If you have diabetes, check your feet every day for cuts and sores"
+  source: nhs_pins_and_needles
+  also_informed_by: [nhs_peripheral_neuropathy]
+
+- id: advice_pins_needles_self_care
+  what_to_do: "Pins and needles usually stop within a few minutes, when the weight is taken off that part of your body."
+  look_out_for:
+    - "Pins and needles that do not go away, or keep coming back"
+    - "Numbness or weakness that comes on suddenly"
+  get_more_help_when:
+    - "See a GP if you constantly have pins and needles or it keeps coming back"
+    - "Call 999 if numbness or weakness comes on suddenly, mostly on one side. Or if you find it hard to speak."
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Move about and change position to take the pressure off"
+  source: nhs_pins_and_needles
+
+- id: advice_face_numbness_ae
+  what_to_do: "Go to A&E now, or call 999. Numbness in the face that comes on suddenly can be a sign of a stroke or mini-stroke."
+  look_out_for:
+    - "One side of the face drooping, weakness in an arm, or slurred speech"
+    - "Loss of sight, or trouble balancing"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above, even if they go away"
+  where_to_go: "Go to A&E or call 999. Do not drive yourself to A&E."
+  source: ai_judgement
+  also_informed_by: [nhs_stroke_symptoms, nhs_tia]
+
+- id: advice_face_numbness_urgent
+  what_to_do: "Get help from NHS 111 today. Numbness in the face that came on suddenly should be checked today."
+  look_out_for:
+    - "One side of the face drooping, weakness in an arm, or slurred speech"
+    - "Loss of sight, or trouble balancing"
+  get_more_help_when:
+    - "Call 999 straight away if you get any of the signs above"
+  where_to_go: "Call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+  also_informed_by: [nhs_stroke_symptoms]
+
+- id: advice_face_numbness_gp
+  what_to_do: "See a GP about the numbness in your face. They can find out what is causing it."
+  look_out_for:
+    - "One side of the face drooping, weakness in an arm, or slurred speech"
+    - "A rash of blisters on your face"
+    - "The numbness spreading, or getting worse"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if your face becomes weak, or you get a rash near your eye"
+    - "Call 999 if you get any signs of a stroke"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  source: ai_judgement
+  also_informed_by: [nhs_paralysis, nhs_bells_palsy]
+
+# ---------------------------------------------------------------------------
+# Memory loss
+# ---------------------------------------------------------------------------
+- id: advice_memory_ae
+  what_to_do: "Go to A&E now, or call 999. Memory problems that start suddenly need to be checked in hospital today."
+  look_out_for:
+    - "Signs of a stroke: one side of the face drooping, weakness in an arm, or slurred speech"
+    - "Getting confused, drowsy or hard to wake"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above"
+  where_to_go: "Go to A&E or call 999. Do not drive to A&E. Bring any medicines you take, and someone who can describe what happened."
+  source: nhs_stroke_symptoms
+  also_informed_by: [nhs_confusion, nhs_head_injury]
+
+- id: advice_memory_gp
+  what_to_do: "See a GP about your memory problems. It is often nothing serious, but it is best to get checked, because any treatment may work better if it is started early."
+  look_out_for:
+    - "Memory problems or confusion that come on suddenly"
+    - "Getting lost in places you know, or struggling with everyday tasks"
+  get_more_help_when:
+    - "Go to A&E or call 999 if someone suddenly becomes confused"
+  where_to_go: "Make an appointment with a GP. It can help to bring someone who knows you well. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Write down the problems you have noticed, and when they started"
+  source: nhs_memory_loss_amnesia
+  also_informed_by: [nhs_dementia_symptoms, nhs_confusion]
+
+# ---------------------------------------------------------------------------
+# Tremor and twitching
+# ---------------------------------------------------------------------------
+- id: advice_tremor_gp
+  what_to_do: "See a GP about your tremor. They can check what is causing it, and treatment may help."
+  look_out_for:
+    - "The shaking getting worse, or spreading"
+    - "Movements getting slower or stiffer"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if it starts suddenly and you feel very unwell"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Cut down on caffeine and alcohol"
+    - "Do not stop taking a prescribed medicine without talking to a doctor first"
+  source: nhs_tremor_or_shaking_hands
+  also_informed_by: [nhs_parkinsons_disease]
+
+- id: advice_tremor_self_care
+  what_to_do: "A slight tremor is normal. It is often more noticeable when you are stressed, tired, cold, or after caffeine, alcohol or smoking."
+  look_out_for:
+    - "The shaking getting worse over time"
+    - "The shaking making it hard to eat or write"
+  get_more_help_when:
+    - "See a GP if your tremor is getting worse or affecting your daily life"
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Cut down on tea, coffee, cola and energy drinks"
+    - "Try to relax and get enough sleep"
+  source: nhs_tremor_or_shaking_hands
+
+- id: advice_twitching_gp
+  what_to_do: "See a GP about your twitch. Twitches are very rarely serious, but they can check for causes such as a medicine you take."
+  look_out_for:
+    - "Weakness or stiffness that is getting worse"
+    - "Problems holding or gripping things, or tripping over"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you suddenly get weaker"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Get plenty of rest and find ways to relax"
+    - "Do not stop a medicine your doctor gave you without asking a doctor first"
+  source: nhs_twitching_eyes_and_muscles
+  also_informed_by: [nhs_motor_neurone_disease]
+
+- id: advice_twitching_self_care
+  what_to_do: "Twitches are common and very rarely a sign of anything serious. They usually stop on their own within a few days or weeks."
+  look_out_for:
+    - "A twitch lasting more than 2 weeks"
+    - "Twitching in more than one place, or the area feeling weak or stiff"
+  get_more_help_when:
+    - "See a GP if you get any of the signs above"
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Get plenty of rest and try to relax"
+    - "Do not drink lots of caffeine or alcohol"
+    - "Stretch and massage any muscles that cramp"
+    - "Try not to worry about it: worrying can make it worse"
+  source: nhs_twitching_eyes_and_muscles
+
+# ---------------------------------------------------------------------------
+# Sleepiness and insomnia
+# ---------------------------------------------------------------------------
+- id: advice_sleepiness_urgent
+  what_to_do: "Get help from NHS 111 or ask for an urgent GP appointment today. Sleepiness that starts suddenly should be checked today."
+  look_out_for:
+    - "Being very hard to wake, or confused"
+    - "A headache, being sick, or a stiff neck"
+  get_more_help_when:
+    - "Call 999 if the person cannot be woken, or is confused"
+  where_to_go: "Call 111 or use 111 online, or ask your GP surgery for an urgent appointment. In an emergency call 999."
+  self_care:
+    - "Do not drive while you feel sleepy"
+  source: ai_judgement
+  also_informed_by: [nhs_excessive_daytime_sleepiness_hypersomnia]
+
+- id: advice_sleepiness_gp
+  what_to_do: "See a GP about your sleepiness. They can look for causes, such as a sleep problem, a medicine or your mood."
+  look_out_for:
+    - "Falling asleep while driving or doing something dangerous"
+    - "Sleepiness that comes on suddenly"
+  get_more_help_when:
+    - "Ask for an urgent GP appointment or call 111 if you become much sleepier quite suddenly"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Do not drive if you feel sleepy. You may need to tell the DVLA if you are diagnosed with a sleep problem."
+    - "Go to bed at the same time every night"
+    - "Avoid alcohol and caffeine"
+    - "If you can, ask someone to watch your sleep for snoring or pauses in breathing"
+  source: nhs_excessive_daytime_sleepiness_hypersomnia
+  also_informed_by: [nhs_sleep_apnoea, nhs_narcolepsy]
+
+- id: advice_insomnia_gp
+  what_to_do: "See a GP about your trouble sleeping. They can help find the cause and suggest treatment, such as talking therapy for sleep."
+  look_out_for:
+    - "Feeling very low, or having thoughts of harming yourself"
+    - "Snoring loudly or stopping breathing in your sleep"
+  get_more_help_when:
+    - "If you are having thoughts of harming yourself, call 111, or Samaritans on 116 123, at any time"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Go to bed only when you are sleepy, and get up at the same time every day"
+    - "Do not drink alcohol, tea or coffee for 6 hours before bed"
+    - "Do not use screens right before bed"
+  source: nhs_insomnia
+  also_informed_by: [nhs_restless_legs_syndrome, nhs_sleep_apnoea]
+
+- id: advice_insomnia_self_care
+  what_to_do: "Insomnia usually gets better by changing your sleeping habits. A pharmacist can also give advice."
+  look_out_for:
+    - "Trouble sleeping that goes on for months"
+    - "Not being able to cope with daily life because of lack of sleep"
+  get_more_help_when:
+    - "See a GP if changing your sleeping habits has not helped"
+    - "If you are having thoughts of harming yourself, call 111, or Samaritans on 116 123, at any time"
+  where_to_go: "You do not need an appointment now. A pharmacist can help. For urgent help call 111 or use 111 online."
+  self_care:
+    - "Go to bed only when you are sleepy, and get up at the same time every day"
+    - "Relax for at least 1 hour before bed, for example with a bath or a book"
+    - "Keep your bedroom dark and quiet"
+    - "Do not have alcohol, tea or coffee for 6 hours before bed, or a big meal late at night"
+    - "Do not nap during the day, and do not drive if you feel sleepy"
+  source: nhs_insomnia
+
+# ---------------------------------------------------------------------------
+# Head injury
+# ---------------------------------------------------------------------------
+- id: advice_head_injury_999
+  what_to_do: "Call 999 now. These signs after a head injury need to be checked in hospital straight away."
+  look_out_for:
+    - "The person stops responding, or their breathing changes"
+    - "A fit (seizure)"
+    - "Being very hard to wake"
+    - "Being sick again and again"
+  get_more_help_when:
+    - "If they stop responding and are not breathing properly, start CPR: press hard and fast in the middle of their chest. The 999 call handler will tell you how."
+    - "Call 999 again if they get worse before help arrives"
+  where_to_go: "Call 999. Do not drive them to A&E yourself. If they may have hurt their neck, do not move them unless they are in danger."
+  self_care:
+    - "Do not move the person if they may have hurt their neck or back"
+  source: nhs_head_injury
+
+- id: advice_head_injury_ae
+  what_to_do: "Go to A&E now. After a head injury, you need to be checked in hospital for bleeding inside the head."
+  look_out_for:
+    - "Getting drowsy or hard to wake"
+    - "Being sick, or a headache that gets worse"
+    - "Confusion, or trouble walking or speaking"
+    - "Clear fluid or blood coming from the ear or nose"
+    - "Passing out, a seizure (fit), or problems speaking"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above or cannot get to A&E safely"
+  where_to_go: "Go to A&E. Do not drive yourself if you have hit your head. Ask someone to take you, or call 999. Bring any medicines you take."
+  source: ai_judgement
+  also_informed_by: [nhs_head_injury, nhs_broken_nose, nhs_tinnitus]
+
+- id: advice_head_injury_urgent
+  what_to_do: "Get help from NHS 111 now. After a head injury, these symptoms need to be checked today."
+  look_out_for:
+    - "Getting drowsy or hard to wake"
+    - "A fit (seizure)"
+    - "Problems with vision, hearing, walking, balance or speaking"
+    - "Clear fluid or blood coming from the ears or nose"
+    - "A headache that will not go away"
+  get_more_help_when:
+    - "Call 999 if you get any of the signs above"
+    - "Call 999 if the person is knocked out, has a fit, or cannot stay awake"
+  where_to_go: "Call 111 or use 111 online. Call 111 for a child under 5. If you are told to go to A&E, do not drive yourself."
+  self_care:
+    - "Make sure an adult stays with you for at least the first 24 hours"
+    - "Rest, and do not drink alcohol"
+  source: nhs_head_injury
+
+- id: advice_head_injury_gp
+  what_to_do: "See a GP. Symptoms after a head injury that last more than 2 weeks should be checked."
+  look_out_for:
+    - "Headaches getting worse, being sick, or getting drowsy"
+    - "Confusion, or trouble walking or speaking"
+  get_more_help_when:
+    - "Call 999 or go to A&E if you get any of the signs above"
+  where_to_go: "Make an appointment with a GP. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Ask your GP before you drive, go back to work or school, or play sport"
+  source: nhs_head_injury
+
+- id: advice_head_injury_self_care
+  what_to_do: "You can usually look after a minor head injury at home. You may have symptoms such as a mild headache for up to 2 weeks."
+  look_out_for:
+    - "Being sick, or feeling dizzy"
+    - "Getting drowsy, or not being able to stay awake"
+    - "Problems with vision, walking, balance, understanding or speaking"
+    - "A fit (seizure), or changes in behaviour"
+  get_more_help_when:
+    - "Get help from 111 if you are being sick or feel dizzy"
+    - "Call 999 if you get any of the other signs above"
+    - "See a GP if your symptoms last more than 2 weeks"
+  where_to_go: "You do not need an appointment now. For urgent help call 111 or use 111 online. In an emergency call 999."
+  self_care:
+    - "Hold an ice pack wrapped in a tea towel to the area for short periods, to bring down swelling"
+    - "Rest, and take paracetamol for a headache"
+    - "Make sure an adult stays with you for at least the first 24 hours"
+    - "Do not drink alcohol, take sleeping pills or play contact sports until you feel better"
+  source: nhs_head_injury

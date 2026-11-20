@@ -1,0 +1,28 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: inflammatory_bowel_disease
+body_system: stomach_and_bowel
+entry_symptoms: [diarrhoea_or_vomiting, bleeding_from_bottom, stomach_ache, bowel_incontinence]
+name: "Crohn's or ulcerative colitis (long-term swelling of the gut)"
+medical_name: "Inflammatory bowel disease (Crohn's disease or ulcerative colitis)"
+snomed: "24526004"
+acuity_needed: soon
+danger: serious
+diagnosed_by: has_ibd
+prevalence: rare
+prevalence_when:
+  - {finding: has_ibd, prevalence: very_common}
+findings:
+  # What tells it apart from a stomach bug: diarrhoea for weeks, with blood or
+  # slime, weight loss and tiredness.
+  diarrhoea_over_7_days: strongly_supports
+  bleeding_from_bottom: strongly_supports
+  mucus_in_poo: strongly_supports
+  weight_loss: supports
+  very_tired: supports
+  sa_comes_in_waves: supports
+  diarrhoea: supports
+  bowel_habit_change_3_weeks: supports
+key_findings: [diarrhoea_over_7_days, mucus_in_poo, weight_loss, has_ibd]
+source: nhs_crohns_disease
+informed_by: [nhs_crohns_disease, nhs_ulcerative_colitis, nhs_bleeding_from_the_bottom_rectal_bleeding]

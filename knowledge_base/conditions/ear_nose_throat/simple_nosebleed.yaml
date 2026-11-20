@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: simple_nosebleed
+body_system: ear_nose_throat
+entry_symptoms: [nosebleed]
+name: "Nosebleed from the front of the nose (the usual kind, not serious)"
+medical_name: "Anterior epistaxis"
+snomed: "232354002"
+acuity_needed: self_manageable
+danger: minor
+prevalence: very_common
+findings:
+  # What tells it apart: it starts after picking or blowing the nose, or a dry nose, and stops with
+  # pinching the soft part of the nose.
+  nosebleed_after_picking_or_dry: strongly_supports
+  blocked_or_runny_nose: supports
+  recent_viral_illness: supports
+  nosebleeds_regular: supports
+key_findings: [nosebleed_after_picking_or_dry, nosebleed_over_15_minutes]
+source: nhs_nosebleed
+informed_by: [nhs_nosebleed]

@@ -1,0 +1,60 @@
+id: en_h04
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- loss_of_smell_or_taste
+summary: A 33-year-old man who lost his sense of smell with a cold 2 months ago. It has not come back, and some things now smell unpleasant and wrong. His nose is not blocked and he is otherwise well.
+opening_statement: I lost my smell when I had a cold a couple of months back and it's still not come back. Coffee smells horrible now, like something burnt.
+findings:
+  present:
+  - loss_of_smell_or_taste
+  - smell_not_back_few_weeks
+  - smell_distorted
+  - recent_viral_illness
+  absent:
+  - blocked_or_runny_nose
+  - nose_blocked_one_side
+  - nosebleed
+  - face_pain_around_nose_and_eyes
+  - headache
+  - head_injury_last_3_months
+  - tremor
+  - had_a_fit
+  - itchy_watery_eyes_sneezing
+  - smell_phantom
+  unknown: []
+context:
+  none: {}
+  basic:
+    age: 33
+    sex: male
+  full:
+    age: 33
+    sex: male
+expected:
+  acuity: routine
+  level_of_care: general_practice
+  timeframe: no_fixed_time
+minimum_safe_acuity: routine
+red_flags: []
+safety_netting_should_cover:
+- point: See a GP
+  any_of:
+  - GP
+- point: Smell training may help
+  any_of:
+  - smell training
+- point: 'Safety: may not smell gas, fire or food that has gone off'
+  any_of:
+  - gas
+  - smoke
+  - fire
+source:
+  expected_outcome:
+    page: lost_or_changed_sense_smell.txt
+    quote: your sense of smell does not go back to normal in a few weeks
+  minimum_safe_acuity:
+    page: lost_or_changed_sense_smell.txt
+    quote: your sense of smell does not go back to normal in a few weeks
+atypical: false
+notes: Smell not back after a few weeks, with parosmia. Lost or changed smell has no 'presenting' id, so the symptom id loss_of_smell_or_taste is used as the presenting symptom.

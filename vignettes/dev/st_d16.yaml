@@ -1,0 +1,64 @@
+id: st_d16
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [sore_throat, chest_pain]
+
+summary: "A 47-year-old man with a sore throat and a cold for three days who wants something for it. He also mentions that for the past week he has had an ache in his chest that comes and goes, lasting a few minutes each time. It is not there now, is not tight, does not spread, and he has had no sweating, sickness, light-headedness or breathlessness with it. He has never been told he has angina."
+
+opening_statement: "I've had a sore throat for three days with a cold and I'd like something for it. I've also had an ache in my chest on and off this past week, though it's not there at the moment."
+
+findings:
+  present: [sore_throat, chest_pain, cp_comes_and_goes, wants_help_with_sore_throat, cough_or_runny_nose]
+  absent: [difficulty_breathing, unable_to_swallow, drooling, stridor, severe_and_worsening_quickly,
+      swelling_in_mouth_and_throat, difficulty_speaking, difficulty_opening_mouth,
+      very_high_temperature, dehydration_signs, weakened_immune_system, pus_on_tonsils,
+      too_painful_to_eat_or_drink, worried_about_symptoms, sore_throat_over_a_week,
+      frequent_sore_throats, lump_in_mouth_or_neck, mouth_ulcer_over_3_weeks,
+      swollen_neck_glands, very_tired, stroke_signs, severe_breathing_difficulty,
+      lips_or_skin_blue_grey, passed_out, sudden_confusion, heavy_bleeding, serious_self_harm,
+      short_of_breath, cp_present_now, cp_sudden_not_going_away, cp_tight_or_squeezing,
+      cp_heavy, cp_spreads, sweating, nausea_or_vomiting, light_headed,
+      heart_beating_very_fast, fainted, palpitations, has_angina, angina_pain_not_settling,
+      angina_worse_than_usual, coughing_up_blood, cp_worse_breathing_in, leg_pain_or_swelling,
+      cp_on_exertion, cp_after_eating, cp_after_injury_or_exercise, cp_with_worry,
+      cough_mucus_or_temperature, heart_risk_factors, family_heart_history, cold_or_shivery]
+  unknown: []
+
+context:
+  none: {}
+  basic: {age: 47, sex: male}
+  full: {age: 47, sex: male}
+
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+
+minimum_safe_acuity: routine
+
+red_flags: []
+
+safety_netting_should_cover:
+  - point: "Get medical advice about the chest pain from NHS 111 or a GP"
+    any_of: ["111", "GP"]
+  - point: "Call 999 if chest pain comes on suddenly and does not go away, spreads, or comes with feeling sweaty, sick, light-headed or short of breath"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: angina.txt, quote: "you have chest pain or other symptoms of angina that come and go"}
+  minimum_safe_acuity: {page: chest_pain.txt, quote: "you have chest pain that comes and goes"}
+
+variants:
+  - id: st_d16_v1
+    style: "mentions the chest only as an afterthought"
+    opening_statement: "Sore throat for three days, got a cold with it. What can I take? While I'm here, I've had the odd ache in my chest this week too, it comes and goes."
+    volunteered: [sore_throat, wants_help_with_sore_throat, chest_pain, cp_comes_and_goes]
+  - id: st_d16_v2
+    style: "gives the chest details up front"
+    opening_statement: "Two things. A sore throat with a cold for three days, which I'd like something for. And for a week I've had an ache in my chest that comes for a few minutes and then goes. It's not there now, it doesn't go into my arm or jaw, and I've not felt sweaty, sick or short of breath with it."
+    volunteered: [sore_throat, wants_help_with_sore_throat, chest_pain, cp_comes_and_goes, cp_present_now,
+        cp_spreads, sweating, nausea_or_vomiting, short_of_breath]
+
+atypical: false
+notes: "Two presenting symptoms; the chest pain should decide the outcome, not the sore throat, which alone would lead to a pharmacist. Source difference on chest pain that comes and goes. chest_pain.txt: 'Non-urgent advice: See a GP if: you have chest pain that comes and goes'. angina.txt: 'Urgent advice: Get help from NHS 111 if: you have chest pain or other symptoms of angina that come and go'. pulmonary_embolism.txt lists 'you feel pain in your chest or upper back' under call 999 or go to A&E, but that page is about people with symptoms of a pulmonary embolism, and he has none of the others (no sudden difficulty breathing, no pain on breathing in, no coughing up blood, no leg pain or swelling). Judgement: the expected outcome follows angina.txt (urgent, the more cautious of the two pages that describe this pattern), and the minimum safe acuity follows chest_pain.txt (routine, GP). angina.txt gives no time, so 'today' is used to match the urgent level."

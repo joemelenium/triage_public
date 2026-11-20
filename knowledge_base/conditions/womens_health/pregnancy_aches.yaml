@@ -1,0 +1,21 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: pregnancy_aches
+body_system: womens_health
+entry_symptoms: [stomach_pain_in_pregnancy]
+name: "Harmless pregnancy aches: stretching ligaments, constipation or trapped wind"
+medical_name: "Round ligament pain and other benign abdominal pain in pregnancy"
+# The most common cause. The page says mild pain that goes away with rest or a
+# change of position is probably nothing to worry about.
+acuity_needed: self_manageable
+danger: minor
+sex: female
+prevalence: very_common
+findings:
+  pain_eases_with_rest: strongly_supports
+  sharp_pain_on_moving: supports
+  one_sided_lower_tummy_pain: supports
+  bowel_habit_change_3_weeks: supports
+key_findings: [pain_eases_with_rest, sharp_pain_on_moving]
+source: nhs_stomach_pain_pregnancy
+informed_by: [nhs_stomach_pain_pregnancy]

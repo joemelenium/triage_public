@@ -1,0 +1,20 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: food_pipe_tear
+body_system: stomach_and_bowel
+entry_symptoms: [vomiting_blood]
+name: "A small tear in the food pipe from being sick or retching (Mallory-Weiss tear)"
+medical_name: "Mallory-Weiss tear"
+snomed: "35265002"
+# Usually heals on its own, but needs checking the same day.
+acuity_needed: urgent
+danger: moderate
+prevalence: common
+findings:
+  blood_after_retching: strongly_supports
+  keeps_being_sick: supports
+  drinks_a_lot_of_alcohol: supports
+  feeling_sick: supports
+key_findings: [blood_after_retching, keeps_being_sick]
+source: nhs_vomiting_blood
+informed_by: [nhs_vomiting_blood]

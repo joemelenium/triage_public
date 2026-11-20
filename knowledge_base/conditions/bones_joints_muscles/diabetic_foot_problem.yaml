@@ -1,0 +1,24 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: diabetic_foot_problem
+body_system: bones_joints_muscles
+# Diabetes can dull the feeling in the feet, so an infection may hurt less than
+# expected.
+entry_symptoms: [foot_pain]
+name: "A foot infection, ulcer or bone damage in someone with diabetes"
+medical_name: "Diabetic foot infection, ulcer or Charcot foot"
+snomed: "280137006"
+acuity_needed: urgent
+danger: serious
+prevalence: rare
+prevalence_when:
+  - {finding: has_diabetes, prevalence: uncommon}
+findings:
+  foot_wound_or_ulcer: strongly_supports
+  swollen_area_red_hot: supports
+  red_or_discoloured_skin: supports
+  leg_numb_or_tingling: supports
+  very_high_temperature: supports
+key_findings: [foot_wound_or_ulcer, swollen_area_red_hot, has_diabetes]
+source: ai_judgement
+informed_by: [nhs_foot_pain, nhs_ankle_pain]

@@ -1,0 +1,81 @@
+# Entry symptom: anal pain (pain in the bottom).
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+
+id: anal_pain
+name: "Anal pain"
+presenting_finding: anal_pain
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: anal_pain_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - heavy_bleeding_from_bottom
+
+  - id: anal_pain_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - anal_pain_severe
+      - very_high_temperature
+      - bottom_throbbing_swelling_pus
+      - black_or_dark_red_poo
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ap_heavy_bleeding
+    description: "Bleeding non-stop from the bottom, or a lot of blood"
+    when: heavy_bleeding_from_bottom
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E or call 999"}
+    advice: advice_rectal_bleeding_ae
+    source: nhs_anal_pain
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ap_severe_with_temperature
+    description: "Severe pain in the bottom with a high temperature, or feeling hot, cold or shivery"
+    when: {all: [anal_pain_severe, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_anal_pain_urgent
+    source: nhs_anal_pain
+
+  - id: rf_ap_abscess_signs
+    description: "Constant throbbing pain near the bottom, with a red swelling or pus, and a high temperature: possible abscess"
+    when: {all: [bottom_throbbing_swelling_pus, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_anal_pain_urgent
+    source: nhs_anal_pain
+    note: "The Anal pain page lists constant throbbing pain, pus and a high temperature as signs of an abscess, and says urgent for severe pain with a high temperature."
+
+  - id: rf_ap_black_poo
+    description: "Black or dark red poo"
+    when: black_or_dark_red_poo
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_rectal_bleeding_urgent
+    source: nhs_anal_pain
+
+  - id: rf_ap_piles_with_temperature
+    description: "Pain in the bottom with a lump, and a high temperature or pus: possibly infected piles"
+    when: {all: [lump_at_bottom, {any: [very_high_temperature, bottom_throbbing_swelling_pus]}]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_anal_pain_urgent
+    source: nhs_piles
+
+outcome_rules:
+  - id: or_ap_gp
+    description: "Severe pain, pain not better after a few days, a throbbing swelling, or blood in poo or bleeding from the bottom"
+    when: {any: [anal_pain_severe, anal_pain_not_improving, bottom_throbbing_swelling_pus, bleeding_from_bottom]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_anal_pain_gp
+    source: nhs_anal_pain
+    note: "A throbbing swelling with pus is not on the page's list for a GP. Adding it is AI judgement: an abscess needs to be drained."
+
+default:
+  description: "Pain in the bottom with nothing that needs more help: things you can do to ease it, and a pharmacist can help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "See a GP if it does not get better after a few days"}
+  advice: advice_anal_pain_self_care
+  source: nhs_anal_pain

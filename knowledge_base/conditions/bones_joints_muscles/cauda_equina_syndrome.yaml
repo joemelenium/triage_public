@@ -1,0 +1,43 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cauda_equina_syndrome
+body_system: bones_joints_muscles
+# Rare, but needs an operation within hours to stop lasting loss of bladder, bowel and
+# leg control. Its signs are on the emergency checklist, so they are always asked.
+entry_symptoms: [back_pain, tailbone_pain, bowel_incontinence, child_soiling, constipation, urinary_incontinence, cannot_pee, erection_problems, ejaculation_problems]
+name: "Cauda equina syndrome (pressure on the nerves at the bottom of the spine)"
+medical_name: "Cauda equina syndrome"
+snomed: "192970008"
+acuity_needed: emergency
+danger: critical
+prevalence: rare
+prevalence_when:
+  - {finding: back_pain, prevalence: rare}
+  - {finding: tailbone_pain, prevalence: rare}
+  - {finding: bowel_incontinence, prevalence: rare}
+  - {finding: child_soiling, prevalence: rare}
+  - {finding: constipation, prevalence: rare}
+  - {finding: urinary_incontinence, prevalence: very_rare}
+  - {finding: cannot_pee, prevalence: very_rare}
+  - {finding: erection_problems, prevalence: very_rare}
+  - {finding: ejaculation_problems, prevalence: very_rare}
+findings:
+  saddle_numbness: strongly_supports
+  bladder_bowel_change: strongly_supports
+  both_legs_symptoms: strongly_supports
+  sexual_function_change: supports
+  pain_down_leg: supports
+  leg_weakness: supports
+  leg_numb_or_tingling: supports
+  # From the stomach_and_bowel card for this condition (merged):
+  legs_weak_or_numb: strongly_supports
+  cannot_pee_at_all: supports
+  bowel_incontinence: supports
+  # From the urinary_and_male card for this condition (merged):
+  back_pain: strongly_supports
+key_findings: [saddle_numbness, bladder_bowel_change, both_legs_symptoms, sexual_function_change, legs_weak_or_numb, cannot_pee_at_all, back_pain, bowel_incontinence]
+source: nhs_back_pain
+informed_by: [nhs_back_pain, nhs_sciatica, nhs_slipped_disc, nhs_soiling_child_pooing_their_pants, nhs_bowel_incontinence, nhs_urinary_incontinence]
+# Merged with the urinary_and_male card for this condition. Its notes: Must not be
+# missed: pressure on the nerves at the bottom of the spine. The Back pain page says call 999 or go to A&E for back pain with
+# these signs.

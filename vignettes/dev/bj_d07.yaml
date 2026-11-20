@@ -1,0 +1,66 @@
+id: bj_d07
+status: AI-drafted, not clinically approved
+authored_by: AI, in a session separate from the knowledge base
+presenting:
+- back_pain
+summary: 52-year-old woman with lower back pain for 4 days, now feeling hot, shivery and generally unwell. No injury, no leg or bladder symptoms.
+opening_statement: My lower back has been sore for a few days and now I feel hot and shivery and rubbish.
+findings:
+  present:
+  - back_pain
+  - lower_back_pain
+  - very_high_temperature
+  - feels_very_unwell
+  - pain_worse_at_night_or_rest
+  absent:
+  - both_legs_symptoms
+  - saddle_numbness
+  - bladder_bowel_change
+  - injury_or_fall
+  - chest_pain
+  - painful_or_frequent_peeing
+  - weight_loss
+  - after_lifting_or_awkward_movement
+  - severe_pain
+  unknown:
+  - recent_surgery_or_immobile
+context:
+  none: {}
+  basic:
+    age: 52
+    sex: female
+  full:
+    age: 52
+    sex: female
+expected:
+  acuity: urgent
+  level_of_care: urgent_care
+  timeframe: today
+minimum_safe_acuity: urgent
+red_flags:
+- description: Back pain with a high temperature or feeling shivery and unwell
+  findings:
+  - back_pain
+  - very_high_temperature
+  minimum_acuity: urgent
+  source:
+    page: back_pain.txt
+    quote: feel hot, cold, shivery or generally unwell
+safety_netting_should_cover:
+- point: Ask for an urgent GP appointment or contact 111
+  any_of:
+  - '111'
+  - urgent GP
+- point: Call 999 or go to A&E if numbness around the bottom, leg weakness or bladder problems start
+  any_of:
+  - '999'
+  - A&E
+source:
+  expected_outcome:
+    page: back_pain.txt
+    quote: feel hot, cold, shivery or generally unwell
+  minimum_safe_acuity:
+    page: back_pain.txt
+    quote: Very rarely, back pain can be a sign of a serious problem such as a broken bone, cancer or an infection.
+atypical: false
+notes: 'Back pain with fever: possible infection. She had a minor day-case procedure some weeks ago and is not sure if it counts (recent_surgery_or_immobile unknown). No urinary symptoms, so a kidney infection story is not suggested.'

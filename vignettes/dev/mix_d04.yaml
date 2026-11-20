@@ -1,0 +1,48 @@
+id: mix_d04
+status: "AI-drafted, not clinically approved"
+authored_by: "AI, in a session separate from the knowledge base"
+
+presenting: [short_of_breath, cough]
+
+summary: "An 81-year-old woman has become more and more breathless over the last few weeks. She now gets out of breath getting dressed, needs three pillows at night and has woken up gasping, has a cough at night, and both ankles are swollen. She is comfortable sitting still."
+
+opening_statement: "I've been getting so puffed lately, even getting dressed. I'm propped up on three pillows at night and I've got a cough that keeps me awake."
+
+findings:
+  present: [short_of_breath, sob_lying_flat, sob_everyday_activity, sob_slowly_worse, cough, cough_worse_at_night, swollen_ankles, very_tired, heart_risk_factors, symptoms_worse_or_not_better]
+  absent: [sob_sudden, sob_at_rest, too_breathless_to_talk, severe_breathing_difficulty, lips_or_skin_blue_grey, frothy_pink_phlegm, coughing_up_blood, chest_pain, palpitations, fainted, passed_out, sudden_confusion, cough_mucus_or_temperature, very_high_temperature, wheezing, leg_pain_or_swelling, has_copd, has_asthma, smoker, known_heart_condition, recent_viral_illness, light_headed, cough_3_weeks_or_more, sob_more_than_usual, has_heart_failure]
+  unknown: [sudden_weight_gain]
+
+context:
+  none: {}
+  basic: {age: 81, sex: female}
+  full:
+    age: 81
+    sex: female
+    findings: {heart_risk_factors: "yes"}
+
+expected:
+  acuity: urgent
+  level_of_care: general_practice
+  timeframe: today
+
+minimum_safe_acuity: urgent
+
+red_flags:
+  - description: "Breathless when lying down and with everyday activity"
+    findings: [sob_lying_flat, sob_everyday_activity]
+    minimum_acuity: urgent
+    source: {page: heart_failure.txt, quote: "you feel breathless when lying down or from everyday activity"}
+
+safety_netting_should_cover:
+  - point: "Ask for an urgent GP appointment or contact NHS 111"
+    any_of: ["111", "urgent"]
+  - point: "Call 999 if severe difficulty breathing, blue or grey lips or skin, or coughing up frothy pink phlegm"
+    any_of: ["999"]
+
+source:
+  expected_outcome: {page: heart_failure.txt, quote: "you feel breathless when lying down or from everyday activity"}
+  minimum_safe_acuity: {page: heart_failure.txt, quote: "you feel breathless when lying down or from everyday activity"}
+
+atypical: false
+notes: "Sources differ. heart_failure.txt gives an urgent GP appointment or 111 for breathlessness lying down or from everyday activity. shortness_of_breath.txt lists breathlessness worse with normal activities or lying down, and breathlessness with swollen ankles, under 'See a GP' (non-urgent). The more specific heart failure page was followed, and urgent is set as the minimum safe level; an engine choosing routine GP from the shortness_of_breath page would be under-triaging by this judgement. Whether she has gained weight suddenly is unknown (she has not weighed herself)."

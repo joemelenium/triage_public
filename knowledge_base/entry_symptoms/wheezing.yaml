@@ -1,0 +1,326 @@
+# Entry symptom: wheezing.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# The NHS website has no symptom page for wheezing. The rules come from the
+# Asthma, Anaphylaxis, Bronchiolitis, COPD and Sepsis pages, and from clinical
+# knowledge where marked ai_judgement.
+
+id: wheezing
+name: "Wheezing"
+presenting_finding: wheezing
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: wheezing_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - too_breathless_to_talk
+      - sob_sudden
+      - child_struggling_to_breathe
+      - child_floppy_or_hard_to_wake
+      - lips_tongue_throat_swelling
+      - throat_tight
+      - after_allergy_trigger
+      - choked_on_something
+      - stridor
+
+  - id: wheezing_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - difficulty_breathing
+      - feels_very_unwell
+      - very_high_temperature
+      - feeding_much_less
+      - not_peed_12_hours
+      - sob_lying_flat
+      - frothy_pink_phlegm
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_wh_allergic_swelling
+    description: "Wheezing with lips, mouth, tongue or throat suddenly swollen"
+    when: lips_tongue_throat_swelling
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_wh_throat_tight
+    description: "Wheezing with the throat feeling tight"
+    when: throat_tight
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+
+  - id: rf_wh_after_allergy_trigger
+    description: "Wheezing that started soon after a food, medicine or insect sting"
+    when: after_allergy_trigger
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_anaphylaxis_999
+    source: nhs_anaphylaxis
+    note: "AI reading of the Anaphylaxis page, which says call 999 if you become very wheezy after contact with something you are allergic to. Kept firm, not soft, on purpose: missing a severe allergic reaction is life-threatening. Needs clinical review."
+
+  - id: rf_wh_cannot_talk
+    description: "Wheezing and so short of breath that cannot say a short sentence"
+    when: too_breathless_to_talk
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_asthma_attack_999
+    source: ai_judgement
+    note: "Clinical knowledge: not being able to finish a sentence is a sign of a severe asthma attack, which can be life-threatening. The COVID-19 page says call 999 or go to A&E for this; 999 is used because a severe asthma attack needs treatment on the way to hospital."
+
+  - id: rf_wh_sudden
+    description: "Wheezing with breathing that came on suddenly or suddenly got much worse"
+    when: sob_sudden
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_breathless_ae
+    source: nhs_pulmonary_embolism
+    soft: true    # likely conditions may lower this: asthma attacks often start quickly
+    note: "The Pulmonary embolism and COVID-19 pages say call 999 or go to A&E for breathing problems that come on suddenly. Marked soft because asthma attacks often start quickly and can settle with a reliever inhaler."
+
+  - id: rf_wh_child_struggling
+    description: "A wheezy child struggling to breathe: grunting, or tummy sucking in under the ribs"
+    when: {all: [age_under_16, child_struggling_to_breathe]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_child_breathing_999
+    source: nhs_bronchiolitis
+    note: "Source difference: the Bronchiolitis page says call 999. The Shortness of breath page says call 999 or go to A&E. The more urgent is used."
+
+  - id: rf_wh_child_floppy
+    description: "A wheezy child who is limp, floppy, hard to wake or not responding as usual"
+    when: {all: [age_under_16, child_floppy_or_hard_to_wake]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_child_breathing_999
+    source: nhs_bronchiolitis
+    note: "Source difference: the Bronchiolitis page says call 999 for a child who is floppy and will not wake up. The Shortness of breath page says call 999 or go to A&E for a child who is limp, floppy or not responding as usual. The more urgent is used."
+
+  - id: rf_wh_pauses_in_breathing
+    description: "A young child with wheezing and pauses in their breathing"
+    when: {all: [age_under_5, pauses_in_breathing]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_child_breathing_999
+    source: nhs_bronchiolitis
+
+  - id: rf_wh_choked
+    description: "Wheezing that started suddenly after choking on something"
+    when: choked_on_something
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_breathless_ae
+    source: ai_judgement
+    note: "Clinical knowledge: something breathed into the airway can cause wheezing on one side and needs to be removed in hospital."
+
+  - id: rf_wh_asthma_reliever_not_helping
+    description: "Asthma attack and no better after the most puffs of reliever inhaler allowed, or getting worse"
+    when: {all: [has_asthma, asthma_attack_now, reliever_not_helping]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_asthma_attack_999
+    source: nhs_asthma
+
+  - id: rf_wh_asthma_no_inhaler
+    description: "Asthma attack and no reliever inhaler"
+    when: {all: [has_asthma, asthma_attack_now, no_reliever_inhaler]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999"}
+    advice: advice_asthma_attack_999
+    source: nhs_asthma
+
+  - id: rf_wh_young_child_breathing_fast
+    description: "A wheezy child under 5 who is breathing very fast"
+    when: {all: [age_under_5, breathing_very_fast]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_sepsis
+    note: "The Bronchiolitis page says call 999 for difficulty breathing that includes breathing quickly. The Sepsis page says call 999 or go to A&E for breathing very fast. A&E is used for fast breathing alone; grunting or the tummy sucking in is sent to 999 above."
+
+  - id: rf_wh_baby_feeding_poorly
+    description: "A wheezy baby under 1 who is feeding much less than usual"
+    when: {all: [age_under_1, feeding_much_less]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Go to A&E now, or call 999"}
+    advice: advice_child_breathing_emergency
+    source: ai_judgement
+    soft: true    # likely conditions may lower this: the source pages give a lower urgency
+    note: "AI judgement from clinical knowledge: a wheezy baby who is not feeding may be tiring and needs checking in hospital. The Bronchiolitis page says an urgent GP appointment or 111, so the rule is soft, with the firm urgent rule below as its floor."
+
+  - id: rf_wh_baby_high_temperature
+    description: "A wheezy baby under 3 months with 38C or more, or 3 to 6 months with 39C or more"
+    when: {all: [age_under_1, baby_high_temperature]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Bronchiolitis page says an urgent GP appointment or 111. The Sepsis page says call 999 or go to A&E. The more urgent is used."
+
+  - id: rf_wh_young_child_not_peeing
+    description: "A wheezy child under 5 who has not had a pee for 12 hours or more"
+    when: {all: [age_under_5, not_peed_12_hours]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    note: "Source difference: the Bronchiolitis page says an urgent GP appointment or 111 for a dry nappy for 12 hours. The more urgent Sepsis page advice is used."
+
+  - id: rf_wh_child_sit_up_or_drooling
+    description: "A child who is drooling more than usual, or wants to sit up rather than lie down and has a high-pitched sound when breathing"
+    when: {all: [age_under_16, {any: [drooling, {all: [child_wants_to_sit_up, stridor]}]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_child_breathing_emergency
+    source: nhs_croup
+    note: "The Croup page says call 999 or go to A&E if a child is unwell and drooling more than usual, finding it hard to swallow, or wants to sit rather than lie down. Requiring a high-pitched sound when breathing with wanting to sit up is AI judgement, so that a child with a blocked nose who sleeps propped up is not sent to A&E. Added in the breathing batch after test-case authors found no question for it."
+
+  - id: rf_wh_stridor
+    description: "A high-pitched sound when breathing in"
+    when: stridor
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_breathless_ae
+    source: nhs_sore_throat
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Same as the cough rule. Source difference: the Sore throat page says call 999 or go to A&E for a high-pitched sound when breathing. The Croup page lists it as a croup symptom and says an urgent GP appointment or 111. The more urgent is used, marked soft."
+
+  - id: rf_wh_sepsis_cold_or_shivery
+    description: "Feeling cold to the touch or shivery, with feeling very unwell or breathing very fast: possible sepsis, even without a high temperature"
+    when: {all: [cold_or_shivery, {any: [feels_very_unwell, breathing_very_fast]}]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: flu also makes people shivery and very unwell
+    note: "The Sepsis page says call 999 or go to A&E for an adult who feels hot or cold to the touch or is shivery, and says a high temperature is less common in older adults with sepsis. Requiring feeling very unwell or breathing very fast is AI judgement, so that everyone with a shivery cold is not sent to A&E. Soft, so that likely flu can lower it; sepsis itself, if likely, keeps the outcome at emergency."
+
+  - id: rf_wh_young_child_cold_or_shivery
+    description: "A child under 5 who feels cold to the touch or is shivery"
+    when: {all: [age_under_5, cold_or_shivery]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E"}
+    advice: advice_sepsis_emergency
+    source: nhs_sepsis
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Sepsis page says call 999 or go to A&E for a child under 5 who feels cold to the touch or is shivery. The Bronchiolitis page says an urgent GP appointment or 111 for a child who feels hot or cold to the touch or is shivering. The more urgent is used, marked soft, with the urgent high temperature rule as its floor."
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_wh_difficulty_breathing
+    description: "Wheezing and finding it hard to breathe"
+    when: difficulty_breathing
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Contact NHS 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_shortness_of_breath
+
+  - id: rf_wh_asthma_attack
+    description: "Diagnosed asthma and having an asthma attack now"
+    when: {all: [has_asthma, asthma_attack_now]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Use your reliever inhaler now. Then get an urgent GP appointment, even if you feel better."}
+    advice: advice_asthma_attack_urgent
+    source: nhs_asthma
+    soft: true    # likely conditions may lower this: it rests on a reading of the source
+    note: "AI reading of the Asthma page, which says to see a GP within 2 days of an asthma attack, even after recovering. Same-day help is used because the attack is happening now."
+
+  - id: rf_wh_very_unwell
+    description: "Wheezing and feeling very unwell, or a child who is very tired, irritable or not themselves"
+    when: feels_very_unwell
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_bronchiolitis
+    note: "The Cough page gives the same advice for feeling very unwell."
+
+  - id: rf_wh_young_child_high_temperature
+    description: "A wheezy child under 5 with a high temperature, or feeling hot, cold or shivery"
+    when: {all: [age_under_5, very_high_temperature]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_bronchiolitis
+
+  - id: rf_wh_child_feeding_less
+    description: "A wheezy baby or young child feeding or eating much less than usual"
+    when: {all: [age_under_5, feeding_much_less]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_bronchiolitis
+
+  - id: rf_wh_not_peed
+    description: "Wheezing and no pee for 12 hours or more"
+    when: not_peed_12_hours
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_bronchiolitis
+
+  - id: rf_wh_lying_flat
+    description: "Wheezing and short of breath when lying flat"
+    when: sob_lying_flat
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_heart_failure
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "Source difference: the Heart failure page says an urgent GP appointment or 111. The Shortness of breath page says see a GP. The more urgent is used. Wheezing from fluid on the lungs can be a sign of heart failure."
+
+  - id: rf_wh_frothy_pink_phlegm
+    description: "Wheezing and coughing up frothy pink phlegm"
+    when: frothy_pink_phlegm
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_heart_failure
+
+  - id: rf_wh_copd_flare_up
+    description: "COPD that is worse than usual"
+    when: {all: [age_16_or_over, has_copd, copd_flare_up]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_copd_flare_urgent
+    source: nhs_copd
+
+  - id: rf_wh_more_than_usual
+    description: "A long-term lung or heart condition, and more short of breath than usual"
+    when: sob_more_than_usual
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_bronchiectasis
+    note: "The Bronchiectasis and COPD pages say an urgent GP appointment or 111 for being more short of breath than usual. The Shortness of breath page says contact 111 for difficulty breathing, 'you may be more short of breath than usual'. Applying it to any long-term lung or heart condition is AI judgement. Added in the breathing batch: before this it could only be reached through a question about COPD."
+
+  - id: rf_wh_young_child_worse
+    description: "A child under 5 whose symptoms are getting worse, or not getting better"
+    when: {all: [age_under_5, symptoms_worse_or_not_better]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_wheezing_urgent
+    source: nhs_bronchiolitis
+    note: "The Bronchiolitis page says an urgent GP appointment or 111 if a child has had a cold and it is getting worse. The Croup page says the same for a child getting worse or not getting better."
+
+  - id: rf_wh_baby_born_early_or_heart_lung
+    description: "A baby under 1 who was born early, or has a heart or lung condition or a weak immune system"
+    when: {all: [age_under_1, baby_premature_or_heart_lung_condition]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or call 111"}
+    advice: advice_wheezing_urgent
+    source: ai_judgement
+    note: "AI judgement. The Bronchiolitis page says these babies have a higher chance of getting seriously ill, but gives no action for it on its own. A same-day check for a baby like this with breathing symptoms is a reading of that. Needs clinical review."
+
+outcome_rules:
+  - id: or_wh_asthma_attack_recovered
+    description: "Diagnosed asthma, and an asthma attack in the last few days that has now settled"
+    when: {all: [has_asthma, asthma_attack_recovered]}
+    outcome: {acuity: soon, level_of_care: general_practice, timeframe: few_days, timeframe_detail: "See a GP within 2 days, even if you feel better"}
+    advice: advice_asthma_attack_recovered
+    source: nhs_asthma
+    note: "The Asthma page says: if you've had an asthma attack and have recovered, see a GP within 2 days. Added in the breathing batch after test-case authors found no question for it."
+
+  - id: or_wh_asthma_not_controlled
+    description: "Asthma needing the reliever more often, or waking at night or stopping usual activities"
+    when: {all: [has_asthma, asthma_needing_reliever_more]}
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_asthma_gp
+    source: nhs_asthma
+
+default:
+  description: "Wheezing with nothing that needs more urgent help: see a GP to find the cause"
+  outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+  advice: advice_wheezing_gp
+  source: nhs_asthma
+  # A floor: the Asthma page says to see a GP if you or your child have asthma symptoms,
+  # so likely conditions can never take the outcome below this.
+  floor: true
+  note: "Wheezing is a main asthma symptom. Treating every new wheeze as needing a GP is a reading of the Asthma page; it can also be caused by a chest infection, bronchiolitis or COPD. People already diagnosed with asthma whose symptoms are as usual are handled by the exception below."
+
+default_exceptions:
+  - id: de_wh_known_asthma_as_usual
+    description: "Diagnosed asthma, not having an attack and no worse than usual: follow your asthma action plan"
+    when: {all: [has_asthma, {not: asthma_attack_now}, {not: asthma_needing_reliever_more}, {not: asthma_attack_recovered}]}
+    outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "Follow your asthma action plan and use your inhalers as your care team told you"}
+    advice: advice_asthma_self_care
+    source: nhs_asthma
+    note: "Only reached when no red flag applies. The Asthma page says to see a GP if treatments are not helping or symptoms are getting worse, so symptoms that are as usual follow the action plan. AI reading, needs clinical review."

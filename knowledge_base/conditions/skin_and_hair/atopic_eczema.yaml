@@ -1,0 +1,25 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: atopic_eczema
+body_system: skin_and_hair
+entry_symptoms: [rash, itchy_skin]
+name: "Eczema (a common skin condition that makes skin itchy, dry and cracked)"
+medical_name: "Atopic dermatitis"
+snomed: "24079001"
+acuity_needed: routine
+danger: minor
+diagnosed_by: has_eczema
+prevalence: common
+prevalence_when:
+  - {finding: has_eczema, prevalence: very_common}
+  - {finding: age_under_5, prevalence: very_common}
+findings:
+  # What tells it apart from psoriasis or contact dermatitis: itchy, dry, cracked skin in the creases of the elbows and knees (or a baby's cheeks), that comes and goes, often with asthma or hay fever.
+  rash_dry_cracked: strongly_supports
+  rash_itchy: strongly_supports
+  rash_in_skin_creases: supports
+  rash_comes_and_goes: supports
+  has_allergies: supports
+key_findings: [rash_dry_cracked, rash_in_skin_creases, rash_comes_and_goes, has_allergies]
+source: nhs_atopic_eczema
+informed_by: [nhs_atopic_eczema, nhs_rashes_babies_and_children]

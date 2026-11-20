@@ -1,0 +1,22 @@
+id: semigran2015_06
+set: Semigran 2015
+status: Published vignette, converted by AI, not clinically approved in this form
+citation: 'Semigran HL, Linder JA, Gidengil C, Mehrotra A. Evaluation of symptom checkers for self diagnosis and triage: audit study. BMJ 2015;351:h3480.'
+licence: CC BY-NC 4.0
+original_diagnosis: Heart Attack
+original_triage_label: Requires emergent care
+original_triage: emergency
+presenting_text: chest pain for 24 hours
+presenting:
+- chest_pain
+age: 64
+sex: male
+findings:
+  present:
+  - cp_present_now
+  - sweating
+  - short_of_breath
+  absent:
+  - cp_spreads
+  unknown: []
+conversion_notes: '''Presents with chest pain for 24 hours'', with symptoms that worsened, is taken as pain present now. ''Non-radiating'' is mapped to cp_spreads absent. ''Diaphoresis'' is mapped to sweating. ''Substernal chest pressure'' is not mapped to cp_tight_or_squeezing: the text says pressure, not tight or squeezed (the appendix lists ''chest tightness'' only as a symptom the study authors added when a symptom checker asked). The onset is not described as sudden, so cp_sudden_not_going_away is left out. Pain of 8/10 that worsened over 24 hours is not mapped to severe_and_worsening_quickly. The ECG finding has no matching question. The misspelling ''intially'' is in the published text. Text is from the ''Vignette'' column of Supplemental Table 2 in the web appendix (vignette 6 of 45, in the published order); the ''Simplified (added symptoms)'' column is not copied. The publication gives this vignette''s source as: Lue J. NYU Medical Grand Rounds Clinical Vignette, 2012.'

@@ -1,0 +1,30 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: cataracts
+body_system: eyes
+# The lens inside the eye becomes cloudy. Usually older adults. An optician
+# refers you; an optician has no level of care of its own, so general practice
+# is used.
+entry_symptoms: [vision_change, double_vision]
+name: "Cataracts (the lens inside the eye becomes cloudy)"
+medical_name: "Cataract"
+snomed: "193570009"
+acuity_needed: routine
+danger: minor
+prevalence: uncommon
+prevalence_when:
+  - {finding: age_65_or_over, prevalence: very_common}
+  - {finding: age_under_16, prevalence: very_rare}
+  - {finding: double_vision, prevalence: uncommon}
+findings:
+  vision_worse_slowly: strongly_supports
+  blurred_vision: strongly_supports
+  halos_around_lights: supports
+  night_vision_poor: supports
+  colours_faded: supports
+  double_vision_one_eye: supports
+  has_diabetes: supports
+  smoker: supports
+key_findings: [vision_worse_slowly, halos_around_lights, night_vision_poor, colours_faded]
+source: nhs_cataracts
+informed_by: [nhs_cataracts, nhs_vision_loss, nhs_double_vision]

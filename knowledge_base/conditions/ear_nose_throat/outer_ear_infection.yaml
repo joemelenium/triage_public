@@ -1,0 +1,23 @@
+# Condition card. NOT FOR CLINICAL USE. A demonstration and proof of concept only.
+# Likelihood bands and danger class are AI judgement. See conditions/README.md.
+id: outer_ear_infection
+body_system: ear_nose_throat
+entry_symptoms: [ear_pain, hearing_loss]
+name: "Outer ear infection (an infection in the tube that goes into the ear)"
+medical_name: "Otitis externa"
+snomed: "3135009"
+acuity_needed: routine
+danger: minor
+prevalence: common
+findings:
+  # What tells it apart from a middle ear infection: an itchy ear that hurts more when touched or
+  # pulled, often after swimming or using cotton buds.
+  ear_pain: strongly_supports
+  ear_pain_worse_touching: strongly_supports
+  ear_itchy: strongly_supports
+  water_or_cotton_buds_in_ear: supports
+  ear_discharge: supports
+  ear_feels_blocked: supports
+key_findings: [ear_pain_worse_touching, ear_itchy, water_or_cotton_buds_in_ear, ear_discharge]
+source: nhs_ear_infections
+informed_by: [nhs_ear_infections, nhs_earache]

@@ -1,0 +1,126 @@
+# Entry symptom: indigestion, heartburn and acid reflux.
+# NOT FOR CLINICAL USE. AI-drafted, not clinically reviewed.
+#
+# Each rule says: WHEN these findings are present, the outcome is at least THIS.
+# A rule marked "soft: true" is the exception: the conditions that look likely
+# may lower its outcome, if something the patient said points to a milder cause.
+# The engine takes the most urgent rule that fires. If none fires, it uses the
+# default at the bottom.
+#
+# Also covers the Heartburn and acid reflux page. A heart attack can feel like
+# indigestion, so chest tightness, pain spreading or feeling sweaty or short of
+# breath are checked first.
+
+id: indigestion
+name: "Indigestion and heartburn"
+presenting_finding: indigestion
+also_covers: [nhs_heartburn]
+status: "AI-drafted, not clinically reviewed"
+
+screens:
+  - id: indigestion_emergency_screen
+    level: emergency
+    question: "Do any of these apply right now? Choose all that apply."
+    findings:
+      - cp_tight_or_squeezing
+      - cp_heavy
+      - chest_pain
+      - sweating
+      - short_of_breath
+      - vomiting_blood
+      - black_or_dark_red_poo
+      - sa_sudden_severe
+
+  - id: indigestion_urgent_screen
+    level: urgent
+    question: "Do any of these apply? Choose all that apply."
+    findings:
+      - weight_loss
+      - difficulty_swallowing
+      - keeps_being_sick
+      - full_quickly
+      - lump_in_tummy_or_groin
+      - stomach_ache
+
+red_flags:
+  # ---- Emergency ---------------------------------------------------------
+  - id: rf_ind_heart_attack_signs
+    description: "Indigestion with the chest feeling tight, squeezed or heavy: possible heart attack"
+    when: {any: [cp_tight_or_squeezing, cp_heavy]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_indigestion_999
+    source: nhs_chest_pain
+    note: "The Chest pain page says chest pain that feels like squeezing or pressure, burning or indigestion may be a heart attack: call 999. Applying it to indigestion is AI judgement. Any chest pain also brings in the chest pain rules."
+
+  - id: rf_ind_sweaty_or_breathless
+    description: "Indigestion with feeling sweaty or short of breath, aged 45 or over: possible heart attack"
+    when: {all: [{any: [sweating, short_of_breath]}, age_45_or_over]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_indigestion_999
+    source: nhs_chest_pain
+    note: "The Chest pain page says chest pain or discomfort that can feel like burning or indigestion, with feeling sweaty or short of breath, may be a heart attack: call 999. Applying it to indigestion is AI judgement. Kept firm from 45, when a heart attack becomes more common (DECISIONS 169)."
+
+  - id: rf_ind_sweaty_or_breathless_under_45
+    description: "Indigestion with feeling sweaty or short of breath, under 45: possible heart attack"
+    when: {all: [{any: [sweating, short_of_breath]}, {not: age_45_or_over}]}
+    outcome: {acuity: emergency, level_of_care: emergency_ambulance, timeframe: now, timeframe_detail: "Call 999 now"}
+    advice: advice_indigestion_999
+    source: nhs_chest_pain
+    soft: true    # likely conditions may lower this: a heart attack is very rare under 45 and the Indigestion page gives no 999 advice
+    note: "As the rule above, but soft under 45: a clearly likely milder cause, from what the patient said, can lower it. An independent check found sweating alone gave 999 for any age (DECISIONS 169)."
+
+  - id: rf_ind_blood
+    description: "Indigestion with vomiting blood, or black, sticky poo"
+    when: {any: [vomiting_blood, black_or_dark_red_poo]}
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_vomiting_blood_ae
+    source: nhs_gastritis
+    note: "Source difference: the Gastritis and Stomach ulcer pages say 999 or A&E. The Indigestion page says see a GP for bloody sick or poo. The more urgent is used."
+
+  - id: rf_ind_sudden_severe
+    description: "Severe tummy or chest pain that started suddenly"
+    when: sa_sudden_severe
+    outcome: {acuity: emergency, level_of_care: emergency_department, timeframe: now, timeframe_detail: "Call 999 or go to A&E now"}
+    advice: advice_stomach_ache_ae
+    source: nhs_gastritis
+
+  # ---- Urgent --------------------------------------------------------------
+  - id: rf_ind_warning_signs
+    description: "Indigestion with weight loss, difficulty swallowing, being sick again and again, feeling full after a little food, or a lump in the tummy"
+    when: {any: [weight_loss, difficulty_swallowing, keeps_being_sick, full_quickly, lump_in_tummy_or_groin]}
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_indigestion_urgent
+    source: nhs_hiatus_hernia
+    note: "Source difference: the Hiatus hernia, Stomach ulcer and Gastritis pages say an urgent GP appointment or 111. The Indigestion page says see a GP (non-urgent). The more urgent is used. These can be signs of something more serious, such as cancer."
+
+  - id: rf_ind_upper_tummy_pain
+    description: "Indigestion with pain in the upper tummy"
+    when: sa_upper_middle
+    outcome: {acuity: urgent, level_of_care: urgent_care, timeframe: today, timeframe_detail: "Ask for an urgent GP appointment or get help from NHS 111"}
+    advice: advice_indigestion_urgent
+    source: nhs_hiatus_hernia
+    soft: true    # likely conditions may lower this: the source pages disagree on its urgency
+    note: "The Hiatus hernia page says urgent for indigestion with pain in the upper tummy. The Indigestion page says stomach ache is not usually a symptom of indigestion. Marked soft."
+
+outcome_rules:
+  - id: or_ind_keeps_happening
+    description: "Keeps getting indigestion, or it has not gone away with pharmacy medicine"
+    when: indigestion_keeps_happening
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_indigestion_gp
+    source: nhs_indigestion
+
+  - id: or_ind_severe_pain
+    description: "Indigestion with severe pain"
+    when: sa_severe
+    outcome: {acuity: routine, level_of_care: general_practice, timeframe: no_fixed_time, timeframe_detail: "See a GP. The source gives no fixed time."}
+    advice: advice_indigestion_gp
+    source: nhs_indigestion
+    note: "A severe stomach ache also brings in the stomach ache rules, which say 999 or A&E."
+
+default:
+  description: "Indigestion or heartburn with nothing that needs more help: treat it at home, and a pharmacist can help"
+  outcome: {acuity: self_manageable, level_of_care: self_care, timeframe: not_needed, timeframe_detail: "There is usually no need to see a GP"}
+  advice: advice_indigestion_self_care
+  source: nhs_indigestion
+  note: "The Heartburn page gives the same self-care advice."
